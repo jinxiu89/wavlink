@@ -1,0 +1,51 @@
+<footer class="col-xs-12" style="background:#3a3a3a;padding:0">
+    <div class="container-fuild">
+        <div class="row" style="padding: 30px;margin-right: 0">
+            <dl class="col-md-2 col-sm-3 col-xs-12">
+                <dt class="h3">{$Think.lang.about_wavlink}</dt>
+                {volist name="about" id="vo"}
+                <dd><a href="{:url('/'.$code.'/about/'.$vo.url_title)}">{$vo.name}</a></dd>
+                {/volist}
+            </dl>
+            <dl class="col-md-2 col-sm-3 col-xs-12">
+                <dt class="h3"><a href="{:url('/'.$code.'/article')}">{$Think.lang.event}</a></dt>
+                {volist name="articleList" id="vo"}
+                <dd><a href="{:url('/'.$code.'/article/details/'.$vo.url_title)}">{$vo.title}</a></dd>
+                {/volist}
+            </dl>
+            <dl class="col-md-2 col-sm-3 col-xs-12">
+                <dt class="h3"><a href="{:url('/'.$code.'/document')}">{$Think.lang.document}</a></dt>
+                {volist name="documentList" id="vo"}
+                <dd><a href="{:url('/'.$code.'/document/details/'.$vo.url_title)}">{$vo.title}</a></dd>
+                {/volist}
+            </dl>
+            <dl class="col-md-2 col-sm-3 col-xs-12">
+                <dt class="h3">{$Think.lang.support}</dt>
+                <dd><a href="{:url('/'.$code.'/drivers')}">{$Think.lang.drivers}</a></dd>
+                <dd><a href="{:url('/'.$code.'/guest_book')}">{$Think.lang.GuestBook}</a></dd>
+                <dd><a href="{:url('/'.$code.'/faq')}">{$Think.lang.faq}</a></dd>
+                <dd><a href="{:url('/'.$code.'/video')}">{$Think.lang.video}</a></dd>
+            </dl>
+            <dl class="last_dl col-md-4 col-sm-6 col-xs-12">
+                <dt class="h3">{$Think.lang.follow_us}</dt>
+                <dd class="col-sm-4 col-xs-12" style="padding:0">
+                    <p><a href="https://weibo.com/u/3899927109?is_hot=1">{$Think.lang.weibo}</a></p>
+                    <p><a href="#">{$Think.lang.weixin}</a></p>
+                </dd>
+                <dd class="last_dd text-center col-sm-8 col-xs-12">
+                    <a href="javascript:;" class="col-xs-6">
+                        <img src="https://cloud.wavlink.com/index.php?user/publicLink&fid=1680nmYC5Bym8YmXUi1H8OCUO2Po45B8dA3UGFhfcI06UfuGnWDBqOhhMhhP1kJi2Vy5MOiijs-w-EnJUYSn-MoBlPz11jQLu0IDoA-mvdKPD_hVXIBv8GkLXhCvRawyVsHss3n1eHiDgTsYIHhfEhyP8IkzVIgckXtUIi-kUoysmGjNxkdakT4BPfWQTAyCmpTjpFGGxpvU96s&file_name=/6618C740-4A87-4991-B0E3-E803F153D191.jpg" class="img-responsive center-block" alt="{$Think.lang.subscription_number}">
+                        <span>{$Think.lang.subscription_number}</span>
+                    </a>
+                    <a href="javascript:;" class="col-xs-6">
+                        <img src="https://cloud.wavlink.com/index.php?user/publicLink&fid=341cb1g-k05ww3atyCJav5_eD604SWMSDya76Ils-eYSWfWDlBo8mQXIkHc7Rg4bUZQh5a7jYyWtoI7Y21ubXNaBD9Oe5lNLyjQxOPCEyYDtTXFdyr9LrZ0z-jf2k0YZgvu17Ws_3rYGAqMBpWL-tMR7iocaTEOS8BBhVERk2ixBx5ZATpuWW-v_dzrPACpr0HLgxQbvypdxiwQ&file_name=/C7BEAD2F-A12B-410e-BC18-FD74B4E01B53.jpg" class="img-responsive center-block" alt="{$Think.lang.service_number}">
+                        <span>{$Think.lang.service_number}</span>
+                    </a>
+                </dd>
+            </dl>
+        </div>
+    </div>
+    <div class="w_body_footer_bottom bg-black color-white text-center col-xs-12">
+        {$seo.information}
+    </div>
+</footer>

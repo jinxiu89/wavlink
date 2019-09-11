@@ -1,0 +1,91 @@
+<!--继承框架-->
+{extend name="pc/base/base"}
+{block name="seo"}
+<title>{$result.title} - Wavlink </title>
+<meta name="keywords" content="{$result.seo_keys}">
+<meta name="description" content="{$result.seo_description}">
+<link rel="stylesheet" href="__EN__/css/faq/faq.css" type="text/css">
+{/block}
+{block name="banner"}
+<header class="FAQ">
+    <div class="banner">
+        <div>
+            <img class="img-responsive center-block img_pc" src="https://cloud.wavlink.com/index.php?user/publicLink&fid=f0734WNYAqANvPcVHlJ6YgINAiOJRlQpVJ2d_z1hmHix6AbzVcA5GGDKkkVLSIrhjGj75sH0bwv46dxiY1zNUFAR-V25jXJf0W_lSAwN4X_x73pxlMy3WLAtMmAqLtryTy4Iwag1FX_PSQ&file_name=/01.jpg" alt="">
+        </div>
+    </div>
+    <div class="nav">
+        <div class="nav_place col-lg">
+            <span style="color: #888">当前位置：</span>
+            <ul>
+                <li><a href="{:url('/'.$code.'/article')}">Event</a></li>
+                <li> > </li>
+                <li class="addInnerHTML"><a href="{:url('/'.$code.'/article/'.$articleCate.url_title)}">{$articleCate.name}</a></li>
+                <li> > </li>
+                <li class="addInnerHTML"><a href="javascript:;">{$result.title}</a></li>
+            </ul>
+        </div>
+        <!--<div class="nav_search">-->
+            <!--<form action="">-->
+                <!--<input type="text" name="key" placeholder="">-->
+                <!--<input type="submit" value="{$Think.lang.search}">-->
+            <!--</form>-->
+        <!--</div>-->
+    </div>
+</header>
+{/block}
+{block name="body"}
+<!--section-->
+<section>
+    <aside class="aside_nav">
+        <h3>事件列表<i class="icon-angle-right"></i></h3>
+        <ul>
+            {volist name="$cate" id="vo"}
+            {if condition="$result.category_id eq $vo.id"}
+            <li style="background-color: #ccc"><a href="{:url('/'.$code.'/article/'.$vo.url_title)}" data-id="{$vo.id}">{$vo.name}</a></li>
+            {else /}
+            <li><a href="{:url('/'.$code.'/article/'.$vo.url_title)}" data-id="{$vo.id}">{$vo.name}</a></li>
+            {/if}
+            {/volist}
+
+        </ul>
+    </aside>
+    <main class="main_content">
+        <div>
+            <ul>
+                <li>
+                    <h5>{$result.title}</h5>
+                    <p>{$result.content}</p>
+                    <span>更新时间：{$result.update_time|strtotime|date="Y/m/d",###}</span>
+                </li>
+            </ul>
+        </div>
+        <!--分页-->
+        <div>
+            <div class="nav_page text-center col-lg-10 col-lg-offset-1 col-xs-12" style="padding:0">
+                <ul class="pagination">
+
+                </ul>
+            </div>
+        </div>
+    </main>
+</section>
+{/block}
+{block name="js"}
+<script>
+    $(document).ready(function(){
+        if ($(document).width() < 768){
+            $("section>.aside_nav>h3").click(function(){
+                $(this).children("i").toggleClass("icon-angle-right").toggleClass("icon-angle-down");
+                $(this).next("ul").slideToggle();
+            })
+        }
+//        let asideNav = $("aside.aside_nav>ul>li>a");
+//        for(let i=0;i<asideNav.length;i++){
+//            asideNav.eq(i).click(function(){
+//                $("header.FAQ>div.nav>div.nav_place>ul>li.addInnerHTML").html(this.innerHTML)
+//            })
+//        }
+        $(".main_content img").addClass("img-responsive").addClass("center-block");
+    })
+</script>
+{/block}

@@ -17,21 +17,40 @@ use think\Request;
 
 class BaseAdmin extends Controller
 {
-    public function _initialize()
+    protected $currentLanguage;
+
+    /**
+     * BaseAdmin constructor.
+     * @param Request|null $request
+     */
+    public function __construct(Request $request = null)
     {
+        parent::__construct($request);
         if (!$this->isLogin()) {
             $next = Request::instance()->url(true);
             $this->redirect(url('login/index', ["next" => $next]));
         }
+    }
+
+    /***
+     * @throws \think\db\exception\DataNotFoundException
+     * @throws \think\db\exception\ModelNotFoundException
+     * @throws \think\exception\DbException
+     */
+    public function _initialize()
+    {
         $userSession = session('userName', '', 'admin');
+        $this->currentLanguage = session('current_language', 'admin');
         $mangerName = $userSession->name;
         $username = $userSession->username;
         $this->assign('mangerName', $mangerName);
         $this->assign('username', $username);
+        //认证
         $auth = new Auth();
         $request = Request::instance();
         $con = $request->controller();
         $action = $request->action();
+
         $name = $con . '/' . $action;
         $uid = $userSession->id;
         $notCheck = array('Index/index', 'Content/index', 'Service/index', 'System/index');//对一些（控制器/方法）不需要验证

@@ -9,19 +9,19 @@
 namespace app\wavlink\controller;
 
 use think\Controller;
+use app\common\model\Language;
 
+/**
+ * Class Login
+ * @package app\wavlink\controller
+ */
 class Login extends Controller
 {
     protected $next;
 
     public function index()
     {
-        if(input('next')){
-            $this->next=input('next');
-        }else{
-            $this->next=url('/wavlink/index');
-        }
-        if (request()->isPost()) {
+        if (request()->isPost()) {//提交登录
             //登录的逻辑
             //获取相关的数据
             $data = input('post.');
@@ -49,9 +49,8 @@ class Login extends Controller
             model('Manger')->updateById(['last_login_time' => time(), 'ip' => request()->ip()], $ret->id);
             //保存登陆信息,session 助手函数,第一个参数是变量，给它取变量名'userName'。第二个参数是值，获取到的$ret的值。第三个是作用域，admin模块下登陆信息。
             session('userName', $ret, 'admin');
+            session('current_language',(new Language())->getLanguageByLanguageId($data['language_id']),'admin');
             $uid = session('userName', '', 'admin')->id;
-            $language = session('userName', '', 'admin')->language_id;
-            $language_id = explode(',', $language);
             if ($uid != 1) {
                 $auth = new Auth();
                 $_access = $auth->getAuthById($uid);
@@ -62,11 +61,17 @@ class Login extends Controller
             }
 
         } else {
+            if (input('next')) {
+                $this->next = input('next');
+            } else {
+                $this->next = url('/wavlink/index');
+            }
+            $language = collection(Language::all())->toArray();
             $users = session('userName', '', 'admin');
             if ($users && $users->id) {
                 $this->redirect($this->next);
             }
-            return $this->fetch('',['next'=>$this->next]);
+            return $this->fetch('', ['language' => $language, 'next' => $this->next]);
         }
     }
 

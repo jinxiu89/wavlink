@@ -1,0 +1,161 @@
+<!--继承框架-->
+{extend name="mobile/base/base"}
+<!--私有首页面属性开始-->
+{block name="seo"}
+<title>Wavlink</title>
+<meta name="keywords" content="">
+<meta name="description" content="">
+<link rel="stylesheet" href="__CN__/css/ticket/ticket.css" type="text/css">
+{/block}
+<!--私有首页面属性结束-->
+<!--主体内容开始-->
+{block name="body"}
+<div class="banner">
+    <div>
+        <img class="img-responsive center-block img_mobile" src="https://cloud.wavlink.com/index.php?user/publicLink&fid=6e5aOqxcBKl17gwjrQCe4NNkUxTogJz7_3UpnUREYO4RnR4OI9Z7NM_EKQgYdNywrllPfh31UUJ77TKSvUqDNni-noAeh3Mj20LvCQn6piS2RowYom2s6SnmIQD6aK1mi9soUM5C6sgGo2uomrmJRqFQ1w&file_name=/Firmware_2.jpg" alt="">
+    </div>
+</div>
+<div class="container ticket_add">
+    <div class="row">
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                <h3 class="panel-title">根据下面表单填写相关信息，留下想要对我们说的话，或者您遇到的问题，我们将尽快以邮件的方式给您回复</h3>
+            </div>
+            <div class="panel-body">
+                <form class="form-horizontal" id="form-data">
+                    <div class="form-group">
+                        <label for="First_name" class="col-sm-2 control-label"><span style="color: red">*</span>姓：</label>
+                        <div class="col-sm-5">
+                            <input type="text" class="form-control" id="First_name" placeholder="" name="first_name" value="">
+                        </div>
+                        <div class="col-sm-5 p_padding">
+                           <p></p>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="Last_name" class="col-sm-2 control-label"><span style="color: red">*</span>名字：</label>
+                        <div class="col-sm-5">
+                            <input type="text" class="form-control" id="Last_name" placeholder="" name="last_name">
+                        </div>
+                        <div class="col-sm-5 p_padding">
+                            <p></p>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="Email" class="col-sm-2 control-label"><span style="color: red">*</span>邮箱：</label>
+                        <div class="col-sm-5">
+                            <input type="text" class="form-control" id="Email" placeholder="" name="email">
+                        </div>
+                        <div class="col-sm-5 p_padding">
+                            <p></p>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="Model" class="col-sm-2 control-label"><span style="color: red">*</span>产品型号：</label>
+                        <div class="col-sm-5">
+                            <input type="text" class="form-control" id="Model" placeholder="" name="model">
+                        </div>
+                        <div class="col-sm-5 p_padding">
+                            <p></p>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="SN" class="col-sm-2 control-label"><span style="color: red">*</span>产品序列号：</label>
+                        <div class="col-sm-5">
+                            <input type="text" class="form-control" id="SN" placeholder="" name="sn">
+                        </div>
+                        <div class="col-sm-5 p_padding">
+                            <p></p>
+                        </div>
+                    </div>
+                    <!--<div class="form-group">-->
+                        <!--<label for="purchasing_date" class="col-sm-2 control-label">Purchasing date:</label>-->
+                        <!--<div class="col-sm-5">-->
+                            <!--<input type="text" class="form-control" id="purchasing_date" placeholder="" name="purchasing_date">-->
+                        <!--</div>-->
+                        <!--<div class="col-sm-5 p_padding">-->
+                            <!--<p></p>-->
+                        <!--</div>-->
+                    <!--</div>-->
+                    <!--<div class="form-group">-->
+                        <!--<label for="purchasing_link" class="col-sm-2 control-label">Purchasing link :</label>-->
+                        <!--<div class="col-sm-5">-->
+                            <!--<input type="text" class="form-control" id="purchasing_link" placeholder="" name="purchasing_link">-->
+                        <!--</div>-->
+                        <!--<div class="col-sm-5 p_padding">-->
+                            <!--<p></p>-->
+                        <!--</div>-->
+                    <!--</div>-->
+                    <div class="form-group">
+                        <label for="description" class="col-sm-2 control-label"><span style="color: red">*</span>描述：</label>
+                        <div class="col-sm-10">
+                            <textarea class="form-control" rows="8" id="description" name="description" placeholder="" style="resize:none;outline:none;"></textarea>
+                        </div>
+
+                    </div>
+                    <div class="form-group">
+                        <div class="col-sm-offset-2 col-sm-10">
+                            <button type="button" class="btn btn-primary" id="button">提交</button>
+                            <button type="reset" class="btn btn-danger" id="reset">重置</button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+            <div class="panel-footer">
+                <a href="/zh_cn/faq/details/how_to_check_the_product_model.html" style="color: #888;display: inline">*不知道自己的产品型号？（点击前往了解一下如何查看睿因产品型号吧！）</a>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-xs-12">
+
+        </div>
+    </div>
+
+</div>
+{/block}
+<!--主题内容结束-->
+{block name="js"}
+<script type="text/javascript" src="__STATIC__/admin/lib/layer/2.4/layer.js"></script>
+<script type="application/javascript">
+    /**
+     * create by Administrator on 16-7-16
+     * 处理 Post数据
+     * 提交form表单数据
+     * #button_add :提交按钮的ID
+     * #form-data:提交表单的form ID
+     * 利用serializeArray
+     * 组装数组用each方法
+     * */
+    $("#button").click(function () {
+        var data = $("#form-data").serializeArray();
+        /***
+         * 修正日期：2016-09-08
+         * 修正人：袁普照
+         * 解决数组的问题
+         */
+        var postData={};
+        $(data).each(function(){
+            if(postData[this.name]){
+                if($.isArray(postData[this.name])){
+                    postData[this.name].push(this.value);
+                }else{
+                    postData[this.name]=[postData[this.name],this.value];
+                }
+            }else{
+                postData[this.name]=this.value;
+            }
+        });
+        var url='{:url("guest_book/save")}';
+        $.post(url,postData,function (result) {
+            if(result.status === 1){
+                layer.msg(result.data, {icon: 1, time: 5000});
+                $("#button").attr("disabled","disabled");
+
+            }else {
+                layer.msg(result.data, {icon: 5, time: 3000});
+            }
+        },'JSON');
+    });
+</script>
+{/block}

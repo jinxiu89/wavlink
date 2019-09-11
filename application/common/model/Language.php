@@ -25,6 +25,9 @@ class Language extends BaseModel
      * 判断传入的语言 如果是模块名 就转换成id 如果是id 就直接输出id
      * @param $value
      * @return mixed
+     * @throws \think\db\exception\DataNotFoundException
+     * @throws \think\db\exception\ModelNotFoundException
+     * @throws \think\exception\DbException
      */
     public static function getLanguageCodeOrID($value){
         if (isPositiveInteger($value)){
@@ -34,10 +37,14 @@ class Language extends BaseModel
             return $language['id'];
         }
     }
+
     /**
      * 根据语言code 获取 语言状态,语言id,
      * @param 模块名|string $code 模块名
      * @return array|false|\PDOStatement|string|\think\Model
+     * @throws \think\db\exception\DataNotFoundException
+     * @throws \think\db\exception\ModelNotFoundException
+     * @throws \think\exception\DbException
      */
     public static function getIDStatusByCode($code = 'en_us') {
         $map = [

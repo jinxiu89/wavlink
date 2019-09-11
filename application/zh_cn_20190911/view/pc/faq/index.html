@@ -1,0 +1,98 @@
+<!--继承框架-->
+{extend name="pc/base/base"}
+{block name="seo"}
+<title>{$parent.seo_title} - Wavlink </title>
+<meta name="keywords" content="{$parent.keywords}">
+<meta name="description" content="{$parent.description}">
+<link rel="stylesheet" href="__CN__/css/faq/faq.css" type="text/css">
+{/block}
+{block name="banner"}
+<header class="FAQ">
+    <div class="banner">
+        <div>
+            <img class="img-responsive center-block img_pc" src="https://cloud.wavlink.com/index.php?user/publicLink&fid=5546y8S2_2Vep0taFJi_soi-hlSCYv8koHv0PbvnLC0myaqt1IXlHqRHpkCfaMdSt_SmI4jVZqiSsUEP_ouF-WBcT4MqthIyYvamvNmnEWSl2BbZSxL7cddz_KncgJq2C8T8sb-f6tefALO28SYVr0aFSXY&file_name=/FAQ_PC-2.jpg" alt="">
+        </div>
+    </div>
+    <div class="nav">
+        <div class="nav_place">
+            <span style="color: #888">当前位置：</span>
+            <ul>
+                <li><a href="{:url('/'.$code.'/faq')}">常见问题</a></li>
+                <li> > </li>
+                {if condition="$parent.parent_id gt 0"}
+                <li class="addInnerHTML"><a href="{:url('/'.$code.'/faq/'.$parent.url_title)}">{$parent.name}</a></li>
+                {/if}
+            </ul>
+        </div>
+        <div class="nav_search">
+            <form action="{:url('/'.$code.'/search/faq')}">
+                <input type="text" name="key" placeholder="请输入您要查找的问题">
+                <input type="submit">
+            </form>
+        </div>
+    </div>
+</header>
+{/block}
+{block name="body"}
+<!--section-->
+<section>
+    <aside class="aside_nav">
+        <h3>问题集锦<i class="icon-angle-right"></i></h3>
+        <ul>
+            {volist name="$cate" id="vo"}
+            {if condition="$parent.name eq $vo.name"}
+            <li style="background-color: #ccc"><a href="{:url('/'.$code.'/faq/'.$vo.url_title)}" data-id="{$vo.id}">{$vo.name}</a></li>
+            {else /}
+            <li><a href="{:url('/'.$code.'/faq/'.$vo.url_title)}" data-id="{$vo.id}">{$vo.name}</a></li>
+            {/if}
+            {/volist}
+
+        </ul>
+    </aside>
+    <main class="main_content">
+        <div>
+            <ul>
+                {empty name="faq"}
+                <li>
+                    <h5>
+                        对不起！该分类下暂无数据。您可以到<a href="{:url('/'.$code.'/faq')}">FAQ问题首页</a>或者选择左边的分类
+                    </h5>
+                </li>
+                {else /}
+                {volist name="faq" id="vo"}
+                <li>
+                    <h5><a href="{:url('/'.$code.'/faq/details/'.$vo.url_title)}">{$vo.problem}</a></h5>
+                    <!--<p>{$vo.problem}</p>-->
+                    <span onload="" data-update_time="{$vo.update_time}" >更新时间：{$vo.update_time|strtotime|date="Y/m/d",###}</span>
+                </li>
+                {/volist}
+                {/empty}
+
+            </ul>
+        </div>
+        <!--分页-->
+        <div>
+            <div class="nav_page text-center col-lg-10 col-lg-offset-1 col-xs-12" style="padding:0">
+                <ul class="pagination">
+                   {:pagination($faq)}
+                </ul>
+            </div>
+        </div>
+    </main>
+</section>
+{/block}
+{block name="js"}
+<script >
+    $(document).ready(function(){
+
+        if ($(document).width() < 768){
+            $("section>.aside_nav>h3").click(function(){
+                $(this).children("i").toggleClass("icon-angle-right").toggleClass("icon-angle-down");
+                $(this).next("ul").slideToggle();
+            })
+        }
+
+
+    })
+</script>
+{/block}

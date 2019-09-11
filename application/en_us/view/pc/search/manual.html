@@ -1,0 +1,172 @@
+<!--继承框架-->
+{extend name="pc/base/base"}
+<!--私有首页面属性开始-->
+{block name="seo"}
+<title>Search - Wavlink </title>
+<meta name="description" content="">
+<meta name="keywords" content="">
+<link rel="stylesheet" href="__EN__/css/drivers/drivers-list.css" type="text/css">
+{/block}
+<!--私有首页面属性结束-->
+<!--主体内容开始-->
+{block name="body"}
+<style>
+    div.container > div.row > div > p {
+        cursor: default
+    }
+    div.container > div.row > div > ul.list  {
+        margin: 30px 0 20px 20px;
+        padding:  0 0 0 20px;
+    }
+    div.container> div.row > div > ul.list> li{
+        /* 2018-4-12 星期四 14:11 修改了字体大小 font-size:1.4em 改为 font-size:14px */
+        list-style:inherit;
+        font-size: 14px;
+        cursor: default
+    }
+    div.container> div.row > div > ul.list > li > ul {
+        padding: 20px;
+    }
+    div.container> div.row > div > ul.list > li > ul > li {
+        list-style: circle;
+        padding: 0 0 8px 0;
+        cursor: default
+    }
+    div.container> div.row > div > ul.list > li > ul > li > a {
+        display: inline;
+        color: #ff0000
+    }
+    @media screen and (min-width: 318px) and (max-width: 767px ){
+        div.container> div.row > div > ul.list  {
+            padding:  0 0 0 20px;
+            margin: 0
+        }
+        div.container> div.row > div > ul.list> li{
+            list-style:inherit;
+            font-size: 1.2em
+        }
+        div.container> div.row > div > ul.list > li > ul > li {
+            font-size:14px
+        }
+    }
+    @media screen and (width: 768px){
+        div.container> div.row > div > ul.list  {
+            padding:  0 0 0 18px;
+        }
+    }
+
+</style>
+<div class="container">
+    <div class="row">
+        <div class="option bg-white col-xs-12" style="padding-bottom:8px; padding-top:10px">
+            <div class="col-sm-10 col-sm-offset-1 col-xs-12"
+                 style="padding:0">
+                <div class="btn-group col-sm-4 col-xs-9">
+                    <!-- 2018-4-12 星期四 14:15 修改了div.panel-heading标签里的 -->
+                    <div class="panel-heading"><h3 style="font-size: 16px">Results for "{$name}"</h3>&nbsp;<b class="text-lowercase">{$count}&nbsp;&nbsp;results found</b></div>
+                </div>
+                <div class="bg-white col-md-6 col-sm-8 col-sm-offset-2 col-xs-12" style="padding:0; display: block;">
+                    <form class="col-xs-12" action="{:url('/'.$code.'/search/manual')}" method="GET" style="padding:0">
+                        <!-- 20148-4-14 星期六 删除input标签里 style 内边距 padding:10px 0 10px 10px 与 padding:10px 0 -->
+                        <input name="key" type="text" placeholder="Product model" class="col-xs-9" style="border:1px solid #f2f2f2">
+                        <input type="submit" value="Search" class="color-white col-xs-3" style="background:#333; border:1px solid #333 !important">
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row bg-white">
+        {empty name="manual"}
+        <div class="col-xs-12" style="background-color: #fff;margin-bottom: 40px">
+            <!-- 2018-4-12 星期四 14::13 修改了p标签的字体大小 font-size:1.4em 改为 font-size:18px -->
+            <p style="text-align: center;font-size: 18px;margin: 2em">Sorry,No result found!</p>
+            <ul class="list">
+                <li>How can I find the product's model?
+                    <ul>
+                        <li>You can find it from the label of packing box or the label SN No on the back of the product.</li>
+                    </ul>
+                    <img class="img-responsive center-block" src="http://cloud.wavlink.com/index.php?user/publicLink&fid=cd73UjN4bCvbZbHmFbtmXkrWMW97B9zQPI0mBIjCvfaQA0kIRHbDl8xMPxunG2_pti44UuUAeSbdNoQKJAozEFtXa7w01iQWWlE7SB5migYnO7m0QZrSA5b9TrEBxnQMe4ahNpBC1bXTiJpJHw&file_name=/xinhao2.jpg" alt="" style="margin-left: 0;padding-bottom: 25px">
+                </li>
+                <li>There still are no result even after i have entered the product's model?
+                    <ul>
+                        <li>
+                            You might buy the product with no need to drive.
+                        </li>
+                        <li>
+                            We haven't update the list of drivers,please send email to our administrators,we will update it ASAP.
+                        </li>
+                    </ul>
+                </li>
+                <li>
+                    Why no list of firmware?
+                    <ul>
+                        <li>
+                            You only need to update firmware when you buy the wireless product.
+                        </li>
+                        <li>
+                            if you need manually update your firmware,please go to the page of <a href="{:url('/'.$code.'/guest_book')}">firmware</a> application,input your product information and email address.
+                        </li>
+                        <li>
+                            We will reply the download link;please be cautious to firmware updatedt owing to the risks of damaging your router.
+                        </li>
+                    </ul>
+                </li>
+            </ul>
+        </div>
+        {else /}
+        <div class="ct col-xs-12" style="">
+            {volist name="manual" id="vo"}
+            <div class="panel panel-success  col-md-6" style="padding:0">
+                <div class="panel-heading">
+                    <strong>{$vo.title|str_ireplace=$name,'<font style="color: red">'.$name.'</font>',###}</strong>
+                </div>
+                <div class="panel-body">
+                    <p>
+                        <span>Description&nbsp;:&nbsp;&nbsp;<i>{$vo.description}</i></span>
+
+                    </p>
+                    <p>
+                        <span>Language&nbsp;:&nbsp;&nbsp;</span><span style="font-size:12px;">{$vo.id|getDownload}</span>
+                    </p>
+                    <p>
+                        <span>Availiable to&nbsp;:&nbsp;&nbsp;<i>{$vo.model}</i></span>
+                    </p>
+                    <p><span>Post Date&nbsp;:&nbsp;&nbsp;<i>{$vo.update_time|strtotime|date="d/m/Y",###}</i></span></p>
+                    <p>
+                        <a href="{:url('/'.$code.'/manual/details/'.$vo.url_title)}" class="btn btn-success">Details...</a>
+                    </p>
+                </div>
+            </div>
+            {/volist}
+        </div>
+        {/empty}
+    </div>
+
+    <div class="row">
+        {notempty name="manual"}
+        {empty name="page"}
+        <nav aria-label="Page navigation text-center">
+            <ul class="pagination">
+                <li class="disabled">
+                    <a href="#" aria-label="Previous">
+                        <span aria-hidden="true" disabled>&laquo;</span>
+                    </a>
+                </li>
+                <li class="disabled"><a href="#">1</a></li>
+                <li class="disabled">
+                    <a href="#" aria-label="Next">
+                        <span aria-hidden="true" disabled>&raquo;</span>
+                    </a>
+                </li>
+            </ul>
+        </nav>
+        {else /}
+        <nav aria-label="Page navigation text-center">
+            {:pagination($result)}
+        </nav>
+        {/empty}
+        {/notempty}
+    </div>
+</div>
+{/block}
+<!--主体内容结束-->

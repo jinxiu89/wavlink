@@ -1,0 +1,340 @@
+#banner #swiper-slide2 dt sup{
+    font-size: 65%;
+}
+
+.swiper-slide:before {
+    content: "";
+    display: block
+}
+
+.white_dl {
+    color: #fff !important
+}
+
+.back_dl {
+    color: #000 !important
+}
+
+#banner .arrow-left {
+    background: url(../img/images/banner_arrow.png) no-repeat left top;
+    position: absolute;
+    left: 20px;
+    top: 55%;
+    margin-top: -35px;
+    width: 70px;
+    height: 70px;
+    z-index: 999
+}
+
+#banner .arrow-right {
+    background: url(../img/images/banner_arrow.png) no-repeat left bottom;
+    position: absolute;
+    right: 20px;
+    top: 55%;
+    margin-top: -35px;
+    width: 70px;
+    height: 70px;
+    z-index: 999;
+}
+
+#banner .pagination {
+    position: absolute;
+    left: 0;
+    margin: 0;
+    text-align: center;
+    bottom: 5px;
+    width: 100%;
+    z-index: 100;
+}
+
+#banner .swiper-pagination-bullet {
+    display: inline-block;
+    width: 20px;
+    height: 20px;
+    border-radius: 20px;
+    background: #000000;
+    margin: 0 3px;
+    cursor: pointer;
+    transform: scale(0.4, 0.4);
+    -webkit-transform: scale(0.4, 0.4);
+    -moz-transform: scale(0.4, 0.4);
+    -ms-transform: scale(0.4, 0.4);
+    -o-transform: scale(0.4, 0.4);
+    transition: all 0.3s ease-in-out;
+    -webkit-transition: all 0.3s ease-in-out;
+    -moz-transition: all 0.3s ease-in-out;
+    -ms-transition: all 0.3s ease-in-out;
+    -o-transition: all 0.3s ease-in-out;
+
+}
+
+.xb:after {
+    content: "";
+    height: 0;
+    visibility: hidden;
+    display: block;
+    clear: both
+}
+
+#banner .swiper-pagination-bullet-active {
+    transform: scale(0.5, 0.5);
+}
+
+#banner #mainTheme {
+
+    letter-spacing: -3px;
+    padding-top: 160px;
+    margin-bottom: 20px;
+    color: #fff;
+    text-align: center;
+    position: relative;
+    display: inline-block;
+}
+
+#banner #swiper-slide1 p {
+
+    margin-bottom: 10px;
+    font: normal 34px/400% microsoft yahei;
+    letter-spacing: 3px;
+    text-shadow: 0 0 5px #bbb
+}
+
+#banner #swiper-slide2 dt {
+    font-weight: normal
+}
+
+#banner .subbtn {
+    text-align: center;
+}
+
+#banner .button {
+    font-size: 16px;
+    color: #000;
+    background: #fff;
+    margin-right: 1em;
+    padding: 10px 0;
+    border-radius: 20px;
+    margin-bottom: 0.5em;
+    text-decoration: none;
+    border: 1px solid #000
+}
+
+#banner .button:last-child {
+    margin-right: 0
+}
+
+@media screen and (width: 320px) {
+    #banner #swiper-slide1 p {
+        font-size: 1.4em !important;
+        margin-top: 2em
+    }
+
+    #banner #mainTheme h1 {
+        font-size: 6em !important;
+    }
+}
+
+@media screen and (min-width: 768px) and (max-width: 1023px) {
+    .pagination {
+        margin: 0
+    }
+
+    #banner #mainTheme {
+        margin-bottom: 21em !important
+    }
+
+    #banner #swiper-slide1 p {
+        line-height: 2em;
+    }
+
+    #banner #swiper-slide1 p {
+        font-size: 22px
+    }
+
+    #banner .button {
+        font-size: 14px !important;
+        padding: 0.5em 0
+    }
+
+    #banner .button, #banner #swiper-slide2 dd > button {
+        font-size: 12px !important;
+        padding: 2px 5px
+    }
+
+    #banner #swiper-slide2 dd > img {
+        height: 40px !important
+    }
+}
+
+@media screen and (min-width: 1024px) and (max-width: 1365px) {
+    .pagination {
+        margin: 0
+    }
+
+    #banner .button, #banner #swiper-slide2 dd > button {
+        font-size: 12px !important
+    }
+
+    #banner #swiper-slide2 dd > img {
+        height: 27px !important
+    }
+}
+
+@media screen and (min-width: 1366px) and (max-width: 1500px) {
+    #banner #swiper-slide2 dt {
+        font-size: 30px;
+        margin-top: 11%;
+        line-height: 1.1
+    }
+    #banner #swiper-slide2 dd > img {
+        height: 40px !important
+    }
+}
+
+@media screen and (min-width: 1367px) {
+    #banner #swiper-slide2 dd > img {
+        height: 90px !important
+    }
+
+    #banner .button {
+        /* 2018-4-13 星期五 修改了行高 line-height:68px 改成 line-height:40px */
+        line-height: 40px;
+        padding: 0;
+        margin-top: 0
+    }
+
+    #banner #swiper-slide2 dd:last-child {
+        margin-top: 0
+    }
+
+}
+
+@media screen and (min-width: 320px) and (max-width: 767px) {
+    #banner {
+        background: #ffffff
+    }
+
+    #banner > .swiper-container > .swiper-wrapper > .swiper-slide > a > div > dl > dt {
+        font-size: 22px !important;
+    }
+
+    #banner > .swiper-container > .swiper-wrapper > .swiper-slide > a > div {
+        position: static !important;
+        top: 75% !important;
+    }
+
+    #banner .pagination {
+        position: static !important;
+    }
+
+    #banner #mainTheme h1 {
+        font-size: 7em
+    }
+
+    #banner #mainTheme {
+        margin-bottom: 21em
+    }
+
+    #banner #swiper-slide1 p {
+        font-size: 1.5em;
+        margin-top: 5em
+    }
+
+    #banner .arrow-right, #banner .arrow-left {
+        display: none
+    }
+
+    #banner #swiper-slide2 dl {
+        margin-bottom: 0;
+        text-align: center;
+        padding:5% 15px !important
+    }
+
+    #banner #swiper-slide2 dl > dd > img {
+        height: 38px !important;
+        display: block;
+        margin-right: auto;
+        margin-left: auto;
+    }
+    #banner #swiper-slide2 dt,
+    #banner #swiper-slide2 dd {
+        color:#000
+    }
+    #banner #swiper-slide2 dd.dd_2 {
+        text-align: center;
+    }
+    #banner #swiper-slide2 dd:nth-last-of-type(1) {
+        display: none !important;
+    }
+}
+
+@media screen and (min-width: 318px) and (max-width: 1366px) {
+    #banner .button {
+        margin-bottom: 0.5em
+    }
+}
+
+#banner .mainbtn {
+    text-align: center;
+    margin-top: 50px;
+}
+
+#banner .mainbtn a {
+    font-size: 16px;
+    color: #000;
+    margin: 20px auto;
+    padding: 10px 25px;
+    background: #bbb;
+    border-radius: 20px;
+    text-decoration: none;
+}
+
+/* 2018-4-25 星期三 上午 添加以下内容！内容最新的！ */
+@media screen and (min-width: 768px) {
+    #banner #swiper-slide2 dt {
+        font-size: 27px;
+        line-height: 1.2;
+        margin-top: 22%
+    }
+
+    #banner #swiper-slide2 dd {
+        font-size: 14px;
+        padding: 5px 0 !important
+    }
+}
+
+/*@media screen and (min-width: 992px) {
+    .swiper-slide:nth-child(3) .inner {
+        padding-left: 8% !important;
+        top: 10% !important;
+    }
+
+    .swiper-slide:nth-child(4) .inner {
+        padding-left: 3% !important;
+        top: 0 !important
+    }
+}*/
+
+@media screen and (min-width: 1100px) {
+    #banner #swiper-slide2 dt {
+        font-size: 41px
+    }
+
+    #banner #swiper-slide2 dd {
+        font-size: 16px
+    }
+}
+
+@media screen and (min-width: 1200px) {
+    /* wavlink英文版网站首页轮播图 */
+    #banner #swiper-slide2 dd {
+        font-size: 20px
+    }
+}
+
+@media screen and (min-width: 1700px) {
+    /* wavlink英文版网站首页轮播图 */
+    #banner #swiper-slide2 dt {
+        font-size: 50px
+    }
+}

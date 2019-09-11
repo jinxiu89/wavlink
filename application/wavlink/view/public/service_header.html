@@ -1,0 +1,152 @@
+<!--包含头部文件-->
+{include file="public/header" /}
+<aside class="Hui-aside">
+    <div><a href="#"><img src=""></a></div>
+    <div class="menu_dropdown bk_2">
+        {if condition="in_array('servicecategory/index',$access)"}
+        <dl id="service_category">
+            <dt><i class="Hui-iconfont">&#xe623;</i> 服务分类<i class="Hui-iconfont menu_dropdown-arrow">&#xe6d5;</i></dt>
+            <dd>
+                <ul>
+                    {volist name="languages" id="vo"}
+                    <li id="category_{$vo.id}"><a href="{:url('ServiceCategory/index',['language_id'=>$vo.id])}" title="{$vo.name}服务分类">{$vo.id|getLanguage}服务分类</a></li>
+                    {/volist}
+                </ul>
+            </dd>
+        </dl>
+        {/if}
+        {if condition="in_array('article/index',$access)"}
+        <dl id="menu-article">
+            <dt><i class="Hui-iconfont">&#xe616;</i> 事件News管理<i class="Hui-iconfont menu_dropdown-arrow">&#xe6d5;</i></dt>
+            <dd>
+                <ul>
+                    {volist name="languages" id="vo"}
+                    <li id="article_art_{$vo.id}"><a href="{:url('Article/index',['language_id'=>$vo.id])}"
+                                                     title="{$vo.name}文章事件管理">{$vo.id|getLanguage}文章事件管理</a></li>
+                    {/volist}
+                    <li id="article_rec"><a href="{:url('Article/article_recycle')}" title="回收站内文章">回收站内文章</a></li>
+                </ul>
+            </dd>
+        </dl>
+        {/if}
+        {if condition="in_array('document/index',$access)"}
+        <dl id="service_document">
+            <dt><i class="Hui-iconfont">&#xe623;</i> 文档中心<i class="Hui-iconfont menu_dropdown-arrow">&#xe6d5;</i></dt>
+            <dd>
+                <ul>
+                    {volist name="languages" id="vo"}
+                    <li id="service_doc_{$vo.id}"><a href="{:url('Document/index',['language_id'=>$vo.id])}" title="{$vo.name}下载列表">{$vo.id|getLanguage}文档管理</a></li>
+                    {/volist}
+                    <li id="doc_recovery"><a href="{:url('Document/doc_recycle')}" title="回收文档列表">回收文档列表</a></li>
+                </ul>
+            </dd>
+        </dl>
+        {/if}
+        {if condition="in_array('drivers/index',$access)"}
+        <dl id="service_drivers">
+            <dt><i class="Hui-iconfont">&#xe641;</i> 驱动管理<i class="Hui-iconfont menu_dropdown-arrow">&#xe6d5;</i></dt>
+            <dd>
+                <ul>
+                    {volist name="languages" id="vo"}
+                    <li id="drivers_list_{$vo.id}"><a href="{:url('Drivers/index',['language_id'=>$vo.id])}" title="{$vo.name}驱动下载列表">{$vo.id|getLanguage}驱动管理</a></li>
+                    {/volist}
+                    <li id="drivers_recycle"><a href="{:url('Drivers/recycle')}" title="回收下载列表">回收下载列表</a></li>
+                </ul>
+            </dd>
+        </dl>
+        {/if}
+        {if condition="in_array('drivers/index',$access)"}
+        <dl id="service_manual">
+            <dt><i class="Hui-iconfont">&#xe720;</i> 说明书管理<i class="Hui-iconfont menu_dropdown-arrow">&#xe6d5;</i></dt>
+            <dd>
+                <ul>
+                    {volist name="languages" id="vo"}
+                    <li id="manual_list_{$vo.id}"><a href="{:url('Manual/index',['language_id'=>$vo.id])}" title="{$vo.name}说明书列表">{$vo.id|getLanguage}</a></li>
+                    {/volist}
+                </ul>
+            </dd>
+        </dl>
+        {/if}
+        {if condition="in_array('video/index',$access)"}
+        <dl id="service_video">
+            <dt><i class="Hui-iconfont">&#xe72b;</i> 视频中心<i class="Hui-iconfont menu_dropdown-arrow">&#xe6d5;</i></dt>
+            <dd>
+                <ul>
+                    {volist name="languages" id="vo"}
+                    <li id="video_index_{$vo.id}"><a href="{:url('Video/index',['language_id'=>$vo.id])}" title="视频列表">{$vo.id|getLanguage}视频列表</a></li>
+                    {/volist}
+                    <li id="video_recovery"><a href="{:url('Video/video_recycle')}" title="视频回收列表">回收视频列表</a></li>
+                </ul>
+            </dd>
+        </dl>
+        {/if}
+        <dl id="service_ticket">
+            <dt><i class="Hui-iconfont ticket">&#xe70c;</i> 留言板管理<i class="Hui-iconfont menu_dropdown-arrow">&#xe6d5;</i></dt>
+            <dd>
+                <ul>
+                    <li id="ticket_list"><a class="ticket_list" href="#" title="未回复留言板">未处理留言</a>
+                        <ul>
+                            {volist name="languages" id="vo"}
+                            {if condition="in_array('guestbook/index',$access)"}
+                            <li id="ticket_list_{$vo.id}"><a href="{:url('GuestBook/index',['language_id'=>$vo.id])}" title="{$vo.name}留言">{$vo.id|getLanguage}留言板管理</a></li>
+                            {/if}
+                            {/volist}
+                        </ul>
+                    </li>
+                    {volist name="languages" id="vo"}
+                    <li id="ticket_off_{$vo.id}"><a href="{:url('GuestBook/index_off',['language_id'=>$vo.id])}" title="{$vo.name}已处理">{$vo.id|getLanguage}已处理留言</a></li>
+                    {/volist}
+                </ul>
+            </dd>
+        </dl>
+        {if condition="in_array('faq/index',$access)"}
+        <dl id="service_faq">
+            <dt><i class="Hui-iconfont">&#xe666;</i> FAQ咨询<i class="Hui-iconfont menu_dropdown-arrow">&#xe6d5;</i></dt>
+            <dd>
+                <ul>
+                    {volist name="languages" id="vo"}
+                    <li id="faq_answer_{$vo.id}"><a href="{:url('Faq/index',['language_id'=>$vo.id])}" title="{$vo.name}FAQ管理">{$vo.id|getLanguage}FAQ管理</a></li>
+                    <li id="faq_recycle"><a href="{:url('Faq/faq_recycle',['language_id'=>$vo.id])}" title="回收站">faq回收站</a></li>
+                    {/volist}
+
+                </ul>
+            </dd>
+        </dl>
+        {/if}
+        <dl id="service_data">
+            <dt><i class="Hui-iconfont">&#xe6b5;</i>SN数据库<i class="Hui-iconfont menu_dropdown-arrow">&#xe6d5;</i></dt>
+            <dd>
+                <ul>
+                    {if condition="in_array('soft/index',$access)"}
+                    <li id="soft">
+                        <a href="{:url('soft/index')}" title="发行版软件">发行版软件</a>
+                    </li>
+                    {/if}
+                    {if condition="in_array('cate/index',$access)"}
+                    <li id="cate">
+                        <a href="{:url('cate/index')}" title="产品类别管理">产品系列</a>
+                    </li>
+                    {/if}
+                    {if condition="in_array('model/index',$access)"}
+                    <li id="prd">
+                        <a href="{:url('model/index')}" title="内部硬件机型">内部硬件机型</a>
+                    </li>
+                    {/if}
+                    {if condition="in_array('sn/index',$access)"}
+                    <li id="sn">
+                        <a href="{:url('sn/index')}" title="新版SN数据库">新版SN数据库</a>
+                    </li>
+                    {/if}
+                    {if condition="in_array('old_sn/index',$access)"}
+                    <li id="old_sn">
+                        <a href="{:url('old_sn/index')}" title="老版本SN数据库">老版本SN数据库</a>
+                    </li>
+                    {/if}
+                </ul>
+            </dd>
+        </dl>
+    </div>
+</aside>
+<div class="dislpayArrow hidden-xs"><a class="pngfix" href="javascript:void(0);" onClick="displaynavbar(this)"></a>
+</div>
+

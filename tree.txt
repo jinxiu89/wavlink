@@ -1,0 +1,59 @@
+
+F:.
+├─application
+│  ├─en_us
+│  │  ├─controller
+│  │  ├─lang
+│  │  ├─validate
+│  │  └─view                      前端视图
+│  │      ├─404                   404页面
+│  │          ├─404.html
+│  │      ├─about                关于我们页面
+│  │          ├─index.html
+│  │      ├─base                （公共继承页面，头部信息，底部信息）
+│  │          ├─base.html        (只需关注这个就可以)
+│  │      ├─category             分类页面
+│  │          ├─index.html
+│  │      ├─drivers              驱动页面(index.html为驱动列表页，dea)
+│  │          ├─details.html     (详情页)
+│  │          ├─index.html      （列表页）
+│  │      ├─index                网站首页
+│  │          ├─index.html
+│  │      ├─login                登录
+│  │      ├─product              产品详情页
+│  │          ├─details.html
+│  │      ├─public              （此处不管）
+│  │      ├─search               搜索页面
+│  │          ├─drivers.html     (驱动点击搜索后的页面)
+│  │          ├─index.html
+│  │          ├─product.html    （导航条搜索后的页面，和分类列表点击搜索后的页面）
+│  │      ├─ticket              （固件下载申请页面）
+                ├─index.html
+│  │      ├─user
+│  │      └─video
+├─public
+│  ├─static
+│  │
+│  │  ├─index
+│  │  │  ├─css
+│  │  │  │  ├─common           （公共样式）
+│  │  │  │  ├─drivers          （驱动样式）
+│  │  │  │  ├─index            （网站首页样式）
+│  │  │  │  ├─product          （产品样式，产品分类列表样式）
+│  │  │  │  │  ├─animation    （动画样式）
+│  │  │  │  │  └─magnifier    （放大镜样式）
+│  │  │  │  └─ticket           （固件下载申请样式）
+│  │  │  ├─font
+│  │  │  │  ├─cg
+│  │  │  │  └─Heebo
+│  │  │  ├─img
+│  │  │  │  ├─base
+│  │  │  │  ├─ie
+│  │  │  │  └─product
+│  │  │  └─js
+│  │  │      ├─common            （公共JS）
+│  │  │      ├─index             （首页幻灯片JS）
+│  │  │      └─product           （产品JS，产品详情页动画JS，和放大镜JS）
+│  │  │      ├─D-page.js
+│  │  │      ├─index_jQuery.js
+│  │  │      ├─jquery-3.2.1.slim.min.js

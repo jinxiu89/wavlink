@@ -1,0 +1,183 @@
+<!--包含头部文件-->
+{include file="public/headers" /}
+<div class="page-container">
+    <form class="form form-horizontal" id="form-product-add" method="post" action="">
+        <div class="row cl">
+            <label class="form-label col-xs-4 col-sm-2"><span class="c-red">*</span>下载名称：</label>
+            <div class="formControls col-xs-8 col-sm-9">
+                <input type="text" class="input-text" value="" placeholder="" id="name" name="name">
+            </div>
+        </div>
+        <div class="row cl">
+            <label class="form-label col-xs-4 col-sm-2"><span class="c-red">*</span>url标题：</label>
+            <div class="formControls col-xs-8 col-sm-9">
+                <input type="text" class="input-text" value="" placeholder="url标题是唯一的,且用英文加下划线" id="url_title" name="url_title">
+            </div>
+        </div>
+        <!--<div class="row cl">-->
+            <!--<label class="form-label col-xs-4 col-sm-2">缩略图外链地址：</label>-->
+            <!--<div class="formControls col-xs-8 col-sm-9">-->
+                <!--<textarea name="image_litpic_url" cols="" rows="" class="textarea" placeholder="500个字符以内" dragonfly="true" ></textarea>-->
+            <!--</div>-->
+        <!--</div>-->
+        <div class="row cl">
+            <label class="form-label col-xs-4 col-sm-2"><span class="c-red">*</span>文件大小：</label>
+            <div class="formControls col-xs-8 col-sm-9">
+                <input type="text" class="input-text" value="" placeholder="" id="size" name="size">
+            </div>
+        </div>
+        <div class="row cl">
+            <label class="form-label col-xs-4 col-sm-2"><span class="c-red">*</span>版本号：</label>
+            <div class="formControls col-xs-8 col-sm-9">
+                <input type="text" class="input-text" value="" placeholder="" id="version_number" name="version_number">
+            </div>
+        </div>
+        <div class="row cl">
+            <label class="form-label col-xs-4 col-sm-2"><span class="c-red">*</span>所属分类：</label>
+            <div class="formControls col-xs-8 col-sm-3"> <span class="select-box">
+				<select name="category_id" class="select categoryId">
+					<option value="0">--请选择--</option>
+					{volist name="category" id="vo"}
+					<option value="{$vo.id}">{$vo.name}</option>
+				    {/volist}
+				</select>
+				</span>
+            </div>
+        </div>
+        <input type="hidden" name="language_id" value="{$language_id}">
+        <!--<div class="row cl">-->
+            <!--<label class="form-label col-xs-4 col-sm-2">下载地址一：</label>-->
+            <!--<div class="formControls col-xs-8 col-sm-9">-->
+                <!--<textarea name="urlfirst" cols="" rows="" class="textarea" placeholder="以英文逗号隔开" dragonfly="true" ></textarea>-->
+            <!--</div>-->
+        <!--</div>-->
+        <!--<div class="row cl">-->
+            <!--<label class="form-label col-xs-4 col-sm-2">下载地址二：</label>-->
+            <!--<div class="formControls col-xs-8 col-sm-9">-->
+                <!--<textarea name="urlsecond" cols="" rows="" class="textarea" placeholder="以英文逗号隔开" dragonfly="true" ></textarea>-->
+            <!--</div>-->
+        <!--</div>-->
+
+        <div class="row cl">
+            <label class="form-label col-xs-4 col-sm-2"><span class="c-red">*</span>运行坏境：</label>
+            <div class="formControls col-xs-8 col-sm-9">
+                <input type="text" class="input-text" value="" placeholder="" id="running" name="running">
+            </div>
+        </div>
+        <div class="row cl">
+            <label class="form-label col-xs-4 col-sm-2"><span class="c-red">*</span>提供商：</label>
+            <div class="formControls col-xs-8 col-sm-9">
+                <input type="text" class="input-text" value="" placeholder="" id="provider" name="provider">
+            </div>
+        </div>
+
+        <div class="row cl">
+            <label class="form-label col-xs-4 col-sm-2"><span class="c-red">*</span>seo标题：</label>
+            <div class="formControls col-xs-8 col-sm-9">
+                <input type="text" class="input-text" value="" placeholder="" id="seo_title" name="seo_title">
+            </div>
+        </div>
+        <div class="row cl">
+            <label class="form-label col-xs-4 col-sm-2"><span class="c-red">*</span>关键词：</label>
+            <div class="formControls col-xs-8 col-sm-9">
+                <input type="text" class="input-text" value="" placeholder="" id="keywords" name="keywords">
+            </div>
+        </div>
+        <div class="row cl">
+            <label class="form-label col-xs-4 col-sm-2"><span class="c-red">*</span>描述：</label>
+            <div class="formControls col-xs-8 col-sm-9">
+                <input type="text" class="input-text" value="" placeholder="" id="descrip" name="descrip">
+            </div>
+        </div>
+        <div class="row cl">
+            <label class="form-label col-xs-4 col-sm-2">驱动支持的产品型号:</label>
+            <div class="formControls col-xs-8 col-sm-9">
+                <textarea name="models" cols="" rows="" class="textarea" placeholder="以英文逗号隔开" dragonfly="true" ></textarea>
+            </div>
+        </div>
+        <div class="row cl">
+            <label class="form-label col-xs-4 col-sm-2">All下载地址:</label>
+            <div class="formControls col-xs-8 col-sm-9">
+                <textarea name="all_link" cols="" rows="" class="textarea" placeholder="包含所有系统驱动的下载地址" dragonfly="true" ></textarea>
+            </div>
+        </div>
+        <div class="row cl">
+            <label class="form-label col-xs-4 col-sm-2">MAC驱动下载地址:</label>
+            <div class="formControls col-xs-8 col-sm-9">
+                <textarea name="mac_link" cols="" rows="" class="textarea" placeholder="MAC苹果系统的驱动下载地址" dragonfly="true" ></textarea>
+            </div>
+        </div>
+        <div class="row cl">
+            <label class="form-label col-xs-4 col-sm-2">Windows驱动下载地址:</label>
+            <div class="formControls col-xs-8 col-sm-9">
+                <textarea name="win_link" cols="" rows="" class="textarea" placeholder="Windows版本的驱动下载地址" dragonfly="true" ></textarea>
+            </div>
+        </div>
+        <div class="row cl">
+            <label class="form-label col-xs-4 col-sm-2">Linux驱动下载地址:</label>
+            <div class="formControls col-xs-8 col-sm-9">
+                <textarea name="linux_link" cols="" rows="" class="textarea" placeholder="Linux驱动下载地址" dragonfly="true" ></textarea>
+            </div>
+        </div>
+        <!--<div class="row cl">-->
+            <!--<label class="form-label col-xs-4 col-sm-2">说明简介：</label>-->
+            <!--<div class="formControls col-xs-8 col-sm-9">-->
+                <!--<textarea id="editor1" type="text/plain" name="description"   style="width:100%;height:400px;"></textarea>-->
+            <!--</div>-->
+        <!--</div>-->
+        <!--<div class="row cl">-->
+            <!--<label class="form-label col-xs-4 col-sm-2">文件描述：</label>-->
+            <!--<div class="formControls col-xs-8 col-sm-9">-->
+                <!--<textarea id="editor" type="text/plain" name="content" style="width:100%;height:400px;"></textarea>-->
+            <!--</div>-->
+        <!--</div>-->
+        <div class="row cl">
+            <div class="col-xs-8 col-sm-9 col-xs-offset-4 col-sm-offset-2">
+                <button class="btn btn-primary radius" type="button" onclick="save('{:url(\'Drivers/save\')}')"><i
+                        class="Hui-iconfont">&#xe632;</i> 保存
+                </button>
+
+                <button onClick="layer_close();" class="btn btn-default radius" type="button">
+                    &nbsp;&nbsp;取消&nbsp;&nbsp;</button>
+            </div>
+        </div>
+    </form>
+</div>
+<!--包含头部文件-->
+{include file="public/footer" /}
+<!--请在下方写此页面业务相关的脚本-->
+<script type="text/javascript" src="__STATIC__/admin/h-ui.admin/js/image.js"></script>
+<script type="text/javascript" src="__STATIC__/admin/uploadify/jquery.uploadify.min.js"></script>
+<script type="text/javascript" src="__STATIC__/admin/lib/kindeditor/kindeditor-all-min.js"></script>
+<script type="text/javascript" src="__STATIC__/admin/lib/kindeditor/lang/zh_CN.js"></script>
+<script type="text/javascript">
+    var SCOPE = {
+            'uploadify_swf': '__STATIC__/admin/uploadify/uploadify.swf',
+            'image_upload': "{:url('api/image/upload')}"
+    };
+</script>
+<!--分配编辑器-->
+<script>
+    $(function () {
+        var editor;
+        KindEditor.ready(function (K) {
+            editor = K.create('#editor1,#editor', {
+                width: "100%",
+                height: "900px",
+                LangType: "zh-CN",
+                filterMode: false,
+                allowFileManager: true,
+                uploadJson: "{:url('api/image/editorUpload')}",
+                afterCreate: function () {
+                    this.sync();
+                },
+                afterBlur: function () {
+                    this.sync();
+                }
+            });
+        })
+    });
+</script>
+
+</body>
+</html>

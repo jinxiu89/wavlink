@@ -1,0 +1,106 @@
+{extend name="base/base_form"}
+{block name="body"}
+<article class="cl pd-20">
+    <form action="" method="post" class="form form-horizontal" id="form-admin-add">
+        <div class="row cl">
+            <label class="form-label col-xs-4 col-sm-3"><span class="c-red">*</span>{:lang('Sn')}:</label>
+            <div class="formControls col-xs-4 col-sm-4">
+                <input id="sn" class="input-text" value="" placeholder="" name="sn">
+            </div>
+            <div class="formControls col-xs-4 col-sm-5">
+                <span style="font-size: 12px;color: red"></span>
+            </div>
+        </div>
+        <div class="row cl">
+            <label class="form-label col-xs-4 col-sm-3"><span class="c-red">*</span>{:lang('Model')}:</label>
+            <div class="formControls col-xs-4 col-sm-4">
+                <input id="model" class="input-text" value="" placeholder="" name="model">
+            </div>
+            <div class="formControls col-xs-2 col-sm-8">
+
+            </div>
+        </div>
+        <div class="row cl">
+            <label class="form-label col-xs-4 col-sm-3"><span class="c-red">*</span>{:lang('Category')}:</label>
+            <div class="formControls col-xs-4 col-sm-4">
+                <input id="category" class="input-text" value="" placeholder="" name="category">
+            </div>
+            <div class="formControls col-xs-2 col-sm-8">
+
+            </div>
+        </div>
+        <div class="row cl">
+            <label class="form-label col-xs-4 col-sm-3"><span class="c-red">*</span>{:lang('Country')}:</label>
+            <div class="formControls col-xs-4 col-sm-4">
+                <input id="country" class="input-text" value="" placeholder="" name="country">
+            </div>
+            <div class="formControls col-xs-2 col-sm-8">
+
+            </div>
+        </div>
+        <div class="row cl">
+            <label class="form-label col-xs-4 col-sm-3"><span class="c-red">*</span>Where to buy:</label>
+            <div class="formControls col-xs-4 col-sm-4">
+                <input class="input-text" value="" placeholder="" name="platform">
+            </div>
+            <div class="formControls col-xs-2 col-sm-8">
+
+            </div>
+        </div>
+        <div class="row cl">
+            <label class="form-label col-xs-4 col-sm-3"><span class="c-red">*</span>{:lang('Order Number')}:</label>
+            <div class="formControls col-xs-4 col-sm-4">
+                <input class="input-text" value="" placeholder="" name="order_number">
+            </div>
+            <div class="formControls col-xs-2 col-sm-8">
+            </div>
+        </div>
+        <div class="row cl">
+            <label class="form-label col-xs-4 col-sm-3"><span class="c-red">*</span>{:lang('Purchase time')}:</label>
+            <div class="formControls col-xs-4 col-sm-3">
+                <input class="input-text" type="date" value="" placeholder="" name="create_time">
+            </div>
+            <div class="formControls col-xs-2 col-sm-8">
+            </div>
+        </div>
+        <input type="hidden" name="prd_time" id="prd_time" value="">
+        <div class="row cl">
+            <div class="col-xs-8 col-sm-9 col-xs-offset-4 col-sm-offset-3">
+                <input class="btn btn-primary" type="button" onclick="save('{:url(\'/customer/warranty/register\')}')"  value="&nbsp;&nbsp;{:lang('Submit')}&nbsp;&nbsp;">
+                <input class="btn btn-danger" type="button" onclick="save('{:url(\'sn/index\')}')"  value="&nbsp;&nbsp;{:lang('ReWrite')}&nbsp;&nbsp;">
+            </div>
+        </div>
+    </form>
+    <div class="form form-horizontal">
+        <div class="row cl">
+            <label class="form-label col-sm-10" style="text-align: left">
+                {:lang('Product reg tips')}
+            </label>
+        </div>
+    </div>
+</article>
+{/block}
+{block name="js"}
+<script>
+    $('#sn').blur(function () {
+        $.ajax({
+            url: '/customer/sn/Verification',
+            type: "post",
+            dataType: "json",
+            data: $("form").serialize(),//提交表单数据
+            success: function (result) {
+                console.log(result);
+                if(result.status === 0){
+                    layer.msg(result.data,{icon:5,time:2000});
+                }
+                if (result.status === "1" || result.status ===1) {
+                    $('#model').val(result.models['model']);
+                    $('#country').val(result.country);
+                    $('#category').val(result.cate);
+                    $('#prd_time').val(result.prd_time);
+                }
+            }
+        })
+    });
+</script>
+{/block}

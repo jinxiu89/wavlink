@@ -1,0 +1,20 @@
+/* 公共样式 */
+
+/* wavlink 视频详情页 --> 相关视频 */
+div.Related_video > div > a > p {
+    padding:8px
+}
+@media screen and (min-width:318px) and (max-width:768px),screen and (min-width:1024px) and (max-width:1366px) {
+    /* 视频详情页 */
+    div.Related_video {
+        /*margin-top:15px;*/
+        padding:5px !important
+    }
+    div.Related_video > div {
+        padding:0 5px;
+        /*margin:5px 0*/
+    }
+    div.Related_video > div > a > img {
+        padding:5px !important
+    }
+}

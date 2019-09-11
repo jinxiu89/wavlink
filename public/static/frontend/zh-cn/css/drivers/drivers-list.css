@@ -1,0 +1,86 @@
+/* 驱动下载列表 start */
+.bg-f2 {
+    background:#f2f2f2
+}
+.bg-three {
+    background:#333
+}
+div.table_box > table tr td {
+    transition:.1s linear
+}
+div.table_box > table tr td:hover {
+    background:rgba(0,0,0,.1)
+}
+table.table-bordered {
+    background:#fff
+}
+table.table > tbody > tr > td > a {
+    color:#333 !important
+}
+div.table_box > table {
+    margin-bottom:0 !important
+}
+
+div.ct > div.panel {
+    border-color:#f2f2f2
+}
+div.ct > div.panel > div.panel-heading {
+    background:#e0e0e0
+}
+div.ct > div.panel > div.panel-heading > strong {
+    color:#666
+}
+div.ct > div.panel:nth-child(1),div.ct > div.panel:nth-child(2){
+    margin-top:20px
+}
+div.ct > div.panel > div.panel-body > div > span:last-child > i {
+    display:none
+}
+div.ct > div.panel > div.panel-body > p:nth-of-type(1) > span > i {
+    color:#999;
+    font-size:12px;
+    font-style:normal;
+}
+div.ct > div.panel > div.panel-body > p:nth-child(3) > span {
+    display:block
+}
+div.ct > div.panel > div.panel-body > div {
+    min-height: 100px;
+}
+@media screen and (min-width:768px){
+    div.ct > div.panel {
+        width:49%;
+        float:left
+    }
+    div.ct > div.panel:nth-child(2n+1){
+        margin-right:2%
+    }
+    div.ct > div.panel:nth-last-child(1),div.ct > div.panel:nth-last-child(2){
+        margin-bottom:0
+    }
+    div.ct > div.panel > div.panel-body > div {
+        min-height:100px
+    }
+}
+@media screen and (max-width:767px){
+    div.table_box > table tr,table.table-bordered tr {
+        text-indent:0 !important;
+        text-align:center
+    }
+    div.table_box > table tr td {
+        padding:0 5px;
+        line-height:50px
+    }
+    div.ct > div.panel:last-child {
+        margin-bottom:0
+    }
+    div.ct > div.panel > div.panel-body > div {
+        margin-bottom:20px;
+        min-height: 0;
+    }
+}
+div.option>div>div.search_product>form>input{height: 30px;border: 1px solid #333!important}
+div.option>div>div.search_product>form>input:nth-of-type(2){background: #333}
+@media screen and (max-width:767px){
+    div.option>div>div.search_product>form>input{height: 26px}
+}

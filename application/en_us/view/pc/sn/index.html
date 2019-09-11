@@ -1,0 +1,161 @@
+<!--继承框架-->
+{extend name="pc/base/base"}
+<!--私有首页面属性开始-->
+{block name="seo"}
+<title>sn查询 - Wavlink </title>
+<meta name="description" content="描述">
+<meta name="keywords" content="查询">
+{/block}
+<!--私有首页面属性结束-->
+<!--主体内容开始-->
+{block name="body"}
+<style>
+    body{background: #f2f2f2!important;}
+
+    div.SN_count{width: 83%;margin: auto;background: #fff}
+    div.mag{width: 83%;margin: auto;font-size: 12px}
+    div.product_information{width: 83%;margin: 10px auto;background: #fff;padding: 20px}
+
+    div.SN_count>div.SN_search{padding: 50px 20px;text-align: center}
+    div.SN_count>div.SN_search input{width: 400px;height: 30px;padding: 0 10px}
+    div.SN_count>div.SN_search p{font-size: 12px;margin: 20px 0 0;color: #999;}
+
+    div.product_information>div>h2{font-size: 16px;margin: 0;line-height: 26px;text-align: left}
+    div.product_information>div{width: 50%;margin: 20px auto}
+    div.product_information>div>dl{margin: 0}
+    div.product_information>div>dl>dt,div.product_information>div>dl>dd{float: left;width: 50%;padding: 10px 10px;font-weight: normal}
+    div.product_information>div>dl{border: 1px solid #dedede;border-bottom: none}
+    div.product_information>div>dl:nth-last-of-type(1){border-bottom: 1px solid #dedede}
+    div.product_information>div>dl>dt{border-right: 1px solid #dedede}
+    #sn-error{
+        display: block;
+        font-weight: normal;
+        color: red;
+        font-size: 12px;
+    }
+    @media screen and (max-width: 767px) {
+        div.SN_count{width: 100%}
+        div.mag{width: 100%}
+        div.SN_count>div.SN_search input{width: 250px}
+        div.product_information{width: 100%;padding: 20px 10px}
+        div.product_information>h2{font-size: 14px}
+        div.product_information>div{width: 100%;font-size: 12px}
+    }
+    @media screen and (width: 320px) {
+        div.SN_count>div.SN_search input{width: 200px}
+    }
+    @media screen and (min-width: 768px) and (max-width: 1199px) {
+        div.SN_count{width: 100%}
+        div.mag{width: 100%}
+        div.product_information{width: 100%}
+        div.product_information>div{width: 100%}
+    }
+    @media screen and (min-width: 992px) and (max-width: 1199px) {
+        div.product_information>div{width: 80%}
+    }
+</style>
+<div class="SN_main">
+    <div class="SN_count">
+        <div class="SN_search">
+            <form id="sn" action="" method="post">
+                <input type="text" name="sn" placeholder="请输入正确的产品SN" id="sn_number">
+                <button class="btn btn-info" id="btn" type="submit">查询</button>
+            </form>
+            <p>注：输入SN查询产品详细信息。老版本SN只提供2017.1.1之后，之前的SN不再支持查询。给您带来的不便之处请您谅解！</p>
+        </div>
+    </div>
+
+    <div class="container mag">
+        <div class="row">
+            <div class="nav_path bg-white" style="margin-top: 10px;padding-left: 15px;">
+                <div style="padding: 10px">
+                    <a href="/zh_cn/category/wireless.html" style="display: inline;color: #0C0C0C">SN查询</a>
+                    <i class="icon-angle-right color-gray" style="box-shadow:none"></i>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!--如果查询到SN 并 有结果的话，这一段就显示  没有就显示错误-->
+    <div class="product_information" style="height: 420px;">
+        <div class="clearfix">
+            <h2 style="padding-bottom: 10px;">您所查询的结果：<span class="user_sn"></span></h2>
+            <dl class="clearfix">
+                <dt>Product Model</dt>
+                <dd id="prd_model"></dd>
+            </dl>
+            <dl class="clearfix">
+                <dt>Category</dt>
+                <dd id="prd_cate"></dd>
+            </dl>
+            <dl class="clearfix">
+                <dt>Spec</dt>
+                <dd id="prd_spec"></dd>
+            </dl>
+            <dl class="clearfix">
+                <dt>Ver.</dt>
+                <dd id="prd_ver"></dd>
+            </dl>
+            <p style="padding-top: 10px;">查询到的产品详情，若与实际不相符，请尽快与客服人员联系。</p>
+        </div>
+    </div>
+</div>
+{/block}
+<!--主体内容结束-->
+
+<!--私有业务js开始-->
+{block name="js"}
+<script type="text/javascript" src="__STATIC__/admin/lib/jquery.validation/1.14.0/jquery.validate.js"></script>
+<script type="text/javascript" src="__STATIC__/admin/lib/jquery.validation/1.14.0/validate-methods.js"></script>
+<script type="text/javascript" src="__STATIC__/admin/lib/layer/2.4/layer.js"></script>
+{if condition="$lang == 'zh_cn'"}
+<script type="text/javascript" src="__STATIC__/admin/lib/jquery.validation/1.14.0/messages_zh.js"></script>
+{/if}
+<script>
+    var validator = $("#sn").validate({
+        rules: {
+            sn: {
+                required: true,
+                minlength:15,
+                maxlength:18
+            }
+        },
+        errorPlacement: function(error, element) {
+            error.appendTo(element.parent());
+        },
+        onkeyup: false,
+        focusCleanup: false,
+        success: "valid",
+        submitHandler: function (form) {
+            $.ajax({
+                url: '/customer/sn/Verification',
+                type: "post",
+                dataType: "json",
+                data: $("form").serialize(),//提交表单数据
+                success: function (result) {
+                    console.log(result);
+                    if (result.status === 1 || result.status === "1") {
+                        var sn = $("#sn_number").val();
+                        $(".user_sn").html(sn);
+                        $('#prd_model').html(result.models['model']);
+                        $('#prd_cate').html(result.cate);
+                        $('#prd_spec').html(result.spec);
+                        //这种判断一般只有在切身体会下才能理解，功能：只是一个判断 两个值
+                        if($.isArray(result.ver)){
+                            $('#prd_ver').html(result.ver[0]['ver']);
+                        }else {
+                            $('#prd_ver').html(result.ver);
+                        }
+                    } else {
+                        //不成功表示没有结果
+                        layer.msg(result.data,{icon:5,time:2000});
+                    }
+                }
+            })
+        }
+    });
+    $("#btn").click(function () {
+        validator.resetForm();
+    });
+</script>
+{/block}
+<!--私有业务js结束-->

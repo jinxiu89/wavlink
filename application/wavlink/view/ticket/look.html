@@ -1,0 +1,52 @@
+{include file="public/headers"/}
+<article class="cl pd-20">
+    <form action="" method="post" class="form form-horizontal" id="form-admin-add">
+        <div class="row cl">
+            <label class="form-label col-xs-4 col-sm-3">First Name:</label>
+            <div class="formControls col-xs-8 col-sm-9">
+                <input class="input-text" value="{$ticket->first_name}" disabled>
+            </div>
+        </div>
+        <div class="row cl">
+            <label class="form-label col-xs-4 col-sm-3">Last Name:</label>
+            <div class="formControls col-xs-8 col-sm-9">
+                <input type="text" class="input-text" value="{$ticket->last_name}" disabled>
+            </div>
+        </div>
+        <div class="row cl">
+            <label class="form-label col-xs-4 col-sm-3">邮箱:</label>
+            <div class="formControls col-xs-8 col-sm-9">
+                <input type="text" class="input-text" value="{$ticket->email}" disabled>
+            </div>
+        </div>
+        <div class="row cl">
+            <label class="form-label col-xs-4 col-sm-3">产品Model：</label>
+            <div class="formControls col-xs-8 col-sm-9">
+                <input type="text" class="input-text" value="{$ticket->model}" disabled>
+            </div>
+        </div>
+        <div class="row cl">
+            <label class="form-label col-xs-4 col-sm-3">SN:</label>
+            <div class="formControls col-xs-8 col-sm-9">
+                <input type="text" class="input-text" value="{$ticket->sn}" disabled>
+            </div>
+        </div>
+
+        <div class="row cl">
+            <label class="form-label col-xs-4 col-sm-3">详细问题:</label>
+            <div class="col-xs-8 col-sm-9">
+                <textarea class="textarea" cols="" rows="8" disabled >{$ticket->description}</textarea>
+            </div>
+        </div>
+        <div class="row cl">
+            <div class="col-xs-8 col-sm-9 col-xs-offset-4 col-sm-offset-3">
+                <input class="btn btn-primary radius" type="button" onclick="ticket_reply('回复内容','{:url('Ticket/reply',['id'=>$ticket.id])}','900','800')" value="&nbsp;&nbsp;回复&nbsp;&nbsp;">
+            </div>
+        </div>
+    </form>
+</article>
+{include file="public/footer"/}
+<script type="text/javascript" src="__STATIC__/admin/js/common.js"></script>
+<script type="text/javascript" src="__STATIC__/admin/js/tickets.js"></script>
+</body>
+</html>

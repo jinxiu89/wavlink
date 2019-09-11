@@ -1,0 +1,155 @@
+<!--继承框架-->
+{extend name="pc/base/base"}
+<!--私有首页面属性开始-->
+{block name="seo"}
+<title> {$manual.title}- Wavlink</title>
+<meta name="description" content="{$manual.description}">
+<meta name="keywords" content="{$manual.keywords}">
+<link rel="stylesheet" href="__EN__/css/drivers/drivers-details.css" type="text/css">
+<style>
+    .Manuals_head{margin-bottom: 20px;padding-bottom: 20px;background: #fff}
+    /* 搜索框 */
+    div.option > div:last-child > p {cursor:pointer}
+    div.option > div > div.botn {margin-top:0.5em;margin-bottom:0.5em}
+    div.option>div>div.search_product>form>input{height: 30px;border: 1px solid #333!important}
+    div.option>div>div.search_product>form>input:nth-of-type(2){background: #333}
+    .found_model>p>a{color:#666}
+    .found_model>p>a:hover{color:#337ab7 !important}
+    @media screen and (max-width:767px){
+        div.option>div>div.search_product>form>input{height: 30px}
+    }
+    @media screen and (min-width:768px) and (max-width: 991px){
+        div.option > div > div.botn > form {margin-left:24.9%}
+        div.option > div > div.search_product>div.found_model{margin-left:24.9%}
+    }
+    @media screen and (min-width:992px){
+        div.option > div > div.botn > form {margin-left:29%}
+        div.option > div > div.search_product>div.found_model{margin-left:29%}
+    }
+    /* 搜索框结束 */
+
+    /* 分类列表 */
+    div.table_box{line-height: 30px}
+    div.table_box>div.CategoryBox>div>h5{display: inline-block}
+    div.table_box>div.CategoryBox>div>ul{display: inline-block}
+    div.table_box>div.CategoryBox>div>ul>li{
+        display: inline-block;margin: 20px 8px;padding: 0 8px;border: 1px solid #ccc;
+        -webkit-transition: all .2s linear;
+        -moz-transition: all .2s linear;
+        -o-transition: all .2s linear;
+        transition: all .2s linear;
+    }
+    div.table_box>div.CategoryBox>div>ul>li:hover {
+        border-color: #666;
+        -webkit-transform: scale(1.15);
+        -moz-transform: scale(1.15);
+        -ms-transform: scale(1.15);
+        -o-transform: scale(1.15);
+        transform: scale(1.15);
+    }
+    div.table_box>div.CategoryBox>div>ul>li>a{color: #ccc;font-size: 12px}
+    @media screen and (max-width: 767px) {
+        div.table_box{padding: 0}
+        div.table_box>h4{display: block;padding: 0 20px;line-height: 40px;font-size: 16px;font-weight: normal;border: 1px solid #f2f2f2}
+        div.table_box>h4>i{float: right;font-size: 24px;line-height: 40px;}
+        div.table_box>div.CategoryBox{display: none}
+        div.table_box>div.CategoryBox>div>h5{display: block;line-height: 40px;padding-left: 20px}
+        div.table_box>div.CategoryBox>div>ul{display: block;}
+        div.table_box>div.CategoryBox>div>ul>li{display: block;margin: 0;padding: 0 0 0 20px;border: none;border-bottom: 1px solid #f2f2f2}
+        div.table_box>div.CategoryBox>div>ul>li>a{color: #777;padding: 5px 0 0 15px}
+    }
+    /* 分类列表结束 */
+
+    /* 路径path */
+    .Manuals_path{background: #fff;margin-bottom: 20px;font-size: 12px}
+    .nav_path{padding: 10px 20px}
+    .nav_path>div>a{display: inline;color: #0C0C0C}
+    /* 路径path结束 */
+
+    /* ProductInformation/DriverDownload */
+    .Manuals_message{background: #fff;border-bottom: 1px solid #f2f2f2}
+    .Manuals_message>div{float: left;width: 50%;text-align: center}
+    .Manuals_message>div:nth-of-type(1){border-right: 1px solid #f2f2f2}
+    .Manuals_message>div>a{line-height: 50px;color: #333}
+    .Manuals_message>div>a:hover{text-decoration: underline;background: #ccc}
+    /* ProductInformation/DriverDownload结束 */
+
+    /* 主体内容 */
+    .Manuals_container{padding: 20px;background: #fff}
+
+    .panel{border: 1px solid #e0e0e0;}
+    .panel-heading{background: #e0e0e0}
+    /*.panel-body>div{margin-bottom: 20px}*/
+    .panel-body>p{margin-bottom: 10px}
+    .panel-body>p>span{display: block}
+    .panel-body i{font-size: 12px;color: #999;font-style: normal}
+    /* 主体内容结束 */
+
+    /* 分页 */
+    .Manuals_page{margin-bottom: 20px}
+    /* 分页结束 */
+</style>
+{/block}
+<!--私有首页面属性结束-->
+<!--主体内容开始-->
+{block name="body"}
+
+<div class="instr_title bg-gray col-lg-12 col-md-12 col-sm-12 col-xs-12">
+    <a href="javascript:;" onclick="history.go(-1)" class="c-primary" style="display: inline;color:white;font-size: 20px "><i class="icon-share-alt"> </i>&nbsp;Back</a>
+</div>
+<div class="container">
+    <div class="row Manuals_head">
+        <div class="option col-xs-12">
+            <div class="col-xs-12" style="padding:0">
+                <div class="search_product botn col-xs-12" style="padding:0; display: block;">
+                    <form class="col-xs-12" action="{:url('/'.$code.'/search/manual')}" method="GET" style="padding:0">
+                        <!-- 20148-4-14 星期六 删除input标签里 style 内边距 padding:10px 0 10px 10px 与 padding:10px 0 -->
+                        <input name="key" type="text" placeholder="Product model" class="col-xs-9" style="border:1px solid #f2f2f2">
+                        <input type="submit" value="Search" class="color-white col-xs-3" style="background:#333; border:1px solid #333 !important">
+                    </form>
+                    <p class="hint col-xs-12 text-center" style="color:#bababa; margin-top:5px; padding:5px 0"><a
+                            href="{:url('/'.$code.'/faq/details/how_to_view_wavlink_product_model')}"
+                            style="color:#888; display:inline-block">How to view Wavlink product model</a> (You can also
+                        click the categories below to view the corresponding manual)</p>
+                </div>
+            </div>
+
+        </div>
+    </div>
+    <div class="row Manuals_path">
+        <div class="nav_path">
+            <div>
+                <a href="/en_us/manual.html">Manuals</a>
+                <i class="icon-angle-right color-gray"></i>
+                <a href="{:url('/'.$code.'/manual/'.$url_title)}">{$manual.category_id|getTitleByCategoryID}</a>
+                <i class="icon-angle-right color-gray"></i>
+                <a href="#">{$manual.title}</a>
+            </div>
+        </div>
+    </div>
+    <!--<div class="row Manuals_message clearfix">-->
+        <!--<div><a href="#">{$manual.model}</a></div>-->
+        <!--<div><a href="#">Drivers Download</a></div>-->
+    <!--</div>-->
+    <div class="row Manuals_container">
+        {volist name="downloads" id="vo"}
+        <div class="panel">
+            <div class="panel-heading">
+                <strong>{$vo.language}</strong>
+            </div>
+            <div class="panel-body">
+                <p>
+                    <span>Description&nbsp;:&nbsp;&nbsp;{$vo.description}</span>
+                    <span>File Size&nbsp;:&nbsp;&nbsp;<i>{$vo.size}</i></span>
+                    <span>Post Date&nbsp;:&nbsp;&nbsp;<i>{$vo.update_time|strtotime|date="d/m/Y",###}</i></span>
+                </p>
+                <p>
+                    <a href="{$vo.url}" target="_blank" class="btn btn-success">Download</a>
+                </p>
+            </div>
+        </div>
+        {/volist}
+    </div>
+</div>
+{/block}
+<!--主题内容结束-->

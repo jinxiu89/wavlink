@@ -1,0 +1,83 @@
+<!--继承框架-->
+{extend name="mobile/base/base"}
+{block name="seo"}
+<title>{$result.name} - Wavlink </title>
+<meta name="keywords" content="{$result.keywords}">
+<meta name="description" content="{$result.description}">
+<link rel="stylesheet" href="__CN__/css/faq/faq.css" type="text/css">
+{/block}
+{block name="banner"}
+<header class="FAQ">
+    <div class="banner">
+        <div>
+            <img class="img-responsive center-block img_mobile" src="https://cloud.wavlink.com/index.php?user/publicLink&fid=24b6vP_g4DOxvS9Qx1L9Pttv2YIExVD0VohZ5WDaNCqH8xT0K8GaMrZommU9Oup3wpa0xfrKO_lsqi90H5BS9mHtklSvUtnwpnZY5QycOoH-aeRiQHagaMOv6nmwnbHezpwCZ6a0BTVg94qhliEj1U7S2fu9-Q&file_name=/FAQ_mobile.jpg" alt="">
+        </div>
+    </div>
+    <div class="nav">
+        <div class="nav_place">
+            <span style="color: #888">当前位置：</span>
+            <ul>
+                <li><a href="{:url('/'.$code.'/faq')}">常见问题</a></li>
+                <li> > </li>
+                <li class="addInnerHTML"><a href="{:url('/'.$code.'/faq/'.$faqCate.url_title)}">{$faqCate.name}</a></li>
+                <li> > </li>
+                <li class="addInnerHTML"><a href="javascript:;">{$faqName}</a></li>
+            </ul>
+        </div>
+        <div class="nav_search">
+            <form action="{:url('/'.$code.'/search/faq')}">
+                <input type="text" name="key" placeholder="请输入您要查找的问题">
+                <input type="submit">
+            </form>
+        </div>
+    </div>
+</header>
+{/block}
+{block name="body"}
+<!--section-->
+<section>
+    <aside class="aside_nav">
+        <h3>问题集锦<i class="icon-angle-right"></i></h3>
+        <ul>
+            {volist name="$cate" id="vo"}
+            {if condition="$result.category_id eq $vo.id"}
+            <li style="background-color: #ccc"><a href="{:url('/'.$code.'/faq/'.$vo.url_title)}" data-id="{$vo.id}">{$vo.name}</a></li>
+            {else /}
+            <li><a href="{:url('/'.$code.'/faq/'.$vo.url_title)}" data-id="{$vo.id}">{$vo.name}</a></li>
+            {/if}
+            {/volist}
+
+        </ul>
+    </aside>
+    <main class="main_content">
+        <div>
+            <div class="main_content_detail">
+                <h5>{$result.problem}</h5>
+                <p>{$result.answer}</p>
+                <span>更新时间：{$result.update_time|strtotime|date="Y/m/d",###}</span>
+            </div>
+        </div>
+        <!--分页-->
+        <div>
+            <div class="nav_page text-center col-lg-10 col-lg-offset-1 col-xs-12" style="padding:0">
+                <ul class="pagination">
+
+                </ul>
+            </div>
+        </div>
+    </main>
+</section>
+{/block}
+{block name="js"}
+<script>
+    $(document).ready(function(){
+        if ($(document).width() < 768) {
+            $("section>.aside_nav>h3").click(function () {
+                $(this).children("i").toggleClass("icon-angle-right").toggleClass("icon-angle-down");
+                $(this).next("ul").slideToggle();
+            });
+        }
+        $(".main_content img").addClass("img-responsive").addClass("center-block");
+    });
+</script>
+{/block}

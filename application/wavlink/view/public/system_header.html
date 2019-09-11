@@ -1,0 +1,83 @@
+<!--包含头部文件-->
+{include file="public/header" /}
+<aside class="Hui-aside">
+    <div class="menu_dropdown bk_2">
+        {if condition="in_array('language/index',$access)"}
+        <dl id="menu-language">
+            <dt><i class="Hui-iconfont">&#xe681;</i> 语言管理<i class="Hui-iconfont menu_dropdown-arrow">&#xe6d5;</i>
+            </dt>
+            <dd>
+                <ul>
+                    <li id="system_language"><a href="{:url('Language/index')}" title="语言管理">语言管理</a></li>
+                    <li id="language_stop"><a href="{:url('Language/language_stop')}" title="停用语言管理">停用语言管理</a></li>
+                </ul>
+            </dd>
+        </dl>
+        {/if}
+        {if condition="in_array('about/index',$access)"}
+        <dl id="menu-about">
+            <dt><i class="Hui-iconfont">&#xe627;</i>关于我们about <i class="Hui-iconfont menu_dropdown-arrow">&#xe6d5;</i>
+            </dt>
+            <dd>
+                <ul>
+                    {volist name="languages" id="vo"}
+                    <li id="system_about_{$vo.id}"><a href="{:url('About/index',['language_id'=>$vo.id])}" title="{$vo.name}关于我们">{$vo.id|getLanguage}关于我们</a></li>
+                    {/volist}
+                </ul>
+            </dd>
+        </dl>
+        {/if}
+        <dl id="menu-setting">
+            {if condition="in_array('setting/index',$access)"}
+            <dt><i class="Hui-iconfont">&#xe62e;</i> 系统设置<i class="Hui-iconfont menu_dropdown-arrow">&#xe6d5;</i>
+                {/if}
+            </dt>
+            <dd>
+                <ul>
+                    {if condition="in_array('setting/index',$access)"}
+                    <li id="system_setting"><a href="{:url('Setting/index')}" title="站点配置">站点配置</a></li>
+                    {/if}
+
+                    <!--<li id="system_shielding"><a href="#" title="屏蔽敏感词">屏蔽敏感词</a></li>-->
+                    <!--todo::<li><a href="picture-list.html" title="地图配置">地图配置</a></li> 利用百度地图或者谷歌地图标记地理未知,暂时忽略-->
+                </ul>
+            </dd>
+        </dl>
+        {if condition="in_array('manger/index',$access)"}
+        <dl id="menu-admin">
+            <dt><i class="Hui-iconfont">&#xe6b5;</i> 管理员设定<i class="Hui-iconfont menu_dropdown-arrow">&#xe6d5;</i>
+            </dt>
+            <dd>
+                <ul>
+                    <li id="system_list"><a href="{:url('Manger/index')}" title="管理员列表">管理员列表</a></li>
+                    <li id="system_group"><a href="{:url('auth_group/index')}" title="用户组管理">用户组管理</a></li>
+                    <li id="system_rule"><a href="{:url('auth_rule/index')}" title="权限列表">权限列表</a></li>
+                    <li id="system_stop"><a href="{:url('Manger/manger_stop')}" title="停用管理员列表">已停用管理员列表</a></li>
+                </ul>
+            </dd>
+        </dl>
+        {/if}
+        <!--<dl id="menu-data">-->
+            <!--<dt><i class="Hui-iconfont">&#xe6b5;</i> 数据管理<i class="Hui-iconfont menu_dropdown-arrow">&#xe6d5;</i>-->
+            <!--</dt>-->
+            <!--<dd>-->
+                <!--<ul>-->
+                    <!--<li id="system_database"><a href=" #" title="数据库备份">数据库备份列表</a></li>-->
+                <!--</ul>-->
+            <!--</dd>-->
+        <!--</dl>-->
+        <!--<dl id="menu-journal">-->
+            <!--<dt><i class="Hui-iconfont">&#xe623;</i> 日志管理<i class="Hui-iconfont menu_dropdown-arrow">&#xe6d5;</i>-->
+            <!--</dt>-->
+            <!--<dd>-->
+                <!--<ul>-->
+                    <!--<li id="system_logs"><a href="#" title="系统日志">系统日志</a></li>-->
+                    <!--<li id="system_user"><a href="#" title="用户日志">用户日志</a></li>-->
+                    <!--<li id="system_vip"><a href="#" title="会员日志">会员日志</a></li>-->
+                <!--</ul>-->
+            <!--</dd>-->
+        <!--</dl>-->
+    </div>
+</aside>
+<div class="dislpayArrow hidden-xs"><a class="pngfix" href="javascript:void(0);" onClick="displaynavbar(this)"></a>
+</div>

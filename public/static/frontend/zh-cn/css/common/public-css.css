@@ -1,0 +1,748 @@
+html,body {
+    /*2018.3.8添加，解决苹果手机滑动不顺畅问题*/
+    -webkit-overflow-scrolling: touch!important;
+}
+@media screen and (max-width:768px) {
+    /*2018.5.18修改，下拉刷新需设置height100%*/
+    html,body{
+        height:100%;
+    }
+}
+html,body,a,dt,dd,button{
+    font-family: 'Noto Sans CJK SC','Source Han Sans CN','Microsoft YaHei';
+}
+body {
+    background: #F2F2F2;
+}
+div.max {
+    position:relative;
+}
+ul {
+    margin: 0;
+    padding: 0
+}
+li {
+    list-style: none;
+    cursor: pointer
+}
+h1, h2, h3, h4, h5, h6, p {
+    margin: 0;
+    word-wrap: break-word
+}
+h2.Relevant_title {
+    padding:0.5em 0
+}
+a {
+    display:block
+}
+a,a:hover,a:active,a:focus,a:visited {
+    color:#fff;
+    text-decoration:none
+}
+.box_shadow {
+    box-shadow: 0 0 15px #bbb;
+}
+
+input {
+    border:1px solid #ccc !important;
+    outline:none !important;
+    /*padding:2% 0;*/
+    border-radius:0 !important;
+    font-size: 12px;
+}
+input[type=text]{
+    text-align:left !important;
+    background:#fff !important
+}
+button, html input[type=button], input[type=reset], input[type=submit]{
+    color:#fff !important;
+}
+input::-webkit-input-placeholder {
+    color:#ccc
+}
+input::-moz-input-placeholder {
+    color:#ccc
+}
+input::-ms-input-placeholder {
+    color:#ccc
+}
+input::-o-input-placeholder {
+    color:#ccc
+}
+
+
+button.btn-default:hover {
+    color: #333;
+    background-color: transparent !important;
+    border-color: transparent !important
+}
+button.btn-default:focus {
+    color: #333;
+    box-shadow: inset 0 0 0 transparent !important;
+    background-color: transparent !important;
+    border-color: transparent !important
+}
+button.btn-default:blur {
+    box-shadow: inset 0 0 0 transparent !important
+}
+.relative {
+    position: relative
+}
+.absolute {
+    position: absolute;
+    z-index: 10
+}
+.fixed {
+    position: fixed;
+    top: 0
+}
+.color-white {
+    color:#fff !important
+}
+.color-black {
+    color:#000
+}
+.color-red {
+    color:#fff;
+    background:#333
+}
+.color-gray {
+    color:#999
+}
+.bg-rgba {
+    background:rgba(0,0,0,.1)
+}
+.bg-black {
+    background: #000
+}
+.bg-gray {
+    background: #999
+}
+.bg-threen {
+    background:#3a3a3a;
+}
+.bg-white {
+    background: #fff
+}
+/* wavlink睿因 页眉部分 start */
+nav.navbar h1>img{
+    height: 30px;
+    margin: 10px;
+}
+div.mask_ie {
+    width:100%;
+    height:100%;
+    background:rgba(0,0,0,.3);
+}
+
+/* 首页新产品横幅广告 */
+div.rel_p {
+    padding:15px 15px 0
+}
+
+/* wavlink睿因 页眉部分 */
+nav.navbar-default {
+    border:none !important;
+    border-radius:0;
+    background-color:transparent
+}
+div.search_box>form{
+    width: 70%;
+    margin-left: 30%;
+}
+div.search_box input {
+    height:30px;
+    padding: 0;
+    margin-top: 10px;
+    border-color:#ccc;
+    font-size: 12px;
+}
+div.search_box input:nth-of-type(1){
+    padding-left: 10px;
+}
+nav.navbar-default button.navbar-toggle {
+    border-color:transparent
+}
+ul.navbar-nav>li>ul.dropdown-menu {
+    padding-top:0;
+    padding-bottom:0
+}
+@media screen and (max-width:767px){
+    /* PC端产品图片 class 类名 */
+    .img_pc{ display: none !important}
+    .li_pc{display: none !important}
+
+
+
+    .navbar-nav {
+        margin: 0 -15px;
+    }
+
+
+    /* 页眉导航 */
+    nav.navbar h1>img{
+        height: 22px;
+        margin: 14px;
+    }
+    div.search_box>form{
+        width: 100%;
+        margin-left: 0;
+    }
+    a.navbar-brand{
+        padding: 0;
+    }
+    nav.navbar-default .navbar-toggle {
+        display:block !important
+    }
+    nav.navbar-default button.navbar-toggle span.icon-bar {
+        background-color:#fff !important
+    }
+    nav.navbar-default .navbar-toggle:focus, .navbar-default .navbar-toggle:hover {
+        background:transparent
+    }
+    nav.navbar-default > div.container-fluid {
+        padding:0
+    }
+    nav.navbar-default > div.container-fluid > div:nth-of-type(1){
+        background:#000
+    }
+    nav.navbar-default > div.container-fluid > div:nth-of-type(2){
+        min-height:inherit;
+        background:#fff
+    }
+    .navbar-collapse {
+        border-top:none
+    }
+    .navbar-default .navbar-collapse {
+        border-color:#000;
+        box-shadow:none
+    }
+    ul.nav > li {
+        border-bottom:1px solid #f2f2f2
+    }
+    ul.nav > li:last-of-type {
+        border-bottom:0
+    }
+    ul.nav > li > ul {
+        border-top:1px solid #f2f2f2 !important
+    }
+    ul.nav > li > ul > li {
+        border-bottom:1px solid #f2f2f2
+    }
+    ul.nav > li > ul > li:last-of-type {
+        border-bottom:none
+    }
+    ul.navbar-nav > li > a {
+        padding-top: 12px;
+        padding-bottom: 12px;
+        color: #333!important;
+    }
+    ul.navbar-nav li.open ul.dropdown-menu > li > a {
+        padding-top:10px !important;
+        padding-bottom:10px !important;
+        font-size: 12px;
+    }
+
+    footer > div > dl {
+        padding:0 !important
+    }
+}
+@media screen and (min-width:768px) and (max-width: 991px){
+    .nav>li>a {
+        padding-left:12px;
+        padding-right:12px
+    }
+
+    /* wavlink - 新产品横幅广告 */
+    div.rel_p { padding:5px 5px 0 }
+
+    div.search_box {
+        padding:13px 0 0 !important;
+        z-index: 10;
+    }
+    div.search_box p {
+        display:block !important;
+        font-size:22px
+    }
+    div.search_box form {
+        display:none
+    }
+}
+@media screen and (min-width:768px){
+    /* wavlink - 新产品横幅广告 */
+    .navbar-toggle { display:block }
+
+    /* 手机端图片 class 类名 */
+    .img_mobile{display: none!important}
+    .li_mobile{display: none !important}
+
+    /* 页眉导航 */
+    nav.navbar-default {
+        background:#000
+    }
+    nav.navbar-default .navbar-collapse {
+        padding:0
+    }
+    .navbar-brand {
+        padding-top:0 !important
+    }
+    ul.nav>li>a {
+        color:#fff !important;
+        background:transparent !important;
+        text-decoration:none
+    }
+    ul.nav>li>a {
+        padding-left:12px;
+        padding-right:12px
+    }
+    ul.dropdown-menu {
+        background-color:#333 !important;
+        text-align:center !important
+    }
+    ul.navbar-nav>li>ul.dropdown-menu > li:hover {
+        background:#fff
+    }
+    ul.navbar-nav>li>ul.dropdown-menu > li:hover a {
+        color:#333
+    }
+    ul.navbar-nav>li>ul.dropdown-menu > li {
+        border-bottom:1px solid #fff;
+        transition:.1s linear;
+        padding:5px 0
+    }
+    ul.navbar-nav>li>ul.dropdown-menu > li:last-of-type {
+        border-bottom:none
+    }
+    ul.dropdown-menu li a {
+        color:#fff;
+        padding:6px 0;
+    }
+    ul.dropdown-menu li a:hover {
+        color:#fff;
+        background:transparent
+    }
+    ul.dropdown-menu > li:last-of-type {
+        border-bottom:none
+    }
+    div.search_box div.form-group {
+        margin-bottom:0
+    }
+}
+@media screen and (width:800px){
+    div.search_box p {
+        display:block !important;
+        font-size:22px;
+        padding-top:6px
+    }
+    div.search_box form {
+        display:none
+    }
+    div.search_box div.form-group {
+        margin-top:6px !important
+    }
+}
+@media screen and (min-width:769px) and (max-width:991px){
+    div.search_box p {
+        display:block !important;
+        font-size:22px;
+        padding-top:13.5px
+    }
+    div.search_box form {
+        display:none
+    }
+    div.search_box div.form-group {
+        margin-top:6px !important
+    }
+    nav.navbar-default .navbar-collapse > div.search_box {
+        text-align:center
+    }
+    #banner #swiper-slide2 dt {
+        margin-top: 10% !important
+    }
+}
+
+@media screen and (min-width: 992px) and (max-width: 1365px) {
+    div.search_box input{
+        height: 25px;
+        margin-top: 12.5px;
+    }
+}
+@media screen and (max-width:992px){
+    h3.Relevant_title { font-size:1.5em }
+    div.rel_p { padding:3.8px 3.8px 0 }
+
+    /* wavlink睿因 页脚部分 */
+    footer > div.w_body_footer_bottom { font-size:1em }
+}
+@media screen and (width:1024px){
+    /* wavlink - 新产品横幅广告 */
+    div.rel_p { padding:8px 8px 0 }
+}
+@media screen and (min-width:1024px) and (max-width:1330px){
+    /* wavlink - 新产品横幅广告 */
+    div.rel_p { padding:8px 8px 0 }
+}
+body{padding-top: 0}
+@media screen and (min-width:800px){
+    nav.navbar-default {
+        position:fixed;
+        left:0;
+        top:0;
+        width:100%
+    }
+    body{padding-top: 50px}
+}
+@media screen and (min-width:1199px){
+    /* 页眉导航 */
+    nav.navbar-default ul.navbar-nav> li >a {
+        font-size:16px
+    }
+    ul.navbar-nav>li>ul.dropdown-menu > li {
+        padding:5px 0
+    }
+
+    /*2018.2.6添加，js动画*/
+    @-webkit-keyframes animation_p{
+        from{opacity:0;transform: translateY(100%)}
+        to{opacity:1;transform: translateY(0)}
+    }
+    @-moz-keyframes animation_p{
+        from{opacity:0;transform: translateY(100%)}
+        to{opacity:1;transform: translateY(0)}
+    }
+    @-ms-keyframes animation_p{
+        from{opacity:0;transform: translateY(100%)}
+        to{opacity:1;transform: translateY(0)}
+    }
+    @-o-keyframes animation_p{
+        from{opacity:0;transform: translateY(100%)}
+        to{opacity:1;transform: translateY(0)}
+    }
+    @keyframes animation_p{
+        from{opacity:0;transform: translateY(100%)}
+        to{opacity:1;transform: translateY(0)}
+    }
+    @-webkit-keyframes animation_strong{
+        from{opacity:0;transform: translateY(100%)}
+        to{opacity:1;transform: translateY(0)}
+    }
+    @-moz-keyframes animation_strong{
+        from{opacity:0;transform: translateY(100%)}
+        to{opacity:1;transform: translateY(0)}
+    }
+    @-ms-keyframes animation_strong{
+        from{opacity:0;transform: translateY(100%)}
+        to{opacity:1;transform: translateY(0)}
+    }
+    @-o-keyframes animation_strong{
+        from{opacity:0;transform: translateY(100%)}
+        to{opacity:1;transform: translateY(0)}
+    }
+    @keyframes animation_strong{
+        from{opacity:0;transform: translateY(100%)}
+        to{opacity:1;transform: translateY(0)}
+    }
+}
+@media screen and (width:1600px){
+    #banner #swiper-slide2 dt {
+        font: normal 38px/200% arial,microsoft yahei !important;
+        margin-top: 111px !important
+    }
+}
+@media screen and (min-width:1620px){
+    nav.navbar-default ul.navbar-nav> li >a {
+        font-size:16px
+    }
+}
+/* wavlink睿因 页脚部分 */
+footer {
+    min-height:231px
+}
+footer div dl dt.h3 {
+    font-size:16px;
+    padding:10px 15px;
+    /*2018.4.3修改，去掉 border-bottom:1px solid #fff;*/
+    margin-bottom:8px;
+    /*2018.4.3修改，原始值：font-weight:bold*/
+    font-weight:normal;
+    color:#fff
+}
+footer div dl dd {
+    padding-left:15px;
+    line-height:35px;
+    border-bottom: 1px solid #4f4f4f;
+}
+footer div dl:nth-last-of-type(1) dd {
+    border-bottom: none;
+}
+footer div dl:nth-last-of-type(1) dd p {
+    border-bottom: 1px solid #4f4f4f;
+}
+footer div dl dd > a,footer div dl dd > a:hover,footer div dl dd > a:active,footer div dl dd > a:focus,footer div dl dd > a:visited {
+    color:#999
+}
+footer div dl dd > a {
+    /*2018.4.3添加color:#999*/
+    color: #999;
+    transition:.1s linear;
+    -webkit-transition:.1s linear;
+    -moz-transition:.1s linear;
+    -ms-transition:.1s linear;
+    -o-transition:.1s linear
+}
+footer div dl dd > a > span{
+    /*2018.4.3添加color:#999*/
+    color: #999;
+}
+footer div dl.last_dl dd p > a{
+    /*2018.4.3添加color:#999*/
+    color: #999;
+}
+footer div dl.last_dl dd p {
+    padding-left:15px
+}
+footer div dl.last_dl dd p:hover > a {
+    color:#fff
+}
+footer div dl dd:hover > a {
+    color:#fff
+}
+footer div dl dd.last_dd:hover > a {
+    color:#fff
+}
+footer div.w_body_footer_bottom {
+    /*2018.4.11修改，去掉font-weight:bold;添加font-size；color*/
+    padding:8px 0;
+    color:#888!important;
+    font-size: 12px;
+}
+
+/*2018.4.8添加，修改中文版本产品列表样式，了解详情字体大小*/
+div.Pro_list > div.Pro_list_cont > div > a > div > h2{
+    font-size: 16px!important;
+}
+div.Pro_list > div.Pro_list_cont > div > a > div > h2>strong{
+    font-weight: normal!important;
+}
+div.Pro_list > div.Pro_list_cont > div > a > div > p{
+    font-size: 12px!important;
+}
+div.Pro_list > div.Pro_list_cont > div > a > div > div.details > span{
+    font-size: 12px!important;
+}
+/*2018.4.8添加，修改中文版本产品列表样式，了解详情字体大小*/
+@media screen and (max-width: 1023px) {
+    div.Pro_list > div.Pro_list_cont > div > a > div > h2{
+        height: 40px!important;
+    }
+}
+/*2018.4.8添加，修改中文版本首页产品列表样式，了解详情字体大小*/
+div.Rec > div.pac > div > div > div.details > a{
+    font-size: 12px!important;
+}
+
+@media screen and (max-width: 1023px) {
+    div.Rec > div.pac > div > div > div.details > a{
+        font-size: 12px!important;
+    }
+}
+
+div#Detail_page_all>div.container-fluid>div.row>section>div>div.detail_page_text_cont>strong{
+    font-size: 36px!important;
+    font-weight: normal!important;
+}
+div#Detail_page_all>div.container-fluid>div.row>section>div>div.detail_page_text_cont>p{
+    font-size: 18px!important;
+}
+/*driver_list*/
+ol.drivers_list > li > ul > li > h2{
+    font-size: 16px!important;
+    font-weight: normal;
+    margin-top: 15px;
+}
+ol.drivers_list > li > ul > li >table tr td{
+    font-size: 12px;
+}
+ol.drivers_list > li > ul > li strong{
+    font-weight: normal;
+}
+/*Firmware*/
+div.panel>div.panel-heading>h3.panel-title{
+    font-size: 14px;
+}
+div.panel>div.panel-body>form>div.form-group>label{
+    font-weight: normal;
+}
+div.panel>div.panel-body>form>div.form-group>div>button.btn{
+    font-size: 12px;
+}
+/*scale放大镜*/
+div.max>div.juzhong>div.lefter>div.textInfo>form>strong{
+    font-size: 18px;
+}
+div.max>div.juzhong>div.lefter>div.textInfo>form>p{
+    font-size: 16px;
+}
+div.max>div.juzhong>div.lefter>div.textInfo>form>div.product-info-basic>div>ul>li{
+    font-size: 14px;
+    cursor: text;
+}
+/*查看产品型号*/
+div.option > div > div.search_product>div.found_model{
+    margin-top: 7px;
+    margin-left: 25%;
+}
+div.option>div.search_product>div.found_model{
+    margin-top: 7px;
+    margin-left: 33.3%;
+}
+div.option div.search_product>div.found_model>p>a{
+    color: #888;
+    font-size: 12px;
+    display: inline-block;
+}
+div.option div.search_product>div.found_model>p>a:hover{
+    color:#000
+}
+@media screen and (max-width: 767px) {
+    footer div dl dt.h3{
+        font-size: 14px;
+    }
+    footer div dl.last_dl>dd.last_dd{
+        padding:5% 20% 0;
+    }
+    footer div dl dd > a,footer div dl dd>p>a{
+        font-size: 12px;
+    }
+    ol.drivers_list > li > ul > li > h2{
+        font-size: 14px!important;
+    }
+    ol.drivers_list > li > ul > li>a{
+        font-size: 12px;
+    }
+    ol.drivers_list > li > ul > li{
+        font-size: 12px;
+    }
+    div.option div.search_product>div.found_model{
+        margin-left: 0!important;
+    }
+    div.option div.search_product>div.found_model>p>small{
+        display: block;
+    }
+}
+@media screen and (min-width: 768px) and (max-width: 1365px){
+    footer div dl dt.h3{
+        font-size: 14px;
+    }
+    footer div dl dd > a,footer div dl dd>p>a{
+        font-size: 12px;
+    }
+    ol.drivers_list > li > ul > li.text-right>a{
+        font-size: 12px;
+    }
+}
+
+@media screen and (max-width: 767px) {
+    div#Detail_page_all>div.container-fluid>div.row>section>div>div.detail_page_text_cont>strong{
+        font-size: 18px!important;
+    }
+    div#Detail_page_all>div.container-fluid>div.row>section>div>div.detail_page_text_cont>p{
+        font-size: 14px!important;
+    }
+}
+@media screen and (min-width: 768px) and (max-width: 991px) {
+    ul.navbar-nav{
+        margin-left: 0;
+    }
+    ul.nav>li>a{
+        padding-left: 14px;
+        padding-right: 14px;
+    }
+    nav.navbar h1>img{
+        height: 22px;
+        margin: 14px;
+    }
+    ul.dropdown-menu li a {
+        font-size: 12px;
+    }
+    div#Detail_page_all>div.container-fluid>div.row>section>div>div.detail_page_text_cont>strong{
+        font-size: 20px!important;
+    }
+    div#Detail_page_all>div.container-fluid>div.row>section>div>div.detail_page_text_cont>p{
+        font-size: 14px!important;
+    }
+    div.option > div > div.search_product>div.found_model{
+        margin-left: 16%;
+    }
+    div.option>div.search_product>div.found_model{
+        margin-left: 25%;
+    }
+}
+@media screen and (min-width: 992px) and (max-width: 1199px) {
+    ul.navbar-nav{
+        margin-left: 10%;
+    }
+    ul.nav>li>a{
+        padding-left: 20px;
+        padding-right: 20px;
+    }
+    div.search_box form{
+        width: 80%;
+        margin-left: 10%;
+    }
+    nav.navbar h1>img{
+        height: 22px;
+        margin: 14px;
+    }
+    ul.dropdown-menu li a {
+        font-size: 12px;
+    }
+    div#Detail_page_all>div.container-fluid>div.row>section>div>div.detail_page_text_cont>strong{
+        font-size: 22px!important;
+    }
+    div#Detail_page_all>div.container-fluid>div.row>section>div>div.detail_page_text_cont>p{
+        font-size: 14px!important;
+    }
+    div.option>div.search_product>div.found_model{
+        margin-left: 25%;
+    }
+}
+@media screen and (min-width: 1200px) and (max-width: 1500px) {
+    ul.navbar-nav{
+        margin-left: 18%;
+    }
+    ul.nav>li>a{
+        padding-left: 25px;
+        padding-right: 25px;
+    }
+    div#Detail_page_all>div.container-fluid>div.row>section>div>div.detail_page_text_cont>strong{
+        font-size: 26px!important;
+    }
+    div#Detail_page_all>div.container-fluid>div.row>section>div>div.detail_page_text_cont>p{
+        font-size: 16px!important;
+    }
+}
+@media screen and (min-width: 1501px) {
+    ul.navbar-nav{
+        margin-left: 25%;
+    }
+    ul.nav>li>a{
+        padding-left: 32px;
+        padding-right: 32px;
+    }
+}
+/*联想搜索*/
+div#pro_list{position: absolute;z-index: 999;display:none;margin-top: 41px;width: 75%;border: 1px solid #f2f2f2;border-top: 0;background-color: #fff}
+div#pro_list>ul>li:hover{background: #f2f2f2}
+
+
+
+
+
+
+
+
+
+
+
+

@@ -1,0 +1,96 @@
+<!--包含头部文件-->
+{include file="public/header" /}
+<aside class="Hui-aside">
+    <div><a href="#"><img src=""></a></div>
+    <div class="menu_dropdown bk_2">
+        {if condition="in_array('category/index',$access)"}
+        <dl id="menu-category">
+            <dt><i class="Hui-iconfont">&#xe681;</i> 分类管理<i class="Hui-iconfont menu_dropdown-arrow">&#xe6d5;</i></dt>
+            <dd>
+                <ul>
+                    {volist name="languages" id="vo"}
+                    <li id="product_category_{$vo.id}"><a href="{:url('Category/index',['language_id'=>$vo.id])}"
+                                                          title="{$vo.name}分类管理">{$vo.id|getLanguage}分类管理</a></li>
+                    {/volist}
+                </ul>
+            </dd>
+        </dl>
+        {/if}
+        {if condition="in_array('featured/index',$access)"}
+        <dl id="menu_featured">
+            <dt><i class="Hui-iconfont">&#xe681;</i> 推荐位管理<i class="Hui-iconfont menu_dropdown-arrow">&#xe6d5;</i></dt>
+            <dd>
+                <ul>
+                    <li id="images_featured"><a href="{:url('featured/index')}" title="添加推荐位">推荐位管理</a></li>
+                </ul>
+            </dd>
+            <!--下面的是三级菜单展开-->
+            <!--<dl id="menu_featured1">-->
+            <!--<dt><i class="Hui-iconfont">&#xe63a;</i> 推荐位管理<i class="Hui-iconfont menu_dropdown-arrow">&#xe6d5;</i></dt>-->
+            <!--<dd>-->
+            <!--<ul>-->
+            <!--<li><a data-href="" data-title="采购管理" href="javascript:void(0)">采购管理</a></li>-->
+            <!--<li><a data-href="" data-title="采购管理" href="javascript:void(0)">采购管理</a></li>-->
+            <!--<li id="images_featured"><a href="{:url('featured/index')}" title="添加推荐位">推荐位管理</a></li>-->
+            <!--</ul>-->
+            <!--</dd>-->
+            <!--</dl>-->
+
+
+        </dl>
+        {/if}
+        {if condition="in_array('images/index',$access)"}
+        <dl id="menu-images">
+            <dt><i class="Hui-iconfont">&#xe613;</i> 首页产品管理<i class="Hui-iconfont menu_dropdown-arrow">&#xe6d5;</i></dt>
+            <dd>
+                <ul>
+                    {volist name="languages" id="vo"}
+                    <li id="images_list_{$vo.id}"><a href="{:url('images/index',['language_id'=>$vo.id])}"
+                                                     title="{$vo.name}推荐位产品管理">{$vo.id|getLanguage}推荐位产品管理</a></li>
+                    {/volist}
+                    <li id="images_recycle"><a href="{:url('images/images_recycle')}" title="回收站">首页产品回收站管理</a></li>
+                </ul>
+            </dd>
+        </dl>
+        {/if}
+
+        {if condition="in_array('product/index',$access)"}
+        <dl id="menu-product">
+            <dt><i class="Hui-iconfont">&#xe620;</i> 产品管理<i class="Hui-iconfont menu_dropdown-arrow">&#xe6d5;</i></dt>
+            <dd>
+                <ul>
+                    {volist name="languages" id="vo"}
+                    <li id="product_product_{$vo.id}"><a class="product_product"
+                                                         href="{:url('product/index',['language_id'=>$vo.id])}"
+                                                         title="{$vo.name}产品管理">{$vo.id|getLanguage}产品管理</a>
+                        {/volist}
+                        <!--<li id="product_off"><a href="{:url('product/product_off')}" title="已下架的产品">已下架的产品</a></li>-->
+                    <li id="product_recycle"><a href="{:url('product/product_recycle')}" title="回收站的产品">回收站的产品</a></li>
+                </ul>
+            </dd>
+        </dl>
+        {/if}
+        {if condition="in_array('marketing/index',$access)"}
+        <dl id="menu-marketing">
+            <dt><i class="Hui-iconfont">&#xe62b;</i> 营销管理<i class="Hui-iconfont menu_dropdown-arrow">&#xe6d5;</i></dt>
+            <dd>
+                <ul>
+                    <li id="marketing"><a href="{:url('Marketing/index')}" title="单页宣传">单页宣传</a></li>
+                </ul>
+            </dd>
+        </dl>
+        {/if}
+        <!--<dl id="menu-member">-->
+        <!--<dt><i class="Hui-iconfont">&#xe68a;</i> 邮件群发<i class="Hui-iconfont menu_dropdown-arrow">&#xe6d5;</i></dt>-->
+        <!--<dd>-->
+        <!--<ul>-->
+        <!--<li><a href="#" title="会员群发">会员群发</a></li>-->
+        <!--<li><a href="#" title="订阅群发">订阅群发</a></li>-->
+        <!--</ul>-->
+        <!--</dd>-->
+        <!--</dl>-->
+    </div>
+</aside>
+<div class="dislpayArrow hidden-xs"><a class="pngfix" href="javascript:void(0);" onClick="displaynavbar(this)"></a>
+</div>
+

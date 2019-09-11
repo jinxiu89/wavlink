@@ -1,0 +1,39 @@
+{include file="public/headers"/}
+<article class="cl pd-20">
+    <form action="" method="post" class="form form-horizontal" id="form-admin-add">
+        <div class="row cl">
+            <label class="form-label col-xs-4 col-sm-2"><span class="c-red">*</span>顶级权限:</label>
+            <div class="formControls col-xs-8 col-sm-9">
+				<span class="select-box">
+				<select name="parent_id" class="select">
+					<option value="0">顶级分类</option>
+                    {volist name="authRules" id="vo"}
+					<option value="{$vo.id}">{$vo.delimiter}{$vo.title}</option>
+                    {/volist}
+				</select>
+				</span>
+            </div>
+        </div>
+        <div class="row cl">
+            <label class="form-label col-xs-4 col-sm-2"><span class="c-red">*</span>权限名称:</label>
+            <div class="formControls col-xs-8 col-sm-9">
+                <input class="input-text" value="" placeholder="" id="title" name="title">
+            </div>
+        </div>
+        <div class="row cl">
+            <label class="form-label col-xs-4 col-sm-2"><span class="c-red">*</span>权限地址:</label>
+            <div class="formControls col-xs-8 col-sm-9">
+                <textarea name="name" cols="" rows="" class="textarea"  placeholder="控制器/方法" dragonfly="true" ></textarea>
+            </div>
+        </div>
+        <div class="row cl">
+            <div class="col-xs-8 col-sm-9 col-xs-offset-4 col-sm-offset-3">
+                <input class="btn btn-primary radius" type="button" onclick="save('{:url('AuthRule/save')}')"  value="&nbsp;&nbsp;提交&nbsp;&nbsp;">
+            </div>
+        </div>
+    </form>
+</article>
+{include file="public/footer"/}
+<script type="text/javascript" src="__STATIC__/admin/js/common.js"></script>
+</body>
+</html>

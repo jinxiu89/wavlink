@@ -1,0 +1,274 @@
+/* wavlink 产品列表 */
+div.Pro_list > div.Pro_list_cont {
+    padding:10px 0 0;
+}
+div.Pro_list > div.Pro_list_cont > div {
+    padding:0.2em;
+}
+div.Pro_list > div.Pro_list_cont > div > a > div{
+    padding:10px 1em;
+    background:#fff;
+    max-height: 139px
+}
+div.Pro_list > div.Pro_list_cont > div > a > div > h2,div.Pro_list > div.Pro_list_cont > div > a > div > p {
+    color:#000
+}
+div.Pro_list > div.Pro_list_cont > div > a > div > h2,div.Pro_list > div.Pro_list_cont > div > a > div > p,div.Pro_list > div.Pro_list_cont > div > a > div > div {
+    padding:5px 0;
+}
+div.Pro_list > div.Pro_list_cont > div > a > div > div.details > span {
+    color:#578eff;
+}
+div.Pro_list > div.Pro_list_cont > div > a > div > div.details > span:first-child {
+    margin-right:10px
+}
+div.mag {
+    width:83%
+}
+
+div.option > div > form > input::-webkit-input-placeholder {
+    color: #bfbfbf
+}
+@media screen and (min-width:1600px){
+    div.option > div.list_box > div > div {
+        width:9.6% !important
+    }
+}
+@media screen and (min-width:1366px) and (max-width:1440px){
+    div.option > div.list_box > div > div {
+        width:13%
+    }
+}
+@media screen and (width:1080px){
+    div.mag {
+        width:100%
+    }
+}
+@media screen and (min-width:992px){
+    div.option > div.list_box > div > div {
+        width:14%;
+        padding-left:8px !important;
+        padding-right:8px !important
+    }
+}
+
+div.option > div.list_box > div > div > p {
+
+    padding:0 0.6em 12px;
+    transition:.2s linear;
+    -webkit-transition:.2s linear;
+    -moz-transition:.2s linear;
+    -o-transition:.2s linear;
+    -ms-transition:.2s linear
+}
+div.option > div.list_box > div > div > p:hover {
+    background: rgba(0,0,0,.1)
+}
+div.option > div.list_box > div > div > p > a {
+    color:#333
+}
+/*点击子分类后加的样式*/
+div.option > div.list_box > div > div.category_child>p>a{
+    color: #888 !important
+}
+div.option > div.list_box > div > div.category_child > p{
+    background:#f2f2f2
+}
+@media screen and (min-width:10152px) and (max-width:1366px){
+    div.option > div.list_box > div > div {
+        padding:0 !important
+    }
+    div.option > div:nth-of-type(1) > div {
+        text-align:center
+    }
+    div.Pro_list > div.Pro_list_cont > div > a > div {
+        padding:5px 0.5em
+    }
+    div.Pro_list > div.Pro_list_cont > div > a > img {
+        padding:5px !important
+    }
+}
+@media screen and (min-width:1200px){
+    div.option > div  form {
+        margin-left:33.33% !important
+    }
+}
+@media screen and (width:1024px){
+    div.mag {
+        width:100%
+    }
+    div.option > div.list_box > div {
+        margin-left:0
+    }
+    div.option > div.list_box > div > div > p > a {
+        font-size:12px
+    }
+    div.Pro_list > div.Pro_list_cont > div > a > div > h4 {
+        font-size:1.15em
+    }
+    div.Pro_list > div.Pro_list_cont > div > a > div {
+        padding:0 0.5em
+    }
+    div.Pro_list > div.Pro_list_cont > div > a > img {
+        padding:5px !important
+    }
+}
+/*2018.2.26添加媒体查询,解决768-1023屏排版美观问题*/
+@media screen and (min-width:768px)  {
+    div.option > div  form {
+        margin-left:25%
+    }
+}
+
+@media screen and (width:768px){
+    div.mag {
+        width:100%
+    }
+    div.option > div  form {
+        margin-left:25%
+    }
+    div.option > div.list_box > div {
+        margin-left:0
+    }
+    div.option > div.list_box > div > div > p:hover {
+        transform:scale(1);
+        -webkit-transform:scale(1);
+        -moz-transform:scale(1);
+        -ms-transform:scale(1);
+        -o-transform:scale(1)
+    }
+    div.option > div.list_box > div > div > p > a {
+        font-size:12px
+    }
+    div.option > div{
+        padding-top:0.6%
+    }
+
+    div.Pro_list > div.Pro_list_cont > div > a > img {
+        padding:5px !important
+    }
+    div.Pro_list > div.Pro_list_cont > div > a > div {
+        padding: 0 1em
+    }
+    div.Pro_list > div.Pro_list_cont > div > a > div > h4 > strong {
+        font-weight:normal
+    }
+    /*点击子分类后加的样式*/
+    div.option > div.list_box > div > div.category_child > p > a {
+        color: #888 !important
+    }
+}
+@media screen and (min-width:318px) and (max-width:767px){
+    div.mag {
+        width:100%
+    }
+    div.search_product {
+        padding-left:15px !important;
+        padding-right:15px !important
+    }
+    div.option > div form {
+        margin-left:0
+    }
+    div.option > div.list_box > div {
+        padding:0 !important;
+        margin-left:0
+    }
+    div.option > div.list_box {
+        background:#fff !important;
+        padding:8px 15px !important
+    }
+    div.option > div.list_box > div > div {
+        padding:0
+    }
+    div.option > div.list_box > div > div > p {
+        padding:1em 0
+    }
+    div.option > div.list_box > div {
+        border-top:1px solid #f2f2f2
+    }
+    div.option > div.list_box > div > div:nth-child(1n) > p {
+        border-right:1px solid #f2f2f2;
+        border-bottom:1px solid #f2f2f2
+    }
+    div.option > div.list_box > div > div:nth-child(3n+3) > p {
+        border-right-color:transparent
+    }
+    div.option > div.list_box > div > div > p:hover {
+        transform:scale(1);
+        -webkit-transform:scale(1);
+        -moz-transform:scale(1);
+        -ms-transform:scale(1);
+        -o-transform:scale(1)
+    }
+    div.option > div.list_box > div > div > p > a {
+        color:#333;
+    }
+    div.option > div.list_box > div > div > p > a > img {
+        padding:0.5em
+    }
+    div.option > div:nth-of-type(1) > div > a {
+        padding:0.8em 0 !important;
+        text-align: left
+    }
+    div.option > div:nth-of-type(1) > div > a > i {
+        display:block
+    }
+    /*点击子分类后加的样式*/
+    div.option > div.list_box > div > div.category_child > p > a {
+        color: #333 !important
+    }
+    div.option > div.list_box > div > div.category_child{
+        background-color: #f2f2f2
+    }
+
+    div.Pro_list > div.Pro_list_cont > div > a > img {
+        padding:5px !important
+    }
+    div.Pro_list > div.Pro_list_cont > div > a > div {
+        padding:5px 0.5em
+    }
+}
+/*2018.2.27添加电脑屏，产品列表动画效果*/
+@media screen and (min-width: 1366px) {
+    /* 2018-4-10 修改产品列表动画效果 */
+    div.Pro_list > div.Pro_list_cont > div {
+        transition:all .2s linear;
+        -webkit-transition:all .2s linear;
+        -moz-transition:all .2s linear;
+        -ms-transition:all .2s linear;
+        -o-transition:all .2s linear
+    }
+    div.Pro_list > div.Pro_list_cont > div:hover {
+        transform:translate(0,-3px);
+        -webkit-transform:translate(0,-3px);
+        -moz-transform:translate(0,-3px);
+        -o-transform:translate(0,-3px);
+        -ms-transform:translate(0,-3px);
+    }
+}
+
+div.container>div.search_nothing>div.search_nothing_content{
+    margin: 20px 0;
+    padding: 40px;
+    background: #fff;
+}
+div.container>div.search_nothing>div.search_nothing_content>p{
+    font-size: 16px;
+    padding-bottom: 20px;
+}
+div.container>div.search_nothing>div.search_nothing_content a{
+    font-size: 16px;
+    color: #CD5C5C;
+    display: inline-block;
+}
+div.container>div.search_nothing>div.search_nothing_content a:hover{
+    color: #FF0E00;
+}
+@media screen and (max-width: 1200px){
+    div.container>div.search_nothing>div.search_nothing_content>p{
+        font-size: 14px;
+    }
+    div.container>div.search_nothing>div.search_nothing_content a{
+        font-size: 14px;
+    }
+}

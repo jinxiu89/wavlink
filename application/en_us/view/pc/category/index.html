@@ -1,0 +1,142 @@
+<!--包含头部文件-->
+{extend name="pc/base/base" /}
+{block name="seo"}
+<title>{$parents.seo_title} - Wavlink</title>
+<meta name="description" content="{$parents.description}">
+<meta name="keywords" content="{$parents.keywords}">
+<link rel="stylesheet" href="__EN__/css/product/product-list.css" type="text/css">
+{/block}
+{block name="banner"}
+<!--<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12" style="padding:0">-->
+<!--<a href="{:url('/'.$code.'/category/'.$parents.url_title)}"><img src="{$parents.image}" alt="" class="center-block img-responsive"></a>-->
+<!--</div>-->
+{/block}
+{block name="body"}
+<!-- wavlink 产品选项 -->
+<style>
+    p.hint a:hover {
+        color:#337ab7 !important
+    }
+</style>
+<div class="container-fluid">
+    <div class="row">
+        <div class="option bg-white col-lg-10 col-lg-offset-1 col-xs-12" style="padding:0">
+            <div class="search_product bg-white" style="padding:0; display: block">
+                <form class="afterf" action="{:url('/'.$code.'/search/product')}" method="GET" style="padding:0">
+                    <input name="key" type="text" placeholder="Product name or Product model">
+                    <input type="submit" value="Search" class="color-white" style="border:1px solid #333 !important; background:#333">
+                    <p class="hint col-xs-12 text-center" style="color:#bababa; margin-top:5px; padding:5px 0"><a href="{:url('/'.$code.'/faq/details/how_to_view_wavlink_product_model')}" style="color:#666; display:inline-block">How to view Wavlink product model</a> (You can also click the categories below to view the corresponding driver)</p>
+                </form>
+            </div>
+            <div class="list_box col-xs-12" style="border-top:10px solid #f2f2f2; padding:8px 15px">
+                <div class="text-center col-xs-12" style="padding: 0">
+                    {volist name="child" id="vo"}
+                    {if condition="$vo.name eq $name"}
+                    <div class="category_child">
+                        <p>
+                            <a class="" href="{:url('/'.$code.'/category/'.$vo.url_title)}">
+                                <img src="{$vo.image}" class="img-responsive center-block" alt="">
+                                {$name}
+                            </a>
+                        </p>
+                    </div>
+                    {else /}
+                    <div>
+                        <p>
+                            <a class="child-a" href="{:url('/'.$code.'/category/'.$vo.url_title)}">
+                                <img src="{$vo.image}" class="img-responsive center-block" alt="">
+                                {$vo.name}
+                            </a>
+                        </p>
+                    </div>
+                    {/if}
+                    {/volist}
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- wavlink 列表产品 -->
+{empty name="products"}
+<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+    <p style="text-align: center;font-size: 1.4em;margin: 2em">Sorry, no result found!</p>
+</div>
+<!--recommend 主推推荐开始-->
+<div class="Box Related_video text-center col-lg-10 col-lg-offset-1 col-md-12 col-sm-12 col-xs-12">
+    <h2 class="Relevant_title" style="font-size:24px">
+        <strong style="font-weight: inherit">We Have Recommendations for You</strong>
+    </h2>
+    {volist name="imagesRecommend" id="vo"}
+    <div class="col-lg-4 col-md-4 col-sm-6 col-xs-12">
+        <a href="{:url('/'.$code.'/product/'.$vo.url_title)}"><img src="{$vo.image_litpic_url}" alt="" class="img-responsive center-block" style="background:#fff; padding:10px"/>
+            <p class="text-capitalize bg-threen color-white col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                {$vo.name}
+            </p>
+        </a>
+    </div>
+    {/volist}
+</div>
+<!--recommend 主推推荐结束-->
+{else /}
+<div class="container-fluid">
+    <div class="row">
+        <div class="nav_path bg-white col-lg-10 col-lg-offset-1 col-xs-12" style="margin-top: 10px;padding-left: 15px;">
+            <div style="padding: 10px">
+                {volist name="path" id="vo"}
+                <a href="{:url('/'.$code.'/category/'.$vo.url_title)}" style="display: inline;color: #0C0C0C">{$vo.name}</a>
+                <i class="icon-angle-right color-gray" style="box-shadow:none"></i>
+                {/volist}
+            </div>
+        </div>
+    </div>
+</div>
+<div class="Pro_list col-lg-12 col-md-12 col-sm-12 col-xs-12" style="padding:0">
+    <div class="Pro_list_cont col-lg-10 col-lg-offset-1 col-xs-12">
+        {volist name="products" id="vo"}
+        <div class="col-lg-4 col-md-4 col-sm-6 col-xs-12">
+            <a href="{:url('/'.$code.'/product/'.$vo.url_title)}">
+                {empty name="vo.image_litpic_url"}
+                <img src="__EN__/img/no_picture.jpg" alt="" class="img-responsive center-block"
+                     style="padding: 10px;background: #fff;">
+                {else /}
+                <img src="{$vo.image_litpic_url}" alt="" class="img-responsive center-block"
+                     style="padding: 10px;background: #fff;">
+                {/empty}
+                <div class="bg-white col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                    <h3 class="color-black">{$vo.name}</h3>
+                    <span class="color-black" style="display:block">{$vo.description}</span>
+                    <p>{$vo.model}</p>
+                    <p style="font-size: 14px; color:#578eff ">Learn more</p>
+                </div>
+            </a>
+        </div>
+        <input type="hidden" name="product_id" value="{$vo.id}">
+        {/volist}
+    </div>
+</div>
+{/empty}
+<!-- wavlink 分页 -->
+{notempty name="products"}
+{empty name="page"}
+<div class="nav_page text-center col-lg-10 col-lg-offset-1 col-xs-12" style="padding:0">
+    <nav aria-label="Page navigation">
+        <ul class="pagination">
+            <li class="disabled">
+                <span>&laquo;</span>
+            </li>
+            <li class="disabled"><span>1</span></li>
+            <li class="disabled">
+                <span >&raquo;</span>
+            </li>
+        </ul>
+    </nav>
+</div>
+{else /}
+<div class="nav_page text-center col-lg-10 col-lg-offset-1 col-xs-12" style="padding:0">
+    <!--{:pagination($products)}-->
+    {$page}
+</div>
+{/empty}
+{/notempty}
+{/block}
+

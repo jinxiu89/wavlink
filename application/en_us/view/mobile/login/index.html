@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <title>{$Think.lang.Login}</title>
+    <!-- Bootstrap Core CSS -->
+    <link href="__STATIC__/user/vendors/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+    <!-- MetisMenu CSS -->
+    <link href="__STATIC__/user/vendors/metisMenu/metisMenu.min.css" rel="stylesheet">
+    <!-- Custom CSS -->
+    <link href="__STATIC__/user/dist/css/sb-admin-2.css" rel="stylesheet">
+    <!-- Custom Fonts -->
+    <link href="__STATIC__/user/vendors/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+    <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+    <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+</head>
+<body>
+<div class="container">
+    <div class="row">
+        <div class="col-md-12">
+            <div class="login-panel panel panel-default" style="margin-bottom: 28%">
+                <div class="panel-body">
+                    <div class="text-left"><image src="__STATIC__/user/image/WAVLINK-LOGOV2.png" width="320px" /><hr /></div>
+                    <form role="form"  id="form-data" class="form-horizontal">
+                        <div class=" form-group">
+                            <label  for="Email" class="col-sm-2 control-label">{$Think.lang.Email}</label>
+                            <div class="col-sm-5 ">
+                                <input type="email" class="form-control" id="Email" name="email">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="password" class="col-sm-2 control-label">{$Think.lang.password}</label>
+                            <div class="col-sm-5">
+                                <input class="form-control" id="password" placeholder="Password" name="password" type="password">
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <div class="checkbox">
+                                <label class="control-label col-sm-2" style="margin-left: 15px">
+                                    <input name="remember" type="checkbox" value="Remember Me">{$Think.lang.Remember_Me}
+                                </label>
+                            </div>
+                        </div>
+                        <div class="form-group col-md-12">
+                            <div class="col-md-6 col-xs-6">
+                                <div class="col-md-5 col-xs-12"><a href="#" class="btn btn-lg btn-success btn-block" id="button_update">{$Think.lang.Login}</a></div>
+                            </div>
+                            <div class="col-md-6 col-xs-6" >
+                                <div class="col-md-5 col-xs-12"><a href="{:url('user/register')}" class="btn btn-lg btn-success btn-block" >{$Think.lang.register}</a></div>
+                            </div>
+                        </div>
+                        <div class="form-group col-md-10">
+                            <div class="checkbox">
+                                <label class="control-label col-sm-4">
+                                    <a href="{:url('User/recover')}"></a>
+                                </label>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="panel-footer navbar-fix-button">
+    <div class="pull-right hidden-xs">
+        <b>Version</b> 0.0.1
+    </div>
+    <strong>Copyright &copy; 2004-2017 <a href="#">wavlink</a>.</strong> All rights
+    reserved.
+</div>
+
+<!-- jQuery -->
+<script src="__STATIC__/user/vendors/jquery/jquery.min.js"></script>
+
+<!-- Bootstrap Core JavaScript -->
+<script src="__STATIC__/user/vendors/bootstrap/js/bootstrap.min.js"></script>
+
+<!-- Metis Menu Plugin JavaScript -->
+<script src="__STATIC__/user/vendors/metisMenu/metisMenu.min.js"></script>
+
+<!-- Custom Theme JavaScript -->
+<script src="__STATIC__/user/dist/js/sb-admin-2.js"></script>
+<!--commons by rootkit-->
+<script src="__STATIC__/user/js/common.js"></script>
+<script src="__STATIC__/user/layer/layer.js"></script>
+<script src="__STATIC__/user/dist/js/dialog.js"></script>
+<script type="application/javascript">
+    var SCOPE={
+        'update_url':"{:url('/'.$code.'/User/login')}"
+    }
+</script>
+
+</body>
+
+</html>

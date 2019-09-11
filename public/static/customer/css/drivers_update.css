@@ -1,0 +1,12 @@
+/*
+    2018.8.14
+    wavlink user center
+    user drivers_update
+*/
+/* public title */
+div.main_title{margin: 30px 40px}
+div.main_title>h2{padding-bottom: 30px;margin: 0;font-size: 20px;border-bottom: 1px solid #e5e5e5}
+@media screen and (max-width: 767px) {
+    div.main_title{margin: 20px}
+    div.main_title>h2{padding-bottom: 20px}
+}

@@ -1,0 +1,91 @@
+{extend name="base/base"}
+{block name="title"}
+<title>{:lang('Warranty')}</title>
+{/block}
+{block name="style"}
+<link rel="stylesheet" href="__USER__/css/ticket.css">
+{/block}
+{block name="path"}
+<div class="path">
+    <ul>
+        <li><a href="https://www.wavlink.com">{:lang('home')}</a></li>
+        <li> ></li>
+        <li><a href="#">{:lang('Experience Center')}</a></li>
+        <li> ></li>
+        <li><a href="#">{:lang('Warranty')}</a></li>
+    </ul>
+</div>
+{/block}
+{block name="navbar"}
+{include file="base/navbar" /}
+{/block}
+{block name="main"}
+<div class="main">
+    <div class="main_title">
+        <h2>工单系统</h2>
+    </div>
+    <div class="main_container">
+        <ul>
+            <li>
+                <a class="active" href="#">我的工单</a>
+            </li>
+            <li>
+                <a href="javascript:void(0);" onclick="add('{:lang(\'Apply warranty\')}','/customer/ticket','800','680')">提交工单</a>
+            </li>
+        </ul>
+        <div id="my_ticket">
+            {volist name="result" id="vo"}
+            <div>
+                <ul>
+                    <li>服务号</li>
+                    <li>{$vo.id}</li>
+                </ul>
+                <ul>
+                    <li>问题简述</li>
+                    <li><a href="3-ticket_detail.html">{$vo.small_text}</a></li>
+                </ul>
+                <ul>
+                    <li>提交日期</li>
+                    <li>{$vo.create_time|strtotime|date='Y-m-d',###}</li>
+                </ul>
+                <ul>
+                    <li>处理状态</li>
+                    <li>有新回复</li>
+                </ul>
+            </div>
+            {/volist}
+            <div class="page_nav" style="padding: 0">
+                <div>
+                    <form action="">
+                        <div>
+                            <span>时间：</span>
+                            <input type="text">
+                        </div>
+                        <div>
+                            <span>至：</span>
+                            <input type="text">
+                        </div>
+                        <button>查找</button>
+                    </form>
+                </div>
+                <div class="nav_page text-center">
+                    <ul class="pagination">
+                        <li class="disabled"><span>&laquo;</span></li>
+                        <li class="active"><span>1</span></li>
+                        <li><a href="#">2</a></li>
+                        <li><a href="#">&raquo;</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{/block}
+{block name="js"}
+<script type="text/javascript" src="__STATIC__/admin/h-ui/js/H-ui.js"></script>
+<script type="text/javascript" src="__STATIC__/admin/h-ui.admin/js/H-ui.admin.page.js"></script>
+<script type="text/javascript" src="__STATIC__/admin/js/common.js"></script>
+<script type="text/javascript" src="__STATIC__/admin/js/dialog.js"></script>
+<script>
+</script>
+{/block}

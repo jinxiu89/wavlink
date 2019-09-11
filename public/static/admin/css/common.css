@@ -1,0 +1,14 @@
+.tp5-winstar .pagination li{display: inline;padding-left: 10px}
+.pagination .active{color: red}
+.pagination .disabled{color: #888888}
+
+.i_size_color {
+    /*style="font-size: 18px;color: green"*/
+    font-size: 18px;
+    color: blue;
+}
+.i_edit_color {
+    /*style="font-size: 20px;color: #f37b1d"*/
+    font-size: 18px;
+    color: #f37b1d;
+}

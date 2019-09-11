@@ -1,0 +1,110 @@
+<!--继承框架-->
+{extend name="mobile/base/base" /}
+<!--私有首页面属性开始-->
+{block name="seo"}
+<title>{$result.name} - Wavlink</title>
+<meta name="description" content="{$result.descrip}">
+<meta name="keywords" content="{$result.keywords}">
+<link rel="stylesheet" href="__EN__/css/drivers/drivers-details.css" type="text/css">
+<style>
+    /* 驱动下载 详情页底部驱动数据 */
+    div.driver-details_box {
+        margin:15px 0
+    }
+    div.driver-details_box > div.driver_text_cont > h4 {
+        padding-bottom:10px;
+        padding-top:10px
+    }
+    div.driver-details_box > div.driver_text_cont > ol {
+        border-top:1px solid #f2f2f2;
+        border-left:1px solid #f2f2f2
+    }
+    div.driver-details_box > div.driver_text_cont > ol > li {
+        padding:8px;
+        border-bottom:1px solid #f2f2f2;
+        border-right:1px solid #f2f2f2
+    }
+    div.driver-details_box > div.driver_text_cont > ol > li > strong:last-of-type {
+        margin-bottom:8px
+    }
+    @media screen and (max-width:767px){
+        div.driver-details_box {
+            margin:15px 0;
+            /*padding:0 8px*/
+        }
+        div.driver-details_box > div.driver_text_cont {
+            padding:0;
+            margin-top:15px
+        }
+        div.driver-details_box > div.driver_text_cont > ol > li:nth-of-type(5) > strong {
+            margin-bottom:8px
+        }
+    }
+
+    /* 驱动下载 详情页内容部分 */
+    div.driver_details_av > ul {
+        border-top:1px solid #f2f2f2;
+        border-left:1px solid #f2f2f2
+    }
+    div.driver_details_av > ul > li {
+        padding:10px 8px;
+        border-bottom:1px solid #f2f2f2;
+        border-right:1px solid #f2f2f2
+    }
+</style>
+{/block}
+<!--私有首页面属性结束-->
+<!--主体内容开始-->
+{block name="body"}
+
+<div class="instr_title bg-gray col-lg-12 col-md-12 col-sm-12 col-xs-12">
+    <a href="javascript:;" onclick="history.go(-1)" class="c-primary" style="display: inline;color:white;font-size: 20px "><i class="icon-share-alt"> </i>&nbsp;Back</a>
+</div>
+<div class="container">
+    <div class="row">
+        <!-- 驱动下载 详情页 -->
+        <div class="container bg-white" style="margin-bottom:100px">
+            <div class="row">
+                <!-- 驱动下载 详情页顶部驱动数据 -->
+                <div class="driver-details_box col-xs-12">
+                    <div class="driver_img_cont col-sm-4 col-xs-12" style="padding:0">
+                        <img src="{$result.image_litpic_url}" class="img-responsive center-block" alt="">
+                    </div>
+                    <div class="driver_text_cont col-sm-8 col-xs-12">
+                        <h4 class="text-center bg-threen color-white"><b>{$result.name}</b></h4>
+                        <ol class="col-xs-12" style="padding:0">
+                            <li class="col-sm-6 col-xs-12"><strong>File Size &nbsp;:&nbsp;&nbsp;</strong><span>{$result.size}</span></li>
+                            <li class="col-sm-6 col-xs-12"><strong>Languages &nbsp;:&nbsp;&nbsp;</strong><span>{$result.language_id|getLanguage}</span></li>
+                            <li class="col-sm-6 col-xs-12"><strong>Version &nbsp;:&nbsp;&nbsp;</strong><span>{$result.version_number}</span></li>
+                            <li class="col-sm-6 col-xs-12"><strong>Provider &nbsp;:&nbsp;&nbsp;</strong><span>{$result.provider}</span></li>
+                            <li class="col-xs-12"><strong class="col-xs-12" style="padding:0">System Requirements &nbsp;:&nbsp;&nbsp;</strong><span>{$result.running}</span></li>
+                            <li class="col-xs-12 text-right">
+                                <a href="{$result.urlfirst}" class="btn btn-primary btn-sm">DownLoad1</a>
+                                <a href="{$result.urlsecond}" class="btn btn-primary btn-sm">DownLoad2</a>
+                            </li>
+                        </ol>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <!-- 驱动下载 详情页内容部分 -->
+                <div class="driver_details_av col-xs-12" style="padding-top:15px; padding-bottom:15px">
+                    <ul class="col-xs-12 text-center" style="padding:0">
+                        <li class="col-xs-12 bg-gray color-white">
+                            <h4><b>Availiable to:</b></h4>
+                        </li>
+                        {volist name="$models" id="vo"}
+                        <li class="col-sm-3 col-xs-6">{$vo}</li>
+                        {/volist}
+                        <!--{foreach $models as $k => $v}-->
+                        <!--<li class="col-sm-3 col-xs-6">{$v}</li>-->
+                        <!--{/foreach}-->
+                    </ul>
+                </div>
+            </div>
+            <div class="row"></div>
+        </div>
+    </div>
+</div>
+{/block}
+<!--主题内容结束-->

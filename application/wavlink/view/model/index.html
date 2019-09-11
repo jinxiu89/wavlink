@@ -1,0 +1,78 @@
+<!--包含头部文件-->
+{include file="public/service_header" /}
+<section class="Hui-article-box">
+    <nav class="breadcrumb"><i class="Hui-iconfont">&#xe67f;</i> 首页
+        <span class="c-gray en">&gt;</span>
+        SN数据库
+        <span class="c-gray en">&gt;</span>
+        内部机型简码
+        <a class="btn btn-success radius r" style="line-height:1.6em;margin-top:3px"
+           href="javascript:location.replace(location.href);" title="刷新"><i class="Hui-iconfont">&#xe68f;</i></a>
+    </nav>
+    <div class="Hui-article">
+        <article class="cl pd-20" style="min-height: 51em;">
+            <div class="cl pd-5 bg-1 bk-gray mt-20" style="line-height: 31px;">
+                <span class="l">
+                    <a href="javascript:;" onclick="add('添加内部机型','{:url(\'Model/add\')}','1024','768')" class="btn btn-primary radius">
+                        <i class="Hui-iconfont">&#xe600;</i> 添加内部机型
+                    </a>
+                </span>
+                <span class="r">共有数据：<strong>{$count}</strong> 条</span>
+            </div>
+            <table class="table table-border table-bordered table-bg mt-20">
+                <thead>
+                <tr>
+                    <th scope="col" colspan="9">机型列表</th>
+                </tr>
+                <tr class="text-c">
+                    <th width="40">ID</th>
+                    <th width="150">Model</th>
+                    <th width="60">产品类别</th>
+                    <th width="90">三位简码</th>
+                    <th width="">描述</th>
+                    <th width="120">加入时间</th>
+                    <th width="60">是否已启用</th>
+                    <th width="40">操作</th>
+                </tr>
+                </thead>
+                <tbody>
+                {volist name="result" id="vo"}
+                <tr class="text-l">
+                    <td>{$vo.id}</td>
+                    <td class="text-l">{$vo.model}</td>
+                    <td class="text-c">{$vo.cate}</td>
+                    <td class="text-c">{$vo.code}</td>
+                    <td class="text-l">{$vo.description}</td>
+                    <td>{$vo.create_time}</td>
+                    <td class="text-c">{$vo.status|GetStatus}</td>
+                    <td>
+                        <a title="编辑" href="javascript:;" onclick="edit('编辑机型','{:url(\'Model/edit\',[\'id\'=>$vo.id])}')" class="ml-5" style="text-decoration:none"><i class="Hui-iconfont" style="font-size: 14px;color: green">&#xe6df;</i></a>
+                        {if condition="$vo.status eq 0"}
+                        <a title="启用" href="javascript:;"  onclick="start('{:url('model/byStatus',['id'=>$vo.id,'status'=>1])}')" data-id ="{$vo.id}" data-type="4" class="ml-5 mark" style="text-decoration:none"><i class="Hui-iconfont c-green">&#xe601;</i></a>
+                        {else /}
+                        <a title="禁用" href="javascript:;"  onclick="start('{:url('model/byStatus',['id'=>$vo.id,'status'=>0])}')" data-id ="{$vo.id}" data-type="4" class="ml-5 mark" style="text-decoration:none"><i class="Hui-iconfont c-red">&#xe631;</i></a>
+                        {/if}
+                    </td>
+                </tr>
+                {/volist}
+                </tbody>
+            </table>
+            {if condition="$count > 12"}
+            <div class="cl pd-5 bg-1 bk-gray mt-20 tp5-winstar">{:pagination($result)}</div>
+            {/if}
+        </article>
+        {include file="public/explain" /}
+    </div>
+</section>
+<!--包含footer文件-->
+{include file="public/footer"/}
+<script>
+    $(document).ready(function () {
+        $("#service_data dt").addClass("selected");
+        $("#service_data dd").css("display", "block");
+        $("#service_data #prd").addClass("current");
+        $("#service").addClass("current");
+    });
+</script>
+</body>
+</html>

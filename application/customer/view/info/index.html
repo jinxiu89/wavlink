@@ -1,0 +1,303 @@
+{extend name="base/base" /}
+{block name="title"}
+<title>{:lang('Base Info')}</title>
+{/block}
+{block name="style"}
+<link rel="stylesheet" href="__USER__/css/information.css">
+{/block}
+{block name="path"}
+<div class="path">
+    <ul>
+        <li><a href="https://www.wavlink.com">{:lang('home')}</a></li>
+        <li> ></li>
+        <li><a href="/customer/info.html">{:lang('Experience Center')}</a></li>
+        <li> ></li>
+        <li><a href="#">{:lang('Base Info')}</a></li>
+    </ul>
+</div>
+{/block}
+{block name="navbar"}
+{include file="base/navbar" /}
+{/block}
+{block name="main"}
+<div class="main">
+    <div class="main_title">
+        <h2>{:lang('Base Info')}</h2>
+    </div>
+    <div class="main_container">
+        <form action="" method="post" class="form form-horizontal" id="baseInfo">
+            <div id="tab-system" class="HuiTab">
+                <div class="tabBar">
+                    <span id="info">{:lang('Base Info')}</span>
+                    <span id="ePassword">{:lang('Change Password')}</span>
+                    <span id="eEmail">{:lang('Change Email address')}</span>
+                </div>
+                <div class="tabInfo tabCon">
+                    <div>
+                        <label class="form-label">{:lang('First name')}</label>
+                        <div class="formControls">
+                            <input id="frastName" name="first_name" type="text"
+                                   placeholder="{if condition='$result.first_name != NULL'}{$result.first_name}{else /}{:lang('Input your first name')}{/if}">
+                        </div>
+                    </div>
+                    <div>
+                        <label class="form-label">{:lang('Last name')}</label>
+                        <div class="formControls">
+                            <input id="lastName" type="text" name="last_name"
+                                   placeholder="{if condition='$result.last_name != NULL'}{$result.last_name}{else /}{:lang('Input your last name')}{/if}">
+                        </div>
+                    </div>
+                    <div>
+                        <label class="form-label">{:lang('Title')}</label>
+                        <div class="formControls">
+                            <select name="title" id="selectSex">
+                                <option value="-1" {if condition="$result.title == -1" } selected {/if}>{:lang('Secret')}</option>
+                                <option value="1" {if condition="$result.title == 1" } selected {/if}>{:lang('Sir.')}</option>
+                                <option value="2" {if condition="$result.title == 2" } selected {/if}>{:lang('Ms.')}</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div>
+                        <label class="form-label">{:lang('Email')}</label>
+                        <div class="formControls">
+                            <input id="email" type="email" name="email" placeholder="{$result.email}"
+                                   readonly="readonly">
+                        </div>
+                    </div>
+                    <div>
+                        <label class="form-label">{:lang('Password')}</label>
+                        <div class="formControls">
+                            <input id="password" type="password" placeholder="***********" readonly="readonly"
+                                   disabled="disabled">
+                        </div>
+                    </div>
+                    <div>
+                        <label class="form-label">{:lang('Country')}</label>
+                        <div class="formControls">
+                            <select name="country_id" id="county">
+                                <option disabled="disabled" {if condition="$result.country_id == NULL" }selected{/if}>
+                                {:lang('Please choose your country')}
+                                </option>
+                                {volist name="country" id="vo"}
+                                <option value="{$vo.country_id}" {if condition="$vo.country_id == $result.country_id " }selected{/if} >
+                                {:lang($vo.name)}
+                                </option>
+                                {/volist}
+                            </select>
+                        </div>
+                    </div>
+                    <div>
+                        <label class="form-label">{:lang('Tel')}</label>
+                        <div class="formControls">
+                            <input id="phone" name="tel" type="text"
+                                   placeholder="{if condition='$result.tel != NULL'}{$result.tel}{else /}{:lang('Input your telephone number')}{/if}">
+                        </div>
+                    </div>
+                    <div>
+                        <label class="form-label">{:lang('ZipCode')}</label>
+                        <div class="formControls">
+                            <input id="postalCode" type="text" name="zip_code"
+                                   placeholder="{if condition='$result.zip_code != NULL'}{$result.zip_code}{else /}{:lang('Input your Zip code')}{/if}">
+                        </div>
+                    </div>
+                    <div>
+                        <label class="form-label">{:lang('Professional')}</label>
+                        <div class="formControls">
+                            <input id="profession" type="text" name="professional"
+                                   placeholder="{if condition='$result.professional != NULL'}{$result.professional}{else /}{:lang('Professional')}{/if}">
+                        </div>
+                    </div>
+                    <div>
+                        <label class="form-label">{:lang('Billing address')}</label>
+                        <div class="formControls">
+                            <input id="billingAddress" type="text" name="billing_address"
+                                   placeholder="{if condition='$result.billing_address != NULL'}{$result.billing_address}{else /}{:lang('Input your Billing address')}{/if}">
+                        </div>
+                    </div>
+                    <div>
+                        <label class="form-label">{:lang('Delivery address')}</label>
+                        <div class="formControls">
+                            <input id="mailingAddress" type="text" name="delivery_address"
+                                   placeholder="{if condition='$result.delivery_address != NULL'}{$result.delivery_address}{else /}{:lang('Input your Delivery address')}{/if}">
+                        </div>
+                    </div>
+                    {if condition='$result.where_to == NULL'}
+                    <div>
+                        <label class="form-label">{:lang('Where to')}</label>
+                        <div class="formControls">
+                            <input id="whereToKnow" type="text" name="where_to"
+                                   placeholder="{:lang('Where did you learn about us?')}">
+                        </div>
+                    </div>
+                    {/if}
+                </div>
+                <div style="display: none" class="tabPassword tabCon">
+                    <div>
+                        <label class="form-label">{:lang('Old Password')}</label>
+                        <div class="formControls">
+                            <input id="oldPassword" name="oldPassword" type="password" placeholder="*************">
+                        </div>
+                    </div>
+                    <div>
+                        <label class="form-label">{:lang('Input your password')}</label>
+                        <div class="formControls">
+                            <input id="newPassword" type="password" name="password"
+                                   placeholder="{:lang('Input your new password')}">
+                        </div>
+                    </div>
+                    <div>
+                        <label class="form-label">{:lang('Input your password again')}</label>
+                        <div class="formControls">
+                            <input id="newPasswordSure" name="repassword" type="password" placeholder="">
+                        </div>
+                    </div>
+                </div>
+                <div style="display: none" class="tabEmail tabCon">
+                    <div>
+                        <label class="form-label">{:lang('email')}</label>
+                        <div class="formControls">
+                            <input id="changeEmail" type="email" name="email"
+                                   placeholder="{:lang('Input your E-mail')}">
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="submit_btn">
+                <div>
+                    <button id="btn" class="btn btn-primary radius" type="submit">{:lang('save')}</button>
+                </div>
+            </div>
+        </form>
+        <div class="tips">
+            <p>{:lang('Tips')}</p>
+            {:lang('Base info tips')}
+        </div>
+    </div>
+</div>
+{/block}
+{block name="js"}
+<!--私有JS-->
+<script type="text/javascript" src="__STATIC__/admin/lib/jquery.validation/1.14.0/jquery.validate.js"></script>
+<script type="text/javascript" src="__STATIC__/admin/lib/jquery.validation/1.14.0/validate-methods.js"></script>
+<script type="text/javascript" src="__STATIC__/admin/lib/layer/2.4/layer.js"></script>
+{if condition="$lang == 'zh_cn'"}
+<script type="text/javascript" src="__STATIC__/admin/lib/jquery.validation/1.14.0/messages_zh.js"></script>
+{/if}
+<script>
+    $(document).ready(function () {
+        var spanNumbers = $('div#tab-system>div.tabBar>span'),
+            divNumbers = $('div#tab-system>div.tabCon'),
+            divpassword = $('div#tab-system>div.tabCon:nth-of-type(2)'),
+            divemail = $('div#tab-system>div.tabCon:nth-of-type(3)');
+        for (var i = 0; i < spanNumbers.length; i++) {
+            (function (i) {
+                spanNumbers[i].onclick = function () {
+                    spanNumbers.eq(i).css('background', '#fff');
+                    spanNumbers.eq(i).siblings().css('background', '#f2f2f2');
+                    divNumbers.eq(i).siblings('.tabCon').css('display', 'none');
+                    divNumbers.eq(i).fadeIn();
+                };
+            })(i)
+        }
+    });
+    $("#base_info").addClass("current");
+    $("#btn").click(function () {
+        if($(".tabInfo").css("display") != "none"){
+            //info 修改器
+            $("#baseInfo").validate({
+                errorElement: "em",
+                onkeyup: false,
+                focusCleanup: true,
+                success: "valid",
+                submitHandler: function (form) {
+                    $.ajax({
+                        url: '/customer/info',
+                        type: "post",
+                        dataType: "json",
+                        data: $("#baseInfo").serialize(),//提交表单数据
+                        success: function (result) {
+                            if (result.status == 1) {
+                                //注册成功后要跳转到登录
+                                layer.msg(result.message, {icon: 1, time: 3000});
+                                setTimeout(function () {
+                                    window.parent.location.href=result.jump_url
+                                },1000)
+                            } else {
+                                layer.msg(result.message, {icon: 5, time: 3000});
+                                window.parent.location.reload();
+                            }
+                        }
+                    })
+                }
+            });
+        }else if ($(".tabPassword").css("display") != "none"){
+            //密码修改器
+            $("#baseInfo").validate({
+                rules: {
+                    'password': {
+                        required: true,
+                        minlength: 8,
+                        maxlength: 16
+                    },
+                    'repassword': {
+                        required: true,
+                        equalTo: "#newPassword"
+                    }
+                },
+                errorElement: "em",
+                onkeyup: false,
+                focusCleanup: true,
+                success: "valid",
+                submitHandler: function (form) {
+                    $.ajax({
+                        url: '/customer/edit/password',
+                        type: "post",
+                        dataType: "json",
+                        data: $("#baseInfo").serialize(),//提交表单数据
+                        success: function (result) {
+                            if (result.status == 1) {
+                                //注册成功后要跳转到登录
+                                layer.msg(result.message, {icon: 1, time: 2000});
+                                window.parent.location.href = '/customer/logout'
+                            } else {
+                                layer.msg(result.message, {icon: 5, time: 2000});
+                            }
+                        }
+                    })
+                }
+            });
+        }else if($(".tabEmail").css("display") != "none"){
+            //邮箱修改器
+            $("#baseInfo").validate({
+                rules: {
+                    'email': {
+                        required: true,
+                        email: true
+                    }
+                },
+                errorElement: "em",
+                onkeyup: false,
+                focusCleanup: true,
+                success: "valid",
+                submitHandler: function (form) {
+                    $.ajax({
+                        url: '/customer/info',
+                        type: "post",
+                        dataType: "json",
+                        data: $("#baseInfo").serialize(),//提交表单数据
+                        success: function (result) {
+                            if (result.status == 1) {
+                                //注册成功后要跳转到登录
+                                layer.msg(result.message, {icon: 1, time: 2000});
+                                window.parent.location.href = '/customer/logout'
+                            } else {
+                                layer.msg(result.message, {icon: 5, time: 2000});
+                            }
+                        }
+                    })
+                }
+            });
+        }
+    });
+</script>
+{/block}

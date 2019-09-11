@@ -1,0 +1,118 @@
+{include file="public/headers"/}
+<article class="cl pd-20">
+    <form action="" method="post" class="form form-horizontal" id="form-admin-add">
+        <div class="row cl">
+            <label class="form-label col-xs-3 col-sm-2"><span class="c-red">*</span>登陆名:</label>
+            <div class="formControls col-xs-9 col-sm-10">
+                <input class="input-text" value="" placeholder="" id="username" name="username">
+            </div>
+        </div>
+        <div class="row cl">
+            <label class="form-label col-xs-3 col-sm-2"><span class="c-red">*</span>用户名:</label>
+            <div class="formControls col-xs-9 col-sm-10">
+                <input class="input-text" value="" placeholder="" id="name" name="name">
+            </div>
+        </div>
+        <div class="row cl">
+            <label class="form-label col-xs-3 col-sm-2 "><span class="c-red">*</span>初始密码:</label>
+            <div class="formControls col-xs-9 col-sm-10">
+                <input type="password" class="input-text" autocomplete="off" value="" placeholder="密码" id="password"
+                       name="password">
+            </div>
+        </div>
+        <div class="row cl">
+            <label class="form-label col-xs-3 col-sm-2"><span class="c-red">*</span>确认密码:</label>
+            <div class="formControls col-xs-9 col-sm-10">
+                <input type="password" class="input-text" autocomplete="off" placeholder="确认新密码" id="password2"
+                       name="password2">
+            </div>
+        </div>
+        <div class="row cl">
+            <label class="form-label col-xs-3 col-sm-2"><span class="c-red">*</span>手机：</label>
+            <div class="formControls col-xs-9 col-sm-10">
+                <input type="text" class="input-text" value="" placeholder="" id="mobile" name="mobile">
+            </div>
+        </div>
+        <div class="row cl">
+            <label class="form-label col-xs-3 col-sm-2"><span class="c-red">*</span>邮箱：</label>
+            <div class="formControls col-xs-9 col-sm-10">
+                <input type="text" class="input-text" placeholder="@" name="email" id="email">
+            </div>
+        </div>
+        <div class="row cl">
+            <label class="form-label col-xs-3 col-sm-2">管理网站：</label>
+            <div class="formControls col-xs-9 col-sm-10">
+                {volist name="languages" id="vo"}
+                <dl class="permission-list">
+                    <dt>
+                        <label style="color: blue">
+                            <input type="checkbox" value="{$vo.id}" name="language[]" >
+                            {$vo.name}</label>
+                    </dt>
+
+                </dl>
+                {/volist}
+            </div>
+        </div>
+        <div class="row cl">
+            <label class="form-label col-xs-3 col-sm-2">选择用户组：</label>
+            <div class="formControls col-xs-9 col-sm-10">
+                {volist name="authGroup" id="vo"}
+                <dl class="permission-list">
+                    <dt>
+                        <label style="color: blue">
+                            <input type="checkbox" value="{$vo.id}" name="rules[]"  id="user-Character-0">
+                            {$vo.title}</label>
+                    </dt>
+
+                </dl>
+                {/volist}
+            </div>
+        </div>
+        <!--<div class="row cl">-->
+            <!--<label class="form-label col-xs-3 col-sm-3"><span class="c-red">*</span>所属用户组：</label>-->
+            <!--<div class="formControls col-xs-9 col-sm-9"> <span class="select-box">-->
+				<!--<select name="group_id" class="select">-->
+					<!--<option value="0">&#45;&#45;请选择&#45;&#45;</option>-->
+					<!--{volist name="authGroup" id="vo"}-->
+					<!--<option value="{$vo.id}">{$vo.title}</option>-->
+				    <!--{/volist}-->
+				<!--</select>-->
+				<!--</span>-->
+            <!--</div>-->
+        <!--</div>-->
+        <div class="row cl">
+            <div class="col-xs-8 col-sm-9 col-xs-offset-4 col-sm-offset-3">
+                <input class="btn btn-primary radius" type="button" onclick="save('{:url('Manger/addManger')}')"  value="&nbsp;&nbsp;提交&nbsp;&nbsp;">
+            </div>
+        </div>
+    </form>
+</article>
+{include file="public/footer"/}
+
+<!--<script type="text/javascript">-->
+    <!--$("#form-admin-add").validate({-->
+        <!--rules:{-->
+            <!--username:{-->
+                <!--required:true,-->
+            <!--},-->
+            <!--name:{-->
+                <!--required:true,-->
+            <!--},-->
+            <!--password:{-->
+                <!--required:true,-->
+            <!--},-->
+        <!--},-->
+        <!--onkeyup:false,-->
+        <!--focusCleanup:true,-->
+        <!--success:"valid",-->
+        <!--submitHandler:function(form){-->
+            <!--$(form).ajaxSubmit();-->
+            <!--var index = parent.layer.getFrameIndex(window.name);-->
+            <!--parent.layer.close(index);-->
+        <!--}-->
+    <!--});-->
+<!--</script>-->
+<script type="text/javascript" src="__STATIC__/admin/js/common.js"></script>
+</body>
+</html>

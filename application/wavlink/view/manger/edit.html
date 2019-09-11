@@ -1,0 +1,70 @@
+{include file="public/headers"/}
+<article class="cl pd-20">
+    <form  method="post" class="form form-horizontal" id="form-admin-add">
+        <div class="row cl">
+            <label class="form-label col-xs-4 col-sm-2"><span class="c-red">*</span>登录名:</label>
+            <div class="formControls col-xs-8 col-sm-10">
+                <input class="input-text" value="{$user->username}" placeholder="" id="username" name="username">
+            </div>
+        </div>
+        <div class="row cl">
+            <label class="form-label col-xs-4 col-sm-2"><span class="c-red">*</span>用户名:</label>
+            <div class="formControls col-xs-8 col-sm-10">
+                <input class="input-text" value="{$user->name}" placeholder="" id="name" name="name">
+            </div>
+        </div>
+        <div class="row cl">
+            <label class="form-label col-xs-4 col-sm-2"><span class="c-red">*</span>手机：</label>
+            <div class="formControls col-xs-8 col-sm-10">
+                <input type="text" class="input-text" value="{$user->mobile}" placeholder="" id="mobile" name="mobile">
+            </div>
+        </div>
+        <div class="row cl">
+            <label class="form-label col-xs-4 col-sm-2"><span class="c-red">*</span>邮箱：</label>
+            <div class="formControls col-xs-8 col-sm-10">
+                <input type="text" class="input-text" placeholder="@" name="email" id="email" value="{$user->email}">
+            </div>
+        </div>
+        <div class="row cl">
+            <label class="form-label col-xs-3 col-sm-2">操作网站：</label>
+            <div class="formControls col-xs-9 col-sm-10">
+                {volist name="languages" id="vo"}
+                <dl class="permission-list">
+                    <dt>
+                        <label style="color: blue">
+                            <input type="checkbox" value="{$vo.id}" name="language[]" {in name="$vo.id" value="$user['language_id']")} checked="checked" {/in} >
+                            {$vo.name}</label>
+                    </dt>
+
+                </dl>
+                {/volist}
+            </div>
+        </div>
+        <div class="row cl">
+            <label class="form-label col-xs-3 col-sm-2">选择用户组：</label>
+            <div class="formControls col-xs-9 col-sm-10">
+                {volist name="authGroup" id="vo"}
+                <dl class="permission-list">
+                    <dt>
+                        <label style="color: blue">
+                            <input type="checkbox" value="{$vo.id}" name="rules[]"  id="user-Character-0" {if(in_array($vo['id'],$groups))} checked="checked" {/if}>
+                            {$vo.title}</label>
+                    </dt>
+
+                </dl>
+                {/volist}
+            </div>
+        </div>
+
+        <div class="row cl">
+            <input type="hidden" name="id" value="{$user->id}">
+            <div class="col-xs-8 col-sm-9 col-xs-offset-4 col-sm-offset-3">
+                <input class="btn btn-primary radius" type="button" onclick="save('{:url('Manger/saveEdit')}')"  value="&nbsp;&nbsp;提交&nbsp;&nbsp;">
+            </div>
+        </div>
+    </form>
+</article>
+{include file="public/footer"/}
+
+</body>
+</html>

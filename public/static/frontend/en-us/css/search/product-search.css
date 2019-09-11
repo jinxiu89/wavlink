@@ -1,0 +1,211 @@
+/* wavlink 产品搜索结果页面 */
+div.search_nothing > div > p > a {
+    color:#2e6da4
+}
+div.search_nothing > div > h4 {
+    margin-bottom:15px
+}
+div.Pro_list > div.Pro_list_cont {
+    padding:10px 0 0;
+}
+div.Pro_list > div.Pro_list_cont > div {
+    padding:0.2em;
+}
+div.Pro_list > div.Pro_list_cont > div > a > div{
+    padding:15px;
+}
+
+div.Pro_list > div.Pro_list_cont > div > a > div > h3 {
+    line-height:1.2
+}
+div.Pro_list > div.Pro_list_cont > div > a > div > span {
+    min-height:60px;
+    color:#999;
+    margin:8px 0
+}
+div.Pro_list > div.Pro_list_cont > div > a > div > p {
+    display:inline-block;
+    color:#999
+}
+div.Pro_list > div.Pro_list_cont > div > a > div > p:last-child {
+    float:right
+}
+div.option > div > form > input::-webkit-input-placeholder {
+    color: #bfbfbf
+}
+@media screen and (min-width:10152px) and (max-width:1366px){
+    div.option > div:nth-of-type(1) > div {
+        text-align:center
+    }
+    div.Pro_list > div.Pro_list_cont > div > a > div {
+        padding:5px 0.5em
+    }
+    div.Pro_list > div.Pro_list_cont > div > a > img {
+        padding:5px !important
+    }
+}
+@media screen and (width:1024px){
+    div.Pro_list > div.Pro_list_cont > div > a > div > h4 {
+        font-size:1.15em
+    }
+
+    div.Pro_list > div.Pro_list_cont > div > a > img {
+        padding:5px !important
+    }
+}
+
+@media screen and (width:768px){
+    div.Pro_list > div.Pro_list_cont > div > a > div > p
+    {
+        font-size:12px
+    }
+    div.Pro_list > div.Pro_list_cont > div > a > img {
+        padding:5px !important
+    }
+    div.Pro_list > div.Pro_list_cont > div > a > div > h4 > strong {
+        font-weight:normal;
+        font-size:14px
+    }
+    div.Pro_list > div.Pro_list_cont > div > a > div > span {
+        min-height:96px
+    }
+}
+@media screen and (min-width:318px) and (max-width:767px){
+    div.option > div:nth-of-type(1) > div > a {
+        padding:0.8em 0 !important;
+        text-align: left
+    }
+    div.option > div:nth-of-type(1) > div > a > i {
+        display: block
+    }
+    div.Pro_list > div.Pro_list_cont > div > a > img {
+        padding:5px !important
+    }
+    div.Pro_list > div.Pro_list_cont > div > a > div {
+        padding:15px
+    }
+}
+
+@media screen and (min-width: 1366px) {
+    div.Pro_list > div.Pro_list_cont > div {
+        transition:all .2s linear;
+        -webkit-transition:all .2s linear;
+        -moz-transition:all .2s linear;
+        -ms-transition:all .2s linear;
+        -o-transition:all .2s linear
+    }
+    div.Pro_list > div.Pro_list_cont > div:hover {
+        transform:translate(0,-3px);
+        -webkit-transform:translate(0,-3px);
+        -moz-transform:translate(0,-3px);
+        -o-transform:translate(0,-3px);
+        -ms-transform:translate(0,-3px);
+    }
+}
+@media screen and (width:1280px){
+    div.Pro_list > div.Pro_list_cont > div > a > div > h3 {
+        font-size:14px !important
+    }
+}
+@media screen and (width:1360px){
+    div.Pro_list > div.Pro_list_cont > div > a > div > h3 {
+        font-size:14px !important
+    }
+    div.mag {
+        width: 83% !important
+    }
+}
+@media screen and (min-width:1024px) and (max-width:1360px){
+    div.Pro_list > div.Pro_list_cont > div > a > div > p {
+        font-size:12px
+    }
+}
+
+
+
+@media screen and (max-width:767px){
+    div.option > div {
+        padding:10px 15px !important
+    }
+    div.option > div > div:last-child > form > input {
+        float:left
+    }
+    div.option > div > div:last-child > form > input[type=text] {
+        width:75%
+    }
+    div.option > div > div:last-child > form > input[type=submit] {
+        width:25%
+    }
+    div.Pro_list > div.Pro_list_cont > div > a > div > h3 {
+        font-size:16px
+    }
+    div.Pro_list > div.Pro_list_cont > div > a > div > span {
+        margin-bottom:15px
+    }
+}
+@media screen and (min-width:768px){
+    div.option >  div > div:last-child {
+        width: 50%;
+        margin-left: 25%;
+    }
+    div.option > div > div:last-child > form > input[type=text] {
+        width:75%
+    }
+    div.option > div > div:last-child > form > input[type=submit] {
+        width:25%
+    }
+    div.option > div > div:last-child > form > input {
+        float:left
+    }
+    div.Pro_list > div.Pro_list_cont > div > a > div > h3 {
+        min-height:32px;
+        font-size:14px
+    }
+}
+@media screen and (min-width:992px){
+    div.option > div > div:last-child {
+        width:40%;
+        margin-left:30%
+    }
+    div.Pro_list > div.Pro_list_cont > div > a > div > span {
+        min-height:120px
+    }
+    div.Pro_list > div.Pro_list_cont > div > a > div > h3 {
+        min-height:48px
+    }
+}
+@media screen and (min-width:1200px){
+    div.max > div.container-fluid {
+        width:83.33333333%;
+        margin-left:8.33333333%
+    }
+    div.Pro_list > div.Pro_list_cont > div > a > div > h3 {
+        font-size:15px;
+        min-height:54px
+    }
+}
+@media screen and (min-width:1400px){
+    div.option > div > div:last-child {
+        width:30%;
+        margin-left:35%
+    }
+    div.Pro_list > div.Pro_list_cont > div > a > div > span {
+        min-height:100px
+    }
+}
+@media screen and (min-width:1500px){
+    div.Pro_list > div.Pro_list_cont > div > a > div > h3 {
+        min-height:36px
+    }
+}
+@media screen and (min-width:1600px){
+    div.Pro_list > div.Pro_list_cont > div > a > div > h3 {
+        min-height:40px;
+        font-size:16px
+    }
+}
+@media screen and (min-width:1700px){
+    div.Pro_list > div.Pro_list_cont > div > a > div > span {
+        min-height:80px
+    }
+}

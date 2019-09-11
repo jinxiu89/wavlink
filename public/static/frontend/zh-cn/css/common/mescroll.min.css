@@ -1,0 +1,88 @@
+/*
+ * mescroll -- 精致的下拉刷新和上拉加载js框架  ( a great JS framework for pull-refresh and pull-up-loading )
+ * version 1.3.2
+ * 2018-01-01
+ * author: wenju < mescroll@qq.com > 文举
+ * 
+ * 官网:	http://www.mescroll.com
+ * 文档:	https://github.com/mescroll/mescroll.git
+ * 动态:	https://github.com/mescroll/mescroll-versions
+ * 问答:http://www.mescroll.com/qa.html
+ * issues: https://github.com/mescroll/mescroll/issues
+ * QQ交流群: 633126761
+ * 
+ * 温馨提示: mescroll唯一的全局样式: html,body{height:100%},用于固定body的高度满屏; 如果影响到您原本的项目样式,可自行删除
+ */
+
+/* 下拉刷新圈圈样式 */
+@media screen and (min-width: 318px) and (max-width:992px) {
+    .mescroll-downwarp .downwarp-loading{
+        width: 16px;
+        height: 16px;
+        border-radius: 50%;
+        border: 1px solid #00B0F2;
+        border-bottom-color: transparent;
+    }
+    .mescroll-downwarp {
+        position: relative;
+        width: 100%;
+        height: 0;
+        overflow: hidden;
+        text-align: center
+    }
+    .mescroll-downwarp .downwarp-content {
+        position: absolute;
+        left: 0;
+        bottom: 0;
+        width: 100%;
+        min-height: 30px;
+        padding: 10px 0
+    }
+
+
+
+    /*html, body {*/
+        /*height: 100%*/
+    /*}*/
+
+    /*body {*/
+        /*-webkit-overflow-scrolling: touch*/
+    /*}*/
+
+    .mescroll {
+        width: 100%;
+        height: 100%;
+        overflow: auto
+    }
+    .mescroll-rotate {
+        -webkit-animation: mescrollRotate .6s linear infinite;
+        animation: mescrollRotate .6s linear infinite
+    }
+
+    @-webkit-keyframes mescrollRotate {
+        0% {
+            -webkit-transform: rotate(0deg)
+        }
+        100% {
+            -webkit-transform: rotate(360deg)
+        }
+    }
+
+    @keyframes mescrollRotate {
+        0% {
+            transform: rotate(0deg)
+        }
+        100% {
+            transform: rotate(360deg)
+        }
+    }
+}
+
+
+@media screen and (min-width:1025px){
+    .mescroll {
+        overflow:visible
+    }
+}
+
+

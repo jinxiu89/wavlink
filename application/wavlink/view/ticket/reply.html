@@ -1,0 +1,42 @@
+{include file="public/headers"/}
+<article class="cl pd-20">
+    <form  action="" method="post" class="form form-horizontal" id="form-admin-add">
+        <div class="row cl">
+            <label class="form-label col-xs-4 col-sm-3">客户邮箱:</label>
+            <div class="formControls col-xs-8 col-sm-9">
+                <input type="hidden" class="input-text" value="{$ticket->email}"  name="email">
+                <input type="text" class="input-text" value="{$ticket->email}" disabled>
+            </div>
+        </div>
+        <div class="row cl">
+            <label class="form-label col-xs-4 col-sm-3">Last Name:</label>
+            <div class="formControls col-xs-8 col-sm-9">
+                <input type="hidden" class="input-text" value="{$ticket->last_name}" name="last_name">
+                <input type="text" class="input-text" value="{$ticket->last_name}" disabled>
+            </div>
+        </div>
+        <div class="row cl">
+            <label class="form-label col-xs-4 col-sm-3">Subject</label>
+            <div class="formControls col-xs-8 col-sm-9">
+                <input type="text" class="input-text" value="" name="subject">
+            </div>
+        </div>
+        <div class="row cl">
+            <label class="form-label col-xs-4 col-sm-3">Content</label>
+            <div class="col-xs-8 col-sm-9">
+                <textarea name="content" cols="" rows="" class="textarea"  placeholder="说点什么...100个字符以内"  dragonfly="true" ></textarea>
+            </div>
+        </div>
+        <div class="row cl">
+            <div class="col-xs-8 col-sm-9 col-xs-offset-4 col-sm-offset-3">
+                <input type="hidden" name="id" value="{$ticket->id}">
+                <input class="btn btn-primary radius"  id="button" type="button" onclick="send_email('{:url('Ticket/send')}')" value="&nbsp;&nbsp;发送&nbsp;&nbsp;">
+            </div>
+        </div>
+    </form>
+</article>
+{include file="public/footer"/}
+<script type="text/javascript" src="__STATIC__/admin/js/common.js"></script>
+<script type="text/javascript" src="__STATIC__/admin/js/tickets.js"></script>
+</body>
+</html>

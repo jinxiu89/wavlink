@@ -1,0 +1,71 @@
+{include file="public/headers"/}
+<article class="cl pd-20">
+    <form action="" method="post" class="form form-horizontal" id="form-admin-add">
+        <div class="row cl">
+            <label class="form-label col-xs-3 col-sm-2"><span class="c-red">*</span>Prefix:</label>
+            <div class="formControls col-xs-2 col-sm-3">
+                <input id="code" class="input-text" value="" placeholder="" name="prefix">
+            </div>
+            <div class="formControls col-xs-2 col-sm-5">
+                <span>订单号序号前的部分例如：20180901HL01</span>
+            </div>
+        </div>
+        <div class="row cl">
+            <label class="form-label col-xs-3 col-sm-2"><span class="c-red">*</span>Model:</label>
+            <div class="formControls col-xs-2 col-sm-3">
+                <span class="select-box">
+				<select class="select" name="model_id">
+					<option>请选择</option>
+                    {volist name="model" id="vo"}
+                    <option value="{$vo.id}">{$vo.model}</option>
+                    {/volist}
+				</select>
+				</span>
+            </div>
+        </div>
+        <div class="row cl">
+            <label class="form-label col-xs-3 col-sm-2"><span class="c-red">*</span>制造日期：</label>
+            <div class="formControls col-xs-3 col-sm-3">
+                <input type="date" name="prd_time" id="prd_time" class="input-text">
+            </div>
+            <div class="formControls col-xs-2 col-sm-6">
+                <span style="font-size: 12px;color: red">即生产任务单上的上线日期</span>
+            </div>
+        </div>
+        <div class="row cl">
+            <label class="form-label col-xs-3 col-sm-2"><span class="c-red">*</span>本批次生产量:</label>
+            <div class="formControls col-xs-2 col-sm-3">
+                <input class="input-text" value="" placeholder="" name="count">
+            </div>
+        </div>
+        <div class="row cl">
+            <label class="form-label col-xs-3 col-sm-2"><span class="c-red">*</span>返修预留:</label>
+            <div class="formControls col-xs-2 col-sm-3">
+                <input class="input-text" value="" placeholder="" name="fix_count">
+            </div>
+            <div class="formControls col-xs-3 col-sm-6"><span>按照总批次的百分之10计算，入20000个批次就算2000个</span></div>
+        </div>
+        <div class="row cl">
+            <label class="form-label col-xs-3 col-sm-2"><span class="c-red">*</span>固件版本:</label>
+            <div class="formControls col-xs-9 col-sm-10">
+                <input class="input-text" value="" placeholder="" name="ver">
+            </div>
+        </div>
+        <div class="row cl">
+            <label class="form-label col-xs-3 col-sm-2"><span class="c-red">*</span>电源规格:</label>
+            <div class="formControls col-xs-9 col-sm-10">
+                <input class="input-text" value="" placeholder="" name="spec">
+            </div>
+        </div>
+        <div class="row cl">
+            <div class="col-xs-8 col-sm-9 col-xs-offset-4 col-sm-offset-3">
+                <input class="btn btn-primary radius" type="button" onclick="save('{:url('old_sn/index')}')"  value="&nbsp;&nbsp;提交&nbsp;&nbsp;">
+            </div>
+        </div>
+    </form>
+
+</article>
+{include file="public/footer"/}
+<script type="text/javascript" src="__STATIC__/admin/js/common.js"></script>
+</body>
+</html>

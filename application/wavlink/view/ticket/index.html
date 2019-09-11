@@ -1,0 +1,82 @@
+<!--包含头部文件-->
+{include file="public/service_header"/}
+
+<section class="Hui-article-box">
+    <nav class="breadcrumb"><i class="Hui-iconfont">&#xe67f;</i> 首页
+        <span class="c-gray en">&gt;</span>
+        固件管理
+        <span class="c-gray en">&gt;</span>
+        固件未回复
+        <a class="btn btn-success radius r" style="line-height:1.6em;margin-top:3px"
+           href="javascript:location.replace(location.href);" title="刷新"><i class="Hui-iconfont">&#xe68f;</i></a>
+    </nav>
+
+    <div class="Hui-article">
+        <article class="cl pd-20" style="min-height: 51em;left: 51em">
+            <!--<form method="get" action="{:url('Document/select')}">-->
+                <!--<div class="text-c"> 搜索名称：-->
+                    <!--<input type="text" class="input-text" style="width:250px;"  placeholder="输入文档名称" id="" name="name">-->
+                    <!--<button type="submit" class="btn btn-success"  name=""><i class="Hui-iconfont">&#xe665;</i> 搜索</button>-->
+                <!--</div>-->
+            <!--</form>-->
+            <div class="cl pd-5 bg-1 bk-gray mt-20">
+                <span class="l">
+                    <a class="btn btn-primary radius"  href="{:url('Ticket/export',['status'=>-1,'language_id'=>$language_id])}"><i class="Hui-iconfont">&#xe600;</i>导出{$language_id|getLanguage}未回复表格</a>
+                    <a href="{:url('Ticket/index_off')}"  class="btn btn-danger radius"><i class="Hui-iconfont">&#xe6e2;</i> 已处理固件信息</a>
+                </span>
+                <span class="r">未处理{$count}条</span>
+            </div>
+            <table class="table table-border table-bordered table-bg">
+                <thead>
+                <tr>
+                    <th scope="col" colspan="14"><span style="color: red">{$language_id|getLanguage}</span>未回复列表</th>
+                </tr>
+                <tr class="text-c">
+                    <th width="25"><input type="checkbox" name="" value=""></th>
+                    <th width="40">ID</th>
+                    <th width="40">名称</th>
+                    <th width="60">产品Model</th>
+                    <th width="50">产品SN</th>
+                    <th width="90">邮箱</th>
+                    <th width="200">问题详细</th>
+                    <th width="30">提交时间</th>
+                    <th width="100">操作</th>
+                </tr>
+                </thead>
+                <tbody>
+                {volist name="ticket" id="vo"}
+                <tr class="text-l">
+                    <td><input type="checkbox" value="{$vo.id}" name="id"></td>
+                    <td>{$vo.id}</td>
+                    <td>{$vo.first_name}·{$vo.last_name}</td>
+                    <td>{$vo.model}</td>
+                    <td>{$vo.sn}</td>
+                    <td>{$vo.email}</td>
+                    <td title="{$vo.description}">{$vo.desc}</td>
+                    <td>{$vo.create_time|strtotime|date='Y-m-d',###}</td>
+                    <td class="td-manage">
+                        <a title="查看详细信息" href="javascript:;" onclick="index_look('详细信息','{:url(\'Ticket/look\',[\'id\'=>$vo.id])}')" class="ml-5" style="text-decoration:none"><i class="Hui-iconfont" style="font-size: 20px;color: #0000cc">&#xe6df;</i></a>
+                </tr>
+                {/volist}
+                </tbody>
+            </table>
+            <div class="cl pd-5 bg-1 bk-gray mt-20 tp5-winstar">{:pagination($ticket)}</div>
+        </article>
+        {include file="public/explain" /}
+    </div>
+    <input type="hidden" value="{$language_id}" id="language">
+</section>
+<!--包含footer文件-->
+{include file="public/footer" /}
+<script>
+    $(document).ready(function () {
+        $("#service_ticket dt").addClass("selected");
+        $("#service_ticket dd").css("display", "block");
+        var lan = $("input#language").val();
+        var id = "#ticket_list_"+lan;
+        $(id).addClass("current");
+        $("#service").addClass("current");
+    });
+</script>
+</body>
+</html>

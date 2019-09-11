@@ -1,0 +1,15 @@
+application/config.php
+.idea/
+.travis.yml
+public/ueditor
+runtime/
+thinkphp
+/log/
+test/
+.env
+.DS_Store
+.vscode
+config.php
+
+
+

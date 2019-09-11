@@ -1,0 +1,153 @@
+div#Detail_page_all > div.container-fluid > div.row > div.detail_page_one > div.text_title_three {
+    top:24%;
+    left:13%
+}
+
+div#Detail_page_all > div.container-fluid > div.row > div.detail_page_one > div.text_title_three > h2 {
+    font-size: 48px
+}
+div.Rec > ul > li {
+    padding: 0;
+    height: 507px;
+    overflow: hidden
+}
+
+div.Rec > div.pac > div {
+    padding: 0;
+    overflow: hidden
+}
+
+div.Rec > div.pac > div > img {
+    width: 100%
+}
+
+div.Rec > div.pac > div > div {
+    padding: 15px;
+    left: 0
+}
+div.Rec > div.pac > div > div > p,
+div.Rec > div.pac > div > div > div.details {
+    display:inline-block;
+    color:#337ab7
+}
+
+div.Rec > div.pac > div > div > div.details > a {
+    color: #333
+}
+div.Rec > div.pac > div > div > div.details > a:hover {
+    color:#337ab7
+}
+/*首页第二屏手机样式*/
+@media screen and (max-width: 767px) {
+    div.Rec > div.pac > div {
+        padding:5px
+    }
+    div.Rec > div.pac > div > div > h3 {
+        margin-bottom:15px;
+        font-size:16px
+    }
+    div.Rec > div.pac { padding:10px 0 }
+    div.Rec > div.pac > div > div { position:static }
+    div.Rec > div.pac > div > div > p {
+        margin-right:15px
+    }
+    div.Rec > div.pac > div > a > img {
+        padding:5px
+    }
+    div#Detail_page_all > div.container-fluid > div.row > div.detail_page_one > div.text_title_three {
+        position: static;
+        padding:8% 15px
+    }
+    div#Detail_page_all > div.container-fluid > div.row > div.detail_page_one {
+        background: #fff !important;
+    }
+    div#Detail_page_all > div.container-fluid > div.row > div.detail_page_one > div.text_title_three > h2,
+    div#Detail_page_all > div.container-fluid > div.row > div.detail_page_one > div.text_title_three > h3 {
+        font-size:22px !important;
+        text-align:center;
+        color:#333
+    }
+    div#Detail_page_all > div.container-fluid > div.row > div.detail_page_one > div.text_title_three > h3 {
+        font-size:14px !important
+    }
+}
+
+@media screen and (min-width:768px){
+    div.Rec > div.pac {
+        padding:20px 0
+    }
+    div.Rec > div.pac > div {
+        padding: 0.5em 0 0 0.5em
+    }
+    div.Rec > div.pac > div > div {
+        position:static
+    }
+    div.Rec > div.pac > div > div > p {
+        margin-right:5%
+    }
+    div.Rec > div.pac > div > a > img {
+        padding:5px
+    }
+    div.Rec > div.pac > div > div > p,
+    div.Rec > div.pac > div > div > div.details > a {
+        font-size:12px
+    }
+    div#Detail_page_all > div.container-fluid > div.row > div.detail_page_one > div.text_title_three { left:6% }
+    div#Detail_page_all > div.container-fluid > div.row > div.detail_page_one > div.text_title_three > h2 { width:62%; font-size:27px !important; line-height:1.2 }
+    div#Detail_page_all > div.container-fluid > div.row > div.detail_page_one > div.text_title_three > h3 { font-size:14px }
+    div.Rec > div.pac > div > div > h3 {
+        min-height:30px;
+        font-size:14px;
+        margin:15px 0
+    }
+}
+@media screen and (min-width:992px){
+    div.Rec > div.pac > div > div > h3 {
+        min-height:34px;
+        font-size:16px;
+    }
+}
+@media screen and (min-width:1100px){
+    div#Detail_page_all > div.container-fluid > div.row > div.detail_page_one > div.text_title_three > h2 { font-size:41px !important }
+    div#Detail_page_all > div.container-fluid > div.row > div.detail_page_one > div.text_title_three > h3 { font-size:16px }
+    div#Detail_page_all > div.container-fluid > div.row > div.detail_page_one > div.text_title_three { left:4% }
+}
+@media screen and (min-width:1200px){
+    div.Rec > div.pac {
+        padding: 40px 0
+    }
+    div.Rec > div.pac > div {
+        padding: 0.5em 0 0.5em 0.5em
+    }
+    div.Rec > div.pac > div > div {
+        position:absolute;
+        bottom: -36px;
+        transition: .3s linear;
+        -webkit-transition: .3s linear;
+        -moz-transition: .3s linear;
+        -ms-transition: .3s linear;
+        -o-transition: .3s linear;
+        left: 6.8px
+    }
+    div.Rec > div.pac > div:hover > div {
+        bottom: 0
+    }
+    div.Rec > div.pac > div > a > img {
+        padding:8px
+    }
+    div.Rec > div.pac > div > div > p,
+    div.Rec > div.pac > div > div > div.details > a {
+        font-size:14px
+    }
+    div#Detail_page_all > div.container-fluid > div.row > div.detail_page_one > div.text_title_three > h3 { font-size:20px }
+    div#Detail_page_all > div.container-fluid > div.row > div.detail_page_one > div.text_title_three { left:8% }
+}
+@media screen and (min-width:1600px){
+    div.Rec > div.pac > div > a > img {
+        padding:10px
+    }
+    div#Detail_page_all > div.container-fluid > div.row > div.detail_page_one > div.text_title_three { left:12% }
+}
+@media screen and (min-width:1700px){
+    div#Detail_page_all > div.container-fluid > div.row > div.detail_page_one > div.text_title_three > h2 { font-size:50px !important }
+}

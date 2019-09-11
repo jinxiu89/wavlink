@@ -1,0 +1,83 @@
+<!--包含头部文件-->
+{include file="public/service_header" /}
+<section class="Hui-article-box">
+    <nav class="breadcrumb"><i class="Hui-iconfont">&#xe67f;</i> 首页
+        <span class="c-gray en">&gt;</span>
+        SN数据库
+        <span class="c-gray en">&gt;</span>
+        新版产品SN号段库
+        <a class="btn btn-success radius r" style="line-height:1.6em;margin-top:3px"
+           href="javascript:location.replace(location.href);" title="刷新"><i class="Hui-iconfont">&#xe68f;</i></a>
+    </nav>
+    <div class="Hui-article">
+        <article class="cl pd-20" style="min-height: 51em;">
+            <div class="text-c"> 型号:
+                <input type="text" class="input-text" style="width:250px" placeholder="输入产品型号"  name="">
+                <button type="submit" class="btn btn-success" name=""><i class="Hui-iconfont">&#xe665;</i> 搜简码
+                </button>
+            </div>
+            <div class="cl pd-5 bg-1 bk-gray mt-20" style="line-height: 31px;">
+                <span class="l">
+                    <a href="javascript:;" onclick="add('SN入库','{:url('sn/add')}','800','680')" class="btn btn-primary radius">
+                        <i class="Hui-iconfont">&#xe600;</i> SN入库
+                    </a>
+                </span>
+                <span class="r">共有数据：<strong>{$count}</strong> 条</span>
+            </div>
+            <table class="table table-border table-bordered table-bg">
+                <thead>
+                <tr>
+                    <th scope="col" colspan="11">SN列表</th>
+                </tr>
+                <tr class="text-c">
+                    <th width="40">ID</th>
+                    <th width="150">Prefix</th>
+                    <th width="90">Model</th>
+                    <th width="40">SPEC(电源规格)</th>
+                    <th width="">SN号段</th>
+                    <th width="60">生产数量</th>
+                    <th width="120">入库时间</th>
+                    <th width="40">状态</th>
+                    <th width="60">操作</th>
+                </tr>
+                </thead>
+                <tbody>
+                {volist name="result" id="vo"}
+                <tr class="text-l">
+                    <td>{$vo.id}</td>
+                    <td class="text-l">{$vo.prefix}</td>
+                    <td>{$vo.model_id|getModelByModel_id}</td>
+                    <td>{$vo.spec}</td>
+                    <td class="text-l">{$vo.prefix}{$vo.model_id|getPrdCodeByModel_id}{$vo.spec}N:00001-{$vo.count|numberStr}/{$vo.prefix}{$vo.model_id|getPrdCodeByModel_id}{$vo.spec}Q:00001-{$vo.fix_count|numberStr}</td>
+                    <td>{$vo.count}</td>
+                    <td>{$vo.create_time}</td>
+                    <td class="text-c">{$vo.status|GetStatus}</td>
+                    <td class="text-c">{if condition="$vo.status eq 0"}
+                        <a title="启用" href="javascript:;"  onclick="start('{:url(\'model/byStatus\',[\'id\'=>$vo.id,\'status\'=>1])}')" data-id ="{$vo.id}" data-type="4" class="ml-5 mark" style="text-decoration:none"><i class="Hui-iconfont c-green">&#xe601;</i></a>
+                        {else /}
+                        <a title="禁用" href="javascript:;"  onclick="start('{:url(\'model/byStatus\',[\'id\'=>$vo.id,\'status\'=>0])}')" data-id ="{$vo.id}" data-type="4" class="ml-5 mark" style="text-decoration:none"><i class="Hui-iconfont c-red">&#xe631;</i></a>
+                        {/if}
+                    </td>
+                </tr>
+                {/volist}
+                </tbody>
+            </table>
+            {if condition="$count > 12"}
+            <div class="cl pd-5 bg-1 bk-gray mt-20 tp5-winstar">{:pagination($result)}</div>
+            {/if}
+        </article>
+        {include file="public/explain" /}
+    </div>
+</section>
+<!--包含footer文件-->
+{include file="public/footer"/}
+<script>
+    $(document).ready(function () {
+        $("#service_data dt").addClass("selected");
+        $("#service_data dd").css("display", "block");
+        $("#service_data #sn").addClass("current");
+        $("#service").addClass("current");
+    });
+</script>
+</body>
+</html>

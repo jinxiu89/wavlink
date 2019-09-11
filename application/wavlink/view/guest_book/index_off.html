@@ -1,0 +1,82 @@
+<!--包含头部文件-->
+{include file="public/service_header"/}
+<section class="Hui-article-box">
+    <nav class="breadcrumb"><i class="Hui-iconfont">&#xe67f;</i> 首页
+        <span class="c-gray en">&gt;</span>
+        留言管理
+        <span class="c-gray en">&gt;</span>
+        已回复
+        <a class="btn btn-success radius r" style="line-height:1.6em;margin-top:3px"
+           href="javascript:location.replace(location.href);" title="刷新"><i class="Hui-iconfont">&#xe68f;</i></a>
+    </nav>
+
+    <div class="Hui-article">
+        <article class="cl pd-20" style="min-height: 51em;left: 51em">
+            <!--<form method="get" action="">-->
+                <!--<div class="text-c"> 搜索名称：-->
+                    <!--<input type="text" class="input-text" style="width:250px;"  placeholder="输入文档名称" id="" name="name">-->
+                    <!--<button type="submit" class="btn btn-success"  name=""><i class="Hui-iconfont">&#xe665;</i> 搜索</button>-->
+                <!--</div>-->
+            <!--</form>-->
+            <div class="cl pd-5 bg-1 bk-gray mt-20" style="line-height: 31px;">
+                <span class="l">
+                    <a class="btn btn-primary radius"  href="{:url('GuestBook/export',['status'=>1,'language_id'=>$language_id])}"><i class="Hui-iconfont">&#xe600;</i> 导出到表格</a>
+                    <a href="{:url('GuestBook/index')}"  class="btn btn-danger radius"><i class="Hui-iconfont">&#xe6e2;</i> 未处理留言</a>
+                </span>
+                <span class="r">已处理：<strong>##没输出count</strong> 篇</span>
+            </div>
+            <table class="table table-border table-bordered table-bg mt-20">
+                <thead>
+                <tr>
+                    <th scope="col" colspan="14">已回复列表</th>
+                </tr>
+                <tr class="text-c">
+                    <th width="20"><input type="checkbox" name="" value=""></th>
+                    <th width="40">ID</th>
+                    <th width="150">First Name</th>
+                    <th width="150">Last Name</th>
+                    <th>产品Model</th>
+                    <th width="160">产品SN</th>
+                    <th>邮箱</th>
+                    <th width="120">提交时间</th>
+                    <th width="60">是否处理</th>
+                    <th width="40">操作</th>
+                </tr>
+                </thead>
+                <tbody>
+                {volist name="ticket" id="vo"}
+                <tr class="text-l">
+                    <td><input type="checkbox" value="{$vo.id}" name="id"></td>
+                    <td>{$vo.id}</td>
+                    <td>{$vo.first_name}</td>
+                    <td>{$vo.last_name}</td>
+                    <td>{$vo.model}</td>
+                    <td>{$vo.sn}</td>
+                    <td>{$vo.email}</td>
+                    <td>{$vo.create_time}</td>
+                    <td class="td-status text-c">{$vo.status|ticket_status}</td>
+                    <td class="td-manage">
+                        <a title="查看详细信息" href="javascript:;" onclick="index_look('详细信息','{:url(\'GuestBook/reply_look',['id'=>$vo.id])}')" class="ml-5" style="text-decoration:none"><i class="Hui-iconfont" style="font-size: 20px;color: #0000cc">&#xe725;</i></a>
+                </tr>
+                {/volist}
+                </tbody>
+            </table>
+            <div class="cl pd-5 bg-1 bk-gray mt-20 tp5-winstar">{:pagination($ticket)}</div>
+        </article>
+        {include file="public/explain" /}
+    </div>
+
+</section>
+<!--包含footer文件-->
+{include file="public/footer"/}
+<script type="text/javascript" src="__STATIC__/admin/js/common.js"></script>
+<script>
+    $(document).ready(function () {
+        $("#service_ticket dt").addClass("selected");
+        $("#service_ticket dd").css("display", "block");
+        $("#service_ticket #ticket_off").addClass("current");
+        $("#service").addClass("current");
+    })
+</script>
+</body>
+</html>

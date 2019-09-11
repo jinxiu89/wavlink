@@ -1,0 +1,106 @@
+<!--继承框架-->
+{extend name="mobile/base/base" /}
+{block name="seo"}
+<title>{$parent.seo_title} - Wavlink </title>
+<meta name="description" content="{$parent.description}">
+<meta name="keywords" content="{$parent.keywords}">
+<link rel="stylesheet" href="__EN__/css/faq/faq.css" type="text/css">
+{/block}
+{block name="banner"}
+<header class="FAQ">
+    <div class="banner">
+        <div>
+            <img class="img-responsive center-block img_mobile" src="http://cloud.wavlink.com/index.php?user/publicLink&fid=5b22Befs_NyWAPhhi8_mep6dg0HGcRwGfPXkquhE5MAo0cjmXODxrpq3AIZIql2uxF-LU60Kme8t1nui1Un9AL8ipLgUTCYO60Fh78D9XCJITyylC94oXdX-cxaM0uMz51xr_1zN0gLw7oaA5SK6yWRiAHEJxA&file_name=/FAQ_mobile.jpg" alt="">
+        </div>
+    </div>
+    <div class="nav">
+        <div class="nav_place col-sm-6 col-xs-12">
+            <!--<span style="color: #888">Home：</span>-->
+            <ul>
+                <li><a href="{:url('/'.$code.'/faq')}">FAQ</a></li>
+                <li> > </li>
+                <li class="addInnerHTML" >Results for "{$name}",{$count} result find.</li>
+            </ul>
+        </div>
+        <div class="nav_search">
+            <form action="{:url('/'.$code.'/search/faq')}">
+                <input type="text" name="key" placeholder="" value="">
+                <input type="submit" value="{$Think.lang.search}">
+            </form>
+        </div>
+    </div>
+</header>
+{/block}
+{block name="body"}
+<!--section-->
+<section>
+    <aside class="aside_nav">
+        <h3>FAQ<i class="icon-angle-right"></i></h3>
+        <ul>
+            {empty name="$cate"}
+            <li><a href="#">Sorry,there's no classification </a></li>
+            {else /}
+            {volist name="$cate" id="vo"}
+            {if condition="$parent.name eq $vo.name"}
+            <li style="background-color: #ccc"><a href="{:url('/'.$code.'/faq/'.$vo.url_title)}" data-id="{$vo.id}">{$vo.name}</a></li>
+            {else /}
+            <li><a href="{:url('/'.$code.'/faq/'.$vo.url_title)}" data-id="{$vo.id}">{$vo.name}</a></li>
+            {/if}
+            {/volist}
+            {/empty}
+        </ul>
+    </aside>
+    <main class="main_content">
+        <div>
+            <ul>
+                {empty name="faq"}
+                <li>
+                    <h5>Sorry, without search results.</h5>
+                    <h5>You can search for another keyword or click on the left side to find it.</h5>
+                </li>
+                {else /}
+                {volist name="faq" id="vo"}
+                <li>
+                    <h5><a href="{:url('/'.$code.'/faq/details/'.$vo.url_title)}">{$vo.problem}</a></h5>
+                    <!--<p>{$vo.problem}</p>-->
+                    <span>Update time:{$vo.update_time|strtotime|date="Y-m-d",###}</span>
+                </li>
+                {/volist}
+                {/empty}
+            </ul>
+        </div>
+        <!--分页-->
+        <div>
+            <div class="nav_page text-center col-lg-10 col-lg-offset-1 col-xs-12" style="padding:0">
+                <ul class="pagination">
+                    {:pagination($faq)}
+                </ul>
+            </div>
+        </div>
+    </main>
+</section>
+{/block}
+{block name="js"}
+<script>
+    $(document).ready(function(){
+
+        if ($(document).width() < 768){
+            $("section>.aside_nav>h3").click(function(){
+                $(this).children("i").toggleClass("icon-angle-right").toggleClass("icon-angle-down");
+                $(this).next("ul").slideToggle();
+            })
+        }
+        let asideNav = $("aside.aside_nav>ul>li>a");
+        for(let i=0;i<asideNav.length;i++){
+            asideNav.eq(i).click(function(){
+
+                $("header.FAQ>div.nav>div.nav_place>ul>li.addInnerHTML").html(this.innerHTML)
+            })
+        }
+//        $("header.FAQ>div.nav>div.nav_place>ul>li>a").click(function(){
+//
+//            $("header.FAQ>div.nav>div.nav_place>ul>li.addInnerHTML").html(" ")
+//        });
+    })
+</script>
+{/block}

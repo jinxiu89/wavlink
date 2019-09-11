@@ -1,0 +1,118 @@
+/*
+    2018.8.14
+    wavlink user center
+    user ticket
+*/
+/* public title */
+div.main_title{margin: 30px 40px}
+div.main_title>h2{padding-bottom: 30px;margin: 0;font-size: 20px;border-bottom: 1px solid #e5e5e5}
+@media screen and (max-width: 767px) {
+    div.main_title{margin: 20px}
+    div.main_title>h2{padding-bottom: 20px}
+}
+
+div.main_container{float: left;width: 100%;padding: 0 40px}
+div.main_container>ul{background: #f2f2f2;font-size: 0;letter-spacing: -4px}
+div.main_container>ul>li{display: inline-block;font-size: 14px;letter-spacing: 0}
+div.main_container>ul>li>a.active{background: #fff}
+div.main_container>ul>li>a:hover{background: #fff!important;}
+div.main_container>ul>li>a{display: inline-block;padding: 15px;color: #333}
+
+div.main_container>div{margin: 20px 0;float: left;width: 100%;}
+/*表格画线*/
+div#my_ticket>div>ul>li{border-top: 1px solid #ddd;border-left: 1px solid #ddd}
+div#my_ticket>div>ul:nth-last-of-type(1)>li{border-right: 1px solid #ddd}
+div#my_ticket{border-bottom: 1px solid #ddd}
+div#my_ticket>p{border: 1px solid #ddd;border-bottom: none}
+div#my_ticket>div.page_nav{border: 1px solid #ddd;border-bottom: none}
+
+div#my_ticket,
+div#my_ticket>p,
+div#my_ticket>div{float: left;width: 100%}
+div#my_ticket>div>ul{width: 15%;float: left;}
+div#my_ticket>div>ul:nth-of-type(1){width: 10%}
+div#my_ticket>div>ul:nth-of-type(2){width: 60%}
+div#my_ticket>div>ul>li{line-height: 50px;padding-left: 20px}
+div#my_ticket>div:nth-of-type(1)>ul>li:nth-of-type(1){display: block}
+div#my_ticket>div>ul>li:nth-of-type(1){display: none}
+div#my_ticket>div>ul>li>a{color: #333;display: block;overflow: hidden;text-overflow: ellipsis;white-space: nowrap}
+div#my_ticket>div>ul>li>a:hover{color: #000}
+/* 分页 */
+div#my_ticket>p,
+div.page_nav{display: none}
+div#my_ticket>p{float: left;width: 100%;line-height: 50px;margin: 0;text-align: center}
+div#my_ticket>div.page_nav{height: 50px;line-height: 50px;}
+div.page_nav>div{float: left;padding-left: 20px}
+div.page_nav form>div{float: left}
+div.page_nav form input{margin: 0 10px;line-height: normal;height: 26px;width: 100px}
+div.page_nav form button{font-size: 12px;line-height: normal;padding: 5px 10px;background: #fff;border:1px solid #ccc;border-radius: 3px}
+div.page_nav>div.nav_page{float: right;padding-right: 10%;font-size: 12px}
+div.nav_page>ul{margin: 0;height: 30px;padding-top: 10px}
+@media screen and (max-width: 767px) {
+    div.main_container{padding: 0 20px}
+    div#my_ticket>div>ul{font-size: 12px}
+    div.page_nav form>div{float: none;margin-bottom: 20px}
+    div.page_nav form>div>span{width: 50px;display: inline-block}
+}
+@media screen and (max-width: 991px) {
+    div#my_ticket>div>ul>li,
+    div#my_ticket,
+    div#my_ticket,
+    div#my_ticket>div.page_nav{border: none!important;}
+    div#my_ticket>div{padding: 20px 0;border-bottom: 1px solid #ddd}
+    div#my_ticket>div:nth-last-of-type(2){border: none}
+    div#my_ticket>div>ul>li:nth-of-type(1){display: block}
+    div#my_ticket>div>ul{width: 100%!important;}
+    div#my_ticket>div>ul>li{float: left;padding-left: 0}
+    div#my_ticket>div>ul>li:nth-of-type(1){width: 25%}
+    div#my_ticket>div>ul>li:nth-of-type(2){width: 75%}
+    div#my_ticket>div>ul>li>a{white-space: normal}
+    div#my_ticket>div.page_nav{line-height: normal;height: auto}
+    div.page_nav>div.nav_page{text-align: center;float: none;width: 100%}
+}
+@media screen and (min-width: 992px) and (max-width: 1199px) {
+
+}
+
+@media screen and (max-width: 1500px) {
+    div#my_ticket,div#create_ticket{font-size: 12px}
+}
+
+/* create_ticket */
+#create_ticket>ul{float: left;margin: 20px 0;border-right: 1px solid #ddd;border-bottom: 1px solid #ddd}
+#create_ticket>ul>li{float: left;width: 50%;border-top: 1px solid #ddd;border-left: 1px solid #ddd}
+#create_ticket>ul>li>a{padding: 5px 15px;display: block;}
+#create_ticket>ul>li>a.active{color: #000;background: #f6f6f6}
+
+#create_ticket>h3{margin: 20px 0 0;font-size: 16px}
+#create_ticket>div{float: left}
+#create_ticket>div>p{margin: 30px 0 0;}
+#create_ticket>div>span{margin: 20px 0 10px;display: inline-block;font-size: 12px;color: #888;}
+#create_ticket>div>a{display: inline-block;padding: 5px 10px;background: #fff;border: 1px solid #ddd;border-radius: 5px}
+
+#create_ticket>div>div>ul>li{padding: 10px 0}
+#create_ticket>div>div>ul>li>a{color: #333;}
+#create_ticket>div>div>ul>li>a:hover{color: #000}
+
+@media screen and (max-width: 767px) {
+    #create_ticket>ul>li{width: 100%}
+}
+
+/* submit_ticket */
+#submit_ticket>form{margin-bottom: 25px}
+#submit_ticket>form>button{margin-left: 20%;width: 80px;height: 30px;background: #fff;border: 1px solid #ddd;border-radius: 5px;font-size: 12px}
+#submit_ticket>form>div{margin-bottom: 25px;float: left;width: 100%}
+#submit_ticket>form>div>label{float: left;width: 20%;font-weight: normal}
+#submit_ticket>form>div>input{float: left;width: 60%;height: 30px;padding-left: 15px}
+#submit_ticket>form>div>textarea{float: left;width: 60%;max-width: 100%;padding-left: 15px}
+#submit_ticket>form>div>p{width: 60%;margin: 10px 0 0 20%;font-size: 12px;color: #888}
+
+#submit_ticket>a>i{display: inline-block;margin-bottom: 20px;width: 80px;text-align: center;height: 25px;line-height: 25px;border: 1px solid #bbb;border-radius: 5px;color: #bbb}
+
+@media screen and (max-width: 767px) {
+    #submit_ticket>form>div>label,
+    #submit_ticket>form>div>textarea,
+    #submit_ticket>form>div>input,
+    #submit_ticket>form>div>p{width: 100%;margin: 0 0 10px}
+    #submit_ticket>form>div>p{margin: 0}
+}

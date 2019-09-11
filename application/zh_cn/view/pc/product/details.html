@@ -1,0 +1,226 @@
+<!--包含头部文件-->
+{extend name="pc/base/base" /}
+{block name="seo"}
+<title>{$result.seo_title} - Wavlink</title>
+<meta name="keywords" content="{$result.keywords}">
+<meta name="description" content="{$result.description}">
+<link rel="stylesheet" href="__CN__/css/product/product-details.css" type="text/css">
+<link rel="stylesheet" href="__CN__/css/product/magnifier/product-magnifier.css">
+{/block}
+{block name="banner"}
+{empty name="result.image_pc_url"}
+<div class="path col-lg-12 col-md-12 col-sm-12 col-xs-12" style="background:#fff;border-bottom:1px solid #ccc; padding:0.5% 0 0.5% 20%">
+    {volist name="path" id="vo"}
+    <a href="{:url('/'.$code.'/category/'.$vo.url_title)}" style="display: inline;color: #0C0C0C">{$vo.name}</a>
+    <i class="icon-angle-right color-gray" style="box-shadow:none"></i>
+    {/volist}
+    <a href="{:url('/'.$code.'/product/'.$result.url_title)}" style="display: inline;color: #FF1016">{$result.model}</a>
+</div>
+<div class="juzhong col-lg-12 col-md-12 col-sm-12 col-xs-12" style="background:#fff; padding:2em 0 2em 0">
+    <div class="container lefter">
+        <div class="col-lg-5 col-md-6 col-sm-10 col-xs-12 col-md-offset-0 col-sm-offset-1 col-xs-offset-0 picture">
+            <span class="jqzoom">
+                {empty name="$album"}
+                <img jqimg="__CN__/img/no_picture.jpg" src="__CN__/img/no_picture.jpg" alt="">
+                {else /}
+                <img jqimg="{$album}" src="{$album}" alt="">
+                {/empty}
+            </span>
+            <div class="spec-scroll">
+                <a class="prev">&lt;</a>
+                <div class="items">
+                    <ul>
+                        {empty name="$album"}
+                        <li><img bimg="__CN__/img/no_picture.jpg" src="__CN__/img/no_picture.jpg" onmousemove="preview(this);"></li>
+                        {else /}
+                        {foreach $albums as $v }
+                        <li><img bimg="{$v}" src="{$v}" onmousemove="preview(this);"></li>
+                        {/foreach}
+                        {/empty}
+                    </ul>
+                </div>
+                <a class="next">&gt;</a>
+            </div>
+        </div>
+        <div class="col-lg-7 col-md-6 col-sm-11 col-xs-11 textInfo">
+            <form>
+                <strong class="clearfix">{$result.name}</strong>
+                <p>{$result.model}</p>
+                <div class="product-info-basic">
+                    <div class="box highlights">
+                        <ul>
+                            {$result.features}
+                        </ul>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+{else /}
+<div class="banner_das col-lg-12 col-md-12 col-sm-12 col-xs-12" style="padding:0">
+    <a href="{:url('/'.$code.'/product/'.$result.url_title)}"><img src="{$result.image_pc_url}" alt="{$result.name}" class=" center-block img-responsive"></a>
+</div>
+{/empty}
+{/block}
+{block name="body"}
+<div class="D-nav bg-white col-lg-12 col-md-12 col-sm-12 col-xs-12" style="padding:0">
+    {notempty name="result.image_pc_url"}
+    <div class="product-name text-center col-lg-4 col-md-5 col-sm-12 col-xs-12">
+        <h4>{$result.name}</h4>
+    </div>
+    {/notempty}
+    <ul class="text-center col-lg-6 col-md-6 col-sm-8 col-lg-offset-0 col-md-offset-0 col-sm-offset-0 col-xs-12 col-xs-offset-0">
+        {notempty name='result.content'}
+        <li class="color-red col-lg-3 col-md-3 col-sm-3 col-xs-3">产品简介</li>
+        {/notempty}
+        {notempty name='result.specifications'}
+        <li class=" col-lg-3 col-md-3 col-sm-3 col-xs-3">规格参数</li>
+        <!--<li class="li_mobile col-lg-3 col-md-3 col-sm-3 col-xs-4">Specs</li>-->
+        {/notempty}
+        {notempty name='pDrivers'}
+        <li class="col-lg-3 col-md-3 col-sm-3 col-xs-3"><a href="{:url('/'.$code.'/search/drivers',['key'=>$result.model])}">驱动下载</a></li>
+        {/notempty}
+        <!--<li class="col-lg-3 col-md-3 col-sm-3 col-xs-3"><a href="" class="icon-shopping-cart ">&nbsp;&nbsp;BUY</a></li>-->
+        <li class="col-lg-3 col-md-3 col-sm-3 col-xs-3"><a href="{:url('/'.$code.'/faq')}">常见问题</a></li>
+<!--
+        <li class="col-lg-3 col-md-3 col-sm-3 col-xs-6"><a href="/zh_cn/drivers.html" style="color: #333">驱动下载</a></li>
+-->
+    </ul>
+</div>
+<div class="Nav-Box DetailsP col-lg-12 col-md-12 col-sm-12 col-xs-12" >
+
+    <!--产品描述开始-->
+    {$result.content}
+    <!--产品描述结束-->
+    <!--产品参数开始-->
+    {$result.specifications}
+    <!--产品参数结束-->
+
+</div>
+<!--相关产品开始-->
+
+<!--<div class="Box Related_video text-center bg-white col-lg-12 col-md-12 col-sm-12 col-xs-12" >-->
+    <!--<h3 class="Relevant_title">-->
+        <!--<strong>相关产品</strong>-->
+    <!--</h3>-->
+    <!--{$result.about_product}-->
+<!--</div>-->
+
+<!--相关产品结束-->
+<!-- 回到顶部 -->
+<div class="go_top text-center bg-white fixed" style="display:none">
+    <p class="top bg-black color-white" >回到顶部</p>
+    <!-- 2018-4-11 16:29 星期三 将 <ul class="right_nav" style="display:none">里的 style="display:none" 删除掉 -->
+    <ul class="right_nav">
+        {notempty name="result.content"}
+        <li class="">产品简介</li>
+        {/notempty}
+        {notempty name='result.specifications'}
+        <li class="">规格参数</li>
+        {/notempty}
+        {notempty name='pDrivers'}
+        <li class=""><a style="color: #333" href="{:url('/'.$code.'/search/drivers',['key'=>$result.model])}">驱动下载</a></li>
+        {/notempty}
+        <li class=""><a href="{:url('/'.$code.'/faq')}" style="color: #333">常见问题</a></li>
+    </ul>
+    <!--<a href="javascript:;" class="color-red" style="display:none">BUY</a>-->
+</div>
+<!--回到顶部结束-->
+{/block}
+{block name="js"}
+<script type="text/javascript">
+    var prev = $("a.prev");
+    var next = $("a.next");
+    var li_length = $(".spec-scroll .items ul > li").length;
+    var li = $(".spec-scroll .items ul > li").eq(0).outerWidth(true);
+    //    alert(5*li)
+    var i = 0;
+
+    next.click(function(){
+        i++;
+        if(i >= li_length){
+            i = li_length-1;
+            return false
+        }
+        $(".spec-scroll .items ul").css({
+            "margin-left":-(i*li)+"px"
+        })
+    });
+    prev.click(function(){
+        i--;
+        if(i < 0){
+            i = 0;
+            return false
+        }
+        $(".spec-scroll .items ul").css({
+            "margin-left":-(i*li)+"px"
+        })
+    })
+</script>
+<script type="text/javascript" src="__CN__/js/product/comjs.js"></script>
+<script type="text/javascript" src="__CN__/js/product/jquery.jqzoom.js"></script>
+<script type="text/javascript">
+    $(document).ready(function(){
+        var head = $("nav.navbar").innerHeight(),           // 公共头部导航高度;
+            scroll_das = $("div.banner_das").innerHeight(),// 产品详情页title高度;
+            mag = $("div.juzhong").innerHeight(),         // 放大镜的高度;
+            path = $("div.path").innerHeight(),          // 当前位置路径的高度;
+            scroll_nav = $("div.D-nav").innerHeight(), // 产品详情页横行导航高度;
+            $nav_li = $("div.D-nav > ul > li"),       // 产品详情页横行导航按钮;
+            $D_page = $("div.DetailsP > div");       // 产品详情页内容;
+        // 侧边导航部分js代码;
+        var $g_top = $("div.go_top"),                // 侧边导航;
+            $D_nav_li = $("ul.right_nav > li"),    // 产品详情页侧边导航按钮;
+            $div_go_top = $("div.go_top > p.top");// 侧边导航 回到顶部按钮;
+
+        function Click($this){
+            var nav_li_eq = $this.index();                                //横向、侧边导航点击下标
+            if(nav_li_eq<=1){
+                var div_height=$D_page.eq(nav_li_eq).offset().top;           //对应下标的div到body高度
+                if($(window).width()>768){
+                    var scroll_top = div_height - head - scroll_nav;       //需要的偏移量
+                    $("html,body").animate({"scrollTop":scroll_top},300); //偏移
+                }
+                else {
+                    //768屏以及以下，下拉刷新插件设置的html{height：100%}导致scrollTop失效
+                    /*var scroll_tops = div_height - scroll_nav;               //需要的偏移量
+                    $("html,body").animate({"scrollTop":scroll_tops},300); //偏移*/
+                    $D_page.eq(nav_li_eq).show().siblings().hide();
+                }
+            }
+        }
+        // 产品详情页横行导航按钮;
+        $nav_li.click(function(){
+            Click($(this));
+            $(this).addClass("color-red").siblings("li").removeClass("color-red");
+            $(this).find("a").css("color","#fff");
+            $(this).siblings("li").find("a").css("color","#333")
+        });
+        // 产品详情页侧边导航按钮;
+        $D_nav_li.click(function(){
+            Click($(this));
+            $nav_li.eq($(this).index()).addClass("color-red").siblings("li").removeClass("color-red");
+        });
+        // 侧边导航 回到顶部按钮;
+        $div_go_top.click(function(){
+            $("html,body").animate({"scrollTop":0},300);
+            $nav_li.eq(0).addClass("color-red").siblings("li").removeClass("color-red");
+        });
+        // 侧边导航的显示与隐藏;
+        $(window).scroll(function(){
+            var doc = $(document).scrollTop();
+            if(doc >= scroll_das || doc >= mag){
+                $g_top.show(); // 侧边导航 回到顶部按钮;
+            }
+            if(doc <= scroll_das || doc <= mag){
+                $g_top.hide(); // 侧边导航 回到顶部按钮;
+            }
+        });
+    })
+</script>
+
+
+<!--<script type="text/javascript" src="__CN__/js/product/animation.js"></script>-->
+{/block}
+

@@ -1,0 +1,95 @@
+{include file="public/headers"/}
+<article class="cl pd-20">
+    <form method="post" class="form form-horizontal" id="form-admin-add">
+        <div class="row cl">
+            <label class="form-label col-xs-3 col-sm-2"><span class="c-red">*</span>产品大类:</label>
+            <div class="formControls col-xs-4 col-sm-3">
+                <span class="select-box">
+				<select class="select" name="cate">
+					<option>请选择</option>
+                    {volist name="cate" id="vo"}
+                    <option value="{$vo.code}" {eq name="$result.cate" value="$vo.code"}selected{/eq}>{$vo.description}</option>
+                    {/volist}
+				</select>
+				</span>
+            </div>
+            <div class="formControls col-sm-7"><span style="font-size: 12px;color: red">产品系列</span></div>
+        </div>
+        <div class="row cl">
+            <label class="form-label col-xs-3 col-sm-2"><span class="c-red">*</span>Code:</label>
+            <div class="formControls col-xs-4 col-sm-3">
+                <input class="input-text" value="{$result.code}" placeholder="" name="code">
+            </div>
+            <div class="formControls col-sm-7"><span style="font-size: 12px;color: red">二位随机简码，和原数据不重复</span></div>
+        </div>
+        <div class="row cl">
+            <label class="form-label col-xs-3 col-sm-2"><span class="c-red">*</span>Model:</label>
+            <div class="formControls col-xs-9 col-sm-3">
+                <input class="input-text" value="{$result.model}" placeholder="" id="saveSoft" name="model">
+            </div>
+            <div class="formControls col-sm-7"><span style="font-size: 12px;color: red">型号-版本</span></div>
+        </div>
+        <div class="row cl">
+            <label class="form-label col-xs-3 col-sm-2"><span class="c-red">*</span>描述:</label>
+            <div class="formControls col-xs-9 col-sm-3">
+                <input class="input-text" value="{$result.description}" placeholder="" id="description" name="description">
+            </div>
+            <div class="formControls col-sm-7"><span style="font-size: 12px;color: red">型号-版本</span></div>
+        </div>
+        <div class="row cl">
+            <label class="form-label col-xs-3 col-sm-2"><span class="c-red">*</span>软件:</label>
+            <div class="formControls col-xs-9 col-sm-10">
+                <span class=""><a href="javascript:void (0);"
+                                  onclick="muLay('支持的硬件','{:url(\'Model/edit_soft\',[\'id\'=>$result.id])}',640,670)"
+                                  class="btn btn-secondary radius"><i class="Hui-iconfont">&#xe6df;</i> 修改</a></span>
+            </div>
+        </div>
+        <div class="row c1" style="height: 320px;">
+            <label class="form-label col-sm-2" for=""><br></label>
+            <div class="formControls col-sm-10">
+                <div class="pd-5" style="height: 309px;border: 1px #ddd solid">
+                    <ul id="soft">
+                        {empty name="soft"}
+                        <input type="hidden" name="soft_id" value="">
+                        {else /}
+                        {volist name="soft" id="vo"}
+                        <li><input type="checkbox" name="soft_id[]" value="{$vo.id}" checked>{$vo.ver}</li>
+                        {/volist}
+                        {/empty}
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <input type="hidden" value="{$result.id}" name="id">
+        <div class="row cl">
+            <div class="col-xs-8 col-sm-9 col-xs-offset-4 col-sm-offset-3">
+                <a href="javascript:void(0)" onclick="saveSoft()" class="btn btn-primary radius">保存</a>
+            </div>
+        </div>
+    </form>
+</article>
+{include file="public/footer"/}
+<script type="text/javascript" src="__STATIC__/admin/js/common.js"></script>
+<script type="text/javascript" src="__STATIC__/admin/js/select.js"></script>
+<script>
+    function saveSoft() {
+        $.ajax({
+            url: '{:url(\'Model/edit\')}',
+            type: "post",
+            dataType: "json",
+            data: $("#form-admin-add").serialize(),//提交表单数据
+            success: function (result) {
+                if (result.status === 1) {
+                    layer.msg(result.data, {icon: 1, time: 2000});
+                    setTimeout(function () {
+                        window.parent.location.reload();
+                    },1000);
+                } else {
+                    layer.msg(result.data, {icon: 5, time: 2000});
+                }
+            }
+        });
+    }
+</script>
+</body>
+</html>

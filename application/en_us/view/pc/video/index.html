@@ -1,0 +1,130 @@
+{extend name="pc/base/base"}
+<!--私有页面属性-->
+{block name="seo"}
+<title>{$parent.seo_title} - Wavlink</title>
+<meta name="description" content="{$parent.description}">
+<meta name="keywords" content="{$parent.keywords}">
+<link rel="stylesheet" href="__EN__/css/product/product-list.css" type="text/css">
+{/block}
+<!--主体内容开始-->
+{block name="body"}
+<!-- wavlink 横幅广告 -->
+<div class="col-xs-12" style="padding:0">
+    <a href="javascript:;"><img src="{$parent.image}" alt="" class="center-block img-responsive"></a>
+</div>
+<!-- wavlink 产品视频次导航 -->
+<div class="container-fluid">
+    <div class="row">
+        <div class="option bg-white afterf col-lg-10 col-lg-offset-1 col-xs-12" style="padding:0">
+            <div class="search_product bg-white col-xs-12" style="padding:10px 5px 0; display: block">
+                <form class="afterf" action="{:url('/'.$code.'/search/product')}" method="GET" style="padding:0">
+                    <!-- 2018-4-21 星期六 4:10 删除input标签的内边距 padding: -->
+                    <input name="key" type="text" placeholder="{$Think.lang.key_empty}">
+                    <!-- value="{$Think.lang.search}" -->
+                    <input type="submit"  value="Search" class="color-white" style="border:1px solid #333 !important; background:#333">
+                </form>
+            </div>
+            <div class="list_box bg-white col-xs-12" style="border-top: 10px solid #f2f2f2; padding:8px 0">
+                <div class="text-center col-xs-12" style="padding: 0">
+                    {empty name="child"}
+                    <div class="col-sm-2 col-xs-4"  style="padding:0">
+                        <p>
+                            <a class="child-a" href="#">
+                                <img src="http://cloud.wavlink.com/index.php?user/publicLink&fid=972ddb_eQK3mmn7EyyauOAS_x3TTtLNvxgz1ZUOQDlByS_jvXg8row_pP8LnjYlnf3x-1pAuB0O0uAuBb-0rUIRNDAzqTMWCmvP1CUMGbjMGMdSF-0efhgMwJjm5wlMOeVmk&file_name=/charging.svg" class="img-responsive center-block" alt="">
+                                Sorry,No data
+                            </a>
+                        </p>
+                    </div>
+                    {else /}
+                    {volist name="child" id="vo"}
+                    {if condition="$vo.id eq $parent.id"}
+                    <div class="col-sm-2 col-xs-4 category_child" style="padding:0">
+                        <p>
+                            <a class="child-a" href="{:url('/'.$code.'/video/'.$vo.url_title)}">
+                                {empty name="$vo.image"}
+                                <img src="https://cloud.wavlink.com/index.php?user/publicLink&fid=f950e3WQWFrQtZqOBmbZFGLB-qn3XUPYvgu1XET9Dr9TC0JiyBsC-s_ljsdLgjQHw9W7JEk2R41HIThPEQGWNsjt0UBbUzIdDM4fuoMEnhpgVlfqCf7cMbuBEFpHGw3B6q1gIzZhjSpyN-s&file_name=/4.png" class="img-responsive center-block" alt="">
+                                {else /}
+                                <img src="{$vo.image}" class="img-responsive center-block" alt="{$vo.name}">
+                                {/empty}
+                                {$vo.name}
+                            </a>
+                        </p>
+                    </div>
+                    {else /}
+                    <div class="col-sm-2 col-xs-4"  style="padding:0">
+                        <p>
+                            <a class="child-a" href="{:url('/'.$code.'/video/'.$vo.url_title)}">
+                                {empty name="$vo.image"}
+                                <img src="https://cloud.wavlink.com/index.php?user/publicLink&fid=f950e3WQWFrQtZqOBmbZFGLB-qn3XUPYvgu1XET9Dr9TC0JiyBsC-s_ljsdLgjQHw9W7JEk2R41HIThPEQGWNsjt0UBbUzIdDM4fuoMEnhpgVlfqCf7cMbuBEFpHGw3B6q1gIzZhjSpyN-s&file_name=/4.png" class="img-responsive center-block" alt="">
+                                {else /}
+                                <img src="{$vo.image}" class="img-responsive center-block" alt="{$vo.name}">
+                                {/empty}
+                                {$vo.name}
+                            </a>
+                        </p>
+                    </div>
+                    {/if}
+                    {/volist}
+                    {/empty}
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- wavlink 产品 video列表 -->
+<div class="Pro_list col-lg-12 col-md-12 col-sm-12 col-xs-12" style="padding:0">
+    <div class="Pro_list_cont col-lg-10 col-md-12 col-lg-offset-1 col-sm-12 col-xs-12">
+        {empty name="video"}
+        <div class="col-lg-4 col-md-4 col-sm-6 col-xs-12">
+            <a href="#">
+                <img src="__EN__/img/no_picture.jpg" alt="" class="img-responsive center-block" style="padding: 10px;background: #fff;">
+                <div class="bg-white col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                    <h4 class="color-black" style="height: 48px"><strong>No data!</strong></h4>
+                    <p class="color-gray col-lg-6 col-md-6 col-sm-6 col-xs-6">Sorry</p>
+                    <div class="learn-more details col-lg-6 col-md-6 col-sm-6 col-xs-6 text-right">
+                        <span style="font-size: 1.2em">No data!</span>
+                        <!--<span>前往购买</span>-->
+                    </div>
+                </div>
+            </a>
+        </div>
+        {else /}
+        {volist name="video" id="vo"}
+        <div class="col-lg-4 col-md-4 col-sm-6 col-xs-12">
+            <a href="{:url('/'.$code.'/Video/detail/'.$vo.url_title)}">
+                <img src="{$vo.image}" alt="{$vo.name}" class="img-responsive center-block"
+                     style="padding: 10px;background: #fff;">
+                <div class="bg-white col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                    <h4 class="color-black" style="height: 48px"><strong>{$vo.name}</strong></h4>
+                    <p class="color-gray col-lg-6 col-md-6 col-sm-6 col-xs-6">Download</p>
+                    <div class="learn-more details col-lg-6 col-md-6 col-sm-6 col-xs-6 text-right">
+                        <span style="font-size: 1.2em">Learn more</span>
+                        <!--<span>前往购买</span>-->
+                    </div>
+                </div>
+            </a>
+        </div>
+        {/volist}
+        {/empty}
+        
+    </div>
+</div>
+<!--分页-->
+<div class="nav_page col-md-10 col-md-offset-1 col-xs-12">
+    {:pagination($video)}
+</div>
+{/block}
+<!--主体内容结束-->
+<!--私有业务js开始-->
+{block name="js"}
+<script>
+    var $vid_cont = $("div.video_cont");
+    var $video = $("div.video_cont > video");
+
+    $vid_cont.click(function(){
+        $video.attr("autoplay","autoplay");
+        $video.attr("poster","")
+    });
+</script>
+{/block}

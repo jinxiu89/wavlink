@@ -1,0 +1,261 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <link rel="stylesheet" href="__COMMON__/css/bootstrap.min.css">
+    <link rel="stylesheet" href="__COMMON__/css/font-awesome.min.css">
+    <!--wavlink公共部分-->
+    <link rel="stylesheet" href="__USER__/css/wavlink_user_public.css">
+    {block name="title"}
+
+    {/block}
+    <!--wavlink用户中心私有部分-->
+    {block name="style"}
+
+    {/block}
+</head>
+<body>
+<header>
+    <div class="logo">
+        <h1>
+            <a href="#">
+                <img class="hidden-xs" src="__USER__/img/icon/wavlink-logo.png" alt="wavlink用户中心"
+                     title="返回睿因(wavlink)官网首页">
+            </a>
+        </h1>
+    </div>
+    <div class="title visible-xs">
+        <a href="#">
+            <i class="icon-angle-left"></i>
+        </a>
+        <p>{:lang('Experience Center')}</p>
+        <a href="https://www.wavlink.com">
+            <i class="icon-home"></i>
+        </a>
+    </div>
+    <div class="icons">
+        <div>
+            <i class="icon-user"></i>
+            <span>{:getNameById(session('CustomerInfo', '', 'Customer'))}</span>
+        </div>
+        <!--<div>-->
+            <!--<i class="icon-bell-alt"></i>-->
+            <!--<span>2</span>-->
+        <!--</div>-->
+        <div>
+            <i class="icon-off"></i>
+            <span onclick="logout()">{:lang('Exit')}</span>
+        </div>
+    </div>
+</header>
+<div>
+    <img class="img-responsive center-block visible-xs" src="__USER__/img/318168.jpg" alt="title图">
+</div>
+
+<section>
+    <div>
+        {block name="path"}
+        <div class="path">
+            <ul>
+                <li><a href="https://www.wavlink.com">首页</a></li>
+                <li> ></li>
+                <li><a href="1-public.html">个人中心</a></li>
+                <li> ></li>
+                <li><a href="#">基本信息</a></li>
+            </ul>
+        </div>
+        {/block}
+        {block name="navbar"}
+        {include file="base/navbar" /}
+        {/block}
+        {block name="main"}
+        <div class="main">
+            <div class="main_title">
+                <h2>基本信息</h2>
+            </div>
+            <div class="main_container">
+                <ul>
+                    <li>修改基本信息</li>
+                    <li>修改密码</li>
+                    <li>修改邮箱</li>
+                </ul>
+                <div>
+                    <div class="basic_info">
+                        <form action="">
+                            <div>
+                                <label for="frastName">姓氏</label>
+                                <input id="frastName" type="text" placeholder="please enter your frist name">
+                            </div>
+                            <div>
+                                <label for="lastName">名字</label>
+                                <input id="lastName" type="text" placeholder="please enter your last name">
+                            </div>
+                            <div>
+                                <label for="selectSex">称谓</label>
+                                <select name="selectSex" id="selectSex">
+                                    <option value="保密">保密</option>
+                                    <option value="先生">先生</option>
+                                    <option value="女士">女士</option>
+                                </select>
+                            </div>
+                            <div>
+                                <label for="email">邮箱</label>
+                                <input id="email" type="text" placeholder="11111111@qq.com" readonly="readonly">
+                                <i class="icon-pencil"></i>
+                            </div>
+                            <div>
+                                <label for="password">密码</label>
+                                <input id="password" type="text" placeholder="***********" readonly="readonly">
+                                <i class="icon-pencil"></i>
+                            </div>
+                            <div>
+                                <label for="county">国家</label>
+                                <select name="county" id="county">
+                                    <option value="常用" disabled="disabled">常用</option>
+                                    <option value="中国">中国</option>
+                                    <option value="美国">美国</option>
+                                    <option value="A" disabled="disabled">A</option>
+                                    <option value="Andorra">Andorra</option>
+                                </select>
+                            </div>
+                            <div>
+                                <label for="phone">电话</label>
+                                <select name="phone" id="phones">
+                                    <option value="常用" disabled="disabled">常用</option>
+                                    <option value="中国">中国+86</option>
+                                    <option value="常用">常用</option>
+                                    <option value="常用">常用</option>
+                                </select>
+                                <input id="phone" type="text" placeholder="please enter your phone number">
+                            </div>
+                            <div>
+                                <label for="postalCode">邮编</label>
+                                <input id="postalCode" type="text" placeholder="please enter your postal code">
+                            </div>
+                            <div>
+                                <label for="profession">职业</label>
+                                <input id="profession" type="text" placeholder="please enter your profession">
+                            </div>
+                            <div>
+                                <label for="billingAddress">账单地址</label>
+                                <input id="billingAddress" type="text" placeholder="please enter your billing address">
+                            </div>
+                            <div>
+                                <label for="mailingAddress">邮寄地址</label>
+                                <input id="mailingAddress" type="text" placeholder="please enter your mailing address">
+                            </div>
+                            <div>
+                                <label for="whereToKnow">您是通过哪种途径知道我们的网站</label>
+                                <input id="whereToKnow" type="text" placeholder="How do you know our website">
+                            </div>
+                            <div>
+                                <button class="btn-group">保存</button>
+                            </div>
+                        </form>
+                    </div>
+                    <div class="change_password">
+                        <form action="">
+                            <div>
+                                <label for="oldPassword">旧密码</label>
+                                <input id="oldPassword" type="text" placeholder="Please enter the old password">
+                            </div>
+                            <div>
+                                <label for="newPassword">新密码</label>
+                                <input id="newPassword" type="text" placeholder="Please enter the new password">
+                            </div>
+                            <div>
+                                <label for="newPasswordSure">确认新密码</label>
+                                <input id="newPasswordSure" type="text" placeholder="Please confirm the new password">
+                            </div>
+                            <div>
+                                <button class="btn-group">保存</button>
+                            </div>
+                        </form>
+                    </div>
+                    <div class="change_email">
+                        <form action="">
+                            <div>
+                                <label for="changeEmail">邮箱</label>
+                                <input id="changeEmail" type="text" placeholder="Please enter your new email">
+                            </div>
+                            <div>
+                                <button class="btn-group">下一步</button>
+                            </div>
+                        </form>
+                        <div>
+                            <p>温馨提示：</p>
+                            <p>1、修改绑定邮箱后，请您前往您的新邮箱进行验证；</p>
+                            <p>2、完成邮箱验证后，您需要重新登录。</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        {/block}
+    </div>
+</section>
+
+<footer>
+    <div>Copyright © 2018 Wavlink.com All Rights Reserved.</div>
+    <div>
+        <span><a href="#">免责声明</a></span>
+        <span><a href="#">隐私声明</a></span>
+    </div>
+</footer>
+<script rel="stylesheet" src="__COMMON__/js/jquery-3.2.1.min.js"></script>
+<!--<script type="text/javascript" src="__STATIC__/admin/lib/jquery/1.9.1/jquery.min.js"></script>-->
+<script type="text/javascript" src="__STATIC__/admin/lib/layer/2.4/layer.js"></script>
+<script src="__USER__/js/wavlink_user_public.js"></script>
+<script>
+    function logout() {
+        window.location.href='/customer/logout'
+    }
+</script>
+{block name="js"}
+<!--私有JS-->
+<!--<script>-->
+    <!--$(document).ready(function () {-->
+        <!--var liNumbers = $('div.main_container>ul>li'),-->
+            <!--divNumbers = $('div.main_container>div>div'),-->
+            <!--divpassword = $('div.main_container>div>div.change_password'),-->
+            <!--divemail = $('div.main_container>div>div.change_email');-->
+        <!--for (var i = 0; i < liNumbers.length; i++) {-->
+            <!--(function (i) {-->
+                <!--liNumbers[i].onclick = function () {-->
+                    <!--liNumbers.eq(i).css('background', '#fff');-->
+                    <!--liNumbers.eq(i).siblings().css('background', '#f2f2f2');-->
+                    <!--divNumbers.eq(i).siblings().css('display', 'none');-->
+                    <!--divNumbers.eq(i).fadeIn();-->
+                <!--}-->
+            <!--})(i)-->
+        <!--}-->
+        <!--$('div.basic_info>form input#password').next('i').click(function () {-->
+            <!--divpassword.fadeIn();-->
+            <!--divpassword.siblings().css('display', 'none');-->
+            <!--liNumbers.eq(1).css('background', '#fff');-->
+            <!--liNumbers.eq(1).siblings().css('background', '#f2f2f2')-->
+        <!--});-->
+        <!--$('div.basic_info>form input#email').next('i').click(function () {-->
+            <!--divemail.fadeIn();-->
+            <!--divemail.siblings().css('display', 'none');-->
+            <!--liNumbers.eq(2).css('background', '#fff');-->
+            <!--liNumbers.eq(2).siblings().css('background', '#f2f2f2')-->
+        <!--});-->
+    <!--})-->
+<!--</script>-->
+{/block}
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+

@@ -1,0 +1,30 @@
+<!--包含头部文件-->
+{include file="public/content_header" /}
+
+<!--包含菜单文件-->
+{include file="public/menu" /}
+<!--主体部分-->
+<section class="Hui-article-box">
+    <nav class="breadcrumb"><i class="Hui-iconfont">&#xe67f;</i> 首页
+        <span class="c-gray en">&gt;</span>
+        内容管理
+        <span class="c-gray en">&gt;</span>
+        仪表盘
+        <a class="btn btn-success radius r" style="line-height:1.6em;margin-top:3px"
+           href="javascript:location.replace(location.href);" title="刷新"><i class="Hui-iconfont">&#xe68f;</i></a>
+    </nav>
+
+    <div class="Hui-article">
+        <article class="cl pd-20" style="min-height: 51em;">
+            <p class="f-20 text-success">欢迎登入Wavlink网站后台系统</p>
+        </article>
+        {include file="public/explain" /}
+    </div>
+</section>
+<!--包含footer文件-->
+{include file="public/footer" /}
+<script>
+    $(document).ready(function () {
+        $("#content").addClass("current");
+    });
+</script>

@@ -1,0 +1,107 @@
+<!--继承框架-->
+{extend name="pc/base/base"}
+{block name="seo"}
+<title>{$parent.seo_title} - Wavlink </title>
+<meta name="description" content="{$parent.description}">
+<meta name="keywords" content="{$parent.keywords}">
+<link rel="stylesheet" href="__EN__/css/faq/faq.css" type="text/css">
+{/block}
+{block name="banner"}
+<header class="FAQ">
+    <div class="banner">
+        <div>
+            <img class="img-responsive center-block img_pc" src="https://cloud.wavlink.com/index.php?user/publicLink&fid=46aagZ3ZbSnnAJ1GBo3aXSkvrNS4QYjNdujY7QNNTszqkOf4J1azinjB67ckny9QgkSGo244OyurBauj_6xS4EUjZcsh8Wa4cnoT-RC4jAQ9r1S3jts5K-qDI_TP1EAlcuCMJn6JaaWdJwL0xx8MJw26S9o&file_name=/FAQ_PC-2.jpg" alt="">
+        </div>
+    </div>
+    <div class="nav">
+        <div class="nav_place col-sm-6 col-xs-12">
+            <!--<span style="color: #888">Home：</span>-->
+            <ul>
+                <li><a href="{:url('/'.$code.'/faq')}">FAQ</a></li>
+                <li> > </li>
+                {if condition="$parent.parent_id gt 0"}
+                <li class="addInnerHTML"><a href="{:url('/'.$code.'/faq/'.$parent.url_title)}">{$parent.name}</a></li>
+                {/if}
+            </ul>
+        </div>
+        <div class="nav_search">
+            <form action="{:url('/'.$code.'/search/faq')}">
+                <input type="text" name="key" placeholder="">
+                <input type="submit" value="{$Think.lang.search}">
+            </form>
+        </div>
+    </div>
+</header>
+{/block}
+{block name="body"}
+<!--section-->
+<section>
+    <aside class="aside_nav">
+        <h3>FAQ<i class="icon-angle-right"></i></h3>
+        <ul>
+            {empty name="$cate"}
+            <li><a href="#">Sorry,no data.</a></li>
+            {else /}
+            {volist name="$cate" id="vo"}
+            {if condition="$parent.name eq $vo.name"}
+            <li style="background-color: #ccc"><a href="{:url('/'.$code.'/faq/'.$vo.url_title)}" data-id="{$vo.id}">{$vo.name}</a></li>
+            {else /}
+            <li><a href="{:url('/'.$code.'/faq/'.$vo.url_title)}" data-id="{$vo.id}">{$vo.name}</a></li>
+            {/if}
+            {/volist}
+            {/empty}
+        </ul>
+    </aside>
+    <main class="main_content">
+        <div>
+            <ul>
+                {empty name="faq"}
+                <li>
+                    <h5>Sorry,there is no data in this category.</h5>
+                </li>
+                {else /}
+                {volist name="faq" id="vo"}
+                <li>
+                    <h5><a href="{:url('/'.$code.'/faq/details/'.$vo.url_title)}">{$vo.problem}</a></h5>
+                    <!--<p>{$vo.problem}</p>-->
+                    <span>Update time:{$vo.update_time|strtotime|date="d/m/Y",###}</span>
+                </li>
+                {/volist}
+                {/empty}
+            </ul>
+        </div>
+        <!--分页-->
+        <div>
+            <div class="nav_page text-center col-lg-10 col-lg-offset-1 col-xs-12" style="padding:0">
+                <ul class="pagination">
+                   {:pagination($faq)}
+                </ul>
+            </div>
+        </div>
+    </main>
+</section>
+{/block}
+{block name="js"}
+<script>
+    $(document).ready(function(){
+
+        if ($(document).width() < 768){
+            $("section>.aside_nav>h3").click(function(){
+                $(this).children("i").toggleClass("icon-angle-right").toggleClass("icon-angle-down");
+                $(this).next("ul").slideToggle();
+            })
+        }
+        let asideNav = $("aside.aside_nav>ul>li>a");
+        for(let i=0;i<asideNav.length;i++){
+            asideNav.eq(i).click(function(){
+
+                $("header.FAQ>div.nav>div.nav_place>ul>li.addInnerHTML").html(this.innerHTML)
+            })
+        }
+//        $("header.FAQ>div.nav>div.nav_place>ul>li>a").click(function(){
+//
+//            $("header.FAQ>div.nav>div.nav_place>ul>li.addInnerHTML").html(" ")
+//        });
+    })
+</script>
+{/block}

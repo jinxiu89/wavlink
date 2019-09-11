@@ -1,0 +1,110 @@
+{include file="public/headers"/}
+<article class="cl pd-20">
+    <form action="" method="post" class="form form-horizontal" id="form-admin-add">
+        <div class="row cl">
+            <label class="form-label col-xs-3 col-sm-2"><span class="c-red">*</span>Prefix:</label>
+            <div class="formControls col-xs-2 col-sm-3">
+                <input id="code" class="input-text" value="" placeholder="" name="prefix">
+            </div>
+            <div class="formControls col-xs-2 col-sm-5">
+                <span style="font-size: 12px;color: red">可通过下面工具生成代码到左边的框中</span>
+            </div>
+        </div>
+        <div class="row cl">
+            <label class="form-label col-xs-3 col-sm-2"><span class="c-red">*</span>ERP订单号:</label>
+            <div class="formControls col-xs-4 col-sm-2">
+                <input class="input-text" value="" placeholder="" name="erp_no">
+            </div>
+        </div>
+        <div class="row cl">
+            <label class="form-label col-xs-3 col-sm-2"><span class="c-red">*</span>制造日期：</label>
+            <div class="formControls col-xs-3 col-sm-3">
+                <input type="date" name="prd_time" id="prd_time" class="input-text">
+            </div>
+            <div class="formControls col-xs-2 col-sm-6">
+                <span style="font-size: 12px;color: red">即生产任务单上的上线日期</span>
+            </div>
+        </div>
+        <div class="row cl">
+            <label class="form-label col-xs-3 col-sm-2"><span class="c-red">*</span>Model:</label>
+            <div class="formControls col-xs-4 col-sm-2">
+                <span class="select-box">
+				<select class="select" name="model_id">
+					<option>请选择</option>
+                    {volist name="model" id="vo"}
+                    <option value="{$vo.id}">{$vo.model}</option>
+                    {/volist}
+				</select>
+				</span>
+            </div>
+        </div>
+        <div class="row cl">
+            <label class="form-label col-xs-3 col-sm-2"><span class="c-red">*</span>本批次生产量:</label>
+            <div class="formControls col-xs-4 col-sm-2">
+                <input class="input-text" value="" placeholder="" name="count">
+            </div>
+        </div>
+        <div class="row cl">
+            <label class="form-label col-xs-3 col-sm-2"><span class="c-red">*</span>返修预留:</label>
+            <div class="formControls col-xs-4 col-sm-2">
+                <input class="input-text" value="" placeholder="" name="fix_count">
+            </div>
+            <div class="formControls col-xs-2 col-sm-8">
+                <span style="font-size: 12px;color: red">按照总批次的百分之10计算，入20000个批次就算2000个</span>
+            </div>
+        </div>
+        <div class="row cl">
+            <label class="form-label col-xs-3 col-sm-2"><span class="c-red">*</span>电源规格:</label>
+            <div class="formControls col-xs-9 col-sm-2">
+                <input class="input-text" value="" placeholder="" name="spec">
+            </div>
+            <div class="formControls col-xs-2 col-sm-8">
+                <span style="font-size: 12px;color: red">二位代码</span>
+            </div>
+        </div>
+        <div class="row cl">
+            <div class="col-xs-8 col-sm-9 col-xs-offset-4 col-sm-offset-3">
+                <input class="btn btn-primary radius" type="button" onclick="save('{:url('sn/index')}')"  value="&nbsp;&nbsp;提交&nbsp;&nbsp;">
+            </div>
+        </div>
+    </form>
+    <div class="form form-horizontal">
+        <div class="row cl">
+            <label class="form-label col-sm-10">通过下面的表单计算出年-周对照代码，以条码房出条码当天为基准</label>
+        </div>
+        <div class="row cl">
+            <div>
+                <label for="year" class="form-label col-sm-2">年：</label>
+                <div class="col-sm-2 formControls">
+                    <input id="year" class="input-text" type="text" placeholder="请输入年份" onkeyup="value=value.replace(/[^0-9]/g,'') ">
+                </div>
+            </div>
+        </div>
+        <div class="row cl">
+            <div>
+                <label for="month" class="form-label col-sm-2">月：</label>
+                <div class="col-sm-2 formControls">
+                    <input id="month" type="text" placeholder="请输入月份" class="input-text" onkeyup="value=value.replace(/[^0-9]/g,'') ">
+                </div>
+            </div>
+        </div>
+        <div class="row cl">
+            <div>
+                <label for="day" class="form-label col-sm-2">日：</label>
+                <div class="col-sm-2 formControls">
+                    <input id="day" type="text" placeholder="请输入日期" class="input-text" onkeyup="value=value.replace(/[^0-9]/g,'') ">
+                </div>
+            </div>
+        </div>
+        <div class="row cl">
+            <div class="col-xs-8 col-sm-9 col-xs-offset-4 col-sm-offset-3">
+                <input class="btn btn-primary radius" type="button" id="btn"  value="&nbsp;&nbsp;生成&nbsp;&nbsp;">
+            </div>
+        </div>
+    </div>
+</article>
+{include file="public/footer"/}
+<script type="text/javascript" src="__STATIC__/admin/js/common.js"></script>
+<script type="text/javascript" src="__STATIC__/admin/js/SNCode.js"></script>
+</body>
+</html>

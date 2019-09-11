@@ -1,0 +1,14 @@
+<!--包含头部文件-->
+{extend name="mobile/base/base" /}
+{block name="seo"}
+<title>{$result.seo_title} - Wavlink</title>
+<meta name="description" content="{$result.description}">
+<meta name="keywords" content="{$result.keywords}">
+{/block}
+{block name="banner"}
+{$result.image}
+{/block}
+{block name="body"}
+{$result.mobile_content}
+{/block}
+<!--页脚部分-->

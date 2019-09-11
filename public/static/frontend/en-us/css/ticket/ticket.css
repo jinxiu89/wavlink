@@ -1,0 +1,31 @@
+.p_padding{
+    padding: 5px 12px ;
+}
+
+
+
+
+
+
+
+
+@media screen and (min-width:1024px ) {
+    .ticket_add{
+        padding-top: 19px
+    }
+}
+@media screen and (min-width: 768px) and (max-width: 1023px){
+    .ticket_add{
+        padding-top: 60px
+    }
+}
+@media screen and (min-width:460px ) and (max-width: 767px){
+    .ticket_add{
+        padding-top:61px
+    }
+}
+@media screen and (min-width: 318px) and (max-width: 459px){
+    .ticket_add{
+        padding-top:51px
+    }
+}

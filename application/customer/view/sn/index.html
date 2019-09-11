@@ -1,0 +1,70 @@
+{extend name="base/base_reg" /}
+{block name="title"}
+<title>验证</title>
+{/block}
+{block name="style"}
+<link rel="stylesheet" href="__USER__/css/login.css">
+{/block}
+{block name="right"}
+<div class="user_login_right">
+    <div>
+        <h1>
+            <a href="https://www.wavlink.com"><img class="img-responsive center-block"
+                                                   src="__USER__/img/icon/wavlink_logo.png"
+                                                   alt="{:lang('Experience Center')}"></a>
+        </h1>
+    </div>
+    <div>
+        <form action="" id="login">
+            <div>
+                <label for="user_email"><i class="icon-user"></i></label>
+                <input id="user_email" type="text" name="sn" placeholder="请输入序列号">
+                <button class="btn-success">查询</button>
+            </div>
+        </form>
+    </div>
+</div>
+{/block}
+{block name="js"}
+<script type="text/javascript" src="__STATIC__/admin/lib/jquery.validation/1.14.0/jquery.validate.js"></script>
+<script type="text/javascript" src="__STATIC__/admin/lib/jquery.validation/1.14.0/validate-methods.js"></script>
+<script type="text/javascript" src="__STATIC__/admin/lib/layer/2.4/layer.js"></script>
+{if condition="$lang == 'zh_cn'"}
+<script type="text/javascript" src="__STATIC__/admin/lib/jquery.validation/1.14.0/messages_zh.js"></script>
+{/if}
+<script>
+    $("#login").validate({
+        rules: {
+            sn: {
+                required: true,
+                minlength:15,
+                maxlength:18
+            }
+        },
+        errorElement: "em",
+        onkeyup: false,
+        focusCleanup: true,
+        success: "valid",
+        submitHandler: function (form) {
+            $.ajax({
+                url: '/customer/sn/Verification',
+                type: "post",
+                dataType: "json",
+                data: $("form").serialize(),//提交表单数据
+                success: function (result) {
+                    console.log(result);
+                    if (result.status === 1 || result.status === "1") {
+                        $('#model').val(result.models['model']);
+                        $('#country').val(result.country);
+                        $('#category').val(result.cate);
+                        $('#prd_time').val(result.prd_time);
+                    } else {
+                        //不成功表示没有结果
+                        layer.msg(result.data,{icon:5,time:2000});
+                    }
+                }
+            })
+        }
+    });
+</script>
+{/block}

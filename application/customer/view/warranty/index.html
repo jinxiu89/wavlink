@@ -1,0 +1,102 @@
+{extend name="base/base"}
+{block name="title"}
+<title>{:lang('Warranty')}</title>
+{/block}
+{block name="style"}
+<link rel="stylesheet" href="__USER__/css/warranty.css">
+{/block}
+{block name="path"}
+<div class="path">
+    <ul>
+        <li><a href="https://www.wavlink.com">{:lang('home')}</a></li>
+        <li> ></li>
+        <li><a href="#">{:lang('Experience Center')}</a></li>
+        <li> ></li>
+        <li><a href="#">{:lang('Warranty')}</a></li>
+    </ul>
+</div>
+{/block}
+{block name="navbar"}
+{include file="base/navbar" /}
+{/block}
+{block name="main"}
+<div class="main">
+    <div class="main_title">
+        <h2>{:lang('Warranty')}</h2>
+    </div>
+    <div class="main_container">
+        <span class="l">
+            <a href="javascript:void(0);"
+               onclick="add('{:lang(\'Register Product\')}','/customer/warranty/register','800','680')"
+               class="btn btn-primary">{:lang('Register Product')}
+            </a>
+        </span>
+        {volist name="result" id="vo"}
+        <div class="product_container">
+            <ul>
+                <li>{:lang('Sn')}</li>
+                <li>{$vo.sn}</li>
+            </ul>
+            <ul>
+                <li>{:lang('Model')}</li>
+                <li>{$vo.model}</li>
+            </ul>
+            <ul>
+                <li>{:lang('Category')}</li>
+                <li>{$vo.category}</li>
+            </ul>
+            <ul>
+                <li>{:lang('Date Purchased')}</li>
+                <li>{$vo.create_time|strtotime|date='Y-m-d',###}</li>
+            </ul>
+            <ul>
+                <li>{:lang('Warranty Status')}</li>
+                <li>{$vo.expiry_time}</li>
+            </ul>
+            <ul>
+                <li>{:lang('Warranty Action')}</li>
+                <li>
+                    <span class="l"><a href="javascript:void(0);"
+                                       onclick="start('/customer/warranty/extend/{$vo.id}')"
+                                       class="btn btn-success">{:lang('Extend')}</a></span>
+                    <span class="l">
+                        {if condition="$vo.status != 3"}
+                        <a href="javascript:void(0);"
+                           onclick="add('{:lang(\'Apply warranty\')}','/customer/ticket/{$vo.user_id}/{$vo.sn}','800','680')"
+                           class="btn btn-info">{:lang('Apply')}</a>
+                        {else /}
+                        <a href="javascript:void(0);"
+                                       onclick="add('{:lang(\'Apply warranty\')}','/customer/ticket/{$vo.user_id}/{$vo.sn}','800','680')"
+                                       class="btn btn-info">{:lang('查看')}
+                        </a>
+                        {/if}
+                    </span>
+                </li>
+            </ul>
+        </div>
+        {/volist}
+        <div class="page_nav">
+            <div class="nav_page text-center">
+                <ul class="pagination">
+                    <li class="disabled"><span>&laquo;</span></li>
+                    <li class="active"><span>1</span></li>
+                    <li><a href="#">2</a></li>
+                    <li><a href="#">&raquo;</a></li>
+                </ul>
+            </div>
+        </div>
+    </div>
+    <div class="main_tips">
+        {:lang('Warranty tips')}
+    </div>
+</div>
+{/block}
+{block name="js"}
+<script type="text/javascript" src="__STATIC__/admin/h-ui/js/H-ui.js"></script>
+<script type="text/javascript" src="__STATIC__/admin/h-ui.admin/js/H-ui.admin.page.js"></script>
+<script type="text/javascript" src="__STATIC__/admin/js/common.js"></script>
+<script type="text/javascript" src="__STATIC__/admin/js/dialog.js"></script>
+<script>
+    $("#warranty").addClass("current");
+</script>
+{/block}

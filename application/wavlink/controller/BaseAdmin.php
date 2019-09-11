@@ -14,10 +14,15 @@ use app\wavlink\validate\Mark;
 use app\wavlink\validate\ParamMustBePositiveInt;
 use think\Controller;
 use think\Request;
+use think\Session;
 
 class BaseAdmin extends Controller
 {
     protected $currentLanguage;
+    protected $currentUser;
+    protected $beforeActionList = [
+        'isLogin', 'Auth'
+    ];
 
     /**
      * BaseAdmin constructor.
@@ -26,31 +31,49 @@ class BaseAdmin extends Controller
     public function __construct(Request $request = null)
     {
         parent::__construct($request);
-        if (!$this->isLogin()) {
-            $next = Request::instance()->url(true);
-            $this->redirect(url('login/index', ["next" => $next]));
-        }
     }
 
     /***
-     * @throws \think\db\exception\DataNotFoundException
-     * @throws \think\db\exception\ModelNotFoundException
-     * @throws \think\exception\DbException
      */
     public function _initialize()
     {
+        parent::_initialize();
         $userSession = session('userName', '', 'admin');
         $this->currentLanguage = session('current_language', 'admin');
         $mangerName = $userSession->name;
         $username = $userSession->username;
         $this->assign('mangerName', $mangerName);
         $this->assign('username', $username);
-        //认证
+    }
+
+    /***
+     * //判定是否登录
+     * 20190911
+     *
+     */
+    public function isLogin()
+    {
+        if (Session::has('userName', 'admin')) {
+            $session = Session::get('userName', 'admin');
+            $this->currentUser = $session;
+            $this->assign('session', $session);
+        } else {
+            $next = Request::instance()->url(true);
+            $this->redirect(url('login/index', ["next" => $next]));
+        }
+    }
+
+    public function Auth()
+    {
+        $userSession = session('userName', '', 'admin');
+        $mangerName = $userSession->name;
+        $username = $userSession->username;
+        $this->assign('mangerName', $mangerName);
+        $this->assign('username', $username);
         $auth = new Auth();
         $request = Request::instance();
         $con = $request->controller();
         $action = $request->action();
-
         $name = $con . '/' . $action;
         $uid = $userSession->id;
         $notCheck = array('Index/index', 'Content/index', 'Service/index', 'System/index');//对一些（控制器/方法）不需要验证
@@ -76,22 +99,6 @@ class BaseAdmin extends Controller
         $this->assign('languages', $languages);
     }
 
-    //判定是否登录
-    public function isLogin()
-    {
-        //获取session
-        $user = $this->getLoginUser();
-        if ($user) {
-            return true;
-        }
-        return false;
-    }
-
-    public function getLoginUser()
-    {
-        $users = session('userName', '', 'admin');
-        return $users;
-    }
 
     /**
      * @return array

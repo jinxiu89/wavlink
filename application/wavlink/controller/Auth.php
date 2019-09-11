@@ -194,7 +194,7 @@ class Auth {
             if (!empty($rule['condition'])) { //根据condition进行验证
                 $this->getUserInfo($uid); //获取用户信息,一维数组
                 $command = preg_replace('/\{(\w*?)\}/', '$user[\'\\1\']', $rule['condition']);
-                @(eval('$condition=(' . $command . ');'));
+                (eval('$condition=(' . $command . ');'));
                 $condition && $authList[] = strtolower($rule['name']);
             } else {
                 $authList[] = strtolower($rule['name']); //只要存在就记录

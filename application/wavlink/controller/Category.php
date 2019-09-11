@@ -17,12 +17,12 @@ Class Category extends BaseAdmin
 
     public function index() {
         $parentId = input('get.parent_id', '0', 'intval');
-        $language_id = input('get.language_id', '', 'intval');
-        $result = (new CategoryModel())->getCategory($parentId, $language_id);
+        print_r($this->currentLanguage);
+        $result = (new CategoryModel())->getCategory($parentId, $this->currentLanguage->id);
         return $this->fetch('', [
             'category' => $result['data'],
             'counts' => $result['count'],
-            'language_id' => $language_id
+//            'language_id' => $language_id
         ]);
     }
 

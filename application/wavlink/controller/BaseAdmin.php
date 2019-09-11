@@ -38,12 +38,8 @@ class BaseAdmin extends Controller
     public function _initialize()
     {
         parent::_initialize();
-        $userSession = session('userName', '', 'admin');
-        $this->currentLanguage = session('current_language', 'admin');
-        $mangerName = $userSession->name;
-        $username = $userSession->username;
-        $this->assign('mangerName', $mangerName);
-        $this->assign('username', $username);
+
+
     }
 
     /***
@@ -54,9 +50,14 @@ class BaseAdmin extends Controller
     public function isLogin()
     {
         if (Session::has('userName', 'admin')) {
-            $session = Session::get('userName', 'admin');
-            $this->currentUser = $session;
-            $this->assign('session', $session);
+            $userSession = session('userName', '', 'admin');
+            $this->currentLanguage = session('current_language', '','admin');
+            $mangerName = $userSession->name;
+            $username = $userSession->username;
+            $this->assign('mangerName', $mangerName);
+            $this->assign('username', $username);
+            $this->currentUser = $userSession;
+            $this->assign('session', $userSession);
         } else {
             $next = Request::instance()->url(true);
             $this->redirect(url('login/index', ["next" => $next]));

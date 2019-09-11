@@ -5,6 +5,7 @@
  * Date: 2017/9/8
  * Time: 15:00
  */
+
 namespace app\common\model;
 
 class Language extends BaseModel
@@ -12,7 +13,8 @@ class Language extends BaseModel
     protected $table = 'language';//使用数据库里这个language表
 
     //检测管理员 管理哪个语言的网站
-    public static function getLanguageByIDs($ids) {
+    public static function getLanguageByIDs($ids)
+    {
         $map = [
             'id' => ['in', $ids],
             'status' => 1
@@ -29,10 +31,11 @@ class Language extends BaseModel
      * @throws \think\db\exception\ModelNotFoundException
      * @throws \think\exception\DbException
      */
-    public static function getLanguageCodeOrID($value){
-        if (isPositiveInteger($value)){
+    public static function getLanguageCodeOrID($value)
+    {
+        if (isPositiveInteger($value)) {
             return $value;
-        }else{
+        } else {
             $language = self::getIDStatusByCode($value);
             return $language['id'];
         }
@@ -46,7 +49,8 @@ class Language extends BaseModel
      * @throws \think\db\exception\ModelNotFoundException
      * @throws \think\exception\DbException
      */
-    public static function getIDStatusByCode($code = 'en_us') {
+    public static function getIDStatusByCode($code = 'en_us')
+    {
         $map = [
             'code' => $code
         ];
@@ -55,7 +59,8 @@ class Language extends BaseModel
     }
 
     //根据语言id获取语言code
-    public static function getCodeById($id = '') {
+    public static function getCodeById($id = '')
+    {
         $map = [
             'status' => 1,
             'id' => $id
@@ -66,12 +71,21 @@ class Language extends BaseModel
 
     }
 
-
-    public function getLanguageByLanguageId($language_id) {
+    /***
+     * @param $language_id
+     * @return array
+     * @throws \think\Exception
+     * @throws \think\db\exception\DataNotFoundException
+     * @throws \think\db\exception\ModelNotFoundException
+     * @throws \think\exception\DbException
+     *
+     */
+    public function getLanguageByLanguageId($language_id)
+    {
         $data = [
             'status' => 1,
             'id' => $language_id
         ];
-        return $this->where($data)->select();
+        return $this->where($data)->find()->toArray();
     }
 }

@@ -5,6 +5,7 @@
  * Date: 2017/8/23
  * Time: 10:37
  */
+
 namespace app\wavlink\controller;
 
 use app\wavlink\validate\UrlTitleMustBeOnly;
@@ -12,28 +13,33 @@ use think\Request;
 use app\common\model\Category as CategoryModel;
 use app\wavlink\validate\Category as CategoryValidate;
 
+/***
+ * Class Category
+ * @package app\wavlink\controller
+ */
 Class Category extends BaseAdmin
 {
 
-    public function index() {
+    public function index()
+    {
         $parentId = input('get.parent_id', '0', 'intval');
         print_r($this->currentLanguage);
-        $result = (new CategoryModel())->getCategory($parentId, $this->currentLanguage->id);
+        $result = (new CategoryModel())->getCategory($parentId, $this->currentLanguage['id']);
         return $this->fetch('', [
             'category' => $result['data'],
             'counts' => $result['count'],
-//            'language_id' => $language_id
         ]);
     }
 
-    public function add() {
+    public function add()
+    {
         //获取语言
         $language_id = $this->MustBePositiveInteger(input('get.language_id'));
         if (input('get.parent_id')) {
             //如有存在parent_id ,就是添加子分类
             $category_id = input('get.parent_id');
 //            $category = CategoryModel::get(['status' => 1, 'id' => $category_id, 'language_id' => $language_id]);
-           
+
             $this->assign('parent_id', $category_id);
         } else {
             //添加一级分类
@@ -44,7 +50,8 @@ Class Category extends BaseAdmin
         ]);
     }
 
-    public function save() {
+    public function save()
+    {
         if (request()->isAjax()) {
             (new CategoryValidate())->goCheck();
             (new UrlTitleMustBeOnly())->goCheck();
@@ -72,7 +79,8 @@ Class Category extends BaseAdmin
      * @return array|mixed
      * @throws \think\exception\DbException
      */
-    public function edit($id = 0, $language_id) {
+    public function edit($id = 0, $language_id)
+    {
         $id = $this->MustBePositiveInteger($id);
         $language_id = $this->MustBePositiveInteger($language_id);
 
@@ -96,7 +104,8 @@ Class Category extends BaseAdmin
     /**
      * 排序功能开发
      */
-    public function listorder() {
+    public function listorder()
+    {
         if (request()->isAjax()) {
             $data = input('post.'); //id ,type ,language_id，map
             //得到它的parent_id
@@ -135,7 +144,8 @@ Class Category extends BaseAdmin
 //        }
 //    }
 //批量放回回收站
-    public function allRecycle(Request $request) {
+    public function allRecycle(Request $request)
+    {
         try {
             $ids = $request::instance()->post();
             foreach ($ids as $k => $v) {

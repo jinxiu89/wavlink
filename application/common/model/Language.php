@@ -8,6 +8,8 @@
 
 namespace app\common\model;
 
+use think\exception\DbException;
+
 class Language extends BaseModel
 {
     protected $table = 'language';//使用数据库里这个language表
@@ -75,9 +77,6 @@ class Language extends BaseModel
      * @param $language_id
      * @return array
      * @throws \think\Exception
-     * @throws \think\db\exception\DataNotFoundException
-     * @throws \think\db\exception\ModelNotFoundException
-     * @throws \think\exception\DbException
      *
      */
     public function getLanguageByLanguageId($language_id)
@@ -86,6 +85,11 @@ class Language extends BaseModel
             'status' => 1,
             'id' => $language_id
         ];
-        return $this->where($data)->find()->toArray();
+        try {
+            return self::get($data)->toArray();
+        } catch (Exception $e) {
+            //
+        } catch (DbException $e) {
+        }
     }
 }

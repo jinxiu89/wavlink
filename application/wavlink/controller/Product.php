@@ -16,17 +16,24 @@ use app\wavlink\validate\UrlTitleMustBeOnly;
 use think\Request;
 use app\wavlink\validate\Product as ProductValidate;
 
+/***
+ * Class Product
+ * @package app\wavlink\controller
+ *
+ */
 Class Product extends BaseAdmin
 {
     //产品列表，status=1
+    /***
+     * @return mixed
+     * 产品列表
+     */
     public function index()
     {
-        $language_id = $this->MustBePositiveInteger(input('get.language_id'));
-
-        $product = ProductModel::getDataByStatus(1, $language_id);
-        $category = (new CategoryModel())->getAllCategory($language_id);
-        if (!empty(input('get.category_id') || !empty(input('get.name')))) {
-            $data = input('get.');
+        $product = ProductModel::getDataByStatus(1, $this->currentLanguage['id']);
+        $category = (new CategoryModel())->getAllCategory($this->currentLanguage['id']);
+        $data = input('get.');
+        if (!empty($data)) {
             $result = (new ProductModel())->getSelectProduct($data['name'], $data['category_id'], $data['language_id']);
             $this->assign('product', $result['data']);
             $this->assign('counts', $result['count']);
@@ -40,14 +47,14 @@ Class Product extends BaseAdmin
         }
         return $this->fetch('', [
             'category' => $category,
-            'language_id' => $language_id,
+            'language_id' => $this->currentLanguage['id'],
         ]);
     }
 
     //回收站的产品的列表,status=-1
     public function product_recycle()
     {
-        $result = ProductModel::getDataByStatus(-1);
+        $result = ProductModel::getDataByStatus(-1,$this->currentLanguage['id']);
         return $this->fetch('', [
             'product' => $result['data'],
             'counts' => $result['count'],
@@ -87,15 +94,14 @@ Class Product extends BaseAdmin
     public function product_edit($id = 0)
     {
         $id = $this->MustBePositiveInteger($id);
-        $language_id = $this->MustBePositiveInteger(input('get.language_id'));
         $product = ProductModel::get($id);
         //获取语言
         //获取分类
-        $categorys = (new CategoryModel())->getChildsCategory($language_id);
+        $categorys = (new CategoryModel())->getChildsCategory($this->currentLanguage['id']);
         $cateID = ProductModel::getProductCategory($id);
         return $this->fetch('', [
             'categorys' => $categorys,
-            'language_id' => $language_id,
+            'language_id' => $this->currentLanguage['id'],
             'product' => $product,
             'cateID' => $cateID,
         ]);

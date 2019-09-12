@@ -3,9 +3,9 @@
 <section class="Hui-article-box">
     <nav class="breadcrumb"><i class="Hui-iconfont">&#xe67f;</i> 首页
         <span class="c-gray en">&gt;</span>
-        {$language_id|getLanguage}产品管理
+       产品管理
         <span class="c-gray en">&gt;</span>
-        {$language_id|getLanguage}产品列表
+        产品列表
         <a class="btn btn-success radius r" style="line-height:1.6em;margin-top:3px"
            href="javascript:location.replace(location.href);" title="刷新"><i class="Hui-iconfont">&#xe68f;</i></a>
     </nav>
@@ -28,15 +28,14 @@
         </form>
         <article class="cl pd-20" style="min-height: 51em;padding: 5px 10px 0 10px">
             <div class="cl pd-5 bg-1 bk-gray mt-20" style="line-height: 31px;">
-                <span class="l"> <a href="javascript:;" onclick="allRecycle('{:url(\'product/allRecycle\')}')" class="btn btn-danger radius"><i
-                        class="Hui-iconfont">&#xe6e2;</i> 批量回收</a> <a class="btn btn-primary radius" onclick="index_add('添加{$language_id|getLanguageOne}产品','{:url('product/add',['language_id'=>$language_id])}')" href="javascript:;"><i class="Hui-iconfont">&#xe600;</i> 添加{$language_id|getLanguage}产品</a></span>
+                <span class="l"><a class="btn btn-primary radius" onclick="index_add('添加产品','{:url(\'product/add\')}')" href="javascript:;"><i class="Hui-iconfont">&#xe600;</i> 添加产品</a></span>
                 <span class="r">共有数据：<strong>{$counts}</strong> 条</span>
             </div>
             <div class="mt-20">
             <table class="table table-border table-bordered table-bg table-hover table-sort">
                 <thead>
                 <tr>
-                    <th scope="col" colspan="14">{$language_id|getLanguage}产品列表</th>
+                    <th scope="col" colspan="14">产品列表</th>
                 </tr>
                 <tr class="text-c">
                     <th width="20"><input type="checkbox" name="" value=""></th>
@@ -47,7 +46,7 @@
                     <th width="200">所属分类</th>
                     <th width="28">排序</th>
                     <th width="120">加入时间</th>
-                    <th>搜索优化</th>
+                    <th width="28">搜索优化</th>
                     <th width="160">操作</th>
                 </tr>
                 </thead>
@@ -64,7 +63,7 @@
                     <td>{$vo.create_time}</td>
                     <td class="text-c"><a href="javascript:void(0);" onclick="rankSearch(this)" data-id="{$vo.id}" class="ml-5 mark" style="text-decoration:none"><i class="Hui-iconfont i_size_color" >&#xe61b;</i></a></td>
                     <td class="td-manage">
-                        <a title="编辑" href="javascript:;" onclick="index_edit('产品编辑','{:url(\'product/product_edit\',[\'id\'=>$vo.id,\'language_id\'=>$language_id])}')" class="ml-5 " style="text-decoration:none"><i  class="Hui-iconfont i_edit_color">&#xe6df;</i></a>
+                        <a title="编辑" href="javascript:;" onclick="index_edit('产品编辑','{:url(\'product/product_edit\',[\'id\'=>$vo.id])}')" class="ml-5 " style="text-decoration:none"><i  class="Hui-iconfont i_edit_color">&#xe6df;</i></a>
                         {empty name="$language_id"}
                         {else /}
                         <a title="置顶" href="javascript:;"  onclick="mark(this)" data-id ="{$vo.id}" data-type="4" data-map="{$category_id}" class="ml-5 mark" style="text-decoration:none"><i class="Hui-iconfont i_size_color" >&#xe684</i></a>
@@ -98,9 +97,7 @@
     $(document).ready(function () {
         $("#menu-product dt").addClass("selected");
         $("#menu-product dd").css("display","block");
-        var lan = $("input#language").val();
-        var id = "#product_product_"+lan;
-        $(id).addClass("current");
+        $("#product_product").addClass("current");
         $("#content").addClass("current");
     });
 </script>

@@ -53,11 +53,9 @@
             <dt><i class="Hui-iconfont">&#xe620;</i> 产品管理<i class="Hui-iconfont menu_dropdown-arrow">&#xe6d5;</i></dt>
             <dd>
                 <ul>
-                    {volist name="languages" id="vo"}
-                    <li id="product_product_{$vo.id}"><a class="product_product"
-                                                         href="{:url('product/index',['language_id'=>$vo.id])}"
-                                                         title="{$vo.name}产品管理">{$vo.id|getLanguage}产品管理</a>
-                        {/volist}
+                    <li id="product_product">
+                        <a class="product_product" href="{:url('product/index')}" title="产品管理">产品管理</a>
+                    </li>
                         <!--<li id="product_off"><a href="{:url('product/product_off')}" title="已下架的产品">已下架的产品</a></li>-->
                     <li id="product_recycle"><a href="{:url('product/product_recycle')}" title="回收站的产品">回收站的产品</a></li>
                 </ul>

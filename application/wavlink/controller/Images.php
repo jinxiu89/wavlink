@@ -11,6 +11,7 @@ namespace app\wavlink\controller;
 use app\common\model\Images as ImagesModel;
 use app\common\model\Featured as FeaturedModel;
 use app\wavlink\validate\Images as ImagesValidate;
+use think\Exception;
 use think\Request;
 
 /***
@@ -116,7 +117,7 @@ Class Images extends BaseAdmin
                 }
             }
             return show(1, '', '批量回收成功');
-        } catch (\Exception $e) {
+        } catch (Exception $e) {
             return show(0, $e->getMessage(), '', '', '');
         }
     }

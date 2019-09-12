@@ -14,10 +14,6 @@
         <article class="cl pd-20" style="min-height: 51em;">
 
             <div class="cl pd-5 bg-1 bk-gray mt-20" style="line-height: 31px;">
-                <span class="l">
-                    <!--<a href="javascript:;" onclick="delall('{:url('product/delAll')}')" class="btn btn-danger radius"><i-->
-                        <!--class="Hui-iconfont">&#xe6e2;</i> 批量删除</a> -->
-                </span>
                 <span class="r">共有数据：<strong>{$counts}</strong> 条</span>
             </div>
             <table class="table table-border table-bordered table-bg">
@@ -51,7 +47,7 @@
                     <td>{$vo.create_time}</td>
                     <td class="td-status text-c"><span class="label label-error radius">已回收</span></td>
                     <td class="td-manage">
-                        <a style="text-decoration:none" onClick="start('{:url('product/byStatus',['id'=>$vo.id,'status'=>1])}')" href="javascript:;" title="恢复"><i class="Hui-iconfont">&#xe601;</i></a>
+                        <a style="text-decoration:none" onClick="start('{:url(\'product/byStatus\',[\'id\'=>$vo.id,\'status\'=>1])}')" href="javascript:;" title="恢复"><i class="Hui-iconfont">&#xe601;</i></a>
                         <!--<a title="删除" href="javascript:;" onclick="del('{:url('product/productDel',['id'=>$vo.id])}')" class="ml-5" style="text-decoration:none"><i class="Hui-iconfont">&#xe6e2;</i></a></td>-->
                 </tr>
                 {/volist}

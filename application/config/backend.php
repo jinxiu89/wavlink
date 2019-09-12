@@ -31,7 +31,12 @@ Route::group('wavlink', function () {
     Route::get('/images/index', 'wavlink/images/index');
     Route::get('/images/add', 'wavlink/images/add');
     Route::get('/images/edit', 'wavlink/images/edit', [], ['id' => '\d+']);
-    Route::get('/images/images_recycle', 'wavlink/images/images_recycle', [], ['id' => '\d+']);
+    Route::get('/images/images_recycle', 'wavlink/images/images_recycle');
+    //产品管理
+    Route::get('/product/index', 'wavlink/product/index');
+    Route::get('/product/add', 'wavlink/product/add');
+    Route::get('/product/product_edit', 'wavlink/product/product_edit', [], ['id' => '\d+']);
+    Route::get('/product/product_recycle', 'wavlink/product/product_recycle');
 
 });
 
@@ -41,7 +46,13 @@ Route::group('wavlink', function () {
     Route::post('/category/save', 'wavlink/Category/save');
     Route::post('/Featured/save', 'wavlink/Featured/save');
     Route::post('/images/save', 'wavlink/Images/save');
+    Route::post('/product/save', 'wavlink/product/save');
     Route::post('/Category/byStatus', 'wavlink/Category/byStatus');
     Route::post('/Featured/byStatus', 'wavlink/Featured/byStatus');
     Route::post('/Images/byStatus', 'wavlink/Images/byStatus');
+    Route::post('/product/byStatus', 'wavlink/product/byStatus');
+    Route::post('/Images/listorder', 'wavlink/Images/listorder');
+    Route::post('/product/listorder', 'wavlink/product/listorder');
+    Route::post('/product/sort', 'wavlink/product/sort');
+    Route::post('/product/mark', 'wavlink/product/mark');
 });

@@ -34,8 +34,6 @@
             <!--</ul>-->
             <!--</dd>-->
             <!--</dl>-->
-
-
         </dl>
         {/if}
         {if condition="in_array('images/index',$access)"}
@@ -43,16 +41,13 @@
             <dt><i class="Hui-iconfont">&#xe613;</i> 首页产品管理<i class="Hui-iconfont menu_dropdown-arrow">&#xe6d5;</i></dt>
             <dd>
                 <ul>
-                    {volist name="languages" id="vo"}
-                    <li id="images_list_{$vo.id}"><a href="{:url('images/index',['language_id'=>$vo.id])}"
-                                                     title="{$vo.name}推荐位产品管理">{$vo.id|getLanguage}推荐位产品管理</a></li>
-                    {/volist}
-                    <li id="images_recycle"><a href="{:url('images/images_recycle')}" title="回收站">首页产品回收站管理</a></li>
+                    <li id="images_list"><a href="{:url('images/index')}"
+                                                     title="推荐位产品管理">推荐位产品管理</a></li>
+                    <li id="images_recycle"><a href="{:url('images/images_recycle')}" title="回收站">回收站</a></li>
                 </ul>
             </dd>
         </dl>
         {/if}
-
         {if condition="in_array('product/index',$access)"}
         <dl id="menu-product">
             <dt><i class="Hui-iconfont">&#xe620;</i> 产品管理<i class="Hui-iconfont menu_dropdown-arrow">&#xe6d5;</i></dt>

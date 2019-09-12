@@ -78,7 +78,7 @@ Class BaseModel extends Model
     {
         if (empty($language_id)) {
             $map = [
-                'status' => $status
+                'status' => $status,
             ];
             $order = [
                 'language_id' => 'desc',

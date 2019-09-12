@@ -11,8 +11,7 @@
     </nav>
     <div class="page-container">
         <div class="cl pd-5 bg-1 bk-gray mt-20"><span class="l">
-        <!--<a href="javascript:;" onclick="delall('{:url('Featured/delAll')}')" class="btn btn-danger radius"><i class="Hui-iconfont">&#xe6e2;</i> 批量删除</a> -->
-        <a class="btn btn-primary radius" href="javascript:;" onclick="add('添加推荐位','{:url('featured/add')}','800','600')"><i class="Hui-iconfont">&#xe600;</i> 添加推荐位</a></span>
+        <a class="btn btn-primary radius" href="javascript:;" onclick="add('添加推荐位','{:url(\'featured/add\')}','800','600')"><i class="Hui-iconfont">&#xe600;</i> 添加推荐位</a></span>
             <span class="r">共有数据：<strong>{$counts}</strong> 条</span></div>
         <div class="mt-20">
             <table class="table table-border table-bordered table-bg table-hover table-sort">
@@ -37,12 +36,11 @@
                     <td>{$vo.code}</td>
                     <td>{$vo.description}</td>
                     <td>{$vo.create_time}</td>
-                    <td class="td-status">{$vo.status|status}</td>
+                    <td class="td-status">
+                        <a style="text-decoration:none" onClick="stop('{:url(\'Featured/byStatus\',[\'id\'=>$vo.id,\'status\'=>$vo.status==1?-1:1])}')" href="javascript:;" title="停用">{$vo.status|status}</a>
+                    </td>
                     <td class="td-manage">
-                        <a style="text-decoration:none" onClick="stop('{:url('Featured/byStatus',['id'=>$vo.id,'status'=>0])}')" href="javascript:;" title="停用"><i class="Hui-iconfont" style="font-size: 20px;color: red">&#xe6de;</i></a>
-                        <a style="text-decoration:none" class="ml-5" onClick="edit('编辑','{:url('Featured/edit',['id'=>$vo.id])}','800','600')" href="javascript:void 0" title="编辑"><i class="Hui-iconfont" style="font-size: 20px;color: blue">&#xe6df;</i></a>
-                        <a style="text-decoration:none" onClick="start('{:url('Featured/byStatus',['id'=>$vo.id,'status'=>1])}')" href="javascript:;" title="恢复"><i class="Hui-iconfont" style="font-size: 20px;color: green">&#xe6dc;</i></a>
-
+                        <a style="text-decoration:none" class="ml-5" onClick="edit('编辑','{:url(\'Featured/edit\',[\'id\'=>$vo.id])}','800','600')" href="javascript:void 0" title="编辑"><i class="Hui-iconfont" style="font-size: 20px;color: blue">&#xe6df;</i></a>
                     </td>
 
                 </tr>

@@ -5,6 +5,7 @@
  * Date: 2017/9/8
  * Time: 15:00
  */
+
 namespace app\common\model;
 
 use app\common\model\Language as LanguageModel;
@@ -14,10 +15,11 @@ Class Images extends BaseModel
     protected $table = 'images';
 
     // 根据状态和语言查找 所有首页产品
-    public function getImages($status, $language_id) {
+    public function getImages($status, $language_id)
+    {
         $data = [
-            'status' => $status,
-            'language_id' => $language_id
+            'language_id' => $language_id,
+            'status' => $status
         ];
         $order = [
             'featured_id' => 'desc',
@@ -28,7 +30,8 @@ Class Images extends BaseModel
     }
 
     //获取推荐位的产品图片
-    public function getImagesByFeatured($code = "en_us", $featured = 4) {
+    public function getImagesByFeatured($code = "en_us", $featured = 4)
+    {
         $language_id = LanguageModel::getLanguageCodeOrID($code);
         $data = [
             'status' => 1,

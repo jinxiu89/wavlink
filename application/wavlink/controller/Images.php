@@ -5,90 +5,104 @@
  * Date: 2017/8/23
  * Time: 10:46
  */
+
 namespace app\wavlink\controller;
 
 use app\common\model\Images as ImagesModel;
 use app\common\model\Featured as FeaturedModel;
 use app\wavlink\validate\Images as ImagesValidate;
 use think\Request;
+
+/***
+ * Class Images
+ * @package app\wavlink\controller
+ * 首页推荐位图片产品管理
+ */
 Class Images extends BaseAdmin
 {
-    //幻灯片图片
-    public function index() {
+    /***
+     * @return mixed|\think\response\View
+     * @throws \think\exception\DbException
+     * 20190912
+     * 移出url多余的参数
+     *
+     */
+    public function index()
+    {
         $featured = FeaturedModel::all(['status' => 1]);
-        $language_id = $this->MustBePositiveInteger(input('get.language_id'));
-        if (!empty(input('get.featured_id'))) {
-            $res = (new ImagesModel())->getImagesByFeatured($language_id,input('get.featured_id'));
+        $featured_id = input('get.featured_id');
+        if (!empty($featured_id)) {
+            $res = (new ImagesModel())->getImagesByFeatured($this->currentLanguage['id'], $featured_id);
             return view('', [
                 'image' => $res['data'],
                 'counts' => $res['count'],
                 'featured' => $featured,
                 'featured_id' => $_GET['featured_id'],
-                'language_id' => $language_id
+                'language_id' => $this->currentLanguage['id']
             ]);
         }
-
-        $result = (new ImagesModel())->getImages(1,$language_id);
+        $result = (new ImagesModel())->getImages(1,$this->currentLanguage['id']);
         return $this->fetch('', [
             'image' => $result['data'],
             'counts' => $result['count'],
             'featured' => $featured,
-            'language_id' => $language_id,
+            'language_id' => $this->currentLanguage['id'],
             'featured_id' => ''
         ]);
     }
 
     //回收站图片列表,status=-1
-    public function images_recycle() {
-        $result = ImagesModel::getDataByStatus(-1);
+    public function images_recycle()
+    {
+        $result = ImagesModel::getDataByStatus(-1, $this->currentLanguage['id']);
         return $this->fetch('', [
             'image' => $result['data'],
             'counts' => $result['count'],
         ]);
     }
 
-    public function add() {
-        //获取语言
-        $language_id = input('get.language_id', '', 'intval');
+    public function add()
+    {
         //获取推荐位
         $featured = FeaturedModel::all(['status' => 1]);
         return $this->fetch('', [
             'featured' => $featured,
-            'language_id' => $language_id
+            'language_id' => $this->currentLanguage['id']
         ]);
     }
 
-    public function save() {
-        if (request()->isAjax()){
+    public function save()
+    {
+        if (request()->isAjax()) {
             (new ImagesValidate())->goCheck();
-            $data=input('post.');
-            if (!empty($data['id'])){
+            $data = input('post.');
+            if (!empty($data['id'])) {
                 return $this->update($data);
             }
             $res = (new ImagesModel())->add($data);
             if ($res) {
-                return show(1,'','','','', '添加成功');
+                return show(1, '', '', '', '', '添加成功');
             } else {
-                return show(1,'','','','', '添加失败');
+                return show(1, '', '', '', '', '添加失败');
             }
         }
     }
 
-    public function edit($id = 0) {
+    public function edit($id = 0)
+    {
         //获取正常的推荐位分类
         $featured = FeaturedModel::all(['status' => 1]);
-        //获取语言
-        $language_id = $this->MustBePositiveInteger(input('get.language_id'));
         $images = ImagesModel::get($id);
         return $this->fetch('', [
             'images' => $images,
             'featured' => $featured,
-            'language_id' => $language_id
+            'language_id' => $this->currentLanguage['id']
         ]);
     }
 
     //批量修改
-    public function allChange(Request $request) {
+    public function allChange(Request $request)
+    {
         try {
             $ids = $request::instance()->post();
             foreach ($ids as $k => $v) {
@@ -108,11 +122,12 @@ Class Images extends BaseAdmin
     }
 
     //排序操作
-    public function listorder() {
+    public function listorder()
+    {
         if (request()->isAjax()) {
             $data = input('post.'); //id ,type ,language_id
             $map = [
-                'featured_id'=>$data['map'],
+                'featured_id' => $data['map'],
             ];
             unset($data['map']);
             self::order($data, $map);

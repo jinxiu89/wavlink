@@ -18,6 +18,12 @@ Route::group('wavlink', function () {
     Route::get('/content/index','wavlink/content/index');
     //分类url
     Route::get('/category/index','wavlink/Category/index');
+    Route::get('/category/add','wavlink/Category/add');
+    Route::post('/category/save','wavlink/Category/save');
+    Route::get('/Category/byStatus','wavlink/Category/byStatus');
+    Route::post('/Category/byStatus','wavlink/Category/byStatus');
+    Route::get('/Category/edit','wavlink/Category/edit');
+
     
 });
 

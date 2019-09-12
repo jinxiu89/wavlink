@@ -8,10 +8,9 @@
             <dt><i class="Hui-iconfont">&#xe681;</i> 分类管理<i class="Hui-iconfont menu_dropdown-arrow">&#xe6d5;</i></dt>
             <dd>
                 <ul>
-                    {volist name="languages" id="vo"}
-                    <li id="product_category_{$vo.id}"><a href="{:url('Category/index',['language_id'=>$vo.id])}"
-                                                          title="{$vo.name}分类管理">{$vo.id|getLanguage}分类管理</a></li>
-                    {/volist}
+                    <li id="product_category">
+                        <a href="{:url('Category/index')}" title="分类管理">分类管理</a>
+                    </li>
                 </ul>
             </dd>
         </dl>

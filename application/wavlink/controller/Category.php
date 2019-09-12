@@ -19,11 +19,15 @@ use app\wavlink\validate\Category as CategoryValidate;
  */
 Class Category extends BaseAdmin
 {
-
+    /***
+     * @return mixed
+     * 20190912 更新
+     * 1. 语言ID 在登录时就记录下来当前管理的语言
+     * 所有的语言记录用于数据过滤
+     */
     public function index()
     {
         $parentId = input('get.parent_id', '0', 'intval');
-        print_r($this->currentLanguage);
         $result = (new CategoryModel())->getCategory($parentId, $this->currentLanguage['id']);
         return $this->fetch('', [
             'category' => $result['data'],
@@ -33,8 +37,6 @@ Class Category extends BaseAdmin
 
     public function add()
     {
-        //获取语言
-        $language_id = $this->MustBePositiveInteger(input('get.language_id'));
         if (input('get.parent_id')) {
             //如有存在parent_id ,就是添加子分类
             $category_id = input('get.parent_id');
@@ -46,7 +48,7 @@ Class Category extends BaseAdmin
             $this->assign('parent_id', 0);
         }
         return $this->fetch('', [
-            'language_id' => $language_id,
+            'language_id' => $this->currentLanguage['id'],
         ]);
     }
 
@@ -75,21 +77,18 @@ Class Category extends BaseAdmin
     /**
      * 编辑分类页面
      * @param int $id
-     * @param $language_id
      * @return array|mixed
      * @throws \think\exception\DbException
      */
-    public function edit($id = 0, $language_id)
+    public function edit($id = 0)
     {
         $id = $this->MustBePositiveInteger($id);
-        $language_id = $this->MustBePositiveInteger($language_id);
-
         $category = CategoryModel::get($id);
         if ($category['parent_id'] > 0) {
             $cate = CategoryModel::all([
                 'status' => 1,
                 'parent_id' => 0,
-                'language_id' => $language_id
+                'language_id' => $this->currentLanguage['id'],
             ]);
             $this->assign('cate', $cate);
         } else {
@@ -97,7 +96,7 @@ Class Category extends BaseAdmin
         }
         return $this->fetch('', [
             'category' => $category,
-            'language_id' => $language_id
+            'language_id' => $this->currentLanguage['id'],
         ]);
     }
 

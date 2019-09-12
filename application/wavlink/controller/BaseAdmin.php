@@ -88,16 +88,16 @@ class BaseAdmin extends Controller
 //                    $this->error('Sorry,没有权限.', url('index/index'));
                 }
             }
-            $language_ids = $userSession->language_id;
-            $languages = LanguageModel::getLanguageByIDs($language_ids);
+            $language_ids = $userSession->language_id;//待清理
+            $languages = LanguageModel::getLanguageByIDs($language_ids);//待清理
         } else {
             //获取全部语言
-            $languages = LanguageModel::all(['status' => 1]);
+            $languages = LanguageModel::all(['status' => 1]);//待清理
             $rules = $auth->getAllAuth();
             $this->assign('access', $rules);
         }
         $this->assign('uid', $uid);
-        $this->assign('languages', $languages);
+        $this->assign('languages', $languages);//待清理
     }
 
 

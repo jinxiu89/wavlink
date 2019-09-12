@@ -10,6 +10,7 @@ test/
 .DS_Store
 .vscode
 config.php
+database.php
 
 
 

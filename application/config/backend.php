@@ -37,6 +37,11 @@ Route::group('wavlink', function () {
     Route::get('/product/add', 'wavlink/product/add');
     Route::get('/product/product_edit', 'wavlink/product/product_edit', [], ['id' => '\d+']);
     Route::get('/product/product_recycle', 'wavlink/product/product_recycle');
+    //营销管理
+    Route::get('/marketing/index', 'wavlink/marketing/index');
+    Route::get('/marketing/add', 'wavlink/Marketing/add');
+    Route::get('/marketing/edit', 'wavlink/Marketing/edit', [], ['id' => '\d+']);
+
 
 });
 
@@ -47,10 +52,12 @@ Route::group('wavlink', function () {
     Route::post('/Featured/save', 'wavlink/Featured/save');
     Route::post('/images/save', 'wavlink/Images/save');
     Route::post('/product/save', 'wavlink/product/save');
+    Route::post('/marketing/save', 'wavlink/Marketing/save');
     Route::post('/Category/byStatus', 'wavlink/Category/byStatus');
     Route::post('/Featured/byStatus', 'wavlink/Featured/byStatus');
     Route::post('/Images/byStatus', 'wavlink/Images/byStatus');
     Route::post('/product/byStatus', 'wavlink/product/byStatus');
+    Route::post('/marketing/byStatus', 'wavlink/Marketing/byStatus');
     Route::post('/Images/listorder', 'wavlink/Images/listorder');
     Route::post('/product/listorder', 'wavlink/product/listorder');
     Route::post('/product/sort', 'wavlink/product/sort');

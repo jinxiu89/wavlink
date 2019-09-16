@@ -81,7 +81,7 @@ Class Product extends BaseModel
     }
 
     //后台搜索多条件模糊查询
-    public function getSelectProduct($name, $category_id, $code) {
+    public function getSelectProduct($name='', $category_id, $code) {
         $language_id = LanguageModel::getLanguageCodeOrID($code);
         //多条件模糊查询
         $map['status'] = 1;

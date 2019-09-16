@@ -33,7 +33,7 @@ Class Product extends BaseAdmin
         $product = ProductModel::getDataByStatus(1, $this->currentLanguage['id']);
         $category = (new CategoryModel())->getAllCategory($this->currentLanguage['id']);
         $data = input('get.');
-        if (!empty($data)) {
+        if (!empty($data) and !empty($data['name'])) {
             $result = (new ProductModel())->getSelectProduct($data['name'], $data['category_id'], $data['language_id']);
             $this->assign('product', $result['data']);
             $this->assign('counts', $result['count']);
@@ -54,7 +54,7 @@ Class Product extends BaseAdmin
     //回收站的产品的列表,status=-1
     public function product_recycle()
     {
-        $result = ProductModel::getDataByStatus(-1,$this->currentLanguage['id']);
+        $result = ProductModel::getDataByStatus(-1, $this->currentLanguage['id']);
         return $this->fetch('', [
             'product' => $result['data'],
             'counts' => $result['count'],
@@ -81,7 +81,7 @@ Class Product extends BaseAdmin
             (new ProductValidate())->goCheck();
             (new UrlTitleMustBeOnly())->goCheck();
             $data = input('post.');
-            $data['clicks']=100;
+            $data['clicks'] = 100;
             $res = (new ProductModel())->productSave($data);
             if ($res) {
                 return show(1, '', '', '', '', '添加成功');

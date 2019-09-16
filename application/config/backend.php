@@ -65,10 +65,20 @@ Route::group('wavlink', function () {
     Route::get('manger/add', 'wavlink/manger/add');
     Route::get('manger/edit', 'wavlink/manger/edit', [], ['id' => '\d+']);
     Route::get('manger/password', 'wavlink/manger/password', [], ['id' => '\d+']);
+    //禁用的管理员
+    Route::get('manger/manger_stop','wavlink/manger/manger_stop');
+
     //权限组
     Route::get('auth_group/index', 'wavlink/AuthGroup/index');
     Route::get('auth_group/add', 'wavlink/AuthGroup/add');
     Route::get('auth_group/edit', 'wavlink/AuthGroup/edit', [], ['id' => '\d+']);
+    //权限
+    Route::get('auth_rule/index', 'wavlink/AuthRule/index');
+    Route::get('auth_rule/add', 'wavlink/AuthRule/add');
+    Route::get('auth_rule/edit', 'wavlink/AuthRule/edit', [], ['id' => '\d+']);
+
+    //服务模块
+    Route::get('service/index','wavlink/service/index');
 
 
 });
@@ -104,8 +114,10 @@ Route::group('wavlink', function () {
     Route::post('/Setting/save', 'wavlink/Setting/save');
     Route::post('/manger/save', 'wavlink/manger/save');
     Route::post('/auth_group/save', 'wavlink/AuthGroup/save');
+    Route::post('/auth_rule/save', 'wavlink/AuthRule/save');
     Route::post('/language/byStatus', 'wavlink/Language/byStatus');
     Route::post('/About/byStatus', 'wavlink/About/byStatus');
     Route::post('/manger/byStatus', 'wavlink/manger/byStatus');
     Route::post('/auth_group/byStatus', 'wavlink/AuthGroup/byStatus');
+    Route::post('/auth_rule/byStatus', 'wavlink/AuthRule/byStatus');
 });

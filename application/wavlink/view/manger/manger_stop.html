@@ -48,9 +48,9 @@
                     <td>{$vo.mobile}</td>
                     <td>{$vo.email}</td>
                     <td>{$vo.create_time}</td>
-                    <td class="td-status text-c"><span class="label label-success radius">已启用</span></td>
+                    <td class="td-status text-c"><span class="label label-success radius">已禁用</span></td>
                     <td class="td-manage">
-                        <a style="text-decoration:none" onClick="start('{:url('Manger/byStatus',['id'=>$vo.id,'status'=>1])}')" href="javascript:;" title="恢复"><i class="Hui-iconfont" style="font-size: 20px;color: green">&#xe6dc;</i></a>
+                        <a style="text-decoration:none" onClick="start('{:url(\'Manger/byStatus\',[\'id\'=>$vo.id,\'status\'=>1])}')" href="javascript:;" title="恢复"><i class="Hui-iconfont" style="font-size: 20px;color: green">&#xe6dc;</i></a>
                        </td>
                 </tr>
                 {/volist}

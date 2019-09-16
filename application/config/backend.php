@@ -14,6 +14,9 @@ Route::group('wavlink', function () {
     Route::get('/login/index', 'wavlink/login/index');
     Route::get('/login/logout', 'wavlink/login/logout');
     Route::get('/login', 'wavlink/login/index');
+    /***
+     * 内容管理模块路由
+     */
     //几个首页
     Route::get('/index', 'wavlink/index/index');
     Route::get('/content/index', 'wavlink/content/index');
@@ -41,13 +44,33 @@ Route::group('wavlink', function () {
     Route::get('/marketing/index', 'wavlink/marketing/index');
     Route::get('/marketing/add', 'wavlink/Marketing/add');
     Route::get('/marketing/edit', 'wavlink/Marketing/edit', [], ['id' => '\d+']);
-
-
+    /***
+     * 系统管理模块路由
+     *
+     */
+    Route::get('/system/index', 'wavlink/System/index');
+    //语言
+    Route::get('/language/index', 'wavlink/Language/index');
+    Route::get('/language/add', 'wavlink/Language/add');
+    Route::get('/language/edit', 'wavlink/Language/edit', [], ['id' => '\d+']);
+    Route::get('/language/language_stop', 'wavlink/Language/language_stop');
+    //关于我们
+    Route::get('/About/index', 'wavlink/About/index');
+    Route::get('/About/add', 'wavlink/About/add');
+    Route::get('/About/edit', 'wavlink/About/edit', [], ['id' => '\d+']);
+    //站点配置
+    Route::get('setting/index','wavlink/Setting/index');
 });
 
 //post请求组
 Route::group('wavlink', function () {
+    /***
+     * 登录请求post接口路由
+     */
     Route::post('/login/index', 'wavlink/login/index');
+    /***
+     * 内容模块POST请求接口
+     */
     Route::post('/category/save', 'wavlink/Category/save');
     Route::post('/Featured/save', 'wavlink/Featured/save');
     Route::post('/images/save', 'wavlink/Images/save');
@@ -62,4 +85,13 @@ Route::group('wavlink', function () {
     Route::post('/product/listorder', 'wavlink/product/listorder');
     Route::post('/product/sort', 'wavlink/product/sort');
     Route::post('/product/mark', 'wavlink/product/mark');
+    /**
+     * 系统管理模块Post请求路由
+     */
+    Route::post('/language/save', 'wavlink/Language/save');
+    Route::post('/About/save', 'wavlink/About/save');
+    Route::post('/Setting/save', 'wavlink/Setting/save');
+    Route::post('/language/byStatus', 'wavlink/Language/byStatus');
+    Route::post('/About/byStatus', 'wavlink/About/byStatus');
+
 });

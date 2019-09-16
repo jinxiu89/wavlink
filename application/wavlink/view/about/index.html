@@ -5,7 +5,7 @@
         <span class="c-gray en">&gt;</span>
         关于我们管理
         <span class="c-gray en">&gt;</span>
-        {$language_id|getLanguage}关于我们列表
+        关于我们列表
         <a class="btn btn-success radius r" style="line-height:1.6em;margin-top:3px"
            href="javascript:location.replace(location.href);" title="刷新"><i class="Hui-iconfont">&#xe68f;</i></a>
     </nav>
@@ -13,12 +13,9 @@
         <article class="cl pd-20" style="min-height: 51em">
             <div class="cl pd-5 bg-1 bk-gray mt-20">
 				<span class="l">
-				<a href="javascript:void(0);" onclick="" class="btn btn-danger radius"><i class="Hui-iconfont">&#xe6e2;</i> 批量删除todo</a>
-                     <a href="javascript:;" onclick="allRecycle('{:url('About/allRecycle')}')" class="btn btn-danger radius"><i
-                             class="Hui-iconfont">&#xe6e2;</i> 批量更新排序id加100</a>
-				<a class="btn btn-primary radius" data-title="添加语言" _href="article-add.html"
-                   onclick="index_add('添加{$language_id|getLanguageOne}关于我们','{:url('About/add',['language_id'=>$language_id])}','800','600')" href="javascript:void(0);"><i
-                        class="Hui-iconfont">&#xe600;</i> 添加{$language_id|getLanguage}关于我们</a>
+				<a class="btn btn-primary radius" data-title="添加" _href="article-add.html"
+                   onclick="index_add('添加','{:url(\'About/add\')}','800','600')" href="javascript:void(0);"><i
+                        class="Hui-iconfont">&#xe600;</i> 添加</a>
 				</span>
                 <span class="r">共有数据：<strong>{$count}</strong> 条</span>
             </div>
@@ -29,34 +26,32 @@
                         <th scope="col" colspan="12">列表</th>
                     </tr>
                     <tr class="text-l">
-                        <th width="25"><input type="checkbox" name=""  value=""></th>
-                        <th width="80">ID</th>
-                        <th width="80">名称</th>
-                        <th width="80">URL标题</th>
-                        <th width="80">关键词</th>
-                        <th width="60">语言</th>
-                        <th width="60">排序</th>
-                        <th width="60">创建时间</th>
-                        <th width="60">状态</th>
-                        <th width="120">操作</th>
+                        <th width="5%">ID</th>
+                        <th width="15%">名称</th>
+                        <th width="20%">URL标题</th>
+                        <th>关键词</th>
+                        <th width="5%">语言</th>
+                        <th width="5%">排序</th>
+                        <th width="8%">创建时间</th>
+                        <th width="3%">状态</th>
+                        <th width="">操作</th>
                     </tr>
                     </thead>
                     <tbody>
                     {volist name="about" id="vo"}
-                    <tr class="text-c">
-                        <td><input type="checkbox" value="{$vo.id}"  name="id"></td>
-                        <td>{$vo.id}</td>
+                    <tr class="text-l">
+                        <td class="text-c">{$vo.id}</td>
                         <td>{$vo.name}</td>
                         <td>{$vo.url_title}</td>
                         <td>{$vo.keywords}</td>
-                        <td>{$vo.language_id|getLanguage}</td>
-                        <td>{$vo.listorder}</td>
+                        <td class="text-c">{$vo.language_id|getLanguage}</td>
+                        <td class="text-c">{$vo.listorder}</td>
                         <td>{$vo.create_time}</td>
                         <td class="td-status">{$vo.status|status}</td>
                         <td class="f-14 td-manage">
-                            <a style="text-decoration:none" onClick="stop('{:url('About/byStatus',['id'=>$vo.id,'status'=>-1])}')" href="javascript:;" title="停用"><i class="Hui-iconfont" style="font-size: 20px;color: red">&#xe6de;</i></a>
-                            <a style="text-decoration:none" class="ml-5" onClick="index_edit('编辑','{:url('About/edit',['language_id'=>$language_id,'id'=>$vo.id])}','800','600')" href="javascript:void 0" title="编辑"><i class="Hui-iconfont" style="font-size: 20px;color: blue">&#xe6df;</i></a>
-                            <a style="text-decoration:none" onClick="start('{:url('About/byStatus',['id'=>$vo.id,'status'=>1])}')" href="javascript:;" title="恢复"><i class="Hui-iconfont" style="font-size: 20px;color: green">&#xe6dc;</i></a>
+                            <a style="text-decoration:none" onClick="stop('{:url(\'About/byStatus\',[\'id\'=>$vo.id,\'status\'=>-1])}')" href="javascript:;" title="停用"><i class="Hui-iconfont" style="font-size: 20px;color: red">&#xe6de;</i></a>
+                            <a style="text-decoration:none" class="ml-5" onClick="index_edit('编辑','{:url(\'About/edit\',[\'id\'=>$vo.id])}','800','600')" href="javascript:void 0" title="编辑"><i class="Hui-iconfont" style="font-size: 20px;color: blue">&#xe6df;</i></a>
+                            <a style="text-decoration:none" onClick="start('{:url(\'About/byStatus\',[\'id\'=>$vo.id,\'status\'=>1])}')" href="javascript:;" title="恢复"><i class="Hui-iconfont" style="font-size: 20px;color: green">&#xe6dc;</i></a>
                            </td>
                     </tr>
                     {/volist}
@@ -75,9 +70,7 @@
     $(document).ready(function () {
         $("#menu-about dt").addClass("selected");
         $("#menu-about dd").css("display","block");
-        var lan = $("input#language").val();
-        var id = "#system_about_"+lan;
-        $(id).addClass("current");
+        $("#system_about").addClass("current");
         $("#system").addClass("current");
     });
 </script>

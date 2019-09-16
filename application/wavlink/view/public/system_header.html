@@ -20,9 +20,7 @@
             </dt>
             <dd>
                 <ul>
-                    {volist name="languages" id="vo"}
-                    <li id="system_about_{$vo.id}"><a href="{:url('About/index',['language_id'=>$vo.id])}" title="{$vo.name}关于我们">{$vo.id|getLanguage}关于我们</a></li>
-                    {/volist}
+                    <li id="system_about"><a href="{:url('About/index')}" title="关于我们">关于我们</a></li>
                 </ul>
             </dd>
         </dl>

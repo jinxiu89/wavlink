@@ -11,58 +11,72 @@
     </nav>
     <div class="Hui-article">
         <article class="cl pd-20" style="min-height: 51em">
-            <div class="cl pd-5 bg-1 bk-gray mt-20">
-				<span class="l">
-				<a href="javascript:void(0);" onclick="" class="btn btn-danger radius"><i class="Hui-iconfont">&#xe6e2;</i> 批量删除</a>
-				<a class="btn btn-primary radius" data-title="添加语言" _href="article-add.html"
-                   onclick="add('添加语言','{:url('Setting/add')}','800','600')" href="javascript:void(0);"><i
-                        class="Hui-iconfont">&#xe600;</i> 添加配置</a>
-				</span>
+            <div class="panel">
+                <div class="panel-body">
+                    <form action="" method="post" class="form form-horizontal" id="form-system-base">
+                        <div id="tab-system" class="HuiTab">
+                            <div class="tabBar cl"><span>基本设置</span><span>安全设置</span><span>邮件设置</span></div>
+                            <div class="tabCon">
+                                <div class="row clearfix">
+                                    <label class="form-label col-xs-4 col-sm-2"><span class="c-red">*</span>网站标题：</label>
+                                    <div class="form-controls col-xs-8 col-sm-9">
+                                        <input type="text" id="title" name="title" placeholder="控制在25个字、50个字节以内" {notempty name="$data.title"} value="{$data.title}" {else /} value="" {/notempty} class="input-text">
+                                    </div>
+                                </div>
+                                <div class="row clearfix">
+                                    <label class="form-label col-xs-4 col-sm-2"><span class="c-red">*</span>关键词：</label>
+                                    <div class="form-controls col-xs-8 col-sm-9">
+                                        <input type="text" id="keywords" name="keywords" placeholder="5个左右,8汉字以内,用英文,隔开" {notempty name="$data.keywords"}value="{$data.keywords}" {else /} value="" {/notempty} class="input-text">
+                                    </div>
+                                </div>
+                                <div class="row clearfix">
+                                    <label class="form-label col-xs-4 col-sm-2">备案号：</label>
+                                    <div class="form-controls col-xs-8 col-sm-9">
+                                        <input type="text" id="icp" name="icp" placeholder="京ICP备00000000号" {notempty name="$data.icp"}value="{$data.icp}" {else /} {/notempty} class="input-text">
+                                    </div>
+                                </div>
+                                <div class="row clearfix">
+                                    <label class="form-label col-xs-4 col-sm-2"><span class="c-red">*</span>口号：</label>
+                                    <div class="form-controls col-xs-8 col-sm-9">
+                                        <input type="text" id="slogan" name="slogan" placeholder="空制在80个汉字，160个字符以内" {notempty name="$data.slogan"} value="{$data.slogan}" {else /} value="" {/notempty} class="input-text" >
+                                    </div>
+                                </div>
+                                <div class="row clearfix">
+                                    <label class="form-label col-xs-4 col-sm-2"><span class="c-red">*</span>描述：</label>
+                                    <div class="form-controls col-xs-8 col-sm-9">
+                                        <textarea class="textarea"  id="description" name="description" cols="" rows="5">{notempty name="$data.description"}{$data.description}{/notempty}</textarea>
+                                    </div>
+                                </div>
+                                <div class="row cl">
+                                    <label class="form-label col-xs-4 col-sm-2"><span class="c-red">*</span>底部授权信息：</label>
+                                    <div class="formControls col-xs-8 col-sm-9">
+                                        <textarea class="textarea" name="information" id="information" cols="30" rows="10">{notempty name="$data.information"}{$data.information}{/notempty}</textarea>
+                                    </div>
+                                </div>
+                                <div class="row clearfix">
+                                    <label class="form-label col-xs-4 col-sm-2">统计代码：</label>
+                                    <div class="form-controls col-xs-8 col-sm-9">
+                                        <textarea class="textarea" name="analytics" cols="" rows="5" style="height: 420px">{notempty name="$data.analysis_code"}{$data.analysis_code}{/notempty}</textarea>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="tabCon">
+                            </div>
+                            <div class="tabCon">
+                            </div>
+                        </div>
+                        {notempty name="$data.id"}
+                        <input type="hidden" name="id" value="{$data.id}">
+                        <input type="hidden" name="language_id" value="{$language_id}">
+                        {/notempty}
+                        <div class="row clearfix">
+                            <div class="col-xs-8 col-sm-9 col-xs-offset-4 col-sm-offset-2">
+                                <input class="btn btn-primary radius" type="button" onclick="save('{:url(\'Setting/save\')}')" value="&nbsp;&nbsp;提交&nbsp;&nbsp;">
+                            </div>
+                        </div>
+                    </form>
+                </div>
             </div>
-            <div class="">
-                <table class="table table-border table-bordered table-bg mt-20">
-                    <thead>
-                    <tr>
-                        <th scope="col" colspan="13">产品列表</th>
-                    </tr>
-                    <tr class="text-c">
-                        <th width="20"><input type="checkbox" name=""  value=""></th>
-                        <th width="20">ID</th>
-                        <th >网站标题</th>
-                        <th >关键词</th>
-                        <th >描述</th>
-                        <th width="120">底部授权信息</th>
-                        <th width="50">语言</th>
-                        <th width="60">备案号</th>
-                        <th width="120">创建时间</th>
-                        <th width="40">状态</th>
-                        <th width="80">操作</th>
-                    </tr>
-                    </thead>
-                    <tbody>
-                    {volist name="setting" id="vo"}
-                    <tr class="text-l">
-                        <td><input type="checkbox" value="{$vo.id}"  name="id"></td>
-                        <td>{$vo.id}</td>
-                        <td>{$vo.title}</u></td>
-                        <td>{$vo.keywords}</td>
-                        <td>{$vo.description}</td>
-                        <td>{$vo.information}</td>
-                        <td>{$vo.language_id|getLanguage}</td>
-                        <td>{$vo.record_number}</td>
-                        <td>{$vo.create_time}</td>
-                        <td class="td-status">{$vo.status|status}</td>
-                        <td class="f-14 td-manage">
-                            <a style="text-decoration:none" onClick="stop('{:url('Setting/byStatus',['id'=>$vo.id,'status'=>0])}')" href="javascript:;" title="停用"><i class="Hui-iconfont" style="font-size: 20px;color: red">&#xe6de;</i></a>
-                            <a style="text-decoration:none" class="ml-5" onClick="edit('编辑','{:url('Setting/edit',['id'=>$vo.id])}','800','600')" href="javascript:void 0" title="编辑"><i class="Hui-iconfont" style="font-size: 20px;color: blue">&#xe6df;</i></a>
-                            <a style="text-decoration:none" onClick="start('{:url('Setting/byStatus',['id'=>$vo.id,'status'=>1])}')" href="javascript:;" title="恢复"><i class="Hui-iconfont" style="font-size: 20px;color: green">&#xe6dc;</i></a>
-                        </td>
-                    </tr>
-                    {/volist}
-                    </tbody>
-                </table>
-            </div>
-            <div class="cl pd-5 bg-1 bk-gray mt-20 tp5-winstar">{$setting->render()}</div>
         </article>
         {include file="public/explain" /}
     </div>
@@ -76,6 +90,7 @@
         $("#menu-setting dd").css("display","block");
         $("#menu-setting #system_setting").addClass("current");
         $("#system").addClass("current");
+        $("#tab-system").Huitab();
     });
 </script>
 </body>

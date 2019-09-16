@@ -25,24 +25,22 @@ class ServiceCategory extends BaseAdmin
      */
     public function index()
     {
-        $language_id = $this->MustBePositiveInteger(input('get.language_id'));
         $parentId = input('get.parent_id', 0, 'intval');
-        $categorys = (new ServiceCategoryModel())->getServiceCategory($parentId, $language_id);
+        $category = (new ServiceCategoryModel())->getServiceCategory($parentId, $this->currentLanguage['id']);
         return $this->fetch('', [
-            'category' => $categorys['data'],
-            'counts' => $categorys['count'],
-            'language_id' => $language_id
+            'category' => $category['data'],
+            'counts' => $category['count'],
+            'language_id' => $this->currentLanguage['id']
         ]);
     }
 
     public function add()
     {
-        $language_id = $this->MustBePositiveInteger(input('get.language_id'));
         //这是从服务分类添加的
         if (input('get.parent_id')) {
             //服务分类给父分类添加子分类
             $category_id = input('get.parent_id');
-            $category = ServiceCategoryModel::get(['status' => 1, 'id' => $category_id, 'language_id' => $language_id]);
+            $category = ServiceCategoryModel::get(['status' => 1, 'id' => $category_id, 'language_id' => $this->currentLanguage['id']]);
             //只添加两级分类。
             if (intval($category['level']) >= 3) {
                 return '别添加了！返回一级栏目再添加吧';
@@ -52,21 +50,22 @@ class ServiceCategory extends BaseAdmin
             if (input('get.con')) {
                 // 从其他列表添加对应的分类栏目
                 $con = input('get.con');
-                $category = ServiceCategoryModel::getCategoryIdByName($language_id, $con);
+                $category = ServiceCategoryModel::getCategoryIdByName($this->currentLanguage['id'], $con);
                 $this->assign('parent_id', $category['id']);
             } else {
                 //添加一级栏目
                 $this->assign('parent_id', 0);
             }
         }
-        $this->assign('language_id', $language_id);
+        $this->assign('language_id', $this->currentLanguage['id']);
         return $this->fetch();
     }
 
     /**
-     * @param Request $request循环
+     * @param Request $request
      * @return array
      * 提交保存操作
+     * @throws \app\lib\exception\ParameterException
      */
     public function save(Request $request)
     {
@@ -74,7 +73,7 @@ class ServiceCategory extends BaseAdmin
             (new ServiceCategoryValidate())->goCheck();
             (new UrlTitleMustBeOnly())->goCheck();
             $data = $request::instance()->post();
-            if($data['level'] == ''){
+            if ($data['level'] == '') {
                 $data['level'] = intval(1);
             }
             if (!empty($data['id'])) {
@@ -95,15 +94,13 @@ class ServiceCategory extends BaseAdmin
 
     /**
      * @param int $id
-     * @param $language_id
      * @return array|mixed 编辑页面开发
      * 编辑页面开发
+     * @throws \think\exception\DbException
      */
-    public function edit($id = 0, $language_id)
+    public function edit($id = 0)
     {
         $id = $this->MustBePositiveInteger($id);
-        //获取语言
-        $language_id = $this->MustBePositiveInteger($language_id);
         //获取当前数据
         $serviceCategory = ServiceCategoryModel::get($id);
         //传递参数id
@@ -116,7 +113,7 @@ class ServiceCategory extends BaseAdmin
             // 那就要得到相应语言的一级分类
             $categorys = ServiceCategoryModel::all(['status' => 1,
                 'parent_id' => 0,
-                'language_id' => $language_id
+                'language_id' => $this->currentLanguage['id']
             ]);
             $this->assign('categorys', $categorys);
         } else {
@@ -127,7 +124,7 @@ class ServiceCategory extends BaseAdmin
         }
         return $this->fetch('', [
             'serviceCategory' => $serviceCategory,
-            'language_id' => $language_id,
+            'language_id' => $this->currentLanguage['id'],
         ]);
     }
 
@@ -142,7 +139,8 @@ class ServiceCategory extends BaseAdmin
     public function listorder()
     {
         if (request()->isAjax()) {
-            $data = input('post.'); //id ,type ,language_id
+            $data = input('post.');//id ,type ,language_id
+            $data['language_id'] = $this->currentLanguage['id'];
             //得到它的parent_id
             $map = [
                 'parent_id' => $data['map']

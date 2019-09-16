@@ -5,6 +5,7 @@
  * Date: 2017/8/23
  * Time: 10:37
  */
+
 namespace app\wavlink\controller;
 
 use app\wavlink\validate\UrlTitleMustBeOnly;
@@ -12,23 +13,34 @@ use think\Request;
 use app\common\model\Article as ArticleModel;
 use app\wavlink\validate\Article as ArticleValidate;
 use app\common\model\ServiceCategory as ServiceCategoryModel;
+
+/***
+ * Class Article
+ * @package app\wavlink\controller
+ *
+ */
 Class Article extends BaseAdmin
 {
 
     //正常文章列表，status=1
-    public function index() {
-        $language_id = input('get.language_id', '', 'intval');
-        $result = (new ArticleModel())->getDataByStatus(1,$language_id);
+    /***
+     * @return mixed
+     */
+    public function index()
+    {
+
+        $result = ArticleModel::getDataByStatus(1, $this->currentLanguage['id']);
         return $this->fetch('', [
             'article' => $result['data'],
             'counts' => $result['count'],
-            'language_id' => $language_id
+            'language_id' => $this->currentLanguage['id']
 
         ]);
     }
 
     //回收站文章列表,status=-1
-    public function article_recycle() {
+    public function article_recycle()
+    {
         $result = (new ArticleModel())->getDataByStatus(-1);
         return $this->fetch('', [
             'counts' => $result['count'],
@@ -36,43 +48,45 @@ Class Article extends BaseAdmin
         ]);
     }
 
-    public function add() {
-        $language_id = input('get.language_id','','intval');
+    public function add()
+    {
+        $language_id = input('get.language_id', '', 'intval');
         $categorys = ServiceCategoryModel::getSecondCategory($language_id);
         return $this->fetch('', [
             'categorys' => $categorys,
-            'language_id'=> $language_id
+            'language_id' => $language_id
         ]);
     }
 
     //新增保存文章
-    public function save() {
-        if (request()->isAjax()){
+    public function save()
+    {
+        if (request()->isAjax()) {
             (new ArticleValidate())->goCheck();
             (new UrlTitleMustBeOnly())->goCheck();
             $data = input('post.');
-            if (!empty($data['id'])){
+            if (!empty($data['id'])) {
                 return $this->update($data);
             }
             $res = (new ArticleModel())->add($data);
             if ($res) {
-                return show(1,'','','','', '添加成功');
+                return show(1, '', '', '', '', '添加成功');
             } else {
-                return show(1,'','','','', '添加失败');
+                return show(1, '', '', '', '', '添加失败');
             }
         }
     }
 
     //编辑文章
-    public function edit($id= 0,$language_id) {
+    public function edit($id = 0)
+    {
         $id = $this->MustBePositiveInteger($id);
-        $language_id = $this->MustBePositiveInteger($language_id);
-        $categorys = ServiceCategoryModel::getSecondCategory($language_id);
+        $categorys = ServiceCategoryModel::getSecondCategory($this->currentLanguage['id']);
         $article = ArticleModel::get($id);
         return $this->fetch('', [
             'article' => $article,
             'categorys' => $categorys,
-            'language_id' => $language_id
+            'language_id' => $this->currentLanguage['id']
         ]);
     }
 
@@ -82,7 +96,8 @@ Class Article extends BaseAdmin
      * @param Request $request
      * @return array
      */
-    public function allRecycle(Request $request) {
+    public function allRecycle(Request $request)
+    {
         $ids = $request::instance()->post();
         foreach ($ids as $k => $v) {
             if (ArticleModel::get($k)) {
@@ -98,11 +113,12 @@ Class Article extends BaseAdmin
     /**
      * 排序功能开发
      */
-    public function listorder(){
-        if(request()->isAjax()){
+    public function listorder()
+    {
+        if (request()->isAjax()) {
             $data = input('post.'); //id ,type ,language_id
             self::order(array_filter($data));
-        }else {
+        } else {
             return show(0, '置顶失败，未知错误', 'error', 'error', '', '');
         }
     }

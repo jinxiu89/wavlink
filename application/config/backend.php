@@ -66,7 +66,7 @@ Route::group('wavlink', function () {
     Route::get('manger/edit', 'wavlink/manger/edit', [], ['id' => '\d+']);
     Route::get('manger/password', 'wavlink/manger/password', [], ['id' => '\d+']);
     //禁用的管理员
-    Route::get('manger/manger_stop','wavlink/manger/manger_stop');
+    Route::get('manger/manger_stop', 'wavlink/manger/manger_stop');
 
     //权限组
     Route::get('auth_group/index', 'wavlink/AuthGroup/index');
@@ -76,9 +76,20 @@ Route::group('wavlink', function () {
     Route::get('auth_rule/index', 'wavlink/AuthRule/index');
     Route::get('auth_rule/add', 'wavlink/AuthRule/add');
     Route::get('auth_rule/edit', 'wavlink/AuthRule/edit', [], ['id' => '\d+']);
-
-    //服务模块
-    Route::get('service/index','wavlink/service/index');
+    /**
+     * service_category/index
+     * 服务模块
+     */
+    //服务分类
+    Route::get('service/index', 'wavlink/service/index');
+    Route::get('service_category/index', 'wavlink/ServiceCategory/index');
+    Route::get('service_category/add', 'wavlink/ServiceCategory/add');
+    Route::get('service_category/edit', 'wavlink/ServiceCategory/edit', [], ['id' => '\d+']);
+    //文章管理
+    Route::get('article/index','wavlink/article/index');
+    Route::get('article/add','wavlink/article/add');
+    Route::get('article/edit','wavlink/article/edit',[],['id'=>'\d+']);
+    Route::get('article/article_recycle','wavlink/article/article_recycle');
 
 
 });
@@ -120,4 +131,15 @@ Route::group('wavlink', function () {
     Route::post('/manger/byStatus', 'wavlink/manger/byStatus');
     Route::post('/auth_group/byStatus', 'wavlink/AuthGroup/byStatus');
     Route::post('/auth_rule/byStatus', 'wavlink/AuthRule/byStatus');
+    /**
+     * 服务模块Post请求
+     */
+    Route::post('service_category/save', 'wavlink/ServiceCategory/save');
+    Route::post('article/save', 'wavlink/article/save');
+
+    Route::post('service_category/byStatus', 'wavlink/ServiceCategory/byStatus');
+    Route::post('article/byStatus', 'wavlink/article/byStatus');
+
+    Route::post('/service_category/listorder', 'wavlink/ServiceCategory/listorder');
+    Route::post('/article/listorder', 'wavlink/Article/listorder');
 });

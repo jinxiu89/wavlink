@@ -3,9 +3,9 @@
 <section class="Hui-article-box">
     <nav class="breadcrumb"><i class="Hui-iconfont">&#xe67f;</i> 首页
         <span class="c-gray en">&gt;</span>
-        {$language_id|getLanguage}文章事件管理
+        文章事件管理
         <span class="c-gray en">&gt;</span>
-        {$language_id|getLanguage}文章事件列表
+        文章事件列表
         <a class="btn btn-success radius r" style="line-height:1.6em;margin-top:3px"
            href="javascript:location.replace(location.href);" title="刷新"><i class="Hui-iconfont">&#xe68f;</i></a>
     </nav>
@@ -14,9 +14,7 @@
         <article class="cl pd-20" style="min-height: 51em;">
             <div class="cl pd-5 bg-1 bk-gray mt-20" style="line-height: 31px">
                 <span class="l">
-                    <a href="javascript:;" onclick="allRecycle('{:url('article/allRecycle')}')" class="btn btn-danger radius"><i class="Hui-iconfont">&#xe6e2;</i> 批量回收</a>
-                    <a class="btn btn-primary radius" onclick="index_add('添加{$language_id|getLanguageOne}文章','{:url('article/add',['language_id'=>$language_id])}')" href="javascript:;"><i class="Hui-iconfont">&#xe600;</i> 添加{$language_id|getLanguage}文章事件</a>
-                    <a href="{:url('article/article_recycle')}"  class="btn btn-danger radius"><i class="Hui-iconfont">&#xe6e2;</i> 回收站</a>
+                    <a class="btn btn-primary radius" onclick="index_add('添加文章','{:url(\'article/add\')}')" href="javascript:;"><i class="Hui-iconfont">&#xe600;</i> 添加</a>
                 </span>
                 <span class="r">共有文章：<strong>{$counts}</strong> 篇</span>
             </div>
@@ -26,35 +24,34 @@
                     <th scope="col" colspan="15">{$language_id|getLanguage}文章列表</th>
                 </tr>
                 <tr class="text-c">
-                    <th width="20"><input type="checkbox" name="" value=""></th>
-                    <th width="20">ID</th>
-                    <th width="40">缩略图</th>
+                    <th width="1%"><input type="checkbox" name="" value=""></th>
+                    <th width="5%">ID</th>
+                    <th width="5%">缩略图</th>
                     <th >文章标题</th>
                     <th >url标题</th>
-                    <th width="120">所属分类</th>
-                    <th width="60">语言</th>
-                    <th width="120">作者</th>
-                    <th width="30">排序</th>
-                    <th width="60">是否已启用</th>
-                    <th width="160">操作</th>
+                    <th width="5%">所属分类</th>
+                    <th width="6%">语言</th>
+                    <th width="8%">作者</th>
+                    <th width="5%">排序</th>
+                    <th width="5%">是否已启用</th>
+                    <th width="12%" >操作</th>
                 </tr>
                 </thead>
                 <tbody>
                 {volist name="article" id="vo"}
                 <tr class="text-l">
                     <td class="text-c"><input type="checkbox" value="{$vo.id}" name="id"></td>
-                    <td>{$vo.id}</td>
+                    <td class="text-c">{$vo.id}</td>
                     <td class="text-c">{empty name="$vo.logo"}{else /} <img id="upload_org_code_img" src="{$vo.logo}" width="30" height="30">{/empty}</td>
                     <td>{$vo.title}</td>
                     <td>{$vo.url_title}</td>
-                    <td>{$vo.category_id|getServiceCategory}</td>
-                    <td>{$vo.language_id|getLanguage}</td>
+                    <td class="text-c">{$vo.category_id|getServiceCategory}</td>
+                    <td class="text-c"> {$vo.language_id|getLanguage}</td>
                     <td>{$vo.author}</td>
-                    <td class="text-c listorder"><input type="text" value="{$vo.listorder}" size="6" attr-id="{$vo.id}" name="listorder"></td>
-                    <!--<td>{$vo.click}</td>-->
+                    <td class="text-c listorder"><input type="text" class="input-text" value="{$vo.listorder}" size="6" attr-id="{$vo.id}" name="listorder"></td>
                     <td class="td-status text-c"><span class="label label-success radius">已启用</span></td>
                     <td class="td-manage">
-                        <a title="编辑" href="javascript:;" onclick="index_edit('{$language_id|getLanguageOne}文章事件编辑','{:url('article/edit',['id'=>$vo.id,'language_id'=>$language_id])}')" class="ml-5" style="text-decoration:none"><i class="Hui-iconfont i_edit_color">&#xe6df;</i></a>
+                        <a title="编辑" href="javascript:;" onclick="index_edit('编辑文章','{:url(\'article/edit\',[\'id\'=>$vo.id])}')" class="ml-5" style="text-decoration:none"><i class="Hui-iconfont i_edit_color">&#xe6df;</i></a>
                         {empty name="$language_id"}
                         {else /}
                         <a title="置顶" href="javascript:;"  onclick="mark(this)" data-id ="{$vo.id}" data-type="4" data-map="" class="ml-5 mark" style="text-decoration:none"><i class="Hui-iconfont i_size_color">&#xe684</i></a>
@@ -83,9 +80,7 @@
     $(document).ready(function () {
         $("#menu-article dt").addClass("selected");
         $("#menu-article dd").css("display", "block");
-        var lan = $("input#language").val();
-        var id = "#article_art_"+lan;
-        $(id).addClass("current");
+        $("#article_art").addClass("current");
         $("#service").addClass("current");
     })
 </script>

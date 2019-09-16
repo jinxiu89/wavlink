@@ -8,9 +8,7 @@
             <dt><i class="Hui-iconfont">&#xe623;</i> 服务分类<i class="Hui-iconfont menu_dropdown-arrow">&#xe6d5;</i></dt>
             <dd>
                 <ul>
-                    {volist name="languages" id="vo"}
-                    <li id="category_{$vo.id}"><a href="{:url('ServiceCategory/index',['language_id'=>$vo.id])}" title="{$vo.name}服务分类">{$vo.id|getLanguage}服务分类</a></li>
-                    {/volist}
+                    <li id="category"><a href="{:url('ServiceCategory/index')}" title="服务分类">服务分类</a></li>
                 </ul>
             </dd>
         </dl>
@@ -20,10 +18,8 @@
             <dt><i class="Hui-iconfont">&#xe616;</i> 事件News管理<i class="Hui-iconfont menu_dropdown-arrow">&#xe6d5;</i></dt>
             <dd>
                 <ul>
-                    {volist name="languages" id="vo"}
-                    <li id="article_art_{$vo.id}"><a href="{:url('Article/index',['language_id'=>$vo.id])}"
-                                                     title="{$vo.name}文章事件管理">{$vo.id|getLanguage}文章事件管理</a></li>
-                    {/volist}
+                    <li id="article_art"><a href="{:url('Article/index')}"
+                                                     title="文章管理">文章管理</a></li>
                     <li id="article_rec"><a href="{:url('Article/article_recycle')}" title="回收站内文章">回收站内文章</a></li>
                 </ul>
             </dd>

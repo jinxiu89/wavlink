@@ -86,11 +86,15 @@ Route::group('wavlink', function () {
     Route::get('service_category/add', 'wavlink/ServiceCategory/add');
     Route::get('service_category/edit', 'wavlink/ServiceCategory/edit', [], ['id' => '\d+']);
     //文章管理
-    Route::get('article/index','wavlink/article/index');
-    Route::get('article/add','wavlink/article/add');
-    Route::get('article/edit','wavlink/article/edit',[],['id'=>'\d+']);
-    Route::get('article/article_recycle','wavlink/article/article_recycle');
-
+    Route::get('article/index', 'wavlink/article/index');
+    Route::get('article/add', 'wavlink/article/add');
+    Route::get('article/edit', 'wavlink/article/edit', [], ['id' => '\d+']);
+    Route::get('article/article_recycle', 'wavlink/article/article_recycle');
+    //文档管理
+    Route::get('document/index', 'wavlink/document/index');
+    Route::get('document/doc_recycle', 'wavlink/document/doc_recycle');
+    Route::get('document/add', 'wavlink/document/add');
+    Route::get('document/edit', 'wavlink/document/edit', [], ['id' => '\d+']);
 
 });
 
@@ -136,10 +140,13 @@ Route::group('wavlink', function () {
      */
     Route::post('service_category/save', 'wavlink/ServiceCategory/save');
     Route::post('article/save', 'wavlink/article/save');
+    Route::post('document/save', 'wavlink/document/save');
 
     Route::post('service_category/byStatus', 'wavlink/ServiceCategory/byStatus');
     Route::post('article/byStatus', 'wavlink/article/byStatus');
+    Route::post('Document/byStatus', 'wavlink/Document/byStatus');
 
     Route::post('/service_category/listorder', 'wavlink/ServiceCategory/listorder');
     Route::post('/article/listorder', 'wavlink/Article/listorder');
+    Route::post('/Document/listorder', 'wavlink/Document/listorder');
 });

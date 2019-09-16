@@ -5,6 +5,7 @@
  * Date: 2017/8/23
  * Time: 10:37
  */
+
 namespace app\wavlink\controller;
 
 use app\wavlink\validate\UrlTitleMustBeOnly;
@@ -12,16 +13,25 @@ use think\Request;
 use app\common\model\Document as DocumentModel;
 use app\common\model\ServiceCategory as ServiceCategoryModel;
 use app\wavlink\validate\Document as DocumentValidate;
+
+/**
+ * Class Document
+ * @package app\wavlink\controller
+ * 20190916
+ */
 Class Document extends BaseAdmin
 {
+    /**
+     * @return mixed
+     * 语言
+     */
     public function index()
     {
-        $language_id = $this->MustBePositiveInteger(input('get.language_id'));;
-        $document = DocumentModel::getDataByStatus(1,$language_id);
+        $document = DocumentModel::getDataByStatus(1, $this->currentLanguage['id']);
         return $this->fetch('', [
             'document' => $document['data'],
             'counts' => $document['count'],
-            'language_id' => $language_id
+            'language_id' => $this->currentLanguage['id']
         ]);
     }
 
@@ -41,19 +51,19 @@ Class Document extends BaseAdmin
     //文档新增保存操作
     public function save()
     {
-        if (request()->isAjax()){
+        if (request()->isAjax()) {
             $data = Request::instance()->post();
             (new DocumentValidate())->goCheck();
             (new UrlTitleMustBeOnly())->goCheck();
 
-            if (!empty($data['id'])){
+            if (!empty($data['id'])) {
                 return $this->update($data);
             }
             $res = (new DocumentModel())->add($data);
             if ($res) {
-                return show(1,'','','','', '添加成功');
+                return show(1, '', '', '', '', '添加成功');
             } else {
-                return show(1,'','','','', '添加失败');
+                return show(1, '', '', '', '', '添加失败');
             }
         }
 
@@ -63,15 +73,13 @@ Class Document extends BaseAdmin
     public function edit($id = 0)
     {
         $id = $this->MustBePositiveInteger($id);
-        //获取语言
-        $language_id = $this->MustBePositiveInteger(input('get.language_id'));
         $document = DocumentModel::get($id);
         //获取所有分类
-        $categorys = ServiceCategoryModel::getSecondCategory($language_id);
+        $categorys = ServiceCategoryModel::getSecondCategory($this->currentLanguage['id']);
         return $this->fetch('', [
             'document' => $document,
             'categorys' => $categorys,
-            'language_id' => $language_id,
+            'language_id' => $this->currentLanguage['id'],
         ]);
     }
 
@@ -106,6 +114,7 @@ Class Document extends BaseAdmin
             'counts' => $document['count'],
         ]);
     }
+
     /**
      * 排序功能开发
      * 默认 必须数据 id,type,language_id
@@ -114,7 +123,8 @@ Class Document extends BaseAdmin
      * type == 3 时 上移
      * type == 2 时 下移
      */
-    public function listorder() {
+    public function listorder()
+    {
         if (request()->isAjax()) {
             $data = input('post.'); //id ,type ,language_id
             self::order(array_filter($data));

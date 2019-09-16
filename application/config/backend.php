@@ -59,7 +59,18 @@ Route::group('wavlink', function () {
     Route::get('/About/add', 'wavlink/About/add');
     Route::get('/About/edit', 'wavlink/About/edit', [], ['id' => '\d+']);
     //站点配置
-    Route::get('setting/index','wavlink/Setting/index');
+    Route::get('setting/index', 'wavlink/Setting/index');
+    //管理员列表
+    Route::get('manger/index', 'wavlink/manger/index');
+    Route::get('manger/add', 'wavlink/manger/add');
+    Route::get('manger/edit', 'wavlink/manger/edit', [], ['id' => '\d+']);
+    Route::get('manger/password', 'wavlink/manger/password', [], ['id' => '\d+']);
+    //权限组
+    Route::get('auth_group/index', 'wavlink/AuthGroup/index');
+    Route::get('auth_group/add', 'wavlink/AuthGroup/add');
+    Route::get('auth_group/edit', 'wavlink/AuthGroup/edit', [], ['id' => '\d+']);
+
+
 });
 
 //post请求组
@@ -91,7 +102,10 @@ Route::group('wavlink', function () {
     Route::post('/language/save', 'wavlink/Language/save');
     Route::post('/About/save', 'wavlink/About/save');
     Route::post('/Setting/save', 'wavlink/Setting/save');
+    Route::post('/manger/save', 'wavlink/manger/save');
+    Route::post('/auth_group/save', 'wavlink/AuthGroup/save');
     Route::post('/language/byStatus', 'wavlink/Language/byStatus');
     Route::post('/About/byStatus', 'wavlink/About/byStatus');
-
+    Route::post('/manger/byStatus', 'wavlink/manger/byStatus');
+    Route::post('/auth_group/byStatus', 'wavlink/AuthGroup/byStatus');
 });

@@ -56,7 +56,7 @@
                     <td>{$vo.create_time}</td>
                     <td class="td-status text-c">{$vo.status|ticket_status}</td>
                     <td class="td-manage">
-                        <a title="查看详细信息" href="javascript:;" onclick="index_look('详细信息','{:url(\'GuestBook/reply_look',['id'=>$vo.id])}')" class="ml-5" style="text-decoration:none"><i class="Hui-iconfont" style="font-size: 20px;color: #0000cc">&#xe725;</i></a>
+                        <a title="查看详细信息" href="javascript:;" onclick="index_look('详细信息','{:url(\'GuestBook/reply_look\',[\'id\'=>$vo.id])}')" class="ml-5" style="text-decoration:none"><i class="Hui-iconfont" style="font-size: 20px;color: #0000cc">&#xe725;</i></a>
                 </tr>
                 {/volist}
                 </tbody>

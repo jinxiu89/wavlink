@@ -60,12 +60,10 @@
         {/if}
         {if condition="in_array('video/index',$access)"}
         <dl id="service_video">
-            <dt><i class="Hui-iconfont">&#xe72b;</i> 视频中心<i class="Hui-iconfont menu_dropdown-arrow">&#xe6d5;</i></dt>
+            <dt><i class="Hui-iconfont">&#xe72b;</i> 视频<i class="Hui-iconfont menu_dropdown-arrow">&#xe6d5;</i></dt>
             <dd>
                 <ul>
-                    {volist name="languages" id="vo"}
-                    <li id="video_index_{$vo.id}"><a href="{:url('Video/index',['language_id'=>$vo.id])}" title="视频列表">{$vo.id|getLanguage}视频列表</a></li>
-                    {/volist}
+                    <li id="video_index"><a href="{:url('Video/index')}" title="视频列表">视频列表</a></li>
                     <li id="video_recovery"><a href="{:url('Video/video_recycle')}" title="视频回收列表">回收视频列表</a></li>
                 </ul>
             </dd>
@@ -75,18 +73,10 @@
             <dt><i class="Hui-iconfont ticket">&#xe70c;</i> 留言板管理<i class="Hui-iconfont menu_dropdown-arrow">&#xe6d5;</i></dt>
             <dd>
                 <ul>
-                    <li id="ticket_list"><a class="ticket_list" href="#" title="未回复留言板">未处理留言</a>
-                        <ul>
-                            {volist name="languages" id="vo"}
-                            {if condition="in_array('guestbook/index',$access)"}
-                            <li id="ticket_list_{$vo.id}"><a href="{:url('GuestBook/index',['language_id'=>$vo.id])}" title="{$vo.name}留言">{$vo.id|getLanguage}留言板管理</a></li>
-                            {/if}
-                            {/volist}
-                        </ul>
-                    </li>
-                    {volist name="languages" id="vo"}
-                    <li id="ticket_off_{$vo.id}"><a href="{:url('GuestBook/index_off',['language_id'=>$vo.id])}" title="{$vo.name}已处理">{$vo.id|getLanguage}已处理留言</a></li>
-                    {/volist}
+                    {if condition="in_array('guestbook/index',$access)"}
+                    <li id="ticket_list"><a href="{:url('GuestBook/index')}" title="留言">未处理留言</a></li>
+                    <li id="ticket_off"><a href="{:url('GuestBook/index_off')}" title="已处理">已处理留言</a></li>
+                    {/if}
                 </ul>
             </dd>
         </dl>

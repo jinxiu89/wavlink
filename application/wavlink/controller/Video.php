@@ -15,15 +15,12 @@ use app\wavlink\validate\UrlTitleMustBeOnly;
 Class Video extends BaseAdmin
 {
     public function index() {
-        $language_id = $this->MustBePositiveInteger(input('get.language_id'));
-        if (intval($language_id) < 1){
-            $this->error('别乱改参数');
-        }
-        $video = VideoModel::getDataByStatus(1, $language_id);
+
+        $video = VideoModel::getDataByStatus(1, $this->currentLanguage['id']);
         return $this->fetch('', [
             'video' => $video['data'],
             'counts' => $video['count'],
-            'language_id' => $language_id
+            'language_id' => $this->currentLanguage['id']
         ]);
     }
 
@@ -43,15 +40,16 @@ Class Video extends BaseAdmin
     /**
      * @return mixed
      * 上传视频页面
+     * @throws \think\db\exception\DataNotFoundException
+     * @throws \think\db\exception\ModelNotFoundException
+     * @throws \think\exception\DbException
      */
     public function add() {
-        //得到当前选择的语言目录
-        $language_id = $this->MustBePositiveInteger(input('get.language_id'));
         //获取服务管理的当前视频分类
-        $categorys = ServiceCategoryModel::getSecondCategory($language_id);
+        $categorys = ServiceCategoryModel::getSecondCategory($this->currentLanguage['id']);
         return $this->fetch('', [
             'categorys' => $categorys,
-            'language_id' => $language_id,
+            'language_id' => $this->currentLanguage['id'],
         ]);
     }
 
@@ -59,6 +57,7 @@ Class Video extends BaseAdmin
      * 保存操作
      * @param Request $request
      * @return array
+     * @throws \app\lib\exception\ParameterException
      */
     public function save(Request $request) {
         if (request()->isAjax()) {
@@ -80,19 +79,20 @@ Class Video extends BaseAdmin
     /**
      * 编辑页面开发
      * @param int $id
-     * @param $language_id
      * @return mixed
+     * @throws \think\db\exception\DataNotFoundException
+     * @throws \think\db\exception\ModelNotFoundException
+     * @throws \think\exception\DbException
      */
-    public function edit($id = 0, $language_id) {
+    public function edit($id = 0) {
         $id = $this->MustBePositiveInteger($id);
-        $language_id = $this->MustBePositiveInteger($language_id);
         //获取服务管理的当前视频分类
-        $categorys = ServiceCategoryModel::getSecondCategory($language_id);
+        $categorys = ServiceCategoryModel::getSecondCategory($this->currentLanguage['id']);
         $video = VideoModel::get($id);
         return $this->fetch('', [
             'video' => $video,
             'categorys' => $categorys,
-            'language_id' => $language_id,
+            'language_id' => $this->currentLanguage['id'],
         ]);
     }
 

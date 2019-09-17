@@ -18,26 +18,28 @@ class GuestBook extends BaseAdmin
     //获取未处理的固件信息,status = -1
     public function index()
     {
-        $language_id = $this->MustBePositiveInteger(input('get.language_id'));
-        $ticket = GuestBookModel::getDataByStatus(-1, $language_id);
+        $ticket = GuestBookModel::getDataByStatus(-1, $this->currentLanguage['id']);
         foreach ($ticket['data'] as $k => $v) {
             $v['desc'] = cut_str($v['description'], 20, 0);
         }
         return $this->fetch('', [
             'ticket' => $ticket['data'],
             'count' => $ticket['count'],
-            'language_id' => $language_id
+            'language_id' => $this->currentLanguage['id']
         ]);
     }
 
     //获取已经处理的固件信息
+
+    /**
+     * @return mixed
+     */
     public function index_off()
     {
-        $language_id = $this->MustBePositiveInteger(input('get.language_id'));
-        $ticket = GuestBookModel::getDataByStatus(1, $language_id);
+        $ticket = GuestBookModel::getDataByStatus(1, $this->currentLanguage['id']);
         return $this->fetch('', [
             'ticket' => $ticket['data'],
-            'language_id' => $language_id
+            'language_id' => $this->currentLanguage['id']
         ]);
     }
 
@@ -63,7 +65,6 @@ class GuestBook extends BaseAdmin
                 'ticket' => $ticket,
             ]);
         }
-
     }
 
     public function reply_look($id)

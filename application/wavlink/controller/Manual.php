@@ -32,6 +32,11 @@ class Manual extends BaseAdmin
         $this->assign('language_id', $this->language_id);
     }
 
+    /**
+     * @return mixed
+     * 20190917 更新
+     *
+     */
     public function index()
     {
         $data = ManualModel::getDataByStatus(1, $this->language_id);
@@ -50,15 +55,18 @@ class Manual extends BaseAdmin
     public function add()
     {
         $category = ServiceCategoryModel::getSecondCategory($this->language_id);
-        return $this->fetch('', array(
-            'category' => $category,
-            'language_id' => $this->language_id,
-        ));
+        return $this->fetch('', ['category' => $category, 'language_id' => $this->language_id,]);
     }
 
+    /***
+     * @return mixed
+     * @throws DataNotFoundException
+     * @throws DbException
+     * @throws ModelNotFoundException
+     * 20190917 更新
+     */
     public function edit()
     {
-        //todo::说明书编辑
         $category = ServiceCategoryModel::getSecondCategory($this->language_id);
         $data = ManualModel::get(input('get.id'));
         return $this->fetch('', [
@@ -67,12 +75,22 @@ class Manual extends BaseAdmin
         ]);
     }
 
+    /**
+     * @return mixed
+     * 20190917 更新
+     *
+     */
     public function add_download()
     {
         $id = $this->MustBePositiveInteger(input('get.id'));
         return $this->fetch('', ['id' => $id]);
     }
 
+    /**
+     * @return mixed
+     * @throws DbException
+     * 20190917 更新
+     */
     public function edit_download()
     {
         $id = $this->MustBePositiveInteger(input('get.id'));//需要编辑的ID
@@ -81,6 +99,11 @@ class Manual extends BaseAdmin
         return $this->fetch('', ['result' => $result, 'manual_id' => $manual_id]);
     }
 
+    /**
+     * @return array|void
+     * @throws \app\lib\exception\ParameterException
+     *
+     */
     public function save()
     {
         if (request()->isAjax()) {
@@ -101,6 +124,10 @@ class Manual extends BaseAdmin
         }
     }
 
+    /***
+     * 保存下载地址项
+     * 20190917更新
+     */
     public function save_download()
     {
         if (request()->isAjax()) {
@@ -128,6 +155,10 @@ class Manual extends BaseAdmin
         }
     }
 
+    /***
+     * 删除 执行后delete相当于硬删除
+     * 20190917
+     */
     public function del_download()
     {
         if (request()->isAjax()) {

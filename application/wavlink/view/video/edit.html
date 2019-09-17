@@ -49,7 +49,6 @@
             <label class="form-label col-xs-4 col-sm-2">描述：</label>
             <div class="formControls col-xs-8 col-sm-9">
                 <textarea name="description" cols="" rows="" class="textarea"  placeholder="说点什么...100个字符以内" dragonfly="true" >{$video->description}</textarea>
-                <p class="textarea-numberbar"><em class="textarea-length">0</em>/100</p>
             </div>
         </div>
         {if condition="$language_id eq 1"}
@@ -57,13 +56,12 @@
             <label class="form-label col-xs-4 col-sm-2">国内链接：</label>
             <div class="formControls col-xs-8 col-sm-9">
                 <textarea name="urlchina" cols="" rows="" class="textarea"  placeholder="填写国内视频链接地址" dragonfly="true" >{$video->urlchina}</textarea>
-                <p class="textarea-numberbar"><em class="textarea-length">0</em>/100</p>
             </div>
         </div>
         {/if}
         {if condition="$language_id eq 2"}
         <div class="row cl">
-            <label class="form-label col-xs-4 col-sm-2">国外链接地址：</label>
+            <label class="form-label col-xs-4 col-sm-2">国外链接：</label>
             <div class="formControls col-xs-8 col-sm-9">
                 <textarea name="urlabroad" cols="" rows="" class="textarea"  placeholder="填写国内视频链接地址" dragonfly="true" >{$video->urlabroad}</textarea>
                 <p class="textarea-numberbar"><em class="textarea-length">0</em>/100</p>
@@ -91,7 +89,7 @@
         <div class="row cl">
             <div class="col-xs-8 col-sm-9 col-xs-offset-4 col-sm-offset-2">
                 <input type="hidden" value="{$video->id}" name="id">
-                <button  class="btn btn-primary radius" type="button" onclick="save('{:url('Video/save')}')"><i class="Hui-iconfont">&#xe632;</i> 保存
+                <button  class="btn btn-primary radius" type="button" onclick="save('{:url(\'Video/save\')}')"><i class="Hui-iconfont">&#xe632;</i> 保存
                 </button>
                 <button onClick="layer_close();" class="btn btn-default radius" type="button">
                     &nbsp;&nbsp;取消&nbsp;&nbsp;</button>

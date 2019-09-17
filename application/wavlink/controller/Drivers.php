@@ -12,6 +12,7 @@ use app\common\model\Drivers as DriversModel;
 use app\common\model\ServiceCategory as ServiceCategoryModel;
 use app\wavlink\validate\Drivers as DriversValidate;
 use think\Request;
+use think\Exception;
 
 /**
  * Class Drivers
@@ -110,7 +111,7 @@ Class Drivers extends BaseAdmin
                 }
             }
             return show(1, 'success','','','','批量回收成功');
-        } catch (\Exception $e) {
+        } catch (Exception $e) {
             return show(0, 'error', '','','',$e->getMessage());
         }
     }

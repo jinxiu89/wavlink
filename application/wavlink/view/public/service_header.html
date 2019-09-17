@@ -53,9 +53,7 @@
             <dt><i class="Hui-iconfont">&#xe720;</i> 说明书管理<i class="Hui-iconfont menu_dropdown-arrow">&#xe6d5;</i></dt>
             <dd>
                 <ul>
-                    {volist name="languages" id="vo"}
-                    <li id="manual_list_{$vo.id}"><a href="{:url('Manual/index',['language_id'=>$vo.id])}" title="{$vo.name}说明书列表">{$vo.id|getLanguage}</a></li>
-                    {/volist}
+                    <li id="manual_list"><a href="{:url('Manual/index')}" title="说明书文档">说明书文档</a></li>
                 </ul>
             </dd>
         </dl>

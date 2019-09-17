@@ -38,8 +38,6 @@ class BaseAdmin extends Controller
     public function _initialize()
     {
         parent::_initialize();
-
-
     }
 
     /***

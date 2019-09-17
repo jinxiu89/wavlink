@@ -10,6 +10,10 @@ namespace app\common\model;
 
 use app\common\model\Language as LanguageModel;
 
+/***
+ * Class ServiceCategory
+ * @package app\common\model
+ */
 Class ServiceCategory extends BaseModel
 {
     protected $table = 'service_category';
@@ -42,15 +46,14 @@ Class ServiceCategory extends BaseModel
      * @param $url_title
      * @return array|false|\PDOStatement|string|\think\Model\
      * 根据分类的url_title,语言来获取分类
+     * @throws \think\db\exception\DataNotFoundException
+     * @throws \think\db\exception\ModelNotFoundException
+     * @throws \think\exception\DbException
      */
     public static function getCategoryIdByName($value, $url_title)
     {
         $language_id = LanguageModel::getLanguageCodeOrID($value);
-        $data = [
-            'status' => 1,
-            'url_title' => $url_title,
-            'language_id' => $language_id,
-        ];
+        $data = ['status' => 1, 'url_title' => $url_title, 'language_id' => $language_id,];
         $result = self::where($data)->find();
         return $result;
     }
@@ -58,11 +61,7 @@ Class ServiceCategory extends BaseModel
     public static function getNavByCategoryId($code, $category)
     {
         $language_id = LanguageModel::getLanguageCodeOrID($code);
-        $result = self::where(array(
-            'status' => 1,
-            'url_title' => $category,
-            'language_id' => $language_id,
-        ))->find();
+        $result = self::where(['status' => 1, 'url_title' => $category, 'language_id' => $language_id])->find();
         return TurnArray(getParents(self::all(), $result['id']));
     }
 
@@ -82,7 +81,7 @@ Class ServiceCategory extends BaseModel
 
     /***
      * 如果它没有子类，返回他所有的同级分类
-     * @param $id
+     * @param $parent_id
      * @return array
      * @throws \think\db\exception\DataNotFoundException
      * @throws \think\db\exception\ModelNotFoundException
@@ -90,9 +89,7 @@ Class ServiceCategory extends BaseModel
      */
     public static function getSameChild($parent_id)
     {
-        $child = self::where(array(
-            'parent_id' => $parent_id,
-        ))->select();
+        $child = self::where(['parent_id' => $parent_id,])->select();
         $data = TurnArray($child);
         return $data;
     }
@@ -102,6 +99,9 @@ Class ServiceCategory extends BaseModel
      * @param $name
      * @return array|false|\PDOStatement|string|\think\Model \获取服务管理 服务分类
      * \获取服务管理 服务分类 一级分类
+     * @throws \think\db\exception\DataNotFoundException
+     * @throws \think\db\exception\ModelNotFoundException
+     * @throws \think\exception\DbException
      * @internal param int $parentId
      * @internal param $code
      * 传过来的$value 可以是语言code 也可以是语言id，最终都会以语言id去查询
@@ -110,13 +110,13 @@ Class ServiceCategory extends BaseModel
     public static function getTopCategory($value, $name)
     {
         $language_id = LanguageModel::getLanguageCodeOrID($value);
-        $data = [
+        $map = [
             'status' => 1,
             'language_id' => $language_id,
             'url_title' => $name,
             'parent_id' => 0
         ];
-        $result = self::where($data)->find();
+        $result = self::where($map)->field('id,name')->find();
         return $result;
     }
 
@@ -135,27 +135,18 @@ Class ServiceCategory extends BaseModel
      * 获取到某个分类下面的二级分类
      *
      * self:: 指类本身
+     * @throws \think\db\exception\DataNotFoundException
+     * @throws \think\db\exception\ModelNotFoundException
+     * @throws \think\exception\DbException
      */
     public static function getSecondCategory($value, $name = '')
     {
-        if (empty($name)) {
-            $cate = request()->controller();
-        } else {
-            $cate = $name;
-        }
+        $cate=empty($name) ? request()->controller() : $name;
         $parent = self::getTopCategory($value, $cate);
-        $data = [
-            'status' => 1,
-            'parent_id' => $parent['id'],
-        ];
-        $order = [
-            'listorder' => 'desc',
-            'id' => 'desc'
-        ];
-        return self::where($data)
-            ->order($order)
-            ->field('id,name,image,description,keywords,language_id,url_title,seo_title')
-            ->select();
+        $data = ['status' => 1, 'parent_id' => $parent['id']];
+        $order = ['listorder' => 'desc', 'id' => 'desc'];
+        return (new ServiceCategory)->where($data)->order($order)
+            ->field('id,name,image,description,keywords,language_id,url_title,seo_title')->select();
     }
 
     /***
@@ -163,13 +154,8 @@ Class ServiceCategory extends BaseModel
      */
     public static function getCategory($code, $category)
     {
-        $parent = self::where(array(
-            'name' => $category,
-            'language_id' => $code
-        ))->find();
-        $childs = self::where(array(
-            'language_id' => $code,
-        ))->select();
+        $parent = self::where(['name' => $category, 'language_id' => $code])->find();
+        $childs = self::where(['language_id' => $code,])->select();
         $data = TurnArray($childs);
         $res = getChilds($data, $parent['id']);
         return $res;

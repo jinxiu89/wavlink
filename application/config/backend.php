@@ -124,7 +124,13 @@ Route::group('wavlink', function () {
     Route::get('Faq/index', 'wavlink/Faq/index');
     Route::get('Faq/faq_recycle', 'wavlink/Faq/faq_recycle');
     Route::get('Faq/add', 'wavlink/Faq/add');
-    Route::get('Faq/edit', 'wavlink/Faq/edit',[], ['id' => '\d+']);
+    Route::get('Faq/edit', 'wavlink/Faq/edit', [], ['id' => '\d+']);
+    //SN管理
+    Route::get('soft/index', 'wavlink/soft/index');
+    Route::get('soft/add', 'wavlink/soft/add');
+    Route::get('soft/edit', 'wavlink/soft/edit',[], ['id' => '\d+']);
+    Route::get('cate/index', 'wavlink/cate/index');
+    Route::get('cate/add', 'wavlink/cate/add');
 });
 
 //post请求组
@@ -183,6 +189,7 @@ Route::group('wavlink', function () {
     Route::post('drivers/byStatus', 'wavlink/Drivers/byStatus');
     Route::post('video/byStatus', 'wavlink/video/byStatus');
     Route::post('faq/byStatus', 'wavlink/faq/byStatus');
+    Route::post('Soft/byStatus', 'wavlink/Soft/byStatus');
 
     Route::post('/service_category/listorder', 'wavlink/ServiceCategory/listorder');
     Route::post('/article/listorder', 'wavlink/Article/listorder');

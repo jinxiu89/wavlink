@@ -21,7 +21,6 @@ class Soft extends BaseAdmin
      * @return mixed
      * @throws \think\Exception
      * @throws \think\exception\DbException
-     * @throws \think\exception\PDOException
      * @throws \think\Exception
      */
     public function index()

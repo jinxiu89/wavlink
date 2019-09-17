@@ -13,7 +13,7 @@
         <article class="cl pd-20" style="min-height: 51em;">
             <div class="cl pd-5 bg-1 bk-gray mt-20" style="line-height: 31px;">
                 <span class="l">
-                    <a href="javascript:;" onclick="add('添加产品系列','{:url('cate/add')}','800','400')" class="btn btn-primary radius">
+                    <a href="javascript:;" onclick="add('添加产品系列','{:url(\'cate/add\')}','800','400')" class="btn btn-primary radius">
                         <i class="Hui-iconfont">&#xe600;</i> 添加产品系列
                     </a>
                 </span>
@@ -40,9 +40,9 @@
                     <td>{$vo.description}</td>
                     <td class="text-c">{$vo.status|GetStatus}</td>
                     <td class="text-c">{if condition="$vo.status eq 0"}
-                        <a title="启用" href="javascript:;"  onclick="start('{:url('cate/byStatus',['id'=>$vo.id,'status'=>1])}')" data-id ="{$vo.id}" data-type="4" class="ml-5 mark" style="text-decoration:none"><i class="Hui-iconfont c-green">&#xe601;</i></a>
+                        <a title="启用" href="javascript:;"  onclick="start('{:url(\'cate/byStatus\',[\'id\'=>$vo.id,\'status\'=>1])}')" data-id ="{$vo.id}" data-type="4" class="ml-5 mark" style="text-decoration:none"><i class="Hui-iconfont c-green">&#xe601;</i></a>
                         {else /}
-                        <a title="禁用" href="javascript:;"  onclick="start('{:url('cate/byStatus',['id'=>$vo.id,'status'=>0])}')" data-id ="{$vo.id}" data-type="4" class="ml-5 mark" style="text-decoration:none"><i class="Hui-iconfont c-red">&#xe631;</i></a>
+                        <a title="禁用" href="javascript:;"  onclick="start('{:url(\'cate/byStatus\',[\'id\'=>$vo.id,\'status\'=>0])}')" data-id ="{$vo.id}" data-type="4" class="ml-5 mark" style="text-decoration:none"><i class="Hui-iconfont c-red">&#xe631;</i></a>
                         {/if}
                     </td>
                 </tr>

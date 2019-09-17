@@ -13,24 +13,30 @@ use app\common\model\ServiceCategory as ServiceCategoryModel;
 use app\wavlink\validate\Drivers as DriversValidate;
 use think\Request;
 
+/**
+ * Class Drivers
+ * @package app\wavlink\controller
+ */
 Class Drivers extends BaseAdmin
 {
+    /***
+     * @return mixed|\think\response\View
+     */
     public function index() {
-        $language_id = $this->MustBePositiveInteger(input('get.language_id'));
         if (request()->isPost()) {//搜索
             $data = input('post.name');
-            $res = DriversModel::getSelectDrivers($data, $language_id);
+            $res = DriversModel::getSelectDrivers($data, $this->currentLanguage['id']);
             return view('', [
                 'drivers' => $res['data'],
                 'counts' => $res['count'],
-                'language_id' => $language_id
+                'language_id' => $this->currentLanguage['id']
             ]);
         }
-        $result = DriversModel::getDataByStatus(1, $language_id);
+        $result = DriversModel::getDataByStatus(1, $this->currentLanguage['id']);
         return $this->fetch('', [
             'drivers' => $result['data'],
             'counts' => $result['count'],
-            'language_id' => $language_id
+            'language_id' => $this->currentLanguage['id']
         ]);
     }
 
@@ -38,13 +44,11 @@ Class Drivers extends BaseAdmin
      * 添加下载页面
      */
     public function add() {
-        //获取语言
-        $language_id = $this->MustBePositiveInteger(input('get.language_id'));
         //获取驱动的分类
-        $category = ServiceCategoryModel::getSecondCategory($language_id);
+        $category = ServiceCategoryModel::getSecondCategory($this->currentLanguage['id']);
         return $this->fetch('', [
             'category' => $category,
-            'language_id' => $language_id,
+            'language_id' => $this->currentLanguage['id'],
         ]);
     }
 
@@ -72,18 +76,16 @@ Class Drivers extends BaseAdmin
     /**
      * 编辑操作开发
      * @param int $id
-     * @param $language_id
      * @return mixed
      * @throws \think\exception\DbException
      */
-    public function edit($id,$language_id) {
+    public function edit($id) {
        $id = $this->MustBePositiveInteger($id);
-       $language_id = $this->MustBePositiveInteger($language_id);
         //获取驱动的二级分类
-        $category = ServiceCategoryModel::getSecondCategory($language_id);
+        $category = ServiceCategoryModel::getSecondCategory($this->currentLanguage['id']);
         $drivers = DriversModel::get($id);
         return $this->fetch('', [
-            'language_id' => $language_id,
+            'language_id' => $this->currentLanguage['id'],
             'drivers' => $drivers,
             'category' => $category,
         ]);
@@ -103,7 +105,6 @@ Class Drivers extends BaseAdmin
             foreach ($ids as $k => $v) {
                 if (DriversModel::get($k)) {
                     model('Drivers')->where('id', $k)->update(['status' => -1]);
-//                    model('Drivers')->where('id', $k)->update(['listorder' => $k+50]);
                 } else {
                     return show(0, 'error','','','', '回收失败');
                 }

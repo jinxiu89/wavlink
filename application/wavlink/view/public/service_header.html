@@ -21,7 +21,7 @@
                     <li id="article_art">
                         <a href="{:url('Article/index')}" title="文章管理">文章管理</a>
                     </li>
-                    <li id="article_rec"><a href="{:url('Article/article_recycle')}" title="回收站内文章">回收站内文章</a></li>
+                    <li id="article_rec"><a href="{:url('Article/article_recycle')}" title="回收站内文章">回收站</a></li>
                 </ul>
             </dd>
         </dl>
@@ -32,7 +32,7 @@
             <dd>
                 <ul>
                     <li id="service_doc"><a href="{:url('Document/index')}" title="下载列表">文档管理</a></li>
-                    <li id="doc_recovery"><a href="{:url('Document/doc_recycle')}" title="回收文档列表">回收文档列表</a></li>
+                    <li id="doc_recovery"><a href="{:url('Document/doc_recycle')}" title="回收站">回收站</a></li>
                 </ul>
             </dd>
         </dl>
@@ -42,10 +42,8 @@
             <dt><i class="Hui-iconfont">&#xe641;</i> 驱动管理<i class="Hui-iconfont menu_dropdown-arrow">&#xe6d5;</i></dt>
             <dd>
                 <ul>
-                    {volist name="languages" id="vo"}
-                    <li id="drivers_list_{$vo.id}"><a href="{:url('Drivers/index',['language_id'=>$vo.id])}" title="{$vo.name}驱动下载列表">{$vo.id|getLanguage}驱动管理</a></li>
-                    {/volist}
-                    <li id="drivers_recycle"><a href="{:url('Drivers/recycle')}" title="回收下载列表">回收下载列表</a></li>
+                    <li id="drivers_list"><a href="{:url('Drivers/index')}" title="驱动下载列表">驱动管理</a></li>
+                    <li id="drivers_recycle"><a href="{:url('Drivers/recycle')}" title="回收站">回收站</a></li>
                 </ul>
             </dd>
         </dl>

@@ -3,16 +3,16 @@
 <section class="Hui-article-box">
     <nav class="breadcrumb"><i class="Hui-iconfont">&#xe67f;</i> 首页
         <span class="c-gray en">&gt;</span>
-        {$language_id|getLanguage}驱动管理
+        驱动管理
         <span class="c-gray en">&gt;</span>
-        {$language_id|getLanguage}驱动列表
+        驱动列表
         <a class="btn btn-success radius r" style="line-height:1.6em;margin-top:3px"
            href="javascript:location.replace(location.href);" title="刷新"><i class="Hui-iconfont">&#xe68f;</i></a>
     </nav>
 
     <div class="Hui-article">
         <article class="cl pd-20" style="min-height: 51em;">
-            <form action="{:url('Drivers/index',['language_id'=>$language_id])}" method="post">
+            <form action="{:url('Drivers/index')}" method="post">
                 <div class="text-c"> 文件名称：
                     <input type="text" class="input-text" style="width:250px" placeholder="输入文件名称" name="name">
                     <button type="submit" class="btn btn-success" name=""><i class="Hui-iconfont">&#xe665;</i> 搜索</button>
@@ -20,9 +20,7 @@
             </form>
             <div class="cl pd-5 bg-1 bk-gray mt-20" style="line-height: 31px">
                 <span class="l">
-                    <a href="javascript:;" onclick="allRecycle('{:url(\'Drivers/allRecycle\')}')" class="btn btn-danger radius"><i
-                        class="Hui-iconfont">&#xe6e2;</i> 批量回收</a>
-                    <a class="btn btn-primary radius" onclick="index_add('添加{$language_id|getLanguageOne}驱动下载','{:url(\'Drivers/add\',[\'language_id\'=>$language_id,])}')" href="javascript:;"><i class="Hui-iconfont">&#xe600;</i> 添加{$language_id|getLanguage}驱动</a>
+                    <a class="btn btn-primary radius" onclick="index_add('添加','{:url(\'Drivers/add\')}')" href="javascript:;"><i class="Hui-iconfont">&#xe600;</i> 添加驱动</a>
                 </span>
                 <span class="r">共有数据：<strong>{$counts}</strong> 条</span>
             </div>
@@ -57,7 +55,7 @@
                     <td>{$vo.create_time}</td>
                     <td class="td-status text-c"><span class="label label-success radius">已启用</span></td>
                     <td class="td-manage">
-                        <a title="编辑" href="javascript:;" onclick="index_edit('更新{$language_id|getLanguageOne}驱动','{:url(\'Drivers/edit\',[\'id\'=>$vo.id,\'language_id\'=>$language_id])}')" class="ml-5" style="text-decoration:none"><i class="Hui-iconfont" style="font-size: 20px;color: #0000cc">&#xe6df;</i></a>
+                        <a title="编辑" href="javascript:;" onclick="index_edit('更新驱动','{:url(\'Drivers/edit\',[\'id\'=>$vo.id])}')" class="ml-5" style="text-decoration:none"><i class="Hui-iconfont" style="font-size: 20px;color: #0000cc">&#xe6df;</i></a>
                         <a title="放入回收站" href="javascript:;" onclick="recycle('{:url(\'Drivers/byStatus\',[\'id\'=>$vo.id,\'status\'=>-1])}')" class="ml-5" style="text-decoration:none"><i class="Hui-iconfont" style="font-size: 20px;color:red;">&#xe6e2;</i></a>
                         {empty name="$language_id"}
                         {else /}
@@ -87,9 +85,7 @@
     $(document).ready(function () {
         $("#service_drivers dt").addClass("selected");
         $("#service_drivers dd").css("display", "block");
-        var lan = $("input#language").val();
-        var id = "#drivers_list_"+lan;
-        $(id).addClass("current");
+        $("#drivers_list").addClass("current");
         $("#service").addClass("current");
     })
 </script>

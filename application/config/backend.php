@@ -95,6 +95,11 @@ Route::group('wavlink', function () {
     Route::get('document/doc_recycle', 'wavlink/document/doc_recycle');
     Route::get('document/add', 'wavlink/document/add');
     Route::get('document/edit', 'wavlink/document/edit', [], ['id' => '\d+']);
+    //驱动管理
+    Route::get('drivers/index', 'wavlink/drivers/index');
+    Route::get('drivers/recycle', 'wavlink/drivers/recycle');
+    Route::get('drivers/add', 'wavlink/drivers/add');
+    Route::get('drivers/edit', 'wavlink/drivers/edit');
 
 });
 
@@ -145,8 +150,10 @@ Route::group('wavlink', function () {
     Route::post('service_category/byStatus', 'wavlink/ServiceCategory/byStatus');
     Route::post('article/byStatus', 'wavlink/article/byStatus');
     Route::post('Document/byStatus', 'wavlink/Document/byStatus');
+    Route::post('drivers/byStatus', 'wavlink/Drivers/byStatus');
 
     Route::post('/service_category/listorder', 'wavlink/ServiceCategory/listorder');
     Route::post('/article/listorder', 'wavlink/Article/listorder');
     Route::post('/Document/listorder', 'wavlink/Document/listorder');
+    Route::post('/Drivers/listorder', 'wavlink/Drivers/listorder');
 });

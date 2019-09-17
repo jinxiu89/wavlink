@@ -108,18 +108,23 @@ Route::group('wavlink', function () {
     Route::get('manual/edit_download', 'wavlink/manual/edit_download', [], ['id' => '\d+', 'manual_id' => '\d+']);
     Route::get('Manual/del_download', 'wavlink/Manual/del_download', [], ['id' => '\d+']);
     //视频
-    Route::get('video/index','wavlink/video/index');
-    Route::get('video/video_recycle','wavlink/video/video_recycle');
-    Route::get('video/add','wavlink/video/add');
-    Route::get('video/edit','wavlink/video/edit',[],['id'=>'\d+']);
+    Route::get('video/index', 'wavlink/video/index');
+    Route::get('video/video_recycle', 'wavlink/video/video_recycle');
+    Route::get('video/add', 'wavlink/video/add');
+    Route::get('video/edit', 'wavlink/video/edit', [], ['id' => '\d+']);
     //留言管理
-    Route::get('guest_book/index','wavlink/GuestBook/index');
-    Route::get('guest_book/export','wavlink/GuestBook/export');
-    Route::get('guest_book/index_off','wavlink/GuestBook/index_off');
-    Route::get('guest_book/look','wavlink/GuestBook/look');
-    Route::get('guest_book/reply','wavlink/GuestBook/reply');
-    Route::get('guest_book/send','wavlink/GuestBook/send');
-    Route::get('guest_book/reply_look','wavlink/GuestBook/reply_look');
+    Route::get('guest_book/index', 'wavlink/GuestBook/index');
+    Route::get('guest_book/export', 'wavlink/GuestBook/export');
+    Route::get('guest_book/index_off', 'wavlink/GuestBook/index_off');
+    Route::get('guest_book/look', 'wavlink/GuestBook/look');
+    Route::get('guest_book/reply', 'wavlink/GuestBook/reply');
+    Route::get('guest_book/send', 'wavlink/GuestBook/send');
+    Route::get('guest_book/reply_look', 'wavlink/GuestBook/reply_look');
+    //FAQ管理
+    Route::get('Faq/index', 'wavlink/Faq/index');
+    Route::get('Faq/faq_recycle', 'wavlink/Faq/faq_recycle');
+    Route::get('Faq/add', 'wavlink/Faq/add');
+    Route::get('Faq/edit', 'wavlink/Faq/edit',[], ['id' => '\d+']);
 });
 
 //post请求组
@@ -169,17 +174,20 @@ Route::group('wavlink', function () {
     Route::post('Manual/save', 'wavlink/Manual/save');
     Route::post('Manual/save_download', 'wavlink/Manual/save_download');
     Route::post('Video/save', 'wavlink/Video/save');
-    Route::post('guest_book/send','wavlink/GuestBook/send');
+    Route::post('Faq/save', 'wavlink/Faq/save');
+    Route::post('guest_book/send', 'wavlink/GuestBook/send');
 
     Route::post('service_category/byStatus', 'wavlink/ServiceCategory/byStatus');
     Route::post('article/byStatus', 'wavlink/article/byStatus');
     Route::post('Document/byStatus', 'wavlink/Document/byStatus');
     Route::post('drivers/byStatus', 'wavlink/Drivers/byStatus');
     Route::post('video/byStatus', 'wavlink/video/byStatus');
+    Route::post('faq/byStatus', 'wavlink/faq/byStatus');
 
     Route::post('/service_category/listorder', 'wavlink/ServiceCategory/listorder');
     Route::post('/article/listorder', 'wavlink/Article/listorder');
     Route::post('/Document/listorder', 'wavlink/Document/listorder');
     Route::post('/Drivers/listorder', 'wavlink/Drivers/listorder');
     Route::post('/Video/listorder', 'wavlink/Video/listorder');
+    Route::post('/faq/listorder', 'wavlink/faq/listorder');
 });

@@ -12,24 +12,29 @@ use app\common\model\ServiceCategory as ServiceCategoryModel;
 use app\wavlink\validate\Faq as FaqValidate;
 use app\wavlink\validate\UrlTitleMustBeOnly;
 
+/***
+ * Class Faq
+ * @package app\wavlink\controller
+ */
 Class Faq extends BaseAdmin
 {
+    /***
+     * @return mixed
+     */
     public function index() {
 //        $faqModel = new FaqModel();
-        $language_id = $this->MustBePositiveInteger(input('get.language_id'));
-        $faq = FaqModel::getDataByStatus(1,$language_id);
+        $faq = FaqModel::getDataByStatus(1,$this->currentLanguage['id']);
         $con = request()->controller();
         return $this->fetch('', [
             'faq' => $faq['data'],
             'counts' => $faq['count'],
-            'language_id' => $language_id,
+            'language_id' => $this->currentLanguage['id'],
             'con' => $con
         ]);
     }
 
     public function faq_recycle() {
-        $language_id = $this->MustBePositiveInteger(input('get.language_id'));
-        $faq = FaqModel::getDataByStatus(-1,$language_id);
+        $faq = FaqModel::getDataByStatus(-1,$this->currentLanguage['id']);
         return $this->fetch('', [
             'faq' => $faq['data'],
             'counts' => $faq['count']
@@ -38,7 +43,7 @@ Class Faq extends BaseAdmin
 
     public function add() {
         //获取语言
-        $language_id = $this->MustBePositiveInteger(input('get.language_id'));
+        $language_id = $this->currentLanguage['id'];
         //获取faq的服务分类
         $categorys = ServiceCategoryModel::getSecondCategory($language_id);
         return $this->fetch('', [
@@ -74,9 +79,9 @@ Class Faq extends BaseAdmin
      * @param $language_id
      * @return array|mixed
      */
-    public function edit($id = 0,$language_id) {
+    public function edit($id = 0) {
         $id = $this->MustBePositiveInteger($id);
-        $language_id = $this->MustBePositiveInteger($language_id);
+        $language_id = $this->currentLanguage['id'];
         $faq = FaqModel::get($id);
         //获取faq的服务分类
         $categorys = ServiceCategoryModel::getSecondCategory($language_id);

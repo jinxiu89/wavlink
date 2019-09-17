@@ -85,11 +85,8 @@
             <dt><i class="Hui-iconfont">&#xe666;</i> FAQ咨询<i class="Hui-iconfont menu_dropdown-arrow">&#xe6d5;</i></dt>
             <dd>
                 <ul>
-                    {volist name="languages" id="vo"}
-                    <li id="faq_answer_{$vo.id}"><a href="{:url('Faq/index',['language_id'=>$vo.id])}" title="{$vo.name}FAQ管理">{$vo.id|getLanguage}FAQ管理</a></li>
-                    <li id="faq_recycle"><a href="{:url('Faq/faq_recycle',['language_id'=>$vo.id])}" title="回收站">faq回收站</a></li>
-                    {/volist}
-
+                    <li id="faq_answer"><a href="{:url('Faq/index')}" title="FAQ管理">FAQ管理</a></li>
+                    <li id="faq_recycle"><a href="{:url('Faq/faq_recycle')}" title="回收站">faq回收站</a></li>
                 </ul>
             </dd>
         </dl>

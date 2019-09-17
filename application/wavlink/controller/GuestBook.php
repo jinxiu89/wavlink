@@ -13,6 +13,11 @@ namespace app\wavlink\controller;
 use app\common\helper\Excel;
 use app\common\model\GuestBook as GuestBookModel;
 
+/**
+ * Class GuestBook
+ * @package app\wavlink\controller
+ *
+ */
 class GuestBook extends BaseAdmin
 {
     //获取未处理的固件信息,status = -1

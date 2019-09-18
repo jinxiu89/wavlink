@@ -109,6 +109,7 @@ class Model extends BaseAdmin
         }
         if (request()->isAjax()) {
             $data = input('post.');//获取到数据
+            $result->soft()->detach($ids);//先删除原有数据，这个百分百不出戳的，
             if (!isset($data['soft_id']) || !is_array($data['soft_id']) || $data['soft_id'][0] == "") {
                 if ($result->allowField(true)->save($data)) {
                     return show(1, '', '', '', '', "保存数据成功！");
@@ -125,8 +126,7 @@ class Model extends BaseAdmin
                 //丢弃掉数据里的soft_id数组
                 unset($data['soft_id']);
                 $data['code'] = strtoupper($data['code']);
-                $result->save($data);//这个地方是保存本体数据的，如果不修改保存的话会出现false
-                $result->soft()->detach($ids);//先删除原有数据，这个百分百不出戳的，
+                $result->allowField(true)->save($data);//这个地方是保存本体数据的，如果不修改保存的话会出现false
                 if ($result->soft()->saveAll($softData)) {
                     return show(1, '', '', '', '', "保存数据成功！");
                 } else {

@@ -464,3 +464,22 @@ function getDescriptionByCode($code)
     $data = app\common\model\Language::getIDStatusByCode($code);
     return $data['remark'];
 }
+
+/***
+ * @param $header
+ * @return string
+ *
+ */
+function get_lang($header)
+{
+    //拿到浏览器的语言，初始化语言项
+    if (empty($header['accept-language'])) {
+        return 'en_us';
+    } else {
+        $lang_code = $header['accept-language'];
+        $result = explode(',', $lang_code);
+        $code = strtolower($result[0]);
+        //在extra 里配置各国语言代码对应相应的模块
+        return str_ireplace('-', '_', $code);
+    }
+}

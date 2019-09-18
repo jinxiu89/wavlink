@@ -7,6 +7,10 @@
  */
 
 use think\Route;
+
+Route::group('zh_cn', function () {
+    Route::get('/index', 'Index/index');
+});
 //Route::group('en_us', function () {
 //    Route::get('/index', 'Index/index');
 //}, ['ext' => 'html']);

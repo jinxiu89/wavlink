@@ -7,14 +7,19 @@
  */
 
 use think\Route;
+
 Route::group('en_us', function () {
     Route::get('/index', 'Index/index');
-}, ['ext' => 'html']);
-
-Route::group('zh_cn',function (){
-    Route::get('/index','Index/index');
 });
 
+
+/***
+ * 前端路由控制
+ * 对于根来说，他需要的是得到语言信息 然后跳转
+ *
+ */
+Route::get('/', 'en_us/Base/autoload');
+//Route::get('/language/:code', 'home/AutoLoad/setLanguage')->pattern(['code' => '[\w-]+']);
 //
 ///**
 // * 中文网站路由规则，写法和英文网站一样，

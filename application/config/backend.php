@@ -140,6 +140,11 @@ Route::group('wavlink', function () {
     Route::get('model/add_soft', 'wavlink/model/add_soft');
     Route::get('Model/saveID', 'wavlink/Model/saveID');
     Route::get('Model/edit_soft', 'wavlink/Model/edit_soft', [], ['id' => '\d+']);
+    Route::get('sn/index', 'wavlink/sn/index');
+    Route::get('sn/add', 'wavlink/sn/add');
+    Route::get('sn/edit', 'wavlink/sn/edit', [], ['id' => '\d+']);
+    Route::get('old_sn/index', 'wavlink/OldSn/index');
+    Route::get('old_sn/add', 'wavlink/OldSn/add');
 });
 
 //post请求组
@@ -188,6 +193,8 @@ Route::group('wavlink', function () {
     Route::post('drivers/save', 'wavlink/drivers/save');
     Route::post('Manual/save', 'wavlink/Manual/save');
     Route::post('cate/index', 'wavlink/cate/index');
+    Route::post('sn/index', 'wavlink/sn/index');
+    Route::post('old_sn/index', 'wavlink/OldSn/index');
     Route::post('Manual/save_download', 'wavlink/Manual/save_download');
     Route::post('Video/save', 'wavlink/Video/save');
     Route::post('Faq/save', 'wavlink/Faq/save');
@@ -204,6 +211,8 @@ Route::group('wavlink', function () {
     Route::post('faq/byStatus', 'wavlink/faq/byStatus');
     Route::post('Soft/byStatus', 'wavlink/Soft/byStatus');
     Route::post('cate/byStatus', 'wavlink/cate/byStatus');
+    Route::post('model/byStatus', 'wavlink/model/byStatus');
+    Route::post('sn/byStatus', 'wavlink/sn/byStatus');
 
     Route::post('/service_category/listorder', 'wavlink/ServiceCategory/listorder');
     Route::post('/article/listorder', 'wavlink/Article/listorder');

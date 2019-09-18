@@ -92,6 +92,11 @@ class Model extends BaseAdmin
         ]);
     }
 
+    /***
+     * @param $id
+     * @return mixed|void
+     * @throws \think\exception\DbException
+     */
     public function edit($id)
     {
         $cate = ((new CateMode())->getCateByStatus());

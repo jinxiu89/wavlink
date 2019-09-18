@@ -128,9 +128,18 @@ Route::group('wavlink', function () {
     //SN管理
     Route::get('soft/index', 'wavlink/soft/index');
     Route::get('soft/add', 'wavlink/soft/add');
-    Route::get('soft/edit', 'wavlink/soft/edit',[], ['id' => '\d+']);
+    Route::get('soft/edit', 'wavlink/soft/edit', [], ['id' => '\d+']);
+    Route::get('Soft/add_model', 'wavlink/Soft/add_model');
+    Route::get('Soft/saveID', 'wavlink/Soft/saveID');
+    Route::get('Soft/edit_model', 'wavlink/Soft/edit_model', [], ['id' => '\d+']);
     Route::get('cate/index', 'wavlink/cate/index');
     Route::get('cate/add', 'wavlink/cate/add');
+    Route::get('model/index', 'wavlink/model/index');
+    Route::get('model/add', 'wavlink/model/add');
+    Route::get('model/edit', 'wavlink/model/edit');
+    Route::get('model/add_soft', 'wavlink/model/add_soft');
+    Route::get('Model/saveID', 'wavlink/Model/saveID');
+    Route::get('Model/edit_soft', 'wavlink/Model/edit_soft', [], ['id' => '\d+']);
 });
 
 //post请求组
@@ -178,10 +187,14 @@ Route::group('wavlink', function () {
     Route::post('document/save', 'wavlink/document/save');
     Route::post('drivers/save', 'wavlink/drivers/save');
     Route::post('Manual/save', 'wavlink/Manual/save');
+    Route::post('cate/index', 'wavlink/cate/index');
     Route::post('Manual/save_download', 'wavlink/Manual/save_download');
     Route::post('Video/save', 'wavlink/Video/save');
     Route::post('Faq/save', 'wavlink/Faq/save');
     Route::post('guest_book/send', 'wavlink/GuestBook/send');
+    Route::post('soft/edit', 'wavlink/soft/edit', [], ['id' => '\d+']);
+    Route::post('Model/saveID', 'wavlink/Model/saveID');
+    Route::post('model/edit', 'wavlink/model/edit');
 
     Route::post('service_category/byStatus', 'wavlink/ServiceCategory/byStatus');
     Route::post('article/byStatus', 'wavlink/article/byStatus');
@@ -190,6 +203,7 @@ Route::group('wavlink', function () {
     Route::post('video/byStatus', 'wavlink/video/byStatus');
     Route::post('faq/byStatus', 'wavlink/faq/byStatus');
     Route::post('Soft/byStatus', 'wavlink/Soft/byStatus');
+    Route::post('cate/byStatus', 'wavlink/cate/byStatus');
 
     Route::post('/service_category/listorder', 'wavlink/ServiceCategory/listorder');
     Route::post('/article/listorder', 'wavlink/Article/listorder');

@@ -24,8 +24,17 @@ use app\common\model\Document as DocumentModel;
  */
 class Base extends Controller
 {
+    /**
+     * @var $module :当前的模块名
+     */
     protected $module;
-    protected $code;//受保护的成员变量
+    /**
+     * @var $code : 当前的语言code 通过浏览器获得或者用户自定义选择获得
+     */
+    protected $code;
+    /**
+     * @var $language_id
+     */
     protected $language_id; //全局的语言ID
     protected $language; //语言
     protected $category; // 产品分类列表
@@ -37,7 +46,12 @@ class Base extends Controller
     protected $articleList; // 最新事件列表
     protected $productList; // 最热产品列表
     protected $template;
-    protected $beforeActionList = ['loadLanguage', 'languages', 'getCategory', 'checkMobile', 'checkLang'];
+    protected $beforeActionList = [
+        'setting', 'loadLanguage',
+        'languages', 'getCategory',
+        'checkMobile', 'checkLang',
+        'Popular', 'articles',
+        'documents', 'about'];
 
 
     public function _initialize()
@@ -45,23 +59,57 @@ class Base extends Controller
         //当前模块
         $this->module = Request::instance()->module();
         $this->language_id = LanugaeModel::getLanguageCodeOrID($this->code);//$code 转成 language_id
+        //这两个玩意暂时还没找到用途先放在这里
+        $url = Request::instance()->controller();
+        $this->assign('url', $url);
+    }
 
-//        $category= (new CategoryModel())->getChildsCategory($this->code);//导航获取分类
+    /**
+     * 关于我们
+     */
+    public function about()
+    {
+        $about = (new AboutModel())->getAbouts($this->code);
+        $this->assign("about", $about);
+    }
+
+    /**
+     * 文档
+     */
+    public function documents()
+    {
+        $documentList = (new DocumentModel())->getDocumentList($this->code, 5);
+        $this->assign('documentList', $documentList);
+
+    }
+
+    /**
+     * 页脚的文章
+     *
+     */
+    public function articles()
+    {
+        $articleList = (new ArticleModel())->getArticleList($this->code, 5);
+        $this->assign('articleList', $articleList);
+    }
+
+    /**
+     * 推荐 结果为空时显示到列表页
+     */
+    public function Popular()
+    {
         //当一些搜索结果为空的时候，就推荐这些产品，目前是找出排序最高的三个产品
         $imagesRecommend = ProductModel::getListProduct($this->code, 3);
-        $seo = (new SettingModel())->getSeo($this->code);
-        $about = (new AboutModel())->getAbouts($this->code);
-        $articleList = (new ArticleModel())->getArticleList($this->code, 5);
-        $documentList = (new DocumentModel())->getDocumentList($this->code, 5);
-        $url = Request::instance()->controller();
-        $this->assign("seo", $seo);
-        $this->assign("about", $about);
-        $this->assign('code', $this->code);
-        $this->assign('articleList', $articleList);
-        $this->assign('documentList', $documentList);
-        $this->assign('url', $url);
         $this->assign('imagesRecommend', $imagesRecommend);
+    }
 
+    /**
+     * 载入主SEO信息
+     */
+    public function setting()
+    {
+        $seo = (new SettingModel())->getSeo($this->code);
+        $this->assign("seo", $seo);
     }
 
     /**
@@ -131,6 +179,7 @@ class Base extends Controller
         $this->code = Cookie::get('lang_var') ? Cookie::get('lang_var') : get_lang(Request::instance()->header()); //code 不能重request里拿了，需要从cookie里拿
         //加载当前模块语言包
         Lang::load(APP_PATH . $this->module . '/lang/' . $this->code . '.php');
+        $this->assign('code', $this->code);
     }
 
     //404页面

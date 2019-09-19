@@ -9,8 +9,10 @@ use app\common\model\Product as ProductModel;
 use app\common\model\Article as ArticleModel;
 use app\common\model\ServiceCategory as ServiceCategoryModel;
 use app\common\model\Setting as SettingModel;
-use app\common\model\Language as LanugaeModel;
 use think\Controller;
+use think\db\exception\DataNotFoundException;
+use think\db\exception\ModelNotFoundException;
+use think\exception\DbException;
 use think\Lang;
 use think\Request;
 use think\Cookie;
@@ -37,6 +39,7 @@ class Base extends Controller
      */
     protected $language_id; //全局的语言ID
     protected $language; //语言
+
     protected $category; // 产品分类列表
     protected $imagesNew; // 最新产品
     protected $imageBest; //最热产品
@@ -46,22 +49,35 @@ class Base extends Controller
     protected $articleList; // 最新事件列表
     protected $productList; // 最热产品列表
     protected $template;
-    protected $beforeActionList = [
-        'setting', 'loadLanguage',
-        'languages', 'getCategory',
-        'checkMobile', 'checkLang',
-        'Popular', 'articles',
-        'documents', 'about'];
+    protected $beforeActionList = ['loadLanguage', 'languages', 'getCategory', 'checkMobile', 'checkLang', 'setting', 'Popular', 'articles', 'documents', 'about'];
 
 
     public function _initialize()
     {
         //当前模块
         $this->module = Request::instance()->module();
-        $this->language_id = LanugaeModel::getLanguageCodeOrID($this->code);//$code 转成 language_id
+        try {
+            $this->language_id = LanguageModel::getLanguageCodeOrID($this->code);
+        } catch (DataNotFoundException $e) {
+        } catch (ModelNotFoundException $e) {
+        } catch (DbException $e) {
+        }//$code 转成 language_id
         //这两个玩意暂时还没找到用途先放在这里
         $url = Request::instance()->controller();
         $this->assign('url', $url);
+    }
+
+    /***
+     * @param $code
+     * @return \think\response\Redirect
+     * 手动设置语言
+     *
+     */
+    public function setLanguage($code)
+    {
+        Cookie::set('lang_var', $code);
+        $this->code = $code;
+        return redirect('/' . $code . '/index.html', [], 200);
     }
 
     /**
@@ -105,11 +121,17 @@ class Base extends Controller
 
     /**
      * 载入主SEO信息
+     * //todo:: SEO还没搞好，后面来收拾
      */
     public function setting()
     {
-        $seo = (new SettingModel())->getSeo($this->code);
-        $this->assign("seo", $seo);
+        try {
+            $seo = (new SettingModel())->getSeo($this->code);
+            $this->assign("seo", $seo);
+        } catch (DataNotFoundException $e) {
+        } catch (ModelNotFoundException $e) {
+        } catch (DbException $e) {
+        }
     }
 
     /**
@@ -182,13 +204,10 @@ class Base extends Controller
         $this->assign('code', $this->code);
     }
 
-    //404页面
-    public function NotFound()
-    {
-        return view($this->template . '/base/404.html', $code = 404);
-    }
 
-    //IE9以下浏览器打开跳转页面
+    /**
+     * @return mixed
+     */
     public function IE()
     {
         return $this->fetch($this->template . '/base/ie.html');
@@ -201,8 +220,12 @@ class Base extends Controller
     protected function cate()
     {
         //获取服务分类下对应的二级分类
-        $cate = ServiceCategoryModel::getSecondCategory($this->code);
-        $this->assign('cate', $cate);
+        try {
+            $cate = ServiceCategoryModel::getSecondCategory($this->code);
+            $this->assign('cate', $cate);
+        } catch (DataNotFoundException $e) {
+        } catch (ModelNotFoundException $e) {
+        } catch (DbException $e) {
+        }
     }
-
 }

@@ -10,6 +10,8 @@ use think\Route;
 
 Route::group('en_us', function () {
     Route::get('/index', 'Index/index');
+    Route::get('/', 'Index/index');
+
 });
 
 
@@ -19,6 +21,7 @@ Route::group('en_us', function () {
  *
  */
 Route::get('/', 'en_us/Base/autoload');
+Route::get('/language/:code', 'en_us/Base/setLanguage', [], ['code' => '[\w-]+']);
 //Route::get('/language/:code', 'home/AutoLoad/setLanguage')->pattern(['code' => '[\w-]+']);
 //
 ///**

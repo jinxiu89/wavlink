@@ -113,7 +113,7 @@
                                    aria-haspopup="true" aria-expanded="false"> LANGUAGE <span class="caret"></span></a>
                                 <ul class="dropdown-menu">
                                     {volist name="language" id="vo" }
-                                    <li><a href="{:url('/'.$vo.code.'/index')}">{$vo.name}</a></li>
+                                    <li><a href="{:url('/language/'.$vo.code)}">{$vo.name}</a></li>
                                     {/volist}
                                 </ul>
                             </li>

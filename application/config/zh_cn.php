@@ -10,6 +10,8 @@ use think\Route;
 
 Route::group('zh_cn', function () {
     Route::get('/index', 'Index/index');
+    //根路由在最下面
+    Route::get('/', 'Index/index');
 });
 //Route::group('en_us', function () {
 //    Route::get('/index', 'Index/index');

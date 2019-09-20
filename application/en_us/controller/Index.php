@@ -1,9 +1,15 @@
 <?php
 namespace app\en_us\controller;
 use app\common\model\Images as ImagesModel;
+
+/**
+ * Class Index
+ * @package app\en_us\controller
+ *
+ */
 class Index extends Base
 {
-    public function index($type = " ")
+    public function index($type = "")
     {
         $imagesSlide = (new ImagesModel())->getImagesByFeatured($this->code,1);//幻灯片，首页第一屏
         $imagesMain = (new ImagesModel())->getImagesByFeatured($this->code,3);//主流产品推荐，首页第三屏
@@ -17,13 +23,16 @@ class Index extends Base
         $this->assign('imagesNotice' ,$imagesNotice['data']);
         return $this->fetch($this->template.'/index/index.html');
     }
+
     public function build_html(){
         $this->index('index');
         return show(1,'','','','','更新首页缓存成功');
     }
+
     public function en(){
         $this->redirect(url('/en_us/index'));
     }
+
     public function product($id=''){
         $this->redirect(url('/en_us/index'));
     }

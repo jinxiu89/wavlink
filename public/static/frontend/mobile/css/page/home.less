@@ -1,0 +1,213 @@
+/**
+* @name: home.less
+* @description: 首页布局css - mobile
+* @author: Alan(alan_webdeveloper@163.com)
+* @update: 2019-09-21 14:00
+*/
+@import "../public/mixins";
+@import "../public/variables";
+
+/* swiper */
+.banner {
+    background: @whiteColor;
+    .des {
+        padding: @publicInterval @publicInterval 5px;
+        text-align: center;
+        dt {
+            font-size: 14px;
+            margin-bottom: 5px;
+            .text-overflow();
+        }
+        dd {
+            font-size: 12px;
+            .text-overflow();
+        }
+    }
+    .img-box a {
+        #img-optimize(71.875%, @bodyBgColor);
+        //border-bottom: 1px solid @borderColor;
+        img {
+            .img-responsive();
+            .center-block();
+        }
+    }
+    .swiper-pagination {
+        position: static;
+        background: @whiteColor;
+        padding: 0 @publicInterval 5px;
+    }
+    .swiper-pagination-bullet-active {
+        background: @activeColor;
+    }
+}
+/* swiper结束 */
+
+/* category-icon */
+.category-icon {
+    .clearFix();
+    margin: @publicInterval 0;
+    background: @whiteColor;
+    .item {
+        .fl();
+        width: 50%;
+        padding: 5px;
+        text-align: center;
+        border-right: 1px solid @borderColor;
+        border-bottom: 1px solid @borderColor;
+        &:nth-of-type(2),
+        &:nth-of-type(4) {
+            border-right: none;
+        }
+        &:nth-of-type(3),
+        &:nth-of-type(4) {
+            border-bottom: none;
+        }
+    }
+    .item .iconfont {
+        color: @linkColor;
+        font-size: 50px;
+    }
+    .item p {
+        color: @baseColor;
+        font-size: 12px;
+    }
+    @media screen and (max-width: 320px) {
+        .item p {
+            font-size: 10px;
+        }
+    }
+}
+/* category-icon結束 */
+
+/* hot */
+.hot {
+    display: none;
+    margin-bottom: @publicInterval;
+    background: @whiteColor;
+    .des {
+        padding: @publicInterval;
+        text-align: center;
+        h2 {
+            font-size: 14px;
+            margin-bottom: 5px;
+        }
+        p {
+            font-size: 12px;
+        }
+    }
+    .img-box a {
+        #img-optimize(73.948%, @bodyBgColor);
+        img {
+            .img-responsive();
+            .center-block();
+        }
+    }
+}
+/* hot结束 */
+
+/* recommend */
+.recommend {
+    .clearFix();
+    .common-box {
+        .fl();
+        width: 50%;
+        padding: .5px;
+    }
+    .des {
+        padding: 10px;
+        background: @whiteColor;
+        h3 {
+            .text-overflow();
+            margin: 0 0 5px;
+            font-size: 12px;
+        }
+        span {
+            font-size: 12px;
+        }
+    }
+    .img-box {
+        padding: 1px;
+        background: @whiteColor;
+        a {
+            #img-optimize(65.106%, @bodyBgColor);
+            img {
+                .img-responsive();
+                .center-block();
+            }
+        }
+    }
+}
+/* recommend结束 */
+
+/* new */
+.new-box {
+    margin: @publicInterval 0;
+    padding: @publicInterval 0;
+    background: @whiteColor;
+    h3 {
+        padding: 0 @publicInterval 5px;
+        font-size: 12px;
+        border-bottom: 1px solid @borderColor;
+        a {
+            float: right;
+        }
+    }
+    .item {
+        padding-bottom: @publicInterval;
+        border-bottom: 1px solid @borderColor;
+        &:nth-last-of-type(1) {
+            border-bottom: none;
+        }
+    }
+    .des {
+        h4 {
+            padding: @publicInterval;
+        }
+        h4 a {
+            color: @baseColor;
+            font-size: 12px;
+        }
+    }
+    .img-box {
+        overflow: hidden;
+        max-height: 300px;
+        padding: 0 @publicInterval;
+        img {
+            .img-responsive();
+            .center-block();
+        }
+    }
+}
+/* new结束 */
+
+/* video */
+.video-box {
+    margin: 0 0 @publicInterval;
+    padding: @publicInterval;
+    background: @whiteColor;
+    h3 {
+        padding: 0 @publicInterval 5px;
+        font-size: 12px;
+        border-bottom: 1px solid @borderColor;
+        a {
+            float: right;
+        }
+    }
+
+    .video {
+        padding: @publicInterval 0 0;
+        video {
+            width: 100%;
+        }
+    }
+
+    .swiper-pagination {
+        position: static;
+        background: @whiteColor;
+        padding: @publicInterval 0 0;
+    }
+    .swiper-pagination-bullet-active {
+        background: @activeColor;
+    }
+}
+/* video */

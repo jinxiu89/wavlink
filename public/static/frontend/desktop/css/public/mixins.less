@@ -1,0 +1,113 @@
+//@name: mixins.less
+//@description: 通用类定义
+//@author: Alan(alan_webdeveloper@163.com)
+//@update: 2019-07-06 10:46
+.fl() {
+    float: left;
+}
+
+.fr() {
+    float: right;
+}
+
+.clearFix() {
+    &before,
+    &:after {
+        content: " ";
+        display: table;
+        zoom: 1;
+    }
+    &:after {
+        clear: both;
+    }
+}
+
+.img-responsive() {
+    display: block;
+    max-width: 100%;
+    height: auto;
+}
+
+.center-block() {
+    margin-left: auto;
+    margin-right: auto;
+}
+
+//网速慢导致图片加载抖动 优化
+#img-optimize(@name: 100%, @bgColor: #f2f2f2) {
+    display: block;
+    overflow: hidden;
+    width: 100%;
+    height: 0;
+    padding-bottom: @name; /* 根据图片高宽比设置向下内边距  高/宽 */
+    background: @bgColor;
+    
+    img {
+        width: 100%;
+    }
+}
+
+#border-radius(@name: 5px) {
+    -webkit-border-radius: @name;
+    -moz-border-radius: @name;
+    border-radius: @name;
+}
+
+.text-overflow() {
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    overflow: hidden;
+}
+
+#text-vertical(@name) {
+    height: @name;
+    line-height: @name;
+}
+
+.opacity(@val) {
+    filter: alpha(opacity=@val);
+    opacity: @val / 100;
+}
+
+.min-height(@height) {
+    min-height: @height;
+    height: auto !important;
+    _height: @height;
+}
+
+//表单元素垂直居中对齐（也可设置顶对齐，底对齐）
+.form-element-v-align(@alignment: middle) {
+    display: inline-block;
+    vertical-align: @alignment;
+    *vertical-align: auto;
+    *display: inline;
+    zoom: 1;
+}
+
+//绝对居中(相对于固定宽高的容器)
+.absolute-center(@width, @height) {
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    margin-left: -(@width / 2);
+    margin-top: -(@height / 2);
+    width: @width;
+    height: @height;
+}
+
+//2019.7.8 更新
+#transform(@name) {
+    -webkit-transform: @name;
+       -moz-transform: @name;
+        -ms-transform: @name;
+         -o-transform: @name;
+            transform: @name;
+}
+
+#animation(@name) {
+    -webkit-animation: @name;
+       -moz-animation: @name;
+         -o-animation: @name;
+            animation: @name;
+}
+

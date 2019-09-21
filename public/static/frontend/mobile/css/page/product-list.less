@@ -1,0 +1,59 @@
+/**
+* @name: product-list.less
+* @description: 产品列表页css - mobile
+* @author: Alan(alan_webdeveloper@163.com)
+* @update: 2019-09-16 14:00
+*/
+@import "../public/mixins";
+@import "../public/variables";
+
+//列表布局样式
+.list-box {
+    .list-item {
+        margin: 0 0 @publicInterval;
+        &:nth-last-of-type(1) {
+            margin: 0;
+        }
+    }
+    .list-item .thumbnail {
+        margin: 0;
+        border: none;
+        border-radius: 0;
+    }
+    .list-item .thumbnail .img-box {
+        #img-optimize(56.25%, @bodyBgColor);
+    }
+    .list-item .thumbnail .caption {
+        padding: 15px 8px;
+        .title a {
+            display: block;
+            color: @baseColor;
+            font-size: 14px;
+        }
+        .des {
+            margin: @publicInterval 0;
+            font-size: 14px;
+            color: @whiteSmoke;
+        }
+        .link {
+            .clearFix();
+        }
+        .link span {
+            .fl();
+            display: block;
+            width: 50%;
+            font-size: 12px;
+            &:nth-last-of-type(1) {
+                text-align: right;
+            }
+        }
+        .link a {
+            color: @linkColor;
+            &:hover {
+                color: @activeColor;
+                text-decoration: none;
+            }
+        }
+    }
+}
+//列表布局样式

@@ -1,0 +1,42 @@
+/**
+* @name: driver.less
+* @description: 驅動頁面css - mobile
+* @author: Alan(alan_webdeveloper@163.com)
+* @update: 2019-09-11 15:00
+*/
+@import "../public/mixins";
+@import "../public/variables";
+.item {
+    margin-bottom: @publicInterval;
+    padding: @publicInterval;
+    background: @whiteColor;
+    .panel {
+        margin-bottom: 0;
+        border-color: @borderColor;
+    }
+    .panel-heading {
+        padding: 10px @publicInterval;
+        border-color: @borderColor;
+    }
+    .panel-body {
+        padding: @publicInterval;
+    }
+    h3 {
+        font-size: 14px;
+    }
+    .mode {
+        span {
+            display: inline-block;
+        }
+        p:nth-last-of-type(1) span {
+            font-size: 12px;
+        }
+    }
+    .info {
+        margin: @publicInterval 0;
+    }
+    .download a {
+        font-size: 12px;
+        border-color: @borderColor;
+    }
+}

@@ -1,0 +1,73 @@
+/**
+* @name: product-list.less
+* @description: 產品列表樣式
+* @author: Alan(alan_webdeveloper@163.com)
+* @update: 2019-09-16 10:30
+*/
+@import "../public/mixins";
+@import "../public/variables";
+
+//列表布局样式
+.list-box {
+    .clearFix();
+    .list-item {
+        padding: 2.5px;
+    }
+    .list-item .thumbnail {
+        margin: 0;
+        border: none;
+        border-radius: 0;
+        &:hover .caption .mode,
+        &:hover .caption .title {
+            color: @activeColor;
+        }
+    }
+    .list-item .thumbnail .img-box {
+        #img-optimize(56.25%, @bodyBgColor);
+    }
+    .list-item .thumbnail .caption {
+        padding: 15px 50px;
+        .mode {
+            padding-bottom: 15px;
+            font-size: 16px;
+            font-weight: bold;
+            text-align: center;
+            color: @baseColor;
+        }
+        .title {
+            .min-height(45px);
+            text-align: center;
+            font-size: 16px;
+            color: @baseColor;
+        }
+    }
+
+    @media screen and (min-width: 992px) {
+        .list-item:nth-of-type(3n + 1) {
+            padding-left: 0;
+        }
+        .list-item:nth-of-type(3n + 3) {
+            padding-right: 0;
+        }
+    }
+    @media screen and (min-width: 768px) and (max-width: 991px) {
+        .list-item:nth-of-type(2n + 1) {
+            padding-left: 0;
+        }
+        .list-item:nth-of-type(2n + 2) {
+            padding-right: 0;
+        }
+    }
+    @media screen and (max-width: 1600px) {
+        .list-item .thumbnail .caption {
+            padding: 15px 8px;
+        }
+        .list-item .thumbnail .caption .mode {
+            font-size: 14px;
+        }
+        .list-item .thumbnail .caption .title {
+            font-size: 14px;
+        }
+    }
+}
+//列表布局样式結束

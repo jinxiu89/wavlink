@@ -1,0 +1,391 @@
+/**
+* @name: components.less
+* @description: 公共模块css
+* @author: Alan(alan_webdeveloper@163.com)
+* @update: 2019-09-10 16:30
+*/
+@import "../../lib/Bootstrap/bootstrap-3.3.7.min.css";
+@import "../../lib/iconfont/iconfont.css";
+.center-block {
+  margin-left: auto;
+  margin-right: auto;
+}
+body,
+ul,
+ol,
+dl,
+dd,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+figure,
+form,
+fieldset,
+legend,
+input,
+textarea,
+button,
+p,
+blockquote,
+th,
+td,
+pre,
+xmp {
+  margin: 0;
+  padding: 0;
+}
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+b,
+strong {
+  font-weight: normal;
+}
+address,
+cite,
+dfn,
+em,
+i,
+optgroup,
+var {
+  font-style: normal;
+}
+table {
+  border-collapse: collapse;
+  border-spacing: 0;
+  text-align: left;
+}
+caption,
+th {
+  text-align: inherit;
+}
+ul,
+ol,
+menu {
+  list-style: none;
+}
+fieldset,
+img {
+  border: 0;
+}
+input,
+button {
+  -webkit-appearance: none;
+  outline: none;
+  border: none;
+  background: none;
+}
+img,
+object,
+input,
+textarea,
+button,
+select {
+  vertical-align: middle;
+}
+article,
+aside,
+footer,
+header,
+section,
+nav,
+figure,
+figcaption,
+hgroup,
+details,
+menu {
+  display: block;
+}
+audio,
+canvas,
+video {
+  display: inline-block;
+  *display: inline;
+  *zoom: 1;
+}
+blockquote:before,
+blockquote:after,
+q:before,
+q:after {
+  content: "\0020";
+}
+textarea {
+  overflow: auto;
+  resize: vertical;
+}
+input,
+textarea,
+button,
+select,
+a {
+  outline: 0 none;
+  border: none;
+}
+button::-moz-focus-inner,
+input::-moz-focus-inner {
+  padding: 0;
+  border: 0;
+}
+mark {
+  background-color: transparent;
+}
+a,
+ins,
+s,
+u,
+del {
+  text-decoration: none;
+}
+sup,
+sub {
+  vertical-align: baseline;
+}
+html {
+  overflow-x: hidden;
+  height: 100%;
+  -webkit-tap-highlight-color: transparent;
+}
+a {
+  color: #f87300;
+  text-decoration: none;
+}
+a:hover,
+a:active,
+a:focus,
+a:visited {
+  text-decoration: none;
+}
+@media screen and (max-width: 320px) {
+  html {
+    font-size: 32px;
+  }
+}
+@media screen and (min-width: 321px) and (max-width: 375px) {
+  html {
+    font-size: 37.5px;
+  }
+}
+@media screen and (min-width: 376px) and (max-width: 414px) {
+  html {
+    font-size: 41.4px;
+  }
+}
+@font-face {
+  font-family: Neo_Sans;
+  src: url("../../lib/font/Neo_Sans.ttf");
+}
+body {
+  font-family: Neo_Sans, "Microsoft YaHei", Helvetica, "Meiryo UI", "Malgun Gothic", "Segoe UI", "Trebuchet MS", "Monaco", monospace, Tahoma, STXihei, "华文细黑", STHeiti, "Helvetica Neue", "Droid Sans", "wenquanyi micro hei", FreeSans, Arimo, Arial, SimSun, "宋体", Heiti, "黑体", sans-serif;
+  background: #f2f2f2;
+}
+header {
+  background: #fff;
+}
+header .nav-bar {
+  position: relative;
+  height: 50px;
+  padding: 0 0.4rem;
+  border-bottom: 1px solid #eaeaea;
+}
+header .nav-bar .menu-bar {
+  float: left;
+}
+header .nav-bar .menu-bar span {
+  left: 0;
+}
+header .nav-bar .logo {
+  position: absolute;
+  top: 0;
+  left: 50%;
+  margin-left: -62px;
+}
+header .nav-bar .logo img {
+  height: 22px;
+  margin: 14px 0;
+}
+header .nav-bar .search-bar {
+  float: right;
+}
+header .nav-bar .search-bar .iconfont {
+  display: block;
+  line-height: 50px;
+  font-size: 24px;
+}
+header .search-container {
+  display: none;
+  position: absolute;
+  top: 50px;
+  left: 0;
+  z-index: 999;
+  width: 100%;
+  padding: 0 0.4rem;
+  background: #fff;
+}
+header .search-container form {
+  margin: 11px 0;
+  display: flex;
+  display: -moz-flex;
+  display: -ms-flex;
+  display: -o-flex;
+  justify-content: center;
+}
+header .search-container formbefore,
+header .search-container form:after {
+  content: " ";
+  display: table;
+  zoom: 1;
+}
+header .search-container form:after {
+  clear: both;
+}
+header .search-container form input {
+  float: left;
+  height: 30px;
+  padding: 0 0.4rem;
+  border: 1px solid #f8b300;
+  font-size: 12px;
+}
+header .search-container form input[type="text"] {
+  width: 80%;
+  border-right: none;
+  -webkit-border-radius: 5px 0 0 5px;
+  -moz-border-radius: 5px 0 0 5px;
+  border-radius: 5px 0 0 5px;
+}
+header .search-container form input[type="submit"] {
+  width: 50px;
+  border-left: none;
+  background: #f8b300;
+  color: #fff;
+  -webkit-border-radius: 0 5px 5px 0;
+  -moz-border-radius: 0 5px 5px 0;
+  border-radius: 0 5px 5px 0;
+}
+.hc-mobile-nav a:hover {
+  color: #f8b300;
+}
+footer {
+  padding: 0;
+}
+footer .about {
+  background: #333;
+  padding: 50px 0.4rem;
+}
+footer .about .about-item {
+  padding: 0 5px;
+  border-bottom: 1px solid #5a5656;
+}
+footer .about .about-item h3 {
+  position: relative;
+  line-height: 40px;
+  color: #888;
+  font-size: 12px;
+}
+footer .about .about-item h3 span {
+  position: absolute;
+  top: 0;
+  right: 0;
+  font-size: 14px;
+}
+footer .about .about-item ul {
+  display: none;
+  padding: 0 0.4rem;
+}
+footer .about .about-item:nth-last-of-type(1) ul {
+  display: block;
+}
+footer .about .about-item:nth-last-of-type(1) ul a:nth-of-type(1) i {
+  padding-left: 0;
+}
+footer .about .about-item ul a {
+  line-height: 40px;
+  color: #888;
+  font-size: 12px;
+}
+footer .about .about-item ul a .iconfont {
+  padding: 0 10px;
+  font-size: 28px;
+}
+footer .copy-right {
+  background: #000;
+  padding: 5px 0.4rem;
+}
+footer .copy-right p {
+  margin: 0;
+  text-align: center;
+  color: #fff;
+  font-size: 12px;
+}
+footer .copy-right p a {
+  color: #fff;
+  text-decoration: underline;
+}
+.g-path {
+  margin: 0.4rem 0;
+  background: #fff;
+}
+.g-path .breadcrumb {
+  padding: 0 0.4rem;
+  margin: 0;
+  background: #fff;
+  line-height: 50px;
+  font-size: 12px;
+}
+.g-path .breadcrumb a {
+  color: #f87300;
+  font-size: 12px;
+}
+.g-path .breadcrumb a:hover {
+  color: #f8b300;
+  text-decoration: none;
+}
+.g-path .breadcrumb > li + li:before {
+  padding: 0;
+}
+.g-pagination {
+  height: 54px;
+  margin: 20px 0;
+  padding-left: 20px;
+  background: #fff;
+}
+.g-pagination .pagination {
+  margin: 10px 0;
+}
+.g-pagination .paginationbefore,
+.g-pagination .pagination:after {
+  content: " ";
+  display: table;
+  zoom: 1;
+}
+.g-pagination .pagination:after {
+  clear: both;
+}
+.g-pagination .pagination > li > a,
+.g-pagination .pagination > li > span {
+  color: #f8b300;
+}
+.g-pagination .pagination > .disabled > a,
+.g-pagination .pagination > .disabled > a:focus,
+.g-pagination .pagination > .disabled > a:hover,
+.g-pagination .pagination > .disabled > span,
+.g-pagination .pagination > .disabled > span:focus,
+.g-pagination .pagination > .disabled > span:hover {
+  color: #777;
+}
+.g-pagination .pagination > .active > a,
+.g-pagination .pagination > .active > a:focus,
+.g-pagination .pagination > .active > a:hover,
+.g-pagination .pagination > .active > span,
+.g-pagination .pagination > .active > span:focus,
+.g-pagination .pagination > .active > span:hover {
+  color: #333;
+  background: #f8b300;
+  border-color: #f8b300;
+}
+/*# sourceMappingURL=components.css.map */

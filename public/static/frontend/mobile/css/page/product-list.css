@@ -1,0 +1,71 @@
+/**
+* @name: product-list.less
+* @description: 产品列表页css - mobile
+* @author: Alan(alan_webdeveloper@163.com)
+* @update: 2019-09-16 14:00
+*/
+.center-block {
+  margin-left: auto;
+  margin-right: auto;
+}
+.list-box .list-item {
+  margin: 0 0 0.4rem;
+}
+.list-box .list-item:nth-last-of-type(1) {
+  margin: 0;
+}
+.list-box .list-item .thumbnail {
+  margin: 0;
+  border: none;
+  border-radius: 0;
+}
+.list-box .list-item .thumbnail .img-box {
+  display: block;
+  overflow: hidden;
+  width: 100%;
+  height: 0;
+  padding-bottom: 56.25%;
+  background: #f2f2f2;
+}
+.list-box .list-item .thumbnail .img-box img {
+  width: 100%;
+}
+.list-box .list-item .thumbnail .caption {
+  padding: 15px 8px;
+}
+.list-box .list-item .thumbnail .caption .title a {
+  display: block;
+  color: #333;
+  font-size: 14px;
+}
+.list-box .list-item .thumbnail .caption .des {
+  margin: 0.4rem 0;
+  font-size: 14px;
+  color: #888;
+}
+.list-box .list-item .thumbnail .caption .linkbefore,
+.list-box .list-item .thumbnail .caption .link:after {
+  content: " ";
+  display: table;
+  zoom: 1;
+}
+.list-box .list-item .thumbnail .caption .link:after {
+  clear: both;
+}
+.list-box .list-item .thumbnail .caption .link span {
+  float: left;
+  display: block;
+  width: 50%;
+  font-size: 12px;
+}
+.list-box .list-item .thumbnail .caption .link span:nth-last-of-type(1) {
+  text-align: right;
+}
+.list-box .list-item .thumbnail .caption .link a {
+  color: #f87300;
+}
+.list-box .list-item .thumbnail .caption .link a:hover {
+  color: #f8b300;
+  text-decoration: none;
+}
+/*# sourceMappingURL=product-list.css.map */

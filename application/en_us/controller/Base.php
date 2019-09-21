@@ -157,12 +157,13 @@ class Base extends Controller
         if (isMobile()) {
             $this->template = APP_PATH . request()->module() . '/view/mobile';
         } else {
-            $this->template = APP_PATH . request()->module() . '/view/pc';
+            $this->template = APP_PATH . request()->module() . '/view/desktop';
         }
     }
 
     /***
      * 根据语言来获取分类
+     *
      *
      */
     public function getCategory()

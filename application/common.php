@@ -342,7 +342,7 @@ function getDownloadUrl($id)
     $list = $data->downloads;
     $arr = array();
     foreach ($list as $v) {
-        $arr[] = "<a href=" . $v['url'] . " class='download_url'>" . $v['language'] . " |</a>";
+        $arr[] = "<a href=" . $v['url'] . " class='download_url btn btn-default'>" . $v['language'] . "</a>";
     }
     return implode('', $arr);
     $test = "";

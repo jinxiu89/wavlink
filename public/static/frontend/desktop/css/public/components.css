@@ -500,6 +500,7 @@ body {
 }
 .g-aside ul li .active {
   color: #ffc714;
+  text-decoration: underline;
 }
 @media screen and (min-width: 768px) and (max-width: 991px) {
   .g-aside {

@@ -32,7 +32,18 @@ class Manual extends BaseModel
     }
 
     // 前台 获取当前选择的子分类下的驱动列表，models产品型号字段处理
-    public function getManualByCategoryId($code, $categoryId)
+
+    /**
+     * @param $code
+     * @param $categoryId
+     * @param string $order
+     * @return mixed|\think\Paginator
+     * @throws \think\Exception
+     * @throws \think\db\exception\DataNotFoundException
+     * @throws \think\db\exception\ModelNotFoundException
+     * @throws \think\exception\DbException
+     */
+    public function getManualByCategoryId($code, $categoryId, $order = "desc")
     {
         $language_id = LanugaeModel::getLanguageCodeOrID($code);
         $data = [
@@ -40,16 +51,19 @@ class Manual extends BaseModel
             'language_id' => $language_id,
         ];
         $order = [
+            'update_time' => $order,
             'listorder' => 'desc',
             'id' => 'desc',
         ];
         if (empty($categoryId)) {
+            $count = $this->where($data)->count();
             $result = $this->where($data)->order($order)->paginate(6);
         } else {
+            $count = $this->where($data)->where('category_id', '=', $categoryId)->count();
             $result = $this->where($data)->where('category_id', '=', $categoryId)->order($order)->paginate(6);
         }
-        $result = ModelsArr($result, 'models', 'modelsGroup');
-        return $result;
+//        $result = ModelsArr($result, 'models', 'modelsGroup');
+        return ['count' => $count, 'result' => $result];
     }
 
     /***
@@ -66,7 +80,7 @@ class Manual extends BaseModel
                     'language_id' => $language_id,
                     'category_id' => $parent['id'],
                 ))->select();
-                $data=TurnArray($chinldData);
+                $data = TurnArray($chinldData);
             }
             if (!empty($chinld)) {
                 foreach ($chinld as $vo) {

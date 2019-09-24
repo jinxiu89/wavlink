@@ -36,81 +36,57 @@
     width: 100%;
   }
 }
-.boxbefore,
-.box:after {
+.g-main .boxbefore,
+.g-main .box:after {
   content: " ";
   display: table;
   zoom: 1;
 }
-.box:after {
+.g-main .box:after {
   clear: both;
 }
-.box .aside {
-  float: left;
-  width: 18%;
-  margin-right: 2%;
-  background: #fff;
+.g-main .panel {
+  margin-bottom: 0;
+  border-color: #eaeaea;
 }
-.box .aside ul li h3 {
-  padding: 0 20px;
-  font-size: 14px;
-  font-weight: bold;
-  line-height: 50px;
-  border-bottom: 1px solid #eaeaea;
+.g-main .panel-heading {
+  border-color: #eaeaea;
+  background: none;
 }
-.box .aside ul li a {
-  display: block;
-  padding: 0 20px;
-  line-height: 50px;
-  color: #333;
-  border-bottom: 1px solid #eaeaea;
-}
-.box .aside ul li a:hover {
-  color: #f8b300;
-}
-.box .aside ul li:nth-last-of-type(1) a {
-  border-bottom: none;
-}
-.box .main {
-  float: left;
-  width: 80%;
-}
-.box .main .item {
-  margin-bottom: 20px;
-  padding: 20px;
-  border-bottom: 1px solid #eaeaea;
-  background: #fff;
+.g-main .item {
+  margin: 0 20px;
+  padding: 20px 0 0;
   -webkit-border-radius: 5px;
   -moz-border-radius: 5px;
   border-radius: 5px;
 }
-.box .main .item .panel {
-  margin-bottom: 0;
-  border-color: #eaeaea;
-}
-.box .main .item .panel-heading {
-  border-color: #eaeaea;
-}
-.box .main .item .title {
+.g-main .item .title {
   font-size: 16px;
+  font-weight: bold;
 }
-.box .main .item .info div p span:after {
-  content: ",";
-}
-.box .main .item .info div p span:nth-last-of-type(1):after,
-.box .main .item .info div p span:nth-of-type(1):after {
-  content: none;
-}
-.box .main .item .info p {
+.g-main .item .info {
   margin-bottom: 5px;
 }
-.box .main .item .info p span {
+.g-main .item .info p {
+  padding-right: 20px;
+}
+.g-main .item .info p span {
   display: inline-block;
   line-height: 20px;
 }
-.box .main .item .download a {
+.g-main .item .info p span:nth-of-type(1) {
+  font-weight: bold;
+}
+.g-main .item .download span {
+  font-weight: bold;
+}
+.g-main .item .download a {
+  margin-right: 4px;
   font-size: 12px;
-  border-color: #eaeaea;
+  border-color: #f8b300;
+}
+.g-main .item .download a:hover {
+  background: #ffc714;
 }
 @media screen and (min-width: 768px) and (max-width: 991px) {
   .box .aside {

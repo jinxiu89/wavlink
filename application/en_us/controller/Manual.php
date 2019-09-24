@@ -21,10 +21,6 @@ use think\Request;
  */
 class Manual extends Base
 {
-
-    //    protected $beforeActionList = [
-//        'cate' => ['only' => 'index,category']
-//    ];
     /**
      * Manual constructor.
      * @param Request|null $request
@@ -47,17 +43,28 @@ class Manual extends Base
         $this->assign('language_id', $this->language_id);
     }
 
-    public function index()
+    /**
+     * @param string $order
+     * @return mixed
+     * @throws DataNotFoundException
+     * @throws DbException
+     * @throws ModelNotFoundException
+     * @throws \think\Exception
+     *
+     */
+    public function index($order = 'desc')
     {
-        //获取Drivers分类信息
+        //获取manual分类信息
         $parent = ServiceCategory::getTopCategory($this->code, 'manual');
-        //获取所有驱动下载列表
-        $data = ManualModel::getDataByStatus(1, $this->language_id);
+        //根据分类来获取manual
+        $data = (new ManualModel())->getManualByCategoryId($this->code, '', $order);
+//        print_r($data['result']);
         return $this->fetch($this->template . '/manual/index.html', [
             'count' => $data['count'],
-            'data' => $data['data'],
+            'data' => $data['result'],
             'parent' => $parent,
             'name' => '',
+            'order' => $order
         ]);
     }
 

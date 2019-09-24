@@ -5,7 +5,7 @@
 <meta name="keywords" content="{$parent.keywords}">
 {/block}
 {block name="style"}
-<link rel="stylesheet" href="__DESKTOP__/css/page/driver.css">
+<link rel="stylesheet" href="__DESKTOP__/css/page/manual.css">
 {/block}
 
 {block name="swiper"}
@@ -15,7 +15,7 @@
             <ol class="breadcrumb">
                 <li><a href="#">HOME</a></li>
                 <li><a href="#">SUPPORT</a></li>
-                <li class="active">Driver</li>
+                <li class="active">Manual</li>
             </ol>
         </div>
     </div>
@@ -65,34 +65,18 @@
                 <div class="item">
                     <div class="panel panel-default">
                         <div class="panel-heading">
-                            <h3 class="title">{$vo.name}</h3>
+                            <h3 class="title">{$vo.title}</h3>
                         </div>
                         <div class="panel-body">
                             <div class="info">
-                                <p><span>File Size :</span> <span>{$vo.size}</span></p>
-                                <p><span>Version :</span> <span>{$vo.version_number}</span></p>
+                                <p><span>Description :</span> <span>{$vo.description}</span></p>
                                 <p><span>Post Date :</span> <span>{$vo.update_time|strtotime|date="d/m/Y",###}</span>
                                 </p>
-                                <p><span>System Requirements :</span> <span>{$vo.running}</span></p>
-                            </div>
-                            <div class="mode">
-                                <p>
-                                    <span>Available : </span>
-                                    {volist name="$vo.modelsGroup" id="v"}
-                                    <!-- 2018-4-12 星期四 14:05 添加字体大小给td标签 -->
-                                    <span>{$v}</span>
-                                    {/volist}
-                                </p>
+                                <p><span>Available :</span> <span>{$vo.model}</span></p>
                             </div>
                             <div class="download">
                                 <span>Download : </span>
-                                <a href="{$vo.all_link}" class="btn btn-default">ALL</a>
-                                {notempty name="$vo.win_link"}
-                                <a href="{$vo.win_link}" class="btn btn-default">WINDOWS</a>
-                                {/notempty}
-                                {notempty name="$vo.mac_link"}
-                                <a href="{$vo.mac_link}" class="btn btn-default">MAC</a>
-                                {/notempty}
+                                {$vo.id|getDownloadUrl}
                             </div>
                         </div>
                     </div>
@@ -113,7 +97,7 @@
 <script>
     $(function () {
         $('#support').addClass('active');
-        $('.drivers').addClass('active');
+        $('.manual').addClass('active');
         // 筛选变化时 过滤
         $('.filter_by').change(function () {
             var filter_by = $(this).children('option:selected').val();

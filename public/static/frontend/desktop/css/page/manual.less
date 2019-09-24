@@ -33,78 +33,49 @@
 
 }
 
-.box {
+.g-main .box {
     .clearFix();
 }
-.box .aside {
-    .fl();
-    width: 18%;
-    margin-right: 2%;
-    background: @whiteColor;
-    ul li h3 {
-        padding: 0 20px;
-        font-size: 14px;
-        font-weight: bold;
-        line-height: 50px;
-        border-bottom: 1px solid @borderColor;
+.g-main .panel {
+    margin-bottom: 0;
+    border-color: @borderColor;
+}
+.g-main .panel-heading {
+    border-color: @borderColor;
+    background: none;
+}
+.g-main .item {
+    margin: 0 20px;
+    padding: 20px 0 0;
+    #border-radius(5px);
+}
+.g-main .item .title {
+    font-size: 16px;
+    font-weight: bold;
+}
+.g-main .item .info {
+    margin-bottom: 5px;
+    p {
+        padding-right: 20px;
     }
-    ul li a {
-        display: block;
-        padding: 0 20px;
-        line-height: 50px;
-        color: @baseColor;
-        border-bottom: 1px solid @borderColor;
-        &:hover {
-            color: @activeColor;
+    p span {
+        display: inline-block;
+        line-height: 20px;
+        &:nth-of-type(1) {
+            font-weight: bold;
         }
-    }
-    ul li:nth-last-of-type(1) a {
-        border-bottom: none;
     }
 }
-.box .main {
-    .fl();
-    width: 80%;
-
-    .item {
-        margin-bottom: 20px;
-        padding: 20px;
-        border-bottom: 1px solid @borderColor;
-        background: @whiteColor;
-        #border-radius(5px);
+.g-main .item .download {
+    span {
+        font-weight: bold;
     }
-    .item .panel {
-        margin-bottom: 0;
-        border-color: @borderColor;
-    }
-    .item .panel-heading {
-        border-color: @borderColor;
-    }
-    .item .title{
-        font-size: 16px;
-    }
-    .item .info{
-        div p span {
-            &:after {
-                content: ",";
-            }
-            &:nth-last-of-type(1):after,
-            &:nth-of-type(1):after {
-                content: none;
-            }
-        }
-        p {
-            margin-bottom: 5px;
-        }
-        p span {
-            display: inline-block;
-            line-height: 20px;
-        }
-    }
-    .item .download{
-        a {
-            font-size: 12px;
-            border-color: @borderColor;
+    a {
+        margin-right: 4px;
+        font-size: 12px;
+        border-color: @activeColor;
+        &:hover {
+            background: @hoverColor;
         }
     }
 }

@@ -9,14 +9,37 @@
 namespace app\en_us\controller;
 
 use app\common\model\Manual as ManualModel;
-use app\common\model\Drivers as DriversModel;
 use app\common\model\ServiceCategory;
+use think\db\exception\DataNotFoundException;
+use think\db\exception\ModelNotFoundException;
+use think\exception\DbException;
+use think\Request;
 
+/**
+ * Class Manual
+ * @package app\en_us\controller
+ */
 class Manual extends Base
 {
-    protected $beforeActionList = [
-        'cate' => ['only' => 'index,category']
-    ];
+
+    //    protected $beforeActionList = [
+//        'cate' => ['only' => 'index,category']
+//    ];
+    /**
+     * Manual constructor.
+     * @param Request|null $request
+     */
+    public function __construct(Request $request = null)
+    {
+        parent::__construct($request);
+        try {
+            $cate = ServiceCategory::getSecondCategory($this->code);
+            $this->assign('cate', $cate);
+        } catch (DataNotFoundException $e) {
+        } catch (ModelNotFoundException $e) {
+        } catch (DbException $e) {
+        }
+    }
 
     public function _initialize()
     {
@@ -28,8 +51,8 @@ class Manual extends Base
     {
         //获取Drivers分类信息
         $parent = ServiceCategory::getTopCategory($this->code, 'manual');
-                //获取所有驱动下载列表
-        $data = ManualModel::getDataByStatus(1,$this->language_id);
+        //获取所有驱动下载列表
+        $data = ManualModel::getDataByStatus(1, $this->language_id);
         return $this->fetch($this->template . '/manual/index.html', [
             'count' => $data['count'],
             'data' => $data['data'],
@@ -44,9 +67,9 @@ class Manual extends Base
             abort(404);//直接报404 不存在的意思
         }
         $parent = ServiceCategory::getCategoryIdByName($this->code, $category);//Wirless这个分类的数据 array('id'=>52,'name'=>'wirless'
-        $nav= ServiceCategory::getNavByCategoryId($this->code,$category);
-        $this->assign('nav',$nav);
-        $this->assign('parent',$parent);
+        $nav = ServiceCategory::getNavByCategoryId($this->code, $category);
+        $this->assign('nav', $nav);
+        $this->assign('parent', $parent);
         if (empty($parent)) {
             abort(404);
         } else {
@@ -58,11 +81,11 @@ class Manual extends Base
                  * //返回的是这个分类及他以下的所有的说明书数据
                  */
                 $child = ServiceCategory::getChild($parent['id']);//他没有下一级的情况，下去怎么查？
-                if(empty($child)){
+                if (empty($child)) {
                     $manual = (new ManualModel())->getdataByChild($this->code, $child, $parent);//只查他自己的分类里的数据
                 }
                 $manual = (new ManualModel())->getdataByChild($this->code, $child, $parent);
-                $this->assign('child',$child);
+                $this->assign('child', $child);
                 return view($this->template . '/manual/category.html', [
                     'data' => $manual,
                     'name' => $parent['name'],
@@ -75,7 +98,7 @@ class Manual extends Base
                  */
                 $sameLevel = ServiceCategory::getSameChild($parent['parent_id']);
                 $manual = (new ManualModel())->getdataByChild($this->code, $child = '', $parent);//只查他自己的分类里的数据
-                $this->assign('child',$sameLevel);
+                $this->assign('child', $sameLevel);
                 return view($this->template . '/manual/category.html', [
                     'data' => $manual,
                     'name' => $parent['name'],
@@ -84,14 +107,15 @@ class Manual extends Base
         }
         abort(404);
     }
+
     public function details($url_title)
     {
-        $result=(new ManualModel())->getDownloadByTitle($this->code,$url_title);
-        $url_title=(new ManualModel())->getUrlTitle($result['manual']['category_id']);
-        return $this->fetch($this->template.'/manual/details.html', [
-            'url_title'=>$url_title,
-            'manual'=>$result['manual'],
-            'downloads'=>$result['downloads']
+        $result = (new ManualModel())->getDownloadByTitle($this->code, $url_title);
+        $url_title = (new ManualModel())->getUrlTitle($result['manual']['category_id']);
+        return $this->fetch($this->template . '/manual/details.html', [
+            'url_title' => $url_title,
+            'manual' => $result['manual'],
+            'downloads' => $result['downloads']
         ]);
     }
 }

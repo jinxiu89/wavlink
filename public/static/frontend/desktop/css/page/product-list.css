@@ -48,9 +48,14 @@
 .category-list .category-item > div:hover {
   background: #f5f5f5;
 }
+.category-list .category-item > div:hover .des a {
+  color: #f8b300;
+}
 .category-list .active > div {
-  background: #fcfcfc;
-  box-shadow: 0 0 15px #ddd inset;
+  background: #f5f5f5;
+}
+.category-list .active > div .des a {
+  color: #f8b300;
 }
 @media screen and (min-width: 992px) and (max-width: 1700px) {
   .category-list .category-item {
@@ -80,7 +85,7 @@
   border-radius: 0;
 }
 .list-box .list-item .thumbnail:hover .caption .mode,
-.list-box .list-item .thumbnail:hover .caption .title {
+.list-box .list-item .thumbnail:hover .caption .des {
   color: #f8b300;
 }
 .list-box .list-item .thumbnail .img-box {
@@ -100,17 +105,17 @@
 }
 .list-box .list-item .thumbnail .caption .mode {
   padding-bottom: 15px;
-  font-size: 16px;
+  font-size: 14px;
   font-weight: bold;
   text-align: center;
   color: #333;
 }
-.list-box .list-item .thumbnail .caption .title {
+.list-box .list-item .thumbnail .caption .des {
   min-height: 45px;
   height: auto !important;
   _height: 45px;
   text-align: center;
-  font-size: 16px;
+  font-size: 14px;
   color: #333;
 }
 @media screen and (min-width: 992px) {
@@ -134,10 +139,10 @@
     padding: 15px 8px;
   }
   .list-box .list-item .thumbnail .caption .mode {
-    font-size: 14px;
+    font-size: 12px;
   }
-  .list-box .list-item .thumbnail .caption .title {
-    font-size: 14px;
+  .list-box .list-item .thumbnail .caption .des {
+    font-size: 12px;
   }
 }
 /*# sourceMappingURL=product-list.css.map */

@@ -1,0 +1,114 @@
+{extend name="desktop/common/base"}
+{block name="title"}{$parents.seo_title}{/block}
+{block name="seo"}
+<!--私有页面SEO-->
+<meta name="description" content="{$parents.description}">
+<meta name="keywords" content="{$parents.keywords}">
+{/block}
+{block name="style"}
+<!--私有样式文件-->
+<link rel="stylesheet" href="__DESKTOP__/css/page/product-list.css">
+{/block}
+{block name="swiper"}
+<div class="container">
+    <div class="row">
+        <div class="category-list">
+            {volist name="child" id="vo"}
+            {if condition="$current eq $vo.url_title"}
+            <div class="category-item active">
+                <div>
+                    <div class="img-box">
+                        <a href="{:url('/'.$code.'/category/'.$vo.url_title)}">
+                            <img src="{$vo.image}"
+                                 alt="{$vo.name}">
+                        </a>
+                    </div>
+                    <div class="des">
+                        <a href="{:url('/'.$code.'/category/'.$vo.url_title)}">
+                            <span>{$vo.name}</span>
+                        </a>
+                    </div>
+                </div>
+            </div>
+            {else /}
+            <div class="category-item">
+                <div>
+                    <div class="img-box">
+                        <a href="{:url('/'.$code.'/category/'.$vo.url_title)}">
+                            <img src="{$vo.image}"
+                                 alt="{$vo.name}">
+                        </a>
+                    </div>
+                    <div class="des">
+                        <a href="{:url('/'.$code.'/category/'.$vo.url_title)}">
+                            <span>{$vo.name}</span>
+                        </a>
+                    </div>
+                </div>
+            </div>
+            {/if}
+            {/volist}
+        </div>
+    </div>
+    <div class="row">
+        <div class="g-path">
+            <ol class="breadcrumb">
+                <li><a href="/{$code}/index.html">Home</a></li>
+                {volist name="path" id="vo"}
+                {if condition="$current eq $vo.url_title"}
+                <li class="active">{$vo.name}</li>
+                {else /}
+                <li><a href="{:url('/'.$code.'/category/'.$vo.url_title)}">{$vo.name}</a></li>
+                {/if}
+                {/volist}
+            </ol>
+        </div>
+    </div>
+</div>
+{/block}
+{block name="body"}
+<div class="container">
+    <div class="row">
+        <div class="list-box">
+            {volist name="products" id="vo"}
+            <div class="list-item col-sm-6 col-md-4">
+                <div class="thumbnail">
+                    <a href="{:url('/'.$code.'/product/'.$vo.url_title)}">
+                        <div class="img-box" href="#">
+                            <img src="{$vo.image_litpic_url}"
+                                 alt="{$vo.model}">
+                        </div>
+                        <div class="caption">
+                            <h3 class="mode">
+                                {$vo.model}
+                            </h3>
+                            <p class="des">
+                                {$vo.name}
+                            </p>
+                        </div>
+                    </a>
+                </div>
+            </div>
+            {/volist}
+        </div>
+    </div>
+
+    {notempty name="page"}
+    <div class="row">
+        <div class="g-pagination">
+            <nav>
+                {$page}
+            </nav>
+        </div>
+    </div>
+    {/notempty}
+</div>
+{/block}
+{block name="javascript"}
+<!--私有JS-->
+<script>
+$(function () {
+    $('#product').addClass('active');
+});
+</script>
+{/block}

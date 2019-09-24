@@ -38,11 +38,16 @@
         padding-bottom: 8px;
         &:hover {
             background: @bodyBgColor;
+            .des a {
+                color: @activeColor;
+            }
         }
     }
     .active > div {
-        background: #fcfcfc;
-        box-shadow: 0 0 15px #ddd inset;
+        background: @bodyBgColor;
+        .des a {
+            color: @activeColor;
+        }
     }
 
     @media screen and (min-width: 992px) and (max-width: 1700px) {
@@ -67,7 +72,7 @@
         border: none;
         border-radius: 0;
         &:hover .caption .mode,
-        &:hover .caption .title {
+        &:hover .caption .des {
             color: @activeColor;
         }
     }
@@ -78,15 +83,15 @@
         padding: 15px 50px;
         .mode {
             padding-bottom: 15px;
-            font-size: 16px;
+            font-size: 14px;
             font-weight: bold;
             text-align: center;
             color: @baseColor;
         }
-        .title {
+        .des {
             .min-height(45px);
             text-align: center;
-            font-size: 16px;
+            font-size: 14px;
             color: @baseColor;
         }
     }
@@ -112,10 +117,10 @@
             padding: 15px 8px;
         }
         .list-item .thumbnail .caption .mode {
-            font-size: 14px;
+            font-size: 12px;
         }
-        .list-item .thumbnail .caption .title {
-            font-size: 14px;
+        .list-item .thumbnail .caption .des {
+            font-size: 12px;
         }
     }
 }

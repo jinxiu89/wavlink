@@ -4,12 +4,19 @@ namespace app\en_us\controller;
 use app\common\helper\Category as CategoryHelp;
 use app\common\model\Category as CategoryModel;
 
+/**
+ * Class Category
+ * @package app\en_us\controller
+ */
 class  Category extends Base
 {
 
     /**
      * @param string $category
      * @return mixed
+     * @throws \think\db\exception\DataNotFoundException
+     * @throws \think\db\exception\ModelNotFoundException
+     * @throws \think\exception\DbException
      * @internal param string $name
      * @internal param $id
      */
@@ -35,6 +42,7 @@ class  Category extends Base
             'name' => $parent['name'],
             'url_title' => $category,
             'path' => $path,
+            'current'=>$category
         ]);
     }
 

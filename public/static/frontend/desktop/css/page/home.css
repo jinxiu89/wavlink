@@ -127,7 +127,6 @@
 /* category-icon結束 */
 /* hot */
 .hot {
-  display: none;
   position: relative;
 }
 .hot .des {
@@ -193,7 +192,7 @@
 }
 .recommend .common-box {
   float: left;
-  width: 50%;
+  width: 25%;
   padding: 5px;
 }
 .recommend .common-box .recommend-box:hover {
@@ -205,8 +204,8 @@
   background: #fff;
 }
 .recommend .des h3 {
-  margin: 0 0 20px;
-  font-size: 16px;
+  margin: 0 0 5px;
+  font-size: 14px;
   min-height: 34px;
   height: auto !important;
   _height: 34px;
@@ -220,6 +219,7 @@
 }
 .recommend .des span {
   display: inline-block;
+  font-size: 12px;
 }
 .recommend .des span a {
   color: #f87300;
@@ -297,7 +297,6 @@
 /* video结束 */
 /* news */
 .new-box {
-  margin: 20px 0;
   padding: 20px 5%;
   background: #fff;
 }

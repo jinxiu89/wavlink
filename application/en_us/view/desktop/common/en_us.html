@@ -3,33 +3,34 @@
         <div class="row">
             <div class="foot-container clearfix">
                 <dl class="col-md-2 col-sm-5">
-                    <dt><a href="#">STORE</a></dt>
-                    <dd><a href="#">Amazon</a></dd>
+                    <dt>STORE</dt>
+                    <dd><a href="https://www.amazon.com/s?marketplaceID=ATVPDKIKX0DER&me=A1ZAFAL1WND4H&merchant=A1ZAFAL1WND4H&redirect=true" target="_blank">Amazon</a></dd>
                     <dd><a href="#">Newegg</a></dd>
                     <dd><a href="#">eBay</a></dd>
                     <dd><a href="#">Alibaba</a></dd>
                 </dl>
                 <dl class="col-md-2 col-sm-5">
-                    <dt><a href="#">ABOUT</a></dt>
-                    <dd><a href="#">Company</a></dd>
-                    <dd><a href="#">Contact Us</a></dd>
-                    <dd><a href="#">Join Us</a></dd>
+                    <dt>ABOUT</dt>
+                    {notempty name="about"}
+                    {volist name="about" id="vo"}
+                    <dd><a href="/en_us/about/{$vo.url_title}.html">{$vo.name}</a></dd>
+                    {/volist}
+                    {/notempty}
                     <dd><a href="#">News</a></dd>
-                    <dd><a href="#">Privacy</a></dd>
                 </dl>
                 <dl class="col-md-2 col-sm-5">
-                    <dt><a href="#">SUPPORT</a></dt>
-                    <dd><a href="#">Drivers</a></dd>
+                    <dt>SUPPORT</dt>
+                    <dd><a href="/en_us/drivers.html">Drivers</a></dd>
                     <dd><a href="#">Guest Book</a></dd>
                     <dd><a href="#">FAQ</a></dd>
                     <dd><a href="#">Video</a></dd>
                 </dl>
                 <dl class="col-md-2 col-sm-5">
-                    <dt><a href="#">Community&nbsp;&nbsp;</a></dt>
+                    <dt>Community&nbsp;&nbsp;</dt>
                     <dd>
-                        <a target="_blank" href="#"><span class="iconfont">&#xe65e;</span></a>
-                        <a target="_blank" href="#"><span class="iconfont">&#xe65f;</span></a>
-                        <a target="_blank" href="#"><span class="iconfont">&#xe661;</span></a>
+                        <a target="_blank" href="https://www.facebook.com/WavlinkOffical/"><span class="iconfont">&#xe65e;</span></a>
+                        <a target="_blank" href="https://twitter.com/WavlinkOfficial"><span class="iconfont">&#xe65f;</span></a>
+                        <a target="_blank" href="https://www.linkedin.com/company/wavlink-technology-ltd"><span class="iconfont">&#xe661;</span></a>
                     </dd>
                 </dl>
             </div>

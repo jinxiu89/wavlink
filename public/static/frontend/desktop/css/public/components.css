@@ -219,6 +219,10 @@ body {
   color: #f8b300;
   background: none;
 }
+.g-nav .menu-container .menu .active:hover a {
+  color: #333;
+  background: #f8b300;
+}
 .g-nav .menu-container .menu .menu-item a {
   display: block;
   padding: 0 20px;
@@ -353,6 +357,7 @@ body {
 }
 .g-footer {
   background: #333;
+  margin: 60px 0 0;
 }
 .g-footer .foot-container {
   padding: 20px 0;
@@ -372,7 +377,7 @@ body {
 .g-footer .foot-container dl:nth-last-of-type(1) dd a {
   line-height: normal;
 }
-.g-footer .foot-container dl dt a {
+.g-footer .foot-container dl dt {
   color: #fff;
   line-height: 26px;
 }
@@ -401,65 +406,7 @@ body {
 @media screen and (min-width: 768px) and (max-width: 1199px) {
   .g-footer .foot-container dl {
     margin-bottom: 20px;
-    padding: 0 20px!important;
-  }
-}
-.g-category {
-  padding: 20px;
-  background: #fff;
-}
-.g-categorybefore,
-.g-category:after {
-  content: " ";
-  display: table;
-  zoom: 1;
-}
-.g-category:after {
-  clear: both;
-}
-.g-category .category-item {
-  float: left;
-  width: 10%;
-  padding: 0 5px;
-}
-.g-category .category-item .des a {
-  display: block;
-  text-align: center;
-  color: #333;
-  font-size: 12px;
-}
-.g-category .category-item img {
-  width: 80px;
-  display: block;
-  max-width: 100%;
-  height: auto;
-  margin-left: auto;
-  margin-right: auto;
-}
-.g-category .category-item:nth-of-type(1) {
-  padding-left: 0;
-}
-.g-category .category-item:nth-last-of-type(1) {
-  padding-right: 0;
-}
-.g-category .category-item > div {
-  padding-bottom: 8px;
-}
-.g-category .category-item > div:hover {
-  background: #f5f5f5;
-}
-.g-category .active > div {
-  background: #fcfcfc;
-  box-shadow: 0 0 15px #ddd inset;
-}
-@media screen and (min-width: 992px) and (max-width: 1700px) {
-  .g-category .category-item {
-    width: 12%;
-  }
-}
-@media screen and (min-width: 768px) and (max-width: 991px) {
-  .g-category .category-item {
-    width: 16%;
+    padding: 0 20px !important;
   }
 }
 .g-path {
@@ -473,10 +420,11 @@ body {
   line-height: 50px;
 }
 .g-path .breadcrumb a {
-  color: #f87300;
+  color: #f8b300;
 }
 .g-path .breadcrumb a:hover {
-  color: #f8b300;
+  color: #ffc714;
+  text-decoration: underline;
 }
 @media screen and (min-width: 768px) and (max-width: 1199px) {
   .g-path .breadcrumb li {
@@ -522,5 +470,106 @@ body {
   color: #333;
   background: #f8b300;
   border-color: #f8b300;
+}
+.g-aside {
+  float: left;
+  width: 18%;
+  margin-right: 2%;
+  background: #fff;
+}
+.g-aside ul li h3 {
+  padding: 0 20px;
+  font-size: 14px;
+  line-height: 50px;
+  border-bottom: 1px solid #eaeaea;
+  background: #f8b300;
+}
+.g-aside ul li a {
+  display: block;
+  padding: 0 20px;
+  line-height: 50px;
+  color: #333;
+  border-bottom: 1px solid #eaeaea;
+}
+.g-aside ul li a:hover {
+  color: #f8b300;
+  text-decoration: underline;
+}
+.g-aside ul li:nth-last-of-type(1) a {
+  border-bottom: none;
+}
+.g-aside ul li .active {
+  color: #ffc714;
+}
+@media screen and (min-width: 768px) and (max-width: 991px) {
+  .g-aside {
+    width: 23%;
+  }
+}
+.g-main {
+  float: left;
+  width: 80%;
+  background: #fff;
+}
+@media screen and (min-width: 768px) and (max-width: 991px) {
+  .g-main {
+    width: 75%;
+  }
+}
+.g-filter {
+  padding: 20px;
+  background: #fff;
+  border-bottom: 1px solid #eaeaea;
+}
+.g-filterbefore,
+.g-filter:after {
+  content: " ";
+  display: table;
+  zoom: 1;
+}
+.g-filter:after {
+  clear: both;
+}
+.g-filter .filter {
+  float: left;
+  margin-right: 20px;
+}
+.g-filter .sort {
+  float: left;
+}
+.g-filter .result {
+  float: right;
+  color: #f8b300;
+}
+.g-filter span {
+  display: inline-block;
+  padding-right: 5px;
+  font-size: 12px;
+  font-weight: bold;
+}
+.g-filter .select {
+  position: relative;
+  display: inline-block;
+}
+.g-filter .select select {
+  width: 150px;
+  height: 30px;
+  padding: 0 5px;
+  border: 1px solid #eaeaea;
+  -webkit-border-radius: 5px;
+  -moz-border-radius: 5px;
+  border-radius: 5px;
+  font-size: 12px;
+  appearance: none;
+  -moz-appearance: none;
+  -webkit-appearance: none;
+}
+.g-filter .select .iconfont {
+  position: absolute;
+  top: 0;
+  right: 0;
+  z-index: 1;
+  display: block;
+  line-height: 30px;
 }
 /*# sourceMappingURL=components.css.map */

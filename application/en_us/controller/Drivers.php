@@ -5,16 +5,58 @@
  * Date: 2017/11/25
  * Time: 14:24
  */
+
 namespace app\en_us\controller;
 
+use think\db\exception\DataNotFoundException;
+use think\db\exception\ModelNotFoundException;
+use think\Exception;
+use think\exception\DbException;
 use think\exception\HttpException;
 use app\common\model\Drivers as DriversModel;
 use app\common\model\ServiceCategory as ServiceCategoryModel;
+use think\Request;
+
+/***
+ * Class Drivers
+ * @package app\en_us\controller
+ */
 class Drivers extends Base
 {
-    protected $beforeActionList = [
-      'cate' => ['only' => 'index,category']
-    ];
+    /**
+     * Drivers constructor.
+     * @param Request|null $request
+     *
+     */
+    public function __construct(Request $request = null)
+    {
+        parent::__construct($request);
+        try {
+            $cate = ServiceCategoryModel::getSecondCategory($this->code);
+            $this->assign('cate', $cate);
+        } catch (DataNotFoundException $e) {
+        } catch (ModelNotFoundException $e) {
+        } catch (DbException $e) {
+        }
+    }
+    /***
+     * $this->code 为 当前的模块名，即在上面_initialize(初始化中)赋予的
+     *
+     */
+//    protected function cate()
+//    {
+//        //获取服务分类下对应的二级分类
+//        try {
+//            $cate = ServiceCategoryModel::getSecondCategory($this->code);
+//            $this->assign('cate', $cate);
+//        } catch (DataNotFoundException $e) {
+//        } catch (ModelNotFoundException $e) {
+//        } catch (DbException $e) {
+//        }
+//    }
+//    protected $beforeActionList = [
+//      'cate' => ['only' => 'index,category']
+//    ];
 //    public function first(){
 //        //驱动下载列表
 //        //获取一级分类
@@ -26,43 +68,59 @@ class Drivers extends Base
 //        $this->assign('childs',$childs); //html嵌套循环三维数组
 //    }
     //驱动下载首页
-    public function index()
+    /***
+     * @param string $order
+     * @return mixed
+     * @throws DataNotFoundException
+     * @throws DbException
+     * @throws Exception
+     * @throws ModelNotFoundException
+     */
+    public function index($order = 'desc')
     {
         //获取Drivers分类信息
         $parent = ServiceCategoryModel::getTopCategory($this->code, 'drivers');
         //获取所有驱动下载列表
-        $drivers = (new DriversModel())->getDriversByCategoryId($this->code,'');
-        $page = $drivers->render();
-        return $this->fetch($this->template.'/drivers/index.html', [
-            'drivers' => $drivers,
-            'page'    => $page,
+        $result = (new DriversModel())->getDriversByCategoryId($this->code, '', $order);
+        return $this->fetch($this->template . '/drivers/index.html', [
+            'data' => $result['result'],
             'parent' => $parent,
-            'name'    => '',
+            'count' => $result['count'],
+            'name' => '',
+            'order' => $order
         ]);
     }
 
+
     //获取选择分类下的驱动列表
+
     /**
      * @param string $category
+     * @param $order
      * @return \think\response\View
+     * @throws DataNotFoundException
+     * @throws DbException
+     * @throws ModelNotFoundException
+     * @throws Exception
      */
-    public function category($category = "")
+    public function category($category = "", $order)
     {
         if (empty($category) || !isset($category)) {
             abort(404);
         }
         //获取选择的子分类信息
-        $parent =ServiceCategoryModel::getCategoryIdByName($this->code,$category);
-        if (empty($parent)){
+        $parent = ServiceCategoryModel::getCategoryIdByName($this->code, $category);
+        if (empty($parent)) {
             throw new HttpException(404);
-        }else{
+        } else {
             //获取选择的分类下的驱动列表
-            $drivers = (new DriversModel())->getDriversByCategoryId($this->code,$parent['id']);
-            return view($this->template.'/drivers/index.html', [
-                'drivers' => $drivers,
+            $result = (new DriversModel())->getDriversByCategoryId($this->code, $parent['id'], $order);
+            return view($this->template . '/drivers/index.html', [
+                'data' => $result['result'],
                 'parent' => $parent,
-                'name'    =>$parent['name'],
-
+                'count' => $result['count'],
+                'name' => $parent['name'],
+                'order' => $order
             ]);
         }
     }
@@ -72,12 +130,12 @@ class Drivers extends Base
         if (!isset($drivers) || empty($drivers)) {
             abort(404);
         }
-        $result = DriversModel::getDetailsByUrlTitle($this->code,$drivers);
+        $result = DriversModel::getDetailsByUrlTitle($this->code, $drivers);
         $result_models = $result["models"];
-        $models = explode(",",$result_models);
+        $models = explode(",", $result_models);
 
         if (!empty($result)) {
-            return $this->fetch($this->template.'/drivers/details.html', [
+            return $this->fetch($this->template . '/drivers/details.html', [
                 'result' => $result,
                 'models' => $models
             ]);

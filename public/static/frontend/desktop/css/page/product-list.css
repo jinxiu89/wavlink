@@ -4,6 +4,64 @@
 * @author: Alan(alan_webdeveloper@163.com)
 * @update: 2019-09-16 10:30
 */
+.category-list {
+  padding: 20px;
+  background: #fff;
+}
+.category-listbefore,
+.category-list:after {
+  content: " ";
+  display: table;
+  zoom: 1;
+}
+.category-list:after {
+  clear: both;
+}
+.category-list .category-item {
+  float: left;
+  width: 10%;
+  padding: 0 5px;
+}
+.category-list .category-item .des a {
+  display: block;
+  text-align: center;
+  color: #333;
+  font-size: 12px;
+}
+.category-list .category-item img {
+  width: 80px;
+  display: block;
+  max-width: 100%;
+  height: auto;
+  margin-left: auto;
+  margin-right: auto;
+}
+.category-list .category-item:nth-of-type(1) {
+  padding-left: 0;
+}
+.category-list .category-item:nth-last-of-type(1) {
+  padding-right: 0;
+}
+.category-list .category-item > div {
+  padding-bottom: 8px;
+}
+.category-list .category-item > div:hover {
+  background: #f5f5f5;
+}
+.category-list .active > div {
+  background: #fcfcfc;
+  box-shadow: 0 0 15px #ddd inset;
+}
+@media screen and (min-width: 992px) and (max-width: 1700px) {
+  .category-list .category-item {
+    width: 12%;
+  }
+}
+@media screen and (min-width: 768px) and (max-width: 991px) {
+  .category-list .category-item {
+    width: 16%;
+  }
+}
 .list-boxbefore,
 .list-box:after {
   content: " ";

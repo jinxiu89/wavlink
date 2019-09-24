@@ -15,6 +15,9 @@ class About extends Base{
      * 到时候还需要调试没一个错误，不允许出现系统异常。
      * @param $about
      * @return mixed
+     * @throws \think\db\exception\DataNotFoundException
+     * @throws \think\db\exception\ModelNotFoundException
+     * @throws \think\exception\DbException
      */
     public function index($about){
         if ( empty($about) || !isset($about)) {

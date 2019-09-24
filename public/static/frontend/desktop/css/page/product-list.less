@@ -8,6 +8,55 @@
 @import "../public/variables";
 
 //列表布局样式
+.category-list {
+    .clearFix();
+    padding: 20px;
+    background: @whiteColor;
+    .category-item {
+        .fl();
+        width: 10%;
+        padding: 0 5px;
+        .des a {
+            display: block;
+            text-align: center;
+            color: @baseColor;
+            font-size: 12px;
+        }
+        img {
+            width: 80px;
+            .img-responsive();
+            .center-block();
+        }
+        &:nth-of-type(1) {
+            padding-left: 0;
+        }
+        &:nth-last-of-type(1) {
+            padding-right: 0;
+        }
+    }
+    .category-item > div {
+        padding-bottom: 8px;
+        &:hover {
+            background: @bodyBgColor;
+        }
+    }
+    .active > div {
+        background: #fcfcfc;
+        box-shadow: 0 0 15px #ddd inset;
+    }
+
+    @media screen and (min-width: 992px) and (max-width: 1700px) {
+        .category-item {
+            width: 12%;
+        }
+    }
+    @media screen and (min-width: 768px) and (max-width: 991px) {
+        .category-item {
+            width: 16%;
+        }
+    }
+}
+
 .list-box {
     .clearFix();
     .list-item {

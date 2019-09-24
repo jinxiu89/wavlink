@@ -1,140 +1,37 @@
 <div class="container-fluid">
+    {notempty name="swiper"}
     <div class="row">
         <div class="banner swiper-container">
             <div class=" swiper-wrapper">
+                {volist name="swiper" id="vo"}
                 <div class="swiper-slide">
                     <div class="des">
                         <dl>
                             <dt data-swiper-parallax="-500" data-swiper-parallax-opacity="0">
-                                <a href="#">AC1200 High Power Dual Band   Wi-Fi Range Extender</a>
+                                <a href="{$vo.url}">{$vo.title}</a>
                             </dt>
                             <dd data-swiper-parallax="-1500" data-swiper-parallax-opacity="0">
-                                Once connected, all extended
+                                {$vo.subtitle}
                             </dd>
                             <dd data-swiper-parallax="-4500" data-swiper-parallax-opacity="0">
-                                <a href="#" class="btn btn-primary">WN575A4</a>
+                                <a href="#" class="btn btn-primary">{$vo.model}</a>
                             </dd>
                         </dl>
                     </div>
                     <div class="img-box">
-                        <a href="#">
-                            <img src="https://cloud.wavlink.com/index.php?user/publicLink&fid=7af8RpicsQdPOVGMie2Z9W1ggW-ZCSaQ7PyOW7xo9dZ5UjJyl_9vl1ebI2oCf8DqztmXOojEukpKE0Z4KxYbAEG4JdCQ1Rqh0AFN2xWamc7ikEzjLJMBOC4DyHuhJlybd0Nw8LA-4cDqSVGqu7XYxHKOqFpzG5Bnl-WRJZpxqvmTUukQ8qA&file_name=/WN575A4.jpg" alt="">
+                        <a href="{$vo.url}">
+                            <img src="{$vo.image_pc_url}" alt="{$vo.title}">
                         </a>
                     </div>
                 </div>
-                <div class="swiper-slide">
-                    <div class="des">
-                        <dl>
-                            <dt data-swiper-parallax="-500" data-swiper-parallax-opacity="0">
-                                <a href="#">Thunderbolt™ 3 4K Display Docking Station</a>
-                            </dt>
-                            <dd data-swiper-parallax="-1500" data-swiper-parallax-opacity="0">
-                                The USB-C That Does It All
-                            </dd>
-                            <dd data-swiper-parallax="-4500" data-swiper-parallax-opacity="0">
-                                <a href="#" class="btn btn-primary">UTD01</a>
-                            </dd>
-                        </dl>
-                    </div>
-                    <div class="img-box">
-                        <a href="#">
-                            <img src="https://cloud.wavlink.com/index.php?user/publicLink&fid=bc59Z8tqUQWJAxC8ue6l3McR7RFgSUTqZm5FHG6gCGhRxqQEyOGagSmgRzXtoQiOwY6GbHCIbiafUQXxowE2qvtVSoEKqH0mML51tqK3cpyeacTidWZf8iUx0t6wQSITSnGAPYM-NjROHzk9vbfKXEBl1Gb7OwzKnPRQVt1dQfc7KbYsQln6JEFUPA&file_name=/UTD01_pc_new.jpg" alt="">
-                        </a>
-                    </div>
-                </div>
-                <div class="swiper-slide">
-                    <div class="des">
-                        <dl>
-                            <dt data-swiper-parallax="-500" data-swiper-parallax-opacity="0">
-                                <a href="#">USB-C Dual 4K Docking Station with Power Delivery</a>
-                            </dt>
-                            <dd data-swiper-parallax="-1500" data-swiper-parallax-opacity="0">
-                                Connects 2 UHD 4K DisplayPort displays or a single 5K Display
-                            </dd>
-                            <dd data-swiper-parallax="-3000" data-swiper-parallax-opacity="0">
-                                Superspeed USB3.0, Gigabit Ethernet economize in time
-                            </dd>
-                            <dd data-swiper-parallax="-4500" data-swiper-parallax-opacity="0">
-                                <a href="#" class="btn btn-primary">UG69PD2</a>
-                            </dd>
-                        </dl>
-                    </div>
-                    <div class="img-box">
-                        <a href="#">
-                            <img src="https://cloud.wavlink.com/index.php?user/publicLink&fid=04bduSA92xkgTs05rix02Fsy_FabId2KyHlajQ6MOW9kAgBE23-6vlRFtcfMCzdTU5_R7iLIhGWbp3GTCO4NhMz1tXiUnUL5LIoiNza7TJXaLL8iUQ_5OxWTsnBRKjq54KhiZFCO_BT3Mr04a_UzJ9M2Xib6QLsFJhn6ziXSNot-uCdL&file_name=/69PD2.jpg" alt="">
-                        </a>
-                    </div>
-                </div>
-                <div class="swiper-slide">
-                    <div class="des">
-                        <dl>
-                            <dt data-swiper-parallax="-500" data-swiper-parallax-opacity="0">
-                                <a href="#">AC1200 Dual Band Smart Touchlink Giga WiFi Router</a>
-                            </dt>
-                            <dd data-swiper-parallax="-1500" data-swiper-parallax-opacity="0">
-                                One-Key Operation for Better Router Performance
-                            </dd>
-                            <dd data-swiper-parallax="-1500" data-swiper-parallax-opacity="0">
-                                Smart APP monitors and manages your network, Anytime, Anywhere
-                            </dd>
-                            <dd data-swiper-parallax="-4500" data-swiper-parallax-opacity="0">
-                                <a href="#" class="btn btn-primary">QUANTUM D4G</a>
-                            </dd>
-                        </dl>
-                    </div>
-                    <div class="img-box">
-                        <a href="#">
-                            <img src="https://cloud.wavlink.com/index.php?user/publicLink&fid=0d1eLaN6wsLBL_8PAq3hXtYxJfaQ0nhOUawFT1D3nN04Q8t2Q87NzrvTbgi6izd44x83DrRQioCLit18objfhyaztyYvGhytlvc88grgEVuGEIPb1QQMcPBLraaG_dprBaT82EKL4zOMFPPgQCwKaZ9P2Hu4sGddLou5pSRwtXi5O4gBxyo&file_name=/WN531G3.jpg" alt="">
-                        </a>
-                    </div>
-                </div>
-                <div class="swiper-slide">
-                    <div class="des">
-                        <dl>
-                            <dt data-swiper-parallax="-500" data-swiper-parallax-opacity="0">
-                                <a href="#">AC1200 High Power Wi-Fi Range Extender</a>
-                            </dt>
-                            <dd data-swiper-parallax="-1500" data-swiper-parallax-opacity="0">
-                                Unparalleled Gigabit WiFi in Beautiful Design
-                            </dd>
-                            <dd data-swiper-parallax="-4500" data-swiper-parallax-opacity="0">
-                                <a href="#" class="btn btn-primary">WN579X3</a>
-                            </dd>
-                        </dl>
-                    </div>
-                    <div class="img-box">
-                        <a href="#">
-                            <img src="https://cloud.wavlink.com/index.php?user/publicLink&fid=9943zT6L3s3PUDmNvWMrNg355VvRUPzijFp0cY3yOamwHmQGfVzV_qqLFP4Rn0N5yvon_-irQY-IOyrdxauUE_v4V5m6GaVGGu30fiO691Huw2oBg_vwiLZVwikXW8copqEV6PYpXT4xODku9RZNW9IvSN50ZSsfXPyShgKo97XzJm-HaWh43AvR5QH9tK4&file_name=/WN579X3_1903_826.jpg" alt="">
-                        </a>
-                    </div>
-                </div>
-                <div class="swiper-slide">
-                    <div class="des">
-                        <dl>
-                            <dt data-swiper-parallax="-500" data-swiper-parallax-opacity="0">
-                                <a href="#">AC1200 High Power Dual Band Wireless Router</a>
-                            </dt>
-                            <dd data-swiper-parallax="-1500" data-swiper-parallax-opacity="0">
-                                Faster Speeds. Better Performance. More Fun.
-                            </dd>
-                            <dd data-swiper-parallax="-4500" data-swiper-parallax-opacity="0">
-                                <a href="#" class="btn btn-primary">WN530H4</a>
-                            </dd>
-                        </dl>
-                    </div>
-                    <div class="img-box">
-                        <a href="#">
-                            <img src="https://cloud.wavlink.com/index.php?user/publicLink&fid=880eUTvKf6CZfFiQjeEETfNw4b-aQ0FckaSorIl6vnvOKvUsoPX8XILAA_h0936eM3r9cc_JGwxU-_A4v0HcN1tK7gA9hrg7SfxT8R1van60Ae22m0gEp9lBBTGdHPLE9BZaAA0IapJX5XO5Jm2hKdtuJxApKEjVa0ZbQhbDdLelS_Vx_BgA&file_name=/Aerial-G.jpg" alt="">
-                        </a>
-                    </div>
-                </div>
+                {/volist}
             </div>
             <div class="swiper-pagination"></div><!--分页器-->
-            <div class="swiper-button-prev"></div><!--左箭头-->
-            <div class="swiper-button-next"></div><!--右箭头-->
+            <!--<div class="swiper-button-prev"></div>&lt;!&ndash;左箭头&ndash;&gt;-->
+            <!--<div class="swiper-button-next"></div>&lt;!&ndash;右箭头&ndash;&gt;-->
         </div>
     </div>
-
+    {/notempty}
     <div class="row">
         <div class="category-icon">
             <div class="category-box">
@@ -165,7 +62,6 @@
             </div>
         </div>
     </div>
-
     <div class="row">
         <div class="hot">
             <div class="des">

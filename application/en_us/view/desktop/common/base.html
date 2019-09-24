@@ -2,11 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    {block name="news"}
-    {/block}
-    {block name="title"}
-    <title>base</title>
-    {/block}
+    <title>{block name="title"}{/block}- Powered by Wavlink</title>
     {block name="seo"}
     <!--私有页面SEO-->
     {/block}
@@ -28,7 +24,11 @@
     {/block}
 </section>
 {block name="footer"}
-{include file="desktop/common/footer" /}
+{if condition="$code == 'en_us'"}
+{include file="desktop/common/en_us"}
+{elseif condition="$code == 'zh_cn'" /}
+{include file="desktop/common/zh_cn"}
+{/if}
 {/block}
 <script src="__LIB__/JQuery/JQuery-3.4.0.js"></script>
 <script src="__DESKTOP__/js/public.js"></script>

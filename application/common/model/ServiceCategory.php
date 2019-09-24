@@ -116,7 +116,7 @@ Class ServiceCategory extends BaseModel
             'url_title' => $name,
             'parent_id' => 0
         ];
-        $result = self::where($map)->field('id,name')->find();
+        $result = self::where($map)->field('id,name,url_title,description,keywords,seo_title')->find();
         return $result;
     }
 

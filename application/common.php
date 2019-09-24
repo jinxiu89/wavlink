@@ -43,8 +43,9 @@ function GetPassword($password)
 function Search($table, $map = array(), $order)
 {
     //公共查询函数
-    $data = model($table)->where($map)->order($order)->paginate();
-    $counts = model($table)->where($map)->count();
+    $query=model($table)->where($map);
+    $data =$query->order($order)->paginate();
+    $counts = $query->count();
     if ($data) {
         $result = array(
             'data' => $data,

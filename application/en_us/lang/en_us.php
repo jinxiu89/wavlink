@@ -7,8 +7,16 @@
  * Time: 下午5:12
  * E-mail: Jinxiu89@163.com
  */
-return array(
+return [
+    //导航部分的翻译
     'home' => 'HOME',
+    'product'=>'PRODUCTS',
+    'support'=>'SUPPORT&SERVICES',
+    'blog'=>'BLOG&NEWS',
+    'language'=>'LANGUAGE',
+    'go'=>'GO',
+    'search tips'=>'Please enter the product model to search',
+
     //common下的UserInformation验证英文提示信息
     'first_name' => 'First Name is require',
     'first_name_long' => 'First Name is to long',
@@ -35,4 +43,4 @@ return array(
 
     //搜索输入关键词为空的英文提示
     'key_empty' => 'Please enter the keyword query',
-);
+];

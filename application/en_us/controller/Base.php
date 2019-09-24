@@ -213,20 +213,4 @@ class Base extends Controller
     {
         return $this->fetch($this->template . '/base/ie.html');
     }
-
-    /***
-     * $this->code 为 当前的模块名，即在上面_initialize(初始化中)赋予的
-     *
-     */
-    protected function cate()
-    {
-        //获取服务分类下对应的二级分类
-        try {
-            $cate = ServiceCategoryModel::getSecondCategory($this->code);
-            $this->assign('cate', $cate);
-        } catch (DataNotFoundException $e) {
-        } catch (ModelNotFoundException $e) {
-        } catch (DbException $e) {
-        }
-    }
 }

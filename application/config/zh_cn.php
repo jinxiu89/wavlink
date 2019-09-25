@@ -15,6 +15,7 @@ Route::group('zh_cn', function () {
     Route::get('/drivers/:category','Drivers/category');
     Route::get('/manuals','Manual/index');
     Route::get('/manuals/index','Manual/index');
+    Route::get('/faq','Faq/index');
     //根路由在最下面
     Route::get('/', 'Index/index');
 });

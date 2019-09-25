@@ -20,22 +20,6 @@
     width: 100%;
   }
 }
-.g-path {
-  margin: 0 auto 20px;
-}
-.g-path .breadcrumb {
-  margin: auto!important;
-}
-@media screen and (min-width: 1200px) {
-  .g-path .breadcrumb {
-    width: 83.333%;
-  }
-}
-@media screen and (max-width: 1199px) {
-  .g-path .breadcrumb {
-    width: 100%;
-  }
-}
 .g-main .boxbefore,
 .g-main .box:after {
   content: " ";

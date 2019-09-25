@@ -4,6 +4,12 @@
 * @author: Alan(alan_webdeveloper@163.com)
 * @update: 2019-09-16 10:30
 */
+.g-path {
+  margin: 20px 0 20px;
+}
+.g-path .breadcrumb {
+  width: 100%;
+}
 .category-list {
   padding: 20px;
   background: #fff;

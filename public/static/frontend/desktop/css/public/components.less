@@ -374,19 +374,24 @@ body {
 
 //面包屑导航
 .g-path {
-  margin: 20px 0;
+  margin: 0 0 20px;
   background: @whiteColor;
   .breadcrumb {
     padding: 0 20px;
-    margin: 0;
+    margin: 0 auto;
     background: @whiteColor;
     line-height: 50px;
     a {
       color: @activeColor;
       &:hover {
         color: @hoverColor;
-        text-decoration: underline;
       }
+    }
+    @media screen and (min-width: 1200px) {
+      width: 83.333%;
+    }
+    @media screen and (max-width: 1199px) {
+      width: 100%;
     }
   }
   @media screen and (min-width: 768px) and (max-width: 1199px) {

@@ -410,12 +410,12 @@ body {
   }
 }
 .g-path {
-  margin: 20px 0;
+  margin: 0 0 20px;
   background: #fff;
 }
 .g-path .breadcrumb {
   padding: 0 20px;
-  margin: 0;
+  margin: 0 auto;
   background: #fff;
   line-height: 50px;
 }
@@ -424,7 +424,16 @@ body {
 }
 .g-path .breadcrumb a:hover {
   color: #ffc714;
-  text-decoration: underline;
+}
+@media screen and (min-width: 1200px) {
+  .g-path .breadcrumb {
+    width: 83.333%;
+  }
+}
+@media screen and (max-width: 1199px) {
+  .g-path .breadcrumb {
+    width: 100%;
+  }
 }
 @media screen and (min-width: 768px) and (max-width: 1199px) {
   .g-path .breadcrumb li {

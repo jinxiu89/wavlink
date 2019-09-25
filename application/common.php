@@ -40,17 +40,17 @@ function GetPassword($password)
     return md5(sha1($password) . $key = 'ad;lkfjSDAF@@#$@#Q%4>>><KJJH11111111111111########sdfasdf!!!bbbsdf');
 }
 
-function Search($table, $map = array(), $order)
+function Search($table, $map = [], $order, $field = '')
 {
     //公共查询函数
-    $query=model($table)->where($map);
-    $data =$query->order($order)->paginate();
+    $query = model($table)->where($map);
+    $data = $query->order($order)->field($field)->paginate();
     $counts = $query->count();
     if ($data) {
-        $result = array(
+        $result = [
             'data' => $data,
             'count' => $counts,
-        );
+        ];
         return $result;
     } else {
         return '';

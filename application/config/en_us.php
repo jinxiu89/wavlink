@@ -17,6 +17,9 @@ Route::group('en_us', function () {
     Route::get('/manuals','Manual/index');
     Route::get('/manuals/index','Manual/index');
     Route::get('/manuals/:category','Manual/category');
+    Route::get('/faq','Faq/index');
+    Route::get('/faq/:url_title','Faq/category');
+    Route::get('/faq/details/:url_title','Faq/details');
     Route::get('/', 'Index/index');
 });
 

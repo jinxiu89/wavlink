@@ -63,8 +63,8 @@
             <dt><i class="Hui-iconfont">&#xe72b;</i> 视频<i class="Hui-iconfont menu_dropdown-arrow">&#xe6d5;</i></dt>
             <dd>
                 <ul>
-                    <li id="video_index"><a href="{:url('Video/index')}" title="视频列表">视频列表</a></li>
-                    <li id="video_recovery"><a href="{:url('Video/video_recycle')}" title="视频回收列表">回收视频列表</a></li>
+                    <li id="video_index"><a href="{:url('wavlink/Video/index')}" title="视频列表">视频列表</a></li>
+                    <li id="video_recovery"><a href="{:url('wavlink/Video/video_recycle')}" title="视频回收列表">回收视频列表</a></li>
                 </ul>
             </dd>
         </dl>
@@ -74,8 +74,8 @@
             <dd>
                 <ul>
                     {if condition="in_array('guestbook/index',$access)"}
-                    <li id="ticket_list"><a href="{:url('GuestBook/index')}" title="留言">未处理留言</a></li>
-                    <li id="ticket_off"><a href="{:url('GuestBook/index_off')}" title="已处理">已处理留言</a></li>
+                    <li id="ticket_list"><a href="{:url('wavlink/GuestBook/index')}" title="留言">未处理留言</a></li>
+                    <li id="ticket_off"><a href="{:url('wavlink/GuestBook/index_off')}" title="已处理">已处理留言</a></li>
                     {/if}
                 </ul>
             </dd>
@@ -85,8 +85,8 @@
             <dt><i class="Hui-iconfont">&#xe666;</i> FAQ咨询<i class="Hui-iconfont menu_dropdown-arrow">&#xe6d5;</i></dt>
             <dd>
                 <ul>
-                    <li id="faq_answer"><a href="{:url('Faq/index')}" title="FAQ管理">FAQ管理</a></li>
-                    <li id="faq_recycle"><a href="{:url('Faq/faq_recycle')}" title="回收站">faq回收站</a></li>
+                    <li id="faq_answer"><a href="{:url('wavlink/Faq/index')}" title="FAQ管理">FAQ管理</a></li>
+                    <li id="faq_recycle"><a href="{:url('wavlink/Faq/faq_recycle')}" title="回收站">faq回收站</a></li>
                 </ul>
             </dd>
         </dl>

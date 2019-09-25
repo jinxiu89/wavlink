@@ -47,7 +47,7 @@
                     <td>{$vo.language_id|getLanguage}</td>
                     <td class="td-status text-c"><span class="label label-error radius">已回收</span></td>
                     <td class="td-manage text-c">
-                        <a style="text-decoration:none" onClick="start('{:url('Faq/byStatus',['id'=>$vo.id,'status'=>1])}')" href="javascript:;" title="恢复"><i class="Hui-iconfont" style="font-size: 20px;color: green">&#xe6dc;</i></a></td>
+                        <a style="text-decoration:none" onClick="start('{:url(\'wavlink/Faq/byStatus\',[\'id\'=>$vo.id,\'status\'=>1])}')" href="javascript:;" title="恢复"><i class="Hui-iconfont" style="font-size: 20px;color: green">&#xe6dc;</i></a></td>
                 </tr>
                 {/volist}
                 </tbody>

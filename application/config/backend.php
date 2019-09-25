@@ -121,10 +121,10 @@ Route::group('wavlink', function () {
     Route::get('guest_book/send', 'wavlink/GuestBook/send');
     Route::get('guest_book/reply_look', 'wavlink/GuestBook/reply_look');
     //FAQ管理
-    Route::get('Faq/index', 'wavlink/Faq/index');
-    Route::get('Faq/faq_recycle', 'wavlink/Faq/faq_recycle');
-    Route::get('Faq/add', 'wavlink/Faq/add');
-    Route::get('Faq/edit', 'wavlink/Faq/edit', [], ['id' => '\d+']);
+    Route::get('/Faq/index', 'wavlink/Faq/index');
+    Route::get('/Faq/faq_recycle', 'wavlink/Faq/faq_recycle');
+    Route::get('/Faq/add', 'wavlink/Faq/add');
+    Route::get('/Faq/edit', 'wavlink/Faq/edit', [], ['id' => '\d+']);
     //SN管理
     Route::get('soft/index', 'wavlink/soft/index');
     Route::get('soft/add', 'wavlink/soft/add');

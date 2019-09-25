@@ -21,7 +21,7 @@
                 <span class="l">
                     <!--<a href="javascript:;" onclick="allRecycle()" class="btn btn-danger radius"><i-->
                         <!--class="Hui-iconfont">&#xe6e2;</i> 批量回收</a> -->
-                    <a class="btn btn-primary radius" onclick="index_add('添加','{:url(\'Faq/add\')}')" href="javascript:;"><i class="Hui-iconfont">&#xe600;</i> 添加</a>
+                    <a class="btn btn-primary radius" onclick="index_add('添加','{:url(\'wavlink/Faq/add\')}')" href="javascript:;"><i class="Hui-iconfont">&#xe600;</i> 添加</a>
                     <a href="{:url('Faq/faq_recycle')}"  class="btn btn-danger radius"><i class="Hui-iconfont">&#xe6e2;</i> 回收站</a>
                     {if condition="in_array('servicecategory/index',$access)"}
                     <a href="javascript:;" onclick="add('添加faq分类','{:url(\'ServiceCategory/add\',[\'con\'=>$con])}','800','680')" class="btn btn-primary radius"><i class="Hui-iconfont">&#xe600;</i> 添加faq分类</a>
@@ -58,8 +58,8 @@
                     <td>{$vo.create_time}</td>
                     <td class="td-status text-c"><span class="label label-success radius">已回答</span></td>
                     <td class="td-manage">
-                        <a title="编辑" href="javascript:;" onclick="index_edit('FAQ编辑','{:url(\'Faq/edit\',[\'id\'=>$vo.id])}')" class="ml-5" style="text-decoration:none"><i class="Hui-iconfont" style="font-size: 18px;color: green">&#xe6df;</i></a>
-                        <a title="禁用" href="javascript:;" onclick="recycle('{:url(\'Faq/byStatus\',[\'id\'=>$vo.id,\'status\'=> -1])}')" class="ml-5" style="text-decoration:none"><i class="Hui-iconfont" style="font-size: 18px;color: red">&#xe6e2;</i></a>
+                        <a title="编辑" href="javascript:;" onclick="index_edit('FAQ编辑','{:url(\'wavlink/Faq/edit\',[\'id\'=>$vo.id])}')" class="ml-5" style="text-decoration:none"><i class="Hui-iconfont" style="font-size: 18px;color: green">&#xe6df;</i></a>
+                        <a title="禁用" href="javascript:;" onclick="recycle('{:url(\'wavlink/Faq/byStatus\',[\'id\'=>$vo.id,\'status\'=> -1])}')" class="ml-5" style="text-decoration:none"><i class="Hui-iconfont" style="font-size: 18px;color: red">&#xe6e2;</i></a>
                         {empty name="$language_id"}
                         {else /}
                         <a title="置顶" href="javascript:;"  onclick="mark(this)" data-id ="{$vo.id}" data-type="4" data-map="" class="ml-5 mark" style="text-decoration:none"><i class="Hui-iconfont">&#xe684</i></a>

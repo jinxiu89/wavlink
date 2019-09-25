@@ -59,8 +59,8 @@ class Manual extends BaseModel
             $count = $this->where($data)->count();
             $result = $this->where($data)->order($order)->paginate(6);
         } else {
-            $count = $this->where($data)->where('category_id', '=', $categoryId)->count();
-            $result = $this->where($data)->where('category_id', '=', $categoryId)->order($order)->paginate(6);
+            $count = $this->where($data)->where('category_id', 'in', $categoryId)->count();
+            $result = $this->where($data)->where('category_id', 'in', $categoryId)->order($order)->paginate(6);
         }
         return ['count' => $count, 'result' => $result];
     }

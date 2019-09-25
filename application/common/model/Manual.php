@@ -62,44 +62,55 @@ class Manual extends BaseModel
             $count = $this->where($data)->where('category_id', '=', $categoryId)->count();
             $result = $this->where($data)->where('category_id', '=', $categoryId)->order($order)->paginate(6);
         }
-//        $result = ModelsArr($result, 'models', 'modelsGroup');
         return ['count' => $count, 'result' => $result];
     }
 
     /***
+     * @param $code
      * @param $chinld
      * 当有 child 的分类 用这个方法获取到他所有的子分类下的内容
+     * @param $parent
+     * @param string $order
+     * @return array
+     * @throws \think\db\exception\DataNotFoundException
+     * @throws \think\db\exception\ModelNotFoundException
+     * @throws \think\exception\DbException
      */
-    public function getdataByChild($code, $chinld, $parent)
+    public function getdataByChild($code, $chinld, $parent, $order = "desc")
     {
         $language_id = LanugaeModel::getLanguageCodeOrID($code);//$code 转成 language_id
+        $order = [
+            'update_time' => $order,
+            'listorder' => 'desc',
+            'id' => 'desc',
+        ];
+
         try {
             if (empty($chinld)) {
                 //没有下一级分类的情况
-                $chinldData = $this->where(array(
+                $data = $this->where([
                     'language_id' => $language_id,
                     'category_id' => $parent['id'],
-                ))->select();
-                $data = TurnArray($chinldData);
+                ])->order($order)->paginate(6);
             }
             if (!empty($chinld)) {
                 foreach ($chinld as $vo) {
-                    $result = $this->where(array(
+                    $result = $this->where([
                         'language_id' => $language_id,
                         'category_id' => $vo['id'],
-                    ))->select();
-                    $res[] = TurnArray($result);//TurnArray就返回的是一个二维数组 ，在压到$data就变成了三维数组了
+                    ])->order($order)->paginate(6);
+                    $res[] = $result;//TurnArray就返回的是一个二维数组 ，在压到$data就变成了三维数组了
                 }
                 foreach ($res as $vo) {
                     foreach ($vo as $io) {
                         $data[] = $io;
                     }
                 }
-                $parentData = $this->where(array(
+                $parentData = $this->where([
                     'language_id' => $language_id,
                     'category_id' => $parent['id']
-                ))->select();
-                $data = array_merge($data, TurnArray($parentData));
+                ])->order($order)->paginate(6);
+                $data = array_merge($data, $parentData);
             }
             return $data;
         } catch (\Exception $e) {

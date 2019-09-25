@@ -13,9 +13,9 @@
     <div class="row">
         <div class="g-path">
             <ol class="breadcrumb">
-                <li><a href="#">HOME</a></li>
-                <li><a href="#">SUPPORT</a></li>
-                <li class="active">Driver</li>
+                <li><a href="#">{:lang('home')}</a></li>
+                <li><a href="#">{:lang('support')}</a></li>
+                <li class="active">{:lang('driver')}</li>
             </ol>
         </div>
     </div>
@@ -27,17 +27,17 @@
         <div class="box">
             <div class="g-aside">
                 <ul>
-                    <li><h3>Support</h3></li>
+                    <li><h3>{:lang('support')}</h3></li>
                     {include file='desktop/common/support_aside'}
                 </ul>
             </div>
             <div class="g-main">
                 <div class="g-filter">
                     <div class="filter">
-                        <span>FILTER BY : </span>
+                        <span>{:lang('filter by')} : </span>
                         <div class="select">
                             <select name="category" class="filter_by">
-                                <option value="">All Category</option>
+                                <option value="">{:lang('All Category')}</option>
                                 {volist name="cate" id="vo"}
                                 <option value="{$vo.url_title}" {if condition='$name eq $vo.name' }selected{/if}>{$vo.name}</option>
                                 {/volist}
@@ -47,18 +47,18 @@
                     </div>
 
                     <div class="sort">
-                        <span>SORT BY : </span>
+                        <span>{:lang('sort by')} : </span>
                         <div class="select">
                             <select class="order_by">
-                                <option value="asc" {if condition="$order eq 'asc'"}selected{/if}>Date, old to new</option>
-                                <option value="desc" {if condition="$order eq 'desc'"}selected{/if}>Date, new to old</option>
+                                <option value="asc" {if condition="$order eq 'asc'"}selected{/if}>{:lang('Date, old to new')}</option>
+                                <option value="desc" {if condition="$order eq 'desc'"}selected{/if}>{:lang('Date, new to old')}</option>
                             </select>
                             <span class="iconfont">&#xe8ec;</span>
                         </div>
                     </div>
 
                     <div class="result">
-                        <span>{$count} results</span>
+                        <span>{:lang('result')} {$count}</span>
                     </div>
                 </div>
                 {volist name="data" id="vo"}
@@ -69,15 +69,15 @@
                         </div>
                         <div class="panel-body">
                             <div class="info">
-                                <p><span>File Size :</span> <span>{$vo.size}</span></p>
-                                <p><span>Version :</span> <span>{$vo.version_number}</span></p>
-                                <p><span>Post Date :</span> <span>{$vo.update_time|strtotime|date="d/m/Y",###}</span>
+                                <p><span>{:lang('File Size')} :</span> <span>{$vo.size}</span></p>
+                                <p><span>{:lang('Version')} :</span> <span>{$vo.version_number}</span></p>
+                                <p><span>{:lang('Post Date')} :</span> <span>{$vo.update_time|strtotime|date="d/m/Y",###}</span>
                                 </p>
-                                <p><span>System Requirements :</span> <span>{$vo.running}</span></p>
+                                <p><span>{:lang('System Requirements')} :</span> <span>{$vo.running}</span></p>
                             </div>
                             <div class="mode">
                                 <p>
-                                    <span>Available : </span>
+                                    <span>{:lang('Available')} : </span>
                                     {volist name="$vo.modelsGroup" id="v"}
                                     <!-- 2018-4-12 星期四 14:05 添加字体大小给td标签 -->
                                     <span>{$v}</span>
@@ -85,13 +85,13 @@
                                 </p>
                             </div>
                             <div class="download">
-                                <span>Download : </span>
-                                <a href="{$vo.all_link}" class="btn btn-default">ALL</a>
+                                <span>{:lang('Download')} : </span>
+                                <a href="{$vo.all_link}" class="btn btn-default">{:lang('ALL')}</a>
                                 {notempty name="$vo.win_link"}
-                                <a href="{$vo.win_link}" class="btn btn-default">WINDOWS</a>
+                                <a href="{$vo.win_link}" class="btn btn-default">{:lang('WINDOWS')}</a>
                                 {/notempty}
                                 {notempty name="$vo.mac_link"}
-                                <a href="{$vo.mac_link}" class="btn btn-default">MAC</a>
+                                <a href="{$vo.mac_link}" class="btn btn-default">{:lang('MAC')}</a>
                                 {/notempty}
                             </div>
                         </div>

@@ -13,6 +13,8 @@ Route::group('zh_cn', function () {
     Route::get('/category/:category','Category/index');
     Route::get('/drivers','Drivers/index');
     Route::get('/drivers/:category','Drivers/category');
+    Route::get('/manuals','Manual/index');
+    Route::get('/manuals/index','Manual/index');
     //根路由在最下面
     Route::get('/', 'Index/index');
 });

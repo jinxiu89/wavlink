@@ -58,7 +58,6 @@ class Manual extends Base
         $parent = ServiceCategory::getTopCategory($this->code, 'manual');
         //根据分类来获取manual
         $data = (new ManualModel())->getManualByCategoryId($this->code, '', $order);
-//        print_r($data['result']);
         return $this->fetch($this->template . '/manual/index.html', [
             'count' => $data['count'],
             'data' => $data['result'],
@@ -68,49 +67,38 @@ class Manual extends Base
         ]);
     }
 
-    public function category($category = "")
+    public function category($category = "",$order="desc")
     {
         if (empty($category) || !isset($category)) {
             abort(404);//直接报404 不存在的意思
         }
         $parent = ServiceCategory::getCategoryIdByName($this->code, $category);//Wirless这个分类的数据 array('id'=>52,'name'=>'wirless'
         $nav = ServiceCategory::getNavByCategoryId($this->code, $category);
-        $this->assign('nav', $nav);
+        $this->assign('path', $nav);
         $this->assign('parent', $parent);
+        $this->assign('current',$category);
+        $this->assign('order',$order);
         if (empty($parent)) {
             abort(404);
         } else {
-            if ($parent['level'] <= 2) {
-                /***
-                 *1 如果查出来的parent 的level 小于2 那么 他一定还有下一级
-                 * //pc 这个分类 的level肯定小于等于2
-                 * //返回他所有的子分类
-                 * //返回的是这个分类及他以下的所有的说明书数据
-                 */
-                $child = ServiceCategory::getChild($parent['id']);//他没有下一级的情况，下去怎么查？
-                if (empty($child)) {
-                    $manual = (new ManualModel())->getdataByChild($this->code, $child, $parent);//只查他自己的分类里的数据
-                }
-                $manual = (new ManualModel())->getdataByChild($this->code, $child, $parent);
-                $this->assign('child', $child);
-                return view($this->template . '/manual/category.html', [
-                    'data' => $manual,
-                    'name' => $parent['name'],
-                ]);
-            } else {
-                /***
-                 * //如果他的level 大于2 则 没有下一级了,只有自己这个分类有数据的
-                 * 数据准备：和该分类同级的相邻分类数据
-                 * 查找本分类下的数据
-                 */
-                $sameLevel = ServiceCategory::getSameChild($parent['parent_id']);
-                $manual = (new ManualModel())->getdataByChild($this->code, $child = '', $parent);//只查他自己的分类里的数据
-                $this->assign('child', $sameLevel);
-                return view($this->template . '/manual/category.html', [
-                    'data' => $manual,
-                    'name' => $parent['name'],
-                ]);//todo::分页还没处理，重复查询数据库 的影响
+            /***
+             *1 如果查出来的parent 的level 小于2 那么 他一定还有下一级
+             * //pc 这个分类 的level肯定小于等于2
+             * //返回他所有的子分类
+             * //返回的是这个分类及他以下的所有的说明书数据
+             */
+            $child = ServiceCategory::getChild($parent['id']);//他没有下一级的情况，下去怎么查？
+            print_r($child);exit;
+            if (empty($child)) {
+                $manual = (new ManualModel())->getManualByCategoryId($this->code, $child, $order);//只查他自己的分类里的数据
             }
+            $manual = (new ManualModel())->getManualByCategoryId($this->code, $child, $order);
+//            $this->assign('child', $child);
+            return view($this->template . '/manual/category.html', [
+                'data' => $manual['result'],
+                'count'=>$manual['count'],
+                'name' => $parent['name'],
+            ]);
         }
         abort(404);
     }

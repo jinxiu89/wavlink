@@ -16,7 +16,25 @@ return [
     'language'=>'LANGUAGE',
     'go'=>'GO',
     'search tips'=>'Please enter the product model to search',
-
+    'driver'=>'Driver',
+    'manual'=>'Manual',
+    'faq'=>'Q&A',
+    'filter by'=>'FILTER BY',
+    'All Category'=>'All Category',
+    'sort by' =>'SORT BY',
+    'result'=>'Result',
+    'Date, old to new'=>'Date, old to new',
+    'Date, new to old'=>'Date, new to old',
+    'File Size'=>'File Size ',
+    'Version'=>'Version',
+    'Post Date'=>'Post Date',
+    'System Requirements'=>'System Requirements',
+    'Available'=>'Available',
+    'Download'=>'Download',
+    'ALL'=>'ALL',
+    'WINDOWS'=>'WINDOWS',
+    'MAC'=>'MAC',
+    'Description' => 'Description',
     //common下的UserInformation验证英文提示信息
     'first_name' => 'First Name is require',
     'first_name_long' => 'First Name is to long',
@@ -24,7 +42,7 @@ return [
     'last_name_long' => 'Last Name is to long',
     'email' => 'Email is require',
     'email_error' => 'Email is error',
-    'description' => 'Description is require',
+
     'description_error' => 'Description is short or long ',
 
     //common下的ProductInformation的英文提示信息

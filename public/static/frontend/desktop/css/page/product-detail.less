@@ -1,0 +1,208 @@
+/**
+* @name: product-detail.less
+* @description: 產品詳情樣式
+* @author: Alan(alan_webdeveloper@163.com)
+* @update: 2019-09-23 15:10
+*/
+@import "../public/mixins";
+@import "../public/variables";
+
+.g-path {
+  margin: 0 auto;
+  border-bottom: 1px solid @borderColor;
+}
+
+//放大鏡 + 特色描述
+.feature-box {
+  .clearFix();
+  padding: 40px 0;
+  background: @whiteColor;
+  .zoom-box {
+    .fl();
+    width: 40%;
+    .spec-scroll .prev {
+      background: @borderColor;
+      border-color: @borderColor;
+      color: @baseColor;
+    }
+    .spec-scroll .next {
+      background: @activeColor;
+      border-color: @activeColor;
+      color: @baseColor;
+    }
+  }
+  .des {
+    .fl();
+    width: 60%;
+    padding-left: 40px;
+    .title {
+      font-size: 18px;
+    }
+    .mode {
+      padding: 5px 0 20px;
+      font-size: 14px;
+      color: @activeColor;
+      border-bottom: 1px solid @borderColor;
+    }
+    .feature {
+      margin: 20px 0 0 20px;
+    }
+    .feature li {
+      list-style-type: circle;
+      padding: 2px 0;
+    }
+  }
+  .container {
+    width: 70%;
+    @media screen and (min-width: 768px) and (max-width: 991px) {
+      width: 100%;
+    }
+    @media screen and (min-width: 992px) and (max-width: 1199px) {
+      width: 80%;
+    }
+  }
+  @media screen and (min-width: 768px) and (max-width: 991px) {
+    .zoom-box {
+      width: 80%;
+      margin: 0 10% 40px;
+    }
+
+    .des {
+      width: 80%;
+      margin: 0 10%;
+      padding-left: 0;
+    }
+  }
+}
+
+//模塊切換導航條
+.nav-table {
+  background: #fff;
+  border-top: 1px solid @borderColor;
+  border-bottom: 1px solid @borderColor;
+  ul {
+    .clearFix();
+    margin: 0 auto;
+    padding: 5px 20px;
+    li {
+      .fl();
+      padding: 10px 20px;
+      cursor: pointer;
+      a {
+        color: @activeColor;
+      }
+      &:hover {
+        color: @hoverColor;
+        a {
+          color: @hoverColor;
+        }
+      }
+    }
+    .active {
+      background: @activeColor;
+      &:hover {
+        color: @baseColor;
+      }
+    }
+  }
+
+  @media screen and (min-width: 1200px) {
+    ul {
+      width: 83.333%;
+    }
+  }
+  @media screen and (max-width: 1199px) {
+    ul {
+      width: 100%;
+    }
+  }
+}
+
+//詳情描述
+#detail {
+  .relative {
+    position: relative;
+  }
+  .absolute {
+    position: absolute;
+  }
+  .text-center {
+    text-align: center;
+  }
+  .color-white {
+    color: #fff;
+  }
+}
+
+//參數
+#specification {
+  padding: 4% 0;
+  background: @whiteColor;
+  ul > li {
+    .min-height(50px);
+    line-height: 50px;
+    border-bottom: 1px solid @borderColor;
+  }
+  ul > li.li_title > strong {
+    color: @baseColor;
+    line-height: 20px;
+    vertical-align: middle;
+  }
+  ul > li:first-child > strong {
+    font-size: 15px;
+  }
+  ul > li > strong {
+    padding: 0 15px !important;
+    color: #666;
+  }
+  ul > li > div > p {
+    line-height: 24px;
+    color: #666;
+    font-size: 12px;
+  }
+  ul > li > div {
+    padding: 15px !important;
+    border-left: 1px solid @borderColor;
+  }
+}
+
+//go-top
+#go-top {
+  display: none;
+  position: fixed;
+  top: 50%;
+  right: 10px;
+  z-index: 999;
+  margin-top: -50px;
+  padding: 5px;
+  font-size: 12px;
+  text-align: center;
+  box-shadow: 0 0 20px rgba(0, 0, 0, .1);
+  background: @whiteColor;
+  #border-radius(5px);
+  p {
+    #text-vertical(35px);
+    border-bottom: 1px solid @borderColor;
+    background: @activeColor;
+    cursor: pointer;
+  }
+  ul li {
+    width: 110px;
+    #text-vertical(35px);
+    border-bottom: 1px solid @borderColor;
+    cursor: pointer;
+    &:nth-last-of-type(1) {
+      border-bottom: none;
+    }
+    &:hover {
+      color: @activeColor;
+      a {
+        color: @activeColor;
+      }
+    }
+    a {
+      display: block;
+      color: @baseColor;
+    }
+  }
+}

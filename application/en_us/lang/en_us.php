@@ -11,7 +11,7 @@ return [
     //导航部分的翻译
     'home' => 'HOME',
     'product'=>'PRODUCTS',
-    'support'=>'SUPPORT&SERVICES',
+    'support'=>'SUPPORTS',
     'blog'=>'BLOG&NEWS',
     'language'=>'LANGUAGE',
     'go'=>'GO',

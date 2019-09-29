@@ -35,6 +35,7 @@ class Product extends Base
             $path = Category::getParents($cate, $result['category_id']);
             //查询是否有驱动
             $pDrivers = (new ProductModel())->selectProDriver($result, $this->code);
+//            print_r($result);
             return $this->fetch($this->template.'/product/details.html', [
                 'result' => $result,
                 'path' => $path,

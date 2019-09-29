@@ -11,6 +11,7 @@ use think\Route;
 Route::group('en_us', function () {
     Route::get('/index', 'Index/index');
     Route::get('/category/:category','Category/index');
+    Route::get('/product/:product','Product/details');
     Route::get('/about/:about','About/index');
     Route::get('/drivers','Drivers/index');
     Route::get('/drivers/:category','Drivers/category');

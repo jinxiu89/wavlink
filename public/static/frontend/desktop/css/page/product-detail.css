@@ -4,6 +4,18 @@
 * @author: Alan(alan_webdeveloper@163.com)
 * @update: 2019-09-23 15:10
 */
+.relative {
+  position: relative;
+}
+.absolute {
+  position: absolute;
+}
+.text-center {
+  text-align: center;
+}
+.color-white {
+  color: #fff;
+}
 .g-path {
   margin: 0 auto;
   border-bottom: 1px solid #eaeaea;
@@ -133,56 +145,50 @@
     width: 100%;
   }
 }
-#detail {
-  /* 字体大小 */
+#detail .offset-boxbefore,
+#detail .offset-box:after {
+  content: " ";
+  display: table;
+  zoom: 1;
 }
-#detail .relative {
-  position: relative;
-}
-#detail .absolute {
-  position: absolute;
-}
-#detail .text-center {
-  text-align: center;
-}
-#detail .color-white {
-  color: #fff;
+#detail .offset-box:after {
+  clear: both;
 }
 @media screen and (min-width: 768px) and (max-width: 991px) {
-  #detail div[class^="detail_page"] strong {
+  #detail-des div[class^="detail_page"] strong {
     font-size: 16.8px;
   }
-  #detail div[class^="detail_page"] p {
+  #detail-des div[class^="detail_page"] p {
     font-size: 13px;
   }
 }
 @media screen and (min-width: 992px) and (min-width: 1199px) {
-  #detail div[class^="detail_page"] strong {
+  #detail-des div[class^="detail_page"] strong {
     font-size: 21px;
   }
-  #detail div[class^="detail_page"] p {
+  #detail-des div[class^="detail_page"] p {
     font-size: 14px;
   }
 }
 @media screen and (min-width: 1200px) and (max-width: 1366px) {
-  #detail div[class^="detail_page"] strong {
+  #detail-des div[class^="detail_page"] strong {
     font-size: 28px;
     font-weight: bold;
   }
-  #detail div[class^="detail_page"] p {
+  #detail-des div[class^="detail_page"] p {
     font-size: 17.5px;
   }
 }
 @media screen and (min-width: 1367px) {
-  #detail div[class^="detail_page"] strong {
+  #detail-des div[class^="detail_page"] strong {
     font-size: 35px;
     font-weight: bold;
   }
-  #detail div[class^="detail_page"] p {
+  #detail-des div[class^="detail_page"] p {
     font-size: 20px;
   }
 }
-#detail div[class^="detail_page"] strong {
+#detail-des div[class^="detail_page"] strong {
   display: inline-block;
   margin-bottom: 2%;
 }

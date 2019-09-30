@@ -148,6 +148,7 @@
   text-decoration: none;
 }
 .hot .des p {
+  display: inline-block;
   font-size: 20px;
 }
 .hot .img-box a {

@@ -12,93 +12,91 @@
 
 {/block}
 {block name="swiper"}
-<section>
-    <div class="container-fluid">
-        <div class="row">
-            <div class="g-path">
-                <ol class="breadcrumb">
-                    <li><a href="/{$code}/index.html">{:lang('home')}</a></li>
-                    <li><a href="/{$code}/category/{$result.id|getCategoryByPid|getUrlTitleByCid}.html">{$result.id|getCategoryByPid|getCNameByCid}</a></li>
-                    <li class="active">{$result.model}</li>
-                </ol>
-            </div>
+<div class="container-fluid">
+    <div class="row">
+        <div class="g-path">
+            <ol class="breadcrumb">
+                <li><a href="/{$code}/index.html">{:lang('home')}</a></li>
+                <li><a href="/{$code}/category/{$result.id|getCategoryByPid|getUrlTitleByCid}.html">{$result.id|getCategoryByPid|getCNameByCid}</a></li>
+                <li class="active">{$result.model}</li>
+            </ol>
         </div>
-        <div class="row">
-            {empty name="result.image_pc_url"}
-            <div class="feature-box">
-                <div class="container">
-                    <div class="zoom-box">
-                        <div class="jqzoom">
-                            <img jqimg="{$album}" src="{$album}" alt="{$result.name}">
-                        </div>
-                        <div class="spec-scroll">
-                            <a class="prev">&lt;</a>
-                            <div class="items">
-                                <ul>
-                                    {volist name="$albums" id="vo"}
-                                    <li>
-                                        <img bimg="{$vo}" src="{$vo}" onmousemove="preview(this);">
-                                    </li>
-                                    {/volist}
-                                </ul>
-                            </div>
-                            <a class="next">&gt;</a>
-                        </div>
+    </div>
+    <div class="row">
+        {empty name="result.image_pc_url"}
+        <div class="feature-box">
+            <div class="container">
+                <div class="zoom-box">
+                    <div class="jqzoom">
+                        <img jqimg="{$album}" src="{$album}" alt="{$result.name}">
                     </div>
-
-                    <div class="des">
-                        <h3 class="title">{$result.name}</h3>
-                        <p class="mode">{$result.model}</p>
-                        <div class="feature">
+                    <div class="spec-scroll">
+                        <a class="prev">&lt;</a>
+                        <div class="items">
                             <ul>
-                                {$result.features}
+                                {volist name="$albums" id="vo"}
+                                <li>
+                                    <img bimg="{$vo}" src="{$vo}" onmousemove="preview(this);">
+                                </li>
+                                {/volist}
                             </ul>
                         </div>
+                        <a class="next">&gt;</a>
+                    </div>
+                </div>
+
+                <div class="des">
+                    <h3 class="title">{$result.name}</h3>
+                    <p class="mode">{$result.model}</p>
+                    <div class="feature">
+                        <ul>
+                            {$result.features}
+                        </ul>
                     </div>
                 </div>
             </div>
-            {else /}
-            <div class="poster-box"><img src="{$result.image_pc_url}" alt="{$result.name}"></div>
-            {/empty}
         </div>
+        {else /}
+        <div class="poster-box"><img src="{$result.image_pc_url}" alt="{$result.name}"></div>
+        {/empty}
     </div>
-</section>
+</div>
 {/block}
 {block name="body"}
-<section>
-    <div class="container-fluid">
-        <div class="row">
-            <div class="nav-table">
-                <ul>
-                    <li class="active">{:lang('Overview')}</li>
-                    <li>{:lang('Specifications')}</li>
-                    {notempty name="pDrivers"}<li><a href="/{$code}/drivers.html">{:lang('Driver')}</a></li>
-                    {/notempty}
-                    <li><a href="/{$code}/faq.html">{:lang('FAQ')}</a></li>
-                </ul>
-            </div>
+<div class="container-fluid">
+    <div class="row">
+        <div class="nav-table">
+            <ul>
+                <li class="active">{:lang('Overview')}</li>
+                <li>{:lang('Specifications')}</li>
+                {notempty name="pDrivers"}<li><a href="/{$code}/drivers.html">{:lang('Driver')}</a></li>
+                {/notempty}
+                <li><a href="/{$code}/faq.html">{:lang('FAQ')}</a></li>
+            </ul>
         </div>
     </div>
-    <div id="detail">
+</div>
+<div id="detail">
+    <div class="offset-box" id="detail-des">
         {$result.content}
-        <div class="offset-box" id="specification">
-            {$result.specifications}
-        </div>
     </div>
+    <div class="offset-box" id="specification">
+        {$result.specifications}
+    </div>
+</div>
 
 
-    <div id="go-top">
-        <p>{:lang('Top')}</p>
-        <ul>
-            <li>{:lang('Overview')}</li>
-            <li>{:lang('Specifications')}</li>
-            {notempty name="pDrivers"}
-            <li><a href="/{$code}/drivers.html">{:lang('Driver')}</a></li>
-            {/notempty}
-            <li><a href="/{$code}/faq.html">{:lang('FAQ')}</a></li>
-        </ul>
-    </div>
-</section>
+<div id="go-top">
+    <p>{:lang('Top')}</p>
+    <ul>
+        <li>{:lang('Overview')}</li>
+        <li>{:lang('Specifications')}</li>
+        {notempty name="pDrivers"}
+        <li><a href="/{$code}/drivers.html">{:lang('Driver')}</a></li>
+        {/notempty}
+        <li><a href="/{$code}/faq.html">{:lang('FAQ')}</a></li>
+    </ul>
+</div>
 {/block}
 {block name="javascript"}
 <script src="__LIB__/JQZoom/jquery.jqzoom.js"></script>
@@ -164,7 +162,7 @@
             posterH = $(".poster-box").innerHeight(),// 产品详情页title高度;
             featureH = $(".feature-box").innerHeight(),         // 放大镜的高度;
             nav_li = $(".nav-table > ul > li"),       // 产品详情页横行导航按钮;
-            offsetox = $("#detail > div");       // 产品详情页内容;
+            offsetox = $("#detail > .offset-box");       // 产品详情页内容;
         // 侧边导航部分js代码;
         var go_top = $("#go-top"),                // 侧边导航;
             go_topLi = $("#go-top li"),    // 产品详情页侧边导航按钮;

@@ -325,10 +325,10 @@ body {
     padding-left: 20px;
   }
   .g-nav .menu-container .menu {
-    margin-left: 50px;
+    margin-left: 0;
   }
   .g-nav .menu-container .menu .menu-item a {
-    padding: 0 15px;
+    padding: 0 10px;
     font-size: 12px;
   }
   .g-nav .search-bar {
@@ -351,6 +351,15 @@ body {
   }
   .g-nav .search-box form {
     display: inline-block;
+  }
+}
+@media screen and (min-width: 1200px) and (max-width: 1300px) {
+  .g-nav .menu-container .menu {
+    margin-left: 0;
+  }
+  .g-nav .menu-container .menu .menu-item a {
+    padding: 0 10px;
+    font-size: 12px;
   }
 }
 .g-footer {

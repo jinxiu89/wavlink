@@ -8,6 +8,10 @@
  * E-mail: Jinxiu89@163.com
  */
 return [
+    //首页 翻译关键词
+    'Wireless & Networking'=>'Wireless & Networking',
+    'PC peripherals'=>'PC peripherals',
+    'IOT'=>'IOT',
     //导航部分的翻译
     'home' => 'HOME',
     'product'=>'PRODUCTS',

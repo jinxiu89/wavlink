@@ -12,6 +12,11 @@ return [
     'Wireless & Networking'=>'Wireless & Networking',
     'PC peripherals'=>'PC peripherals',
     'IOT'=>'IOT',
+    //公共页脚
+    'GuestBook' => 'Guest Book',
+    'About'=>'ABOUT',
+    'Store'=>'STORE',
+    'Community'=>'COMMUNITY',
     //导航部分的翻译
     'home' => 'HOME',
     'product'=>'PRODUCTS',
@@ -45,30 +50,18 @@ return [
     'Driver'=>'Driver',
     'FAQ'=>'Q&A',
     'Top'=>'Top',
-    //common下的UserInformation验证英文提示信息
-    'first_name' => 'First Name is require',
-    'first_name_long' => 'First Name is to long',
-    'last_name' => 'Last Name is require',
-    'last_name_long' => 'Last Name is to long',
-    'email' => 'Email is require',
-    'email_error' => 'Email is error',
-
-    'description_error' => 'Description is short or long ',
-
-    //common下的ProductInformation的英文提示信息
-    'model' => 'Model is require',
-    'model_error' => 'Model is error',
-    'sn' => 'SN is require',
-    'sn_error' => 'SN is error',
-    'GuestBook' => 'Guest Book',
-
-    //common下的OtherInformation的英文提示信息
-    'purchasing_date' => 'Purchasing date is error',
-    'purchasing_link' => 'Purchasing link is error',
-
-    //Ticket返回成功的英文提示
-    'ticket_success' => 'submitted successfully your appliction has been recieved,we will deal it as soon as possible.please check your email！',
-
-    //搜索输入关键词为空的英文提示
-    'key_empty' => 'Please enter the keyword query',
+    //留言板UI关键词翻译
+    'Please offer us your product information, we\'ll reply to you after we check it with the firmware:'=>
+        'Please offer us your product information, we\'ll reply to you after we check it with the firmware:',
+    'First Name'=>'First Name:',
+    'Last Name'=>'Last Name',
+    'Email'=>'Email:',
+    'Model'=>'Model:',
+    'Order Number'=>'Order Number:',
+    'Order tips'=>
+        'The order number is always given when you purchase items on Amazon, eBay, or other platforms. 
+        If you have any questions about this, please feel free to contact us at any time. Our live chat tool is available for you.',
+    'Submit'=>'SUBMIT',
+    'Reset'=>'RESET',
+    'Guest Notice'=>'If you don’t know your product’s model, please refer to:<a href="#">HOW</a>',
 ];

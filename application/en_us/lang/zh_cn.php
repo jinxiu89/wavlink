@@ -12,6 +12,11 @@ return [
     'Wireless & Networking'=>'无线&通讯',
     'PC peripherals'=>'电脑周边',
     'IOT'=>'智能家居',
+    //公共页脚
+    'GuestBook' => '留言版',
+    'About'=>'关于我们',
+    'Store'=>'在线商店',
+    'Community'=>'关注我们',
     //导航部分的翻译
     'home' => '首页',
     'product' => '产品中心',
@@ -45,29 +50,6 @@ return [
     'Driver'=>'驱动下载',
     'FAQ'=>'常见问题',
     'Top'=>'回到顶部',
-    //common下的UserInformation验证英文提示信息
-    'first_name' => 'First Name is require',
-    'first_name_long' => 'First Name is to long',
-    'last_name' => 'Last Name is require',
-    'last_name_long' => 'Last Name is to long',
-    'email' => 'Email is require',
-    'email_error' => 'Email is error',
-    'description_error' => 'Description is short or long ',
-
-    //common下的ProductInformation的英文提示信息
-    'model' => 'Model is require',
-    'model_error' => 'Model is error',
-    'sn' => 'SN is require',
-    'sn_error' => 'SN is error',
-    'GuestBook' => 'Guest Book',
-
-    //common下的OtherInformation的英文提示信息
-    'purchasing_date' => 'Purchasing date is error',
-    'purchasing_link' => 'Purchasing link is error',
-
-    //Ticket返回成功的英文提示
-    'ticket_success' => 'submitted successfully your appliction has been recieved,we will deal it as soon as possible.please check your email！',
-
-    //搜索输入关键词为空的英文提示
-    'key_empty' => 'Please enter the keyword query',
+    //留言板UI关键词翻译
+    ''=>'',
 ];

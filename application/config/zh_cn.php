@@ -19,6 +19,8 @@ Route::group('zh_cn', function () {
     Route::get('/faq', 'Faq/index');
     Route::get('/faq/:url_title', 'Faq/category');
     Route::get('/faq/details/:url_title', 'Faq/details');
+    Route::get('/guest_book/','GuestBook/add');
+    Route::post('/guest_book/save','GuestBook/save');
     //根路由在最下面
     Route::get('/', 'Index/index');
 });

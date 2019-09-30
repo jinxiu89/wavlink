@@ -17,7 +17,8 @@
         <div class="row">
             <div class="g-path">
                 <ol class="breadcrumb">
-                    <li><a href="{$code}/index.html">HOME</a></li>
+                    <li><a href="/{$code}/index.html">{:lang('home')}</a></li>
+                    <li><a href="/{$code}/category/{$result.id|getCategoryByPid|getUrlTitleByCid}.html">{$result.id|getCategoryByPid|getCNameByCid}</a></li>
                     <li class="active">{$result.model}</li>
                 </ol>
             </div>
@@ -69,11 +70,11 @@
         <div class="row">
             <div class="nav-table">
                 <ul>
-                    <li class="active">Overview</li>
-                    <li>Specifications</li>
-                    {notempty name="pDrivers"}<li><a href="/{$code}/drivers.html">Driver</a></li>
+                    <li class="active">{:lang('Overview')}</li>
+                    <li>{:lang('Specifications')}</li>
+                    {notempty name="pDrivers"}<li><a href="/{$code}/drivers.html">{:lang('Driver')}</a></li>
                     {/notempty}
-                    <li><a href="/{$code}/faq.html">FAQ</a></li>
+                    <li><a href="/{$code}/faq.html">{:lang('FAQ')}</a></li>
                 </ul>
             </div>
         </div>
@@ -87,12 +88,14 @@
 
 
     <div id="go-top">
-        <p>Top</p>
+        <p>{:lang('Top')}</p>
         <ul>
-            <li>Overview</li>
-            <li>Specifications</li>
-            <li><a href="#">Driver</a></li>
-            <li><a href="#">FAQ</a></li>
+            <li>{:lang('Overview')}</li>
+            <li>{:lang('Specifications')}</li>
+            {notempty name="pDrivers"}
+            <li><a href="/{$code}/drivers.html">{:lang('Driver')}</a></li>
+            {/notempty}
+            <li><a href="/{$code}/faq.html">{:lang('FAQ')}</a></li>
         </ul>
     </div>
 </section>

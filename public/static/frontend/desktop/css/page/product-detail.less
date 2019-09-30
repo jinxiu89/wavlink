@@ -7,6 +7,19 @@
 @import "../public/mixins";
 @import "../public/variables";
 
+.relative {
+  position: relative;
+}
+.absolute {
+  position: absolute;
+}
+.text-center {
+  text-align: center;
+}
+.color-white {
+  color: #fff;
+}
+
 .g-path {
   margin: 0 auto;
   border-bottom: 1px solid @borderColor;
@@ -124,22 +137,11 @@
 }
 
 //詳情描述
-#detail {
-  .relative {
-    position: relative;
-  }
-  .absolute {
-    position: absolute;
-  }
-  .text-center {
-    text-align: center;
-  }
-  .color-white {
-    color: #fff;
-  }
-
+#detail .offset-box {
+  .clearFix();
+}
+#detail-des {
   //字體大小
-  /* 字体大小 */
   @media screen and (min-width:768px) and (max-width: 991px) {
     div[class^="detail_page"] strong{ font-size: 16.8px }
     div[class^="detail_page"] p{ font-size: 13px  }

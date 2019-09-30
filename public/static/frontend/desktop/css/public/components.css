@@ -410,6 +410,11 @@ body {
   color: #888;
   font-size: 12px;
 }
+@media screen and (min-width: 768px) and (max-width: 991px) {
+  .g-footer .foot-container dl:nth-of-type(1) {
+    margin-left: 0;
+  }
+}
 @media screen and (min-width: 768px) and (max-width: 1199px) {
   .g-footer .foot-container dl {
     margin-bottom: 20px;

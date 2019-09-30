@@ -10,14 +10,15 @@ use think\Route;
 
 Route::group('zh_cn', function () {
     Route::get('/index', 'Index/index');
-    Route::get('/category/:category','Category/index');
-    Route::get('/drivers','Drivers/index');
-    Route::get('/drivers/:category','Drivers/category');
-    Route::get('/manuals','Manual/index');
-    Route::get('/manuals/index','Manual/index');
-    Route::get('/faq','Faq/index');
-    Route::get('/faq/:url_title','Faq/category');
-    Route::get('/faq/details/:url_title','Faq/details');
+    Route::get('/category/:category', 'Category/index');
+    Route::get('/product/:product', 'Product/details');
+    Route::get('/drivers', 'Drivers/index');
+    Route::get('/drivers/:category', 'Drivers/category');
+    Route::get('/manuals', 'Manual/index');
+    Route::get('/manuals/index', 'Manual/index');
+    Route::get('/faq', 'Faq/index');
+    Route::get('/faq/:url_title', 'Faq/category');
+    Route::get('/faq/details/:url_title', 'Faq/details');
     //根路由在最下面
     Route::get('/', 'Index/index');
 });

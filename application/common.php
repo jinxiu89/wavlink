@@ -448,12 +448,34 @@ function getParents($cate, $id)
     return $arr;
 }
 
+/***
+ * @param $category_id
+ * @return mixed
+ * @throws \think\exception\DbException
+ */
 function getTitleByCategoryID($category_id)
 {
     $data = \app\common\model\ServiceCategory::get($category_id);
     return $data['name'];
 }
 
+/**
+ * @param $id
+ * 根据产品ID 把它所属的分类查出来返回到前端
+ *
+ */
+function getCategoryByPid($id){
+    $categoryIds=\app\common\model\Product::getProductCategory($id);
+    return $categoryIds[0];
+}
+function getCNameByCid($id){
+    $data=\app\common\model\Category::get($id);
+    return $data['name'];
+}
+function getUrlTitleByCid($id){
+    $data=\app\common\model\Category::get($id);
+    return $data['url_title'];
+}
 function getUrlByCategoryID($category_id)
 {
     $data = \app\common\model\ServiceCategory::get($category_id);

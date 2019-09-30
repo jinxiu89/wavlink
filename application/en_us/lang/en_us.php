@@ -35,6 +35,12 @@ return [
     'WINDOWS'=>'WINDOWS',
     'MAC'=>'MAC',
     'Description' => 'Description',
+    //产品详情页翻译
+    'Overview'=>'Overview',
+    'Specifications'=>'Specifications',
+    'Driver'=>'Driver',
+    'FAQ'=>'Q&A',
+    'Top'=>'Top',
     //common下的UserInformation验证英文提示信息
     'first_name' => 'First Name is require',
     'first_name_long' => 'First Name is to long',

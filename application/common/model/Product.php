@@ -26,7 +26,6 @@ Class Product extends BaseModel
     public static function getProductCategory($id){
         $product = self::get($id);
         $cates = $product->categorys;
-
         $ids=[];
         foreach ($cates as $v){
             $ids[]=$v['id'];

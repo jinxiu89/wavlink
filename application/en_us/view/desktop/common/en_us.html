@@ -2,13 +2,13 @@
     <div class="container">
         <div class="row">
             <div class="foot-container clearfix">
-                <dl class="col-md-2 col-sm-5">
-                    <dt>STORE</dt>
+                <dl class="col-md-2 col-sm-3">
+                    <dt>{:lang('Store')}</dt>
                     <dd><a href="https://www.amazon.com/s?me=A1ZAFAL1WND4H&marketplaceID=ATVPDKIKX0DER" target="_blank">Amazon</a></dd>
                     <dd><a href="https://www.newegg.com/Wavlink-Technology" target="_blank">Newegg</a></dd>
                 </dl>
-                <dl class="col-md-2 col-sm-5">
-                    <dt>ABOUT</dt>
+                <dl class="col-md-2 col-sm-3">
+                    <dt>{:lang('About')}</dt>
                     {notempty name="about"}
                     {volist name="about" id="vo"}
                     <dd><a href="/en_us/about/{$vo.url_title}.html">{$vo.name}</a></dd>
@@ -16,15 +16,16 @@
                     {/notempty}
                     <dd><a href="#">News</a></dd>
                 </dl>
-                <dl class="col-md-2 col-sm-5">
-                    <dt>SUPPORT</dt>
-                    <dd><a href="/en_us/drivers.html">Drivers</a></dd>
-                    <dd><a href="#">Guest Book</a></dd>
-                    <dd><a href="#">FAQ</a></dd>
+                <dl class="col-md-2 col-sm-3">
+                    <dt>{:lang('support')}</dt>
+                    <dd><a href="/{$code}/drivers.html">{:lang('Driver')}</a></dd>
+                    <dd><a href="/{$code}/guest_book/">{:lang('GuestBook')}</a></dd>
+                    <dd><a href="/{$code}/manuals.html">{:lang('manual')}</a></dd>
+                    <dd><a href="/{$code}/faq.html">{:lang('faq')}</a></dd>
                     <dd><a href="#">Video</a></dd>
                 </dl>
-                <dl class="col-md-2 col-sm-5">
-                    <dt>Community&nbsp;&nbsp;</dt>
+                <dl class="col-md-2 col-sm-3">
+                    <dt>{:lang('Community')}</dt>
                     <dd>
                         <a target="_blank" href="https://www.facebook.com/WavlinkOffical/"><span class="iconfont">&#xe65e;</span></a>
                         <a target="_blank" href="https://twitter.com/WavlinkOfficial"><span class="iconfont">&#xe65f;</span></a>

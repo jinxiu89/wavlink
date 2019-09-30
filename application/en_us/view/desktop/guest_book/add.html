@@ -13,7 +13,7 @@
     <div class="row">
         <div class="g-path">
             <ol class="breadcrumb">
-                <li><a href="#">{:lang('home')}</a></li>
+                <li><a href="/{$code}/index.html">{:lang('home')}</a></li>
                 <li><a href="#">{:lang('support')}</a></li>
                 <li class="active">{:lang('faq')}</li>
             </ol>
@@ -42,7 +42,7 @@
                         <form class="form-horizontal" id="form-data">
                             <div class="form-group">
                                 <label for="First_name" class="col-sm-2 control-label">
-                                    <span>*</span>First Name:
+                                    <span>*</span>{:lang('First Name')}
                                 </label>
                                 <div class="col-sm-5">
                                     <input type="text" class="form-control" id="First_name" placeholder=""
@@ -54,7 +54,7 @@
                             </div>
                             <div class="form-group">
                                 <label for="Last_name" class="col-sm-2 control-label">
-                                    <span>*</span>Last Name:
+                                    <span>*</span>{:lang('Last Name')}
                                 </label>
                                 <div class="col-sm-5">
                                     <input type="text" class="form-control" id="Last_name" placeholder=""
@@ -66,7 +66,7 @@
                             </div>
                             <div class="form-group">
                                 <label for="Email" class="col-sm-2 control-label">
-                                    <span>*</span>Email:
+                                    <span>*</span>{:lang('Email')}
                                 </label>
                                 <div class="col-sm-5">
                                     <input type="text" class="form-control" id="Email" placeholder="" name="email">
@@ -77,7 +77,7 @@
                             </div>
                             <div class="form-group">
                                 <label for="Model" class="col-sm-2 control-label">
-                                    <span>*</span>Model:
+                                    <span>*</span>{:lang('Model')}
                                 </label>
                                 <div class="col-sm-5">
                                     <input type="text" class="form-control" id="Model" placeholder="" name="model">
@@ -88,19 +88,16 @@
                             </div>
                             <div class="form-group">
                                 <label for="SN" class="col-sm-2 control-label">
-                                    <span>*</span>Order Number:
+                                    <span>*</span>{:lang('Order Number')}
                                 </label>
                                 <div class="col-sm-5">
                                     <input type="text" class="form-control" id="SN" placeholder="" name="sn">
-                                    <p>The order number is always given when
-                                        you purchase items on Amazon, eBay, or other platforms. If you have any
-                                        questions about this, please feel free to contact us at any time. Our live
-                                        chat tool is available for you.</p>
+                                    <p>{:lang('Order tips')}</p>
                                 </div>
                             </div>
                             <div class="form-group">
                                 <label for="description" class="col-sm-2 control-label">
-                                    <span>*</span>Description:
+                                    <span>*</span>{:lang('Description')}
                                 </label>
                                 <div class="col-sm-10">
                                     <textarea class="form-control" rows="8" id="description" name="description" placeholder=""></textarea>
@@ -109,17 +106,15 @@
                             </div>
                             <div class="form-group">
                                 <div class="col-sm-offset-2 col-sm-10">
-                                    <button type="button" class="btn btn-primary" id="button">SUBMIT</button>
-                                    <button type="reset" class="btn btn-danger" id="reset">RESET</button>
+                                    <button type="button" class="btn btn-primary" id="button">{:lang('Submit')}</button>
+                                    <button type="reset" class="btn btn-danger" id="reset">{:lang('Reset')}</button>
                                 </div>
                             </div>
                         </form>
 
                     </div>
                     <div class="panel-footer">
-                        Note:
-                        If you don’t know your product’s model or SN number, please refer to:
-                        <a href="#">https://www.wavlink.com/en_us/faq/details/how_to_view_wavlink_product_model.html</a>
+                        {:lang('Guest Notice')}
                     </div>
                 </div>
             </div>

@@ -46,7 +46,7 @@ class Faq extends Base
         //获取一级faq分类
         $parent = ServiceCategory::getTopCategory($this->code, 'faq');
         //获取所有的faq列表
-        $faq = (new FaqModel())->getFaqByCategoryID('', $this->code);
+        $faq = (new FaqModel())->getFaqByCategoryID('', $this->code, $order);
         return $this->fetch($this->template . '/faq/index.html', [
             'parent' => $parent,
             'name' => '',
@@ -69,10 +69,10 @@ class Faq extends Base
             $faq = (new FaqModel())->getFaqByCategoryID($parent['id'], $this->code, $order);
             return view($this->template . '/faq/index.html', [
                 'data' => $faq['data'],
-                'count'=>$faq['count'],
+                'count' => $faq['count'],
                 'parent' => $parent,
                 'name' => $parent['name'],
-                'order'=>$order,
+                'order' => $order,
 
             ]);
         }

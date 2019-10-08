@@ -51,5 +51,21 @@ return [
     'FAQ'=>'常见问题',
     'Top'=>'回到顶部',
     //留言板UI关键词翻译
-    ''=>'',
+    'Please offer us your product information, we\'ll reply to you after we check it with the firmware:'=>
+        'Please offer us your product information, we\'ll reply to you after we check it with the firmware:',
+    'First Name'=>'姓: ',
+    'Last Name'=>'姓名: ',
+    'Email'=>'邮箱:',
+    'Model'=>'产品型号:',
+    'Order Number'=>'订单编号: ',
+    'Order tips'=>
+        '订单编号一般为您购买平台的订单流水编号，如果您有非常高着急的事情，可以通过在线客服平台来与我们联系。我们的工作时间是... ',
+    'Submit'=>'提交',
+    'Reset'=>'重设',
+    'Guest Notice'=>'If you don’t know your product’s model, please refer to:<a href="#">HOW连接稳定后替换标准文案和地址</a>',
+    'Company'=>'公司介绍',
+    'Contact Us'=>'联系我们',
+    'Join Us'=>'工作机会',
+    'News'=>'新闻',
+    'Privacy'=>'隐私保护',
 ];

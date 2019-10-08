@@ -63,5 +63,13 @@ return [
         If you have any questions about this, please feel free to contact us at any time. Our live chat tool is available for you.',
     'Submit'=>'SUBMIT',
     'Reset'=>'RESET',
-    'Guest Notice'=>'If you don’t know your product’s model, please refer to:<a href="#">HOW</a>',
+    'Guest Notice'=>'If you don’t know your product’s model, please refer to:<a href="#">HOW连接稳定后替换标准文案和地址</a>',
+    'Company'=>'Company',
+    'Contact Us'=>'Contact Us',
+    'Join Us'=>'Join Us',
+    'News'=>'News',
+    'Privacy'=>'Privacy',
+
+
+
 ];

@@ -13,7 +13,7 @@
         <div class="g-path">
             <ol class="breadcrumb">
                 <li><a href="/{$code}/index">{:lang('home')}</a></li>
-                <li class="active">关于我们</li>
+                <li class="active">{$result.name}</li>
             </ol>
         </div>
     </div>
@@ -25,7 +25,7 @@
         <div class="box clearfix">
             <div class="g-aside">
                 <ul>
-                    <li><h3>About</h3></li>
+                    <li><h3>{:lang('About')}</h3></li>
                     {include file="desktop/common/about_aside"}
                 </ul>
             </div>
@@ -35,4 +35,12 @@
         </div>
     </div>
 </div>
+{/block}
+{block name="javascript"}
+<script>
+    $(function() {
+        var currentDom = '.{$result.url_title}';
+        $(currentDom).addClass('active')
+    })
+</script>
 {/block}

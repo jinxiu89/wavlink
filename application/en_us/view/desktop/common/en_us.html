@@ -11,7 +11,7 @@
                     <dt>{:lang('About')}</dt>
                     {notempty name="about"}
                     {volist name="about" id="vo"}
-                    <dd><a href="/en_us/about/{$vo.url_title}.html">{$vo.name}</a></dd>
+                    <dd><a href="/{$code}/about/{$vo.url_title}.html">{$vo.name}</a></dd>
                     {/volist}
                     {/notempty}
 <!--                    <dd><a href="#">News</a></dd>-->

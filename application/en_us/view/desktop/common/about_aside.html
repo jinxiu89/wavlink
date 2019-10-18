@@ -1,5 +1,5 @@
-<li><a href="/{$code}/about/Company_Overview.html">{:lang('Company')}</a></li>
-<li><a href="/{$code}/about/content_us.html">{:lang('Contact Us')}</a></li>
-<li><a href="/{$code}/about/join_us.html">{:lang('Join Us')}</a></li>
-<!--<li><a href="/{$code}/News.html">{:lang('News')}</a></li>-->
-<li><a href="/{$code}/about/Privacy.html">{:lang('Privacy')}</a></li>
+{notempty name="about"}
+{volist name="about" id="vo"}
+<li><a href="/{$code}/about/{$vo.url_title}.html" class="{$vo.url_title}">{$vo.name}</a></li>
+{/volist}
+{/notempty}

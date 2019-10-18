@@ -10,11 +10,11 @@
                 </dl>
                 <dl class="col-md-2 col-sm-5">
                     <dt>{:lang('About')}</dt>
-                    <dd><a href="#">公司介绍</a></dd>
-                    <dd><a href="#">联系我们</a></dd>
-                    <dd><a href="#">加入我们</a></dd>
-                    <dd><a href="#">新闻</a></dd>
-                    <dd><a href="#">隐私</a></dd>
+                    {notempty name="about"}
+                    {volist name="about" id="vo"}
+                    <dd><a href="/{$code}/about/{$vo.url_title}.html">{$vo.name}</a></dd>
+                    {/volist}
+                    {/notempty}
                 </dl>
                 <dl class="col-md-2 col-sm-5">
                     <dt>{:lang('support')}</dt>

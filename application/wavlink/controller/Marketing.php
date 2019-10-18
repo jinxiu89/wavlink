@@ -7,7 +7,7 @@
  * 营销管理单页面管理
  */
 namespace app\wavlink\controller;
-use think\Request;
+use think\Facade\Request;
 use app\common\model\Language as LanguageModel;
 use app\common\model\Marketing as MarketingModel;
 Class Marketing extends BaseAdmin

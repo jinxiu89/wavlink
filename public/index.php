@@ -10,20 +10,18 @@
 // +----------------------------------------------------------------------
 //header('X-Frame-Options: deny');
 // [ 应用入口文件 ]
-
+namespace think;
+//加载基础文件
+require __DIR__ . '/../thinkphp/base.php';
+//定义vendor目录
+define('VENDOR_PATH', __DIR__ . '/vendor');
 // 定义应用目录
 define('APP_PATH', __DIR__ . '/../application/');
-//定义静态文件目录
-//define('EN_HTML_PATH',__DIR__.'/../public/build_html/en_us/view/');
 //定义日志目录
 define('LOG_PATH', __DIR__ . '/../log/');
 //定义extra 配置目录
 define('EXTRA_PATH', __DIR__ . '/../application/extra');
-//定义配置目录
-define('CONF_PATH', __DIR__ . '/../application/config/');
-//\think\Route::bind('wavlink');
-//\think\App::route(false);
 // 加载框架引导文件
-require __DIR__ . '/../thinkphp/start.php';
+Container::get('app')->run()->send();
 
 

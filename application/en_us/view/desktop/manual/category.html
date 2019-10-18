@@ -69,13 +69,13 @@
                         <div class="panel-body">
                             <div class="info">
                                 <p><span>{:lang('Description')} :</span> <span>{$vo.description}</span></p>
-                                <p><span>{:lang('Post Date')} :</span> <span>{$vo.update_time|strtotime|date="d/m/Y",###}</span>
+                                <p><span>{:lang('Post Date')} :</span> <span>{$vo.update_time|strtotime|date="d/m/Y"}</span>
                                 </p>
                                 <p><span>{:lang('Available')} :</span> <span>{$vo.model}</span></p>
                             </div>
                             <div class="download">
                                 <span>{:lang('Download')} : </span>
-                                {$vo.id|getDownloadUrl}
+                                {$vo.id|getDownloadUrl|raw}
                             </div>
                         </div>
                     </div>

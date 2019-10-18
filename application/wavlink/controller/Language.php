@@ -6,7 +6,7 @@
  * Time: 10:37
  */
 namespace app\wavlink\controller;
-use \think\Request;
+use \think\Facade\Request;
 use app\common\model\Language as LanguageModel;
 Class Language extends BaseAdmin
 {

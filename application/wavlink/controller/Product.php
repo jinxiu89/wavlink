@@ -13,7 +13,7 @@ use app\common\model\Product as ProductModel;
 use app\common\model\Category as CategoryModel;
 use app\wavlink\validate\ListorderValidate;
 use app\wavlink\validate\UrlTitleMustBeOnly;
-use think\Request;
+use think\Facade\Request;
 use app\wavlink\validate\Product as ProductValidate;
 
 /***

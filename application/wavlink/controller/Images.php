@@ -12,7 +12,7 @@ use app\common\model\Images as ImagesModel;
 use app\common\model\Featured as FeaturedModel;
 use app\wavlink\validate\Images as ImagesValidate;
 use think\Exception;
-use think\Request;
+use think\Facade\Request;
 
 /***
  * Class Images

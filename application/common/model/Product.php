@@ -11,8 +11,8 @@ use app\common\helper\Algorithm as AlgorithmHelp;
 use app\common\model\Category as CategoryModel;
 use app\common\model\Language as LanguageModel;
 use \app\common\model\Drivers as DriversModel;
-use think\Cache;
-use think\Db;
+use think\facade\Cache;
+//use think\Db;
 use think\Exception;
 
 Class Product extends BaseModel

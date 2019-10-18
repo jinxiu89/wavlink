@@ -11,7 +11,7 @@ namespace app\wavlink\controller;
 use app\common\model\Drivers as DriversModel;
 use app\common\model\ServiceCategory as ServiceCategoryModel;
 use app\wavlink\validate\Drivers as DriversValidate;
-use think\Request;
+use think\Facade\Request;
 use think\Exception;
 
 /**

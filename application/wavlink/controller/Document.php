@@ -9,7 +9,7 @@
 namespace app\wavlink\controller;
 
 use app\wavlink\validate\UrlTitleMustBeOnly;
-use think\Request;
+use think\Facade\Request;
 use app\common\model\Document as DocumentModel;
 use app\common\model\ServiceCategory as ServiceCategoryModel;
 use app\wavlink\validate\Document as DocumentValidate;

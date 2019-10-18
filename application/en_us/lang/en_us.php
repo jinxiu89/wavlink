@@ -51,8 +51,19 @@ return [
     'FAQ'=>'Q&A',
     'Top'=>'Top',
     //留言板UI关键词翻译
-    'Please offer us your product information, we\'ll reply to you after we check it with the firmware:'=>
-        'Please offer us your product information, we\'ll reply to you after we check it with the firmware:',
+
+    'first name is require'=>'First name is require!',
+    'first name is max to 64 character'=>'first name is max to 64 character',
+    'Cannot submit repeatedly'=>'Cannot submit repeatedly',
+    'last name is require'=>'Last name is require!',
+    'model is require'=>'model is require',
+    'model format is WL-WN***'=>'model format is WL-WN***',
+    'order number is require'=>'order number is require',
+    'description is require'=>'description is require',
+    'description is min to 16 and max 255 character'=>'description is min to 16 and max 255 character',
+    'last name is max to 64 character'=>'last name is max to 64 character',
+    'Please offer us your product information, we will reply to you after we check it'=>
+        'Please offer us your product information, we will reply to you after we check it',
     'First Name'=>'First Name:',
     'Last Name'=>'Last Name',
     'Email'=>'Email:',
@@ -69,7 +80,4 @@ return [
     'Join Us'=>'Join Us',
     'News'=>'News',
     'Privacy'=>'Privacy',
-
-
-
 ];

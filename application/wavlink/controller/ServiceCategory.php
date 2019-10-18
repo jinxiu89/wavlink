@@ -12,7 +12,7 @@ namespace app\wavlink\controller;
 use app\common\model\ServiceCategory as ServiceCategoryModel;
 use app\wavlink\validate\ServiceCategory as ServiceCategoryValidate;
 use app\wavlink\validate\UrlTitleMustBeOnly;
-use think\Request;
+use think\Facade\Request;
 
 class ServiceCategory extends BaseAdmin
 {

@@ -12,9 +12,11 @@ use app\common\model\BaseModel;
 use app\common\model\Language as LanguageModel;
 use app\wavlink\validate\Mark;
 use app\wavlink\validate\ParamMustBePositiveInt;
+use Exception;
+use think\App;
 use think\Controller;
-use think\Request;
-use think\Session;
+use think\facade\Request;
+use think\facade\Session;
 
 class BaseAdmin extends Controller
 {
@@ -26,11 +28,12 @@ class BaseAdmin extends Controller
 
     /**
      * BaseAdmin constructor.
-     * @param Request|null $request
+     * @
+     * @param App|null $app
      */
-    public function __construct(Request $request = null)
+    public function __construct(App $app = null)
     {
-        parent::__construct($request);
+        parent::__construct($app);
     }
 
     /***
@@ -49,7 +52,7 @@ class BaseAdmin extends Controller
     {
         if (Session::has('userName', 'admin')) {
             $userSession = session('userName', '', 'admin');
-            $this->currentLanguage = session('current_language', '','admin');
+            $this->currentLanguage = session('current_language', '', 'admin');
             $mangerName = $userSession->name;
             $username = $userSession->username;
             $this->assign('mangerName', $mangerName);
@@ -189,7 +192,7 @@ class BaseAdmin extends Controller
                 }
             }
             return show(1, 'success', '', '', '', '批量回收成功');
-        } catch (\Exception $e) {
+        } catch (Exception $e) {
             return show(0, 'error', '', '', '', $e->getMessage());
         }
     }

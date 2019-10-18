@@ -7,7 +7,9 @@
  */
 namespace app\common\validate;
 
-class OtherInformation extends BaseValidate {
+use think\Validate;
+
+class OtherInformation extends Validate {
     protected $rule =[
         ['purchasing_date','max:11'],
         ['purchasing_link','max:128']

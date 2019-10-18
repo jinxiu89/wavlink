@@ -8,7 +8,7 @@
 namespace app\wavlink\controller;
 use app\wavlink\validate\System as SystemValidate;
 use app\common\model\System as SystemModel;
-use think\Cookie;
+use think\Facade\Cookie;
 
 Class System extends BaseAdmin
 {

@@ -9,8 +9,8 @@
 // | Author: luofei614 <weibo.com/luofei614>　
 // +----------------------------------------------------------------------
 namespace app\wavlink\controller;
-use think\Config;
-use think\Session;
+use think\facade\Config;
+use think\facade\Session;
 use think\Db;
 /**
  * ThinkPHP5资源下载交流群：⑥：579844532 ⑤： 429337168 ④： 196304594

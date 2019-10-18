@@ -4,6 +4,7 @@ application/config.php
 public/ueditor
 runtime/
 thinkphp
+/config
 /log/
 test/
 .env

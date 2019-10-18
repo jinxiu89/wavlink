@@ -49,7 +49,7 @@
                     <p class="mode">{$result.model}</p>
                     <div class="feature">
                         <ul>
-                            {$result.features}
+                            {$result.features|raw}
                         </ul>
                     </div>
                 </div>
@@ -77,10 +77,10 @@
 </div>
 <div id="detail">
     <div class="offset-box" id="detail-des">
-        {$result.content}
+        {$result.content|raw}
     </div>
     <div class="offset-box" id="specification">
-        {$result.specifications}
+        {$result.specifications|raw}
     </div>
 </div>
 

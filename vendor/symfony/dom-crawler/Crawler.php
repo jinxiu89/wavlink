@@ -20,9 +20,6 @@ use Symfony\Component\CssSelector\CssSelectorConverter;
  */
 class Crawler extends \SplObjectStorage
 {
-    /**
-     * @var string The current URI
-     */
     protected $uri;
 
     /**
@@ -53,16 +50,14 @@ class Crawler extends \SplObjectStorage
     private $isHtml = true;
 
     /**
-     * Constructor.
-     *
-     * @param mixed  $node       A Node to use as the base for the crawling
-     * @param string $currentUri The current URI
-     * @param string $baseHref   The base href value
+     * @param mixed  $node     A Node to use as the base for the crawling
+     * @param string $uri      The current URI
+     * @param string $baseHref The base href value
      */
-    public function __construct($node = null, $currentUri = null, $baseHref = null)
+    public function __construct($node = null, $uri = null, $baseHref = null)
     {
-        $this->uri = $currentUri;
-        $this->baseHref = $baseHref ?: $currentUri;
+        $this->uri = $uri;
+        $this->baseHref = $baseHref ?: $uri;
 
         $this->add($node);
     }
@@ -84,7 +79,7 @@ class Crawler extends \SplObjectStorage
      *
      * @param \DOMNodeList|\DOMNode|array|string|null $node A node
      *
-     * @throws \InvalidArgumentException When node is not the expected type.
+     * @throws \InvalidArgumentException when node is not the expected type
      */
     public function add($node)
     {
@@ -92,12 +87,12 @@ class Crawler extends \SplObjectStorage
             $this->addNodeList($node);
         } elseif ($node instanceof \DOMNode) {
             $this->addNode($node);
-        } elseif (is_array($node)) {
+        } elseif (\is_array($node)) {
             $this->addNodes($node);
-        } elseif (is_string($node)) {
+        } elseif (\is_string($node)) {
             $this->addContent($node);
         } elseif (null !== $node) {
-            throw new \InvalidArgumentException(sprintf('Expecting a DOMNodeList or DOMNode instance, an array, a string, or null, but got "%s".', is_object($node) ? get_class($node) : gettype($node)));
+            throw new \InvalidArgumentException(sprintf('Expecting a DOMNodeList or DOMNode instance, an array, a string, or null, but got "%s".', \is_object($node) ? \get_class($node) : \gettype($node)));
         }
     }
 
@@ -109,7 +104,7 @@ class Crawler extends \SplObjectStorage
      * HTTP 1.1 specification.
      *
      * @param string      $content A string to parse as HTML/XML
-     * @param null|string $type    The content type of the string
+     * @param string|null $type    The content type of the string
      */
     public function addContent($content, $type = null)
     {
@@ -191,7 +186,7 @@ class Crawler extends \SplObjectStorage
         $base = $this->filterRelativeXPath('descendant-or-self::base')->extract(array('href'));
 
         $baseHref = current($base);
-        if (count($base) && !empty($baseHref)) {
+        if (\count($base) && !empty($baseHref)) {
             if ($this->baseHref) {
                 $linkNode = $dom->createElement('a');
                 $linkNode->setAttribute('href', $baseHref);
@@ -410,7 +405,7 @@ class Crawler extends \SplObjectStorage
      */
     public function last()
     {
-        return $this->eq(count($this) - 1);
+        return $this->eq(\count($this) - 1);
     }
 
     /**
@@ -422,7 +417,7 @@ class Crawler extends \SplObjectStorage
      */
     public function siblings()
     {
-        if (!count($this)) {
+        if (!\count($this)) {
             throw new \InvalidArgumentException('The current node list is empty.');
         }
 
@@ -438,7 +433,7 @@ class Crawler extends \SplObjectStorage
      */
     public function nextAll()
     {
-        if (!count($this)) {
+        if (!\count($this)) {
             throw new \InvalidArgumentException('The current node list is empty.');
         }
 
@@ -454,7 +449,7 @@ class Crawler extends \SplObjectStorage
      */
     public function previousAll()
     {
-        if (!count($this)) {
+        if (!\count($this)) {
             throw new \InvalidArgumentException('The current node list is empty.');
         }
 
@@ -470,7 +465,7 @@ class Crawler extends \SplObjectStorage
      */
     public function parents()
     {
-        if (!count($this)) {
+        if (!\count($this)) {
             throw new \InvalidArgumentException('The current node list is empty.');
         }
 
@@ -495,7 +490,7 @@ class Crawler extends \SplObjectStorage
      */
     public function children()
     {
-        if (!count($this)) {
+        if (!\count($this)) {
             throw new \InvalidArgumentException('The current node list is empty.');
         }
 
@@ -515,7 +510,7 @@ class Crawler extends \SplObjectStorage
      */
     public function attr($attribute)
     {
-        if (!count($this)) {
+        if (!\count($this)) {
             throw new \InvalidArgumentException('The current node list is empty.');
         }
 
@@ -533,7 +528,7 @@ class Crawler extends \SplObjectStorage
      */
     public function nodeName()
     {
-        if (!count($this)) {
+        if (!\count($this)) {
             throw new \InvalidArgumentException('The current node list is empty.');
         }
 
@@ -549,7 +544,7 @@ class Crawler extends \SplObjectStorage
      */
     public function text()
     {
-        if (!count($this)) {
+        if (!\count($this)) {
             throw new \InvalidArgumentException('The current node list is empty.');
         }
 
@@ -565,7 +560,7 @@ class Crawler extends \SplObjectStorage
      */
     public function html()
     {
-        if (!count($this)) {
+        if (!\count($this)) {
             throw new \InvalidArgumentException('The current node list is empty.');
         }
 
@@ -584,7 +579,7 @@ class Crawler extends \SplObjectStorage
      *
      * Example:
      *
-     * $crawler->filter('h1 a')->extract(array('_text', 'href'));
+     *     $crawler->filter('h1 a')->extract(array('_text', 'href'));
      *
      * @param array $attributes An array of attributes
      *
@@ -593,7 +588,7 @@ class Crawler extends \SplObjectStorage
     public function extract($attributes)
     {
         $attributes = (array) $attributes;
-        $count = count($attributes);
+        $count = \count($attributes);
 
         $data = array();
         foreach ($this as $node) {
@@ -606,7 +601,7 @@ class Crawler extends \SplObjectStorage
                 }
             }
 
-            $data[] = $count > 1 ? $elements : $elements[0];
+            $data[] = 1 === $count ? $elements[0] : $elements;
         }
 
         return $data;
@@ -684,7 +679,7 @@ class Crawler extends \SplObjectStorage
     public function selectButton($value)
     {
         $translate = 'translate(@type, "ABCDEFGHIJKLMNOPQRSTUVWXYZ", "abcdefghijklmnopqrstuvwxyz")';
-        $xpath = sprintf('descendant-or-self::input[((contains(%s, "submit") or contains(%s, "button")) and contains(concat(\' \', normalize-space(string(@value)), \' \'), %s)) ', $translate, $translate, static::xpathLiteral(' '.$value.' ')).
+        $xpath = sprintf('descendant-or-self::input[((contains(%s, "submit") or contains(%1$s, "button")) and contains(concat(\' \', normalize-space(string(@value)), \' \'), %s)) ', $translate, static::xpathLiteral(' '.$value.' ')).
                          sprintf('or (contains(%s, "image") and contains(concat(\' \', normalize-space(string(@alt)), \' \'), %s)) or @id=%s or @name=%s] ', $translate, static::xpathLiteral(' '.$value.' '), static::xpathLiteral($value), static::xpathLiteral($value)).
                          sprintf('| descendant-or-self::button[contains(concat(\' \', normalize-space(string(.)), \' \'), %s) or @id=%s or @name=%s]', static::xpathLiteral(' '.$value.' '), static::xpathLiteral($value), static::xpathLiteral($value));
 
@@ -702,14 +697,14 @@ class Crawler extends \SplObjectStorage
      */
     public function link($method = 'get')
     {
-        if (!count($this)) {
+        if (!\count($this)) {
             throw new \InvalidArgumentException('The current node list is empty.');
         }
 
         $node = $this->getNode(0);
 
         if (!$node instanceof \DOMElement) {
-            throw new \InvalidArgumentException(sprintf('The selected node should be instance of DOMElement, got "%s".', get_class($node)));
+            throw new \InvalidArgumentException(sprintf('The selected node should be instance of DOMElement, got "%s".', \get_class($node)));
         }
 
         return new Link($node, $this->baseHref, $method);
@@ -727,7 +722,7 @@ class Crawler extends \SplObjectStorage
         $links = array();
         foreach ($this as $node) {
             if (!$node instanceof \DOMElement) {
-                throw new \InvalidArgumentException(sprintf('The current node list should contain only DOMElement instances, "%s" found.', get_class($node)));
+                throw new \InvalidArgumentException(sprintf('The current node list should contain only DOMElement instances, "%s" found.', \get_class($node)));
             }
 
             $links[] = new Link($node, $this->baseHref, 'get');
@@ -748,14 +743,14 @@ class Crawler extends \SplObjectStorage
      */
     public function form(array $values = null, $method = null)
     {
-        if (!count($this)) {
+        if (!\count($this)) {
             throw new \InvalidArgumentException('The current node list is empty.');
         }
 
         $node = $this->getNode(0);
 
         if (!$node instanceof \DOMElement) {
-            throw new \InvalidArgumentException(sprintf('The selected node should be instance of DOMElement, got "%s".', get_class($node)));
+            throw new \InvalidArgumentException(sprintf('The selected node should be instance of DOMElement, got "%s".', \get_class($node)));
         }
 
         $form = new Form($node, $this->uri, $method, $this->baseHref);
@@ -792,7 +787,7 @@ class Crawler extends \SplObjectStorage
      * Escaped characters are: quotes (") and apostrophe (').
      *
      *  Examples:
-     *  <code>
+     *
      *     echo Crawler::xpathLiteral('foo " bar');
      *     //prints 'foo " bar'
      *
@@ -801,7 +796,7 @@ class Crawler extends \SplObjectStorage
      *
      *     echo Crawler::xpathLiteral('a\'b"c');
      *     //prints concat('a', "'", 'b"c')
-     *  </code>
+     *
      *
      * @param string $s String to be escaped
      *
@@ -994,7 +989,7 @@ class Crawler extends \SplObjectStorage
         // We cannot simply drop
         $nonMatchingExpression = 'a[name() = "b"]';
 
-        $xpathLen = strlen($xpath);
+        $xpathLen = \strlen($xpath);
         $openedBrackets = 0;
         $startPosition = strspn($xpath, " \t\n\r\0\x0B");
 
@@ -1034,7 +1029,7 @@ class Crawler extends \SplObjectStorage
 
             // BC for Symfony 2.4 and lower were elements were adding in a fake _root parent
             if (0 === strpos($expression, '/_root/')) {
-                @trigger_error('XPath expressions referencing the fake root node are deprecated since version 2.8 and will be unsupported in 3.0. Please use "./" instead of "/_root/".', E_USER_DEPRECATED);
+                @trigger_error('XPath expressions referencing the fake root node are deprecated since Symfony 2.8 and will be unsupported in 3.0. Please use "./" instead of "/_root/".', E_USER_DEPRECATED);
 
                 $expression = './'.substr($expression, 7);
             } elseif (0 === strpos($expression, 'self::*/')) {
@@ -1105,7 +1100,7 @@ class Crawler extends \SplObjectStorage
         $nodes = array();
 
         do {
-            if ($node !== $this->getNode(0) && $node->nodeType === 1) {
+            if ($node !== $this->getNode(0) && 1 === $node->nodeType) {
                 $nodes[] = $node;
             }
         } while ($node = $node->$siblingDir);
@@ -1190,7 +1185,7 @@ class Crawler extends \SplObjectStorage
 
     private function triggerDeprecation($methodName, $useTrace = false)
     {
-        if ($useTrace || defined('HHVM_VERSION')) {
+        if ($useTrace || \defined('HHVM_VERSION')) {
             if (\PHP_VERSION_ID >= 50400) {
                 $trace = debug_backtrace(DEBUG_BACKTRACE_IGNORE_ARGS, 3);
             } else {
@@ -1204,6 +1199,6 @@ class Crawler extends \SplObjectStorage
             }
         }
 
-        @trigger_error('The '.$methodName.' method is deprecated since version 2.8 and will be removed in 3.0.', E_USER_DEPRECATED);
+        @trigger_error('The '.$methodName.' method is deprecated since Symfony 2.8 and will be removed in 3.0.', E_USER_DEPRECATED);
     }
 }

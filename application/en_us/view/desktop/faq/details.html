@@ -34,8 +34,8 @@
             <div class="g-main">
                 <div class="faq-box">
                     <h3 class="title">{$result.problem}</h3>
-                    <div class="des">{$result.answer}</div>
-                    <div class="info">{:lang('Update Time')}：{$result.update_time|strtotime|date="d/m/Y",###}</div>
+                    <div class="des">{$result.answer|raw}</div>
+                    <div class="info">{:lang('Update Time')}：{$result.update_time|strtotime|date="d/m/Y"}</div>
                 </div>
             </div>
         </div>

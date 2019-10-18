@@ -8,7 +8,7 @@
             <dt><i class="Hui-iconfont">&#xe623;</i> 服务分类<i class="Hui-iconfont menu_dropdown-arrow">&#xe6d5;</i></dt>
             <dd>
                 <ul>
-                    <li id="category"><a href="{:url('ServiceCategory/index')}" title="服务分类">服务分类</a></li>
+                    <li id="category"><a href="{:url('wavlink/ServiceCategory/index')}" title="服务分类">服务分类</a></li>
                 </ul>
             </dd>
         </dl>
@@ -19,9 +19,9 @@
             <dd>
                 <ul>
                     <li id="article_art">
-                        <a href="{:url('Article/index')}" title="文章管理">文章管理</a>
+                        <a href="{:url('wavlink/Article/index')}" title="文章管理">文章管理</a>
                     </li>
-                    <li id="article_rec"><a href="{:url('Article/article_recycle')}" title="回收站内文章">回收站</a></li>
+                    <li id="article_rec"><a href="{:url('wavlink/Article/article_recycle')}" title="回收站内文章">回收站</a></li>
                 </ul>
             </dd>
         </dl>
@@ -31,8 +31,8 @@
             <dt><i class="Hui-iconfont">&#xe623;</i> 文档中心<i class="Hui-iconfont menu_dropdown-arrow">&#xe6d5;</i></dt>
             <dd>
                 <ul>
-                    <li id="service_doc"><a href="{:url('Document/index')}" title="下载列表">文档管理</a></li>
-                    <li id="doc_recovery"><a href="{:url('Document/doc_recycle')}" title="回收站">回收站</a></li>
+                    <li id="service_doc"><a href="{:url('wavlink/Document/index')}" title="下载列表">文档管理</a></li>
+                    <li id="doc_recovery"><a href="{:url('wavlink/Document/doc_recycle')}" title="回收站">回收站</a></li>
                 </ul>
             </dd>
         </dl>
@@ -42,8 +42,8 @@
             <dt><i class="Hui-iconfont">&#xe641;</i> 驱动管理<i class="Hui-iconfont menu_dropdown-arrow">&#xe6d5;</i></dt>
             <dd>
                 <ul>
-                    <li id="drivers_list"><a href="{:url('Drivers/index')}" title="驱动下载列表">驱动管理</a></li>
-                    <li id="drivers_recycle"><a href="{:url('Drivers/recycle')}" title="回收站">回收站</a></li>
+                    <li id="drivers_list"><a href="{:url('wavlink/Drivers/index')}" title="驱动下载列表">驱动管理</a></li>
+                    <li id="drivers_recycle"><a href="{:url('wavlink/Drivers/recycle')}" title="回收站">回收站</a></li>
                 </ul>
             </dd>
         </dl>
@@ -53,7 +53,7 @@
             <dt><i class="Hui-iconfont">&#xe720;</i> 说明书管理<i class="Hui-iconfont menu_dropdown-arrow">&#xe6d5;</i></dt>
             <dd>
                 <ul>
-                    <li id="manual_list"><a href="{:url('Manual/index')}" title="说明书文档">说明书文档</a></li>
+                    <li id="manual_list"><a href="{:url('wavlink/Manual/index')}" title="说明书文档">说明书文档</a></li>
                 </ul>
             </dd>
         </dl>
@@ -97,27 +97,27 @@
                 <ul>
                     {if condition="in_array('soft/index',$access)"}
                     <li id="soft">
-                        <a href="{:url('soft/index')}" title="发行版软件">发行版软件</a>
+                        <a href="{:url('wavlink/soft/index')}" title="发行版软件">发行版软件</a>
                     </li>
                     {/if}
                     {if condition="in_array('cate/index',$access)"}
                     <li id="cate">
-                        <a href="{:url('cate/index')}" title="产品类别管理">产品系列</a>
+                        <a href="{:url('wavlink/cate/index')}" title="产品类别管理">产品系列</a>
                     </li>
                     {/if}
                     {if condition="in_array('model/index',$access)"}
                     <li id="prd">
-                        <a href="{:url('model/index')}" title="内部硬件机型">内部硬件机型</a>
+                        <a href="{:url('wavlink/model/index')}" title="内部硬件机型">内部硬件机型</a>
                     </li>
                     {/if}
                     {if condition="in_array('sn/index',$access)"}
                     <li id="sn">
-                        <a href="{:url('sn/index')}" title="新版SN数据库">新版SN数据库</a>
+                        <a href="{:url('wavlink/sn/index')}" title="新版SN数据库">新版SN数据库</a>
                     </li>
                     {/if}
                     {if condition="in_array('old_sn/index',$access)"}
                     <li id="old_sn">
-                        <a href="{:url('old_sn/index')}" title="老版本SN数据库">老版本SN数据库</a>
+                        <a href="{:url('wavlink/old_sn/index')}" title="老版本SN数据库">老版本SN数据库</a>
                     </li>
                     {/if}
                 </ul>

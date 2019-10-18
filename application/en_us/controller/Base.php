@@ -3,20 +3,22 @@
 namespace app\en_us\controller;
 
 use app\common\model\About as AboutModel;
+use app\common\model\Article as ArticleModel;
 use app\common\model\Category as CategoryModel;
+use app\common\model\Document as DocumentModel;
 use app\common\model\Language as LanguageModel;
 use app\common\model\Product as ProductModel;
-use app\common\model\Article as ArticleModel;
-use app\common\model\ServiceCategory as ServiceCategoryModel;
 use app\common\model\Setting as SettingModel;
+use think\App;
 use think\Controller;
 use think\db\exception\DataNotFoundException;
 use think\db\exception\ModelNotFoundException;
 use think\exception\DbException;
-use think\Lang;
-use think\Request;
-use think\Cookie;
-use app\common\model\Document as DocumentModel;
+use think\facade\Cookie;
+use think\facade\Lang;
+use think\facade\Request;
+use think\facade\Env;
+use think\response\Redirect;
 
 /***
  * Class Base
@@ -49,13 +51,22 @@ class Base extends Controller
     protected $articleList; // 最新事件列表
     protected $productList; // 最热产品列表
     protected $template;
-    protected $beforeActionList = ['loadLanguage', 'languages', 'getCategory', 'checkMobile', 'checkLang', 'setting', 'Popular', 'articles', 'documents', 'about'];
+    protected $beforeActionList = ['loadLanguage','languages', 'getCategory', 'checkMobile', 'checkLang', 'setting', 'Popular', 'articles', 'documents', 'about'];
 
 
-    public function _initialize()
+    public function __construct(App $app = null)
     {
+        parent::__construct($app);
+        $path = explode('/', Request::path());
+        Cookie::set('lang_var', $path[0]);
+        $this->code = $path[0];
+    }
+
+    public function initialize()
+    {
+        parent::initialize();
         //当前模块
-        $this->module = Request::instance()->module();
+        $this->module = Request::module();//模块名
         try {
             $this->language_id = LanguageModel::getLanguageCodeOrID($this->code);
         } catch (DataNotFoundException $e) {
@@ -63,13 +74,13 @@ class Base extends Controller
         } catch (DbException $e) {
         }//$code 转成 language_id
         //这两个玩意暂时还没找到用途先放在这里
-        $url = Request::instance()->controller();
+        $url = Request::controller();
         $this->assign('url', $url);
     }
 
     /***
      * @param $code
-     * @return \think\response\Redirect
+     * @return Redirect
      * 手动设置语言
      *
      */
@@ -135,9 +146,9 @@ class Base extends Controller
     }
 
     /**
-     * @throws \think\db\exception\DataNotFoundException
-     * @throws \think\db\exception\ModelNotFoundException
-     * @throws \think\exception\DbException
+     * @throws DataNotFoundException
+     * @throws ModelNotFoundException
+     * @throws DbException
      * 检测语言是否被允许访问
      */
     public function checkLang()
@@ -155,9 +166,9 @@ class Base extends Controller
     public function checkMobile()
     {
         if (isMobile()) {
-            $this->template = APP_PATH . request()->module() . '/view/mobile';
+            $this->template = Env::get('app_path') . Request::module() . '/view/mobile';
         } else {
-            $this->template = APP_PATH . request()->module() . '/view/desktop';
+            $this->template = Env::get('app_path') . Request::module() . '/view/desktop';
         }
     }
 
@@ -173,7 +184,6 @@ class Base extends Controller
     }
 
     /***
-     * @throws \think\exception\DbException
      * 获取语言列表
      */
     public function languages()
@@ -183,7 +193,7 @@ class Base extends Controller
     }
 
     /**
-     * @return \think\response\Redirect
+     * @return Redirect
      * 自动跳语言并加载指定的语言文件
      *
      */
@@ -201,7 +211,7 @@ class Base extends Controller
     {
         $this->code = Cookie::get('lang_var') ? Cookie::get('lang_var') : get_lang(Request::instance()->header()); //code 不能重request里拿了，需要从cookie里拿
         //加载当前模块语言包
-        Lang::load(APP_PATH . $this->module . '/lang/' . $this->code . '.php');
+        Lang::load(Env::get('app_path') . $this->module . '/lang/' . $this->code . '.php');
         $this->assign('code', $this->code);
     }
 

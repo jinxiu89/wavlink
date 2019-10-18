@@ -6,7 +6,9 @@
  * Time: 15:46
  */
 namespace app\common\validate;
-class ProductInformation extends BaseValidate
+use think\Validate;
+
+class ProductInformation extends Validate
 {
     protected $regex = [
         'model'=>'WL\\-[A-Z][0-9A-Z]{0,10}|[A-Z][0-9A-Z]{0,15}',//首位为字母开头后面为数字加子母，最多为16个字符串

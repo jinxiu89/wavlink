@@ -10,21 +10,21 @@ namespace app\en_us\controller;
 
 use app\common\model\Faq as FaqModel;
 use app\common\model\ServiceCategory;
+use think\App;
 use think\db\exception\DataNotFoundException;
 use think\db\exception\ModelNotFoundException;
 use think\exception\DbException;
-use think\Request;
+use think\facade\Request;
 
 class Faq extends Base
 {
     /**
      * Faq constructor.
-     * @param Request|null $request
-     *
+     * @param APP|null $app
      */
-    public function __construct(Request $request = null)
+    public function __construct(App $app = null)
     {
-        parent::__construct($request);
+        parent::__construct($app);
         try {
             $cate = ServiceCategory::getSecondCategory($this->code);
             $this->assign('cate', $cate);

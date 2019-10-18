@@ -7,9 +7,8 @@
  */
 
 namespace app\common\model;
-
+use think\Collection;
 use app\common\model\Language as LanguageModel;
-
 Class Article extends BaseModel
 {
     protected $table = "article";//使用article表
@@ -65,6 +64,6 @@ Class Article extends BaseModel
         $language_id = LanguageModel::getLanguageCodeOrID($code);
         $result = $this->where(['status' => 1, 'language_id' => $language_id])->order(['update_time'=>'desc'])->limit(2)->field('id,title,logo,seo_description,update_time')->select();
 
-        return collection($result)->toArray();
+        return Collection::make($result);
     }
 }

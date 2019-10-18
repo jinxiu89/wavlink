@@ -9,7 +9,7 @@
 namespace app\wavlink\controller;
 
 use app\wavlink\validate\UrlTitleMustBeOnly;
-use think\Request;
+use think\facade\Request;
 use app\common\model\About as AboutModel;
 use app\wavlink\validate\About as AboutValidate;
 

@@ -7,7 +7,7 @@
  * 下载中心
  */
 namespace app\wavlink\controller;
-use think\Request;
+use think\Facade\Request;
 use app\common\model\Video as VideoModel;
 use app\common\model\ServiceCategory as ServiceCategoryModel;
 use app\wavlink\validate\Video as VideoValidate;

@@ -8,7 +8,7 @@
 
 namespace app\wavlink\controller;
 
-use think\Request;
+use think\facade\Request;
 
 /***
  * Class AuthGroup

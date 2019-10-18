@@ -62,10 +62,10 @@
                 </div>
                 {volist name="data" id="vo"}
                 <div class="item">
-                    <a href="/{$code}/faq/details/{$vo.url_title}">{$vo.name}</a>
+                    <a href="/{$code}/faq/details/{$vo.url_title}.html">{$vo.name}</a>
                     <p>
                         <span>{:lang('Update Time')}: </span>
-                        <span>{$vo.update_time|strtotime|date="d/m/Y",###}</span>
+                        <span>{$vo.update_time|strtotime|date="d/m/Y"}</span>
                     </p>
                 </div>
                 {/volist}

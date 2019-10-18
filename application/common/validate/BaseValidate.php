@@ -7,9 +7,13 @@
  */
 namespace app\common\validate;
 use app\lib\exception\ParameterException;
-use think\Request;
+use think\facade\Request;
 use think\Validate;
 
+/***
+ * Class BaseValidate
+ * @package app\common\validate
+ */
 class BaseValidate extends Validate {
     public function goCheck($scene=''){
         // 获取http传入的参数

@@ -6,7 +6,10 @@
  * Time: 15:39
  */
 namespace app\common\validate;
-class UserInformation extends BaseValidate
+
+use think\Validate;
+
+class UserInformation extends Validate
 {
     protected $rule = [
         ['first_name','require|max:64'],

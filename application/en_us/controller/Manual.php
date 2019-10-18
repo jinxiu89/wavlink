@@ -10,6 +10,7 @@ namespace app\en_us\controller;
 
 use app\common\model\Manual as ManualModel;
 use app\common\model\ServiceCategory;
+use think\App;
 use think\db\exception\DataNotFoundException;
 use think\db\exception\ModelNotFoundException;
 use think\exception\DbException;
@@ -23,11 +24,11 @@ class Manual extends Base
 {
     /**
      * Manual constructor.
-     * @param Request|null $request
+     * @param App|null $app
      */
-    public function __construct(Request $request = null)
+    public function __construct(App $app = null)
     {
-        parent::__construct($request);
+        parent::__construct($app);
         try {
             $cate = ServiceCategory::getSecondCategory($this->code);
             $this->assign('cate', $cate);
@@ -80,7 +81,7 @@ class Manual extends Base
      * @throws \think\Exception
      *
      */
-    public function category($category = "",$order="desc")
+    public function category($category = "", $order = "desc")
     {
         if (empty($category) || !isset($category)) {
             abort(404);//直接报404 不存在的意思
@@ -89,8 +90,8 @@ class Manual extends Base
         $nav = ServiceCategory::getNavByCategoryId($this->code, $category);
         $this->assign('path', $nav);
         $this->assign('parent', $parent);
-        $this->assign('current',$category);
-        $this->assign('order',$order);
+        $this->assign('current', $category);
+        $this->assign('order', $order);
         if (empty($parent)) {
             abort(404);
         } else {
@@ -101,14 +102,14 @@ class Manual extends Base
              * //返回的是这个分类及他以下的所有的说明书数据
              */
             $child = ServiceCategory::getChild($parent['id']);//他没有下一级的情况，下去怎么查？
-            $categoryIDS[]=$parent['id'];
-            foreach ($child as $item){
-                $categoryIDS[]=$item['id'];
+            $categoryIDS[] = $parent['id'];
+            foreach ($child as $item) {
+                $categoryIDS[] = $item['id'];
             }
             $manual = (new ManualModel())->getManualByCategoryId($this->code, $categoryIDS, $order);
             return view($this->template . '/manual/category.html', [
                 'data' => $manual['result'],
-                'count'=>$manual['count'],
+                'count' => $manual['count'],
                 'name' => $parent['name'],
             ]);
         }

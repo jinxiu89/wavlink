@@ -7,8 +7,8 @@
     <meta name="viewport"
           content="width=device-width,initial-scale=1,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no"/>
     <meta http-equiv="Cache-Control" content="no-siteapp"/>
-    <link rel="Bookmark" href="__ROOT__/favicon.ico">
-    <link rel="Shortcut Icon" href="__ROOT__/favicon.ico"/>
+    <link rel="Bookmark" href="__PUBLIC__/favicon.ico">
+    <link rel="Shortcut Icon" href="__PUBLIC__/favicon.ico"/>
     <!--[if lt IE 9]>
     <script type="text/javascript" src="__STATIC__/admin/lib/html5shiv.js"></script>
     <script type="text/javascript" src="__STATIC__/admin/lib/respond.min.js"></script>
@@ -20,7 +20,7 @@
     <script type="text/javascript" src="__STATIC__/admin/lib/DD_belatedPNG_0.0.8a-min.js"></script>
     <script>DD_belatedPNG.fix('*');</script>
     <![endif]-->
-    <title>后台登录 - {$Think.config.site.title}</title>
+    <title>后台登录{$Think.const.PHP_VERSION} - {$Think.config.site.title}</title>
     <meta name="keywords" content="{$Think.config.site.keywords}">
     <meta name="description" content="{$Think.config.site.keywords}">
 </head>
@@ -56,7 +56,7 @@
                     <input name="captcha" class="input-text col-lg-6  size-L" type="text" placeholder="验证码"
                            style="margin-right:10px;width:100px;min-width: auto" datatype="*" nullmsg="请填写验证码">
                     <div class="col-lg-6 pull-right" style="padding: 0;cursor:pointer" title="点击更换验证码">
-                        {:captcha_img()}
+                        <img src="{:captcha_src()}" alt="captcha" width="160px" onclick="this.src='{:captcha_src()}'"/>
                     </div>
                 </div>
             </div>

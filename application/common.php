@@ -10,7 +10,9 @@
 // +----------------------------------------------------------------------
 // 应用公共文件
 //分类
-use think\Cookie;
+use app\common\model\Manual;
+use think\facade\Cookie;
+use think\Collection;
 
 function pagination($obj)
 {
@@ -59,10 +61,12 @@ function Search($table, $map = [], $order, $field = '')
 
 /***
  * 将数据库的查询对象转成数组
+ * @param $obj
+ * @return Collection
  */
 function TurnArray($obj)
 {
-    return collection($obj)->toArray();
+    return Collection::make($obj);
 }
 
 // 字符串进行数组处理，以逗号分割组合
@@ -224,20 +228,6 @@ function numberStr($count)
     return sprintf('%05s', $count);
 }
 
-/***
- * 防止刷新扰乱数据库的计数器
- */
-function counter($prefix, $expire)
-{
-    $ip = md5(request()->ip());
-    Cookie::has($ip, $prefix) ? $count = Cookie::get($ip, $prefix) + 1 : $count = 1;
-    if (Cookie::get($ip, $prefix) >= 2) {
-        return false;
-    } else {
-        Cookie::set($ip, $count, ['prefix' => $prefix, 'expire' => $expire]);
-        return true;
-    }
-}
 
 /***
  * 判断是否是移动端
@@ -316,36 +306,32 @@ function isMobile()
  * 后台修改获得更新的url
  * @param $id
  * @return string
- * @throws \think\exception\DbException
  */
 function getDownload($id)
 {
-    $data = \app\common\model\Manual::get($id);
+    $data = Manual::get($id);
     $list = $data->downloads;
     $arr = array();
     foreach ($list as $v) {
         $arr[] = "<a title=\"编辑\" href=\"javascript:;\" onclick=\"index_edit('更新','/wavlink/manual/edit_download?id=" . $v['id'] . "&manual_id=" . $v['manual_id'] . "')\" class=\"ml-5 label label-primary radius\" style=\"text-decoration:none\">" . $v['language'] . "</a>";
     }
     return implode('', $arr);
-    $test = "";
 }
 
 /***
  * 前端根据说明书的ID查询到所有的可下载的说明书并给出直接下载的连接
  * @param $id
  * @return string
- * @throws \think\exception\DbException
  */
 function getDownloadUrl($id)
 {
-    $data = \app\common\model\Manual::get($id);
+    $data = Manual::get($id);
     $list = $data->downloads;
     $arr = array();
     foreach ($list as $v) {
         $arr[] = "<a href=" . $v['url'] . " class='download_url btn btn-default'>" . $v['language'] . "</a>";
     }
     return implode('', $arr);
-    $test = "";
 }
 
 function getCategoryLevel($id)
@@ -464,18 +450,24 @@ function getTitleByCategoryID($category_id)
  * 根据产品ID 把它所属的分类查出来返回到前端
  *
  */
-function getCategoryByPid($id){
-    $categoryIds=\app\common\model\Product::getProductCategory($id);
+function getCategoryByPid($id)
+{
+    $categoryIds = \app\common\model\Product::getProductCategory($id);
     return $categoryIds[0];
 }
-function getCNameByCid($id){
-    $data=\app\common\model\Category::get($id);
+
+function getCNameByCid($id)
+{
+    $data = \app\common\model\Category::get($id);
     return $data['name'];
 }
-function getUrlTitleByCid($id){
-    $data=\app\common\model\Category::get($id);
+
+function getUrlTitleByCid($id)
+{
+    $data = \app\common\model\Category::get($id);
     return $data['url_title'];
 }
+
 function getUrlByCategoryID($category_id)
 {
     $data = \app\common\model\ServiceCategory::get($category_id);

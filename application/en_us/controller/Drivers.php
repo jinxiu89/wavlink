@@ -8,6 +8,7 @@
 
 namespace app\en_us\controller;
 
+use think\App;
 use think\db\exception\DataNotFoundException;
 use think\db\exception\ModelNotFoundException;
 use think\Exception;
@@ -25,20 +26,19 @@ class Drivers extends Base
 {
     /**
      * Drivers constructor.
-     * @param Request|null $request
-     *
+     * @param App|null $app
      */
-    public function __construct(Request $request = null)
-    {
-        parent::__construct($request);
-        try {
-            $cate = ServiceCategoryModel::getSecondCategory($this->code);
-            $this->assign('cate', $cate);
-        } catch (DataNotFoundException $e) {
-        } catch (ModelNotFoundException $e) {
-        } catch (DbException $e) {
-        }
-    }
+   public function __construct(App $app = null)
+   {
+       parent::__construct($app);
+       try {
+           $cate = ServiceCategoryModel::getSecondCategory($this->code);
+           $this->assign('cate', $cate);
+       } catch (DataNotFoundException $e) {
+       } catch (ModelNotFoundException $e) {
+       } catch (DbException $e) {
+       }
+   }
     /***
      * $this->code 为 当前的模块名，即在上面_initialize(初始化中)赋予的
      *

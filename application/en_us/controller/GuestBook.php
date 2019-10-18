@@ -11,7 +11,8 @@ namespace app\en_us\controller;
 use app\common\model\GuestBook as GuestBookModel;
 use app\common\validate\OtherInformation as OtherInformationValidate;
 use app\common\validate\ProductInformation as ProductInformationValidate;
-use app\common\validate\UserInformation as UserInformationValidate;
+//use app\common\validate\UserInformation as UserInformationValidate;
+use app\en_us\validate\Ticket;
 
 class GuestBook extends Base
 {
@@ -22,11 +23,7 @@ class GuestBook extends Base
 
     public function add()
     {
-        if (counter('uk_', 600)) {
-            return $this->fetch($this->template.'/guest_book/add.html');
-        } else {
-            return $this->fetch($this->template.'/guest_book/error.html');
-        }
+        return $this->fetch($this->template . '/guest_book/add.html');
     }
 
     public function detail($sn)
@@ -39,15 +36,18 @@ class GuestBook extends Base
 
     public function save()
     {
-        (new UserInformationValidate())->goCheck();
-        (new ProductInformationValidate())->goCheck();
-        (new OtherInformationValidate())->goCheck();
-        $ticketAdd = new GuestBookModel();
         $data = input('post.', '', 'htmlentities');
-        if ($ticketAdd->addTicket($data, $this->code)) {
-            return show(1, '', '', '', '', lang('ticket_success'));
+        $validate = new Ticket();
+        if ($validate->scene('add')->check($data)) {
+            $ticketAdd = new GuestBookModel();
+            if ($ticketAdd->addTicket($data, $this->code)) {
+                return show(1, '', '', '', '', lang('ticket_success'));
+            } else {
+                return show(0, '', '', '', '', lang('ticket_error'));
+            }
         } else {
-            return show(0, '', '', '', '', lang('ticket_error'));
+            return show(0, '', '', '', '', $validate->getError());
         }
+
     }
 }

@@ -15,7 +15,7 @@ use app\wavlink\validate\UrlTitleMustBeOnly;
 use think\db\exception\DataNotFoundException;
 use think\db\exception\ModelNotFoundException;
 use think\exception\DbException;
-use think\Request;
+use think\Facade\Request;
 
 /**
  * Class Manual

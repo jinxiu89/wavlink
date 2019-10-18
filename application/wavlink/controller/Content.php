@@ -6,8 +6,6 @@
  * Time: 10:46
  */
 namespace app\wavlink\controller;
-use think\Controller;
-use think\Request;
 
 Class Content extends BaseAdmin {
     public function index()

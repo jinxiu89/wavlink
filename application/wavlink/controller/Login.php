@@ -10,6 +10,7 @@ namespace app\wavlink\controller;
 
 use think\Controller;
 use app\common\model\Language;
+use think\Collection;
 
 /**
  * Class Login
@@ -66,7 +67,7 @@ class Login extends Controller
             }
 
         } else {
-            $language = collection(Language::all())->toArray();
+            $language = Collection::make(Language::all());
             $users = session('userName', '', 'admin');
             if ($users && $users->id) {
                 $this->redirect($this->next);

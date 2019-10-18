@@ -9,7 +9,7 @@
 namespace app\wavlink\controller;
 
 use app\common\model\Featured as FeaturedModel;
-use think\Request;
+use think\Facade\Request;
 use app\wavlink\validate\Featured as FeaturedValidate;
 class Featured extends BaseAdmin
 {

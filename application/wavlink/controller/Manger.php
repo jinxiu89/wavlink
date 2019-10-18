@@ -8,7 +8,7 @@
  */
 namespace app\wavlink\controller;
 
-use think\Request;
+use think\Facade\Request;
 use app\common\model\Manger as MangerModel;
 use app\common\model\AuthGroup as AuthGroupModel;
 use app\common\model\Language as LanguageModel;

@@ -56,20 +56,28 @@ Class Drivers extends BaseAdmin
     /**
      * 提交保存数据
      * @return array
-     * @throws \app\lib\exception\ParameterException
      */
     public function save() {
         if (request()->isAjax()){
-            (new DriversValidate())->goCheck();
             $data = input('post.');
-            if(!empty($data['id'])){
-                return $this->update($data);
-            }
-            $res = (new DriversModel())->add($data);
-            if ($res) {
-                return show(1,'','','','', '添加成功');
-            } else {
-                return show(0,'','','','', '添加失败');
+            $validate=new DriversValidate();
+            if(isset($data['id']) || !empty($data['id'])){
+                if($validate->scene('edit')->check($data)){
+                    return $this->update($data);
+                }else{
+                    return show(0,'','','','', $validate->getError());
+                }
+            }else{
+                if($validate->scene('add')->check($data)){
+                    $res = (new DriversModel())->add($data);
+                    if ($res) {
+                        return show(1,'','','','', '添加成功');
+                    } else {
+                        return show(0,'','','','', '添加失败');
+                    }
+                }else{
+                    return show(0,'','','','', $validate->getError());
+                }
             }
         }
     }

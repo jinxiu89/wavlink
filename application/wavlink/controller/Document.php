@@ -49,24 +49,36 @@ Class Document extends BaseAdmin
     }
 
     //文档新增保存操作
+
+    /**
+     * @return array|void
+     * 修改验证结构
+     *
+     */
     public function save()
     {
         if (request()->isAjax()) {
-            $data = Request::instance()->post();
-            (new DocumentValidate())->goCheck();
-            (new UrlTitleMustBeOnly())->goCheck();
-
-            if (!empty($data['id'])) {
-                return $this->update($data);
-            }
-            $res = (new DocumentModel())->add($data);
-            if ($res) {
-                return show(1, '', '', '', '', '添加成功');
-            } else {
-                return show(1, '', '', '', '', '添加失败');
+            $data=input('post.');
+            $validate=new DocumentValidate();
+            if(isset($data['id']) || !empty($data['id'])){
+                if($validate->scene('edit')->check($data)){
+                    return $this->update($data);
+                }else{
+                    return show(0, '', '', '', '', $validate->getError());
+                }
+            }else{
+                if($validate->scene('add')->check($data)){
+                    $res = (new DocumentModel())->add($data);
+                    if ($res) {
+                        return show(1, '', '', '', '', '添加成功');
+                    } else {
+                        return show(1, '', '', '', '', '添加失败');
+                    }
+                }else{
+                    return show(0, '', '', '', '', $validate->getError());
+                }
             }
         }
-
     }
 
     //文档编辑页面

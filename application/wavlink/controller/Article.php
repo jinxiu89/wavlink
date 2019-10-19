@@ -58,21 +58,35 @@ Class Article extends BaseAdmin
         ]);
     }
 
-    //新增保存文章
+
+    /***
+     * @return array|void
+     * 保存
+     */
     public function save()
     {
         if (request()->isAjax()) {
-            (new ArticleValidate())->goCheck();
-            (new UrlTitleMustBeOnly())->goCheck();
             $data = input('post.');
-            if (!empty($data['id'])) {
-                return $this->update($data);
-            }
-            $res = (new ArticleModel())->add($data);
-            if ($res) {
-                return show(1, '', '', '', '', '添加成功');
-            } else {
-                return show(1, '', '', '', '', '添加失败');
+            $validate=new ArticleValidate();
+            if(isset($data['id']) || !empty($data['id'])){
+                //更新
+                if($validate->scene('edit')->check($data)){
+                    return $this->update($data);
+                }else{
+                    return show(1, '', '', '', '', $validate->getError());
+                }
+            }else{
+                //新增
+                if($validate->scene('add')->check($data)){
+                    $res = (new ArticleModel())->add($data);
+                    if ($res) {
+                        return show(1, '', '', '', '', '添加成功');
+                    } else {
+                        return show(1, '', '', '', '', '添加失败');
+                    }
+                }else{
+                    return show(1, '', '', '', '', $validate->getError());
+                }
             }
         }
     }
@@ -95,6 +109,8 @@ Class Article extends BaseAdmin
      * 批量回收文章
      * @param Request $request
      * @return array
+     * @throws \think\Exception
+     * @throws \think\exception\PDOException
      */
     public function allRecycle(Request $request)
     {

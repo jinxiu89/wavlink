@@ -95,12 +95,12 @@ Route::group(Config::get('__BACKEND__'), function () {
     Route::get('drivers/add', 'wavlink/drivers/add');
     Route::get('drivers/edit', 'wavlink/drivers/edit', [], ['id' => '\d+']);
     //说明书和文件
-    Route::get('Manual/index', 'wavlink/Manual/index');
+    Route::get('manual/index', 'wavlink/Manual/index');
     Route::get('manual/add', 'wavlink/manual/add');
     Route::get('manual/edit', 'wavlink/manual/edit', [], ['id' => '\d+']);
-    Route::get('Manual/add_download', 'wavlink/Manual/add_download', [], ['id' => '\d+']);
+    Route::get('manual/add_download', 'wavlink/Manual/add_download', [], ['id' => '\d+']);
     Route::get('manual/edit_download', 'wavlink/manual/edit_download', [], ['id' => '\d+', 'manual_id' => '\d+']);
-    Route::get('Manual/del_download', 'wavlink/Manual/del_download', [], ['id' => '\d+']);
+    Route::get('manual/del_download', 'wavlink/Manual/del_download', [], ['id' => '\d+']);
     //视频
     Route::get('video/index', 'wavlink/video/index');
     Route::get('video/video_recycle', 'wavlink/video/video_recycle');
@@ -139,6 +139,7 @@ Route::group(Config::get('__BACKEND__'), function () {
     Route::get('sn/edit', 'wavlink/sn/edit', [], ['id' => '\d+']);
     Route::get('old_sn/index', 'wavlink/OldSn/index');
     Route::get('old_sn/add', 'wavlink/OldSn/add');
+    Route::get('/','wavlink/index/index');
 });
 
 //post请求组

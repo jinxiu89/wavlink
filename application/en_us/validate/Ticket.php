@@ -36,7 +36,6 @@ class Ticket extends Validate
         'description.require' => '{%description is require}',
         'description.max' => '{%description is min to 16 and max 255 character}'
     ];
-
     protected $scene = [
         'add' => ['first_name', 'last_name', 'email', 'model', 'sn', 'description']
     ];

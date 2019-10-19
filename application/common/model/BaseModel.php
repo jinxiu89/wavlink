@@ -12,7 +12,7 @@ namespace app\common\model;
 use app\common\helper\Search as SearchHelp;
 use app\common\model\Language as LanguageModel;
 use app\en_us\controller\Search;
-use think\Cookie;
+use think\facade\Cookie;
 use think\db\exception\ModelNotFoundException;
 use think\Model;
 
@@ -49,6 +49,9 @@ Class BaseModel extends Model
      * @param $code
      * @return Search|mixed
      * 对于有语言的数据查询
+     * @throws ModelNotFoundException
+     * @throws \think\db\exception\DataNotFoundException
+     * @throws \think\exception\DbException
      */
     public static function getDataByStatusLanguage($status, $order, $code)
     {

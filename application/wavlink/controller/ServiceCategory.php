@@ -11,9 +11,13 @@ namespace app\wavlink\controller;
 
 use app\common\model\ServiceCategory as ServiceCategoryModel;
 use app\wavlink\validate\ServiceCategory as ServiceCategoryValidate;
-use app\wavlink\validate\UrlTitleMustBeOnly;
+use think\exception\DbException;
 use think\Facade\Request;
 
+/**
+ * Class ServiceCategory
+ * @package app\wavlink\controller
+ */
 class ServiceCategory extends BaseAdmin
 {
     /***
@@ -62,32 +66,35 @@ class ServiceCategory extends BaseAdmin
     }
 
     /**
-     * @param Request $request
+     *
      * @return array
      * 提交保存操作
-     * @throws \app\lib\exception\ParameterException
      */
-    public function save(Request $request)
+    public function save()
     {
-        if (request()->isAjax()) {
-            (new ServiceCategoryValidate())->goCheck();
-            (new UrlTitleMustBeOnly())->goCheck();
-            $data = $request::instance()->post();
-            if ($data['level'] == '') {
-                $data['level'] = intval(1);
-            }
-            if (!empty($data['id'])) {
-                if ($data['id'] == $data['parent_id']) {
-                    return show(0, '', '不能编辑在自己名下');
-                } else {
-                    return $this->update($data);
+        if (Request::isPost()) {
+            $data = input('post.','','htmlspecialchars');
+            $validate = new ServiceCategoryValidate();
+            if ($validate->scene('add')->check($data)) {
+                //todo:: 完成操作
+                if ($data['level'] == '') {
+                    $data['level'] = intval(1);
                 }
-            }
-            $res = (new ServiceCategoryModel())->add($data);
-            if ($res) {
-                return show(1, '', '', '', '', '添加成功');
+                if (!empty($data['id'])) {
+                    if ($data['id'] == $data['parent_id']) {
+                        return show(0, '', '不能编辑在自己名下');
+                    } else {
+                        return $this->update($data);
+                    }
+                }
+                $res = (new ServiceCategoryModel())->add($data);
+                if ($res) {
+                    return show(1, '', '', '', '', '添加成功');
+                } else {
+                    return show(1, '', '', '', '', '添加失败');
+                }
             } else {
-                return show(1, '', '', '', '', '添加失败');
+                return show(0, '', '', '', '', $validate->getError());
             }
         }
     }
@@ -96,7 +103,7 @@ class ServiceCategory extends BaseAdmin
      * @param int $id
      * @return array|mixed 编辑页面开发
      * 编辑页面开发
-     * @throws \think\exception\DbException
+     * @throws DbException
      */
     public function edit($id = 0)
     {

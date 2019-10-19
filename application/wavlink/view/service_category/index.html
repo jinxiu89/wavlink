@@ -48,11 +48,11 @@
                     <td>{$vo.name}</td>
                     <td>{empty name="$vo.imgae"}{else /}<img src="{$vo.image}" alt="" width="30" height="30">{/empty}</td>
                     <td>{$vo.url_title}</td>
-                    <td class="text-c">{$vo.language_id|getLanguage}</td>
-                    <td class="text-c">{$vo.parent_id|getServiceCategory}</td>
+                    <td class="text-c">{$vo.language_id|getLanguage|raw}</td>
+                    <td class="text-c">{$vo.parent_id|getServiceCategory|raw}</td>
                     <td class="text-c">{$vo.listorder}</td>
                     <td>{$vo.update_time}</td>
-                    <td class="td-status"><a href="javascript:;" onclick="start('{:url(\'ServiceCategory/byStatus\',[\'id\'=>$vo.id,\'status\'=>$vo.status==1?-1:1])}')" title="点击修改状态">{$vo.status|status}</a></td>
+                    <td class="td-status"><a href="javascript:;" onclick="start('{:url(\'ServiceCategory/byStatus\',[\'id\'=>$vo.id,\'status\'=>$vo.status==1?-1:1])}')" title="点击修改状态">{$vo.status|status|raw}</a></td>
                     <td class="td-manage">
                         {if condition="$vo.level <= 2"}
                         <a title="添加子分类" href="javascript:;" onclick="add('添加子分类（服务）','{:url(\'ServiceCategory/add\',[\'parent_id\'=>$vo.id])}','800','680')"><i class="Hui-iconfont" style="font-size: 18px;color:blue">&#xe716</i></a>

@@ -39,6 +39,9 @@ Class About extends BaseAdmin
         ]);
     }
 
+    /**
+     * @return mixed
+     */
     public function add()
     {
         return $this->fetch('', [
@@ -46,24 +49,45 @@ Class About extends BaseAdmin
         ]);
     }
 
+    /**
+     * @param Request $request
+     * @return array|void
+     */
     public function save(Request $request)
     {
         if (request()->isAjax()) {
-            (new AboutValidate())->goCheck();
-            (new UrlTitleMustBeOnly())->goCheck();
             $data = $request::instance()->post();
-            if (!empty($data['id'])) {
-                return $this->update($data);
-            }
-            $res = (new AboutModel())->add($data);
-            if ($res) {
-                return show(1, '', '', '', '', '添加成功');
+            $validate = new AboutValidate();
+            if (isset($data['id']) and !empty($data['id'])) {
+                if ($validate->scene('edit')->check($data)) {
+                    try {
+                        return $this->update($data);
+                    } catch (\Exception $exception) {
+                        return show(0, '', '', '', '', $exception->getMessage());
+                    }
+                }
             } else {
-                return show(1, '', '', '', '', '添加失败');
+                if ($validate->scene('add')->check($data)) {
+                    try {
+                        $res = (new AboutModel())->add($data);
+                        if ($res) {
+                            return show(1, '', '', '', '', '添加成功');
+                        } else {
+                            return show(1, '', '', '', '', '添加失败');
+                        }
+                    } catch (\Exception $exception) {
+                        return show(0, '', '', '', '', $exception->getMessage());
+                    }
+                }
             }
+            return show(0, '', '', '', '', $validate->getError());
         }
     }
 
+    /**
+     * @param $id
+     * @return mixed
+     */
     public function edit($id)
     {
         $id = $this->MustBePositiveInteger($id);

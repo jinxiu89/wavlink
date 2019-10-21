@@ -12,6 +12,10 @@ use app\common\model\Language as LanguageModel;
 use app\common\model\Setting as SettingModel;
 use app\wavlink\validate\Setting as SettingValidate;
 
+/**
+ * Class Setting
+ * @package app\wavlink\controller
+ */
 Class Setting extends BaseAdmin
 {
     public function index()
@@ -33,22 +37,24 @@ Class Setting extends BaseAdmin
         ]);
     }
 
+    /**
+     * @return array|void
+     */
     public function save()
     {
         if (!request()->isPost()) {
             return show(0, '', '非法操作');
         }
         $data = input('post.');
-        (new SettingValidate())->goCheck();
-        if (!empty($data['id'])) {
-            return $this->update($data);
+        $validate=new SettingValidate();
+        if($validate->scene('add')->check($data)){
+            try{
+                return $this->update($data);
+            }catch (\Exception $exception){
+                return show(0, '', '', '', '', $exception->getMessage());
+            }
         }
-        $res = SettingModel::create($data);
-        if ($res) {
-            return show(1, '', '', '', '', '添加成功');
-        } else {
-            return show(1, '', '', '', '', '添加失败');
-        }
+        return show(0, '', '', '', '',$validate->getError());
     }
 
     public function edit($id)

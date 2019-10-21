@@ -10,6 +10,7 @@ namespace app\common\model;
 Class Manger extends BaseModel
 {
     protected $table = 'manger';//使用user表
+
     public function AuthGroup(){
         return $this->belongsToMany('AuthGroup','\app\common\model\AuthGroupAccess','group_id','uid');
     }
@@ -70,7 +71,7 @@ Class Manger extends BaseModel
         $result = $this::update($userData,['id'=>$data['id']]);
 
         //从关联模型查询数据
-        $groups =model("AuthGroupAccess")->where(array('uid'=>$data['id']))->select();
+        $groups =model("AuthGroupAccess")->where(['uid'=>$data['id']])->select();
         $group=array();
         foreach ($groups as $k => $v){
             $group[]=$v['group_id'];

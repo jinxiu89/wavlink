@@ -22,6 +22,7 @@ Route::group('zh_cn', function () {
     Route::get('/faq/details/:url_title', 'Faq/details');
     Route::get('/guest_book/','GuestBook/add');
     Route::post('/guest_book/save','GuestBook/save');
+    Route::get('/tuya/Appdownload','Tuya/index');
     //根路由在最下面
     Route::get('/', 'Index/index');
 });

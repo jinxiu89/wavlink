@@ -52,25 +52,37 @@ Class Category extends BaseAdmin
         ]);
     }
 
+    /***
+     * @return array|void
+     */
     public function save()
     {
         if (request()->isAjax()) {
-            (new CategoryValidate())->goCheck();
-            (new UrlTitleMustBeOnly())->goCheck();
             $data = input('post.');
-            if (!empty($data['id'])) {
-                if ($data['id'] == $data['parent_id']) {
-                    return show(0, '', '不能编辑在自己名下');
-                } else {
-                    return $this->update($data);
+            $validate = new CategoryValidate();
+            if (isset($data['id']) and !empty($data['id'])) {
+                if ($validate->scene('edit')->check($data)) {
+                    if ($data['id'] == $data['parent_id']) {
+                        return show(0, '', '不能编辑在自己名下');
+                    } else {
+                        return $this->update($data);
+                    }
+                }
+            } else {
+                if ($validate->scene('add')->check($data)) {
+                    try {
+                        $res = (new CategoryModel())->add($data);
+                        if ($res) {
+                            return show(1, '', '', '', '', '添加成功');
+                        } else {
+                            return show(0, '', '', '', '', '添加失败');
+                        }
+                    } catch (\Exception $exception) {
+                        return show(0, '', '', '', '', $exception->getMessage());
+                    }
                 }
             }
-            $res = (new CategoryModel())->add($data);
-            if ($res) {
-                return show(1, '', '', '', '', '添加成功');
-            } else {
-                return show(1, '', '', '', '', '添加失败');
-            }
+            return show(0, '', '', '', '', $validate->getError());
         }
     }
 
@@ -78,7 +90,6 @@ Class Category extends BaseAdmin
      * 编辑分类页面
      * @param int $id
      * @return array|mixed
-     * @throws \think\exception\DbException
      */
     public function edit($id = 0)
     {

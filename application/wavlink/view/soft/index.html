@@ -42,8 +42,8 @@
                     <td class="text-l">{$vo.ver}</td>
                     <td>{$vo.release_time}</td>
                     <td class="text-l">{$vo.description}</td>
-                    <td>{$vo.create_time|strtotime|date='Y-m-d',###}</td>
-                    <td class="text-c">{$vo.status|GetStatus}</td>
+                    <td>{$vo.create_time|strtotime|date='Y-m-d'}</td>
+                    <td class="text-c">{$vo.status|GetStatus|raw}</td>
                     <td>
                         <a title="编辑" href="javascript:;" onclick="edit('编辑软件发行版本','{:url(\'Soft/edit\',[\'id\'=>$vo.id])}')" class="ml-5" style="text-decoration:none"><i class="Hui-iconfont" style="font-size: 14px;color: green">&#xe6df;</i></a>
                         {if condition="$vo.status eq 0"}

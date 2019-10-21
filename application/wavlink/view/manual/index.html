@@ -21,9 +21,6 @@
             </form>
             <div class="cl pd-5 bg-1 bk-gray mt-20" style="line-height: 31px">
                 <span class="l">
-                    <a href="javascript:;" onclick="allRecycle('{:url(\'Drivers/allRecycle\')}')"
-                       class="btn btn-danger radius"><i
-                            class="Hui-iconfont">&#xe6e2;</i> 批量回收</a>
                     <a class="btn btn-primary radius" onclick="index_add('添加','{:url(\'Manual/add\')}')"
                        href="javascript:;"><i class="Hui-iconfont">&#xe600;</i> 添加</a>
                 </span>
@@ -53,9 +50,9 @@
                     <td class="text-c"><input type="checkbox" value="{$vo.id}" name="id"></td>
                     <td>{$vo.id}</td>
                     <td>{$vo.title}</td>
-                    <td>{$vo.id|getDownload}</td>
-                    <td>{$vo.category_id|getServiceCategory}</td>
-                    <td>{$vo.language_id|getLanguage}</td>
+                    <td>{$vo.id|getDownload|raw}</td>
+                    <td>{$vo.category_id|getServiceCategory|raw}</td>
+                    <td>{$vo.language_id|getLanguage|raw}</td>
                     <td>{$vo.listorder}</td>
                     <td>{$vo.create_time}</td>
                     <td class="td-status text-c"><span class="label label-success radius">已启用</span></td>
@@ -63,9 +60,9 @@
                         <a title="编辑" href="javascript:;"
                            onclick="index_edit('更新','{:url(\'Manual/edit\',[\'id\'=>$vo.id])}')"
                            class="ml-5 label label-primary radius" style="text-decoration:none">编辑</a>
-                        <a title="添加下载项" href="javascript:;"
+                        <a title="添加下载" href="javascript:;"
                            onclick="index_add('添加下载项','{:url(\'Manual/add_download\',[\'id\'=>$vo.id,\'status\'=>-1])}')"
-                           class="ml-5 label label-secondary radius" style="text-decoration:none">添加PDF</a>
+                           class="ml-5 label label-secondary radius" style="text-decoration:none">添加下载</a>
                         {empty name="$language_id"}
                         {else /}
                         {/empty}

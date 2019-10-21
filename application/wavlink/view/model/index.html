@@ -44,13 +44,13 @@
                     <td class="text-c">{$vo.code}</td>
                     <td class="text-l">{$vo.description}</td>
                     <td>{$vo.create_time}</td>
-                    <td class="text-c">{$vo.status|GetStatus}</td>
+                    <td class="text-c">{$vo.status|GetStatus|raw}</td>
                     <td>
                         <a title="编辑" href="javascript:;" onclick="edit('编辑机型','{:url(\'Model/edit\',[\'id\'=>$vo.id])}')" class="ml-5" style="text-decoration:none"><i class="Hui-iconfont" style="font-size: 14px;color: green">&#xe6df;</i></a>
                         {if condition="$vo.status eq 0"}
-                        <a title="启用" href="javascript:;"  onclick="start('{:url('model/byStatus',['id'=>$vo.id,'status'=>1])}')" data-id ="{$vo.id}" data-type="4" class="ml-5 mark" style="text-decoration:none"><i class="Hui-iconfont c-green">&#xe601;</i></a>
+                        <a title="启用" href="javascript:;"  onclick="start('{:url(\'model/byStatus\',[\'id\'=>$vo.id,\'status\'=>1])}')" data-id ="{$vo.id}" data-type="4" class="ml-5 mark" style="text-decoration:none"><i class="Hui-iconfont c-green">&#xe601;</i></a>
                         {else /}
-                        <a title="禁用" href="javascript:;"  onclick="start('{:url('model/byStatus',['id'=>$vo.id,'status'=>0])}')" data-id ="{$vo.id}" data-type="4" class="ml-5 mark" style="text-decoration:none"><i class="Hui-iconfont c-red">&#xe631;</i></a>
+                        <a title="禁用" href="javascript:;"  onclick="start('{:url(\'model/byStatus\',[\'id\'=>$vo.id,\'status\'=>0])}')" data-id ="{$vo.id}" data-type="4" class="ml-5 mark" style="text-decoration:none"><i class="Hui-iconfont c-red">&#xe631;</i></a>
                         {/if}
                     </td>
                 </tr>

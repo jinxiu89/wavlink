@@ -8,7 +8,7 @@
 
 namespace app\common\model;
 
-use app\common\model\Language as LanugaeModel;
+use app\common\model\Language as LanguageModel;
 
 /**
  * Class Manual
@@ -45,7 +45,7 @@ class Manual extends BaseModel
      */
     public function getManualByCategoryId($code, $categoryId, $order = "desc")
     {
-        $language_id = LanugaeModel::getLanguageCodeOrID($code);
+        $language_id = LanguageModel::getLanguageCodeOrID($code);
         $data = [
             'status' => 1,
             'language_id' => $language_id,
@@ -78,7 +78,7 @@ class Manual extends BaseModel
      */
     public function getdataByChild($code, $chinld, $parent, $order = "desc")
     {
-        $language_id = LanugaeModel::getLanguageCodeOrID($code);//$code 转成 language_id
+        $language_id = LanguageModel::getLanguageCodeOrID($code);//$code 转成 language_id
         $order = [
             'update_time' => $order,
             'listorder' => 'desc',
@@ -120,7 +120,7 @@ class Manual extends BaseModel
 
     public function getSelectManual($code, $key)
     {
-        $language_id = LanugaeModel::getLanguageCodeOrID($code);
+        $language_id = LanguageModel::getLanguageCodeOrID($code);
         $model = 'Manual';
         $map['status'] = 1;
         $map['title|model|url_title|keywords|description'] = array('like', '%' . $key . '%');
@@ -133,7 +133,7 @@ class Manual extends BaseModel
 
     public function getDownloadByTitle($code, $url_title)
     {
-        $language_id = LanugaeModel::getLanguageCodeOrID($code);//$code 转成 language_id
+        $language_id = LanguageModel::getLanguageCodeOrID($code);//$code 转成 language_id
         try {
             $data = $this->where(array(
                 'language_id' => $language_id,

@@ -12,10 +12,11 @@ use app\common\model\Manual as ManualModel;
 use app\common\model\ManualDownload;
 use app\common\model\ServiceCategory as ServiceCategoryModel;
 use app\wavlink\validate\UrlTitleMustBeOnly;
+use app\wavlink\validate\Manual as ManualValidate;
+use think\App;
 use think\db\exception\DataNotFoundException;
 use think\db\exception\ModelNotFoundException;
 use think\exception\DbException;
-use think\Facade\Request;
 
 /**
  * Class Manual
@@ -25,9 +26,13 @@ class Manual extends BaseAdmin
 {
     protected $language_id;
 
-    public function __construct(Request $request = null)
+    /**
+     * Manual constructor.
+     * @param App|null $app
+     */
+    public function __construct(App $app = null)
     {
-        parent::__construct($request);
+        parent::__construct($app);
         $this->language_id = $this->currentLanguage['id'];
         $this->assign('language_id', $this->language_id);
     }
@@ -101,26 +106,28 @@ class Manual extends BaseAdmin
 
     /**
      * @return array|void
-     * @throws \app\lib\exception\ParameterException
-     *
      */
     public function save()
     {
         if (request()->isAjax()) {
-            (new UrlTitleMustBeOnly())->goCheck();
-            (new \app\wavlink\validate\Manual())->goCheck();
             $data = input('post.');
             $data['status'] = 1;
-            if (!empty($data['id'])) {
-                return $this->update($data);
+            $validate=new ManualValidate();
+            if(isset($data['id']) || !empty($data['id'])){
+                if($validate->scene('edit')->check($data)){
+                    return $this->update($data);
+                }
             } else {
-                try {
-                    (new ManualModel())->add($data);
-                    return show(1, '', '', '', '', '添加成功');
-                } catch (\Exception $e) {
-                    return show(0, '', '', '', '', $e->getMessage());
+                if($validate->scene('add')->check($data)){
+                    try {
+                        (new ManualModel())->add($data);
+                        return show(1, '', '', '', '', '添加成功');
+                    } catch (\Exception $e) {
+                        return show(0, '', '', '', '', $e->getMessage());
+                    }
                 }
             }
+            return show(0, '', '', '', '', $validate->getError());
         }
     }
 
@@ -134,7 +141,7 @@ class Manual extends BaseAdmin
             $data = input('post.');
             $data['status'] = 1;
             if (!empty($data['id'])) {
-                (new \app\wavlink\validate\ManualDownload())->scene('update')->goCheck();
+                (new \app\wavlink\validate\ManualDownload())->scene('update')->check($data);
                 $data['update_time'] = date('Y-m-d', time());
                 try {
                     (new ManualDownload())->allowField(true)->save($data, ['id' => $data['id']]);
@@ -144,7 +151,7 @@ class Manual extends BaseAdmin
                     return show(0, '', '', '', '', $e->getMessage());
                 }
             } else {
-                (new \app\wavlink\validate\ManualDownload())->scene('add')->goCheck();
+                (new \app\wavlink\validate\ManualDownload())->scene('add')->check($data);
                 try {
                     (new ManualDownload())->addManual($data);
                     return show(1, '', '', '', '', '添加成功');

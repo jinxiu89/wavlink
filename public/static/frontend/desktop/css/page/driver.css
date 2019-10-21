@@ -29,17 +29,21 @@
 .box:after {
   clear: both;
 }
+.g-main {
+  background: none;
+}
 .g-main .panel {
   margin-bottom: 0;
-  border-color: #eaeaea;
+  border: none;
+  border-radius: 0;
+  box-shadow: none;
 }
 .g-main .panel-heading {
   border-color: #eaeaea;
   background: none;
 }
 .g-main .item {
-  margin: 0 20px;
-  padding: 20px 0 0;
+  padding: 10px 0 0;
   -webkit-border-radius: 5px;
   -moz-border-radius: 5px;
   border-radius: 5px;

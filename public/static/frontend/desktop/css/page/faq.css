@@ -4,9 +4,15 @@
 * @author: Alan(alan_webdeveloper@163.com)
 * @update: 2019-09-19 11:00
 */
+.g-filter {
+  margin-bottom: 10px;
+}
+.g-main {
+  background: none;
+}
 .g-main .item {
-  margin: 0 20px;
   padding: 15px 20px;
+  background: #fff;
   border-bottom: 1px solid #eaeaea;
 }
 .g-main .item:nth-of-type(1) {

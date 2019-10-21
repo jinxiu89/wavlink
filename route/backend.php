@@ -95,7 +95,7 @@ Route::group(Config::get('__BACKEND__'), function () {
     Route::get('drivers/add', 'wavlink/drivers/add');
     Route::get('drivers/edit', 'wavlink/drivers/edit', [], ['id' => '\d+']);
     //说明书和文件
-    Route::get('manual/index', 'wavlink/Manual/index');
+    Route::get('manual/index', 'wavlink/manual/index');
     Route::get('manual/add', 'wavlink/manual/add');
     Route::get('manual/edit', 'wavlink/manual/edit', [], ['id' => '\d+']);
     Route::get('manual/add_download', 'wavlink/Manual/add_download', [], ['id' => '\d+']);

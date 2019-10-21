@@ -7,11 +7,18 @@
  * 下载中心
  */
 namespace app\wavlink\controller;
-use think\Facade\Request;
-use app\common\model\Video as VideoModel;
 use app\common\model\ServiceCategory as ServiceCategoryModel;
+use app\common\model\Video as VideoModel;
 use app\wavlink\validate\Video as VideoValidate;
-use app\wavlink\validate\UrlTitleMustBeOnly;
+use think\db\exception\DataNotFoundException;
+use think\db\exception\ModelNotFoundException;
+use think\exception\DbException;
+use think\Facade\Request;
+
+/***
+ * Class Video
+ * @package app\wavlink\controller
+ */
 Class Video extends BaseAdmin
 {
     public function index() {
@@ -40,9 +47,9 @@ Class Video extends BaseAdmin
     /**
      * @return mixed
      * 上传视频页面
-     * @throws \think\db\exception\DataNotFoundException
-     * @throws \think\db\exception\ModelNotFoundException
-     * @throws \think\exception\DbException
+     * @throws DataNotFoundException
+     * @throws ModelNotFoundException
+     * @throws DbException
      */
     public function add() {
         //获取服务管理的当前视频分类
@@ -57,22 +64,35 @@ Class Video extends BaseAdmin
      * 保存操作
      * @param Request $request
      * @return array
-     * @throws \app\lib\exception\ParameterException
      */
     public function save(Request $request) {
         if (request()->isAjax()) {
             $data = $request::instance()->post();
-            (new VideoValidate())->goCheck();
-            (new UrlTitleMustBeOnly())->goCheck();
-            if (!empty($data['id'])) {
-                return $this->update($data);
+            (new VideoValidate())->check($data);
+            $validate=new VideoValidate();
+            if(isset($data['id']) || !empty($data['id'])){
+                if($validate->scene('edit')->check($data)){
+                    try{
+                        return $this->update($data);
+                    }catch (\Exception $exception){
+                        return show(0,'','','','', $exception->getMessage());
+                    }
+                }
+            }else{
+                if($validate->scene('add')->check($data)){
+                    try{
+                        $res = (new VideoModel())->add($data);
+                        if ($res) {
+                            return show(1,'','','','', '添加成功');
+                        } else {
+                            return show(0,'','','','', '添加失败');
+                        }
+                    }catch (\Exception $exception){
+                        return show(0,'','','','', $exception->getMessage());
+                    }
+                }
             }
-            $res = (new VideoModel())->add($data);
-            if ($res) {
-                return show(1,'','','','', '添加成功');
-            } else {
-                return show(1,'','','','', '添加失败');
-            }
+            return show(0,'','','','', $validate->getError());
         }
     }
 
@@ -80,9 +100,9 @@ Class Video extends BaseAdmin
      * 编辑页面开发
      * @param int $id
      * @return mixed
-     * @throws \think\db\exception\DataNotFoundException
-     * @throws \think\db\exception\ModelNotFoundException
-     * @throws \think\exception\DbException
+     * @throws DataNotFoundException
+     * @throws ModelNotFoundException
+     * @throws DbException
      */
     public function edit($id = 0) {
         $id = $this->MustBePositiveInteger($id);

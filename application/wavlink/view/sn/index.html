@@ -51,7 +51,7 @@
                     <td class="text-l">{$vo.prefix}{$vo.model_id|getPrdCodeByModel_id}{$vo.spec}N:00001-{$vo.count|numberStr}/{$vo.prefix}{$vo.model_id|getPrdCodeByModel_id}{$vo.spec}Q:00001-{$vo.fix_count|numberStr}</td>
                     <td>{$vo.count}</td>
                     <td>{$vo.create_time}</td>
-                    <td class="text-c">{$vo.status|GetStatus}</td>
+                    <td class="text-c">{$vo.status|GetStatus|raw}</td>
                     <td class="text-c">{if condition="$vo.status eq 0"}
                         <a title="启用" href="javascript:;"  onclick="start('{:url(\'sn/byStatus\',[\'id\'=>$vo.id,\'status\'=>1])}')" data-id ="{$vo.id}" data-type="4" class="ml-5 mark" style="text-decoration:none"><i class="Hui-iconfont c-green">&#xe601;</i></a>
                         {else /}

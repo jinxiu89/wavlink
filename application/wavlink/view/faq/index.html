@@ -32,7 +32,7 @@
             <table class="table table-border table-bordered table-bg mt-20">
                 <thead>
                 <tr>
-                    <th scope="col" colspan="13">{$language_id|getLanguage}FAQ管理</th>
+                    <th scope="col" colspan="13">FAQ管理</th>
                 </tr>
                 <tr class="text-c">
                     <th width="20"><input type="checkbox" name="" value=""></th>
@@ -52,8 +52,8 @@
                     <td><input type="checkbox" value="{$vo.id}" name="id"></td>
                     <td>{$vo.id}</td>
                     <td>{$vo.name}</td>
-                    <td>{$vo.category_id|getServiceCategory}</td>
-                    <td>{$vo.language_id|getLanguage}</td>
+                    <td>{$vo.category_id|getServiceCategory|raw}</td>
+                    <td>{$vo.language_id|getLanguage|raw}</td>
                     <td>{$vo.url_title}</td>
                     <td>{$vo.create_time}</td>
                     <td class="td-status text-c"><span class="label label-success radius">已回答</span></td>

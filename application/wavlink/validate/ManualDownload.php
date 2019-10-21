@@ -15,8 +15,11 @@ namespace app\wavlink\validate;
 class ManualDownload extends BaseValidate
 {
     protected $rule = [
-        ['language','require|max:32','语言必须输入|语言最长32个字符'],
-        ['url','require|unique:ManualDownload|url','下载url必须输入|下载链接不能重复|必须是url格式']
+        'language'=>'require|max:32',
+        'url'=>'require|unique:ManualDownload|url'
+    ];
+    protected $message=[
+        'lanug'
     ];
     protected $scene = [
         'add'=>['language','url'],

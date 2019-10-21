@@ -4,7 +4,7 @@
     <form class="form form-horizontal" id="form-product-add" method="post" action="">
         <div class="row cl">
             <label class="form-label col-xs-4 col-sm-2"><span class="c-red">*</span>标题：</label>
-            <div class="formControls col-xs-4 col-sm-6">
+            <div class="formControls col-xs-4 col-sm-3">
                 <input type="text" class="input-text" value="{$data.title}" placeholder="" id="title" name="title">
             </div>
         </div>
@@ -16,9 +16,9 @@
         </div>
         <div class="row cl">
             <label class="form-label col-xs-4 col-sm-2"><span class="c-red">*</span>url标题：</label>
-            <div class="formControls col-xs-4 col-sm-6">
+            <div class="formControls col-xs-4 col-sm-3">
                 <input type="text" class="input-text" value="{$data.url_title}" placeholder="url标题是唯一的,且用英文加下划线"
-                       id="url_title" name="url_title">
+                       id="url_title" name="url_title" disabled>
             </div>
         </div>
         <div class="row cl">
@@ -50,21 +50,9 @@
         </div>
         <div class="row cl">
             <label class="form-label col-xs-4 col-sm-2"><span class="c-red">*</span>描述：</label>
-            <div class="formControls col-xs-8 col-sm-9">
-                <input type="text" class="input-text" value="{$data.description}" placeholder="" id="description"
-                       name="description">
+            <div class="formControls col-xs-8 col-sm-6">
+                <textarea name="description" cols="" rows="" class="textarea" placeholder="说明书描述" dragonfly="true" >{$data.description}</textarea>
                 <input type="hidden" value="{$data.id}" name="id">
-            </div>
-        </div>
-        <div class="row cl">
-            <label class="form-label col-xs-4 col-sm-2"><span class="c-red">*</span>驱动：</label>
-            <div class="formControls col-xs-8 col-sm-3">
-                <span class="select-box">
-				<select name="has_driver" class="select">
-					<option value="0" {if condition="$data.has_driver eq 0"}selected="selected"{/if}>无</option>
-					<option value="1" {if condition="$data.has_driver eq 1"}selected="selected"{/if}>有</option>
-				</select>
-				</span>
             </div>
         </div>
         <div class="row cl">

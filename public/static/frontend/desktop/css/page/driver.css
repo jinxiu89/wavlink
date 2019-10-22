@@ -50,7 +50,6 @@
 }
 .g-main .item .title {
   font-size: 16px;
-  font-weight: bold;
 }
 .g-main .item .info {
   margin-bottom: 5px;
@@ -72,11 +71,17 @@
   display: inline-block;
   line-height: 20px;
 }
-.g-main .item .info p span:nth-of-type(1) {
-  font-weight: bold;
-}
 .g-main .item .mode {
   margin-bottom: 5px;
+}
+.g-main .item .mode pbefore,
+.g-main .item .mode p:after {
+  content: " ";
+  display: table;
+  zoom: 1;
+}
+.g-main .item .mode p:after {
+  clear: both;
 }
 .g-main .item .mode p span:after {
   content: ",";
@@ -85,20 +90,17 @@
 .g-main .item .mode p span:nth-of-type(1):after {
   content: none;
 }
-.g-main .item .mode p span:nth-of-type(1) {
-  font-weight: bold;
-}
 .g-main .item .mode span {
-  display: inline-block;
-}
-.g-main .item .download span {
-  font-weight: bold;
+  display: block;
+  float: left;
+  width: 25%;
 }
 .g-main .item .download a {
+  margin-right: 5px;
   font-size: 12px;
-  border-color: #f8b300;
+  text-decoration: underline;
 }
 .g-main .item .download a:hover {
-  background: #ffc714;
+  color: #ffc714;
 }
 /*# sourceMappingURL=driver.css.map */

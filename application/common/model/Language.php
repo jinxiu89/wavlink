@@ -14,6 +14,20 @@ class Language extends BaseModel
 {
     protected $table = 'language';//使用数据库里这个language表
 
+    /**
+     * @param $map
+     * @param $order
+     * @return mixed
+     * @throws DbException
+     */
+    public static function getDataByLanguage($map, $order)
+    {
+        $query = self::where($map);
+        $result['data'] = $query->order($order)->paginate();
+        $result['count'] = $query->count();
+        return $result;
+    }
+
     //检测管理员 管理哪个语言的网站
     public static function getLanguageByIDs($ids)
     {

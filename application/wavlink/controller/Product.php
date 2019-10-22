@@ -74,20 +74,44 @@ Class Product extends BaseAdmin
         ]);
     }
 
+    /**
+     * 产品保存 更新验证器 和异常捕获
+     */
     public function save()
     {
         //严格判断校验
         if (request()->isAjax()) {
-            (new ProductValidate())->goCheck();
-            (new UrlTitleMustBeOnly())->goCheck();
             $data = input('post.');
             $data['clicks'] = 100;
-            $res = (new ProductModel())->productSave($data);
-            if ($res) {
-                return show(1, '', '', '', '', '添加成功');
+            $validate = new ProductValidate();
+            if (isset($data['id']) and !empty($data['id'])) {
+                if ($validate->scene('edit')->check($data)) {
+                    try {
+                        $res = (new ProductModel())->productSave($data);
+                        if ($res) {
+                            return show(1, '', '', '', '', '更新成功');
+                        } else {
+                            return show(0, '', '', '', '', '添加失败');
+                        }
+                    } catch (\Exception $exception) {
+                        return show(0, '', '', '', '', $exception->getMessage());
+                    }
+                }
             } else {
-                return show(1, '', '', '', '', '添加失败');
+                if ($validate->scene('add')->check($data)) {
+                    try {
+                        $res = (new ProductModel())->productSave($data);
+                        if ($res) {
+                            return show(1, '', '', '', '', '添加成功');
+                        } else {
+                            return show(0, '', '', '', '', '添加失败');
+                        }
+                    } catch (\Exception $exception) {
+                        return show(0, '', '', '', '', $exception->getMessage());
+                    }
+                }
             }
+            return show(0, '', '', '', '', $validate->getError());
         }
     }
 

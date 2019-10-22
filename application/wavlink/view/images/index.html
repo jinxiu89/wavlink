@@ -1,6 +1,6 @@
 <!--包含头部文件-->
 {include file="public/content_header" /}
-<section class="Hui-article-box">
+<section class="Hui-article-box" style="overflow: scroll">
     <nav class="breadcrumb"><i class="Hui-iconfont">&#xe67f;</i> 首页
         <span class="c-gray en">&gt;</span>
         首页产品管理
@@ -31,8 +31,6 @@
             <span class="l">
                  <!--<a href="javascript:;" onclick="allRecycle('{:url('Images/allChange')}')" class="btn btn-danger radius"><i-->
                          <!--class="Hui-iconfont">&#xe6e2;</i> 批量更新排序</a>-->
-                <a href="{:url('images/images_recycle')}" class="btn btn-danger radius"><i
-                        class="Hui-iconfont">&#xe6e2;</i> 回收站</a>
                 <a class="btn btn-primary radius" onclick="add('添加图片','{:url(\'images/add\')}','800','860')"
                    href="javascript:;"><i class="Hui-iconfont">&#xe600;</i> 添加首页产品</a>
             </span>
@@ -47,7 +45,7 @@
                 <th width="20">ID</th>
                 <th width="30">PC端图</th>
                 <th>标题</th>
-                <th width="250">产品型号</th>
+                <th width="100">产品型号</th>
                 <th width="30">排序</th>
                 <th width="50">所属语言</th>
                 <th width="80">推荐位类别</th>
@@ -62,14 +60,14 @@
                 <td><input name="id" type="checkbox" value="{$vo.id}"></td>
                 <td>{$vo.id}</td>
                 <td>{empty name="$vo.image_pc_url"}{else /}<img id=" " src="{$vo.image_pc_url}" width="30" height="30">{/empty}</td>
-                <td>{$vo.title}</td>
+                <td>{$vo.title|raw}</td>
                 <td>{$vo.model}</td>
                 <td class="text-c">{$vo.listorder}</td>
-                <td>{$vo.language_id|getLanguage}</td>
-                <td class="td_featured">{$vo.featured_id|featured}</td>
+                <td>{$vo.language_id|getLanguage|raw}</td>
+                <td class="td_featured">{$vo.featured_id|featured|raw}</td>
                 <td>{$vo.create_time}</td>
                 <td class="td-status">
-                    <a style="text-decoration:none;color: white" onClick="stop('{:url(\'images/byStatus\',[\'id\'=>$vo.id,\'status\'=>$vo.status==1?-1:1])}')" href="javascript:;" title="修改状态">{$vo.status|status}</a>
+                    <a style="text-decoration:none;color: white" onClick="stop('{:url(\'images/byStatus\',[\'id\'=>$vo.id,\'status\'=>$vo.status==1?-1:1])}')" href="javascript:;" title="修改状态">{$vo.status|status|raw}</a>
                 </td>
                 <td class="td-manage">
                     <a style="text-decoration:none" class="ml-5"

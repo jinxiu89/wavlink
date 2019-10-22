@@ -6,47 +6,73 @@
  * Time: 16:14
  * 推荐位管理
  */
+
 namespace app\wavlink\controller;
 
 use app\common\model\Featured as FeaturedModel;
 use think\Facade\Request;
 use app\wavlink\validate\Featured as FeaturedValidate;
+
 class Featured extends BaseAdmin
 {
 
-    public function index() {
-        $result = (new FeaturedModel())->getDataByOrder('');
+    public function index()
+    {
+        $result = (new FeaturedModel())->ByAll();
         return $this->fetch('', [
             'featured' => $result['data'],
             'counts' => $result['count'],
         ]);
     }
 
-    public function select() {
+    public function select()
+    {
         return view();
     }
 
-    public function add() {
+    public function add()
+    {
         return $this->fetch();
     }
 
-    public function save(Request $request) {
-        if (request()->isAjax()){
+    /**
+     * @param Request $request
+     * @return array|void
+     *
+     */
+    public function save(Request $request)
+    {
+        if (request()->isAjax()) {
             $data = $request::instance()->post();
-            (new FeaturedValidate())->goCheck();
-            if (!empty($data['id'])){
-                return $this->update($data);
-            }
-            $res = (new FeaturedModel())->add($data);
-            if ($res) {
-                return show(1,'','','','', '添加成功');
+            $validate = new FeaturedValidate();
+            if (isset($data['id']) and !empty($data['id'])) {
+                if ($validate->scene('edit')->check($data)) {
+                    try {
+                        return $this->update($data);
+                    } catch (\Exception $exception) {
+                        return show(0, '', '', '', '', $exception->getMessage());
+                    }
+                }
             } else {
-                return show(1,'','','','', '添加失败');
+                if ($validate->scene('add')->check($data)) {
+                    try {
+                        $res = (new FeaturedModel())->add($data);
+                        if ($res) {
+                            return show(1, '', '', '', '', '添加成功');
+                        } else {
+                            return show(0, '', '', '', '', '添加失败');
+                        }
+                    } catch (\Exception $exception) {
+                        return show(0, '', '', '', '', $exception->getMessage());
+                    }
+                }
             }
+            return show(0, '', '', '', '', $validate->getError());
         }
     }
 
-    public function edit($id) {
+    public function edit($id)
+    {
         if (intval($id) < 0) {
             return show(0, 'error', 'ID非法');
         }

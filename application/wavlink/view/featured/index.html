@@ -37,7 +37,7 @@
                     <td>{$vo.description}</td>
                     <td>{$vo.create_time}</td>
                     <td class="td-status">
-                        <a style="text-decoration:none" onClick="stop('{:url(\'Featured/byStatus\',[\'id\'=>$vo.id,\'status\'=>$vo.status==1?-1:1])}')" href="javascript:;" title="停用">{$vo.status|status}</a>
+                        <a style="text-decoration:none" onClick="stop('{:url(\'Featured/byStatus\',[\'id\'=>$vo.id,\'status\'=>$vo.status==1?-1:1])}')" href="javascript:;" title="停用">{$vo.status|status|raw}</a>
                     </td>
                     <td class="td-manage">
                         <a style="text-decoration:none" class="ml-5" onClick="edit('编辑','{:url(\'Featured/edit\',[\'id\'=>$vo.id])}','800','600')" href="javascript:void 0" title="编辑"><i class="Hui-iconfont" style="font-size: 20px;color: blue">&#xe6df;</i></a>

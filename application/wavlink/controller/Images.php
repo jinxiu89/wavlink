@@ -42,7 +42,7 @@ Class Images extends BaseAdmin
                 'language_id' => $this->currentLanguage['id']
             ]);
         }
-        $result = (new ImagesModel())->getImages(1,$this->currentLanguage['id']);
+        $result = (new ImagesModel())->getImages(1, $this->currentLanguage['id']);
         return $this->fetch('', [
             'image' => $result['data'],
             'counts' => $result['count'],
@@ -72,20 +72,38 @@ Class Images extends BaseAdmin
         ]);
     }
 
+    /**
+     * @return array|void
+     *
+     */
     public function save()
     {
         if (request()->isAjax()) {
-            (new ImagesValidate())->goCheck();
             $data = input('post.');
-            if (!empty($data['id'])) {
-                return $this->update($data);
-            }
-            $res = (new ImagesModel())->add($data);
-            if ($res) {
-                return show(1, '', '', '', '', '添加成功');
+            $validate = new ImagesValidate();
+            if (isset($data['id']) and !empty($data['id'])) {
+                if ($validate->scene('edit')->check($data)) {
+                    try {
+                        return $this->update($data);
+                    } catch (\Exception $exception) {
+                        return show(0, '', '', '', '', $exception->getMessage());
+                    }
+                }
             } else {
-                return show(1, '', '', '', '', '添加失败');
+                if ($validate->scene('add')->check($data)) {
+                    try {
+                        $res = (new ImagesModel())->add($data);
+                        if ($res) {
+                            return show(1, '', '', '', '', '添加成功');
+                        } else {
+                            return show(0, '', '', '', '', '添加失败,未知原因');
+                        }
+                    } catch (\Exception $exception) {
+                        return show(0, '', '', '', '', $exception->getMessage());
+                    }
+                }
             }
+            return show(0, '', '', '', '', $validate->getError());
         }
     }
 

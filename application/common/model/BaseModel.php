@@ -111,15 +111,16 @@ Class BaseModel extends Model
      * 无状态status值数据查询
      * @param array $data
      * @param array $order
+     * @param $language
      * @return Search
      */
     public static function getDataByOrder($data = [], $order = [
         'status' => 'desc',
         'id' => 'desc',
-    ])
+    ],$language)
     {
         $con = request()->controller();
-        return Search($con, $data, $order);
+        return Search($con,$map=['language_id'=>$language], $data, $order);
     }
 
     /**

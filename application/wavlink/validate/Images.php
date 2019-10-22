@@ -6,25 +6,45 @@
  * Time: 10:00
  *内容管理之 文章管理验证规则。
  */
-namespace app\wavlink\validate;
 
+namespace app\wavlink\validate;
+/**
+ * Class Images
+ * @package app\wavlink\validate
+ */
 class Images extends BaseValidate
 {
     /**验证规则**/
     protected $rule = [
-        ['id','number','id不合法'],
-//        ['title','max:64','图片标题不要太长'],
-//        ['subtitle','max:64','副标题太长了'],
-        ['listorder','isPositiveInteger','排序必须是正整数'],
-        ['product_title','max:100','标题太长了'],
-        ['image_pc_url','max:500','PC端图外链地址太长了'],
-        ['image_mobile_url','max:500','移动端图外链地址太长了'],
-        ['product_type','max:64','产品型号太长了'],
-        ['language_id','number','语言不能为空'],
-        ['featured_id','require|featuredLimit','选择推荐位|该推荐位的产品太多了，请先下架再添加'],
-        ['url','max:255','链接不能太长'],
-        ['status','number|in:-1,0,1','状态必须是数字|状态范围不合法'],
+        'id' => 'number',
+        'listorder' => 'number',
+        'product_title' => 'max:100',
+        'image_pc_url' => 'max:500',
+        'image_mobile_url' => 'max:500',
+        'product_type' => 'max:64',
+        'language_id' => 'number',
+        'featured_id' => 'require|featuredLimit',
+        'url' => 'max:255',
+        'status' => 'number|in:-1,0,1',
     ];
+    protected $message = [
+        'id' => 'ID不合法',
+        'listorder' => '排序值不合法',
+        'product_title' => '产品标题不能超过100个字符',
+        'image_pc_url' => '图片地址不能够超过500个字符',
+        'image_mobile_url' => '移动端图片不能操作500个字符',
+        'product_type' => '类型不能超过64个字符',
+        'language_id' => '语言ID不合法',
+        'featured_id.require' => '推荐位不能为空',
+        'featured_id.featuredLimit' => '推荐位不能超过个数',
+        'url' => 'url不能超过255个字符',
+        'status' => '状态值不在合法范围内'
+    ];
+    protected $scene = [
+        'add' => ['listorder', 'product_title', 'image_pc_url', 'image_mobile_url', 'product_type', 'featured_id', 'url', 'status'],
+        'edit' => ['id', 'listorder', 'product_title', 'image_pc_url', 'image_mobile_url', 'product_type', 'featured_id', 'url', 'status'],
+    ];
+
     /**
      * @param $value
      * @param string $rule
@@ -40,30 +60,31 @@ class Images extends BaseValidate
      *
      * @return bool
      */
-    protected function featuredLimit($value, $rule = '', $data = '', $field = '') {
-        if (!empty($data['id'])){
+    protected function featuredLimit($value, $rule = '', $data = '', $field = '')
+    {
+        if (!empty($data['id'])) {
             return true;
-        }else{
+        } else {
             $map = [
                 'language_id' => $data['language_id'],
                 'featured_id' => $value,
-                'status'      => 1
+                'status' => 1
             ];
             $con = request()->controller();
             $count = model($con)->where($map)->count();
-            if($value == 1){
+            if ($value == 1) {
                 return true;
-            }elseif ($value == 2 && $count<1){
+            } elseif ($value == 2 && $count < 1) {
                 return true;
-            }elseif ($value == 3 && $count < 4 ){
+            } elseif ($value == 3 && $count < 4) {
                 return true;
-            }elseif ($value == 4 && $count > 1){
+            } elseif ($value == 4 && $count > 1) {
                 return true;
-            }elseif ($value == 5 && $count < 3 ){
+            } elseif ($value == 5 && $count < 3) {
                 return true;
-            }elseif ($value == 6 && $count < 2){
+            } elseif ($value == 6 && $count < 2) {
                 return true;
-            }else{
+            } else {
                 return false;
             }
         }

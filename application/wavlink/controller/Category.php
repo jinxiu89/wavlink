@@ -8,10 +8,9 @@
 
 namespace app\wavlink\controller;
 
-use app\wavlink\validate\UrlTitleMustBeOnly;
-use think\facade\Request;
 use app\common\model\Category as CategoryModel;
 use app\wavlink\validate\Category as CategoryValidate;
+use think\facade\Request;
 
 /***
  * Class Category

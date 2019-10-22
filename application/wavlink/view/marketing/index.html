@@ -43,10 +43,10 @@
                     <td>{$vo.id}</td>
                     <td>{$vo.name}</td>
                     <td>{$vo.url_title}</td>
-                    <td>{$vo.language_id|getLanguage}</td>
+                    <td>{$vo.language_id|getLanguage|raw}</td>
                     <td>{$vo.create_time}</td>
                     <td>{$vo.update_time}</td>
-                    <td class="td-status text-c">{$vo.status|status}</td>
+                    <td class="td-status text-c">{$vo.status|status|raw}</td>
                     <td class="f-14 td-manage">
                         <a style="text-decoration:none" onClick="stop('{:url(\'Marketing/byStatus\',[\'id\'=>$vo.id,\'status\'=>0])}')" href="javascript:;" title="停用"><i class="Hui-iconfont" style="font-size: 20px;color: red">&#xe6de;</i></a>
                         <a style="text-decoration:none" class="ml-5" onClick="index_edit('编辑','{:url(\'Marketing/edit\',[\'id\'=>$vo.id])}')" href="javascript:void 0" title="编辑"><i class="Hui-iconfont" style="font-size: 20px;color: blue">&#xe6df;</i></a>

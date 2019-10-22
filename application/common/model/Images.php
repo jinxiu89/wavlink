@@ -17,7 +17,7 @@ Class Images extends BaseModel
     // 根据状态和语言查找 所有首页产品
     public function getImages($status, $language_id)
     {
-        $data = [
+        $map = [
             'language_id' => $language_id,
             'status' => $status
         ];
@@ -26,7 +26,10 @@ Class Images extends BaseModel
             'listorder' => 'desc',
             'id' => 'desc'
         ];
-        return self::getDataByOrder($data, $order);
+        $query=self::where($map)->order($order);
+        $result['data']=$query->paginate();
+        $result['count']=$query->count();
+        return $result;
     }
 
     //获取推荐位的产品图片

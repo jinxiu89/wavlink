@@ -12,7 +12,6 @@ namespace app\wavlink\controller;
 use app\common\model\Product as ProductModel;
 use app\common\model\Category as CategoryModel;
 use app\wavlink\validate\ListorderValidate;
-use app\wavlink\validate\UrlTitleMustBeOnly;
 use think\Facade\Request;
 use app\wavlink\validate\Product as ProductValidate;
 
@@ -141,16 +140,24 @@ Class Product extends BaseAdmin
     {
         if (request()->isAjax()) {
             $data = input('post.'); //id ,type ,language_id,map
-            if (empty($data['map'])) {
-                self::order(array_filter($data));
+            $validate = new ProductValidate();
+            if (!$validate->scene('listorder')->check($data)) {
+                return show(0, '排序失败', 'error', 'error', '', $validate->getError());
             }
-            // 对在同一个分类下的排序。总分类和子分类
-            $str = (new CategoryModel())->getChildsIDByID($data['map'], $data['language_id']);
-            $map = [
-                'category_id' => ['in', $str],
-            ];
-            unset($data['map']);
-            self::order($data, $map);
+            try {
+                if ($data['type'] == "+") {
+                    $data['listorder'] = $data['listorder'] + 2;
+                }
+                if ($data['type'] == "-") {
+                    $data['listorder'] = $data['listorder'] - 2;
+                }
+                if ((new ProductModel())->allowField(true)->save($data, ['id' => $data['id']])) {
+                    return show(1, '排序成功', 'error', 'error', '', "排序成功");
+                }
+                return show(0, '排序失败，未知错误', 'error', 'error', '', "排序失败，未知错误");
+            } catch (\Exception $exception) {
+                return show(0, '排序失败，数据库错误', 'error', 'error', '', $exception->getMessage());
+            }
         } else {
             return show(0, '置顶失败，未知错误', 'error', 'error', '', '');
         }
@@ -168,6 +175,27 @@ Class Product extends BaseAdmin
                 return show(0, $tempStorge, '', '', '', '');
             }
         }
+    }
+
+    /**
+     * @return array|void
+     */
+    public function byStatus()
+    {
+        $data = input('get.');
+        $check['status'] = number_format($data['status']);
+        $validate = new ProductValidate();
+        if ($validate->scene('changeStatus')->check($data)) {
+            try {
+                if ((new ProductModel())->allowField(true)->save($data, ['id' => $data['id']])) {
+                    return show(1, "success", '', '', '', '操作成功');
+                }
+                return show(0, "success", '', '', '', '操作失败！未知原因');
+            } catch (\Exception $exception) {
+                return show(0, "failed", '', '', '', $exception->getMessage());
+            }
+        }
+        return show(0, "failed", '', '', '', $validate->getError());
     }
 
     //批量放回回收站
@@ -191,19 +219,26 @@ Class Product extends BaseAdmin
     {
         if (request()->isAjax()) {
             $data = input('post.');
-            (new ListorderValidate())->goCheck();
-            $res = (new ProductModel())
-                ->allowField(true)
-                ->isUpdate(true)
-                ->save(
-                    ['listorder' => $data['listorder']],
-                    ['id' => $data['id']]
-                );
-            if ($res) {
-                return show(1, '操作成功', '', '', $_SERVER['HTTP_REFERER'], '操作成功');
-            } else {
-                return show(0, '操作失败', '', '', $_SERVER['HTTP_REFERER'], '操作失败');
+            $validate = new ListorderValidate();
+            if ($validate->scene('listorder')->check($data)) {
+                try {
+                    $res = (new ProductModel())
+                        ->allowField(true)
+                        ->isUpdate(true)
+                        ->save(
+                            ['listorder' => $data['listorder']],
+                            ['id' => $data['id']]
+                        );
+                    if ($res) {
+                        return show(1, '操作成功', '', '', $_SERVER['HTTP_REFERER'], '排序成功');
+                    } else {
+                        return show(0, '操作失败', '', '', $_SERVER['HTTP_REFERER'], '排序失败，未知原因');
+                    }
+                } catch (\Exception $exception) {
+                    return show(0, '操作失败', '', '', $_SERVER['HTTP_REFERER'], $exception->getMessage());
+                }
             }
+            return show(0, '操作失败', '', '', $_SERVER['HTTP_REFERER'], $validate->getError());
         }
     }
 }

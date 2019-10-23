@@ -45,7 +45,7 @@ Class Product extends BaseModel
             }else{
                 return "保存数据失败";
             }
-        }catch (Exception  $e){
+        }catch (\Exception  $e){
             return $e->getMessage();
         }
     }

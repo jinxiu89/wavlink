@@ -27,8 +27,9 @@ class Product extends BaseValidate
         'image_pc_url' => 'max:500',
         'image_mobile_url' => 'max:500',
         'language_id' => 'require|number|gt:0',
+        'listorder' => 'require|integer',
         'cates' => 'require',
-        'status' => 'number|in:-1,0,1',
+        'status' => 'integer|in:-1,0,1',
     ];
     protected $message = [
         'id' => 'id不合法',
@@ -48,13 +49,17 @@ class Product extends BaseValidate
         'image_pc_url' => 'PC封面外链地址太长',
         'image_mobile_url' => '手机端封面外链地址太长',
         'language_id' => '语言不能为空',
+        'listorder.require' => '排序字段不能为空',
+        'listorder.integer' => '排序字段不合法',
         'cates' => '分类是不是没有选择',
-        'status.number' => '状态必须是数字',
+        'status.integer' => '状态必须是数字',
         'status.in' => '状态范围不合法',
     ];
     /**场景设置**/
     protected $scene = [
         'add' => ['name', 'model', 'seo_title', 'keywords', 'description', 'image_litpic_url', 'image_pc_url', 'image_mobile_url', 'language_id', 'cates', 'status'],
-        'edit' => ['id', 'name', 'model', 'seo_title', 'keywords', 'description', 'image_litpic_url', 'image_pc_url', 'image_mobile_url', 'language_id', 'cates', 'status']
+        'edit' => ['id', 'name', 'model', 'seo_title', 'keywords', 'description', 'image_litpic_url', 'image_pc_url', 'image_mobile_url', 'language_id', 'cates', 'status'],
+        'changeStatus' => ['id', 'status'],
+        'listorder' => ['id', 'listorder']
     ];
 }

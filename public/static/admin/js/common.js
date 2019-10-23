@@ -151,12 +151,12 @@ function recycle(url) {
             type: "post",
             dataType: "json",
             success: function (result) {
-                if (result.status == 1) {
-                    layer.msg('回收成功', {icon: 1, time: 1000}, function () {
+                if (result.status === 1) {
+                    layer.msg(result.data, {icon: 1, time: 1000}, function () {
                         location.href = ''
                     });
                 } else {
-                    layer.msg('回收失败', {icon: 5, time: 1000}, function () {
+                    layer.msg(result.data, {icon: 5, time: 1000}, function () {
                         location.href = ''
                     });
                 }
@@ -346,10 +346,10 @@ $('.listorder input').blur(function () {
  */
 function mark(obj) {
     var url = SCOPE.listorder_url;
-    var id = $(obj).data("id");
-    var type = $(obj).data("type");
-    var language_id = $("input#language").val();
-    var map = $(obj).data("map");
+    var id = $(obj).data("id");//id
+    var type = $(obj).data("type");//类型
+    var language_id = $("input#language").val(); //语言ID
+    var map = $(obj).data("map"); // 分类ID
     var postData = {
         'id': id,
         'type': type,

@@ -155,6 +155,7 @@ Class BaseModel extends Model
      * @return int * 上移下移
      * 上移下移
      * 上移 把大于它（要上移的数据的排序序号）的排序序号的最小值和它的排序序号更换
+     * @throws \Exception
      * @internal param array $_map
      * @internal param $id
      * type == 1 时 置底

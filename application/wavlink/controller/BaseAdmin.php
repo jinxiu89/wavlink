@@ -102,30 +102,30 @@ class BaseAdmin extends Controller
     }
 
 
-    /**
-     * @return array
-     * 写的一个状态值共用的方法，
-     * 启用 status = 1
-     * 回收 status = -1
-     * 下架 status = 0
-     */
-    public function byStatus()
-    {
-        $data = input('get.');
-
-        $validate = Validate('Admin');
-        if (!$validate->scene('status')->check($data)) {
-            $this->error($validate->getError());
-        }
-        //获取控制器
-        $model = request()->controller();
-        $res = model($model)->save(['status' => $data['status']], ['id' => $data['id']]);
-        if ($res) {
-            return show(1, "success", '', '', '', '操作成功');
-        } else {
-            return show(0, 'error', '', '', '', '操作失败');
-        }
-    }
+//    /**
+//     * @return array
+//     * 写的一个状态值共用的方法，
+//     * 启用 status = 1
+//     * 回收 status = -1
+//     * 下架 status = 0
+//     */
+//    public function byStatus()
+//    {
+//        $data = input('get.');
+//
+//        $validate = Validate('Admin');
+//        if (!$validate->scene('status')->check($data)) {
+//            $this->error($validate->getError());
+//        }
+//        //获取控制器
+//        $model = request()->controller();
+//        $res = model($model)->save(['status' => $data['status']], ['id' => $data['id']]);
+//        if ($res) {
+//            return show(1, "success", '', '', '', '操作成功');
+//        } else {
+//            return show(0, 'error', '', '', '', '操作失败');
+//        }
+//    }
 
     /**
      * 编辑后更新数据操作
@@ -148,8 +148,9 @@ class BaseAdmin extends Controller
     //置顶，上移，下移，置顶操作。需要的数据 type操作类型，语言id，需要移动的数据id
     public static function order($data, $map2 = '')
     {
-        (new Mark())->goCheck('type');
-        (new ParamMustBePositiveInt())->goCheck();
+//        if((new Mark())->scene('type')->check())
+//        (new Mark())->goCheck('type');
+//        (new ParamMustBePositiveInt())->goCheck();
         $con = request()->controller();
         $res = BaseModel::listorder($data, $con, $map2);
         $url = $_SERVER['HTTP_REFERER'];

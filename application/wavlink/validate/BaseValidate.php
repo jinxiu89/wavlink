@@ -54,4 +54,19 @@ class BaseValidate extends Validate
             return true;
         }
     }
+    /**
+     * @param $value
+     * @param string $rule
+     * @param string $data
+     * @param string $field
+     * 验证参数id是否是正整数
+     * @return bool
+     */
+    protected function isPositiveInteger($value, $rule = '', $data = '', $field = '') {
+        if (is_numeric($value) && is_int($value + 0) && ($value + 0) > 0) {
+            return true;
+        } else {
+            return false;
+        }
+    }
 }

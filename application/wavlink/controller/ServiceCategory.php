@@ -110,6 +110,7 @@ class ServiceCategory extends BaseAdmin
         $id = $this->MustBePositiveInteger($id);
         //获取当前数据
         $serviceCategory = ServiceCategoryModel::get($id);
+
         //传递参数id
         //如果是一级栏目 categorys不选择 parent_id = 0
         // 字段parent_id =0

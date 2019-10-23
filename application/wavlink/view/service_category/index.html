@@ -41,6 +41,7 @@
                 </tr>
                 </thead>
                 <tbody>
+                {notempty name="category"}
                 {volist name="category" id="vo"}
                 <tr class="text-l">
                     <td><input type="checkbox" value="{$vo.id}" name="id"></td>
@@ -54,7 +55,7 @@
                     <td>{$vo.update_time}</td>
                     <td class="td-status"><a href="javascript:;" onclick="start('{:url(\'ServiceCategory/byStatus\',[\'id\'=>$vo.id,\'status\'=>$vo.status==1?-1:1])}')" title="点击修改状态">{$vo.status|status|raw}</a></td>
                     <td class="td-manage">
-                        {if condition="$vo.level <= 2"}
+                        {if condition="$vo.level <= 1"}
                         <a title="添加子分类" href="javascript:;" onclick="add('添加子分类（服务）','{:url(\'ServiceCategory/add\',[\'parent_id\'=>$vo.id])}','800','680')"><i class="Hui-iconfont" style="font-size: 18px;color:blue">&#xe716</i></a>
                         <a title="获取子分类" href="{:url('ServiceCategory/index',['parent_id'=>$vo.id])}"><i class="Hui-iconfont" style="font-size: 18px;color: green">&#xe715</i></a>
                         {/if}
@@ -70,10 +71,11 @@
                     </td>
                 </tr>
                 {/volist}
+                {/notempty}
                 </tbody>
             </table>
             <div class="cl pd-5 bg-1 bk-gray mt-20">
-                <span class="r"><strong><a href="{:url('ServiceCategory/index')}" title="{$vo.name}服务分类">返回服务分类列表</a></strong> </span>
+                <span class="r"><strong><a href="{:url('ServiceCategory/index')}" title="服务分类">返回服务分类列表</a></strong> </span>
             </div>
         </article>
         <input type="hidden" value="{$language_id}" id="language">

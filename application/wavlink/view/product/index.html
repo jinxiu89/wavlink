@@ -24,7 +24,6 @@
                 </span>
                 <button type="submit" class="btn btn-success"  name=""><i class="Hui-iconfont">&#xe665;</i> 搜索</button>
             </div>
-            <input type="hidden" value="{$language_id}" id="language" name="language_id">
         </form>
         <article class="cl pd-20" style="min-height: 51em;padding: 5px 10px 0 10px">
             <div class="cl pd-5 bg-1 bk-gray mt-20" style="line-height: 31px;">
@@ -44,10 +43,9 @@
                     <th>产品名称</th>
                     <th width="100">产品型号</th>
                     <th width="200">所属分类</th>
-                    <th width="28">排序</th>
-                    <th width="120">加入时间</th>
-                    <th width="28">搜索优化</th>
-                    <th width="160">操作</th>
+                    <th width="60">排序</th>
+                    <th width="80">加入时间</th>
+                    <th width="250">操作</th>
                 </tr>
                 </thead>
                 <tbody>
@@ -59,22 +57,19 @@
                     <td class="text-left"  title="{$vo.name}" >{$vo.name}</td>
                     <td class="text-left">{$vo.model}</td>
                     <td>{$vo.id|getChild}</td>
-                    <td class="text-c listorder"><input type="text"  value="{$vo.listorder}" size="6" attr-id="{$vo.id}" name="listorder"></td>
-                    <td>{$vo.create_time}</td>
-                    <td class="text-c"><a href="javascript:void(0);" onclick="rankSearch(this)" data-id="{$vo.id}" class="ml-5 mark" style="text-decoration:none"><i class="Hui-iconfont i_size_color" >&#xe61b;</i></a></td>
+                    <td class="text-c listorder"><input type="text"  class="input-text input-sm" value="{$vo.listorder}" attr-id="{$vo.id}" name="listorder"></td>
+                    <td>{$vo.create_time|date='Y-m-d'}</td>
                     <td class="td-manage">
-                        <a title="编辑" href="javascript:;" onclick="index_edit('产品编辑','{:url(\'product/product_edit\',[\'id\'=>$vo.id])}')" class="ml-5 " style="text-decoration:none"><i  class="Hui-iconfont i_edit_color">&#xe6df;</i></a>
+                        <a title="编辑" href="javascript:;" onclick="index_edit('产品编辑','{:url(\'product/product_edit\',[\'id\'=>$vo.id])}')" class="ml-5 btn btn-primary" style="text-decoration:none"><i  class="Hui-iconfont" style="color: #fff">&#xe6df;</i></a>
+                        <a title="放入回收站" href="javascript:;" onclick="recycle('{:url(\'product/byStatus\',[\'id\'=>$vo.id,\'status\'=> -1])}')" class="ml-5 btn btn-danger" style="text-decoration:none"><i style="font-size: 20px;color: #fff" class="Hui-iconfont">&#xe6e2;</i></a>
                         {empty name="$language_id"}
                         {else /}
-                        <a title="置顶" href="javascript:;"  onclick="mark(this)" data-id ="{$vo.id}" data-type="4" data-map="{$category_id}" class="ml-5 mark" style="text-decoration:none"><i class="Hui-iconfont i_size_color" >&#xe684</i></a>
-                        <a title="上移一位" href="javascript:;" onclick="mark(this)" data-id="{$vo.id}" data-type="3" data-map="{$category_id}" class="ml-5" style="text-decoration:none"><i class="Hui-iconfont i_size_color" >&#xe6d6</i></a>
-                        <a title="下移一位" href="javascript:;" onclick="mark(this)" data-id="{$vo.id}" data-type="2" data-map="{$category_id}" class="ml-5" style="text-decoration:none"><i class="Hui-iconfont i_size_color" >&#xe6d5</i></a>
-                        <a title="置底" href="javascript:;"  onclick="mark(this)" data-id ="{$vo.id}" data-type="1" data-map="{$category_id}" class="ml-5 mark" style="text-decoration:none"><i class="Hui-iconfont i_size_color" >&#xe674</i></a>
+                        <a title="上移一位" href="javascript:;" onclick="up_down(this)" data-id="{$vo.id}"  data-type="+" data-listorder="{$vo.listorder}" data-category_id="{$category_id}" class="ml-5 btn btn-secondary" style="text-decoration:none"><i class="Hui-iconfont" style="color: #fff" >&#xe6d6</i></a>
+                        <a title="下移一位" href="javascript:;" onclick="up_down(this)" data-id="{$vo.id}"  data-type="-" data-listorder="{$vo.listorder}" data-category_id="{$category_id}" class="ml-5 btn btn-secondary" style="text-decoration:none"><i class="Hui-iconfont" style="color: #fff" >&#xe6d5</i></a>
+                        <a title="置顶" href="javascript:;"  onclick="mark(this)" data-id ="{$vo.id}"  data-category_id="{$category_id}" class="ml-5 btn btn-secondary" style="text-decoration:none"><i class="Hui-iconfont" style="color: #fff">&#xe684</i></a>
                         {/empty}
-                        <a title="放入回收站" href="javascript:;" onclick="recycle('{:url(\'product/byStatus\',[\'id\'=>$vo.id,\'status\'=> -1])}')" class="ml-5" style="text-decoration:none"><i style="font-size: 20px;color: orange" class="Hui-iconfont">&#xe6e2;</i></a>
                     </td>
                 </tr>
-
                 {/volist}
                 </tbody>
             </table>
@@ -91,9 +86,36 @@
 <script>
     var SCOPE = {
         'listorder_url':"{:url('product/listorder')}",
-        'sort_url':"{:url('product/sort')}",
-        'rankSearch':"{:url('product/mark')}"
+        'sort_url':"{:url('product/sort')}"
     };
+    function up_down(obj){
+        var url = '{:url(\'product/listorder\')}';
+        var id = $(obj).data("id");//id
+        var type = $(obj).data('type');
+        var listorder = $(obj).data('listorder');
+        var category_id = $(obj).data("category_id"); // 分类ID
+        var postData = {
+            'id': id,
+            'type':type,
+            'listorder':listorder,
+            'category_id': category_id
+        };
+        $.ajax({
+            type: 'post',
+            url: url,
+            dataType: 'json',
+            data: postData,
+            success: function (result) {
+                if (result.status === 1) {
+                    dialog.OK(result.data, result.jump_url);
+                } else if (result.status === 0) {
+                    dialog.error(result.data, result.title, result.btn);
+                } else if (result.status === -1) {
+                    dialog.toconfirm(result.data)
+                }
+            }
+        })
+    }
     $(document).ready(function () {
         $("#menu-product dt").addClass("selected");
         $("#menu-product dd").css("display","block");

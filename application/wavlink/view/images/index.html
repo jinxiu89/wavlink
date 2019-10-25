@@ -46,12 +46,13 @@
                 <th width="30">PC端图</th>
                 <th>标题</th>
                 <th width="100">产品型号</th>
-                <th width="30">排序</th>
+                <th>连接</th>
+                <th width="60">排序</th>
                 <th width="50">所属语言</th>
-                <th width="80">推荐位类别</th>
-                <th width="120">上传时间</th>
-                <th width="50">发布状态</th>
-                <th width="160">操作</th>
+                <th width="70">类型</th>
+                <th width="70">上传时间</th>
+                <th width="20">状态</th>
+                <th width="110">操作</th>
             </tr>
             </thead>
             <tbody>
@@ -62,24 +63,26 @@
                 <td>{empty name="$vo.image_pc_url"}{else /}<img id=" " src="{$vo.image_pc_url}" width="30" height="30">{/empty}</td>
                 <td>{$vo.title|raw}</td>
                 <td>{$vo.model}</td>
-                <td class="text-c">{$vo.listorder}</td>
+                <td>{$vo.url}</td>
+                <td class="text-c listorder"><input type="text" class="input-text input-sm" value="{$vo.listorder}" attr-id="{$vo.id}" name="listorder"></td>
                 <td>{$vo.language_id|getLanguage|raw}</td>
                 <td class="td_featured">{$vo.featured_id|featured|raw}</td>
-                <td>{$vo.create_time}</td>
+                <td>{$vo.create_time|date="Y-m-d"}</td>
                 <td class="td-status">
                     <a style="text-decoration:none;color: white" onClick="stop('{:url(\'images/byStatus\',[\'id\'=>$vo.id,\'status\'=>$vo.status==1?-1:1])}')" href="javascript:;" title="修改状态">{$vo.status|status|raw}</a>
                 </td>
                 <td class="td-manage">
-                    <a style="text-decoration:none" class="ml-5"
+                    <a style="text-decoration:none" class="ml-5 btn btn-success"
                        onClick="edit('编辑','{:url(\'images/edit\',[\'id\'=>$vo.id])}','800','860')" href="javascript:;"
-                       title="编辑"><i class="Hui-iconfont" style="font-size: 18px;color: #0000cc">&#xe6df;</i>
+                       title="编辑"><i class="Hui-iconfont" style="font-size: 18px;color: #fff">&#xe6df;</i>
+                    </a>
+                    <a style="text-decoration:none" class="ml-5 btn btn-danger"
+                           onClick="recycle('{:url(\'images/byStatus\',[\'id\'=>$vo.id,\'status\'=>-1])}')" href="javascript:;"
+                           title="删除"><i class="Hui-iconfont" style="font-size: 18px;color: #fff">&#xe609;</i>
                     </a>
                     {empty name="$language_id"}
                     {else /}
-                    <a title="置顶" href="javascript:;"  onclick="mark(this)" data-id ="{$vo.id}" data-type="4" data-map="{$vo.featured_id}" class="ml-5 mark" style="text-decoration:none"><i class="Hui-iconfont i_size_color">&#xe684</i></a>
-                    <a title="上移一位" href="javascript:;" onclick="mark(this)" data-id="{$vo.id}" data-type="3" data-map="{$vo.featured_id}" class="ml-5" style="text-decoration:none"><i class="Hui-iconfont i_size_color">&#xe6d6</i></a>
-                    <a title="下移一位" href="javascript:;" onclick="mark(this)" data-id="{$vo.id}" data-type="2" data-map="{$vo.featured_id}" class="ml-5" style="text-decoration:none"><i class="Hui-iconfont i_size_color">&#xe6d5</i></a>
-                    <a title="置底" href="javascript:;"  onclick="mark(this)" data-id ="{$vo.id}" data-type="1" data-map="{$vo.featured_id}" class="ml-5 mark" style="text-decoration:none"><i class="Hui-iconfont i_size_color">&#xe674</i></a>
+
                     {/empty}
                 </td>
             </tr>
@@ -112,7 +115,35 @@
             "featured_id": id
         };
         $.post(postData, url)
-    })
+    });
+    function up_down(obj){
+        var url = '{:url(\'images/listorder\')}';
+        var id = $(obj).data("id");//id
+        var type = $(obj).data('type');
+        var listorder = $(obj).data('listorder');
+        var featured = $(obj).data("featured"); // 分类ID
+        var postData = {
+            'id': id,
+            'type':type,
+            'listorder':listorder,
+            'featured_id': category_id
+        };
+        $.ajax({
+            type: 'post',
+            url: url,
+            dataType: 'json',
+            data: postData,
+            success: function (result) {
+                if (result.status === 1) {
+                    dialog.OK(result.data, result.jump_url);
+                } else if (result.status === 0) {
+                    dialog.error(result.data, result.title, result.btn);
+                } else if (result.status === -1) {
+                    dialog.toconfirm(result.data)
+                }
+            }
+        })
+    }
 </script>
 </body>
 </html>

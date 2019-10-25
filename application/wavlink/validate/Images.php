@@ -25,7 +25,7 @@ class Images extends BaseValidate
         'language_id' => 'number',
         'featured_id' => 'require|featuredLimit',
         'url' => 'max:255',
-        'status' => 'number|in:-1,0,1',
+        'status' => 'integer|in:-1,0,1',
     ];
     protected $message = [
         'id' => 'ID不合法',
@@ -43,6 +43,8 @@ class Images extends BaseValidate
     protected $scene = [
         'add' => ['listorder', 'product_title', 'image_pc_url', 'image_mobile_url', 'product_type', 'featured_id', 'url', 'status'],
         'edit' => ['id', 'listorder', 'product_title', 'image_pc_url', 'image_mobile_url', 'product_type', 'featured_id', 'url', 'status'],
+        'changeStatus'=>['id','status'],
+        'del'=>['id'],
     ];
 
     /**

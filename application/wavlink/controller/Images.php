@@ -140,6 +140,47 @@ Class Images extends BaseAdmin
         }
     }
 
+    /**
+     * @return array|void
+     */
+    public function byStatus()
+    {
+        $data = input('get.');
+        $check['status'] = number_format($data['status']);
+        $validate = new ImagesValidate();
+        if ($validate->scene('changeStatus')->check($data)) {
+            try {
+                if ((new ImagesModel())->allowField(true)->save($data, ['id' => $data['id']])) {
+                    return show(1, "success", '', '', '', '操作成功');
+                }
+                return show(0, "success", '', '', '', '操作失败！未知原因');
+            } catch (\Exception $exception) {
+                return show(0, "failed", '', '', '', $exception->getMessage());
+            }
+        }
+        return show(0, "failed", '', '', '', $validate->getError());
+    }
+
+    /**
+     *
+     */
+    public function del(){
+        if(Request::isPost()){
+            $id=input('get.id');
+            $validate=new ImagesValidate();
+            if(!$validate->scene('del')->check(['id'=>$id])){
+                return show(0,'failed','','','',$validate->getError());
+            }
+            try{
+                if(ImagesModel::destroy($id)){
+                    return show(1, "success", '', '', '', '操作成功');
+                }
+                return show(0, "success", '', '', '', '操作失败！未知原因');
+            }catch (\Exception $exception){
+                return show(0,'failed','','','',$exception->getMessage());
+            }
+        }
+    }
     //排序操作
     public function listorder()
     {

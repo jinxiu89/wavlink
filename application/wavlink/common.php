@@ -32,7 +32,7 @@ function getChild($id)
     foreach ($data as $v) {
         $name[] = $v['name'];
     }
-    $nameStr = implode("|", $name);
+    $nameStr = implode(">", $name);
     return $nameStr;
 }
 

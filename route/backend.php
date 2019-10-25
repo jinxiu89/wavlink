@@ -158,7 +158,8 @@ Route::group(Config::get('__BACKEND__'), function () {
     Route::post('/marketing/save', 'wavlink/Marketing/save');
     Route::post('/Category/byStatus', 'wavlink/Category/byStatus');
     Route::post('/Featured/byStatus', 'wavlink/Featured/byStatus');
-    Route::post('/Images/byStatus', 'wavlink/Images/byStatus');
+    Route::post('/images/byStatus', 'wavlink/Images/byStatus');
+    Route::post('/images/del', 'wavlink/Images/del');
     Route::post('/product/byStatus', 'wavlink/product/byStatus');
     Route::post('/marketing/byStatus', 'wavlink/Marketing/byStatus');
     Route::post('/Images/listorder', 'wavlink/Images/listorder');

@@ -66,7 +66,7 @@
                         {else /}
                         <a title="上移一位" href="javascript:;" onclick="up_down(this)" data-id="{$vo.id}"  data-type="+" data-listorder="{$vo.listorder}" data-category_id="{$category_id}" class="ml-5 btn btn-secondary" style="text-decoration:none"><i class="Hui-iconfont" style="color: #fff" >&#xe6d6</i></a>
                         <a title="下移一位" href="javascript:;" onclick="up_down(this)" data-id="{$vo.id}"  data-type="-" data-listorder="{$vo.listorder}" data-category_id="{$category_id}" class="ml-5 btn btn-secondary" style="text-decoration:none"><i class="Hui-iconfont" style="color: #fff" >&#xe6d5</i></a>
-                        <a title="置顶" href="javascript:;"  onclick="mark(this)" data-id ="{$vo.id}"  data-category_id="{$category_id}" class="ml-5 btn btn-secondary" style="text-decoration:none"><i class="Hui-iconfont" style="color: #fff">&#xe684</i></a>
+                        <a title="置顶" href="javascript:;"  onclick="mark_top(this)" data-id ="{$vo.id}"   class="ml-5 btn btn-secondary" style="text-decoration:none"><i class="Hui-iconfont" style="color: #fff">&#xe684</i></a>
                         {/empty}
                     </td>
                 </tr>
@@ -115,6 +115,28 @@
                 }
             }
         })
+    }
+    function mark_top(obj){
+        var id=$(obj).data('id');
+        var category_id=$(obj).data('category_id');
+        var postData={
+            'id':id,
+        };
+        $.ajax({
+            type:'post',
+            url:'{:url(\'product/mark\')}',
+            dataType: 'json',
+            data:postData,
+            success:function (result) {
+                if (result.status === 1) {
+                    dialog.OK(result.data, result.jump_url);
+                } else if (result.status === 0) {
+                    dialog.error(result.data, result.title, result.btn);
+                } else if (result.status === -1) {
+                    dialog.toconfirm(result.data)
+                }
+            }
+        });
     }
     $(document).ready(function () {
         $("#menu-product dt").addClass("selected");

@@ -28,6 +28,7 @@ class Product extends BaseValidate
         'image_mobile_url' => 'max:500',
         'language_id' => 'require|number|gt:0',
         'listorder' => 'require|integer',
+        'category_id' => 'require|integer',
         'cates' => 'require',
         'status' => 'integer|in:-1,0,1',
     ];
@@ -51,6 +52,8 @@ class Product extends BaseValidate
         'language_id' => '语言不能为空',
         'listorder.require' => '排序字段不能为空',
         'listorder.integer' => '排序字段不合法',
+        'category_id.require' => '分类ID不能为空',
+        'category_id.integer' => '分类ID不合法',
         'cates' => '分类是不是没有选择',
         'status.integer' => '状态必须是数字',
         'status.in' => '状态范围不合法',
@@ -60,6 +63,7 @@ class Product extends BaseValidate
         'add' => ['name', 'model', 'seo_title', 'keywords', 'description', 'image_litpic_url', 'image_pc_url', 'image_mobile_url', 'language_id', 'cates', 'status'],
         'edit' => ['id', 'name', 'model', 'seo_title', 'keywords', 'description', 'image_litpic_url', 'image_pc_url', 'image_mobile_url', 'language_id', 'cates', 'status'],
         'changeStatus' => ['id', 'status'],
-        'listorder' => ['id', 'listorder']
+        'listorder' => ['id', 'listorder'],
+        'mark' => ['id'],
     ];
 }

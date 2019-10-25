@@ -5,22 +5,72 @@
  * Date: 2018/5/27
  * Time: 17:22
  */
+
 namespace app\common\helper;
 
+use Elasticsearch\Client;
+use Elasticsearch\ClientBuilder;
+use think\facade\Config;
+
+/**
+ * Class Search
+ * @package app\common\helper
+ */
 class Search
 {
-    public static function search($model,$map,$order,$page=12){
+    /**
+     * @param $model
+     * @param $map
+     * @param $order
+     * @param int $page
+     * @return array|string
+     * @throws \think\exception\DbException
+     */
+    public static function search($model, $map, $order, $page = 12)
+    {
         //公共查询函数
-        $data   = model($model)->where($map)->order($order)->paginate($page);
+        $data = model($model)->where($map)->order($order)->paginate($page);
         $counts = model($model)->where($map)->count();
-        if($data){
-            $result=array(
-                'data'=>$data,
-                'count'=>$counts,
+        if ($data) {
+            $result = array(
+                'data' => $data,
+                'count' => $counts,
             );
             return $result;
-        }else{
+        } else {
             return '';
         }
+    }
+
+    /**
+     * @return Client
+     */
+    public static function createClient()
+    {
+        return ClientBuilder::create()->setHosts(Config::get('search.client'))->setRetries(2)->build();
+    }
+
+    /**
+     * @return array|callable
+     */
+    public static function createIndex()
+    {
+        $params = [
+            'index' => '',
+            'type' => '',
+            'id' => '',
+            'body' => ''
+        ];
+        return self::createClient()->index($params);
+    }
+
+    public static function getIndex()
+    {
+        $params = [
+            'index' => '',
+            'type' => '',
+            'id' => ''
+        ];
+        return self::createClient()->get($params);
     }
 }

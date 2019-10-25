@@ -12,6 +12,8 @@ namespace app\wavlink\controller;
 use app\common\model\Product as ProductModel;
 use app\common\model\Category as CategoryModel;
 use app\wavlink\validate\ListorderValidate;
+use think\Collection;
+use think\Exception;
 use think\Facade\Request;
 use app\wavlink\validate\Product as ProductValidate;
 
@@ -33,11 +35,15 @@ Class Product extends BaseAdmin
         $category = (new CategoryModel())->getAllCategory($this->currentLanguage['id']);
         $data = input('get.');
         if (!empty($data) and !empty($data['name'])) {
-            $result = (new ProductModel())->getSelectProduct($data['name'], $data['category_id'], $data['language_id']);
-            $this->assign('product', $result['data']);
-            $this->assign('counts', $result['count']);
-            $this->assign('name', $data['name']);
-            $this->assign('category_id', $data['category_id']);
+            try {
+                $result = (new ProductModel())->getSelectProduct($data['name'], $data['category_id'], $this->currentLanguage['id']);
+                $this->assign('product', $result['data']);
+                $this->assign('counts', $result['count']);
+                $this->assign('name', $data['name']);
+                $this->assign('category_id', $data['category_id']);
+            } catch (\Exception $exception) {
+                $this->error($exception->getMessage());
+            };
         } else {
             $this->assign('product', $product['data']);
             $this->assign('counts', $product['count']);
@@ -167,12 +173,22 @@ Class Product extends BaseAdmin
     {
         if (request()->isAjax()) {
             $data = input('post.');
-            $url = $_SERVER['HTTP_REFERER'];
-            $tempStorge = model('product')->mark($data);
-            if ($tempStorge == true) {
-                return show(1, '操作成功！', '', '', $url, '');
-            } else {
-                return show(0, $tempStorge, '', '', '', '');
+            $validate = new ProductValidate();
+            if (!$validate->scene('mark')->check($data)) {
+                return show(0, '排序失败，数据库错误', 'error', 'error', '', $validate->getError());
+            }
+            try {
+                $model = new ProductModel();
+                $cates = $model::getProductCategory($data['id']);
+                $cate = end($cates);
+                $data['listorder'] = $model->getTopOrder($cate) + 1;
+                $url = $_SERVER['HTTP_REFERER'];
+                if ($model->save($data, ['id' => $data['id']])) {
+                    return show(1, "success", '', '', $url, '置顶排序成功');
+                }
+                return show(0, '排序失败，数据库错误', 'error', 'error', '', "排序失败，未知错误");
+            } catch (\Exception $exception) {
+                return show(0, '排序失败，数据库错误', 'error', 'error', '', $exception->getMessage());
             }
         }
     }

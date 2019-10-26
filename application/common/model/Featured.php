@@ -11,6 +11,7 @@ namespace app\common\model;
 
 use think\Exception;
 use think\exception\DbException;
+use app\common\model\Images;
 
 Class Featured extends BaseModel
 {
@@ -20,6 +21,14 @@ Class Featured extends BaseModel
     {
         $data['status'] = 1;
         return $this->save($data);
+    }
+
+    public function isNone($language, $id)
+    {
+        if ((new Images())->getImagesByFeatured($language, $id)) {
+            return true;
+        }
+        return false;
     }
 
     public function ByAll()

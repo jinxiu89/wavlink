@@ -10,6 +10,7 @@ namespace app\wavlink\controller;
 
 use app\common\model\Category as CategoryModel;
 use app\wavlink\validate\Category as CategoryValidate;
+use think\App;
 use think\facade\Request;
 
 /***
@@ -18,6 +19,16 @@ use think\facade\Request;
  */
 Class Category extends BaseAdmin
 {
+    protected $validate;
+    protected $model;
+
+    public function __construct(App $app = null)
+    {
+        parent::__construct($app);
+        $this->validate = new CategoryValidate();
+        $this->model = new CategoryModel();
+    }
+
     /***
      * @return mixed
      * 20190912 更新
@@ -27,7 +38,7 @@ Class Category extends BaseAdmin
     public function index()
     {
         $parentId = input('get.parent_id', '0', 'intval');
-        $result = (new CategoryModel())->getCategory($parentId, $this->currentLanguage['id']);
+        $result = $this->model->getCategory($parentId, $this->currentLanguage['id']);
         return $this->fetch('', [
             'category' => $result['data'],
             'counts' => $result['count'],
@@ -58,9 +69,8 @@ Class Category extends BaseAdmin
     {
         if (request()->isAjax()) {
             $data = input('post.');
-            $validate = new CategoryValidate();
             if (isset($data['id']) and !empty($data['id'])) {
-                if ($validate->scene('edit')->check($data)) {
+                if ($this->validate->scene('edit')->check($data)) {
                     if ($data['id'] == $data['parent_id']) {
                         return show(0, '', '不能编辑在自己名下');
                     } else {
@@ -68,7 +78,7 @@ Class Category extends BaseAdmin
                     }
                 }
             } else {
-                if ($validate->scene('add')->check($data)) {
+                if ($this->validate->scene('add')->check($data)) {
                     try {
                         $res = (new CategoryModel())->add($data);
                         if ($res) {
@@ -81,7 +91,7 @@ Class Category extends BaseAdmin
                     }
                 }
             }
-            return show(0, '', '', '', '', $validate->getError());
+            return show(0, '', '', '', '', $this->validate->getError());
         }
     }
 
@@ -93,9 +103,9 @@ Class Category extends BaseAdmin
     public function edit($id = 0)
     {
         $id = $this->MustBePositiveInteger($id);
-        $category = CategoryModel::get($id);
+        $category = $this->model->get($id);
         if ($category['parent_id'] > 0) {
-            $cate = CategoryModel::all([
+            $cate = $this->model->all([
                 'status' => 1,
                 'parent_id' => 0,
                 'language_id' => $this->currentLanguage['id'],
@@ -116,42 +126,83 @@ Class Category extends BaseAdmin
     public function listorder()
     {
         if (request()->isAjax()) {
-            $data = input('post.'); //id ,type ,language_id，map
-            //得到它的parent_id
-            $map = [
-                'parent_id' => $data['map']
-            ];
-            self::order($data, $map);
+            $data = input('post.'); //id ,type ,language_id,map
+            if (!$this->validate->scene('listorder')->check($data)) {
+                return show(0, '排序失败', 'error', 'error', '', $this->validate->getError());
+            }
+            try {
+                if ($data['type'] == "+") {
+                    $data['listorder'] = $data['listorder'] + 2;
+                }
+                if ($data['type'] == "-") {
+                    $data['listorder'] = $data['listorder'] - 2;
+                }
+                if ($this->model->allowField(true)->save($data, ['id' => $data['id']])) {
+                    return show(1, '排序成功', 'error', 'error', '', "排序成功");
+                }
+                return show(0, '排序失败，未知错误', 'error', 'error', '', "排序失败，未知错误");
+            } catch (\Exception $exception) {
+                return show(0, '排序失败，数据库错误', 'error', 'error', '', $exception->getMessage());
+            }
         } else {
             return show(0, '置顶失败，未知错误', 'error', 'error', '', '');
         }
     }
-//    public function del(Request $request)
-//    {
-//        $id = $request->param('id');
-//        if (empty($id)) {
-//            return show(0, 'error', 'id非法错误');
-//        }
-//        //从Category找是否存在子分类
-//        $result = $this->obj->findChild($id);
-//        //查询分类下是否有产品
-//        $product = model("Product")->findProduct($id);
-//        //如果查找分类下面有子分类或者产品，不为空删除失败、
-//        if (!empty($result) || !empty($product)) {
-//            return show(0, '', '删除失败！删除的分类有子分类或者其分类下有产品！');
-//        } else {
-//            try {
-//                $res = CategoryModel::destroy($id);
-//                if ($res) {
-//                    return show(1, '', '删除成功');
-//                } else {
-//                    return show(0, '', '删除失败');
-//                }
-//            } catch (\Exception $e) {
-//                return show(0, '', $e->getMessage());
-//            }
-//        }
-//    }
+
+    /**
+     * 排序
+     */
+    public function sort()
+    {
+        if (request()->isAjax()) {
+            $data = input('post.');
+            if ($this->validate->scene('listorder')->check($data)) {
+                try {
+                    $res = $this->model
+                        ->allowField(true)
+                        ->isUpdate(true)
+                        ->save(
+                            ['listorder' => $data['listorder']],
+                            ['id' => $data['id']]
+                        );
+                    if ($res) {
+                        return show(1, '操作成功', '', '', $_SERVER['HTTP_REFERER'], '排序成功');
+                    } else {
+                        return show(0, '操作失败', '', '', $_SERVER['HTTP_REFERER'], '排序失败，未知原因');
+                    }
+                } catch (\Exception $exception) {
+                    return show(0, '操作失败', '', '', $_SERVER['HTTP_REFERER'], $exception->getMessage());
+                }
+            }
+            return show(0, '操作失败', '', '', $_SERVER['HTTP_REFERER'], $this->validate->getError());
+        }
+    }
+
+    public function del()
+    {
+        $id = input('get.id');
+        if (!$this->validate->scene('del')->check(['id' => $id])) {
+            return show(0, 'error', $this->validate->getError());
+        }
+        //从Category找是否存在子分类
+        $result = $this->model->checkData($id);
+        if ($result === true) {
+            //删除
+            try {
+                $res = CategoryModel::destroy($id);
+                if ($res) {
+                    return show(1, 'success', '','','','删除成功');
+                } else {
+                    return show(0, 'failed', '','','','删除失败,位置错误');
+                }
+            } catch (\Exception $e) {
+                return show(0, 'failed', '','','',$e->getMessage());
+            }
+        } else {
+            return show(0, 'failed', '','','',$result);
+        }
+    }
+
 //批量放回回收站
     public function allRecycle(Request $request)
     {

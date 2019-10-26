@@ -71,6 +71,31 @@ class Featured extends BaseAdmin
         }
     }
 
+    /**
+     * @return array|void
+     */
+    public function byStatus()
+    {
+        $data = input('get.');
+        $check['status'] = number_format($data['status']);
+        $validate = new FeaturedValidate();
+        $FeaturedModel = new FeaturedModel();
+        if ($validate->scene('changeStatus')->check($data)) {
+            if ($FeaturedModel->isNone($this->currentLanguage['id'], $data['id'])) {
+                return show(0, "failed", '', '', '', '该分类下有数据，不能被删除');
+            }
+            try {
+                if ($FeaturedModel->allowField(true)->save($data, ['id' => $data['id']])) {
+                    return show(1, "success", '', '', '', '操作成功');
+                }
+                return show(0, "failed", '', '', '', '操作失败！未知原因');
+            } catch (\Exception $exception) {
+                return show(0, "failed", '', '', '', $exception->getMessage());
+            }
+        }
+        return show(0, "failed", '', '', '', $validate->getError());
+    }
+
     public function edit($id)
     {
         if (intval($id) < 0) {

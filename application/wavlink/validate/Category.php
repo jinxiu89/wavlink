@@ -22,7 +22,7 @@ class Category extends BaseValidate
         'seo_title' => 'require|max:128',
         'keywords' => 'require|max:128',
         'description' => 'require|max:128',
-        'status' => 'number|in:-1,0,1'
+        'status' => 'integer|in:-1,0,1'
     ];
     protected $message = [
         'id' => 'ID不合法',
@@ -40,5 +40,8 @@ class Category extends BaseValidate
     protected $scene = [
         'add' => ['name', 'seo_title', 'keywords', 'description', 'status'],
         'edit' => ['id', 'name', 'seo_title', 'keywords', 'description', 'status'],
+        'changeStatus'=>['id','status'],
+        'listorder' => ['id', 'listorder'],
+        'del'=>['id']
     ];
 }

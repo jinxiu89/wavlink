@@ -17,7 +17,7 @@ class Featured extends BaseValidate
         'name' => 'require|unique:featured,name|max:128',
         'code' => 'require|unique:featured,code|max:32|alphaDash',
         'description' => 'require|max:128',
-        'status' => 'number|in:-1,0,1',
+        'status' => 'integer|in:-1,0,1',
     ];
     protected $message = [
         'id.number' => 'ID不合法',
@@ -36,5 +36,6 @@ class Featured extends BaseValidate
     protected $scene = [
         'add' => ['name', 'code', 'description', 'status'],
         'edit' => ['id', 'name', 'code', 'description', 'status'],
+        'changeStatus'=>['id','status'],
     ];
 }

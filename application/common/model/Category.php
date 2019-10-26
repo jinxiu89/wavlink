@@ -12,6 +12,7 @@ use app\common\model\Language as LanguageModel;
 use app\common\helper\Category as CategoryHelp;
 use app\common\model\Product as ProductModel;
 use think\Db;
+use think\Exception;
 
 /**
  * Class Category
@@ -46,9 +47,10 @@ Class Category extends BaseModel
     /**
      * @param $id
      * 在删除分类时，需要注意到两点
-     * 1、该分类下有子分类的不能删除
-     * 2、该分类下有产品时不能删除
+     * 1、该分类下有子分类的不能删除或者改变状态
+     * 2、该分类下有产品时不能删除或者改变状态
      * @return bool|string
+     * 该项操作为了检查该条目能不能被改变状态
      */
     public function checkData($id)
     {
@@ -58,17 +60,17 @@ Class Category extends BaseModel
                 ->join('product', 'product.id=category.product_id')
                 ->select();
             if (!empty($product)) {
-                return "该分类下有产品，无法删除";
+                return "该分类下有产品，无法执行该操作";
             }
         } catch (\Exception $exception) {
             return $exception->getMessage();
         }
-        try{
-            $child = Db::table('category')->where('parent_id','=',$id)->select();
+        try {
+            $child = Db::table('category')->where('parent_id', '=', $id)->select();
             if (!empty($child)) {
-                return "有子分类，无法删除";
+                return "有子分类，无法执行该操作";
             }
-        }catch (\Exception $exception){
+        } catch (\Exception $exception) {
             return $exception->getMessage();
         }
         return true;

@@ -22,6 +22,10 @@ Class Category extends BaseAdmin
     protected $validate;
     protected $model;
 
+    /**
+     * Category constructor.
+     * @param App|null $app
+     */
     public function __construct(App $app = null)
     {
         parent::__construct($app);
@@ -150,7 +154,7 @@ Class Category extends BaseAdmin
     }
 
     /**
-     * 排序
+     * 排序,针对
      */
     public function sort()
     {
@@ -178,6 +182,31 @@ Class Category extends BaseAdmin
         }
     }
 
+    /**
+     * 改变状态，当该分类存在产品或者有子分类时不能
+     */
+    public function byStatus()
+    {
+        $data = input('get.');
+        $check['status'] = number_format($data['status']);
+        if ($this->validate->scene('changeStatus')->check($data)) {
+            try {
+                $result=$this->model->checkData($data['id']);
+                if ($result) {
+                    return show(0, "failed", '', '', '', $result);
+                }
+                if ($this->model->allowField(true)->save($data, ['id' => $data['id']])) {
+                    return show(1, "success", '', '', '', '操作成功');
+                }
+                return show(0, "success", '', '', '', '操作失败！未知原因');
+            } catch (\Exception $exception) {
+                return show(0, "failed", '', '', '', $exception->getMessage());
+            }
+        }
+        return show(0, "failed", '', '', '', $this->validate->getError());
+    }
+
+
     public function del()
     {
         $id = input('get.id');
@@ -191,15 +220,15 @@ Class Category extends BaseAdmin
             try {
                 $res = CategoryModel::destroy($id);
                 if ($res) {
-                    return show(1, 'success', '','','','删除成功');
+                    return show(1, 'success', '', '', '', '删除成功');
                 } else {
-                    return show(0, 'failed', '','','','删除失败,位置错误');
+                    return show(0, 'failed', '', '', '', '删除失败,位置错误');
                 }
             } catch (\Exception $e) {
-                return show(0, 'failed', '','','',$e->getMessage());
+                return show(0, 'failed', '', '', '', $e->getMessage());
             }
         } else {
-            return show(0, 'failed', '','','',$result);
+            return show(0, 'failed', '', '', '', $result);
         }
     }
 

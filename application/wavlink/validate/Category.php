@@ -42,6 +42,7 @@ class Category extends BaseValidate
         'edit' => ['id', 'name', 'seo_title', 'keywords', 'description', 'status'],
         'changeStatus'=>['id','status'],
         'listorder' => ['id', 'listorder'],
-        'del'=>['id']
+        'del'=>['id'],
+        'byStatus'=>['id','status']
     ];
 }

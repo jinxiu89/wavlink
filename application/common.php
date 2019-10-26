@@ -29,9 +29,9 @@ function status($status)
     if ($status == 1) {
         $str = "<span class='label label-success radius'>正常</span>";
     } elseif ($status == 0) {
-        $str = "<span class='label label-error radius'>删除</span>";
+        $str = "<span class='label label-error radius'>禁用</span>";
     } else {
-        $str = "<span class='label label-danger radius'>禁用</span>";
+        $str = "<span class='label label-danger radius'>删除</span>";
     }
     return $str;
 }

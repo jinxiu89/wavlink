@@ -82,7 +82,7 @@ class Featured extends BaseAdmin
         $FeaturedModel = new FeaturedModel();
         if ($validate->scene('changeStatus')->check($data)) {
             if ($FeaturedModel->isNone($this->currentLanguage['id'], $data['id'])) {
-                return show(0, "failed", '', '', '', '该分类下有数据，不能被删除');
+                return show(0, "failed", '', '', '', '该分类下有数据，不能被执行该操作');
             }
             try {
                 if ($FeaturedModel->allowField(true)->save($data, ['id' => $data['id']])) {

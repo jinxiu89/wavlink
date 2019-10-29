@@ -117,4 +117,29 @@ Class Language extends BaseAdmin
             'language' => $language,
         ]);
     }
+
+    /**
+     * 改变状态，当该分类存在产品或者有子分类时不能
+     */
+    public function byStatus()
+    {
+        $data = input('get.');
+        $validate=new LanguageValidate();
+        $model=new LanguageModel();
+        if ($validate->scene('changeStatus')->check($data)) {
+            try {
+                $result=$model->checkData($data['id']);
+                if ($result) {
+                    return show(0, "failed", '', '', '', $result);
+                }
+                if ($model->allowField(true)->save($data, ['id' => $data['id']])) {
+                    return show(1, "success", '', '', '', '操作成功');
+                }
+                return show(0, "success", '', '', '', '操作失败！未知原因');
+            } catch (\Exception $exception) {
+                return show(0, "failed", '', '', '', $exception->getMessage());
+            }
+        }
+        return show(0, "failed", '', '', '', $validate->getError());
+    }
 }

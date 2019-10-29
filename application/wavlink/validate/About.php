@@ -22,7 +22,7 @@ class About extends BaseValidate
         'seo_title' => 'require',
         'keywords' => 'require|max:128',
         'description' => 'require|max:255',
-        'status' => 'number|in:-1,0,1',
+        'status' => 'integer|in:-1,0,1',
     ];
     protected $message = [
         'id' => 'ID不合法',
@@ -40,5 +40,6 @@ class About extends BaseValidate
     protected $scene = [
         'add' => ['name', 'seo_title', 'keywords', 'description', 'status'],
         'edit' => ['id', 'name', 'seo_title', 'keywords', 'description', 'status'],
+        'changeStatus'=>['id','status'],
     ];
 }

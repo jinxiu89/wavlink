@@ -6,14 +6,36 @@
  * Time: 15:00
  */
 namespace app\common\model;
+use PDOStatement;
+use think\Collection;
+use think\Db;
+use think\db\exception\DataNotFoundException;
+use think\db\exception\ModelNotFoundException;
+use think\exception\DbException;
+use think\model\relation\BelongsToMany;
 
+/**
+ * Class Manger
+ * @package app\common\model
+ */
 Class Manger extends BaseModel
 {
     protected $table = 'manger';//使用user表
 
+    /**
+     * @return BelongsToMany
+     */
     public function AuthGroup(){
         return $this->belongsToMany('AuthGroup','\app\common\model\AuthGroupAccess','group_id','uid');
     }
+
+    /**
+     * @param $id
+     * @return array|PDOStatement|string|Collection
+     * @throws DataNotFoundException
+     * @throws ModelNotFoundException
+     * @throws DbException
+     */
     public static function getAuthGroup($id){
         return self::with(['AuthGroup'])->select($id);
     }
@@ -58,6 +80,14 @@ Class Manger extends BaseModel
     }
 
     //关联模型更新数据操作
+
+    /**
+     * @param $data
+     * @return bool
+     * @throws DataNotFoundException
+     * @throws DbException
+     * @throws ModelNotFoundException
+     */
     public function saveEditManger($data){
         $language_id = implode(',',$data['language']);
         $userData=[
@@ -69,10 +99,9 @@ Class Manger extends BaseModel
         ];
 //        更新管理员表数据
         $result = $this::update($userData,['id'=>$data['id']]);
-
         //从关联模型查询数据
-        $groups =model("AuthGroupAccess")->where(['uid'=>$data['id']])->select();
-        $group=array();
+        $groups =Db::table('auth_group_access')->where(['uid'=>$data['id']])->select();
+        $group=[];
         foreach ($groups as $k => $v){
             $group[]=$v['group_id'];
         }

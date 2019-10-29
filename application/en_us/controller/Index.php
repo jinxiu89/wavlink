@@ -27,7 +27,6 @@ class Index extends Base
         $this->assign('showcase', $showcase['data']);
         $this->assign('News',$News);
         $this->assign("imagesNew", $imagesNew['data']);
-
         return $this->fetch($this->template . '/index/index.html');
     }
 

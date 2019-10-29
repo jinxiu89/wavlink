@@ -7,18 +7,29 @@
  */
 namespace app\common\model;
 use app\common\model\Language as LanguageModel;
+use PDOStatement;
+use think\Collection;
+use think\db\exception\DataNotFoundException;
+use think\db\exception\ModelNotFoundException;
+use think\exception\DbException;
+
 class About extends BaseModel
 {
     protected $table = "about";
-    public function getAbouts($code = "en_us")
+
+    /**
+     * @param string $code
+     * @return array|PDOStatement|string|Collection
+     * @throws DataNotFoundException
+     * @throws ModelNotFoundException
+     * @throws DbException
+     */
+    public static function getAbouts($code = "en_us")
     {
         $language_id = LanguageModel::getLanguageCodeOrID($code);
-        $data = [
-            'status' => 1,
-            'language_id' => $language_id,
-        ];
-
-        return $this->where($data)->field('id,url_title,name')->select();
-
+        $query=self::where(['language_id' => $language_id]);
+        $data['data']=$query->field('id,url_title,name,keywords,language_id,listorder,create_time,status')->paginate();
+        $data['count']=$query->count();
+        return $data;
     }
 }

@@ -15,6 +15,11 @@ use \app\common\model\Drivers as DriversModel;
 use think\Db;
 use think\facade\Cache;
 
+/**
+ * Class Product
+ * @package app\common\model
+ *
+ */
 Class Product extends BaseModel
 {
     protected $table = 'product';
@@ -117,7 +122,6 @@ Class Product extends BaseModel
         $result['data'] = $query->order($order)->paginate();
         $result['count'] = $query->count();
         return $result;
-        return Search('Product', $map, $order);
     }
 
     //前端搜索当前模块下的语言的数据，en_us/zh_cn模块下search控制器用到这个方法
@@ -160,6 +164,9 @@ Class Product extends BaseModel
      * @return false|\PDOStatement|string|\think\Collection /推荐的产品。取出排名最高的3个产品
      * 取出排序最高的产品
      * 数量为 list
+     * @throws \think\db\exception\DataNotFoundException
+     * @throws \think\db\exception\ModelNotFoundException
+     * @throws \think\exception\DbException
      */
     public static function getListProduct($code, $list)
     {

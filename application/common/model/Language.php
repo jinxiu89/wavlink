@@ -8,11 +8,34 @@
 
 namespace app\common\model;
 
+use PDOStatement;
+use think\db\exception\DataNotFoundException;
+use think\db\exception\ModelNotFoundException;
+use think\Exception;
 use think\exception\DbException;
+use app\common\model\About;
+use app\common\model\Product;
 
 class Language extends BaseModel
 {
     protected $table = 'language';//使用数据库里这个language表
+
+    /**
+     * @param $id
+     * @return bool|string
+     */
+    public function checkData($id)
+    {
+        try{
+            $information = About::getAbouts($id);
+            if(empty($information)){
+                return true;
+            }
+        }catch (\Exception $exception){
+            return $exception->getMessage();
+        }
+        return "不能执行该操作，语言已经被证实已使用";
+    }
 
     /**
      * @param $map
@@ -43,9 +66,9 @@ class Language extends BaseModel
      * 判断传入的语言 如果是模块名 就转换成id 如果是id 就直接输出id
      * @param $value
      * @return mixed
-     * @throws \think\db\exception\DataNotFoundException
-     * @throws \think\db\exception\ModelNotFoundException
-     * @throws \think\exception\DbException
+     * @throws DataNotFoundException
+     * @throws ModelNotFoundException
+     * @throws DbException
      */
     public static function getLanguageCodeOrID($value)
     {
@@ -60,10 +83,10 @@ class Language extends BaseModel
     /**
      * 根据语言code 获取 语言状态,语言id,
      * @param 模块名|string $code 模块名
-     * @return array|false|\PDOStatement|string|\think\Model
-     * @throws \think\db\exception\DataNotFoundException
-     * @throws \think\db\exception\ModelNotFoundException
-     * @throws \think\exception\DbException
+     * @return array|false|PDOStatement|string|\think\Model
+     * @throws DataNotFoundException
+     * @throws ModelNotFoundException
+     * @throws DbException
      */
     public static function getIDStatusByCode($code = 'en_us')
     {
@@ -90,7 +113,7 @@ class Language extends BaseModel
     /***
      * @param $language_id
      * @return array
-     * @throws \think\Exception
+     * @throws Exception
      *
      */
     public function getLanguageByLanguageId($language_id)

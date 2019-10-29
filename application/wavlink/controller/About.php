@@ -8,7 +8,6 @@
 
 namespace app\wavlink\controller;
 
-use app\wavlink\validate\UrlTitleMustBeOnly;
 use think\facade\Request;
 use app\common\model\About as AboutModel;
 use app\wavlink\validate\About as AboutValidate;
@@ -31,12 +30,16 @@ Class About extends BaseAdmin
             'status' => 'desc',
             'listorder' => 'desc'
         ];
-        $about = AboutModel::getDataByOrder(['language_id' => $this->currentLanguage['id']], $order);
-        return $this->fetch('', [
-            'about' => $about['data'],
-            'count' => $about['count'],
-            'language_id' => $this->currentLanguage['id']
-        ]);
+        try{
+            $about = AboutModel::getAbouts($this->currentLanguage['id']);
+            return $this->fetch('', [
+                'about' => $about['data'],
+                'count' => $about['count'],
+                'language_id' => $this->currentLanguage['id']
+            ]);
+        }catch (\Exception $exception){
+            $this->error($exception->getMessage());
+        }
     }
 
     /**
@@ -96,5 +99,25 @@ Class About extends BaseAdmin
             'about' => $about,
             'language_id' => $this->currentLanguage['id']
         ]);
+    }
+    /**
+     * 改变状态，当该分类存在产品或者有子分类时不能
+     */
+    public function byStatus()
+    {
+        $data = input('get.');
+        $validate=new AboutValidate();
+        $model=new AboutModel();
+        if ($validate->scene('changeStatus')->check($data)) {
+            try {
+                if ($model->allowField(true)->save($data, ['id' => $data['id']])) {
+                    return show(1, "success", '', '', '', '操作成功');
+                }
+                return show(0, "success", '', '', '', '操作失败！未知原因');
+            } catch (\Exception $exception) {
+                return show(0, "failed", '', '', '', $exception->getMessage());
+            }
+        }
+        return show(0, "failed", '', '', '', $validate->getError());
     }
 }

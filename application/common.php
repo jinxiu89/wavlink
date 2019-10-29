@@ -31,7 +31,7 @@ function status($status)
     } elseif ($status == 0) {
         $str = "<span class='label label-error radius'>禁用</span>";
     } else {
-        $str = "<span class='label label-danger radius'>删除</span>";
+        $str = "<span class='label label-danger radius'>禁用</span>";
     }
     return $str;
 }

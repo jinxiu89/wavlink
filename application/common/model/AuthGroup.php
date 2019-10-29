@@ -12,7 +12,7 @@ Class AuthGroup extends BaseModel
     protected $table = "auth_group";
 //    //用户和组 中间关联，第一个 关联模型，第二个参数 中间关联模型 ，第三个 关联表对应的外键，第四个 当前表对应的外键
     public function manger(){
-        return $this->belongsToMany('Manger','\app\common\model\AuthGroupAccess','uid','group_id');
+        return $this->belongsToMany('Manger','auth_group_access','uid','group_id');
     }
     public function getAuthGroup() {
         return $this->getDataByOrder('');

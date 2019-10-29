@@ -3,16 +3,16 @@
 <section class="Hui-article-box" style="overflow: scroll">
     <nav class="breadcrumb"><i class="Hui-iconfont">&#xe67f;</i> 首页
         <span class="c-gray en">&gt;</span>
-        首页产品管理
+        推荐管理
         <span class="c-gray en">&gt;</span>
-        首页产品管理
+       推荐产品列表
         <a class="btn btn-success radius r" style="line-height:1.6em;margin-top:3px"
            href="javascript:location.replace(location.href);" title="刷新"><i class="Hui-iconfont">&#xe68f;</i></a>
     </nav>
     <div class="page-container">
         <div class="text-c">
             <form method="get" action="{:url('Images/index')}">
-                <label class="form-label col-xs-4 col-sm-2" style="left: 20%;padding: 5px"><span class="c-red">*</span>选择推荐类别：</label>
+                <label class="form-label col-xs-4 col-sm-2" style="left: 20%;padding: 5px"><span class="c-red">*</span>选择推荐位：</label>
                 <div class=" col-xs-8 col-sm-3" style="position: absolute;left: 31%"> <span class="select-box">
                         <select name="featured_id" class="select">
                             <option value="">--请选择--</option>
@@ -32,13 +32,13 @@
                  <!--<a href="javascript:;" onclick="allRecycle('{:url('Images/allChange')}')" class="btn btn-danger radius"><i-->
                          <!--class="Hui-iconfont">&#xe6e2;</i> 批量更新排序</a>-->
                 <a class="btn btn-primary radius" onclick="add('添加图片','{:url(\'images/add\')}','800','860')"
-                   href="javascript:;"><i class="Hui-iconfont">&#xe600;</i> 添加首页产品</a>
+                   href="javascript:;"><i class="Hui-iconfont">&#xe600;</i> 添加推荐产品</a>
             </span>
             <span class="r">共有数据：<strong>{$counts}</strong> 条</span></div>
         <table class="table table-border table-bordered table-bg table-hover table-sort mt-20">
             <thead>
             <tr>
-                <th scope="col" colspan="12">推荐位产品管理</th>
+                <th scope="col" colspan="12">推荐产品</th>
             </tr>
             <tr class="text-c">
                 <th width="20"><input name="" type="checkbox" value=""></th>

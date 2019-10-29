@@ -173,12 +173,13 @@ Route::group(Config::get('__BACKEND__'), function () {
      * 系统管理模块Post请求路由
      */
     Route::post('/language/save', 'wavlink/Language/save');
+    Route::post('/language/byStatus', 'wavlink/Language/byStatus');
     Route::post('/About/save', 'wavlink/About/save');
     Route::post('/Setting/save', 'wavlink/Setting/save');
     Route::post('/manger/save', 'wavlink/manger/saveEdit');
+    Route::post('/manger/password', 'wavlink/manger/password');
     Route::post('/auth_group/save', 'wavlink/AuthGroup/save');
     Route::post('/auth_rule/save', 'wavlink/AuthRule/save');
-    Route::post('/language/byStatus', 'wavlink/Language/byStatus');
     Route::post('/About/byStatus', 'wavlink/About/byStatus');
     Route::post('/manger/byStatus', 'wavlink/manger/byStatus');
     Route::post('/auth_group/byStatus', 'wavlink/AuthGroup/byStatus');

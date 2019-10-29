@@ -19,7 +19,7 @@ class Language extends Validate
         'name' => 'require|unique:language,name|max:64',
         'code' => 'require|unique:language,code|max:10|alphaDash',
         'remark' => 'max:64',
-        'status' => 'number|in:-1,0,1',
+        'status' => 'integer|in:-1,0,1',
     ];
     protected $message=[
         'id.number'=>'ID不合法',
@@ -36,5 +36,6 @@ class Language extends Validate
     protected $scene = [
         'add'=>['name','code','remark','status'],
         'edit'=>['id','name','code','remark','status'],
+        'changeStatus'=>['id','status']
     ];
 }

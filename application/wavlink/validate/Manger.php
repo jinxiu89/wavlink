@@ -20,7 +20,7 @@ class Manger extends Validate
         'name' => 'require|max:50',
         'password' => 'require|max:16',
         'mobile' => 'max:11|number',
-        'status' => 'number|in:-1,0,1',
+        'status' => 'integer|in:-1,0,1',
         'language' => 'require',
     ];
     protected $message=[
@@ -39,6 +39,7 @@ class Manger extends Validate
     ];
     /**场景设置**/
     protected $scene = [
-        'edit' => ['username', 'name', 'language']
+        'edit' => ['username', 'name', 'language'],
+        'changeStatus'=>['id','status']
     ];
 }

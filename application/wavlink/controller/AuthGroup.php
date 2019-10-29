@@ -8,8 +8,11 @@
 
 namespace app\wavlink\controller;
 
+use think\App;
+use think\Exception;
 use think\facade\Request;
-
+use app\common\model\AuthGroup as AuthGroupModel;
+use app\wavlink\validate\AuthGroup as AuthGroupValidate;
 /***
  * Class AuthGroup
  * @package app\wavlink\controller
@@ -17,21 +20,32 @@ use think\facade\Request;
  */
 class AuthGroup extends BaseAdmin
 {
-    public $obj;
+    protected $obj;
 
-    public function _initialize()
+    /**
+     * AuthGroup constructor.
+     * @param App|null $app
+     */
+    public function __construct(App $app = null)
     {
-        parent::_initialize();
-        $this->obj = model("AuthGroup");
+        parent::__construct($app);
+        $this->obj=new AuthGroupModel();
     }
 
+    /**
+     * @return mixed
+     */
     public function index()
     {
-        $result = $this->obj->getAuthGroup();
-        return $this->fetch('', [
-            'authGroup' => $result['data'],
-            'count' => $result['count'],
-        ]);
+        try{
+            $result = $this->obj->getAuthGroup();
+            return $this->fetch('', [
+                'authGroup' => $result['data'],
+                'count' => $result['count'],
+            ]);
+        }catch (\Exception $exception){
+            $this->error($exception->getMessage());
+        }
     }
 
     public function add()
@@ -83,11 +97,6 @@ class AuthGroup extends BaseAdmin
         //获取父级权限
         $ParentAuthRule = model("AuthRule")->getAuthRuleByParentId(0);
         $authGroup = $this->obj->find($id);
-//        $rules =model("GroupRuleAccess")->where(array('group_id'=>$id))->select();
-//        $data=array();
-//        foreach ($rules as $k => $v){
-//            $data[]=$v['rule_id'];
-//        }
         $rules = explode(',', $authGroup['rules']);
         return $this->fetch('', [
             'authGroup' => $authGroup,
@@ -95,6 +104,27 @@ class AuthGroup extends BaseAdmin
             'ParentAuthRule' => $ParentAuthRule,
             'rule' => $rules,
         ]);
+    }
+
+    /***
+     *
+     */
+    public function byStatus()
+    {
+        $data = input('get.');
+        $validate=new AuthGroupValidate();
+        $model=new AuthGroupModel();
+        if ($validate->scene('changeStatus')->check($data)) {
+            try {
+                if ($model->allowField(true)->save($data, ['id' => $data['id']])) {
+                    return show(1, "success", '', '', '', '操作成功');
+                }
+                return show(0, "success", '', '', '', '操作失败！未知原因');
+            } catch (\Exception $exception) {
+                return show(0, "failed", '', '', '', $exception->getMessage());
+            }
+        }
+        return show(0, "failed", '', '', '', $validate->getError());
     }
 
 }

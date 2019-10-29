@@ -53,7 +53,10 @@ class Base extends Controller
     protected $template;
     protected $beforeActionList = ['loadLanguage','languages', 'getCategory', 'checkMobile', 'checkLang', 'setting', 'Popular', 'articles', 'documents', 'about'];
 
-
+    /**
+     * Base constructor.
+     * @param App|null $app
+     */
     public function __construct(App $app = null)
     {
         parent::__construct($app);

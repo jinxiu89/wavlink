@@ -9,6 +9,7 @@
 namespace app\common\model;
 
 use app\common\model\Language as LanguageModel;
+use think\Db;
 
 /**
  * Class Manual
@@ -31,6 +32,15 @@ class Manual extends BaseModel
         return ModelsArr($result, 'model', 'modelGroup');
     }
 
+    public function checkDownload($id)
+    {
+        try {
+            $download = Db::table('tb_manual_download')->alias('download')->where('manual_id', '=', $id)->select();
+            return !empty($download) ? false : true;
+        } catch (\Exception $exception) {
+            return $exception->getMessage();
+        }
+    }
     // 前台 获取当前选择的子分类下的驱动列表，models产品型号字段处理
 
     /**

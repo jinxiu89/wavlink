@@ -9,15 +9,17 @@
 namespace app\wavlink\controller;
 
 use \app\common\model\AuthRule as AuthRuleModel;
+use  \app\wavlink\validate\AuthRule as AuthRuleValidate;
+use think\App;
 
 Class AuthRule extends BaseAdmin
 {
     public $obj;
 
 
-    public function _initialize()
+    public function __construct(App $app = null)
     {
-        parent::_initialize();
+        parent::__construct($app);
         $this->obj = model("AuthRule");
     }
 
@@ -98,5 +100,22 @@ Class AuthRule extends BaseAdmin
                 return show(0, '', '恢复失败');
             }
         }
+    }
+    public function byStatus()
+    {
+        $data = input('get.');
+        $validate=new AuthRuleValidate();
+        $model=new AuthRuleModel();
+        if ($validate->scene('changeStatus')->check($data)) {
+            try {
+                if ($model->allowField(true)->save($data, ['id' => $data['id']])) {
+                    return show(1, "success", '', '', '', '操作成功');
+                }
+                return show(0, "success", '', '', '', '操作失败！未知原因');
+            } catch (\Exception $exception) {
+                return show(0, "failed", '', '', '', $exception->getMessage());
+            }
+        }
+        return show(0, "failed", '', '', '', $validate->getError());
     }
 }

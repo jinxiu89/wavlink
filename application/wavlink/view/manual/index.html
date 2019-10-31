@@ -32,40 +32,41 @@
                     <th scope="col" colspan="16">列表</th>
                 </tr>
                 <tr class="text-c">
-                    <th width="20"><input type="checkbox" name="" value=""></th>
                     <th width="40">ID</th>
                     <th>型号</th>
                     <th>可下载的语种</th>
-                    <th width="120">所属分类</th>
+                    <th width="80">分类</th>
                     <th width="60">所属语言</th>
                     <th width="30">排序</th>
-                    <th width="120">加入时间</th>
-                    <th width="80">是否已启用</th>
+                    <th width="75">创建时间</th>
+                    <th width="60">状态</th>
                     <th width="160">操作</th>
                 </tr>
                 </thead>
                 <tbody>
                 {volist name="data" id="vo"}
                 <tr class="text-l">
-                    <td class="text-c"><input type="checkbox" value="{$vo.id}" name="id"></td>
-                    <td>{$vo.id}</td>
+                    <td class="text-c">{$vo.id}</td>
                     <td>{$vo.title}</td>
                     <td>{$vo.id|getDownload|raw}</td>
                     <td>{$vo.category_id|getServiceCategory|raw}</td>
                     <td>{$vo.language_id|getLanguage|raw}</td>
                     <td>{$vo.listorder}</td>
-                    <td>{$vo.create_time}</td>
+                    <td>{$vo.create_time|date="Y-m-d"}</td>
                     <td class="td-status text-c"><span class="label label-success radius">已启用</span></td>
                     <td class="td-manage">
                         <a title="编辑" href="javascript:;"
                            onclick="index_edit('更新','{:url(\'Manual/edit\',[\'id\'=>$vo.id])}')"
-                           class="ml-5 label label-primary radius" style="text-decoration:none">编辑</a>
+                           class="ml-5 btn btn-primary" style="text-decoration:none"><i class="Hui-iconfont"
+                                                                                        style="font-size: 18px;color: #fff">&#xe6df;</i></a>
                         <a title="添加下载" href="javascript:;"
                            onclick="index_add('添加下载项','{:url(\'Manual/add_download\',[\'id\'=>$vo.id,\'status\'=>-1])}')"
-                           class="ml-5 label label-secondary radius" style="text-decoration:none">添加下载</a>
-                        {empty name="$language_id"}
-                        {else /}
-                        {/empty}
+                           class="ml-5 btn btn-secondary" style="text-decoration:none"><i class="Hui-iconfont"
+                                                                                          style="font-size: 18px;color: #fff">&#xe600;</i></a>
+                        <a title="放入回收站" href="javascript:;"
+                           onclick="recycle('{:url(\'Manual/byStatus\',[\'id\'=>$vo.id,\'status\'=>-1])}')"
+                           class="ml-5 btn btn-danger" style="text-decoration:none"><i class="Hui-iconfont"
+                                                                                       style="font-size: 18px;color:#fff;">&#xe6e2;</i></a>
                     </td>
                 </tr>
                 {/volist}

@@ -31,7 +31,7 @@ class Drivers extends BaseValidate
         'running'=>'require|max:255',
         'listorder'=>'number|max:5',
         'descrip'=>'require|max:128',
-        'status'=>'number|in:-1,0,1',
+        'status'=>'integer|in:-1,0,1',
     ];
     protected $message=[
         'id.number'=>'ID不合法！',
@@ -58,12 +58,13 @@ class Drivers extends BaseValidate
         'listorder.max'=>'排序数值不能超过五位数！',
         'descrip.require'=>'描述不能为空！',
         'descrip.max'=>'描述长度最长不能超过28个字符！',
-        'status.number'=>'状态值不合法！',
+        'status.integer'=>'状态值不合法！',
         'status.in'=>'状态值不在合法范围内！'
     ];
     /**场景设置**/
     protected $scene = [
         'add'=>['name','size','version_number','category_id','language_id','seo_title','running','listorder','descip','status'],
-        'edit'=>['id','name','size','version_number','category_id','language_id','seo_title','running','listorder','descip','status'],
+        'edit'=>['id','size','version_number','category_id','language_id','seo_title','running','listorder','descip','status'],
+        'changeStatus'=>['id','status']
     ];
 }

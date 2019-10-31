@@ -19,24 +19,26 @@ namespace app\wavlink\validate;
 class Manual extends BaseValidate
 {
     protected $rule = [
-        'id'=>'require|number',
+        'id' => 'require|number',
         'model' => 'require|max:32',
         'title' => 'require|max:32',
         'url_title' => 'require|urlTitleIsOnly',
+        'status' => 'integer|in:-1,0,1'
     ];
     protected $message = [
-        'id.require'=>'ID非法',
-        'id.number'=>'ID不合法',
+        'id.require' => 'ID非法',
+        'id.number' => 'ID不合法',
         'model.require' => '请输入型号',
         'model.max' => '型号最大只支持32个字符',
         'title.require' => '标题必须输入',
         'title.max' => '标题最长32个字符',
         'url_title.require' => 'url标题必须输入',
-        'url_title.urlTitleIsOnly' => 'url标题不能重复'
-
+        'url_title.urlTitleIsOnly' => 'url标题不能重复',
+        'status' => '状态值不合法'
     ];
     protected $scene = [
         'add' => ['model', 'title', 'url_title'],
-        'edit'=>['id','model','title'],
+        'edit' => ['id', 'model', 'title'],
+        'changeStatus' => ['id', 'status']
     ];
 }

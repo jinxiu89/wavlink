@@ -192,10 +192,12 @@ Route::group(Config::get('__BACKEND__'), function () {
     Route::post('document/save', 'wavlink/document/save');
     Route::post('drivers/save', 'wavlink/drivers/save');
     Route::post('Manual/save', 'wavlink/Manual/save');
+    Route::post('Manual/byStatus', 'wavlink/Manual/byStatus');
     Route::post('cate/index', 'wavlink/cate/index');
     Route::post('sn/index', 'wavlink/sn/index');
     Route::post('old_sn/index', 'wavlink/OldSn/index');
     Route::post('Manual/save_download', 'wavlink/Manual/save_download');
+    Route::post('Manual/del_download', 'wavlink/Manual/del_download');
     Route::post('Video/save', 'wavlink/Video/save');
     Route::post('Faq/save', 'wavlink/Faq/save');
     Route::post('guest_book/send', 'wavlink/GuestBook/send');

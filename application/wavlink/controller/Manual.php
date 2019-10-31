@@ -79,6 +79,26 @@ class Manual extends BaseAdmin
             'data' => $data
         ]);
     }
+    public function byStatus()
+    {
+        $data = input('get.');
+        $validate=new ManualValidate();
+        $model=new ManualModel();
+        if ($validate->scene('changeStatus')->check($data)) {
+            try {
+                if($model->checkDownload($data['id']) == false){
+                    return show(0, "failed", '', '', '', '该条目有下载项，需要核实下载文件是否需要删除');
+                }
+                if ($model->allowField(true)->save($data, ['id' => $data['id']])) {
+                    return show(1, "success", '', '', '', '操作成功');
+                }
+                return show(0, "failed", '', '', '', '操作失败！未知原因');
+            } catch (\Exception $exception) {
+                return show(0, "failed", '', '', '', $exception->getMessage());
+            }
+        }
+        return show(0, "failed", '', '', '', $validate->getError());
+    }
 
     /**
      * @return mixed
@@ -93,8 +113,6 @@ class Manual extends BaseAdmin
 
     /**
      * @return mixed
-     * @throws DbException
-     * 20190917 更新
      */
     public function edit_download()
     {

@@ -11,8 +11,10 @@ namespace app\wavlink\controller;
 use app\common\model\Drivers as DriversModel;
 use app\common\model\ServiceCategory as ServiceCategoryModel;
 use app\wavlink\validate\Drivers as DriversValidate;
+use think\exception\DbException;
 use think\Facade\Request;
 use think\Exception;
+use think\response\View;
 
 /**
  * Class Drivers
@@ -21,7 +23,7 @@ use think\Exception;
 Class Drivers extends BaseAdmin
 {
     /***
-     * @return mixed|\think\response\View
+     * @return mixed|View
      */
     public function index() {
         if (request()->isPost()) {//搜索
@@ -86,7 +88,7 @@ Class Drivers extends BaseAdmin
      * 编辑操作开发
      * @param int $id
      * @return mixed
-     * @throws \think\exception\DbException
+     * @throws DbException
      */
     public function edit($id) {
        $id = $this->MustBePositiveInteger($id);
@@ -150,48 +152,25 @@ Class Drivers extends BaseAdmin
             return show(0, '置顶失败，未知错误', 'error', 'error', '', '');
         }
     }
-//    /**
-//     * 回收站列表彻底删除
-//     * @param Request $request
-//     * @internal param int $id
-//     * @return array
-//     */
-//    public function del(Request $request)
-//    {
-//        $id = $request::instance()->param();
-//        if (!is_array($id)) {
-//            return show(0, 'error', '数据错误');
-//        }
-//        $res = \app\common\model\Drivers::destroy($id);
-//        if ($res) {
-//            return show(1, 'success', '删除成功');
-//        } else {
-//            return show(0, 'error', '删除失败');
-//        }
-//    }
 
-//    /**
-//     * 回收站批量彻底删除
-//     * @param Request $request
-//     * @return array
-//     */
-//    public function alldel(Request $request)
-//    {
-//        $ids = $request::instance()->post();
-//        if (!is_array($ids)) {
-//            return show(0, 'error', '删除失败');
-//        }
-//        try {
-//            foreach ($ids as $k => $v) {
-//                if (\app\common\model\Drivers::get($k)) {
-//                    \app\common\model\Drivers::destroy($k);
-//                } else {
-//                    return show(0, 'error', '删除失败');
-//                }
-//            }
-//            return show(1, 'success', '删除成功');
-//        } catch (\Exception $e) {
-//            return show(0, 'error', $e->getMessage());
-//        }
-//    }
+    /**
+     * 改变状态
+     */
+    public function byStatus()
+    {
+        $data = input('get.');
+        $validate=new DriversValidate();
+        $model=new DriversModel();
+        if ($validate->scene('changeStatus')->check($data)) {
+            try {
+                if ($model->allowField(true)->save($data, ['id' => $data['id']])) {
+                    return show(1, "success", '', '', '', '操作成功');
+                }
+                return show(0, "success", '', '', '', '操作失败！未知原因');
+            } catch (\Exception $exception) {
+                return show(0, "failed", '', '', '', $exception->getMessage());
+            }
+        }
+        return show(0, "failed", '', '', '', $validate->getError());
+    }
 }

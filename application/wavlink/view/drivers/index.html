@@ -30,39 +30,33 @@
                     <th scope="col" colspan="16">下载列表</th>
                 </tr>
                 <tr class="text-c">
-                    <th width="20"><input type="checkbox" name="" value=""></th>
                     <th width="40">ID</th>
                     <th>驱动文件名称</th>
-                    <th>url_title</th>
                     <th width="120">下载分类</th>
-                    <th width="60">语言</th>
+                    <th width="50">语言</th>
                     <th width="30">排序</th>
-                    <th width="120">加入时间</th>
-                    <th width="80">是否已启用</th>
-                    <th width="160">操作</th>
+                    <th width="75">创建日期</th>
+                    <th width="60">状态</th>
+                    <th width="210">操作</th>
                 </tr>
                 </thead>
                 <tbody>
                 {volist name="drivers" id="vo"}
                 <tr class="text-l">
-                    <td class="text-c"><input type="checkbox" value="{$vo.id}" name="id"></td>
-                    <td>{$vo.id}</td>
+                    <td class="text-c">{$vo.id}</td>
                     <td>{$vo.name}</td>
-                    <td>{$vo.url_title}</td>
                     <td>{$vo.category_id|getServiceCategory|raw}</td>
-                    <td>{$vo.language_id|getLanguage|raw}</td>
+                    <td class="text-c">{$vo.language_id|getLanguage|raw}</td>
                     <td>{$vo.listorder}</td>
-                    <td>{$vo.create_time}</td>
+                    <td>{$vo.create_time|date="Y-m-d"}</td>
                     <td class="td-status text-c"><span class="label label-success radius">已启用</span></td>
                     <td class="td-manage">
-                        <a title="编辑" href="javascript:;" onclick="index_edit('更新驱动','{:url(\'Drivers/edit\',[\'id\'=>$vo.id])}')" class="ml-5" style="text-decoration:none"><i class="Hui-iconfont" style="font-size: 20px;color: #0000cc">&#xe6df;</i></a>
-                        <a title="放入回收站" href="javascript:;" onclick="recycle('{:url(\'Drivers/byStatus\',[\'id\'=>$vo.id,\'status\'=>-1])}')" class="ml-5" style="text-decoration:none"><i class="Hui-iconfont" style="font-size: 20px;color:red;">&#xe6e2;</i></a>
+                        <a title="编辑" href="javascript:;" onclick="index_edit('更新驱动','{:url(\'Drivers/edit\',[\'id\'=>$vo.id])}')" class="ml-5 btn btn-primary" style="text-decoration:none"><i class="Hui-iconfont" style="font-size: 18px;color: #fff">&#xe6df;</i></a>
+                        <a title="放入回收站" href="javascript:;" onclick="recycle('{:url(\'Drivers/byStatus\',[\'id\'=>$vo.id,\'status\'=>-1])}')" class="ml-5 btn btn-danger" style="text-decoration:none"><i class="Hui-iconfont" style="font-size: 18px;color:#fff;">&#xe6e2;</i></a>
                         {empty name="$language_id"}
                         {else /}
-                        <a title="置顶" href="javascript:;"  onclick="mark(this)" data-id ="{$vo.id}" data-type="4" data-map="" class="ml-5 mark" style="text-decoration:none"><i class="Hui-iconfont">&#xe684</i></a>
-                        <button title="上移一位" href="javascript:;" onclick="mark(this)" data-id="{$vo.id}" data-type="3" data-map="" class="ml-5 " style="text-decoration:none" ><i class="Hui-iconfont">&#xe6d6</i></button>
-                        <button title="下移一位" href="javascript:;" onclick="mark(this)" data-id="{$vo.id}" data-type="2" data-map=""  class="ml-5 " style="text-decoration:none"><i class="Hui-iconfont">&#xe6d5</i></button>
-                        <a title="置底" href="javascript:;"  onclick="mark(this)" data-id ="{$vo.id}" data-type="1" data-map="" class="ml-5 mark" style="text-decoration:none"><i class="Hui-iconfont">&#xe674</i></a>
+                        <button title="上移一位" href="javascript:;" onclick="mark(this)" data-id="{$vo.id}" data-type="4" data-map="" class="ml-5 btn btn-secondary" style="text-decoration:none" ><i class="Hui-iconfont" style="font-size: 18px;color: #fff">&#xe6d6</i></button>
+                        <button title="下移一位" href="javascript:;" onclick="mark(this)" data-id="{$vo.id}" data-type="1" data-map=""  class="ml-5 btn btn-secondary" style="text-decoration:none"><i class="Hui-iconfont" style="font-size: 18px;color: #fff">&#xe6d5</i></button>
                         {/empty}
                     </td>
                 </tr>

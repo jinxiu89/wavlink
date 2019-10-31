@@ -34,7 +34,7 @@
                     <th width="8%">作者</th>
                     <th width="5%">排序</th>
                     <th width="5%">是否已启用</th>
-                    <th width="12%" >操作</th>
+                    <th width="15%" >操作</th>
                 </tr>
                 </thead>
                 <tbody>
@@ -51,15 +51,13 @@
                     <td class="text-c listorder"><input type="text" class="input-text" value="{$vo.listorder}" size="6" attr-id="{$vo.id}" name="listorder"></td>
                     <td class="td-status text-c"><span class="label label-success radius">已启用</span></td>
                     <td class="td-manage">
-                        <a title="编辑" href="javascript:;" onclick="index_edit('编辑文章','{:url(\'article/edit\',[\'id\'=>$vo.id])}')" class="ml-5" style="text-decoration:none"><i class="Hui-iconfont i_edit_color">&#xe6df;</i></a>
+                        <a title="编辑"  href="javascript:;" onclick="index_edit('编辑文章','{:url(\'article/edit\',[\'id\'=>$vo.id])}')" class="ml-5 btn btn-primary" style="text-decoration:none"><i class="Hui-iconfont" style="color: #fff">&#xe6df;</i></a>
                         {empty name="$language_id"}
                         {else /}
-                        <a title="置顶" href="javascript:;"  onclick="mark(this)" data-id ="{$vo.id}" data-type="4" data-map="" class="ml-5 mark" style="text-decoration:none"><i class="Hui-iconfont i_size_color">&#xe684</i></a>
-                        <a title="上移一位" href="javascript:;" onclick="mark(this)" data-id="{$vo.id}" data-type="3" data-map="" class="ml-5" style="text-decoration:none"><i class="Hui-iconfont i_size_color">&#xe6d6</i></a>
-                        <a title="下移一位" href="javascript:;" onclick="mark(this)" data-id="{$vo.id}" data-type="2" data-map="" class="ml-5" style="text-decoration:none"><i class="Hui-iconfont i_size_color">&#xe6d5</i></a>
-                        <a title="置底" href="javascript:;"  onclick="mark(this)" data-id ="{$vo.id}" data-type="1" data-map="" class="ml-5 mark" style="text-decoration:none"><i class="Hui-iconfont i_size_color">&#xe674</i></a>
+                        <a title="上移一位" href="javascript:;" onclick="mark(this)" data-id="{$vo.id}" data-type="4" data-map="" class="ml-5 btn btn-secondary" style="text-decoration:none"><i class="Hui-iconfont " style="color: #fff">&#xe6d6</i></a>
+                        <a title="下移一位" href="javascript:;" onclick="mark(this)" data-id="{$vo.id}" data-type="1" data-map="" class="ml-5 btn btn-secondary" style="text-decoration:none"><i class="Hui-iconfont " style="color: #fff">&#xe6d5</i></a>
                         {/empty}
-                        <a title="放入回收站" href="javascript:;" onclick="recycle('{:url('Article/byStatus',['id'=>$vo.id,'status'=>-1])}')" class="ml-5" style="text-decoration:none"><i class="Hui-iconfont" style="font-size: 20px;color:red;">&#xe6e2;</i></a>
+                        <a title="放入回收站" href="javascript:;" onclick="recycle('{:url(\'Article/byStatus\',[\'id\'=>$vo.id,\'status\'=>-1])}')" class="ml-5 btn btn-danger" style="text-decoration:none"><i class="Hui-iconfont" style="font-size: 20px;color:#fff;">&#xe6e2;</i></a>
                     </td>
                 </tr>
                 {/volist}

@@ -20,8 +20,7 @@
             <!--</form>-->
             <div class="cl pd-5 bg-1 bk-gray mt-20" style="line-height: 31px;">
                 <span class="l">
-                    <a class="btn btn-primary radius"  href="{:url('GuestBook/export',['status'=>1,'language_id'=>$language_id])}"><i class="Hui-iconfont">&#xe600;</i> 导出到表格</a>
-                    <a href="{:url('GuestBook/index')}"  class="btn btn-danger radius"><i class="Hui-iconfont">&#xe6e2;</i> 未处理留言</a>
+                    <a class="btn btn-primary radius"  href="{:url('GuestBook/export',['status'=>1])}"><i class="Hui-iconfont">&#xe600;</i> 导出到表格</a>
                 </span>
                 <span class="r">已处理：<strong>##没输出count</strong> 篇</span>
             </div>
@@ -56,7 +55,7 @@
                     <td>{$vo.create_time}</td>
                     <td class="td-status text-c">{$vo.status|ticket_status|raw}</td>
                     <td class="td-manage">
-                        <a title="查看详细信息" href="javascript:;" onclick="index_look('详细信息','{:url(\'GuestBook/reply_look\',[\'id\'=>$vo.id])}')" class="ml-5" style="text-decoration:none"><i class="Hui-iconfont" style="font-size: 20px;color: #0000cc">&#xe725;</i></a>
+                        <a title="查看详细信息" href="javascript:;" onclick="index_look('详细信息','{:url(\'GuestBook/reply_look\',[\'id\'=>$vo.id])}')" class="ml-5 btn btn-primary" style="text-decoration:none"><i class="Hui-iconfont" style="font-size: 18px;color: #fff">&#xe725;</i></a>
                 </tr>
                 {/volist}
                 </tbody>

@@ -22,7 +22,6 @@ Class Faq extends BaseAdmin
      * @return mixed
      */
     public function index() {
-//        $faqModel = new FaqModel();
         $faq = FaqModel::getDataByStatus(1,$this->currentLanguage['id']);
         $con = request()->controller();
         return $this->fetch('', [
@@ -59,9 +58,11 @@ Class Faq extends BaseAdmin
     public function save() {
         if (request()->isAjax()) {
             $data = input('post.');
-            (new FaqValidate())->goCheck();
-            (new UrlTitleMustBeOnly())->goCheck();
+            $validate=new FaqValidate();
             if (!empty($data['id'])) {
+                if($validate->scene('')->check($data)){
+
+                }
                 return $this->update($data);
             }
             $res = (new FaqModel())->add($data);

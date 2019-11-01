@@ -11,8 +11,10 @@
 // 应用公共文件
 //分类
 use app\common\model\Manual;
-use think\facade\Cookie;
 use think\Collection;
+use PHPMailer\PHPMailer\PHPMailer;
+use PHPMailer\PHPMailer\Exception as emailException;
+
 
 function pagination($obj)
 {
@@ -22,6 +24,7 @@ function pagination($obj)
     $params = request()->param();
     return $obj->appends($params)->render();
 }
+
 
 //status输出
 function status($status)
@@ -313,7 +316,7 @@ function getDownload($id)
     $list = $data->downloads;
     $arr = array();
     foreach ($list as $v) {
-        $arr[] = "<a title=\"编辑\" href=\"javascript:;\" onclick=\"index_edit('更新','/wavlink/manual/edit_download?id=" . $v['id'] . "&manual_id=" . $v['manual_id'] . "')\" class=\"ml-5 btn btn-primary\" style=\"text-decoration:none;margin-bottom: 5px;position: relative\">" . $v['language'] ."</a>";
+        $arr[] = "<a title=\"编辑\" href=\"javascript:;\" onclick=\"index_edit('更新','/wavlink/manual/edit_download?id=" . $v['id'] . "&manual_id=" . $v['manual_id'] . "')\" class=\"ml-5 btn btn-primary\" style=\"text-decoration:none;margin-bottom: 5px;position: relative\">" . $v['language'] . "</a>";
     }
     return implode('', $arr);
 }
@@ -365,13 +368,11 @@ function toLevel($cate, $delimiter = '--', $parent_id = 1)
  * @param null $attachment
  * @return bool 阿里云的smtp邮件发送
  * 阿里云的smtp邮件发送
- * @throws phpmailerException
+ * @throws emailException
  * @internal param $to
  */
 function sendMail($toMail, $toName, $subject, $content, $attachment = null)
 {
-    vendor('phpmailer.PHPMailerAutoload');
-    vendor('phpmailer.class#phpmailer');
     $mail = new PHPMailer();
     $mail->CharSet = 'utf-8';
     $mail->IsSMTP();
@@ -385,7 +386,7 @@ function sendMail($toMail, $toName, $subject, $content, $attachment = null)
     $mail->Username = 'system@service.wavlink.us';                 // SMTP登录邮箱
     $mail->Password = 'Wh32Ym69B10c';                 // SMTP登录密码
     $mail->setFrom('system@service.wavlink.us', 'system');            // 发件人邮箱和名称
-    $mail->addReplyTo('content@wavlink.com', 'Wavlink.com'); // 回复邮箱和名称
+    $mail->addReplyTo('contact@wavlink.com', 'Wavlink.com'); // 回复邮箱和名称
     $mail->AddAddress($toMail, $toName);
     $mail->Subject = $subject;
     $mail->Body = $content;

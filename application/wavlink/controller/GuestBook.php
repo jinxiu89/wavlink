@@ -10,8 +10,12 @@
 
 namespace app\wavlink\controller;
 
+
 use app\common\helper\Excel;
 use app\common\model\GuestBook as GuestBookModel;
+use PHPMailer\PHPMailer\Exception;
+use think\exception\PDOException;
+
 
 /**
  * Class GuestBook
@@ -86,35 +90,39 @@ class GuestBook extends BaseAdmin
     {
         $data = input('get.');
         $excel = new Excel();
-        $table_name = "tb_guest_book";
         if ($data['status'] == -1) {
             //如果没有选择哪种语言，就全部导出表格
-            if (empty($data['language_id'])) {
-                $map = ['status' => -1];
-                $language_name = '全部';
-            } else {
-                //如果选择了哪种语言，就把该语言的表格给导出来
-                $language_name = getLanguage($data['language_id']);
-                $map = [
-                    'status' => -1,
-                    'language_id' => $data['language_id']
-                ];
+            $field = 'id,first_name,last_name,email,model,sn,description';
+            $data = (new GuestBookModel())->getDataByLanguage($data['status'], $this->currentLanguage['id'], $field);
+            $label = ['id' => '序号', 'first_name' => '称呼', 'last_name' => '名字', 'email' => '客户邮箱', 'model' => '产品型号', 'sn' => '产品SN', 'description' => '问题描述'];
+            try {
+                $excel->setExcelName('下载未处理留言')->createSheet('未回复', $data, $label)->downloadExcel();
+            } catch (\PHPExcel_Exception $e) {
+                $this->error($e->getMessage());
+            } catch (\think\Exception $exception) {
+                $this->error($exception->getMessage());
             }
-            $field = ['id' => '序号', 'first_name' => '称呼', 'email' => '客户邮箱', 'model' => '产品型号', 'sn' => '产品SN', 'description' => '问题描述'];
-            $excel->setExcelName('下载未处理留言')->createSheetByModel('', $model_name = "GuestBook", $field, $map)->downloadExcel();
-
         }
         if ($data['status'] == 1) {
-            $map = ['status' => 1, 'language_id' => $data['language_id']];
-            $field2 = ['id' => '序号', 'first_name' => '称呼', 'email' => '客户邮箱', 'model' => '产品型号', 'sn' => '产品SN', 'description' => '问题描述', 'content' => '回复内容'];
-            $excel->setExcelName('下载已处理留言')->createSheetByModel('', $model_name = "GuestBook", $field2, $map)->downloadExcel();
+            $field = 'id,first_name,last_name,email,model,sn,description,content';
+            $label = ['id' => '序号', 'first_name' => '称呼', 'last_name' => '名字', 'email' => '客户邮箱', 'model' => '产品型号', 'sn' => '产品SN', 'description' => '问题描述', 'content' => '回复内容'];
+            $data = (new GuestBookModel())->getDataByLanguage($data['status'], $this->currentLanguage['id'], $field);
+            try {
+                $excel->setExcelName('已处理')->createSheet('已恢复', $data, $label)->downloadExcel();
+            } catch (\PHPExcel_Exception $exception) {
+                $this->error($exception->getMessage());
+            } catch (\think\Exception $e) {
+                $this->error($e->getMessage());
+            }
         }
     }
 
     //发送邮件
 
-    /***
-     *
+    /**
+     * @return void
+     * @throws PDOException
+     * @throws \think\Exception
      */
     public function send()
     {
@@ -123,14 +131,14 @@ class GuestBook extends BaseAdmin
             $to = $data['email'];
             try {
                 $res = sendMail($to, $data['last_name'], $data['subject'], $data['content']);
-            } catch (\phpmailerException $e) {
-                $this->error($e->getMessage());
-            }
-            if ($res) {
-                model("GuestBook")->where('id', $data['id'])->update(['status' => 1, 'subject' => $data['subject'], 'content' => $data['content']]);
-                return show(1, 'success', '', '', '', '发送成功');
-            } else {
-                return show(0, 'error', '', '', '', '发送失败');
+                if ($res) {
+                    model("GuestBook")->where('id', $data['id'])->update(['status' => 1, 'subject' => $data['subject'], 'content' => $data['content']]);
+                    return show(1, 'success', '', '', '', '发送成功');
+                } else {
+                    return show(0, 'error', '', '', '', $res);
+                }
+            } catch (Exception $exception) {
+                return show(0, 'error', '', '', '', $exception->getMessage());
             }
         }
     }

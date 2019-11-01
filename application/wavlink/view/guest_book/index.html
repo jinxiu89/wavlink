@@ -22,7 +22,6 @@
             <div class="cl pd-5 bg-1 bk-gray mt-20" style="line-height: 31px;">
                 <span class="l">
                     <a class="btn btn-primary radius"  href="{:url('GuestBook/export',['status'=>-1])}"><i class="Hui-iconfont">&#xe600;</i>导出到表格</a>
-                    <a href="{:url('GuestBook/index_off')}"  class="btn btn-danger radius"><i class="Hui-iconfont">&#xe6e2;</i> 已处留言</a>
                 </span>
                 <span class="r">未处理{$count}条</span>
             </div>
@@ -32,30 +31,34 @@
                     <th scope="col" colspan="14"><span style="color: red"></span>未回复列表</th>
                 </tr>
                 <tr class="text-c">
-                    <th width="20"><input type="checkbox" name="" value=""></th>
                     <th width="40">ID</th>
                     <th width="160">客户姓名</th>
                     <th width="160">产品Model</th>
                     <th width="160">产品SN</th>
                     <th width="150">邮箱</th>
                     <th>问题详细</th>
-                    <th width="130">提交时间</th>
-                    <th width="40">操作</th>
+                    <th width="75">提交时间</th>
+                    <th width="110">操作</th>
                 </tr>
                 </thead>
                 <tbody>
                 {volist name="ticket" id="vo"}
                 <tr class="text-l">
-                    <td><input type="checkbox" value="{$vo.id}" name="id"></td>
                     <td>{$vo.id}</td>
                     <td>{$vo.first_name}·{$vo.last_name}</td>
                     <td>{$vo.model}</td>
                     <td>{$vo.sn}</td>
                     <td>{$vo.email}</td>
-                    <td title="{$vo.description}"class="text-l">{$vo.desc}</td>
-                    <td>{$vo.create_time}</td>
+                    <td title="{$vo.description}"class="text-l">{$vo.description}</td>
+                    <td>{$vo.create_time|date="Y-m-d"}</td>
                     <td class="td-manage">
-                        <a title="查看详细信息" href="javascript:;" onclick="index_look('详细信息','{:url(\'GuestBook/look\',[\'id\'=>$vo.id])}')" class="ml-5" style="text-decoration:none"><i class="Hui-iconfont" style="font-size: 20px;color: #0000cc">&#xe6df;</i></a>
+                        <a title="查看详细信息" href="javascript:;" onclick="index_look('详细信息','{:url(\'GuestBook/look\',[\'id\'=>$vo.id])}')" class="ml-5 btn btn-primary">
+                            <i class="Hui-iconfont" style="font-size: 18px;color: #fff">&#xe6f9;</i>
+                        </a>
+                        <a href="javascript:;" title="回复" onclick="index_look('回复内容','{:url(\'GuestBook/reply\',[\'id\'=>$vo.id])}')" class="ml-5 btn btn-secondary">
+                            <i class="Hui-iconfont" style="font-size: 18px;color: #fff">&#xe68a</i>
+                        </a>
+
                 </tr>
                 {/volist}
                 </tbody>

@@ -66,10 +66,23 @@ class GuestBook extends BaseModel
                 );
         }
     }
-    public function getDataByLanguage($status,$language_id){
+
+    /**
+     * @param $status
+     * @param $language_id
+     * @param string $field
+     * @return \PHPUnit_Framework_MockObject_Stub_Exception
+     *
+     */
+    public function getDataByLanguage($status,$language_id,$field=''){
         $map=['status'=>$status,'language_id'=>$language_id];
         try{
-            return \collection($this->where($map)->select())->toArray();
+            if(empty($field) or !isset($field)){
+                $data=$this->where($map)->select();
+            }else{
+                $data=$this->where($map)->field($field)->select();
+            }
+            return Collection::make($data)->toArray();
         } catch (\Exception $e){
             return throwException($e->getMessage());
         }

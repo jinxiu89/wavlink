@@ -8,10 +8,17 @@
  */
 
 namespace app\common\helper;
+
 use think\Db;
 use think\Exception;
 use think\Loader;
+use PHPExcel;
+use PHPExcel_IOFactory;
 
+/**
+ * Class Excel
+ * @package app\common\helper
+ */
 class Excel
 {
     /**
@@ -34,14 +41,14 @@ class Excel
     protected $objPHPExcel;
     public $xlsReader;
     public static $instance;
-    protected $sheetNum=0;
+    protected $sheetNum = 0;
     protected $error;
     protected $columnWidth;
-    protected $rowHeight=20;
+    protected $rowHeight = 20;
     protected $excelName;
-    protected $isLoad=false;
+    protected $isLoad = false;
     //如果你的字段列数超过26字母 会报错
-    protected $letterArray=["A","B","C","D","E","F","G","H","I","J","K","L","M","N","O","P","Q","R","S","T","U","V","W","X","Y","Z"];
+    protected $letterArray = ["A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z"];
 
     /**
      * 项目初始化
@@ -49,9 +56,8 @@ class Excel
      */
     public function __construct()
     {
-        Loader::import("phpexcel.PHPExcel",EXTEND_PATH,'.php');
-        $this->objPHPExcel=new \PHPExcel();
-        if(!$this->isLoad){
+        $this->objPHPExcel = new PHPExcel();
+        if (!$this->isLoad) {
             //新建时删除默认页面
             $this->objPHPExcel->disconnectWorksheets();
         }
@@ -65,27 +71,28 @@ class Excel
      * @throws Exception
      * @throws \PHPExcel_Reader_Exception
      */
-    static public function loadExcel($path="/test.xls"){
+    static public function loadExcel($path = "/test.xls")
+    {
         if (is_null(self::$instance)) {
             self::$instance = new static();
         }
-        $path=ROOT_PATH."public_html/".$path;
+        $path = ROOT_PATH . "public_html/" . $path;
         $excel = self::$instance;
 
         try {
             try {
-                $xlsReader = \PHPExcel_IOFactory::createReader("Excel2007");
+                $xlsReader = PHPExcel_IOFactory::createReader("Excel2007");
                 $xlsReader->setReadDataOnly(true); //
                 $xlsReader->setLoadSheetsOnly(true);
 
-                $excel->xlsReader=$xlsReader->load($path);
+                $excel->xlsReader = $xlsReader->load($path);
             } catch (Exception $e) {
 
-                $xlsReader = \PHPExcel_IOFactory::createReader("Excel5");
+                $xlsReader = PHPExcel_IOFactory::createReader("Excel5");
                 $xlsReader->setReadDataOnly(true); //
                 $xlsReader->setLoadSheetsOnly(true);
 
-                $excel->xlsReader=$xlsReader->load($path);
+                $excel->xlsReader = $xlsReader->load($path);
 
             }
         } catch (Exception $e) {
@@ -95,19 +102,21 @@ class Excel
 
     }
 
-    public function getSheetByName($name){
-        if (isset($this->xlsReader)){
+    public function getSheetByName($name)
+    {
+        if (isset($this->xlsReader)) {
             return $this->xlsReader->getSheetByName($name);
-        }else{
+        } else {
             return false;
         }
 
     }
 
-    public function getSheetNames(){
-        if (isset($this->xlsReader)){
+    public function getSheetNames()
+    {
+        if (isset($this->xlsReader)) {
             return $this->xlsReader->getSheetNames();
-        }else{
+        } else {
             return false;
         }
     }
@@ -117,29 +126,34 @@ class Excel
      * Email：776329498@qq.com
      * @return mixed
      */
-    public function getExcelObject(){
+    public function getExcelObject()
+    {
         return $this->xlsReader;
     }
-    public function getAllSheets(){
-        if (isset($this->xlsReader)){
+
+    public function getAllSheets()
+    {
+        if (isset($this->xlsReader)) {
             return $this->xlsReader->getAllSheets();
-        }else{
+        } else {
             return false;
         }
     }
 
-    public function getSheetCount(){
-        if (isset($this->xlsReader)){
+    public function getSheetCount()
+    {
+        if (isset($this->xlsReader)) {
             return $this->xlsReader->getSheetCount();
-        }else{
+        } else {
             return false;
         }
     }
 
-    public function getSheetArrayByIndex($index=0){
-        if (isset($this->xlsReader)){
+    public function getSheetArrayByIndex($index = 0)
+    {
+        if (isset($this->xlsReader)) {
             return $this->xlsReader->getSheet($index)->toArray();
-        }else{
+        } else {
             return false;
         }
     }
@@ -151,8 +165,9 @@ class Excel
      * @param $name
      * @return $this
      */
-    public function setExcelName($name){
-        $this->excelName=$name;
+    public function setExcelName($name)
+    {
+        $this->excelName = $name;
         return $this;
     }
 
@@ -172,57 +187,52 @@ class Excel
      * Power: Mikkle
      * Email：776329498@qq.com
      * @param string $sheet_title
-     * @param string $table   数据库表名称
-     * @param array $field    要导出的字段
-     * @param array $map      查询参数
+     * @param array $data
+     * @param array $field 要导出的字段
+     * @param array $map 查询参数
      * @return $this
      * @throws Exception
      * @throws \PHPExcel_Exception
      */
-    public function createSheet($sheet_title="sheet",$table="",$field=[],$map=[]){
+    public function createSheet($sheet_title = "sheet", $data = [], $field = [])
+    {
 
-        if (empty($table) ||empty($field)||!is_string($table)||!is_array($field)){
-            $this->error="生成Excel的[table]或[field]参数不正确";
+        if (!is_array($data) ||empty($data) || empty($field) || !is_array($field)) {
+            $this->error = "生成Excel的[table]或[field]参数不正确";
             throw new Exception("生成Excel的[table]或[field]参数不正确");
-            return $this;
         }
         $sheet_num = $this->getNewSheetNum();
-        $objPHPExcel=$this->objPHPExcel;
+        $objPHPExcel = $this->objPHPExcel;
         $objPHPExcel->createSheet($sheet_num);
         $objPHPExcel->setActiveSheetIndex($sheet_num);
         $objPHPExcel->getActiveSheet()->setTitle($sheet_title);
 
         //设置默认行高
         $objPHPExcel->getActiveSheet()->getDefaultRowDimension()->setRowHeight($this->rowHeight);
-        $sheet=$objPHPExcel->getActiveSheet();
-        $field_title=array_values($field);
+        $sheet = $objPHPExcel->getActiveSheet();
+        $field_title = array_values($field);
         $letter_array = $this->letterArray;
-        foreach($field_title as $item=>$value){
-            if(isset($this->columnWidth)){
-                if(is_array($this->columnWidth) && count($field)==count($this->columnWidth)){
+        foreach ($field_title as $item => $value) {
+            if (isset($this->columnWidth)) {
+                if (is_array($this->columnWidth) && count($field) == count($this->columnWidth)) {
                     $sheet->getColumnDimension($letter_array[$item])->setWidth($this->columnWidth[$item]);
-                }elseif(is_integer($this->columnWidth)){
+                } elseif (is_integer($this->columnWidth)) {
                     $sheet->getColumnDimension($letter_array[$item])->setWidth($this->columnWidth);
-                }else{
+                } else {
                     $sheet->getColumnDimension($letter_array[$item])->setAutoSize(true);
                 }
-            }else{
+            } else {
                 $sheet->getColumnDimension($letter_array[$item])->setAutoSize(true);
             }
             //标题加粗
-            $sheet->getStyle($letter_array[$item]."1")->getFont()->setBold(true);
-            $sheet->setCellValue($letter_array[$item]."1",$value);
+            $sheet->getStyle($letter_array[$item] . "1")->getFont()->setBold(true);
+            $sheet->setCellValue($letter_array[$item] . "1", $value);
 
         }
-
-        $list=Db::table($table)->where($map)->select();
-//        print_r("hello field in Excel db xia tou");exit();
-        if ($list){
-            foreach($list as $item=>$value ){
-                $value=array_values($value);
-                foreach($value as $i=>$v)
-                    $sheet->setCellValue($letter_array[$i].($item+2),$value[$i]);
-            }
+        foreach ($data as $item => $value) {
+            $value = array_values($value);
+            foreach ($value as $i => $v)
+                $sheet->setCellValue($letter_array[$i] . ($item + 2), $value[$i]);
         }
         return $this;
     }
@@ -240,15 +250,16 @@ class Excel
      * @throws \PHPExcel_Exception
      */
 
-    public function createSheetByModel($sheet_title="sheet",$model_name="",$field=[],$map=[]){
+    public function createSheetByModel($sheet_title = "sheet", $model_name = "", $field = [], $map = [])
+    {
 
-        if (empty($model_name) ||empty($field)||!is_string($model_name)||!is_array($field)){
-            $this->error="生成Excel的[table]或[field]参数不正确";
+        if (empty($model_name) || empty($field) || !is_string($model_name) || !is_array($field)) {
+            $this->error = "生成Excel的[table]或[field]参数不正确";
             throw new Exception("生成Excel的[table]或[field]参数不正确");
             return $this;
         }
         $sheet_num = $this->getNewSheetNum();
-        $objPHPExcel=$this->objPHPExcel;
+        $objPHPExcel = $this->objPHPExcel;
         $objPHPExcel->createSheet($sheet_num);
         $objPHPExcel->setActiveSheetIndex($sheet_num);
         $objPHPExcel->getActiveSheet()->setTitle($sheet_title);
@@ -256,38 +267,38 @@ class Excel
         //设置默认行高
         $objPHPExcel->getActiveSheet()->getDefaultRowDimension()->setRowHeight($this->rowHeight);
 
-        $sheet=$objPHPExcel->getActiveSheet();
-        $field_title=array_values($field);
+        $sheet = $objPHPExcel->getActiveSheet();
+        $field_title = array_values($field);
         $letter_array = $this->letterArray;
-        foreach($field_title as $item=>$value){
-            if(isset($this->columnWidth)){
-                if(is_array($this->columnWidth) && count($field)==count($this->columnWidth)){
+        foreach ($field_title as $item => $value) {
+            if (isset($this->columnWidth)) {
+                if (is_array($this->columnWidth) && count($field) == count($this->columnWidth)) {
                     $sheet->getColumnDimension($letter_array[$item])->setWidth($this->columnWidth[$item]);
-                }elseif(is_integer($this->columnWidth)){
+                } elseif (is_integer($this->columnWidth)) {
                     $sheet->getColumnDimension($letter_array[$item])->setWidth($this->columnWidth);
-                }else{
+                } else {
                     $sheet->getColumnDimension($letter_array[$item])->setAutoSize(true);
                 }
-            }else{
+            } else {
                 $sheet->getColumnDimension($letter_array[$item])->setAutoSize(true);
             }
             //标题加粗
-            $sheet->getStyle($letter_array[$item]."1")->getFont()->setBold(true);
-            $sheet->setCellValue($letter_array[$item]."1",$value);
+            $sheet->getStyle($letter_array[$item] . "1")->getFont()->setBold(true);
+            $sheet->setCellValue($letter_array[$item] . "1", $value);
 
         }
 
 
-        $field=array_values(array_flip($field));
-        $list=Loader::model($model_name)->field($field)->where($map)->select();
-        if ($list){
-            foreach($list as $item=>$value ){
-                $value=array_values($value->toArray());
-                foreach($value as $i=>$v)
+        $field = array_values(array_flip($field));
+        $list = Loader::model($model_name)->field($field)->where($map)->select();
+        if ($list) {
+            foreach ($list as $item => $value) {
+                $value = array_values($value->toArray());
+                foreach ($value as $i => $v)
                     if (is_array($v)) {
-                        $sheet->setCellValue($letter_array[$i].($item+2),implode("--",$v));
-                    }else{
-                        $sheet->setCellValue($letter_array[$i].($item+2),$v);
+                        $sheet->setCellValue($letter_array[$i] . ($item + 2), implode("--", $v));
+                    } else {
+                        $sheet->setCellValue($letter_array[$i] . ($item + 2), $v);
                     }
             }
         }
@@ -303,21 +314,19 @@ class Excel
      * @throws \PHPExcel_Reader_Exception
      * @throws \PHPExcel_Writer_Exception
      */
-    public function downloadExcel($save_name=""){
-
+    public function downloadExcel($save_name = "")
+    {
         ob_start();
         //最后通过浏览器输出
-        $save_name=$this->getExcelName();
+        $save_name = $this->getExcelName();
         $save_name = $save_name ? "$save_name.xls" : "导出信息.xls";
         header('Content-Type: application/vnd.ms-excel; charset=utf-8');
         header("Content-Disposition: attachment;filename=$save_name");
         header('Cache-Control: max-age=0');
-        $objWriter = \PHPExcel_IOFactory::createWriter($this->objPHPExcel, 'Excel5');
+        $objWriter = PHPExcel_IOFactory::createWriter($this->objPHPExcel, 'Excel5');
         $objWriter->save('php://output');
-        print_r($save_name);exit();
         ob_end_flush();//输出全部内容到浏览器
         die();
-
     }
 
     /**
@@ -326,9 +335,10 @@ class Excel
      * Email：776329498@qq.com
      * @return int
      */
-    protected function getNewSheetNum(){
-        $sheet_num=$this->sheetNum;
-        $this->sheetNum=$sheet_num+1;
+    protected function getNewSheetNum()
+    {
+        $sheet_num = $this->sheetNum;
+        $this->sheetNum = $sheet_num + 1;
         return $sheet_num;
     }
 
@@ -339,9 +349,10 @@ class Excel
      * @param $width
      * @return $this
      */
-    public function setColumnWidth($width){
-        if(is_numeric($width)||is_array($width)){
-            $this->columnWidth=$width;
+    public function setColumnWidth($width)
+    {
+        if (is_numeric($width) || is_array($width)) {
+            $this->columnWidth = $width;
         }
         return $this;
     }
@@ -353,9 +364,10 @@ class Excel
      * @param $height
      * @return $this
      */
-    public function setRowHeight($height){
-        if(is_integer($height)){
-            $this->rowHeight=$height;
+    public function setRowHeight($height)
+    {
+        if (is_integer($height)) {
+            $this->rowHeight = $height;
         }
         return $this;
     }
@@ -371,6 +383,4 @@ class Excel
     {
         call_user_func_array([$this->objPHPExcel, $method], $args);
     }
-
-
 }

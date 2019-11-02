@@ -13,30 +13,18 @@
             </dd>
         </dl>
         {/if}
-        {if condition="in_array('article/index',$access)"}
-        <dl id="menu-article">
-            <dt><i class="Hui-iconfont">&#xe616;</i> News管理<i class="Hui-iconfont menu_dropdown-arrow">&#xe6d5;</i></dt>
-            <dd>
-                <ul>
-                    <li id="article_art">
-                        <a href="{:url('wavlink/Article/index')}" title="文章管理">文章管理</a>
-                    </li>
-                    <li id="article_rec"><a href="{:url('wavlink/Article/article_recycle')}" title="回收站内文章">回收站</a></li>
-                </ul>
-            </dd>
-        </dl>
-        {/if}
-        {if condition="in_array('document/index',$access)"}
-        <dl id="service_document">
-            <dt><i class="Hui-iconfont">&#xe623;</i> 文档中心<i class="Hui-iconfont menu_dropdown-arrow">&#xe6d5;</i></dt>
-            <dd>
-                <ul>
-                    <li id="service_doc"><a href="{:url('wavlink/Document/index')}" title="下载列表">文档管理</a></li>
-                    <li id="doc_recovery"><a href="{:url('wavlink/Document/doc_recycle')}" title="回收站">回收站</a></li>
-                </ul>
-            </dd>
-        </dl>
-        {/if}
+
+<!--        {if condition="in_array('document/index',$access)"}-->
+<!--        <dl id="service_document">-->
+<!--            <dt><i class="Hui-iconfont">&#xe623;</i> 文档中心<i class="Hui-iconfont menu_dropdown-arrow">&#xe6d5;</i></dt>-->
+<!--            <dd>-->
+<!--                <ul>-->
+<!--                    <li id="service_doc"><a href="{:url('wavlink/Document/index')}" title="下载列表">文档管理</a></li>-->
+<!--                    <li id="doc_recovery"><a href="{:url('wavlink/Document/doc_recycle')}" title="回收站">回收站</a></li>-->
+<!--                </ul>-->
+<!--            </dd>-->
+<!--        </dl>-->
+<!--        {/if}-->
         {if condition="in_array('drivers/index',$access)"}
         <dl id="service_drivers">
             <dt><i class="Hui-iconfont">&#xe641;</i> 驱动管理<i class="Hui-iconfont menu_dropdown-arrow">&#xe6d5;</i></dt>
@@ -44,6 +32,17 @@
                 <ul>
                     <li id="drivers_list"><a href="{:url('wavlink/Drivers/index')}" title="驱动下载列表">驱动管理</a></li>
                     <li id="drivers_recycle"><a href="{:url('wavlink/Drivers/recycle')}" title="回收站">回收站</a></li>
+                </ul>
+            </dd>
+        </dl>
+        {/if}
+        {if condition="in_array('drivers/index',$access)"}
+        <dl id="service_firmware">
+            <dt><i class="Hui-iconfont">&#xe641;</i> 固件管理<i class="Hui-iconfont menu_dropdown-arrow">&#xe6d5;</i></dt>
+            <dd>
+                <ul>
+                    <li id="firmware_list"><a href="{:url('wavlink/firmware/index')}" title="固件管理列表">固件列表</a></li>
+                    <li id="firmware_recycle"><a href="{:url('wavlink/firmware/recycle')}" title="回收站">回收站</a></li>
                 </ul>
             </dd>
         </dl>

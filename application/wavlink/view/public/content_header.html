@@ -62,6 +62,19 @@
             </dd>
         </dl>
         {/if}
+        {if condition="in_array('article/index',$access)"}
+        <dl id="menu-article">
+            <dt><i class="Hui-iconfont">&#xe616;</i> 文章管理<i class="Hui-iconfont menu_dropdown-arrow">&#xe6d5;</i></dt>
+            <dd>
+                <ul>
+                    <li id="article_art">
+                        <a href="{:url('wavlink/Article/index')}" title="文章管理">文章列表</a>
+                    </li>
+                    <li id="article_rec"><a href="{:url('wavlink/Article/article_recycle')}" title="回收站内文章">禁用列表</a></li>
+                </ul>
+            </dd>
+        </dl>
+        {/if}
         {if condition="in_array('marketing/index',$access)"}
         <dl id="menu-marketing">
             <dt><i class="Hui-iconfont">&#xe62b;</i> 营销管理<i class="Hui-iconfont menu_dropdown-arrow">&#xe6d5;</i></dt>

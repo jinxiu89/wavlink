@@ -30,49 +30,37 @@
                     <th scope="col" colspan="13">FAQ管理</th>
                 </tr>
                 <tr class="text-c">
-                    <th width="20"><input type="checkbox" name="" value=""></th>
                     <th width="40">ID</th>
                     <th>问题名称</th>
                     <th width="200">所属分类</th>
                     <th width="60">所属语言</th>
-                    <th>url标题</th>
-                    <th width="120">创建时间</th>
-                    <th width="60">是否已解答</th>
-                    <th width="150">操作</th>
+                    <th width="75">创建时间</th>
+                    <th width="110">操作</th>
                 </tr>
                 </thead>
                 <tbody>
                 {volist name="faq" id="vo"}
                 <tr class="text-l">
-                    <td><input type="checkbox" value="{$vo.id}" name="id"></td>
-                    <td>{$vo.id}</td>
+                    <td class="text-c">{$vo.id}</td>
                     <td>{$vo.name}</td>
                     <td>{$vo.category_id|getServiceCategory|raw}</td>
                     <td>{$vo.language_id|getLanguage|raw}</td>
-                    <td>{$vo.url_title}</td>
-                    <td>{$vo.create_time}</td>
-                    <td class="td-status text-c"><span class="label label-success radius">已回答</span></td>
+                    <td>{$vo.create_time|date="Y-m-d"}</td>
                     <td class="td-manage">
                         <a title="编辑" href="javascript:;"
-                           onclick="index_edit('FAQ编辑','{:url(\'wavlink/Faq/edit\',[\'id\'=>$vo.id])}')" class="ml-5"
-                           style="text-decoration:none"><i class="Hui-iconfont" style="font-size: 18px;color: green">&#xe6df;</i></a>
+                           onclick="index_edit('FAQ编辑','{:url(\'wavlink/Faq/edit\',[\'id\'=>$vo.id])}')" class="ml-5 btn btn-primary"
+                           style="text-decoration:none"><i class="Hui-iconfont" style="font-size: 18px;color: #fff">&#xe6df;</i></a>
+                        {if condition="$vo.status eq 1"}
                         <a title="禁用" href="javascript:;"
-                           onclick="recycle('{:url(\'wavlink/Faq/byStatus\',[\'id\'=>$vo.id,\'status\'=> -1])}')"
-                           class="ml-5" style="text-decoration:none"><i class="Hui-iconfont"
-                                                                        style="font-size: 18px;color: red">&#xe6e2;</i></a>
-                        {empty name="$language_id"}
+                           onclick="recycle('{:url(\'Faq/byStatus\',[\'id\'=>$vo.id,\'status\'=> -1])}')"
+                           class="ml-5 btn btn-danger">
+                            <i class="Hui-iconfont" style="font-size: 18px;color: #fff">&#xe6e2;</i></a>
                         {else /}
-                        <a title="置顶" href="javascript:;" onclick="mark(this)" data-id="{$vo.id}" data-type="4"
-                           data-map="" class="ml-5 mark" style="text-decoration:none"><i
-                                class="Hui-iconfont">&#xe684</i></a>
-                        <a title="上移一位" href="javascript:;" onclick="mark(this)" data-id="{$vo.id}" data-type="3"
-                           data-map="" class="ml-5" style="text-decoration:none"><i class="Hui-iconfont">&#xe6d6</i></a>
-                        <a title="下移一位" href="javascript:;" onclick="mark(this)" data-id="{$vo.id}" data-type="2"
-                           data-map="" class="ml-5" style="text-decoration:none"><i class="Hui-iconfont">&#xe6d5</i></a>
-                        <a title="置底" href="javascript:;" onclick="mark(this)" data-id="{$vo.id}" data-type="1"
-                           data-map="" class="ml-5 mark" style="text-decoration:none"><i
-                                class="Hui-iconfont">&#xe674</i></a>
-                        {/empty}
+                        <a title="启用" href="javascript:;"
+                           onclick="recycle('{:url(\'Faq/byStatus\',[\'id\'=>$vo.id,\'status\'=> 1])}')"
+                           class="ml-5 btn btn-success">
+                            <i class="Hui-iconfont" style="font-size: 18px;color: #fff">&#xe601;</i></a>
+                        {/if}
                     </td>
                 </tr>
                 {/volist}

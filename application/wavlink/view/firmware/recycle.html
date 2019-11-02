@@ -1,0 +1,84 @@
+<!--包含头部文件-->
+{include file="public/service_header"/}
+<section class="Hui-article-box">
+    <nav class="breadcrumb"><i class="Hui-iconfont">&#xe67f;</i> 首页
+        <span class="c-gray en">&gt;</span>
+        固件管理
+        <span class="c-gray en">&gt;</span>
+        禁用列表
+        <a class="btn btn-success radius r" style="line-height:1.6em;margin-top:3px"
+           href="javascript:location.replace(location.href);" title="刷新"><i class="Hui-iconfont">&#xe68f;</i></a>
+    </nav>
+
+    <div class="Hui-article">
+        <article class="cl pd-20" style="min-height: 51em;">
+            <form action="{:url('Drivers/index')}" method="post">
+                <div class="text-c"> 文件名称：
+                    <input type="text" class="input-text" style="width:250px" placeholder="输入文件名称" name="name">
+                    <button type="submit" class="btn btn-success" name=""><i class="Hui-iconfont">&#xe665;</i> 搜索</button>
+                </div>
+            </form>
+            <div class="cl pd-5 bg-1 bk-gray mt-20" style="line-height: 31px">
+                <span class="r">共有数据：<strong>{notempty name="count"}{$count}{/notempty}</strong> 条</span>
+            </div>
+            <table class="table table-border table-bordered table-bg mt-20">
+                <thead>
+                <tr>
+                    <th scope="col" colspan="16">下载列表</th>
+                </tr>
+                <tr class="text-c">
+                    <th width="40">ID</th>
+                    <th>文件名称</th>
+                    <th width="300">描述</th>
+                    <th width="90">型号</th>
+                    <th width="50">语言</th>
+                    <th width="30">排序</th>
+                    <th width="75">创建日期</th>
+                    <th width="110">操作</th>
+                </tr>
+                </thead>
+                <tbody>
+                {notempty name="data"}
+                {volist name="data" id="vo"}
+                <tr class="text-l">
+                    <td class="text-c">{$vo.id}</td>
+                    <td>{$vo.name}</td>
+                    <td>{$vo.description}</td>
+                    <td>{$vo.model}</td>
+                    <td class="text-c">{$vo.language_id|getLanguage|raw}</td>
+                    <td>{$vo.listorder}</td>
+                    <td>{$vo.create_time|date="Y-m-d"}</td>
+                    <td class="td-manage">
+                        <a title="恢复" href="javascript:;" onclick="recycle('{:url(\'wavlink/firmware/byStatus\',[\'id\'=>$vo.id,\'status\'=>1])}')" class="ml-5 btn btn-success" style="text-decoration:none">
+                            <i class="Hui-iconfont" style="font-size: 18px;color:#fff;">&#xe6dc;</i>
+                        </a>
+                        <a title="彻底删除" href="javascript:;" onclick="recycle('{:url(\'wavlink/firmware/del\',[\'id\'=>$vo.id])}')" class="ml-5 btn btn-danger" style="text-decoration:none">
+                            <i class="Hui-iconfont" style="font-size: 18px;color:#fff;">&#xe6e2;</i>
+                        </a>
+                    </td>
+                </tr>
+                {/volist}
+                {/notempty}
+                </tbody>
+            </table>
+            <div class="cl pd-5 bg-1 bk-gray mt-20 tp5-winstar">{notempty name="data"}{:pagination($data)}{/notempty}</div>
+        </article>
+        {include file="public/explain" /}
+    </div>
+
+</section>
+<!--包含footer文件-->
+{include file="public/footer"/}
+<script>
+    var SCOPE = {
+        'listorder_url':"{:url('Drivers/listorder')}"
+    };
+    $(document).ready(function () {
+        $("#service_firmware dt").addClass("selected");
+        $("#service_firmware dd").css("display", "block");
+        $("#firmware_recycle").addClass("current");
+        $("#service").addClass("current");
+    })
+</script>
+</body>
+</html>

@@ -1,4 +1,5 @@
 <?php
+
 use think\facade\Route;
 use think\facade\Config;
 
@@ -94,6 +95,11 @@ Route::group(Config::get('__BACKEND__'), function () {
     Route::get('drivers/recycle', 'wavlink/drivers/recycle');
     Route::get('drivers/add', 'wavlink/drivers/add');
     Route::get('drivers/edit', 'wavlink/drivers/edit', [], ['id' => '\d+']);
+    //固件管理
+    Route::get('firmware/index', 'wavlink/firmware/index');
+    Route::get('firmware/add', 'wavlink/firmware/add');
+    Route::get('firmware/edit', 'wavlink/firmware/edit', [], ['id' => '\d+']);
+    Route::get('firmware/recycle', 'wavlink/firmware/recycle');
     //说明书和文件
     Route::get('manual/index', 'wavlink/manual/index');
     Route::get('manual/add', 'wavlink/manual/add');
@@ -101,7 +107,7 @@ Route::group(Config::get('__BACKEND__'), function () {
     Route::get('manual/add_download', 'wavlink/Manual/add_download', [], ['id' => '\d+']);
     Route::get('manual/edit_download', 'wavlink/manual/edit_download', [], ['id' => '\d+', 'manual_id' => '\d+']);
     Route::get('manual/del_download', 'wavlink/Manual/del_download', [], ['id' => '\d+']);
-    //视频
+    //视频'
     Route::get('video/index', 'wavlink/video/index');
     Route::get('video/video_recycle', 'wavlink/video/video_recycle');
     Route::get('video/add', 'wavlink/video/add');
@@ -139,7 +145,7 @@ Route::group(Config::get('__BACKEND__'), function () {
     Route::get('sn/edit', 'wavlink/sn/edit', [], ['id' => '\d+']);
     Route::get('old_sn/index', 'wavlink/OldSn/index');
     Route::get('old_sn/add', 'wavlink/OldSn/add');
-    Route::get('/','wavlink/index/index');
+    Route::get('/', 'wavlink/index/index');
 });
 
 //post请求组
@@ -222,4 +228,9 @@ Route::group(Config::get('__BACKEND__'), function () {
     Route::post('/Drivers/listorder', 'wavlink/Drivers/listorder');
     Route::post('/Video/listorder', 'wavlink/Video/listorder');
     Route::post('/faq/listorder', 'wavlink/faq/listorder');
+    //固件模块add保存
+    Route::post('firmware/add', 'wavlink/firmware/add');
+    Route::post('firmware/edit', 'wavlink/firmware/edit', [], ['id' => '\d+']);
+    Route::post('firmware/byStatus', 'wavlink/firmware/byStatus');
+    Route::post('firmware/del', 'wavlink/firmware/del');
 });

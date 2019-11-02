@@ -1,0 +1,76 @@
+<!--包含头部文件-->
+{include file="public/headers" /}
+<div class="page-container">
+    <form class="form form-horizontal" id="form-product-add" method="post" action="">
+        <input type="hidden" name="language_id" value="{$language}">
+        <input type="hidden" name="title" value="{$title}">
+        <div class="row cl">
+            <label class="form-label col-xs-4 col-sm-2"><span class="c-red">*</span>名称：</label>
+            <div class="formControls col-xs-4 col-sm-3">
+                <input type="text" class="input-text" value="" placeholder="" id="name" name="name">
+            </div>
+        </div>
+        <div class="row cl">
+            <label class="form-label col-xs-4 col-sm-2"><span class="c-red">*</span>型号/品名：</label>
+            <div class="formControls col-xs-4 col-sm-3">
+                <input type="text" class="input-text" value="" placeholder="" id="model" name="model">
+            </div>
+        </div>
+        <div class="row cl">
+            <label class="form-label col-xs-4 col-sm-2"><span class="c-red">*</span>文件大小：</label>
+            <div class="formControls col-xs-4 col-sm-3">
+                <input type="text" class="input-text" value="" placeholder="文件大小：8MB" id="size" name="size">
+            </div>
+        </div>
+        <div class="row cl">
+            <label class="form-label col-xs-4 col-sm-2"><span class="c-red">*</span>资源地址：</label>
+            <div class="formControls col-xs-8 col-sm-5">
+                <input type="text" class="input-text" value="" placeholder="" id="url" name="url">
+            </div>
+        </div>
+        <div class="row cl">
+            <label class="form-label col-xs-4 col-sm-2"><span class="c-red">*</span>关键词：</label>
+            <div class="formControls col-xs-8 col-sm-3">
+                <input type="text" class="input-text" value="" placeholder="" id="keywords" name="keywords">
+            </div>
+        </div>
+        <div class="row cl">
+            <label class="form-label col-xs-4 col-sm-2"><span class="c-red">*</span>描述：</label>
+            <div class="formControls col-xs-8 col-sm-6">
+                <textarea name="description" cols="" rows="" class="textarea" placeholder="固件描述" dragonfly="true" ></textarea>
+            </div>
+        </div>
+        <div class="row cl">
+            <label class="form-label col-xs-4 col-sm-2"><span class="c-red">*</span>注意事项：</label>
+            <div class="formControls col-xs-8 col-sm-6">
+                <textarea name="notices" cols="" rows="" class="textarea" placeholder="注意事项" dragonfly="true" ></textarea>
+            </div>
+        </div>
+        <div class="row cl">
+            <div class="col-xs-8 col-sm-9 col-xs-offset-4 col-sm-offset-2">
+                <button class="btn btn-primary radius" type="button" onclick="save('{:url(\'wavlink/firmware/add\')}')">
+                    <i class="Hui-iconfont">&#xe632;</i> 保存
+                </button>
+
+                <button onClick="layer_close();" class="btn btn-default radius" type="button">
+                    &nbsp;&nbsp;取消&nbsp;&nbsp;</button>
+            </div>
+        </div>
+    </form>
+</div>
+<!--包含头部文件-->
+{include file="public/footer" /}
+<!--请在下方写此页面业务相关的脚本-->
+<script type="text/javascript" src="__STATIC__/admin/h-ui.admin/js/image.js"></script>
+<script type="text/javascript" src="__STATIC__/admin/uploadify/jquery.uploadify.min.js"></script>
+<script type="text/javascript" src="__STATIC__/admin/lib/kindeditor/kindeditor-all-min.js"></script>
+<script type="text/javascript" src="__STATIC__/admin/lib/kindeditor/lang/zh_CN.js"></script>
+<!--分配编辑器-->
+<script type="text/javascript">
+    var SCOPE = {
+        'uploadify_swf': '__STATIC__/admin/uploadify/uploadify.swf',
+        'image_upload': "{:url('api/image/upload')}"
+    };
+</script>
+</body>
+</html>

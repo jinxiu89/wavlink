@@ -6,6 +6,7 @@
  * Time: 10:37
  * 下载中心
  */
+
 namespace app\wavlink\controller;
 
 use app\common\model\Drivers as DriversModel;
@@ -25,7 +26,8 @@ Class Drivers extends BaseAdmin
     /***
      * @return mixed|View
      */
-    public function index() {
+    public function index()
+    {
         if (request()->isPost()) {//搜索
             $data = input('post.name');
             $res = DriversModel::getSelectDrivers($data, $this->currentLanguage['id']);
@@ -46,7 +48,8 @@ Class Drivers extends BaseAdmin
     /**
      * 添加下载页面
      */
-    public function add() {
+    public function add()
+    {
         //获取驱动的分类
         $category = ServiceCategoryModel::getSecondCategory($this->currentLanguage['id']);
         return $this->fetch('', [
@@ -59,26 +62,27 @@ Class Drivers extends BaseAdmin
      * 提交保存数据
      * @return array
      */
-    public function save() {
-        if (request()->isAjax()){
+    public function save()
+    {
+        if (request()->isAjax()) {
             $data = input('post.');
-            $validate=new DriversValidate();
-            if(isset($data['id']) || !empty($data['id'])){
-                if($validate->scene('edit')->check($data)){
+            $validate = new DriversValidate();
+            if (isset($data['id']) || !empty($data['id'])) {
+                if ($validate->scene('edit')->check($data)) {
                     return $this->update($data);
-                }else{
-                    return show(0,'','','','', $validate->getError());
+                } else {
+                    return show(0, '', '', '', '', $validate->getError());
                 }
-            }else{
-                if($validate->scene('add')->check($data)){
+            } else {
+                if ($validate->scene('add')->check($data)) {
                     $res = (new DriversModel())->add($data);
                     if ($res) {
-                        return show(1,'','','','', '添加成功');
+                        return show(1, '', '', '', '', '添加成功');
                     } else {
-                        return show(0,'','','','', '添加失败');
+                        return show(0, '', '', '', '', '添加失败');
                     }
-                }else{
-                    return show(0,'','','','', $validate->getError());
+                } else {
+                    return show(0, '', '', '', '', $validate->getError());
                 }
             }
         }
@@ -90,8 +94,9 @@ Class Drivers extends BaseAdmin
      * @return mixed
      * @throws DbException
      */
-    public function edit($id) {
-       $id = $this->MustBePositiveInteger($id);
+    public function edit($id)
+    {
+        $id = $this->MustBePositiveInteger($id);
         //获取驱动的二级分类
         $category = ServiceCategoryModel::getSecondCategory($this->currentLanguage['id']);
         $drivers = DriversModel::get($id);
@@ -107,35 +112,38 @@ Class Drivers extends BaseAdmin
      * @param Request $request
      * @return array
      */
-    public function allRecycle(Request $request) {
+    public function allRecycle(Request $request)
+    {
         $ids = $request::instance()->post();
         if (!is_array($ids)) {
-            return show(0, 'error','','','', '数据错误');
+            return show(0, 'error', '', '', '', '数据错误');
         }
         try {
             foreach ($ids as $k => $v) {
                 if (DriversModel::get($k)) {
                     model('Drivers')->where('id', $k)->update(['status' => -1]);
                 } else {
-                    return show(0, 'error','','','', '回收失败');
+                    return show(0, 'error', '', '', '', '回收失败');
                 }
             }
-            return show(1, 'success','','','','批量回收成功');
+            return show(1, 'success', '', '', '', '批量回收成功');
         } catch (Exception $e) {
-            return show(0, 'error', '','','',$e->getMessage());
+            return show(0, 'error', '', '', '', $e->getMessage());
         }
     }
 
     /**
      * 回收下载列表开发
      */
-    public function recycle() {
-        $result = DriversModel::getDataByStatus(-1);
+    public function recycle()
+    {
+        $result = DriversModel::getDataByStatus(-1, $this->currentLanguage['id']);
         return $this->fetch('', [
             'drivers' => $result['data'],
             'counts' => $result['count'],
         ]);
     }
+
     /**
      * 排序功能开发
      * 默认 必须数据 id,type,language_id
@@ -144,7 +152,8 @@ Class Drivers extends BaseAdmin
      * type == 3 时 上移
      * type == 2 时 下移
      */
-    public function listorder() {
+    public function listorder()
+    {
         if (request()->isAjax()) {
             $data = input('post.'); //id ,type ,language_id
             self::order(array_filter($data));
@@ -159,8 +168,8 @@ Class Drivers extends BaseAdmin
     public function byStatus()
     {
         $data = input('get.');
-        $validate=new DriversValidate();
-        $model=new DriversModel();
+        $validate = new DriversValidate();
+        $model = new DriversModel();
         if ($validate->scene('changeStatus')->check($data)) {
             try {
                 if ($model->allowField(true)->save($data, ['id' => $data['id']])) {

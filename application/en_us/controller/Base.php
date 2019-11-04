@@ -41,7 +41,6 @@ class Base extends Controller
      */
     protected $language_id; //全局的语言ID
     protected $language; //语言
-
     protected $category; // 产品分类列表
     protected $imagesNew; // 最新产品
     protected $imageBest; //最热产品
@@ -56,12 +55,16 @@ class Base extends Controller
     /**
      * Base constructor.
      * @param App|null $app
+     * @throws DataNotFoundException
+     * @throws DbException
+     * @throws ModelNotFoundException
      */
     public function __construct(App $app = null)
     {
         parent::__construct($app);
         $path = explode('/', Request::path());
         Cookie::set('lang_var', $path[0]);
+        $this->language_id = LanguageModel::getLanguageCodeOrID($this->code);
         $this->code = $path[0];
     }
 
@@ -70,13 +73,6 @@ class Base extends Controller
         parent::initialize();
         //当前模块
         $this->module = Request::module();//模块名
-        try {
-            $this->language_id = LanguageModel::getLanguageCodeOrID($this->code);
-        } catch (DataNotFoundException $e) {
-        } catch (ModelNotFoundException $e) {
-        } catch (DbException $e) {
-        }//$code 转成 language_id
-        //这两个玩意暂时还没找到用途先放在这里
         $url = Request::controller();
         $this->assign('url', $url);
     }
@@ -100,7 +96,7 @@ class Base extends Controller
     public function about()
     {
         $about = (new AboutModel())->getAbouts($this->code);
-        $this->assign("about", $about);
+        $this->assign("about", $about['data']);
     }
 
     /**

@@ -17,6 +17,8 @@ Route::group('zh_cn', function () {
     Route::get('/drivers/:category', 'Drivers/category');
     Route::get('/manuals', 'Manual/index');
     Route::get('/manuals/index', 'Manual/index');
+    Route::get('/firmware/details/:title', 'Firmware/details')->pattern(['title'=>'[\w-]+']);
+    Route::get('/firmware', 'Firmware/index');
     Route::get('/faq', 'Faq/index');
     Route::get('/faq/:url_title', 'Faq/category');
     Route::get('/faq/details/:url_title', 'Faq/details');

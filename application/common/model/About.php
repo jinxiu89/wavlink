@@ -32,4 +32,7 @@ class About extends BaseModel
         $data['count']=$query->count();
         return $data;
     }
+    public function getAboutByLanguageId($language){
+
+    }
 }

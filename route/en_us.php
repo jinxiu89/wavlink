@@ -10,20 +10,22 @@ use think\facade\Route;
 
 Route::group('en_us', function () {
     Route::get('/index', 'Index/index');
-    Route::get('/category/:category','Category/index')->pattern(['category'=>'[\w-]+']);
-    Route::get('/product/:product','Product/details')->pattern(['product'=>'[\w-]+']);
-    Route::get('/about/:about','About/index')->pattern(['about'=>'[\w-]+']);
-    Route::get('/drivers/:category','Drivers/category')->pattern(['category'=>'[\w-]+']);
-    Route::get('/drivers','Drivers/index');
-    Route::get('/manuals/index','Manual/index');
-    Route::get('/manuals/:category','Manual/category')->pattern(['category'=>'[\w-]+']);
-    Route::get('/manuals','Manual/index');
-    Route::get('/faq/details/:url_title','Faq/details')->pattern(['url_title'=>'[\w-]+']);
-    Route::get('/faq/:url_title','Faq/category')->pattern(['url_title'=>'[\w-]+']);
-    Route::get('/faq','Faq/index');
-    Route::post('/guest_book/save','GuestBook/save');
-    Route::get('/guest_book/','GuestBook/add');
-    Route::get('/tuya/Appdownload','Tuya/index');
+    Route::get('/category/:category', 'Category/index')->pattern(['category' => '[\w-]+']);
+    Route::get('/product/:product', 'Product/details')->pattern(['product' => '[\w-]+']);
+    Route::get('/about/:about', 'About/index')->pattern(['about' => '[\w-]+']);
+    Route::get('/drivers/:category', 'Drivers/category')->pattern(['category' => '[\w-]+']);
+    Route::get('/drivers', 'Drivers/index');
+    Route::get('/firmware/details/:title', 'Firmware/details')->pattern(['title'=>'[\w-]+']);
+    Route::get('/firmware', 'Firmware/index');
+    Route::get('/manuals/index', 'Manual/index');
+    Route::get('/manuals/:category', 'Manual/category')->pattern(['category' => '[\w-]+']);
+    Route::get('/manuals', 'Manual/index');
+    Route::get('/faq/details/:url_title', 'Faq/details')->pattern(['url_title' => '[\w-]+']);
+    Route::get('/faq/:url_title', 'Faq/category')->pattern(['url_title' => '[\w-]+']);
+    Route::get('/faq', 'Faq/index');
+    Route::post('/guest_book/save', 'GuestBook/save');
+    Route::get('/guest_book/', 'GuestBook/add');
+    Route::get('/tuya/Appdownload', 'Tuya/index');
     Route::get('/', 'Index/index');
 });
 

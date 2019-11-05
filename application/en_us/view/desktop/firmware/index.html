@@ -14,7 +14,7 @@
         <div class="g-path">
             <ol class="breadcrumb">
                 <li><a href="/{$code}/index.html">{:lang('home')}</a></li>
-                <li class="active">{:lang('manual')}</li>
+                <li class="active">{:lang('Firmware')}</li>
             </ol>
         </div>
     </div>
@@ -32,7 +32,8 @@
             </div>
             <div class="g-main">
                 <div class="g-filter">
-                    <div class="filter">
+                    <div class="sort"><span>{:lang('list of firmware')}</span></div>
+                    <!--<div class="filter">
                         <span>{:lang('filter by')} : </span>
                         <div class="select">
                             <select name="category" class="filter_by">
@@ -40,8 +41,8 @@
                             </select>
                             <span class="iconfont">&#xe8ec;</span>
                         </div>
-                    </div>
-                    <div class="sort">
+                    </div>-->
+                    <!--<div class="sort">
                         <span>{:lang('sort by')} : </span>
                         <div class="select">
                             <select class="order_by">
@@ -50,7 +51,7 @@
                             </select>
                             <span class="iconfont">&#xe8ec;</span>
                         </div>
-                    </div>
+                    </div>-->
 
                     <div class="result">
                         <span>{:lang('Result')} {$count}</span>
@@ -94,15 +95,15 @@
         $('#support').addClass('active');
         $('.firmware').addClass('active');
         // 筛选变化时 过滤
-        $('.filter_by').change(function () {
+/*        $('.filter_by').change(function () {
             var filter_by = $(this).children('option:selected').val();
             var order_by = $('.order_by').children('option:selected').val();
             window.location.href = '/{$code}/manuals/' + filter_by + '.html?order=' + order_by
-        });
+        });*/
         $('.order_by').change(function () {
             var filter_by = $('.filter_by').children('option:selected').val();
             var order_by = $(this).children('option:selected').val();
-            window.location.href = '/{$code}/manuals/' + filter_by + '.html?order=' + order_by
+            window.location.href = '/{$code}/firmware.html?order=' + order_by
         });
     });
 </script>

@@ -101,7 +101,7 @@
          style="overflow:visible !important;padding:0; cursor: -webkit-grab;">
         <div class="swiper-wrapper relative col-xs-12"
              style="padding:0;transition-duration: 0ms; transform: translate3d(-3807px, 0px, 0px);" id="bannerSlide">
-            {volist name="imagesSlide" id="vo"}
+            {volist name="swiper" id="vo"}
             <div class="relative swiper-slide swiper-slide-prev swiper-slide-duplicate-next col-xs-12"
                  id="swiper-slide2" data-swiper-slide-index="{$key}" style="padding:0">
                 <a href="{$vo.url}">
@@ -151,7 +151,7 @@
         </div>
     </div>
     <div id="bannerpagination" class="pagination swiper-pagination-clickable swiper-pagination-bullets">
-        {volist name="imagesSlide" id="vo"}
+        {volist name="swiper" id="vo"}
         <span class="swiper-pagination-bullet"></span>
         {/volist}
     </div>
@@ -163,7 +163,7 @@
 {block name="body"}
 <!-- wavlink 新产品横幅广告 -->
 <div class="relative rel_p col-xs-12">
-    {volist name="imagesBest" id="vo"}
+    {volist name="showcase" id="vo"}
     <a href="{$vo.url}">
         <div id="Detail_page_all">
             <div class="container-fluid">
@@ -185,7 +185,7 @@
 </div>
 <div id="Rec" class="index_rec Rec col-lg-10 col-lg-offset-1 col-xs-12" style="padding:0">
     <div class="pac col-xs-12">
-        {volist name="imagesMain" id="vo"}
+        {volist name="News" id="vo"}
         <div class="relative col-sm-6 col-xs-12">
             <a href="{$vo.url}" style="background: #fff;"><img src="{$vo.image_pc_url}" alt="" class="img-responsive center-block"></a>
             <div class="bg-white absolute col-xs-12">

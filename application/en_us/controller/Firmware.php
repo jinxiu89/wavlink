@@ -37,7 +37,7 @@ class Firmware extends Base
                 'keywords' => lang('firmware'),
                 'description' => lang('firmware'),
             ];
-            $result = $this->model->getDataByLanguageId($this->language_id, 1);
+            $result = $this->model->getDataByLanguageId($this->language_id, 1, $order);
             return $this->fetch($this->template . '/firmware/index.html', [
                 'data' => $result['data'],
                 'count' => $result['count'],

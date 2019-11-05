@@ -148,7 +148,7 @@
                 <p>
                     <span>File Size&nbsp;:&nbsp;&nbsp;<i>{$vo.size}</i></span>
                     <span>Version&nbsp;:&nbsp;&nbsp;<i>{$vo.version_number}</i></span>
-                    <span>Post Date&nbsp;:&nbsp;&nbsp;<i>{$vo.update_time|strtotime|date="d/m/Y",###}</i></span>
+                    <span>Post Date&nbsp;:&nbsp;&nbsp;<i>{$vo.update_time|strtotime|date="d/m/Y"}</i></span>
                     <span style="margin-bottom:10px">System Requirements:&nbsp;&nbsp;<i>{$vo.running}</i></span>
                 </p>
                 <p>
@@ -192,7 +192,6 @@
 </div>
 {/block}
 <!--主体内容结束-->
-
 <!--私有业务js开始-->
 {block name="js"}
 <!--<script>-->

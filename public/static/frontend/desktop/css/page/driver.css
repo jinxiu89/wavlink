@@ -83,24 +83,27 @@
 .g-main .item .mode p:after {
   clear: both;
 }
-.g-main .item .mode p span:after {
-  content: ",";
-}
-.g-main .item .mode p span:nth-last-of-type(1):after,
-.g-main .item .mode p span:nth-of-type(1):after {
-  content: none;
-}
 .g-main .item .mode span {
   display: block;
   float: left;
-  width: 25%;
+  width: 16.6667%;
 }
 .g-main .item .download a {
-  margin-right: 5px;
+  margin-right: 4px;
   font-size: 12px;
-  text-decoration: underline;
+  border-color: #f8b300;
 }
 .g-main .item .download a:hover {
-  color: #ffc714;
+  background: #ffc714;
+}
+@media screen and (min-width: 768px) and (max-width: 991px) {
+  .g-main .item .mode span {
+    width: 25%;
+  }
+}
+@media screen and (min-width: 992px) and (max-width: 1199px) {
+  .g-main .item .mode span {
+    width: 20%;
+  }
 }
 /*# sourceMappingURL=driver.css.map */

@@ -38,7 +38,8 @@
   border-radius: 0;
   box-shadow: none;
 }
-.g-main .panel-heading {
+.g-main .panel-heading,
+.g-main .panel-footer {
   border-color: #eaeaea;
   background: none;
 }
@@ -51,15 +52,11 @@
 .g-main .item .title {
   font-size: 16px;
 }
-.g-main .item .info {
-  margin-bottom: 5px;
+.g-main .info p {
+  margin-bottom: 10px;
 }
-.g-main .item .info p {
-  padding-right: 20px;
-}
-.g-main .item .info p span {
-  display: inline-block;
-  line-height: 20px;
+.g-main .dl-horizontal dd {
+  margin-bottom: 10px;
 }
 .g-main .item .download a {
   margin-right: 4px;

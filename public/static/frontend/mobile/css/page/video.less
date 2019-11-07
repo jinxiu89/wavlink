@@ -1,0 +1,59 @@
+/**
+* @name: video.less
+* @description: video頁面佈局css - mobile
+* @author: Alan(alan_webdeveloper@163.com)
+* @update: 2019-10-19 14:30
+*/
+@import "../public/mixins";
+@import "../public/variables";
+
+.banner {
+    background: #42A4FF;
+    img {
+        .img-responsive();
+        .center-block();
+        width: 800px;
+        @media screen and (max-width: 800px) {
+            width: 100%;
+        }
+    }
+}
+
+.video-box {
+    .item {
+        position: relative;
+        margin-bottom: @publicInterval;
+        background: @whiteColor;
+        .img-box {
+            #img-optimize(56.25%, @bodyBgColor);
+            img {
+                .img-responsive();
+                .center-block();
+            }
+        }
+        .des {
+            padding: @publicInterval;
+        }
+        .des h4  {
+            text-align: center;
+            font-size: 14px;
+        }
+        .icon-box {
+            position: absolute;
+            z-index: 1;
+            top: 50%;
+            left: 50%;
+            margin-top: -25px;
+            margin-left: -25px;
+            width: 50px;
+            height: 50px;
+            line-height: 50px;
+            text-align: center;
+            color: @baseColor;
+        }
+        .icon-box span {
+            font-size: 30px;
+        }
+    }
+
+}

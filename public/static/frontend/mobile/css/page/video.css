@@ -1,0 +1,73 @@
+/**
+* @name: video.less
+* @description: video頁面佈局css - mobile
+* @author: Alan(alan_webdeveloper@163.com)
+* @update: 2019-10-19 14:30
+*/
+.center-block {
+  margin-left: auto;
+  margin-right: auto;
+}
+.banner {
+  background: #42A4FF;
+}
+.banner img {
+  display: block;
+  max-width: 100%;
+  height: auto;
+  margin-left: auto;
+  margin-right: auto;
+  width: 800px;
+}
+@media screen and (max-width: 800px) {
+  .banner img {
+    width: 100%;
+  }
+}
+.video-box .item {
+  position: relative;
+  margin-bottom: 0.4rem;
+  background: #fff;
+}
+.video-box .item .img-box {
+  display: block;
+  overflow: hidden;
+  width: 100%;
+  height: 0;
+  padding-bottom: 56.25%;
+  background: #f2f2f2;
+}
+.video-box .item .img-box img {
+  width: 100%;
+}
+.video-box .item .img-box img {
+  display: block;
+  max-width: 100%;
+  height: auto;
+  margin-left: auto;
+  margin-right: auto;
+}
+.video-box .item .des {
+  padding: 0.4rem;
+}
+.video-box .item .des h4 {
+  text-align: center;
+  font-size: 14px;
+}
+.video-box .item .icon-box {
+  position: absolute;
+  z-index: 1;
+  top: 50%;
+  left: 50%;
+  margin-top: -25px;
+  margin-left: -25px;
+  width: 50px;
+  height: 50px;
+  line-height: 50px;
+  text-align: center;
+  color: #333;
+}
+.video-box .item .icon-box span {
+  font-size: 30px;
+}
+/*# sourceMappingURL=video.css.map */

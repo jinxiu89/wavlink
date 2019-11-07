@@ -288,7 +288,7 @@
                     // Hook for the getOffset method to add groups to this parent group
                     this.axisParent = group;
 
-                    // Call the base
+                    // Call the common
                     Axis.prototype.getOffset.call(this);
 
                     // First time only

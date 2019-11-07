@@ -34,7 +34,7 @@
   overflow: hidden;
   width: 100%;
   height: 0;
-  padding-bottom: 71.875%;
+  padding-bottom: 101.33%;
   background: #f2f2f2;
 }
 .banner .img-box a img {
@@ -207,9 +207,10 @@
   border-bottom: 1px solid #eaeaea;
 }
 .new-box .item:nth-last-of-type(1) {
+  padding-bottom: 0;
   border-bottom: none;
 }
-.new-box .des h4 {
+.new-box .des {
   padding: 0.4rem;
 }
 .new-box .des h4 a {
@@ -231,7 +232,6 @@
 /* new结束 */
 /* video */
 .video-box {
-  margin: 0 0 0.4rem;
   padding: 0.4rem;
   background: #fff;
 }

@@ -1,0 +1,246 @@
+/**
+* @name: product-detail.less
+* @description: 產品詳情樣式
+* @author: Alan(alan_webdeveloper@163.com)
+* @update: 2019-09-23 15:10
+*/
+@import "../public/mixins";
+@import "../public/variables";
+
+.g-path {
+    margin: 0 auto;
+    border-bottom: 1px solid @borderColor;
+}
+
+//放大鏡 + 特色描述
+.feature-box {
+    .clearFix();
+    padding: 0 15px 40px;
+    background: @whiteColor;
+    .zoom-box {
+        .clearFix();
+        .spec-scroll .prev {
+            background: @borderColor;
+            border-color: @borderColor;
+            color: @baseColor;
+        }
+        .spec-scroll .next {
+            background: @activeColor;
+            border-color: @activeColor;
+            color: @baseColor;
+        }
+    }
+    .des {
+        margin-top: 20px;
+        .title {
+            font-size: 18px;
+        }
+        .mode {
+            padding: 5px 0 20px;
+            font-size: 14px;
+            color: @activeColor;
+            border-bottom: 1px solid @borderColor;
+        }
+        .feature {
+            margin: 20px 0 0 20px;
+        }
+        .feature li {
+            list-style-type: circle;
+            padding: 2px 0;
+        }
+    }
+}
+.poster-box {
+    img {
+        .img-responsive();
+        .center-block();
+    }
+}
+
+//模塊切換導航條
+.nav-table {
+    background: #fff;
+    border-top: 1px solid @borderColor;
+    border-bottom: 1px solid @borderColor;
+    ul {
+        .clearFix();
+        margin: 0 auto;
+        padding: 5px 20px;
+        li {
+            .fl();
+            padding: 10px 20px;
+            cursor: pointer;
+            a {
+                color: @activeColor;
+            }
+            &:hover {
+                color: @hoverColor;
+                a {
+                    color: @hoverColor;
+                }
+            }
+        }
+        .active {
+            background: @activeColor;
+            &:hover {
+                color: @baseColor;
+            }
+        }
+    }
+
+    @media screen and (min-width: 1200px) {
+        ul {
+            width: 83.333%;
+        }
+    }
+    @media screen and (max-width: 1199px) {
+        ul {
+            width: 100%;
+        }
+    }
+}
+
+//詳情描述
+#detail {
+    background: @whiteColor;
+    /* 详情页描述 公共样式 */
+    div#Detail_page_all > div.container-fluid > div.row ul li {
+        margin:0;
+        list-style:none
+    }
+    div#Detail_page_all > div.container-fluid > div.row h2 {
+        display:inline-block;
+        font-size:1.5em;
+        font-weight:normal;
+        margin-bottom:10px
+    }
+    div#Detail_page_all > div.container-fluid > div.row h3 {
+        font-size:1.2em;
+        color:#888;
+    }
+    div#Detail_page_all > div.container-fluid > div.row ul.btn_list {
+        bottom:0 !important;
+    }
+    div#Detail_page_all > div.container-fluid > div.row ul.btn_list > li {
+        width:2em;
+        padding:0.4em 0;
+        float:left;
+        bottom:0 !important;
+        border:1px solid #888
+    }
+    /*2017.12.28修改i标签去除字体加粗*/
+    div.container-fluid > div.row > section > div.detail_page_one > div.detail_page_text_cont > i,div.container-fluid > div.row > section > div.detail_page_one > div.detail_page_text_cont > strong >  i { font-weight:normal;font-style: normal;font-size: 0.6em }
+    div.container-fluid > div.row > section > div.detail_page_one > div.detail_page_text_cont > i{ display: inline-block;margin-top: 0.5em }
+
+    @media screen and (max-width:767px) and (min-width:318px){
+        div#Detail_page_all > div.container-fluid > div.row div.detail_page_text_cont { padding-top:4em !important; padding-bottom:2em !important; text-align:left }
+        div#Detail_page_all > div.container-fluid > div.row h2 { font-size:18px !important }
+        div#Detail_page_all > div.container-fluid > div.row p { font-size:14px !important }
+        div#Detail_page_all > div.container-fluid > div.row h3 { font-size:1em;color:#888 !important }
+    }
+    @media screen and (width:768px){
+        div#Detail_page_all > div.container-fluid > div.row h2 { font-size:1.2em !important }
+        div#Detail_page_all > div.container-fluid > div.row h3 { font-size:1em  }
+    }
+    @media screen and (max-width:1366px) and (min-width:1024px){
+        /*ul > li { margin-bottom:2em }*/
+        div#Detail_page_all > div.container-fluid > div.row h2 { font-size:1.5em !important }
+        div#Detail_page_all > div.container-fluid > div.row h3 { font-size:1em  }
+    }
+    @media screen and (width:1366px){
+        div#Detail_page_all > div.container-fluid > div.row h2 { font-size:2em !important ;font-weight: bold}
+        div#Detail_page_all > div.container-fluid > div.row h3 { font-size:1.25em  }
+    }
+    @media screen and (min-width:1367px){
+        div#Detail_page_all > div.container-fluid > div.row h2 { font-size:2.5em !important ;font-weight: bold}
+        div#Detail_page_all > div.container-fluid > div.row h3 { font-size:1.5em  }
+    }
+    @media screen and (min-width: 768px ) {
+        /*只给上面加边距*/
+        .page_padding_top{
+            padding: 20px 0 0 0 !important
+        }
+        /* 全部加边距*/
+        .page_padding_all{
+            padding: 20px !important
+        }
+        /*上，左右加边距*/
+        .page_padding_off_bottom{
+            padding: 20px 20px 0 20px !important
+        }
+        /*左右加边距*/
+        .page_padding_left_right{
+            padding: 0 20px 0 20px !important
+        }
+        /*下,左右加边距*/
+        .page_padding_down_bottom{
+            padding: 0 20px 20px 20px !important;
+        }
+    }
+
+}
+
+//參數
+#specification {
+    background: @whiteColor;
+    .container-fluid {
+        padding: 0;
+        .row {
+            margin: 0;
+            ul {
+                padding: 0;
+            }
+        }
+    }
+    ul > li {
+        border-bottom: 1px solid @borderColor;
+    }
+    ul > li.li_title > strong {
+        display: block;
+        color: @baseColor;
+        line-height: 18px;
+        padding: @publicInterval 0;
+        vertical-align: middle;
+    }
+    ul > li:first-child > strong {
+        font-size: 15px;
+    }
+    ul > li > strong {
+        line-height: 18px;
+        padding: @publicInterval!important;
+        color: #666;
+    }
+    ul > li > div > p {
+        line-height: 24px;
+        color: #666;
+        font-size: 12px;
+        &:nth-last-of-type(1) {
+            padding-bottom: @publicInterval!important;
+        }
+    }
+    ul > li > div {
+        padding: 0 @publicInterval !important;
+    }
+}
+
+//go-top
+#go-top {
+    display: none;
+    position: fixed;
+    bottom: 10%;
+    right: 10px;
+    z-index: 999;
+    margin-top: -50px;
+    padding: 5px;
+    p span {
+        display: block;
+        width: 50px;
+        height: 50px;
+        text-align: center;
+        line-height: 50px;
+        #border-radius(50%);
+        font-size: 24px;
+        color: @whiteColor;
+        background: rgba(0, 0, 0, .8);
+    }
+}

@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1, maximum-scale=1, minimum-scale=1, user-scalable=no">
+    <script src="__LIB__/JQuery/JQuery-3.4.0.js"></script>
+    <script src="__LIB__/hc-mobile-nav/hc-mobile-nav.js"></script>
+    <script src="__LIB__/Swiper/swiper.min.js"></script>
+    <script src="__MOBILE__/js/public.js"></script>
+    <link rel="stylesheet" href="__LIB__/Bootstrap/bootstrap-3.3.7.min.css">
+    <link rel="stylesheet" href="__LIB__/iconfont/iconfont.css">
+    <link rel="stylesheet" href="__LIB__/Swiper/swiper.min.css">
+    <link rel="stylesheet" href="__LIB__/hc-mobile-nav/hc-mobile-nav.css">
+    <link rel="stylesheet" href="__MOBILE__/css/public/components.css">
+    {block name="seo"}
+    <title>base</title>
+    <meta name="description" content="">
+    <meta name="keywords" content="">
+    {/block}
+    {block name="style"}
+    {/block}
+</head>
+<body>
+<header>
+    {include file="mobile/common/nav" /}
+</header>
+<section>
+    {block name="swiper"}
+    <!--幻灯片以及banner部分-->
+    {/block}
+    {block name="body"}
+    <!--主体内容-->
+    {/block}
+</section>
+<footer>
+    {block name="footer"}
+    {if condition="$code == 'en_us'"}
+    {include file="mobile/common/en_us"}
+    {elseif condition="$code == 'zh_cn'" /}
+    {include file="mobile/common/zh_cn"}
+    {/if}
+    {/block}
+</footer>
+<script>
+    $(document).ready(function () {
+        //导航交互
+        (function ($) {
+            var $nav = $('#main-nav');
+            var $toggle = $('.toggle');
+            var defaultData = {
+                maxWidth: false,
+                customToggle: $toggle,
+                navTitle: "{:lang('All CATEGORIES')}",
+                labelClose: "{:lang('close')}",
+                labelBack: "{:lang('back')}",
+                levelTitles: true
+            };
+
+            // we'll store our temp stuff here
+            var $clone = null;
+            var data = {};
+
+            // calling like this only for demo purposes
+
+            const initNav = function (conf) {
+                if ($clone) {
+                    // clear previous instance
+                    $clone.remove();
+                }
+
+                // remove old toggle click event
+                $toggle.off('click');
+
+                // make new copy
+                $clone = $nav.clone();
+
+                // remember data
+                $.extend(data, conf)
+
+                // call the plugin
+                $clone.hcMobileNav($.extend({}, defaultData, data));
+            }
+
+            // run first demo
+            initNav({});
+
+            /*$('.actions').find('a').on('click', function(e) {
+                e.preventDefault();
+
+                var $this = $(this).addClass('active');
+                var $siblings = $this.parent().siblings().children('a').removeClass('active');
+
+                initNav(eval('(' + $this.data('demo') + ')'));
+            });*/
+        })(jQuery);
+
+        //搜索交互
+        var searchBar = $(".search-bar"),
+            searchContent = $(".search-container");
+        searchBar.click(function (e) {
+            searchContent.stop(false, true).slideToggle(300);
+            e.stopPropagation();
+        });
+        $(".search-container input").click(function (e) {
+            e.stopPropagation();
+        });
+        $(document).add(".menu-bar>.toggle").click(function () {
+            searchContent.slideUp(300);
+        });
+
+        //footer交互效果
+        $(".about-item h3").click(function () {
+            $(this).siblings("ul").stop(true, false).slideToggle();
+            $(this).children("span").toggleClass("iconclose").toggleClass("iconincrease");
+            $(this).parent("li").siblings("li").children("ul").stop(true, false).slideUp();
+            $(this).parent("li").siblings("li").find("span").addClass("iconincrease").removeClass("iconclose");
+        })
+    });
+</script>
+{block name="javascript"}
+<!--私有JS-->
+{/block}
+</body>
+</html>

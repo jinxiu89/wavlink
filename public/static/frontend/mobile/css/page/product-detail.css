@@ -1,0 +1,301 @@
+/**
+* @name: product-detail.less
+* @description: 產品詳情樣式
+* @author: Alan(alan_webdeveloper@163.com)
+* @update: 2019-09-23 15:10
+*/
+.center-block {
+  margin-left: auto;
+  margin-right: auto;
+}
+.g-path {
+  margin: 0 auto;
+  border-bottom: 1px solid #eaeaea;
+}
+.feature-box {
+  padding: 0 15px 40px;
+  background: #fff;
+}
+.feature-boxbefore,
+.feature-box:after {
+  content: " ";
+  display: table;
+  zoom: 1;
+}
+.feature-box:after {
+  clear: both;
+}
+.feature-box .zoom-boxbefore,
+.feature-box .zoom-box:after {
+  content: " ";
+  display: table;
+  zoom: 1;
+}
+.feature-box .zoom-box:after {
+  clear: both;
+}
+.feature-box .zoom-box .spec-scroll .prev {
+  background: #eaeaea;
+  border-color: #eaeaea;
+  color: #333;
+}
+.feature-box .zoom-box .spec-scroll .next {
+  background: #f8b300;
+  border-color: #f8b300;
+  color: #333;
+}
+.feature-box .des {
+  margin-top: 20px;
+}
+.feature-box .des .title {
+  font-size: 18px;
+}
+.feature-box .des .mode {
+  padding: 5px 0 20px;
+  font-size: 14px;
+  color: #f8b300;
+  border-bottom: 1px solid #eaeaea;
+}
+.feature-box .des .feature {
+  margin: 20px 0 0 20px;
+}
+.feature-box .des .feature li {
+  list-style-type: circle;
+  padding: 2px 0;
+}
+.poster-box img {
+  display: block;
+  max-width: 100%;
+  height: auto;
+  margin-left: auto;
+  margin-right: auto;
+}
+.nav-table {
+  background: #fff;
+  border-top: 1px solid #eaeaea;
+  border-bottom: 1px solid #eaeaea;
+}
+.nav-table ul {
+  margin: 0 auto;
+  padding: 5px 20px;
+}
+.nav-table ulbefore,
+.nav-table ul:after {
+  content: " ";
+  display: table;
+  zoom: 1;
+}
+.nav-table ul:after {
+  clear: both;
+}
+.nav-table ul li {
+  float: left;
+  padding: 10px 20px;
+  cursor: pointer;
+}
+.nav-table ul li a {
+  color: #f8b300;
+}
+.nav-table ul li:hover {
+  color: #ffbd0a;
+}
+.nav-table ul li:hover a {
+  color: #ffbd0a;
+}
+.nav-table ul .active {
+  background: #f8b300;
+}
+.nav-table ul .active:hover {
+  color: #333;
+}
+@media screen and (min-width: 1200px) {
+  .nav-table ul {
+    width: 83.333%;
+  }
+}
+@media screen and (max-width: 1199px) {
+  .nav-table ul {
+    width: 100%;
+  }
+}
+#detail {
+  background: #fff;
+  /* 详情页描述 公共样式 */
+  /*2017.12.28修改i标签去除字体加粗*/
+}
+#detail div#Detail_page_all > div.container-fluid > div.row ul li {
+  margin: 0;
+  list-style: none;
+}
+#detail div#Detail_page_all > div.container-fluid > div.row h2 {
+  display: inline-block;
+  font-size: 1.5em;
+  font-weight: normal;
+  margin-bottom: 10px;
+}
+#detail div#Detail_page_all > div.container-fluid > div.row h3 {
+  font-size: 1.2em;
+  color: #888;
+}
+#detail div#Detail_page_all > div.container-fluid > div.row ul.btn_list {
+  bottom: 0 !important;
+}
+#detail div#Detail_page_all > div.container-fluid > div.row ul.btn_list > li {
+  width: 2em;
+  padding: 0.4em 0;
+  float: left;
+  bottom: 0 !important;
+  border: 1px solid #888;
+}
+#detail div.container-fluid > div.row > section > div.detail_page_one > div.detail_page_text_cont > i,
+#detail div.container-fluid > div.row > section > div.detail_page_one > div.detail_page_text_cont > strong > i {
+  font-weight: normal;
+  font-style: normal;
+  font-size: 0.6em;
+}
+#detail div.container-fluid > div.row > section > div.detail_page_one > div.detail_page_text_cont > i {
+  display: inline-block;
+  margin-top: 0.5em;
+}
+@media screen and (max-width: 767px) and (min-width: 318px) {
+  #detail div#Detail_page_all > div.container-fluid > div.row div.detail_page_text_cont {
+    padding-top: 4em !important;
+    padding-bottom: 2em !important;
+    text-align: left;
+  }
+  #detail div#Detail_page_all > div.container-fluid > div.row h2 {
+    font-size: 18px !important;
+  }
+  #detail div#Detail_page_all > div.container-fluid > div.row p {
+    font-size: 14px !important;
+  }
+  #detail div#Detail_page_all > div.container-fluid > div.row h3 {
+    font-size: 1em;
+    color: #888 !important;
+  }
+}
+@media screen and (width: 768px) {
+  #detail div#Detail_page_all > div.container-fluid > div.row h2 {
+    font-size: 1.2em !important;
+  }
+  #detail div#Detail_page_all > div.container-fluid > div.row h3 {
+    font-size: 1em;
+  }
+}
+@media screen and (max-width: 1366px) and (min-width: 1024px) {
+  #detail {
+    /*ul > li { margin-bottom:2em }*/
+  }
+  #detail div#Detail_page_all > div.container-fluid > div.row h2 {
+    font-size: 1.5em !important;
+  }
+  #detail div#Detail_page_all > div.container-fluid > div.row h3 {
+    font-size: 1em;
+  }
+}
+@media screen and (width: 1366px) {
+  #detail div#Detail_page_all > div.container-fluid > div.row h2 {
+    font-size: 2em !important ;
+    font-weight: bold;
+  }
+  #detail div#Detail_page_all > div.container-fluid > div.row h3 {
+    font-size: 1.25em;
+  }
+}
+@media screen and (min-width: 1367px) {
+  #detail div#Detail_page_all > div.container-fluid > div.row h2 {
+    font-size: 2.5em !important;
+    font-weight: bold;
+  }
+  #detail div#Detail_page_all > div.container-fluid > div.row h3 {
+    font-size: 1.5em;
+  }
+}
+@media screen and (min-width: 768px) {
+  #detail {
+    /*只给上面加边距*/
+    /* 全部加边距*/
+    /*上，左右加边距*/
+    /*左右加边距*/
+    /*下,左右加边距*/
+  }
+  #detail .page_padding_top {
+    padding: 20px 0 0 0 !important;
+  }
+  #detail .page_padding_all {
+    padding: 20px !important;
+  }
+  #detail .page_padding_off_bottom {
+    padding: 20px 20px 0 20px !important;
+  }
+  #detail .page_padding_left_right {
+    padding: 0 20px 0 20px !important;
+  }
+  #detail .page_padding_down_bottom {
+    padding: 0 20px 20px 20px !important;
+  }
+}
+#specification {
+  background: #fff;
+}
+#specification .container-fluid {
+  padding: 0;
+}
+#specification .container-fluid .row {
+  margin: 0;
+}
+#specification .container-fluid .row ul {
+  padding: 0;
+}
+#specification ul > li {
+  border-bottom: 1px solid #eaeaea;
+}
+#specification ul > li.li_title > strong {
+  display: block;
+  color: #333;
+  line-height: 18px;
+  padding: 0.4rem 0;
+  vertical-align: middle;
+}
+#specification ul > li:first-child > strong {
+  font-size: 15px;
+}
+#specification ul > li > strong {
+  line-height: 18px;
+  padding: 0.4rem !important;
+  color: #666;
+}
+#specification ul > li > div > p {
+  line-height: 24px;
+  color: #666;
+  font-size: 12px;
+}
+#specification ul > li > div > p:nth-last-of-type(1) {
+  padding-bottom: 0.4rem !important;
+}
+#specification ul > li > div {
+  padding: 0 0.4rem !important;
+}
+#go-top {
+  display: none;
+  position: fixed;
+  bottom: 10%;
+  right: 10px;
+  z-index: 999;
+  margin-top: -50px;
+  padding: 5px;
+}
+#go-top p span {
+  display: block;
+  width: 50px;
+  height: 50px;
+  text-align: center;
+  line-height: 50px;
+  -webkit-border-radius: 50%;
+  -moz-border-radius: 50%;
+  border-radius: 50%;
+  font-size: 24px;
+  color: #fff;
+  background: rgba(0, 0, 0, 0.8);
+}
+/*# sourceMappingURL=product-detail.css.map */

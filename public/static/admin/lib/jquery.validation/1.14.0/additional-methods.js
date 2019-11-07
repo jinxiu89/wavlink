@@ -564,7 +564,7 @@ $.validator.addMethod("letterswithbasicpunc", function(value, element) {
 
 $.validator.addMethod("mobileNL", function(value, element) {
 	return this.optional(element) || /^((\+|00(\s|\s?\-\s?)?)31(\s|\s?\-\s?)?(\(0\)[\-\s]?)?|0)6((\s|\s?\-\s?)?[0-9]){8}$/.test(value);
-}, "Please specify a valid mobile number");
+}, "Please specify a valid mobile_old number");
 
 /* For UK phone functions, do the following server side processing:
  * Compare original input with this RegEx pattern:
@@ -578,7 +578,7 @@ $.validator.addMethod("mobileUK", function(phone_number, element) {
 	phone_number = phone_number.replace(/\(|\)|\s+|-/g, "");
 	return this.optional(element) || phone_number.length > 9 &&
 		phone_number.match(/^(?:(?:(?:00\s?|\+)44\s?|0)7(?:[1345789]\d{2}|624)\s?\d{3}\s?\d{3})$/);
-}, "Please specify a valid mobile number");
+}, "Please specify a valid mobile_old number");
 
 /*
  * The número de identidad de extranjero ( NIE )is a code used to identify the non-nationals in Spain
@@ -723,7 +723,7 @@ $.validator.addMethod("phoneUS", function(phone_number, element) {
  * A number of very detailed GB telephone number RegEx patterns can also be found at:
  * http://www.aa-asterisk.org.uk/index.php/Regular_Expressions_for_Validating_and_Formatting_GB_Telephone_Numbers
  */
-//Matches UK landline + mobile, accepting only 01-3 for landline or 07 for mobile to exclude many premium numbers
+//Matches UK landline + mobile_old, accepting only 01-3 for landline or 07 for mobile_old to exclude many premium numbers
 $.validator.addMethod("phonesUK", function(phone_number, element) {
 	phone_number = phone_number.replace(/\(|\)|\s+|-/g, "");
 	return this.optional(element) || phone_number.length > 9 &&

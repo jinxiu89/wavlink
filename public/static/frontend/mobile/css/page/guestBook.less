@@ -1,0 +1,53 @@
+/**
+* @name: guestBook.less
+* @description: 留言板样式
+* @author: Alan(alan_webdeveloper@163.com)
+* @update: 2019-09-25 16:30
+*/
+@import "../public/mixins";
+@import "../public/variables";
+
+.panel {
+    margin-bottom: 0;
+    border-color: @borderColor;
+    .panel-heading,
+    .panel-footer{
+        border-color: @borderColor;
+        background: @whiteColor;
+    }
+    .panel-heading h3 {
+        font-size: 14px;
+    }
+    .panel-body {
+        input,textarea {
+            box-shadow: none;
+            border-color: @borderColor;
+        }
+    }
+    .panel-body .form-group {
+        margin-bottom: @publicInterval;
+        label {
+            font-weight: normal;
+        }
+        label span {
+            color: red;
+        }
+        p {
+            margin: 5px 0 0;
+            color: @whiteSmoke;
+            font-size: 12px;
+        }
+        button {
+            font-size: 12px;
+        }
+        &:nth-last-of-type(1) {
+            margin-bottom: 0;
+        }
+    }
+    .panel-footer {
+        word-break: break-word;
+        a {
+            color: @activeColor;
+        }
+    }
+}

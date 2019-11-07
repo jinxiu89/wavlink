@@ -4,8 +4,6 @@
 * @author: Alan(alan_webdeveloper@163.com)
 * @update: 2019-09-10 16:30
 */
-@import "../../lib/Bootstrap/bootstrap-3.3.7.min.css";
-@import "../../lib/iconfont/iconfont.css";
 @import "mixins";
 @import "variables";
 
@@ -24,6 +22,7 @@ audio,canvas,video{display:inline-block;*display:inline;*zoom:1}
 blockquote:before,blockquote:after,q:before,q:after{content:"\0020"}
 textarea{overflow:auto;resize:vertical}
 input,textarea,button,select,a{outline:0 none;border: none;}
+input,textarea {outline: none;-webkit-appearance: none; /*去除系统默认的样式*/-webkit-tap-highlight-color: rgba(0, 0, 0, 0); /* 点击高亮的颜色*/}
 button::-moz-focus-inner,input::-moz-focus-inner{padding:0;border:0}
 mark{background-color:transparent}
 a,ins,s,u,del{text-decoration:none}
@@ -49,7 +48,7 @@ html {
 
 @font-face {
     font-family: Neo_Sans;
-    src: url("../../lib/font/Neo_Sans.ttf");
+    src: url("../../../../lib/font/Neo_Sans.ttf");
 }
 
 body {
@@ -138,6 +137,7 @@ header {
 
 //footer
 footer {
+    margin-top: 60px;
     padding: 0;
     .about {
         background: @baseColor;
@@ -208,12 +208,8 @@ footer {
         line-height: 50px;
         font-size: 12px;
         a {
-            color: @linkColor;
+            color: @activeColor;
             font-size: 12px;
-            &:hover {
-                color: @activeColor;
-                text-decoration: none;
-            }
         }
     }
     .breadcrumb > li + li:before {
@@ -225,8 +221,8 @@ footer {
 //分页
 .g-pagination {
     height: 54px;
-    margin: 20px 0;
-    padding-left: 20px;
+    margin: @publicInterval 0 0;
+    padding: 0 @publicInterval;
     background: @whiteColor;
     .pagination {
         .clearFix();
@@ -255,3 +251,40 @@ footer {
     }
 }
 //分页
+
+//篩選
+.g-filter {
+    padding: @publicInterval;
+    text-align: center;
+    background: @whiteColor;
+    border-bottom: 1px solid @borderColor;
+    span {
+        display: inline-block;
+        padding-right: 5px;
+        font-size: 12px;
+    }
+    .select {
+        position: relative;
+        display: inline-block;
+        select {
+            width: 150px;
+            height: 30px;
+            padding: 0 5px;
+            border: 1px solid @borderColor;
+            #border-radius(5px);
+            font-size: 12px;
+            appearance:none;
+            -moz-appearance:none;
+            -webkit-appearance:none;
+        }
+        .iconfont {
+            position: absolute;
+            top: 0;
+            right: 0;
+            z-index: 1;
+            display: block;
+            line-height: 30px;
+        }
+    }
+}
+//篩選結束

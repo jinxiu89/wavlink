@@ -14,6 +14,7 @@ body.hc-nav-open {
     top: 0;
     height: 100%;
     z-index: 9999;
+    -ms-scroll-chaining: none;
     overscroll-behavior: none
 }
 
@@ -28,7 +29,11 @@ body.hc-nav-open {
     width: 240px;
     max-width: 100%;
     height: 100%;
-    transition: transform .4s ease
+    -webkit-transition: -webkit-transform .4s ease;
+    transition: -webkit-transform .4s ease;
+    -o-transition: transform .4s ease;
+    transition: transform .4s ease;
+    transition: transform .4s ease, -webkit-transform .4s ease
 }
 
 .hc-mobile-nav .nav-wrapper {
@@ -75,6 +80,7 @@ body.hc-nav-open {
 .hc-mobile-nav a {
     position: relative;
     display: block;
+    -webkit-box-sizing: border-box;
     box-sizing: border-box;
     cursor: pointer
 }
@@ -97,15 +103,20 @@ body.hc-nav-open {
     bottom: 0;
     width: 100%;
     height: 100%;
+    -ms-scroll-chaining: none;
     overscroll-behavior: none;
     visibility: hidden;
     opacity: 0;
+    -webkit-transition: visibility 0s ease .4s, opacity .4s ease;
+    -o-transition: visibility 0s ease .4s, opacity .4s ease;
     transition: visibility 0s ease .4s, opacity .4s ease
 }
 
 .hc-mobile-nav.disable-body.nav-open::after, .hc-mobile-nav.disable-body .sub-level-open::after {
     visibility: visible;
     opacity: 1;
+    -webkit-transition-delay: .05s;
+    -o-transition-delay: .05s;
     transition-delay: .05s
 }
 
@@ -117,6 +128,8 @@ body.hc-nav-open {
     min-width: 0;
     max-height: 0;
     overflow: hidden;
+    -webkit-transition: height 0s ease .4s;
+    -o-transition: height 0s ease .4s;
     transition: height 0s ease .4s
 }
 
@@ -130,7 +143,11 @@ body.hc-nav-open {
     top: 0;
     height: 100%;
     visibility: hidden;
-    transition: visibility 0s ease .4s, transform .4s ease
+    -webkit-transition: visibility 0s ease .4s, -webkit-transform .4s ease;
+    transition: visibility 0s ease .4s, -webkit-transform .4s ease;
+    -o-transition: visibility 0s ease .4s, transform .4s ease;
+    transition: visibility 0s ease .4s, transform .4s ease;
+    transition: visibility 0s ease .4s, transform .4s ease, -webkit-transform .4s ease
 }
 
 .hc-mobile-nav.nav-levels-overlap ul ul {
@@ -146,7 +163,11 @@ body.hc-nav-open {
 
 .hc-mobile-nav.nav-levels-overlap ul li.level-open > .nav-wrapper {
     visibility: visible;
-    transition: transform .4s ease
+    -webkit-transition: -webkit-transform .4s ease;
+    transition: -webkit-transform .4s ease;
+    -o-transition: transform .4s ease;
+    transition: transform .4s ease;
+    transition: transform .4s ease, -webkit-transform .4s ease
 }
 
 .hc-mobile-nav.side-left {
@@ -155,15 +176,18 @@ body.hc-nav-open {
 
 .hc-mobile-nav.side-left .nav-container {
     left: 0;
+    -webkit-transform: translate3d(-100%, 0, 0);
     transform: translate3d(-100%, 0, 0)
 }
 
 .hc-mobile-nav.side-left.nav-levels-overlap li.level-open > .nav-wrapper {
+    -webkit-transform: translate3d(-40px, 0, 0);
     transform: translate3d(-40px, 0, 0)
 }
 
 .hc-mobile-nav.side-left.nav-levels-overlap li .nav-wrapper {
     left: 0;
+    -webkit-transform: translate3d(-100%, 0, 0);
     transform: translate3d(-100%, 0, 0)
 }
 
@@ -173,19 +197,23 @@ body.hc-nav-open {
 
 .hc-mobile-nav.side-right .nav-container {
     right: 0;
+    -webkit-transform: translate3d(100%, 0, 0);
     transform: translate3d(100%, 0, 0)
 }
 
 .hc-mobile-nav.side-right.nav-levels-overlap li.level-open > .nav-wrapper {
+    -webkit-transform: translate3d(40px, 0, 0);
     transform: translate3d(40px, 0, 0)
 }
 
 .hc-mobile-nav.side-right.nav-levels-overlap li .nav-wrapper {
     right: 0;
+    -webkit-transform: translate3d(100%, 0, 0);
     transform: translate3d(100%, 0, 0)
 }
 
 .hc-mobile-nav.nav-open .nav-container {
+    -webkit-transform: translate3d(0, 0, 0);
     transform: translate3d(0, 0, 0)
 }
 
@@ -201,7 +229,11 @@ body.hc-nav-open {
 .hc-nav-trigger span {
     width: 30px;
     top: 50%;
+    -webkit-transform: translateY(-50%);
+    -ms-transform: translateY(-50%);
     transform: translateY(-50%);
+    -webkit-transform-origin: 50% 50%;
+    -ms-transform-origin: 50% 50%;
     transform-origin: 50% 50%
 }
 
@@ -210,6 +242,8 @@ body.hc-nav-open {
     left: 0;
     height: 4px;
     background: #333;
+    -webkit-transition: all .2s ease;
+    -o-transition: all .2s ease;
     transition: all .2s ease
 }
 
@@ -228,14 +262,18 @@ body.hc-nav-open {
 
 .hc-nav-trigger.toggle-open span {
     background: rgba(0, 0, 0, 0);
+    -webkit-transform: rotate(45deg);
+    -ms-transform: rotate(45deg);
     transform: rotate(45deg)
 }
 
 .hc-nav-trigger.toggle-open span::before {
+    -webkit-transform: translate3d(0, 10px, 0);
     transform: translate3d(0, 10px, 0)
 }
 
 .hc-nav-trigger.toggle-open span::after {
+    -webkit-transform: rotate(-90deg) translate3d(10px, 0, 0);
     transform: rotate(-90deg) translate3d(10px, 0, 0)
 }
 
@@ -248,6 +286,7 @@ body.hc-nav-open {
 }
 
 .hc-mobile-nav.nav-open .nav-wrapper {
+    -webkit-box-shadow: 1px 0 2px rgba(0, 0, 0, 0.2);
     box-shadow: 1px 0 2px rgba(0, 0, 0, 0.2)
 }
 
@@ -291,6 +330,8 @@ body.hc-nav-open {
     bottom: 0;
     text-align: center;
     cursor: pointer;
+    -webkit-transition: background .2s ease;
+    -o-transition: background .2s ease;
     transition: background .2s ease
 }
 
@@ -299,7 +340,7 @@ body.hc-nav-open {
     border-right: 1px solid #eaeaea;
 }
 
-    /* 修改：去掉插件原有的close图标样式 */
+/* 修改：去掉插件原有的close图标样式 */
 .hc-mobile-nav li.nav-close span,
 .hc-mobile-nav span.nav-next,
 .hc-mobile-nav li.nav-back span {
@@ -332,16 +373,21 @@ body.hc-nav-open {
 .hc-mobile-nav.side-right span.nav-next::before {
     margin-left: 0;
     margin-right: -2px;
+    -webkit-transform: translate(-50%, -50%) rotate(-45deg);
+    -ms-transform: translate(-50%, -50%) rotate(-45deg);
     transform: translate(-50%, -50%) rotate(-45deg)
 }
 
 .hc-mobile-nav.side-right li.nav-back span::before {
     margin-left: 0;
     margin-right: -2px;
+    -webkit-transform: translate(-50%, -50%) rotate(135deg);
+    -ms-transform: translate(-50%, -50%) rotate(135deg);
     transform: translate(-50%, -50%) rotate(135deg)
 }
 
 .hc-mobile-nav.nav-levels-expand .nav-container ul .nav-wrapper, .hc-mobile-nav.nav-levels-none .nav-container ul .nav-wrapper {
+    -webkit-box-shadow: none;
     box-shadow: none;
     background: transparent
 }
@@ -355,6 +401,8 @@ body.hc-nav-open {
 }
 
 .hc-mobile-nav.nav-levels-expand .nav-container li, .hc-mobile-nav.nav-levels-none .nav-container li {
+    -webkit-transition: background .3s ease;
+    -o-transition: background .3s ease;
     transition: background .3s ease
 }
 
@@ -372,11 +420,15 @@ body.hc-nav-open {
 
 .hc-mobile-nav.nav-levels-expand .nav-container li.level-open > a .nav-next::before, .hc-mobile-nav.nav-levels-none .nav-container li.level-open > a .nav-next::before {
     margin-top: 2px;
+    -webkit-transform: translate(-50%, -50%) rotate(45deg);
+    -ms-transform: translate(-50%, -50%) rotate(45deg);
     transform: translate(-50%, -50%) rotate(45deg)
 }
 
 .hc-mobile-nav.nav-levels-expand .nav-container span.nav-next::before, .hc-mobile-nav.nav-levels-none .nav-container span.nav-next::before {
     margin-top: -2px;
+    -webkit-transform: translate(-50%, -50%) rotate(225deg);
+    -ms-transform: translate(-50%, -50%) rotate(225deg);
     transform: translate(-50%, -50%) rotate(225deg)
 }
 
@@ -393,11 +445,15 @@ body.hc-nav-open {
 
 #container {
     display: -ms-flexbox;
+    display: -webkit-box;
     display: flex;
     -ms-flex-direction: column;
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
     flex-direction: column;
     min-height: 100vh;
     height: 100%;
+    background: -o-linear-gradient(224deg, #517FA4 0%, #243949 100%);
     background: linear-gradient(-134deg, #517FA4 0%, #243949 100%)
 }
 
@@ -435,6 +491,8 @@ header .git {
     font-size: 15px;
     font-weight: 400;
     background: #333;
+    -webkit-transition: background .15s ease-in-out;
+    -o-transition: background .15s ease-in-out;
     transition: background .15s ease-in-out
 }
 
@@ -455,6 +513,8 @@ header .git svg {
     padding: 0 10px;
     margin-right: 10px;
     border-right: 1px solid #eaeaea;
+    -webkit-transition: border-color .15s ease-in-out;
+    -o-transition: border-color .15s ease-in-out;
     transition: border-color .15s ease-in-out
 }
 
@@ -467,6 +527,7 @@ header .toggle {
     left: auto;
     float: left;
     display: block;
+    -webkit-box-sizing: content-box;
     box-sizing: content-box;
     font-size: 20px;
     width: 50px;
@@ -477,7 +538,11 @@ header .toggle {
 header .toggle span {
     width: 24px;
     top: 50%;
+    -webkit-transform: translateY(-50%);
+    -ms-transform: translateY(-50%);
     transform: translateY(-50%);
+    -webkit-transform-origin: 50% 50%;
+    -ms-transform-origin: 50% 50%;
     transform-origin: 50% 50%
 }
 
@@ -486,6 +551,8 @@ header .toggle span, header .toggle span::before, header .toggle span::after {
     right: 0;
     height: 2px;
     background: #333;
+    -webkit-transition: all .1s ease;
+    -o-transition: all .1s ease;
     transition: all .1s ease
 }
 
@@ -504,14 +571,18 @@ header .toggle span::after {
 
 header .toggle.toggle-open span {
     background: rgba(0, 0, 0, 0);
+    -webkit-transform: rotate(45deg);
+    -ms-transform: rotate(45deg);
     transform: rotate(45deg)
 }
 
 header .toggle.toggle-open span::before {
+    -webkit-transform: translate3d(0, 8px, 0);
     transform: translate3d(0, 8px, 0)
 }
 
 header .toggle.toggle-open span::after {
+    -webkit-transform: rotate(-90deg) translate3d(8px, 0, 0);
     transform: rotate(-90deg) translate3d(8px, 0, 0)
 }
 
@@ -541,6 +612,8 @@ footer .swm svg {
 }
 
 footer .swm svg path {
+    -webkit-transition: fill .1s ease;
+    -o-transition: fill .1s ease;
     transition: fill .1s ease
 }
 
@@ -558,6 +631,7 @@ footer .swm:not(:hover) svg .l-3 {
 
 main {
     -ms-flex: 1 0 auto;
+    -webkit-box-flex: 1;
     flex: 1 0 auto;
     padding-bottom: 30px;
     text-align: left
@@ -586,12 +660,14 @@ main .actions {
 
 main .actions div {
     padding: 0 15px 20px;
+    -webkit-box-sizing: border-box;
     box-sizing: border-box
 }
 
 @media screen and (min-width: 800px) {
     main .actions {
         display: -ms-flexbox;
+        display: -webkit-box;
         display: flex;
         -ms-flex-wrap: wrap;
         flex-wrap: wrap
@@ -600,6 +676,7 @@ main .actions div {
     main .actions div {
         float: left;
         -ms-flex: 1 1 33.33%;
+        -webkit-box-flex: 1;
         flex: 1 1 33.33%;
         max-width: 33.33%
     }
@@ -620,6 +697,8 @@ main .button {
     cursor: pointer;
     background: #fffce1;
     border-radius: 30px/80px;
+    -webkit-transition: all .1s ease-out;
+    -o-transition: all .1s ease-out;
     transition: all .1s ease-out
 }
 

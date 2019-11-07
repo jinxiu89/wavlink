@@ -59,7 +59,7 @@ Class Manger extends BaseModel
             'username' => $data['username'],
             'name'     => $data['name'],
             'password' => md5($data['password'].$data['code']),
-            'mobile'   => $data['mobile'],
+            'mobile_old'   => $data['mobile_old'],
             'email'    => $data['email'],
             'code'     => $data['code'],
             'language_id' => $language_id
@@ -93,7 +93,7 @@ Class Manger extends BaseModel
         $userData=[
             'username' => $data['username'],
             'name'     => $data['name'],
-            'mobile'   => $data['mobile'],
+            'mobile_old'   => $data['mobile_old'],
             'email'    => $data['email'],
             'language_id' => $language_id
         ];

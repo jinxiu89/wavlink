@@ -8,6 +8,22 @@
   margin-left: auto;
   margin-right: auto;
 }
+.banner {
+  background: #42A4FF;
+}
+.banner img {
+  display: block;
+  max-width: 100%;
+  height: auto;
+  margin-left: auto;
+  margin-right: auto;
+  width: 800px;
+}
+@media screen and (max-width: 800px) {
+  .banner img {
+    width: 100%;
+  }
+}
 .item {
   margin-bottom: 0.4rem;
   padding: 0.4rem;

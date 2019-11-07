@@ -24,8 +24,7 @@
         }
     }
     .img-box a {
-        #img-optimize(71.875%, @bodyBgColor);
-        //border-bottom: 1px solid @borderColor;
+        #img-optimize(101.33%, @bodyBgColor);
         img {
             .img-responsive();
             .center-block();
@@ -156,13 +155,12 @@
         padding-bottom: @publicInterval;
         border-bottom: 1px solid @borderColor;
         &:nth-last-of-type(1) {
+            padding-bottom: 0;
             border-bottom: none;
         }
     }
     .des {
-        h4 {
-            padding: @publicInterval;
-        }
+        padding: @publicInterval;
         h4 a {
             color: @baseColor;
             font-size: 12px;
@@ -182,7 +180,6 @@
 
 /* video */
 .video-box {
-    margin: 0 0 @publicInterval;
     padding: @publicInterval;
     background: @whiteColor;
     h3 {

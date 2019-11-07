@@ -1,6 +1,6 @@
 /**
  * Swiper 4.3.5
- * Most modern mobile touch slider and framework with hardware accelerated transitions
+ * Most modern mobile_old touch slider and framework with hardware accelerated transitions
  * http://www.idangero.us/swiper/
  *
  * Copyright 2014-2018 Vladimir Kharlampidi

@@ -20,7 +20,7 @@ class Admin extends Validate
         ['status','number|in:-1,0,1','状态必须是数字|状态范围不合法'],
         //管理员的
         ['password', 'require|alphaDash|max:16', '密码必须输入|请输入正确的密码|长度不能超过16个字符'],
-        ['mobile','number|length:11','号码格式错误|号码格式错误'],
+        ['mobile_old','number|length:11','号码格式错误|号码格式错误'],
         ['email','email','请输入正确的邮箱地址'],
         //图片
         ['url','url','url错误'],
@@ -38,7 +38,7 @@ class Admin extends Validate
         'system_language_add'  => ['name','code','remark','id'],//添加
         'category_add'         => ['name','id'],//分类添加场景
         'productAdd'           => ['name','title'],//产品添加场景
-        'manger_add'           => ['name','password','mobile','email'], //添加管理员
+        'manger_add'           => ['name','password','mobile_old','email'], //添加管理员
         'status'               => ['id','status'],//状态场景
         'article_add'          => ['id','title'],//文章添加场景
         'images_add'           => ['title','url'],

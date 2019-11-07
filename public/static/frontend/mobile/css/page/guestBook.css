@@ -1,0 +1,54 @@
+/**
+* @name: guestBook.less
+* @description: 留言板样式
+* @author: Alan(alan_webdeveloper@163.com)
+* @update: 2019-09-25 16:30
+*/
+.center-block {
+  margin-left: auto;
+  margin-right: auto;
+}
+.panel {
+  margin-bottom: 0;
+  border-color: #eaeaea;
+}
+.panel .panel-heading,
+.panel .panel-footer {
+  border-color: #eaeaea;
+  background: #fff;
+}
+.panel .panel-heading h3 {
+  font-size: 14px;
+}
+.panel .panel-body input,
+.panel .panel-body textarea {
+  box-shadow: none;
+  border-color: #eaeaea;
+}
+.panel .panel-body .form-group {
+  margin-bottom: 0.4rem;
+}
+.panel .panel-body .form-group label {
+  font-weight: normal;
+}
+.panel .panel-body .form-group label span {
+  color: red;
+}
+.panel .panel-body .form-group p {
+  margin: 5px 0 0;
+  color: #888;
+  font-size: 12px;
+}
+.panel .panel-body .form-group button {
+  font-size: 12px;
+}
+.panel .panel-body .form-group:nth-last-of-type(1) {
+  margin-bottom: 0;
+}
+.panel .panel-footer {
+  word-break: break-word;
+}
+.panel .panel-footer a {
+  color: #f8b300;
+}
+/*# sourceMappingURL=guestBook.css.map */

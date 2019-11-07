@@ -12,7 +12,7 @@
 // [ 应用入口文件 ]
 namespace think;
 //加载基础文件
-require __DIR__ . '/../thinkphp/base.php';
+require __DIR__ . '/../thinkphp/common.php';
 //定义vendor目录
 define('VENDOR_PATH', __DIR__ . '/vendor');
 // 定义应用目录

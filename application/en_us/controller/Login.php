@@ -14,6 +14,6 @@ class Login extends Base
 //        Session::clear('Customer');
 //        Session::set('langModel',$module,'Customer');
 //        $this->redirect(url('customer/Login/index'),'',302,['lang' => $module]);
-        return view($this->template.'/base/404.html');
+        return view($this->template.'/common/404.html');
     }
 }

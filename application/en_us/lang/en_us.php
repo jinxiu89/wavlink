@@ -19,6 +19,9 @@ return [
     'Community'=>'COMMUNITY',
     //导航部分的翻译
     'home' => 'HOME',
+    'All CATEGORIES'=>'All CATEGORIES',
+    'close'=>'CLOSE',
+    'back'=>'BACK',
     'product'=>'PRODUCTS',
     'support'=>'SUPPORTS',
     'blog'=>'BLOG&NEWS',

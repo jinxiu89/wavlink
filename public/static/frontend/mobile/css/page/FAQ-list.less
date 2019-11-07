@@ -1,0 +1,39 @@
+/**
+* @name: FAQ-list.less
+* @description: FAQ列表页样式
+* @author: Alan(alan_webdeveloper@163.com)
+* @update: 2019-10-18 10:30
+*/
+@import "../public/mixins";
+@import "../public/variables";
+
+.banner {
+    background: #42A4FF;
+    img {
+        .img-responsive();
+        .center-block();
+        width: 800px;
+        @media screen and (max-width: 800px) {
+            width: 100%;
+        }
+    }
+}
+.main {
+    background: @whiteColor;
+}
+
+.item {
+    padding: @publicInterval;
+    border-bottom: 1px solid @borderColor;
+    h3 {
+        margin-bottom: 10px;
+        line-height: 18px;
+    }
+    h3 a {
+        color: @baseColor;
+        font-size: 14px;
+    }
+    p span {
+        font-size: 12px;
+    }
+}

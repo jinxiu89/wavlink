@@ -9,10 +9,16 @@
 
 //列表布局样式
 .list-box {
+    .clearFix();
     .list-item {
-        margin: 0 0 @publicInterval;
-        &:nth-last-of-type(1) {
-            margin: 0;
+        .fl();
+        width: 50%;
+        margin: 0 0 5px;
+        &:nth-of-type(2n + 1) {
+            padding-right: 2.5px;
+        }
+        &:nth-of-type(2n + 2) {
+            padding-left: 2.5px;
         }
     }
     .list-item .thumbnail {
@@ -25,34 +31,15 @@
     }
     .list-item .thumbnail .caption {
         padding: 15px 8px;
-        .title a {
-            display: block;
-            color: @baseColor;
-            font-size: 14px;
-        }
-        .des {
-            margin: @publicInterval 0;
-            font-size: 14px;
-            color: @whiteSmoke;
-        }
-        .link {
-            .clearFix();
-        }
-        .link span {
-            .fl();
-            display: block;
-            width: 50%;
+        .title {
+            //.text-overflow();
+            .text-overflow-many(100%, 2, 20px);
+            margin-bottom: 5px;
             font-size: 12px;
-            &:nth-last-of-type(1) {
-                text-align: right;
-            }
         }
-        .link a {
-            color: @linkColor;
-            &:hover {
-                color: @activeColor;
-                text-decoration: none;
-            }
+        p {
+            font-size: 10px;
+            color: @activeColor;
         }
     }
 }

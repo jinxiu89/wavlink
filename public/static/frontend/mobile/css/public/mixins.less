@@ -59,6 +59,18 @@
     overflow: hidden;
 }
 
+.text-overflow-many(@width: 100%, @line: 3, @lineHeight: 22px, @height: @line * @lineHeight) {
+    width: @width;
+    display: -webkit-box;
+    -webkit-line-clamp: @line;  //只适用于webkit内核浏览器，故兼容性存在问题
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    //针对非webkit内核的浏览器兼容性处理
+    position: relative;
+    line-height: @lineHeight;
+    height: @height;
+}
+
 #text-vertical(@name) {
     height: @name;
     line-height: @name;

@@ -234,6 +234,6 @@ class Base extends Controller
      */
     public function IE()
     {
-        return $this->fetch($this->template . '/base/ie.html');
+        return $this->fetch($this->template . '/common/ie.html');
     }
 }

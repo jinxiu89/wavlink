@@ -1,339 +1,119 @@
-{extend name="mobile/base/base" /}
-
+{extend name="mobile/common/base" /}
 {block name="seo"}
-<title>{$seo.title} - Wavlink</title>
+<title>{$seo.title}</title>
 <meta name="description" content="{$seo.description}">
 <meta name="keywords" content="{$seo.keywords}">
-<link rel="stylesheet" href="__EN__/css/index/private-index.css" type="text/css">
-<!-- Bootstrap bootstrap-touch-slider Slider Main Style Sheet -->
-<link href="__EN__/css/index/swiper.min.css" rel="stylesheet" media="all">
-<link rel="stylesheet" href="__EN__/css/index/layout.css" type="text/css" media="all">
 {/block}
-
-<!--头部导航之上的公告推荐位开始-->
-{block name="news"}
-{notempty name="imagesNotice"}
-<style>
-    body {
-        padding-top: 0 !important
-    }
-
-    div.advance {
-        position: relative
-    }
-
-    div.advance > span {
-        position: absolute;
-        right: 0;
-        top: 12%;
-        width: 20px;
-        height: 20px;
-        line-height: 20px;
-        text-align: center;
-        background: #f2f2f2;
-        color: #333;
-        z-index: 100
-    }
-
-    div.advance > a > div.advance_box > p {
-        margin: 0 auto;
-        font-size: 16px;
-        text-align: center;
-        color: #fff;
-        padding: 4px 0
-    }
-
-    @media screen and (min-width: 320px) {
-        div.advance > a > div.advance_box > p {
-            width: 85%;
-            margin: 0 auto
-        }
-
-        div.advance > span {
-            right: 2%
-        }
-    }
-
-    @media screen and (min-width: 768px) {
-        div.advance > a > div.advance_box:hover p {
-            text-decoration: underline;
-        }
-    }
-
-    @media screen and (min-width: 1100px) {
-        div.advance > a > div.advance_box > p {
-            width: 66%
-        }
-
-        div.advance > span {
-            right: 15%;
-            font-size: 16px;
-            cursor: default;
-        }
-    }
-</style>
-<div class="container-fluid">
-    <div class="row">
-        <div class="advance">
-            <span class="sp">x</span>
-            {volist name="imagesNotice" id="vo"}
-            <a href="{$vo.url}">
-                {empty name="$vo.image_pc_url"}
-                <div id="adv" class="advance_box" style="background:#e21111">
-                    <p>{$vo.title}</p>
-                </div>
-                {else /}
-                <img src="{$vo.image_mobile_url}" class="visible-xs" width="100%" alt="">
-                {/empty}
-            </a>
-            {/volist}
-        </div>
-    </div>
-</div>
-{/notempty}
+{block name="style"}
+<link rel="stylesheet" href="__MOBILE__/css/page/home.css">
 {/block}
-<!--头部导航之上的公告推荐位结束-->
-{block name="banner"}
-<!-- wavlink睿因 产品banner图 -->
-<!-- wavlink banner轮播图 -->
-<div id="banner" class="xb col-xs-12" style="padding:0;overflow: hidden">
-    <div class="swiper-container swiper-container-horizontal col-xs-12" id="bannerSwiper"
-         style="overflow:visible !important;padding:0; cursor: -webkit-grab;">
-        <div class="swiper-wrapper relative col-xs-12"
-             style="padding:0;transition-duration: 0ms; transform: translate3d(-3807px, 0px, 0px);" id="bannerSlide">
-            {volist name="swiper" id="vo"}
-            <div class="relative swiper-slide swiper-slide-prev swiper-slide-duplicate-next col-xs-12"
-                 id="swiper-slide2" data-swiper-slide-index="{$key}" style="padding:0">
-                <a href="{$vo.url}">
-                    <img src="{$vo.image_mobile_url}" class="bar_img  img-responsive center-block"
-                         style="width:100%" alt="{$vo.title}">
-                    <div class="inner absolute inner_even col-xs-12" style="padding:0;top: 0;left: 0">
-                        <dl class="col-lg-5 col-md-5 col-lg-offset-1 col-md-offset-1 col-sm-5 col-sm-offset-1 col-xs-12 "
-                            style="padding:0">
-                            <!-- 2018-4-12 星期四 11:06 修改了col-md-7改为col-md-6; col-sm-10改为col-sm-6 -->
-                            <dt class="" data-swiper-parallax="-500" data-swiper-parallax-opacity="0"
-                                style="padding:0;transition-duration: 0ms; opacity: 0; transform: translate3d(-500px, 0px, 0px);">
-                                {$vo.title}
-                            </dt>
-                            {if condition="($vo.image_product_url == '') AND ($vo.subtitle == '')"}
-                            {else /}
-                            <dd class=""
-                                style="padding:0; transition-duration: 0ms; opacity: 0; transform: translate3d(-1500px, 0px, 0px);"
-                                data-swiper-parallax="-1500" data-swiper-parallax-opacity="0">
-                                {empty name='vo.image_product_url'}
-                                {$vo.subtitle}
-                                {else /}
-                                <img class=" img-responsive" src="{$vo.image_product_url}" style="height: 60px">
-                                {/empty}
-                            </dd>
-                            {/if}
-                            {notempty name="vo.product_title"}
-                            <dd class="" data-swiper-parallax="-3000" data-swiper-parallax-opacity="0"
-                                style="padding:0;transition-duration: 0ms; opacity: 0; transform: translate3d(-3000px, 0px, 0px);">
-                                {$vo.product_title}
-                            </dd>
-                            {/notempty}
-                            <dd class="" data-swiper-parallax="-4500" data-swiper-parallax-opacity="0"
-                                style="padding:0;transition-duration: 0ms; opacity: 0; transform: translate3d(-4500px, 0px, 0px);">
-                                {empty name='vo.model'}
-                                {empty name="vo.product_title"}{else /}
-                                <button type="button" class="btn btn-primary">Learn more</button>
-                                {/empty}
-                                {else /}
-                                <button type="button" class="btn btn-primary">{$vo.model}</button>
-                                {/empty}
-                            </dd>
-                        </dl>
-                    </div>
-                </a>
-            </div>
-            {/volist}
-        </div>
-    </div>
-    <div id="bannerpagination" class="pagination swiper-pagination-clickable swiper-pagination-bullets">
-        {volist name="swiper" id="vo"}
-        <span class="swiper-pagination-bullet"></span>
-        {/volist}
-    </div>
-    <div class="swiper-button-prev hidden-xs"></div><!--左箭头-->
-    <div class="swiper-button-next hidden-xs"></div><!--右箭头-->
-</div>
+{block name="swiper"}
+<!--幻灯片以及banner部分-->
+{include file="mobile/common/swiper"}
 {/block}
-
 {block name="body"}
-<!-- wavlink 新产品横幅广告 -->
-<div class="relative rel_p col-xs-12">
-    {volist name="showcase" id="vo"}
-    <a href="{$vo.url}">
-        <div id="Detail_page_all">
-            <div class="container-fluid">
-                <div class="row">
-                    <div class="detail_page_one col-xs-12" style="padding:0">
-                        <img src="{$vo.image_mobile_url}" alt="{$vo.product_title}"
-                             class="img_mobile center-block img-responsive">
-                        <!-- 2018-4-16 星期一 14:52 h2标签添加col-sm-5 -->
-                        <div class="absolute text_title_three">
-                            <h2>{$vo.title}</h2>
-                            <h3>{$vo.subtitle}|mb</h3>
-                        </div>
+<!--主体内容-->
+<div class="container-fluid">
+    {notempty name="showcase"}
+    <div class="row">
+        <div class="recommend">
+            {volist name="showcase" id="vo"}
+            <div class="common-box">
+                <div class="recommend-box">
+                    <div class="img-box">
+                        <a href="{$vo.url}">
+                            <img src="{$vo.image_pc_url}" alt="{$vo.title}">
+                        </a>
+                    </div>
+                    <div class="des">
+                        <h3>{$vo.product_title}</h3>
+                        <p>
+                            <span>{$vo.model}</span>
+                        </p>
+                    </div>
+                </div>
+            </div>
+            {/volist}
+        </div>
+    </div>
+    {/notempty}
+    <div class="row">
+        <div class="new-box">
+            <h3><span>NEWS</span> <a href="#">More > </a></h3>
+            <div class="new">
+                <div class="item">
+                    <div class="des">
+                        <h4><a href="#">Based on the policy, WAVLINK official website now provides product manuals and relevant files for downloading!</a></h4>
+                    </div>
+                    <div class="img-box">
+                        <a href="#">
+                            <img src="https://cloud.wavlink.com/index.php?user/publicLink&fid=0897_1UQS5DQJ-rGV_y0Qycvismmtt9iufjXXG_5hjU4wkNbCFNuq1hG7Fi-az1MmsAPgW0ukZ9w_hLJTn4zT4J1RNA-x9WAM5YOu4WXJLga0tGGewt4mAGAtgOZJJRlDu8fAMFTTz3OUg&file_name=/1.jpg" alt="">
+                        </a>
+                    </div>
+                </div>
+                <div class="item">
+                    <div class="des">
+                        <h4><a href="#">Based on the policy, WAVLINK official website now provides product manuals and relevant files for downloading!</a></h4>
+                    </div>
+                    <div class="img-box">
+                        <a href="#">
+                            <img src="https://cloud.wavlink.com/index.php?user/publicLink&fid=deabED3yc8iOqwajGpl3dw3BaF2TgWoMc-EbyPeZ-Rf3FXSZZeGeHdP-AY52h8R3PvjKXBCC6j2867fiewRHJkA7mWxX4om9tzcd9UleKbI0w6jbK1dPar9Fnqmh3Ea_8AVTtmb8kZaSRkAPu6Ng1C3RnB9-w6XuuosB7Kx6PNSQv7dvNIFcM2c&file_name=/IMG_20190316_093703_AO_HDR.jpg" alt="">
+                        </a>
                     </div>
                 </div>
             </div>
         </div>
-    </a>
-    {/volist}
-</div>
-<div id="Rec" class="index_rec Rec col-lg-10 col-lg-offset-1 col-xs-12" style="padding:0">
-    <div class="pac col-xs-12">
-        {volist name="News" id="vo"}
-        <div class="relative col-sm-6 col-xs-12">
-            <a href="{$vo.url}" style="background: #fff;"><img src="{$vo.image_pc_url}" alt="" class="img-responsive center-block"></a>
-            <div class="bg-white absolute col-xs-12">
-                <!-- 2018-4-12 星期四 17:04 删除了h2标签的字体大小 font-size:18px -->
-                <h3 class="color-black">{$vo.product_title}</h3>
-                <p>{$vo.model}</p>
-                <div class="details">
-                    <a href="{$vo.url}">LEARN MORE</a>
-                    <!--<a href="javascript:;">前往购买</a>-->
+    </div>
+    {notempty name="videos"}
+    <div class="row">
+        <div class="video-box">
+            <h3><span>VIDEO</span> <a href="#">More > </a></h3>
+            <div class="video swiper-container">
+                <div class=" swiper-wrapper">
+                    {volist name="videos" id="video"}
+                    <div class="swiper-slide">
+                        <video controls poster="{$video.tu}">
+                            <source src="{$video.url}" type="video/mp4">
+                            Your browser does not support the video tag.
+                        </video>
+                    </div>
+                    {/volist}
                 </div>
+                <div class="swiper-pagination"></div><!--分页器-->
             </div>
         </div>
-        {/volist}
     </div>
-</div>
-{empty name="$marketing"}
-{else /}
-{$marketing->content}
-{/empty}
-{/block}
-{block name="ad"}
-<!--主体内容结束-->
-<!--底部横幅开始-->
-<div class="col-xs-12" style="padding:0">
-    {volist name="imagesNew" id="vo"}
-    <a href="{$vo.url}"><img src="{$vo.image_mobile_url}" alt="{$vo.title}"
-                             class="img_mobile center-block img-responsive"></a>
-    {/volist}
+    {/notempty}
 </div>
 {/block}
-<!--私有js-->
-{block name="js"}
-<script src="__EN__/js/index/swiper.min.js"></script>
+{block name="javascript"}
+<!--私有JS-->
 <script>
-    //幻灯片根据索引值改变颜色。白黑白。
-    var v = $(".swiper-slide");
-    v.each(function (i) {
-        var d = $(this).index();
-        if (d % 2 == 0) {
-            $(".swiper-wrapper div > a >div>dl").eq(i).css("color", "#000");
-        }
-        if (d % 2 != 0) {
-            $(".swiper-wrapper div > a >div>dl").eq(i).css("color", "#fff");
-        }
-    })
-</script>
-<!-- 头部导航下拉新闻通知 -->
-<script>
-    var $adv = $("div.advance");
-    var $SBtn = $("span.sp");
-    var display = $adv.css("display");
-
-    if (display == "block") {
-        $("nav.navbar-default").css({
-            position: "static"
-        });
-    }
-
-    // 点击隐藏广告;
-    $SBtn.click(function () {
-        $(this).hide();
-        $adv.hide();
-        if ($(document).innerWidth() >= 1024) {
-            $("body").css({
-                "margin-top": $("nav.navbar-default").innerHeight() + "px"
-            });
-            $("nav.navbar-default").css({
-                position: "fixed"
-            })
-        }
-    });
-</script>
-<script>
-    //    轮播js《》
-    <!--轮播js开始-->
-    $("#bannerpagination span:first").addClass("swiper-pagination-bullet-active");
-    var mySwiper = new Swiper('#bannerSwiper', {
+    var mySwiper = new Swiper('.banner', {
         loop: true,
         autoplay: {    //可选选项，自动滑动
-            delay: 4000,   //自动滑动间隔
+            delay: 6000,   //自动滑动间隔
             stopOnLastSlide: false,//如果设置为true，当切换到最后一个slide时停止自动切换。（loop模式下无效）。
-            disableOnInteraction: false,//用户操作swiper之后，是否禁止autoplay。默认为true：停止。
+            disableOnInteraction: false//用户操作swiper之后，是否禁止autoplay。默认为true：停止。
         },
         speed: 1000,
         pagination: {   //分页器
-            el: '#bannerpagination',
+            el: '.swiper-pagination',
             clickable: true,
-        },
-        navigation: {  //左右箭头
-            nextEl: '.swiper-button-next',
-            prevEl: '.swiper-button-prev',
-            hideOnClick: true,
         },
         grabCursor: true,//鼠标变手
         parallax: true,//dl过度效果
     });
 
-    function lazyLoadDemos() {
-        $('.phone-box').each(function () {
-            var frameHolder = $(this);
-            if (frameHolder.hasClass('loaded')) return;
-            var frame = frameHolder.find('iframe');
-            var src = frame.attr('data-src');
-            if (frameHolder.offset().top < ($(window).scrollTop() + $(window).height() + 50)) {
-                frameHolder.addClass('loaded');
-                frame.attr('src', src);
-            }
-        });
-    }
-
-    if ($('.phone-box').length > 0) {
-        $('.phone-box').each(function () {
-            var t = $(this);
-            var demoFile = t.find('iframe').attr('data-src');
-        });
-        $(window).on('scroll resize', function () {
-            lazyLoadDemos();
-        });
-        lazyLoadDemos();
-    }
-    <!--轮播js结束 -->
-</script>
-<!--<script>-->
-<!--//-->
-<!--&lt;!&ndash; 遮罩层 温馨提示 &ndash;&gt;-->
-<!--var w = $("#mask_md > div.mask_cont").width();-->
-<!--var h = $("#mask_md > div.mask_cont").height();-->
-
-<!--$("div.mask_cont").css({-->
-<!--"margin-left": -((w / 2) + 15) + "px",-->
-<!--"margin-top": -(h / 2) + "px"-->
-<!--});-->
-<!--$("#mask_md").show();-->
-<!--$("#mask_md > div.mask_cont > div.but > button ").click(function () {-->
-<!--$("#mask_md").hide();-->
-<!--})-->
-
-<!--</script>-->
-<script>
-    //
-    <!--首页第三屏，解决溢出的问题-->
-    var f = $("div.Rec > div.pac > div > a").width();
-    var smal = $("div.Rec > div.pac > div > div");
-    smal.css("width", f + "px");
-    if ($(document).innerWidth() <= 1024) {
-        $("div.Rec > div.pac > div > div > h2").css({
-            height: ($("div.Rec > div.pac > div > div > h2").height() * 2) + "px"
-        })
-    }
+    //video
+    var mySwiperVideo = new Swiper('.video', {
+        loop: true,
+        autoplay: false,
+        speed: 1000,
+        pagination: {   //分页器
+            el: '.swiper-pagination',
+            clickable: true,
+        }
+    });
 </script>
 {/block}

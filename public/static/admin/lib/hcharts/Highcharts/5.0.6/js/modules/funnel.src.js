@@ -120,7 +120,7 @@
                      *      \                 /
                      *     x3,y3 _________ x4,y3
                      *
-                     * Additional for the base of the neck:
+                     * Additional for the common of the neck:
                      *
                      *       |               |
                      *       |               |
@@ -157,7 +157,7 @@
                             x1 = x3 = centerX - neckWidth / 2;
                             x2 = x4 = centerX + neckWidth / 2;
 
-                            // the base of the neck
+                            // the common of the neck
                         } else if (y3 > neckY) {
                             y5 = y3;
 

@@ -19,7 +19,7 @@ class Manger extends Validate
         'username' => 'require|unique:manger,username|max:50|alphaDash',
         'name' => 'require|max:50',
         'password' => 'require|max:16',
-        'mobile' => 'max:11|number',
+        'mobile_old' => 'max:11|number',
         'status' => 'integer|in:-1,0,1',
         'language' => 'require',
     ];
@@ -33,7 +33,7 @@ class Manger extends Validate
         'name.max'=>'名字不能超过50个字符',
         'password.require'=>'密码不能为空',
         'password.max'=>'密码不能太长',
-        'mobile'=>'手机号码不能超过11位数字',
+        'mobile_old'=>'手机号码不能超过11位数字',
         'status'=>'状态值不在合法范围内',
         'language'=>'语言不能为空',
     ];

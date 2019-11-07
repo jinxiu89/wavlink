@@ -1,0 +1,44 @@
+/**
+* @name: about.less
+* @description: about頁面佈局css - mobile
+* @author: Alan(alan_webdeveloper@163.com)
+* @update: 2019-10-17 11:30
+*/
+@import "../public/mixins";
+@import "../public/variables";
+
+.category {
+    margin-bottom: @publicInterval;
+    background: @whiteColor;
+    ul {
+        .clearFix();
+    }
+    ul li {
+        .fl();
+        width: 50%;
+        line-height: 40px;
+        border-bottom: 1px solid @borderColor;
+        border-right: 1px solid @borderColor;
+        &:nth-of-type(2n) {
+            border-right: none;
+        }
+        &:nth-last-of-type(1) {
+            border-bottom: none;
+        }
+    }
+    ul li a {
+        display: block;
+        padding: 0 @publicInterval;
+        color: @baseColor;
+    }
+    ul li.active a {
+        color: @activeColor;
+    }
+}
+
+.main {
+    min-height: 500px;
+    margin-bottom: 60px;
+    padding: @publicInterval;
+    background: @whiteColor;
+}

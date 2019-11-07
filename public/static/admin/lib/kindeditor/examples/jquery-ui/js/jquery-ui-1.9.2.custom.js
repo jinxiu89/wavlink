@@ -461,7 +461,7 @@ $.widget = function( name, base, prototype ) {
 			var childPrototype = child.prototype;
 
 			// redefine the child widget using the same prototype that was
-			// originally used, but inherit from the new version of the base
+			// originally used, but inherit from the new version of the common
 			$.widget( childPrototype.namespace + "." + childPrototype.widgetName, constructor, child._proto );
 		});
 		// remove the list of existing child constructors from the old constructor
@@ -11668,7 +11668,7 @@ $.widget("ui.sortable", $.ui.mouse, {
 
 			this.widget().toggleClass( "ui-sortable-disabled", !!value );
 		} else {
-			// Don't call widget base _setOption for disable as it adds ui-state-disabled class
+			// Don't call widget common _setOption for disable as it adds ui-state-disabled class
 			$.Widget.prototype._setOption.apply(this, arguments);
 		}
 	},
@@ -12987,12 +12987,12 @@ $.widget( "ui.spinner", {
 			options = this.options;
 
 		// make sure we're at a valid step
-		// - find out where we are relative to the base (min or 0)
+		// - find out where we are relative to the common (min or 0)
 		base = options.min !== null ? options.min : 0;
 		aboveMin = value - base;
 		// - round to the nearest step
 		aboveMin = Math.round(aboveMin / options.step) * options.step;
-		// - rounding is based on 0, so adjust back to our base
+		// - rounding is based on 0, so adjust back to our common
 		value = base + aboveMin;
 
 		// fix precision from bad JS floating point math

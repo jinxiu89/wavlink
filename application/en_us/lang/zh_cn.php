@@ -19,6 +19,9 @@ return [
     'Community' => '关注我们',
     //导航部分的翻译
     'home' => '首页',
+    'All CATEGORIES'=>'菜单',
+    'close'=>'关闭',
+    'back'=>'返回',
     'product' => '产品中心',
     'support' => '服务与支持',
     'blog' => '博客与新闻',

@@ -1,0 +1,78 @@
+<div class="g-nav">
+    <div class="nav-bar">
+        <div class="menu-bar">
+            <a class="toggle">
+                <span></span>
+            </a>
+        </div>
+        <div class="logo">
+            <h1>
+                <a href="{:url('/'.$code.'/index')}">
+                    <img src="//files.wavlink.com/wavlink/pubilc/wavlink_logo.png" alt="www.wavlink.com">
+                </a>
+            </h1>
+        </div>
+        <div class="search-bar">
+            <span class="iconfont iconsearch"></span>
+        </div>
+    </div>
+    <div class="wrapper cf">
+        <nav id="main-nav">
+            <ul>
+                <li>
+                    <a href="/{$code}/index.html">{:lang('home')}</a>
+                </li>
+                <li>
+                    <a>{:lang('product')}</a>
+                    {notempty name="tree"}
+                    <ul>
+                        {volist name="tree" id="item"}
+                        <li>
+                            <a href="#">{$item.name}</a>
+                            {notempty name="item.child"}
+                            <ul>
+                                {volist name="item.child" id="vo"}
+                                <li><a href="{:url('/'.$code.'/category/'.$vo.url_title)}">{$vo.name}</a></li>
+                                {/volist}
+                            </ul>
+                            {/notempty}
+                        </li>
+                        {/volist}
+                    </ul>
+                    {/notempty}
+                </li>
+                <li>
+                    <a href="#">{:lang('support')}</a>
+                    <ul>
+                        <li><a href="/{$code}/drivers.html">{:lang('driver')}</a></li>
+                        <li><a href="/{$code}/firmware.html">{:lang('firmware')}</a></li>
+                        <li><a href="/{$code}/manuals.html">{:lang('manual')}</a></li>
+                        <li><a href="/{$code}/faq.html">{:lang('faq')}</a></li>
+                        <li><a href="/{$code}/guest_book/">{:lang('GuestBook')}</a></li>
+                        <li><a href="#">Video</a></li>
+                    </ul>
+                </li>
+                <li>
+                    <a href="http://blog.wavlink.com">{:lang('blog')}</a>
+                </li>
+                <li>
+                    <a href="#">{:lang('language')}</a>
+                    {notempty name="language"}
+                    <ul>
+                        {volist name="language" id="vo"}
+                        <li><a href="{:url('/language/'.$vo.code)}">{$vo.name}</a></li>
+                        {/volist}
+                    </ul>
+                    {/notempty}
+                </li>
+            </ul>
+
+        </nav>
+    </div>
+    <div class="search-container">
+        <form action="">
+            <input type="text" placeholder="Please enter the product model to search">
+            <input type="submit" value="GO">
+        </form>
+    </div>
+</div>

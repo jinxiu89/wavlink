@@ -1,0 +1,47 @@
+/**
+* @name: FAQ-list.less
+* @description: FAQ列表页样式
+* @author: Alan(alan_webdeveloper@163.com)
+* @update: 2019-10-18 10:30
+*/
+.center-block {
+  margin-left: auto;
+  margin-right: auto;
+}
+.banner {
+  background: #42A4FF;
+}
+.banner img {
+  display: block;
+  max-width: 100%;
+  height: auto;
+  margin-left: auto;
+  margin-right: auto;
+  width: 800px;
+}
+@media screen and (max-width: 800px) {
+  .banner img {
+    width: 100%;
+  }
+}
+.main {
+  padding: 0.4rem;
+  background: #fff;
+}
+.main .title {
+  font-size: 16px;
+}
+.main .des {
+  margin: 0.4rem 0;
+  padding: 0.4rem 0;
+  border-top: 1px solid #eaeaea;
+  border-bottom: 1px solid #eaeaea;
+}
+.main .des img {
+  display: block;
+  max-width: 100%;
+  height: auto;
+  margin-left: auto;
+  margin-right: auto;
+}
+/*# sourceMappingURL=FAQ-detail.css.map */

@@ -25,15 +25,16 @@
   }
 }
 .item {
-  margin-bottom: 0.4rem;
-  padding: 0.4rem;
+  margin-bottom: 8px;
   background: #fff;
 }
 .item .panel {
   margin-bottom: 0;
+  border-radius: 0;
   border-color: #eaeaea;
 }
 .item .panel-heading {
+  background: #fff;
   padding: 10px 0.4rem;
   border-color: #eaeaea;
 }
@@ -42,15 +43,37 @@
 }
 .item h3 {
   font-size: 14px;
+  line-height: 22px;
+}
+.item .mode {
+  font-size: 12px;
+}
+.item .mode pbefore,
+.item .mode p:after {
+  content: " ";
+  display: table;
+  zoom: 1;
+}
+.item .mode p:after {
+  clear: both;
 }
 .item .mode span {
-  display: inline-block;
+  float: left;
+  display: block;
+  width: 33.33%;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  overflow: hidden;
 }
 .item .mode p:nth-last-of-type(1) span {
   font-size: 12px;
 }
 .item .info {
+  font-size: 12px;
   margin: 0.4rem 0;
+}
+.item .download {
+  font-size: 12px;
 }
 .item .download a {
   font-size: 12px;

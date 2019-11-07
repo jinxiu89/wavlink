@@ -1,6 +1,6 @@
 {extend name="mobile/common/base"}
 {block name="seo"}
-<title>{$result.seo_title}</title>
+<title>{$result.seo_title}  - {:lang('powered by')}</title>
 <meta name="description" content="{$result.description}">
 <meta name="keywords" content="{$result.keywords}">
 {/block}
@@ -13,10 +13,10 @@
     <div class="row">
         <div class="g-path">
             <ol class="breadcrumb">
-                <li><a href="#">HOME</a></li>
-                <li><a href="#">PRODUCT</a></li>
-                <li><a href="#">PC peripherals</a></li>
-                <li class="active">WL-UG39DH2</li>
+                <li><a href="/{$code}/index.html">{:lang('home')}</a></li>
+                <li><a href="/{$code}/category/{$result.id|getCategoryByPid|getUrlTitleByCid}.html">{$result.id|getCategoryByPid|getCNameByCid}</a></li>
+                <li><a href="/{$code}/category/{$result.id|getCategoryByID|getUrlTitleByCid}.html">{$result.id|getCategoryByID|getCNameByCid}</a></li>
+                <li class="active">{$result.model}</li>
             </ol>
         </div>
     </div>

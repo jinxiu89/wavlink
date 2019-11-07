@@ -453,43 +453,40 @@ body {
   }
 }
 .g-pagination {
-  height: 54px;
   margin: 20px 0;
-  padding-left: 20px;
+  padding: 0 15px;
   background: #fff;
+  /*.pagination {
+    .clearFix();
+    margin: 10px 0;
+  }
+  .pagination > li > a, .pagination > li > span {
+    color: @activeColor;
+  }
+  .pagination > .disabled > a,
+  .pagination > .disabled > a:focus,
+  .pagination > .disabled > a:hover,
+  .pagination > .disabled > span,
+  .pagination > .disabled > span:focus,
+  .pagination > .disabled > span:hover {
+    color: #777;
+  }
+  .pagination > .active > a,
+  .pagination > .active > a:focus,
+  .pagination > .active > a:hover,
+  .pagination > .active > span,
+  .pagination > .active > span:focus,
+  .pagination > .active > span:hover {
+    color: @baseColor;
+    background: @activeColor;
+    border-color: @activeColor;
+  }*/
 }
-.g-pagination .pagination {
-  margin: 10px 0;
+.g-pagination li {
+  margin: 0 10%;
 }
-.g-pagination .paginationbefore,
-.g-pagination .pagination:after {
-  content: " ";
-  display: table;
-  zoom: 1;
-}
-.g-pagination .pagination:after {
-  clear: both;
-}
-.g-pagination .pagination > li > a,
-.g-pagination .pagination > li > span {
+.g-pagination li a {
   color: #f8b300;
-}
-.g-pagination .pagination > .disabled > a,
-.g-pagination .pagination > .disabled > a:focus,
-.g-pagination .pagination > .disabled > a:hover,
-.g-pagination .pagination > .disabled > span,
-.g-pagination .pagination > .disabled > span:focus,
-.g-pagination .pagination > .disabled > span:hover {
-  color: #777;
-}
-.g-pagination .pagination > .active > a,
-.g-pagination .pagination > .active > a:focus,
-.g-pagination .pagination > .active > a:hover,
-.g-pagination .pagination > .active > span,
-.g-pagination .pagination > .active > span:focus,
-.g-pagination .pagination > .active > span:hover {
-  color: #333;
-  background: #f8b300;
   border-color: #f8b300;
 }
 .g-aside {

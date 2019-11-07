@@ -1,6 +1,6 @@
 {extend name="mobile/common/base" /}
 {block name="seo"}
-<title>{$parents.seo_title}</title>
+<title>{$parents.seo_title} - {:lang('powered by')}</title>
 <meta name="description" content="{$parents.description}">
 <meta name="keywords" content="{$parents.keywords}">
 {/block}
@@ -12,10 +12,16 @@
     <div class="row">
         <div class="g-path">
             <ol class="breadcrumb">
-                <li><a href="#">Home</a></li>
-                <li><a href="#">Product</a></li>
-                <li><a href="#">PC peripherals</a></li>
-                <li class="active">THUNDERBOLT™ 3</li>
+                <li><a href="/{$code}/index.html">{:lang('home')}</a></li>
+                {notempty name="path"}
+                {volist name="path" id="vo"}
+                {if condition="$current eq $vo.url_title"}
+                <li class="active">{$vo.name}</li>
+                {else /}
+                <li><a href="{:url('/'.$code.'/category/'.$vo.url_title)}">{$vo.name}</a></li>
+                {/if}
+                {/volist}
+                {/notempty}
             </ol>
         </div>
     </div>
@@ -46,7 +52,7 @@
     </div>
     {notempty name="page"}
     <div class="row">
-        <div class="g-pagination">
+        <div class="g-pagination clearfix">
             <nav>
                 {$page|raw}
             </nav>

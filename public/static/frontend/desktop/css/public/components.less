@@ -421,11 +421,18 @@ body {
 
 //分页
 .g-pagination {
-  height: 54px;
   margin: 20px 0;
-  padding-left: 20px;
+  padding: 0 15px;
   background: @whiteColor;
-  .pagination {
+  li {
+    margin: 0 10%;
+    a {
+      color: @activeColor;
+      border-color: @activeColor;
+    }
+  }
+
+  /*.pagination {
     .clearFix();
     margin: 10px 0;
   }
@@ -449,7 +456,7 @@ body {
     color: @baseColor;
     background: @activeColor;
     border-color: @activeColor;
-  }
+  }*/
 }
 //分页
 

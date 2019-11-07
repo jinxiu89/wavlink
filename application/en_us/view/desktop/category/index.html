@@ -1,5 +1,5 @@
 {extend name="desktop/common/base"}
-{block name="title"}{$parents.seo_title}{/block}
+{block name="title"}{$parents.seo_title} - {:lang('powered by')}{/block}
 {block name="seo"}
 <!--私有页面SEO-->
 <meta name="description" content="{$parents.description}">
@@ -95,7 +95,7 @@
 
     {notempty name="page"}
     <div class="row">
-        <div class="g-pagination">
+        <div class="g-pagination clearfix">
             <nav>
                 {$page|raw}
             </nav>

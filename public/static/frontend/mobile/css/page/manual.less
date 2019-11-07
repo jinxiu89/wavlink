@@ -25,34 +25,28 @@
 }
 .box .main {
     .item {
-        margin-bottom: @publicInterval;
-        padding: @publicInterval;
+        margin-bottom: 8px;
         border-bottom: 1px solid @borderColor;
         background: @whiteColor;
         #border-radius(5px);
     }
     .item .panel {
         margin-bottom: 0;
+        border-radius: 0;
         border-color: @borderColor;
     }
     .item .panel-heading {
+        background: @whiteColor;
         border-color: @borderColor;
     }
     .item .title{
-        font-size: 16px;
+        font-size: 14px;
+        line-height: 22px;
     }
     .item .info{
-        div p span {
-            &:after {
-                content: ",";
-            }
-            &:nth-last-of-type(1):after,
-            &:nth-of-type(1):after {
-                content: none;
-            }
-        }
         p {
             margin-bottom: 5px;
+            font-size: 12px;
         }
         p span {
             display: inline-block;
@@ -60,8 +54,9 @@
         }
     }
     .item .download{
+        font-size: 12px;
         a {
-            margin-bottom: 5px;
+            margin: 0 2px 5px;
             font-size: 12px;
             border-color: @borderColor;
         }

@@ -334,7 +334,7 @@ footer .copy-right p a {
   text-decoration: underline;
 }
 .g-path {
-  margin: 0.4rem 0;
+  margin: 8px 0;
   background: #fff;
 }
 .g-path .breadcrumb {
@@ -352,79 +352,95 @@ footer .copy-right p a {
   padding: 0;
 }
 .g-pagination {
-  height: 54px;
-  margin: 0.4rem 0 0;
+  margin: 8px 0 0;
   padding: 0 0.4rem;
   background: #fff;
+  /*.pagination {
+        .clearFix();
+        margin: 10px 0;
+    }
+    .pagination > li > a, .pagination > li > span {
+        color: @activeColor;
+    }
+    .pagination > .disabled > a,
+    .pagination > .disabled > a:focus,
+    .pagination > .disabled > a:hover,
+    .pagination > .disabled > span,
+    .pagination > .disabled > span:focus,
+    .pagination > .disabled > span:hover {
+        color: #777;
+    }
+    .pagination > .active > a,
+    .pagination > .active > a:focus,
+    .pagination > .active > a:hover,
+    .pagination > .active > span,
+    .pagination > .active > span:focus,
+    .pagination > .active > span:hover {
+        color: @baseColor;
+        background: @activeColor;
+        border-color: @activeColor;
+    }*/
 }
-.g-pagination .pagination {
+.g-pagination .pager {
   margin: 10px 0;
 }
-.g-pagination .paginationbefore,
-.g-pagination .pagination:after {
+.g-pagination li:nth-of-type(1) {
+  float: left;
+}
+.g-pagination li:nth-last-of-type(1) {
+  float: right;
+}
+.g-filter {
+  padding: 20px;
+  font-size: 12px;
+  background: #fff;
+}
+.g-filterbefore,
+.g-filter:after {
   content: " ";
   display: table;
   zoom: 1;
 }
-.g-pagination .pagination:after {
+.g-filter:after {
   clear: both;
 }
-.g-pagination .pagination > li > a,
-.g-pagination .pagination > li > span {
-  color: #f8b300;
+.g-filter .filter {
+  float: left;
+  width: 50%;
 }
-.g-pagination .pagination > .disabled > a,
-.g-pagination .pagination > .disabled > a:focus,
-.g-pagination .pagination > .disabled > a:hover,
-.g-pagination .pagination > .disabled > span,
-.g-pagination .pagination > .disabled > span:focus,
-.g-pagination .pagination > .disabled > span:hover {
-  color: #777;
-}
-.g-pagination .pagination > .active > a,
-.g-pagination .pagination > .active > a:focus,
-.g-pagination .pagination > .active > a:hover,
-.g-pagination .pagination > .active > span,
-.g-pagination .pagination > .active > span:focus,
-.g-pagination .pagination > .active > span:hover {
-  color: #333;
-  background: #f8b300;
-  border-color: #f8b300;
-}
-.g-filter {
-  padding: 0.4rem;
-  text-align: center;
-  background: #fff;
-  border-bottom: 1px solid #eaeaea;
+.g-filter .sort {
+  float: right;
+  width: 50%;
 }
 .g-filter span {
-  display: inline-block;
-  padding-right: 5px;
-  font-size: 12px;
+  display: block;
+  margin-bottom: 5px;
+  font-weight: bold;
 }
 .g-filter .select {
   position: relative;
   display: inline-block;
+  /*.iconfont {
+            position: absolute;
+            top: 0;
+            right: 0;
+            z-index: 1;
+            display: block;
+            line-height: 30px;
+        }*/
 }
 .g-filter .select select {
-  width: 150px;
+  width: 100%;
   height: 30px;
   padding: 0 5px;
   border: 1px solid #eaeaea;
   -webkit-border-radius: 5px;
   -moz-border-radius: 5px;
   border-radius: 5px;
-  font-size: 12px;
-  appearance: none;
-  -moz-appearance: none;
-  -webkit-appearance: none;
-}
-.g-filter .select .iconfont {
-  position: absolute;
-  top: 0;
-  right: 0;
-  z-index: 1;
-  display: block;
-  line-height: 30px;
+  background: #fff;
+  /*font-size: 12px;
+            appearance: none;
+            -moz-appearance: none;
+            -webkit-appearance: none;*/
 }
 /*# sourceMappingURL=components.css.map */

@@ -92,7 +92,7 @@ Class Category extends BaseModel
         $product = (new ProductModel())->where('id', 'in', $ids)
             ->where('status', '=', 1)
             ->order($order)
-            ->paginate();
+            ->paginate('', true);
         return $product;
     }
 
@@ -164,6 +164,19 @@ Class Category extends BaseModel
             ->order($order)
             ->field('name,url_title,id,image')
             ->select();
+    }
+
+    /**
+     * @param $language_id
+     * @return array|\PDOStatement|string|\think\Collection
+     * @throws \think\db\exception\DataNotFoundException
+     * @throws \think\db\exception\ModelNotFoundException
+     * @throws \think\exception\DbException
+     * 前端导航的树形结构,先获取到本语言所有的分类
+     */
+    public function getDataByLanguage($language_id)
+    {
+        return $this->where(['status' => 1, 'language_id' => $language_id])->field('name,url_title,id,parent_id,image')->select();
     }
 
     //获取所有的分类，并且递归

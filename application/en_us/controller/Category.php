@@ -3,6 +3,9 @@ namespace app\en_us\controller;
 
 use app\common\helper\Category as CategoryHelp;
 use app\common\model\Category as CategoryModel;
+use think\db\exception\DataNotFoundException;
+use think\db\exception\ModelNotFoundException;
+use think\exception\DbException;
 
 /**
  * Class Category
@@ -14,9 +17,9 @@ class  Category extends Base
     /**
      * @param string $category
      * @return mixed
-     * @throws \think\db\exception\DataNotFoundException
-     * @throws \think\db\exception\ModelNotFoundException
-     * @throws \think\exception\DbException
+     * @throws DataNotFoundException
+     * @throws ModelNotFoundException
+     * @throws DbException
      * @internal param string $name
      * @internal param $id
      */

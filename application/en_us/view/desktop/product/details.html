@@ -1,5 +1,5 @@
 {extend name="desktop/common/base"}
-{block name="title"}{$result.seo_title}{/block}
+{block name="title"}{$result.seo_title} - {:lang('powered by')}{/block}
 {block name="seo"}
 <!--私有页面SEO-->
 <meta name="description" content="{$result.description}">
@@ -18,6 +18,7 @@
             <ol class="breadcrumb">
                 <li><a href="/{$code}/index.html">{:lang('home')}</a></li>
                 <li><a href="/{$code}/category/{$result.id|getCategoryByPid|getUrlTitleByCid}.html">{$result.id|getCategoryByPid|getCNameByCid}</a></li>
+                <li><a href="/{$code}/category/{$result.id|getCategoryByID|getUrlTitleByCid}.html">{$result.id|getCategoryByID|getCNameByCid}</a></li>
                 <li class="active">{$result.model}</li>
             </ol>
         </div>

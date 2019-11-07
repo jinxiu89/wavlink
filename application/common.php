@@ -457,6 +457,16 @@ function getCategoryByPid($id)
     return $categoryIds[0];
 }
 
+/**
+ * @param $id
+ * @return mixed
+ *
+ */
+function getCategoryByID($id){
+    $categoryIds = \app\common\model\Product::getProductCategory($id);
+    return $categoryIds[1];
+}
+
 function getCNameByCid($id)
 {
     $data = \app\common\model\Category::get($id);

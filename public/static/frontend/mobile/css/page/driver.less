@@ -19,14 +19,15 @@
 }
 
 .item {
-    margin-bottom: @publicInterval;
-    padding: @publicInterval;
+    margin-bottom: 8px;
     background: @whiteColor;
     .panel {
         margin-bottom: 0;
+        border-radius: 0;
         border-color: @borderColor;
     }
     .panel-heading {
+        background: @whiteColor;
         padding: 10px @publicInterval;
         border-color: @borderColor;
     }
@@ -35,20 +36,32 @@
     }
     h3 {
         font-size: 14px;
+        line-height: 22px;
     }
     .mode {
+        font-size: 12px;
+        p {
+            .clearFix();
+        }
         span {
-            display: inline-block;
+            float: left;
+            display: block;
+            width: 33.33%;
+            .text-overflow();
         }
         p:nth-last-of-type(1) span {
             font-size: 12px;
         }
     }
     .info {
+        font-size: 12px;
         margin: @publicInterval 0;
     }
-    .download a {
+    .download {
         font-size: 12px;
-        border-color: @borderColor;
+        a {
+            font-size: 12px;
+            border-color: @borderColor;
+        }
     }
 }

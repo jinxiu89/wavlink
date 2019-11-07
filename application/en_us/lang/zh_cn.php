@@ -86,4 +86,6 @@ return [
     'Join Us' => '工作机会',
     'News' => '新闻',
     'Privacy' => '隐私保护',
+    //網站版權信息翻譯
+    'powered by'=>'Wavlink品牌官方网站'
 ];

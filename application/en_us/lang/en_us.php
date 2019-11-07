@@ -88,4 +88,6 @@ return [
     'Join Us'=>'Join Us',
     'News'=>'News',
     'Privacy'=>'Privacy',
+    //網站版權信息翻譯
+    'powered by'=>'Powered by Wavlink'
 ];

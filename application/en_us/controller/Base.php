@@ -10,6 +10,7 @@ use app\common\model\Language as LanguageModel;
 use app\common\model\Product as ProductModel;
 use app\common\model\Setting as SettingModel;
 use think\App;
+use think\Collection;
 use think\Controller;
 use think\db\exception\DataNotFoundException;
 use think\db\exception\ModelNotFoundException;
@@ -50,7 +51,7 @@ class Base extends Controller
     protected $articleList; // 最新事件列表
     protected $productList; // 最热产品列表
     protected $template;
-    protected $beforeActionList = ['loadLanguage','languages', 'getCategory', 'checkMobile', 'checkLang', 'setting', 'Popular', 'articles', 'documents', 'about'];
+    protected $beforeActionList = ['loadLanguage', 'languages', 'getTree', 'getCategory', 'checkMobile', 'checkLang', 'setting', 'Popular', 'articles', 'documents', 'about'];
 
     /**
      * Base constructor.
@@ -180,6 +181,19 @@ class Base extends Controller
     {
         $category = (new CategoryModel())->getNormalCategory($this->code);//获取一级分类,parent_id = 0
         $this->assign('category', $category);
+    }
+
+    /**
+     * @throws DataNotFoundException
+     * @throws DbException
+     * @throws ModelNotFoundException
+     */
+    public function getTree()
+    {
+        $data = (new CategoryModel())->getDataByLanguage(LanguageModel::getLanguageCodeOrID($this->code));
+        $arr = Collection::make($data)->toArray();
+        $tree = \app\common\helper\Category::toLayer($arr, $name = 'child', $parent_id = 0);
+        $this->assign('tree', $tree);
     }
 
     /***

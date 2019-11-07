@@ -92,7 +92,7 @@ Class Category extends BaseModel
         $product = (new ProductModel())->where('id', 'in', $ids)
             ->where('status', '=', 1)
             ->order($order)
-            ->paginate('', true);
+            ->paginate('12', true);
         return $product;
     }
 

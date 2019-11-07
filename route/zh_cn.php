@@ -13,8 +13,8 @@ Route::group('zh_cn', function () {
     Route::get('/category/:category', 'Category/index');
     Route::get('/product/:product', 'Product/details');
     Route::get('/about/:about','About/index');
-    Route::get('/drivers', 'Drivers/index');
     Route::get('/drivers/:category', 'Drivers/category');
+    Route::get('/drivers', 'Drivers/index');
     Route::get('/manuals', 'Manual/index');
     Route::get('/manuals/index', 'Manual/index');
     Route::get('/firmware/details/:title', 'Firmware/details')->pattern(['title'=>'[\w-]+']);

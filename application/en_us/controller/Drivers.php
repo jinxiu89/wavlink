@@ -17,6 +17,7 @@ use think\exception\HttpException;
 use app\common\model\Drivers as DriversModel;
 use app\common\model\ServiceCategory as ServiceCategoryModel;
 use think\Request;
+use think\response\View;
 
 /***
  * Class Drivers
@@ -27,18 +28,21 @@ class Drivers extends Base
     /**
      * Drivers constructor.
      * @param App|null $app
+     * @throws DataNotFoundException
+     * @throws DbException
+     * @throws ModelNotFoundException
      */
-   public function __construct(App $app = null)
-   {
-       parent::__construct($app);
-       try {
-           $cate = ServiceCategoryModel::getSecondCategory($this->code);
-           $this->assign('cate', $cate);
-       } catch (DataNotFoundException $e) {
-       } catch (ModelNotFoundException $e) {
-       } catch (DbException $e) {
-       }
-   }
+    public function __construct(App $app = null)
+    {
+        parent::__construct($app);
+        try {
+            $cate = ServiceCategoryModel::getSecondCategory($this->code);
+            $this->assign('cate', $cate);
+        } catch (DataNotFoundException $e) {
+        } catch (ModelNotFoundException $e) {
+        } catch (DbException $e) {
+        }
+    }
     /***
      * $this->code 为 当前的模块名，即在上面_initialize(初始化中)赋予的
      *
@@ -73,7 +77,7 @@ class Drivers extends Base
     /**
      * @param string $category
      * @param $order
-     * @return \think\response\View
+     * @return View
      * @throws DataNotFoundException
      * @throws DbException
      * @throws ModelNotFoundException
@@ -101,22 +105,33 @@ class Drivers extends Base
         }
     }
 
+    /**
+     * @param string $drivers
+     * @return mixed
+     */
     public function details($drivers = "")
     {
         if (!isset($drivers) || empty($drivers)) {
             abort(404);
         }
-        $result = DriversModel::getDetailsByUrlTitle($this->code, $drivers);
-        $result_models = $result["models"];
-        $models = explode(",", $result_models);
-
-        if (!empty($result)) {
-            return $this->fetch($this->template . '/drivers/details.html', [
-                'result' => $result,
-                'models' => $models
-            ]);
-        } else {
-            abort(404);
+        try {
+            $result = DriversModel::getDetailsByUrlTitle($this->code, $drivers);
+            $result_models = $result["models"];
+            $models = explode(",", $result_models);
+            if (!empty($result)) {
+                return $this->fetch($this->template . '/drivers/details.html', [
+                    'result' => $result,
+                    'models' => $models
+                ]);
+            } else {
+                abort(404);
+            }
+        } catch (DataNotFoundException $e) {
+            $this->error($e->getMessage());
+        } catch (ModelNotFoundException $e) {
+            $this->error($e->getMessage());
+        } catch (DbException $e) {
+            $this->error($e->getMessage());
         }
     }
 }

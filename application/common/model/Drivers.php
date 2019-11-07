@@ -44,10 +44,10 @@ Class Drivers extends BaseModel
         ];
         if (empty($categoryId)) {
             $count = $this->where($data)->count();
-            $data = $this->where($data)->order($order)->paginate(6);
+            $data = $this->where($data)->order($order)->paginate(6, true);
         } else {
             $count = $this->where($data)->where('category_id', '=', $categoryId)->count();
-            $data = $this->where($data)->where('category_id', '=', $categoryId)->order($order)->paginate(6);
+            $data = $this->where($data)->where('category_id', '=', $categoryId)->order($order)->paginate(6, true);
         }
         $result = ModelsArr($data, 'models', 'modelsGroup');
         return ['count' => $count, 'result' => $result];

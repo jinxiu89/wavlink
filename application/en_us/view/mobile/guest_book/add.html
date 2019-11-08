@@ -1,0 +1,162 @@
+{extend name="mobile/common/base"}
+{block name="seo"}
+<title>Guest book  - {:lang('powered by')}</title>
+<meta name="description" content="">
+<meta name="keywords" content="">
+{/block}
+{block name="style"}
+<link rel="stylesheet" href="__MOBILE__/css/page/guest-book.css">
+{/block}
+{block name="swiper"}
+<div class="container-fluid">
+    <div class="row">
+        <div class="g-path">
+            <ol class="breadcrumb">
+                <li><a href="{:url('/'.$code.'/index')}">{:lang('home')}</a></li>
+                <li class="active">{:lang('GuestBook')}</li>
+            </ol>
+        </div>
+    </div>
+</div>
+{/block}
+{block name="body"}
+<div class="container-fluid">
+    <div class="row">
+        <div class="box">
+            <div class="main">
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        <h3 class="panel-title">
+                            {:lang('Please offer us your product information, we will reply to you after we check it')}</h3>
+                    </div>
+                    <div class="panel-body">
+                        <form class="form-horizontal" id="form-data">
+                            <div class="form-group">
+                                <label for="First_name" class="col-sm-2 control-label">
+                                    <span>*</span>{:lang('First Name')}
+                                </label>
+                                <div class="col-sm-5">
+                                    <input type="text" class="form-control" id="First_name" placeholder=""
+                                           name="first_name">
+                                </div>
+                                <div class="col-sm-5 p_padding">
+                                    <p></p>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label for="Last_name" class="col-sm-2 control-label">
+                                    <span>*</span>{:lang('Last Name')}
+                                </label>
+                                <div class="col-sm-5">
+                                    <input type="text" class="form-control" id="Last_name" placeholder=""
+                                           name="last_name">
+                                </div>
+                                <div class="col-sm-5 p_padding">
+                                    <p></p>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label for="Email" class="col-sm-2 control-label">
+                                    <span>*</span>{:lang('Email')}
+                                </label>
+                                <div class="col-sm-5">
+                                    <input type="text" class="form-control" id="Email" placeholder="" name="email">
+                                </div>
+                                <div class="col-sm-5 p_padding">
+                                    <p></p>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label for="Model" class="col-sm-2 control-label">
+                                    <span>*</span>{:lang('Model')}
+                                </label>
+                                <div class="col-sm-5">
+                                    <input type="text" class="form-control" id="Model" placeholder="" name="model">
+                                </div>
+                                <div class="col-sm-5 p_padding">
+                                    <p></p>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label for="SN" class="col-sm-2 control-label">
+                                    <span>*</span>{:lang('Order Number')}
+                                </label>
+                                <div class="col-sm-5">
+                                    <input type="text" class="form-control" id="SN" placeholder="" name="sn">
+                                    <p>{:lang('Order tips')}</p>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label for="description" class="col-sm-2 control-label">
+                                    <span>*</span>{:lang('Description')}
+                                </label>
+                                <div class="col-sm-10">
+                                    <textarea class="form-control" rows="8" id="description" name="description" placeholder=""></textarea>
+                                </div>
+                                {:token()}
+                            </div>
+                            <div class="form-group">
+                                <div class="col-sm-offset-2 col-sm-10">
+                                    <button type="button" class="btn btn-primary" id="button">{:lang('Submit')}</button>
+                                    <button type="reset" class="btn btn-danger" id="reset">{:lang('Reset')}</button>
+                                </div>
+                            </div>
+                        </form>
+
+                    </div>
+                    <div class="panel-footer">
+                        {:lang('Guest Notice')}
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{/block}
+{block name="javascript"}
+<script type="text/javascript" src="__STATIC__/admin/lib/layer/2.4/layer.js"></script>
+<script type="text/javascript" src="__STATIC__/admin/js/common.js"></script>
+<script type="text/javascript" src="__STATIC__/admin/js/dialog.js"></script>
+<!--私有JS-->
+<script>
+    /**
+     * create by Administrator on 16-7-16
+     * 处理 Post数据
+     * 提交form表单数据
+     * #button_add :提交按钮的ID
+     * #form-data:提交表单的form ID
+     * 利用serializeArray
+     * 组装数组用each方法
+     * */
+    $("#button").click(function () {
+        var data = $("#form-data").serializeArray();
+        /***
+         * 修正日期：2016-09-08
+         * 修正人：袁普照
+         * 解决数组的问题
+         */
+        var postData={};
+        $(data).each(function(){
+            if(postData[this.name]){
+                if($.isArray(postData[this.name])){
+                    postData[this.name].push(this.value);
+                }else{
+                    postData[this.name]=[postData[this.name],this.value];
+                }
+            }else{
+                postData[this.name]=this.value;
+            }
+        });
+        var url='/{$code}/guest_book/save.html';
+        $.post(url,postData,function (result) {
+            if(result.status === 1){
+                layer.msg(result.data, {icon: 1, time: 5000});
+                $("#button").attr("disabled","disabled");
+
+            }else {
+                layer.msg(result.data, {icon: 5, time: 3000});
+            }
+        },'JSON');
+    });
+</script>
+{/block}

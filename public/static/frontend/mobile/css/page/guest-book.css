@@ -1,5 +1,5 @@
 /**
-* @name: guestBook.less
+* @name: guest-book.less
 * @description: 留言板样式
 * @author: Alan(alan_webdeveloper@163.com)
 * @update: 2019-09-25 16:30
@@ -19,6 +19,9 @@
 }
 .panel .panel-heading h3 {
   font-size: 14px;
+}
+.panel .panel-body {
+  font-size: 12px;
 }
 .panel .panel-body input,
 .panel .panel-body textarea {
@@ -46,9 +49,10 @@
   margin-bottom: 0;
 }
 .panel .panel-footer {
+  font-size: 12px;
   word-break: break-word;
 }
 .panel .panel-footer a {
   color: #f8b300;
 }
-/*# sourceMappingURL=guestBook.css.map */
+/*# sourceMappingURL=guest-book.css.map */

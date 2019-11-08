@@ -72,6 +72,9 @@
   font-size: 12px;
   margin: 0.4rem 0;
 }
+.item .info p {
+  margin-bottom: 5px;
+}
 .item .download {
   font-size: 12px;
 }

@@ -1,0 +1,65 @@
+{extend name="mobile/common/base"}
+{block name="seo"}
+<title>{$parent.seo_title}  - {:lang('powered by')}</title>
+<meta name="description" content="{$parent.description}">
+<meta name="keywords" content="{$parent.keywords}">
+{/block}
+{block name="style"}
+<link rel="stylesheet" href="__MOBILE__/css/page/firmware.css">
+{/block}
+{block name="swiper"}
+<div class="container-fluid">
+    <div class="row">
+        <div class="g-path">
+            <ol class="breadcrumb">
+                <li><a href="/{$code}/index.html">{:lang('home')}</a></li>
+                <li class="active">{:lang('firmware')}</li>
+            </ol>
+        </div>
+    </div>
+</div>
+{/block}
+{block name="body"}
+<div class="container-fluid">
+    <div class="row">
+        <div class="box">
+            <div class="main">
+                {notempty name="data"}
+                {volist name="data" id="vo"}
+                <div class="item">
+                    <div class="panel panel-default">
+                        <div class="panel-heading">
+                            <h3 class="title">{$vo.name}</h3>
+                        </div>
+                        <div class="panel-body">
+                            <div class="info">
+                                <p><span>{:lang('Description')} :</span> <span>{$vo.description}</span></p>
+                                <p><span>{:lang('Post Date')} :</span>
+                                    {if condition="$code == 'en_us'"}
+                                    <span>{$vo.update_time|strtotime|date="d/m/Y"}</span>
+                                    {elseif condition="$code == 'zh_cn'" /}
+                                    <span>{$vo.update_time|strtotime|date="Y-m-d"}</span>
+                                    {/if}
+
+                                </p>
+                                <p><span>{:lang('Available')} :</span> <span>{$vo.model}</span></p>
+                            </div>
+                            <div class="download">
+                                <span>{:lang('Download')} :</span>
+                                <a href="/{$code}/firmware/details/{$vo.title}.html" class="download_url btn btn-default">{:lang('Details')}</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                {/volist}
+                {/notempty}
+            </div>
+        </div>
+        <div class="g-pagination clearfix">
+            <nav>
+                {:pagination($data)}
+            </nav>
+        </div>
+    </div>
+</div>
+{/block}

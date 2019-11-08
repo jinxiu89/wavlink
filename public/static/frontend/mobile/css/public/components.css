@@ -127,6 +127,7 @@ a {
 }
 input,
 textarea {
+  box-shadow: none!important;
   outline: none;
   -webkit-appearance: none;
   /*去除系统默认的样式*/
@@ -343,6 +344,24 @@ footer .copy-right p a {
   background: #fff;
   line-height: 50px;
   font-size: 12px;
+}
+.g-path .breadcrumbbefore,
+.g-path .breadcrumb:after {
+  content: " ";
+  display: table;
+  zoom: 1;
+}
+.g-path .breadcrumb:after {
+  clear: both;
+}
+.g-path .breadcrumb li {
+  float: left;
+}
+.g-path .breadcrumb .active {
+  width: 70%;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  overflow: hidden;
 }
 .g-path .breadcrumb a {
   color: #f8b300;

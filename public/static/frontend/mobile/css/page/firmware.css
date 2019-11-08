@@ -1,6 +1,6 @@
 /**
-* @name: manual.less
-* @description: 說明書列表页样式
+* @name: firmware.less
+* @description: 固件列表页样式
 * @author: Alan(alan_webdeveloper@163.com)
 * @update: 2019-11-08 13:30
 */
@@ -69,12 +69,4 @@
   font-size: 12px;
   border-color: #eaeaea;
 }
-@media screen and (min-width: 768px) and (max-width: 991px) {
-  .box .aside {
-    width: 23%;
-  }
-  .box .main {
-    width: 75%;
-  }
-}
-/*# sourceMappingURL=manual.css.map */
+/*# sourceMappingURL=firmware.css.map */

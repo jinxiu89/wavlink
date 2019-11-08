@@ -1,0 +1,59 @@
+/**
+* @name: firmware-detail.less
+* @description: 固件詳情页样式
+* @author: Alan(alan_webdeveloper@163.com)
+* @update: 2019-11-08 13:30
+*/
+@import "../public/mixins";
+@import "../public/variables";
+
+//固件詳情页样式
+
+.banner {
+  background: #42A4FF;
+  img {
+    .img-responsive();
+    .center-block();
+    width: 800px;
+    @media screen and (max-width: 800px) {
+      width: 100%;
+    }
+  }
+}
+.box .main {
+  .item {
+    margin-bottom: 8px;
+    border-bottom: 1px solid @borderColor;
+    background: @whiteColor;
+  }
+  .item .panel {
+    margin-bottom: 0;
+    border-radius: 0;
+    border-color: @borderColor;
+  }
+  .item .panel-heading {
+    background: @whiteColor;
+    border-color: @borderColor;
+  }
+  .item .panel-heading .title{
+    font-size: 14px;
+    line-height: 22px;
+  }
+  .item .panel-body .info{
+    p {
+      margin-bottom: 5px;
+      font-size: 12px;
+    }
+    p span {
+      line-height: 20px;
+    }
+  }
+  .item .panel-footer {
+    background: @whiteColor;
+  }
+  .item .panel-footer p {
+    padding-bottom: 5px;
+    font-size: 12px;
+  }
+}
+//固件詳情页样式

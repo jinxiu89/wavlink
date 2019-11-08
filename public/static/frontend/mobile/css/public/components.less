@@ -22,7 +22,7 @@ audio,canvas,video{display:inline-block;*display:inline;*zoom:1}
 blockquote:before,blockquote:after,q:before,q:after{content:"\0020"}
 textarea{overflow:auto;resize:vertical}
 input,textarea,button,select,a{outline:0 none;border: none;}
-input,textarea {outline: none;-webkit-appearance: none; /*去除系统默认的样式*/-webkit-tap-highlight-color: rgba(0, 0, 0, 0); /* 点击高亮的颜色*/}
+input,textarea {box-shadow: none!important;outline: none;-webkit-appearance: none; /*去除系统默认的样式*/-webkit-tap-highlight-color: rgba(0, 0, 0, 0); /* 点击高亮的颜色*/}
 button::-moz-focus-inner,input::-moz-focus-inner{padding:0;border:0}
 mark{background-color:transparent}
 a,ins,s,u,del{text-decoration:none}
@@ -202,11 +202,19 @@ footer {
     margin: 8px 0;
     background: @whiteColor;
     .breadcrumb {
+        .clearFix();
         padding: 0 @publicInterval;
         margin: 0;
         background: @whiteColor;
         line-height: 50px;
         font-size: 12px;
+        li {
+            .fl();
+        }
+        .active {
+            width: 70%;
+            .text-overflow();
+        }
         a {
             color: @activeColor;
             font-size: 12px;

@@ -23,7 +23,7 @@ class Firmware extends BaseModel
     public function getDataByLanguageId($language_id, $status = 1, $order = 'desc')
     {
         $query = $this->where(['language_id' => $language_id, 'status' => $status]);
-        $result['data'] = $query->order(['listorder' => 'desc', 'create_time' => $order])->field('id,title,language_id,name,model,description,size,create_time,status,listorder')->paginate();
+        $result['data'] = $query->order(['listorder' => 'desc', 'create_time' => $order])->field('id,title,language_id,name,model,description,size,create_time,status,listorder')->paginate('',true);
         $result['count'] = $query->count();
         return $result;
     }

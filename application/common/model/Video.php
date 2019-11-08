@@ -10,7 +10,7 @@ namespace app\common\model;
 use app\common\model\Language as LanguageModel;
 Class Video extends BaseModel
 {
-    protected $table = 'video';
+    protected $table = 'tb_video';
 
     public function getVideoByLanguage($code) {
         $order = [

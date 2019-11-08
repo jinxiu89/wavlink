@@ -15,7 +15,7 @@ Route::group('en_us', function () {
     Route::get('/about/:about', 'About/index')->pattern(['about' => '[\w-]+']);
     Route::get('/drivers/:category', 'Drivers/category')->pattern(['category' => '[\w-]+']);
     Route::get('/drivers', 'Drivers/index');
-    Route::get('/firmware/details/:title', 'Firmware/details')->pattern(['title'=>'[\w-]+']);
+    Route::get('/firmware/details/:title', 'Firmware/details')->pattern(['title' => '[\w-]+']);
     Route::get('/firmware', 'Firmware/index');
     Route::get('/manuals/index', 'Manual/index');
     Route::get('/manuals/:category', 'Manual/category')->pattern(['category' => '[\w-]+']);
@@ -26,6 +26,8 @@ Route::group('en_us', function () {
     Route::post('/guest_book/save', 'GuestBook/save');
     Route::get('/guest_book/', 'GuestBook/add');
     Route::get('/tuya/Appdownload', 'Tuya/index');
+    Route::get('/video/:url_title', 'Video/details')->pattern(['url_title' => '[\w-]+']);
+    Route::get('/video', 'Video/index');
     Route::get('/', 'Index/index');
 });
 

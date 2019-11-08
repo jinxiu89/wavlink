@@ -19,9 +19,9 @@ Route::group('zh_cn', function () {
     Route::get('/manuals/index', 'Manual/index');
     Route::get('/firmware/details/:title', 'Firmware/details')->pattern(['title'=>'[\w-]+']);
     Route::get('/firmware', 'Firmware/index');
-    Route::get('/faq', 'Faq/index');
-    Route::get('/faq/:url_title', 'Faq/category');
     Route::get('/faq/details/:url_title', 'Faq/details');
+    Route::get('/faq/:url_title', 'Faq/category');
+    Route::get('/faq', 'Faq/index');
     Route::get('/guest_book/','GuestBook/add');
     Route::post('/guest_book/save','GuestBook/save');
     Route::get('/tuya/Appdownload','Tuya/index');

@@ -17,19 +17,21 @@ use think\Validate;
 class Ticket extends Validate
 {
     protected $rule = [
-        'first_name'=>'require|max:64|token',
-        'last_name'=>'require|max:64',
+        'first_name' => 'require|max:64|token',
+        'last_name' => 'require|max:64',
         'email' => 'require|email',
-        'model'=>'require|max:64',
-        'sn'=>'require',
-        'description'=>'require|length:16,255'
+        'model' => 'require|max:64',
+        'sn' => 'require',
+        'description' => 'require|length:16,255'
     ];
     protected $message = [
         'first_name.require' => '{%first name is require}',
         'first_name.max' => '{%first name is max to 64 character}',
-        'first_name.token'=>'{%Cannot submit repeatedly}',
+        'first_name.token' => '{%Cannot submit repeatedly}',
         'last_name.require' => '{%last name is require}',
         'last_name.max' => '{%last name is max to 64 character}',
+        'email.require' => '{%email is require}',
+        'email.email' => '{%email format is error}',
         'model.require' => '{%model is require}',
         'model.max' => '{%model format is WL-WN***}',
         'sn.require' => '{%order number is require}',

@@ -41,7 +41,7 @@ Class Faq extends BaseModel
             'id' => 'desc'
         ];
         $count=$this->where($data)->count();
-        $result=$this->where($data)->order($order)->field($field)->paginate();
+        $result=$this->where($data)->order($order)->field($field)->paginate('',true);
         return ['count'=>$count,'data'=>$result];
     }
 

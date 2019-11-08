@@ -10,6 +10,7 @@ namespace app\wavlink\controller;
 use app\common\model\ServiceCategory as ServiceCategoryModel;
 use app\common\model\Video as VideoModel;
 use app\wavlink\validate\Video as VideoValidate;
+use think\App;
 use think\db\exception\DataNotFoundException;
 use think\db\exception\ModelNotFoundException;
 use think\exception\DbException;
@@ -21,6 +22,16 @@ use think\Facade\Request;
  */
 Class Video extends BaseAdmin
 {
+    protected $model;
+    protected $validate;
+
+    public function __construct(App $app = null)
+    {
+        parent::__construct($app);
+        $this->model=new VideoModel();
+        $this->validate= new VideoValidate();
+    }
+
     public function index() {
 
         $video = VideoModel::getDataByStatus(1, $this->currentLanguage['id']);
@@ -53,10 +64,11 @@ Class Video extends BaseAdmin
      */
     public function add() {
         //获取服务管理的当前视频分类
-        $categorys = ServiceCategoryModel::getSecondCategory($this->currentLanguage['id']);
+        $categorys = ServiceCategoryModel::getSecondCategory($this->currentLanguage['id'],'Video');
         return $this->fetch('', [
             'categorys' => $categorys,
             'language_id' => $this->currentLanguage['id'],
+            'title'=>substr(md5(time() . uniqid(microtime(true), true)), 3, 10)
         ]);
     }
 
@@ -68,10 +80,8 @@ Class Video extends BaseAdmin
     public function save(Request $request) {
         if (request()->isAjax()) {
             $data = $request::instance()->post();
-            (new VideoValidate())->check($data);
-            $validate=new VideoValidate();
             if(isset($data['id']) || !empty($data['id'])){
-                if($validate->scene('edit')->check($data)){
+                if($this->validate->scene('edit')->check($data)){
                     try{
                         return $this->update($data);
                     }catch (\Exception $exception){
@@ -79,7 +89,7 @@ Class Video extends BaseAdmin
                     }
                 }
             }else{
-                if($validate->scene('add')->check($data)){
+                if($this->validate->scene('add')->check($data)){
                     try{
                         $res = (new VideoModel())->add($data);
                         if ($res) {
@@ -92,7 +102,7 @@ Class Video extends BaseAdmin
                     }
                 }
             }
-            return show(0,'','','','', $validate->getError());
+            return show(0,'','','','', $this->validate->getError());
         }
     }
 

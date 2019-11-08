@@ -62,6 +62,8 @@ return [
 
     'first name is require'=>'First name is require!',
     'first name is max to 64 character'=>'first name is max to 64 character',
+    'email is require'=>'Email is require',
+    'email format is error'=>'Email format is Error',
     'Cannot submit repeatedly'=>'Cannot submit repeatedly',
     'last name is require'=>'Last name is require!',
     'model is require'=>'model is require',
@@ -72,6 +74,8 @@ return [
     'last name is max to 64 character'=>'last name is max to 64 character',
     'Please offer us your product information, we will reply to you after we check it'=>
         'Please offer us your product information, we will reply to you after we check it',
+    'ticket success'=>'ticket success we will reply email to you',
+    'ticket error'=>'Oops! ticket failed, unknown reason!',
     'First Name'=>'First Name:',
     'Last Name'=>'Last Name',
     'Email'=>'Email:',

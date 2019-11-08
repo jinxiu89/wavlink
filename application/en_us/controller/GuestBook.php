@@ -40,10 +40,14 @@ class GuestBook extends Base
         $validate = new Ticket();
         if ($validate->scene('add')->check($data)) {
             $ticketAdd = new GuestBookModel();
-            if ($ticketAdd->addTicket($data, $this->code)) {
-                return show(1, '', '', '', '', lang('ticket_success'));
-            } else {
-                return show(0, '', '', '', '', lang('ticket_error'));
+            try{
+                if ($ticketAdd->addTicket($data, $this->code)) {
+                    return show(1, '', '', '', '', lang('ticket success'));
+                } else {
+                    return show(0, '', '', '', '', lang('ticket error'));
+                }
+            }catch (\Exception $exception){
+                return show(0, '', '', '', '', $exception->getMessage());
             }
         } else {
             return show(0, '', '', '', '', $validate->getError());

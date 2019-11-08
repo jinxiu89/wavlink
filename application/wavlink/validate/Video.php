@@ -33,7 +33,7 @@ class Video extends BaseValidate
     ];
     /**场景设置**/
     protected $scene = [
-        'add' => ['name', 'category_id', 'language_id'],
-        'edit' => ['id', 'name', 'category_id', 'language_id'],
+        'add' => ['name', 'language_id'],
+        'edit' => ['id', 'name', 'language_id'],
     ];
 }

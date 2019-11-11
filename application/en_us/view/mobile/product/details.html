@@ -141,25 +141,8 @@
 <script>
     $(document).ready(function () {
         var headH = $(".g-nav").innerHeight(),           // 公共头部导航高度;
-            posterH = $(".poster-box").innerHeight(),// 产品详情页title高度;
-            featureH = $(".feature-box").innerHeight(),         // 放大镜的高度;
             nav_li = $(".nav-table > ul > li"),       // 产品详情页横行导航按钮;
             offsetox = $("#detail > .offset-box");       // 产品详情页内容;
-        // 侧边导航部分js代码;
-        var go_top = $("#go-top"),                // 侧边导航;
-            go_topLi = $("#go-top li"),    // 产品详情页侧边导航按钮;
-            go_topP = $("#go-top p");// 侧边导航 回到顶部按钮;
-
-
-        function topBar () {
-            var doc = $(document).scrollTop();
-            if (doc >= posterH || doc >= featureH) {
-                go_top.show(); // 侧边导航 回到顶部按钮;
-            }
-            if (doc <= posterH || doc <= featureH) {
-                go_top.hide(); // 侧边导航 回到顶部按钮;
-            }
-        }
         function animateScroll(that) {
             var index = that.index();
             if (index <= 1) {
@@ -168,26 +151,9 @@
                 $("html,body").animate({"scrollTop": scroll_top}, 300); //偏移
             }
         }
-
-
-        /*topBar();*/
-
-        //go-top
-        go_topP.click(function () {
-            $("html,body").animate({"scrollTop": 0}, 300);
-        });
-        go_topLi.click(function () {
-            animateScroll($(this))
-        });
-
         //nav-table
         nav_li.click(function () {
             animateScroll($(this))
-        });
-
-        // 侧边导航的显示与隐藏;
-        $(window).scroll(function () {
-            topBar()
         });
     })
 </script>

@@ -117,9 +117,14 @@
   color: #333;
 }
 .list-box .list-item .thumbnail .caption .des {
-  min-height: 45px;
-  height: auto !important;
-  _height: 45px;
+  width: 100%;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  position: relative;
+  line-height: 22px;
+  height: 44px;
   text-align: center;
   font-size: 14px;
   color: #333;

@@ -156,9 +156,14 @@
   background: #fff;
 }
 .recommend .des h3 {
-  text-overflow: ellipsis;
-  white-space: nowrap;
+  width: 100%;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
   overflow: hidden;
+  position: relative;
+  line-height: 20px;
+  height: 40px;
   margin: 0 0 5px;
   font-size: 12px;
 }

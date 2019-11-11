@@ -1,49 +1,66 @@
 <?php
+
 namespace app\en_us\controller;
+
 use app\common\model\Video as VideoModel;
 use app\common\model\ServiceCategory as ServiceCategoryModel;
+use think\App;
+use think\facade\Request;
+use think\exception;
+
 class  Video extends Base
 {
-    public function index($category = "")
-    {
-        $videos = new VideoModel();
-        //获取二级分类
-        $child = ServiceCategoryModel::getSecondCategory($this->code);
-        if ($category == ""){
-            $parent = ServiceCategoryModel::getTopCategory($this->code,'Video');
-            if (empty($parent) || !isset($parent)){
-                abort(404);
-            }
-            //获取当前语言下的所有视频列表
-            $video =$videos->getVideoByLanguage($this->code);
-            $this->assign('parent',$parent);
-            $this->assign('video',$video['data']);
-        }else{
-            //获取选择的分类信息
-            $parent = ServiceCategoryModel::getCategoryIdByName($this->code,$category);
-            //获取该分类下的视频列表
-            $video = $videos->getVideosByCategoryId($this->code,$parent['id']);
-            $this->assign('parent',$parent);
-            $this->assign('video',$video['data']);
-        }
-        return $this->fetch($this->template.'/video/index.html',[
-            'child'=>$child
-        ]);
+    protected $model;
 
+    public function __construct(App $app = null)
+    {
+        parent::__construct($app);
+        $this->model = new VideoModel();
+    }
+
+    /**
+     * @return mixed
+     */
+    public function index()
+    {
+        if (Request::isGet()) {
+            try {
+                $result = $this->model->getVideoByLanguage($this->code);
+                return $this->fetch($this->template . '/video/index.html', ['data' => $result['data'], 'count' => $result['count']]);
+            } catch (\Exception $exception) {
+                $this->error($exception->getMessage());
+            }
+        }
+        if (Request::isPost()) {
+            try {
+                exception('拒绝访问', 403);
+            } catch (\Exception $e) {
+            }
+        }
     }
 
     //视频详情页
-    public function detail($video = ""){
-        if (empty($video) || !isset($video)){
-            abort(404);
-        }
-        $result = VideoModel::getDetailsByUrlTitle($video,$this->code);
-        if(!empty($result)){
-            return $this->fetch($this->template.'/video/detail.html',[
-                'result'=>$result
-            ]);
-        }else{
-            abort(404);
-        }
+
+    /***
+     * @param string $video
+     * @return mixed
+     * @throws \think\db\exception\DataNotFoundException
+     * @throws \think\db\exception\ModelNotFoundException
+     * @throws \think\exception\DbException
+     *
+     */
+    public function details($video = "")
+    {
+//        if (empty($video) || !isset($video)) {
+//            abort(404);
+//        }
+//        $result = VideoModel::getDetailsByUrlTitle($video, $this->code);
+//        if (!empty($result)) {
+//            return $this->fetch($this->template . '/video/detail.html', [
+//                'result' => $result
+//            ]);
+//        } else {
+//            abort(404);
+//        }
     }
 }

@@ -24,6 +24,8 @@ Route::group('zh_cn', function () {
     Route::get('/faq', 'Faq/index');
     Route::get('/guest_book/','GuestBook/add');
     Route::post('/guest_book/save','GuestBook/save');
+    Route::get('/video/:url_title', 'Video/details')->pattern(['url_title' => '[\w-]+']);
+    Route::get('/video', 'Video/index');
     Route::get('/tuya/Appdownload','Tuya/index');
     //根路由在最下面
     Route::get('/', 'Index/index');

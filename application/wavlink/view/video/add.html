@@ -41,25 +41,15 @@
                 <p class="textarea-numberbar"><em class="textarea-length">0</em>/100</p>
             </div>
         </div>
-        {if condition="$language_id eq 1"}
         <div class="row cl">
-            <label class="form-label col-xs-4 col-sm-2">资源地址(国内)：</label>
-            <div class="formControls col-xs-8 col-sm-9">
-                <textarea name="urlchina" cols="" rows="" class="textarea"  placeholder="填写国内视频链接地址" dragonfly="true" ></textarea>
-            </div>
-        </div>
-        {/if}
-        {if condition="$language_id eq 2"}
-        <div class="row cl">
-            <label class="form-label col-xs-4 col-sm-2">资源地址（国外）：</label>
+            <label class="form-label col-xs-4 col-sm-2">资源地址 :</label>
             <div class="formControls col-xs-8 col-sm-9">
                 <textarea name="urlabroad" cols="" rows="" class="textarea"  placeholder="youtube上" dragonfly="true" ></textarea>
             </div>
         </div>
-        {/if}
         <div class="row cl">
             <div class="col-xs-8 col-sm-9 col-xs-offset-4 col-sm-offset-2">
-                <button  class="btn btn-primary radius" type="button" onclick="save('{:url(\'Video/save\')}')"><i class="Hui-iconfont">&#xe632;</i> 保存添加
+                <button  class="btn btn-primary radius" type="button" onclick="save('{:url(\'Video/save\')}')"><i class="Hui-iconfont">&#xe632;</i> 保存
                 </button>
                 <button onClick="layer_close();" class="btn btn-default radius" type="button">
                     &nbsp;&nbsp;取消&nbsp;&nbsp;</button>

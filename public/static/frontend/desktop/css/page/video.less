@@ -1,0 +1,58 @@
+/**
+* @name: video.less
+* @description: video列表樣式
+* @author: Alan(alan_webdeveloper@163.com)
+* @update: 2019-09-25 10:00
+*/
+@import "../public/mixins";
+@import "../public/variables";
+
+/*
+.list-box {
+  .clearFix();
+  background: @bodyBgColor;
+
+}*/
+.g-main {
+  background: none;
+}
+.list-box {
+  .clearFix();
+  .item {
+    .fl();
+    width: 25%;
+    padding: 2px;
+  }
+  .item .thumbnail {
+    margin: 0;
+    border: none;
+    border-radius: 0;
+  }
+  .item .thumbnail .img-box {
+    position: relative;
+    #img-optimize(56.25%, @bodyBgColor);
+    .icon-box {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      z-index: 1;
+      width: 50px;
+      height: 50px;
+      margin-top: -25px;
+      margin-left: -25px;
+      text-align: center;
+      line-height: 50px;
+      .iconfont {
+        font-size: 30px;
+        color: @activeColor;
+      }
+    }
+  }
+  .item .thumbnail .caption {
+    padding: 15px 8px;
+    .title {
+      .text-overflow-many(100%, 2, 20px);
+      font-size: 12px;
+    }
+  }
+}

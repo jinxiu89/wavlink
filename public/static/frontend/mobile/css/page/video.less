@@ -20,40 +20,52 @@
 }
 
 .video-box {
+    .clearFix();
     .item {
-        position: relative;
-        margin-bottom: @publicInterval;
-        background: @whiteColor;
-        .img-box {
-            #img-optimize(56.25%, @bodyBgColor);
-            img {
-                .img-responsive();
-                .center-block();
-            }
+        .fl();
+        width: 50%;
+        margin: 0 0 5px;
+        &:nth-of-type(2n + 1) {
+            padding-right: 2.5px;
         }
-        .des {
-            padding: @publicInterval;
-        }
-        .des h4  {
-            text-align: center;
-            font-size: 14px;
-        }
-        .icon-box {
-            position: absolute;
-            z-index: 1;
-            top: 50%;
-            left: 50%;
-            margin-top: -25px;
-            margin-left: -25px;
-            width: 50px;
-            height: 50px;
-            line-height: 50px;
-            text-align: center;
-            color: @baseColor;
-        }
-        .icon-box span {
-            font-size: 30px;
+        &:nth-of-type(2n + 2) {
+            padding-left: 2.5px;
         }
     }
-
+    .item .thumbnail {
+        margin: 0;
+        border: none;
+        border-radius: 0;
+    }
+    .item .thumbnail .img-box {
+        position: relative;
+        #img-optimize(56.25%, @bodyBgColor);
+        .icon-box {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            z-index: 1;
+            width: 50px;
+            height: 50px;
+            margin-top: -25px;
+            margin-left: -25px;
+            text-align: center;
+            line-height: 50px;
+            .iconfont {
+                font-size: 24px;
+                color: @activeColor;
+            }
+        }
+    }
+    .item .thumbnail .caption {
+        padding: 15px 8px;
+        .title {
+            .text-overflow-many(100%, 2, 20px);
+            margin-bottom: 5px;
+            font-size: 12px;
+        }
+    }
+}
+.g-filter {
+    border-bottom: 1px solid @borderColor;
 }

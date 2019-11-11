@@ -24,12 +24,33 @@
     width: 100%;
   }
 }
-.video-box .item {
-  position: relative;
-  margin-bottom: 0.4rem;
-  background: #fff;
+.video-boxbefore,
+.video-box:after {
+  content: " ";
+  display: table;
+  zoom: 1;
 }
-.video-box .item .img-box {
+.video-box:after {
+  clear: both;
+}
+.video-box .item {
+  float: left;
+  width: 50%;
+  margin: 0 0 5px;
+}
+.video-box .item:nth-of-type(2n + 1) {
+  padding-right: 2.5px;
+}
+.video-box .item:nth-of-type(2n + 2) {
+  padding-left: 2.5px;
+}
+.video-box .item .thumbnail {
+  margin: 0;
+  border: none;
+  border-radius: 0;
+}
+.video-box .item .thumbnail .img-box {
+  position: relative;
   display: block;
   overflow: hidden;
   width: 100%;
@@ -37,37 +58,41 @@
   padding-bottom: 56.25%;
   background: #f2f2f2;
 }
-.video-box .item .img-box img {
+.video-box .item .thumbnail .img-box img {
   width: 100%;
 }
-.video-box .item .img-box img {
-  display: block;
-  max-width: 100%;
-  height: auto;
-  margin-left: auto;
-  margin-right: auto;
-}
-.video-box .item .des {
-  padding: 0.4rem;
-}
-.video-box .item .des h4 {
-  text-align: center;
-  font-size: 14px;
-}
-.video-box .item .icon-box {
+.video-box .item .thumbnail .img-box .icon-box {
   position: absolute;
-  z-index: 1;
   top: 50%;
   left: 50%;
-  margin-top: -25px;
-  margin-left: -25px;
+  z-index: 1;
   width: 50px;
   height: 50px;
-  line-height: 50px;
+  margin-top: -25px;
+  margin-left: -25px;
   text-align: center;
-  color: #333;
+  line-height: 50px;
 }
-.video-box .item .icon-box span {
-  font-size: 30px;
+.video-box .item .thumbnail .img-box .icon-box .iconfont {
+  font-size: 24px;
+  color: #f8b300;
+}
+.video-box .item .thumbnail .caption {
+  padding: 15px 8px;
+}
+.video-box .item .thumbnail .caption .title {
+  width: 100%;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  position: relative;
+  line-height: 20px;
+  height: 40px;
+  margin-bottom: 5px;
+  font-size: 12px;
+}
+.g-filter {
+  border-bottom: 1px solid #eaeaea;
 }
 /*# sourceMappingURL=video.css.map */

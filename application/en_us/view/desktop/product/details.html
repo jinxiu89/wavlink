@@ -159,8 +159,6 @@
 <script>
     $(document).ready(function () {
         var headH = $(".g-nav").innerHeight(),           // 公共头部导航高度;
-            posterH = $(".poster-box").innerHeight(),// 产品详情页title高度;
-            featureH = $(".feature-box").innerHeight(),         // 放大镜的高度;
             nav_li = $(".nav-table > ul > li"),       // 产品详情页横行导航按钮;
             offsetox = $("#detail > .offset-box");       // 产品详情页内容;
         // 侧边导航部分js代码;
@@ -170,10 +168,10 @@
 
         function topBar () {
             var doc = $(document).scrollTop();
-            if (doc >= posterH || doc >= featureH) {
+            if (doc >= 1500) {
                 go_top.show(); // 侧边导航 回到顶部按钮;
             }
-            if (doc <= posterH || doc <= featureH) {
+            if (doc < 1500) {
                 go_top.hide(); // 侧边导航 回到顶部按钮;
             }
         }

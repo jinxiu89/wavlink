@@ -27,12 +27,15 @@
         border-radius: 0;
     }
     .list-item .thumbnail .img-box {
-        #img-optimize(56.25%, @bodyBgColor);
+        //產品列表整體圖片尺寸需要修改，這裡只是css初步佔位，後期圖片尺寸修改後，這裡的css需要修改
+        #img-optimize(110%, @bodyBgColor);
+        img {
+            margin-top: 26%;
+        }
     }
     .list-item .thumbnail .caption {
         padding: 15px 8px;
         .title {
-            //.text-overflow();
             .text-overflow-many(100%, 2, 20px);
             margin-bottom: 5px;
             font-size: 12px;

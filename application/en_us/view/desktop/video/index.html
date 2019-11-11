@@ -1,0 +1,91 @@
+{extend name="desktop/common/base" /}
+{block name="title"}{:lang('list of video')} - {:lang('powered by')}{/block}
+{block name="seo"}
+<meta name="description" content="{:lang('list of video')}">
+<meta name="keywords" content="{:lang('list of video')}">
+{/block}
+{block name="style"}
+<link rel="stylesheet" href="__DESKTOP__/css/page/video.css">
+{/block}
+{block name="swiper"}
+<div class="container-fluid">
+    <div class="row">
+        <div class="g-path">
+            <ol class="breadcrumb">
+                <li><a href="{:url('/'.$code.'/index')}">{:lang('home')}</a></li>
+                <li class="active">{:lang('video')}</li>
+            </ol>
+        </div>
+    </div>
+</div>
+{/block}
+{block name="body"}
+<div class="container">
+    <div class="row">
+        <div class="box">
+            <div class="g-aside">
+                <ul>
+                    <li><h3>{:lang('support')}</h3></li>
+                    {include file='desktop/common/support_aside'}
+                </ul>
+            </div>
+            <div class="g-main">
+                <div class="g-filter">
+                    <div class="sort"><span>{:lang('list or video')}</span></div>
+                    <div class="result">
+                        <span>{:lang('result')}{$count}</span>
+                    </div>
+                </div>
+                <div class="list-box">
+                    {notempty name="data"}
+                    {volist name="data" id="vo"}
+                    <div class="item">
+                        <div class="thumbnail">
+                            <a href="#" data-url="{$vo.urlabroad}" data-title="{$vo.name}" class="play">
+                                <div class="img-box">
+                                    <img src="{$vo.image}" alt="...">
+                                    <div class="icon-box">
+                                        <span class="iconfont">&#xe65c;</span>
+                                    </div>
+                                </div>
+                                <div class="caption">
+                                    <p class="title">{$vo.name}</p>
+                                </div>
+                            </a>
+                        </div>
+                    </div>
+                    {/volist}
+                    {/notempty}
+                </div>
+                <div class="g-pagination clearfix">
+                    <nav>
+                        {:pagination($data)}
+                    </nav>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{/block}
+{block name="javascript"}
+<script type="text/javascript" src="__STATIC__/admin/lib/layer/2.4/layer.js"></script>
+<!--私有JS-->
+<script>
+    $(function () {
+        $('#support').addClass('active');
+        $('.video').addClass('active');
+        $('.play').click(function () {
+            var url = $(this).attr('data-url');
+            var title = $(this).attr('data-title');
+            layer.open({
+                type: 2,
+                title: title,
+                maxmin: true,
+                shadeClose: true,
+                area: ['800px', '600px'],
+                content: url,
+            })
+        });
+    });
+</script>
+{/block}

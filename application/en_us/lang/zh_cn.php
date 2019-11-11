@@ -33,6 +33,8 @@ return [
     'firmware' => '固件下载',
     'list of firmware' => '固件列表',
     'Firmware Details and Download' => '固件下载详情',
+    'list or video'=>'视频列表',
+    'video'=>'视频',
     'Details' => '详细信心',
     'Notices' => '注意',
     'faq' => '常见问题',

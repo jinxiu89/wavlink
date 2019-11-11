@@ -409,7 +409,7 @@ footer .copy-right p a {
   float: right;
 }
 .g-filter {
-  padding: 20px;
+  padding: 10px 15px;
   font-size: 12px;
   background: #fff;
 }
@@ -462,6 +462,12 @@ footer .copy-right p a {
             appearance: none;
             -moz-appearance: none;
             -webkit-appearance: none;*/
+}
+.g-filter .des {
+  float: left;
+}
+.g-filter .result {
+  float: right;
 }
 #go-top {
   display: none;

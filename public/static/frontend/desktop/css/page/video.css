@@ -1,0 +1,78 @@
+/**
+* @name: video.less
+* @description: video列表樣式
+* @author: Alan(alan_webdeveloper@163.com)
+* @update: 2019-09-25 10:00
+*/
+/*
+.list-box {
+  .clearFix();
+  background: @bodyBgColor;
+
+}*/
+.g-main {
+  background: none;
+}
+.list-boxbefore,
+.list-box:after {
+  content: " ";
+  display: table;
+  zoom: 1;
+}
+.list-box:after {
+  clear: both;
+}
+.list-box .item {
+  float: left;
+  width: 25%;
+  padding: 2px;
+}
+.list-box .item .thumbnail {
+  margin: 0;
+  border: none;
+  border-radius: 0;
+}
+.list-box .item .thumbnail .img-box {
+  position: relative;
+  display: block;
+  overflow: hidden;
+  width: 100%;
+  height: 0;
+  padding-bottom: 56.25%;
+  /* 根据图片高宽比设置向下内边距  高/宽 */
+  background: #f5f5f5;
+}
+.list-box .item .thumbnail .img-box img {
+  width: 100%;
+}
+.list-box .item .thumbnail .img-box .icon-box {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  z-index: 1;
+  width: 50px;
+  height: 50px;
+  margin-top: -25px;
+  margin-left: -25px;
+  text-align: center;
+  line-height: 50px;
+}
+.list-box .item .thumbnail .img-box .icon-box .iconfont {
+  font-size: 30px;
+  color: #f8b300;
+}
+.list-box .item .thumbnail .caption {
+  padding: 15px 8px;
+}
+.list-box .item .thumbnail .caption .title {
+  width: 100%;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  position: relative;
+  line-height: 20px;
+  height: 40px;
+  font-size: 12px;
+}
+/*# sourceMappingURL=video.css.map */

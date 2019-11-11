@@ -33,6 +33,8 @@ return [
     'firmware'=>'Firmware',
     'list of firmware'=>'LIST OF FIRMWARE',
     'Firmware Details and Download'=>'Firmware Details and Download',
+    'list or video'=>'LIST OF VIDEO',
+    'video'=>'Video',
     'Details'=>'Details',
     'Notices'=>'Notices',
     'faq'=>'Q&A',

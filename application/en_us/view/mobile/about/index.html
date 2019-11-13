@@ -1,0 +1,35 @@
+{extend name="mobile/common/base" /}
+{block name="title"}{$result.name} - {:lang('powered by')}{/block}
+{block name="seo"}
+<meta name="description" content="{$result.description}">
+<meta name="keywords" content="{$result.keywords}">
+{/block}
+
+{block name="style"}
+<!--<link rel="stylesheet" href="__DESKTOP__/css/page/driver.css">-->
+{/block}
+
+{block name="swiper"}
+<div class="container-fluid">
+    <div class="row">
+        <div class="g-path">
+            <ol class="breadcrumb">
+                <li><a href="/{$code}/index">{:lang('home')}</a></li>
+                <li class="active">{$result.name}</li>
+            </ol>
+        </div>
+    </div>
+</div>
+{/block}
+
+{block name="body"}
+<div class="container-fluid">
+    <div class="row">
+        <div class="box clearfix">
+            <div class="g-main">
+                {$result.mobile_content|raw}
+            </div>
+        </div>
+    </div>
+</div>
+{/block}

@@ -7,9 +7,15 @@
  */
 namespace app\wavlink\controller;
 
-
+/**
+ * Class Index
+ * @package app\wavlink\controller
+ */
 Class Index extends BaseAdmin
 {
+    /**
+     * @return mixed
+     */
     public function index(){
 
         return $this->fetch();

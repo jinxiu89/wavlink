@@ -14,9 +14,11 @@ use app\wavlink\validate\Mark;
 use app\wavlink\validate\ParamMustBePositiveInt;
 use Exception;
 use think\App;
+use think\Collection;
 use think\Controller;
 use think\facade\Request;
 use think\facade\Session;
+use think\response\Redirect;
 
 class BaseAdmin extends Controller
 {
@@ -98,7 +100,7 @@ class BaseAdmin extends Controller
             $this->assign('access', $rules);
         }
         $this->assign('uid', $uid);
-        $this->assign('languages', $languages);//待清理
+        $this->assign('languages', $languages);//这个是后台切换语言时的数组
     }
 
 
@@ -171,5 +173,18 @@ class BaseAdmin extends Controller
         } catch (Exception $e) {
             return show(0, 'error', '', '', '', $e->getMessage());
         }
+    }
+
+    /**
+     * @param $code
+     * @return Redirect
+     * @throws \think\Exception
+     */
+    public function ChangeLanguage($code)
+    {
+        $result = (new LanguageModel())->getLanguageByLanguageId($code);
+        $next = Request::header('referer');
+        session('current_language', $result[0], 'admin');
+        return redirect($next);
     }
 }

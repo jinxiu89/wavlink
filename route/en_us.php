@@ -25,6 +25,9 @@ Route::group('en_us', function () {
     Route::get('/faq', 'Faq/index');
     Route::post('/guest_book/save', 'GuestBook/save');
     Route::get('/guest_book/', 'GuestBook/add');
+    Route::get('/article/index', 'Article/index');
+    Route::get('/article/details/:url_title', 'Article/details')->pattern(['url_title'=>'[\w-]+']);
+    Route::get('/article', 'Article/index');
     Route::get('/tuya/Appdownload', 'Tuya/index');
     Route::get('/video/:url_title', 'Video/details')->pattern(['url_title' => '[\w-]+']);
     Route::get('/video', 'Video/index');

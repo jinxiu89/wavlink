@@ -61,7 +61,7 @@ class Product extends BaseValidate
     /**场景设置**/
     protected $scene = [
         'add' => ['name', 'model', 'seo_title', 'keywords', 'description', 'image_litpic_url', 'image_pc_url', 'image_mobile_url', 'language_id', 'cates', 'status'],
-        'edit' => ['id', 'name', 'model', 'seo_title', 'keywords', 'description', 'image_litpic_url', 'image_pc_url', 'image_mobile_url', 'language_id', 'cates', 'status'],
+        'edit' => ['id', 'name', 'seo_title', 'keywords', 'description', 'image_litpic_url', 'image_pc_url', 'image_mobile_url', 'language_id', 'cates', 'status'],
         'changeStatus' => ['id', 'status'],
         'listorder' => ['id', 'listorder'],
         'mark' => ['id'],

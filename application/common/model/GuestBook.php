@@ -44,11 +44,7 @@ class GuestBook extends BaseModel
     public function addTicket($data, $code)
     {
         $language_id = LanguageModel::getLanguageCodeOrID($code);
-        $map = [
-            'status' => -1,
-            'language_id' => $language_id,
-            'email' => $data['email']
-        ];
+        $map = ['status' => -1, 'language_id' => $language_id, 'email' => $data['email']];
         $counts = $this->where($map)->count();
         if ($counts >= 3) {
             return false;
@@ -56,14 +52,10 @@ class GuestBook extends BaseModel
             $data['status'] = -1;
             $data['language_id'] = $language_id;
             $this->save($data);
-            $id = $this->id;
             //同时更新listorder字段，把id的值赋给它
             return $this->allowField('listorder')
                 ->isUpdate(true)
-                ->save(
-                    ['listorder' => $id + 50],
-                    ['id' => $id]
-                );
+                ->save(['listorder' => $this->id + 50], ['id' => $this->id]);
         }
     }
 

@@ -9,6 +9,10 @@ Route::group(Config::get('__BACKEND__'), function () {
     Route::get('/login/index', 'wavlink/login/index');
     Route::get('/login/logout', 'wavlink/login/logout');
     Route::get('/login', 'wavlink/login/index');
+    /**
+     * 清理缓存
+     */
+    Route::get('/clean','Wavlink/Admin/clean');
     /***
      * 内容管理模块路由
      */
@@ -49,6 +53,10 @@ Route::group(Config::get('__BACKEND__'), function () {
     Route::get('/language/add', 'wavlink/Language/add');
     Route::get('/language/edit', 'wavlink/Language/edit', [], ['id' => '\d+']);
     Route::get('/language/language_stop', 'wavlink/Language/language_stop');
+    /**
+     * 语言切换
+     */
+    Route::get('/language/:code', 'wavlink/BaseAdmin/ChangeLanguage')->pattern(['code' => '[\w-]+']);
     //关于我们
     Route::get('/About/index', 'wavlink/About/index');
     Route::get('/About/add', 'wavlink/About/add');

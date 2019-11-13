@@ -49,7 +49,7 @@ function Search($table, $map = [], $order, $field = '')
 {
     //公共查询函数
     $query = model($table)->where($map);
-    $data = $query->order($order)->field($field)->paginate();
+    $data = $query->order($order)->field($field)->paginate('',true);
     $counts = $query->count();
     if ($data) {
         $result = [

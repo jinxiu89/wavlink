@@ -9,6 +9,7 @@
 namespace app\common\model;
 
 use PDOStatement;
+use think\Collection;
 use think\db\exception\DataNotFoundException;
 use think\db\exception\ModelNotFoundException;
 use think\Exception;
@@ -26,12 +27,12 @@ class Language extends BaseModel
      */
     public function checkData($id)
     {
-        try{
+        try {
             $information = About::getAbouts($id);
-            if(empty($information)){
+            if (empty($information)) {
                 return true;
             }
-        }catch (\Exception $exception){
+        } catch (\Exception $exception) {
             return $exception->getMessage();
         }
         return "不能执行该操作，语言已经被证实已使用";
@@ -120,10 +121,11 @@ class Language extends BaseModel
     {
         $data = [
             'status' => 1,
-            'id' => $language_id
+            'id' => self::getLanguageCodeOrID($language_id)
         ];
         try {
-            return self::get($data)->toArray();
+            $data=Collection::make(self::where($data)->select())->toArray();
+            return $data;
         } catch (Exception $e) {
             //
         } catch (DbException $e) {

@@ -5,6 +5,7 @@ namespace app\en_us\controller;
 use app\common\model\About as AboutModel;
 use app\common\model\Article as ArticleModel;
 use app\common\model\Category as CategoryModel;
+use app\common\model\ServiceCategory;
 use app\common\model\Document as DocumentModel;
 use app\common\model\Language as LanguageModel;
 use app\common\model\Product as ProductModel;
@@ -236,4 +237,6 @@ class Base extends Controller
     {
         return $this->fetch($this->template . '/common/ie.html');
     }
+
+
 }

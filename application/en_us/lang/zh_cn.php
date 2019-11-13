@@ -24,7 +24,9 @@ return [
     'back' => '返回',
     'product' => '产品中心',
     'support' => '服务与支持',
-    'blog' => '博客与新闻',
+    'article'=>'文章/博客',
+    'blog' => '博客',
+    'news'=>'新闻与评测',
     'language' => '语言选择',
     'go' => '搜索',
     'search tips' => '请输入产品型号或者名称进行搜索',
@@ -33,7 +35,9 @@ return [
     'firmware' => '固件下载',
     'list of firmware' => '固件列表',
     'Firmware Details and Download' => '固件下载详情',
+    'list of article' => '新闻列表',
     'list or video'=>'视频列表',
+    'Update Time'=>'更新时间',
     'video'=>'视频',
     'Details' => '详细信心',
     'Notices' => '注意',
@@ -90,7 +94,6 @@ return [
     'Company' => '公司介绍',
     'Contact Us' => '联系我们',
     'Join Us' => '工作机会',
-    'News' => '新闻',
     'Privacy' => '隐私保护',
     //網站版權信息翻譯
     'powered by' => 'Wavlink品牌官方网站'

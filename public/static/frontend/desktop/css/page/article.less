@@ -1,0 +1,41 @@
+/**
+* @name: article.less
+* @description: article列表樣式
+* @author: Alan(alan_webdeveloper@163.com)
+* @update: 2019-11-13 14:00
+*/
+@import "../public/mixins";
+@import "../public/variables";
+
+.g-filter {
+  margin-bottom: 10px;
+}
+.g-main {
+  background: none;
+}
+.g-main .item {
+  padding: 15px 20px;
+  background: #fff;
+  border-bottom: 1px solid @borderColor;
+  &:nth-of-type(1) {
+    margin-top: 10px;
+  }
+  &:nth-last-of-type(1) {
+    margin-bottom: 0;
+  }
+  a {
+    font-size: 16px;
+    color: @baseColor;
+    &:hover {
+      color: @activeColor;
+    }
+  }
+  span {
+    font-size: 12px;
+    display: inline-block;
+    margin-top: 10px;
+  }
+}
+
+
+//FAQ列表樣式結束

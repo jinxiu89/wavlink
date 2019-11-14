@@ -18,6 +18,7 @@
 }
 .panel .panel-body input,
 .panel .panel-body textarea {
+  box-shadow: none;
   border-color: #eaeaea;
 }
 .panel .panel-body .form-group label {

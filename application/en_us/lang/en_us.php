@@ -97,6 +97,8 @@ return [
     'Contact Us'=>'Contact Us',
     'Join Us'=>'Join Us',
     'News'=>'News',
+    'More'=>'More',
+    'Learn More'=>'Learn More',
     'Privacy'=>'Privacy',
     //網站版權信息翻譯
     'powered by'=>'Powered by Wavlink'

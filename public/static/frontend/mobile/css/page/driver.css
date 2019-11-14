@@ -28,6 +28,9 @@
   margin-bottom: 8px;
   background: #fff;
 }
+.item:nth-last-of-type(1) {
+  margin-bottom: 0;
+}
 .item .panel {
   margin-bottom: 0;
   border-radius: 0;

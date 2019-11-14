@@ -308,7 +308,20 @@ footer .about .about-item ul {
 footer .about .about-item:nth-last-of-type(1) ul {
   display: block;
 }
-footer .about .about-item:nth-last-of-type(1) ul a:nth-of-type(1) i {
+footer .about .about-item:nth-last-of-type(1) ulbefore,
+footer .about .about-item:nth-last-of-type(1) ul:after {
+  content: " ";
+  display: table;
+  zoom: 1;
+}
+footer .about .about-item:nth-last-of-type(1) ul:after {
+  clear: both;
+}
+footer .about .about-item:nth-last-of-type(1) ul li a {
+  display: block;
+  float: left;
+}
+footer .about .about-item:nth-last-of-type(1) ul a:nth-of-type(1) span {
   padding-left: 0;
 }
 footer .about .about-item ul a {

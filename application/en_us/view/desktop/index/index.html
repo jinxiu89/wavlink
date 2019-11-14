@@ -42,17 +42,17 @@
 <div class="container">
     <div class="row">
         <div class="new-box">
-            <h3><span>NEWS</span> <a href="#">More > </a></h3>
+            <h3><span>NEWS</span> <a href="{:url('/'.$code.'/article')}">More > </a></h3>
             <div class="new">
                 {volist name="News" id="vo"}
                 <div class="item">
                     <div class="img-box">
-                        <a href="">
+                        <a href="{:url('/'.$code.'/article/details/'.$vo.url_title)}">
                             <img src="{$vo.logo}" alt="{$vo.title}">
                         </a>
                     </div>
                     <div class="des">
-                        <h4><a href="#">{$vo.title}</a></h4>
+                        <h4><a href="{:url('/'.$code.'/article/details/'.$vo.url_title)}">{$vo.title}</a></h4>
                         <p>{$vo.seo_description}</p>
                         <p>
                             <span>Update: </span><span>{$vo.update_time}</span>

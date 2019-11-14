@@ -381,9 +381,6 @@ body {
 .g-footer .foot-container dl:nth-last-of-type(1) {
   padding-right: 0;
 }
-.g-footer .foot-container dl:nth-last-of-type(1) dd a {
-  line-height: normal;
-}
 .g-footer .foot-container dl dt {
   color: #fff;
   line-height: 26px;
@@ -394,7 +391,20 @@ body {
   overflow: hidden;
   color: #888;
 }
+.g-footer .foot-container dl dd:nth-last-of-type(1) img {
+  display: block;
+}
+.g-footer .foot-container dl dd img {
+  display: block;
+  max-width: 100%;
+  height: auto;
+  margin-left: auto;
+  margin-right: auto;
+  display: none;
+  margin: 0;
+}
 .g-footer .foot-container dl dd a {
+  display: block;
   color: #888;
   line-height: 26px;
 }
@@ -579,6 +589,7 @@ body {
   -moz-border-radius: 5px;
   border-radius: 5px;
   font-size: 12px;
+  background: #fff;
   appearance: none;
   -moz-appearance: none;
   -webkit-appearance: none;

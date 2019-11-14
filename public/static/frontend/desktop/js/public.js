@@ -1,4 +1,6 @@
 $(document).ready(function () {
+    handleFootHover();
+
     if ($(document).outerWidth() >= 768) {
         handleMenuBarHover()
     }
@@ -32,5 +34,15 @@ $(document).ready(function () {
         }, function () {
             $(this).children("ul").stop(true, false).slideUp(50)
         });
+    }
+
+    function handleFootHover () {
+        var footItem = $('.g-footer .foot-container dl dd a')
+        footItem.hover(function () {
+            if ($(this).siblings('img').length > 0) {
+                $(this).parent('dd').siblings('dd').children('img').css({'display': 'none'})
+                $(this).siblings('img').css({'display': 'block'})
+            }
+        })
     }
 })

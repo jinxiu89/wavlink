@@ -319,9 +319,6 @@ body {
       &:nth-last-of-type(1) {
         padding-right: 0;
       }
-      &:nth-last-of-type(1) dd a {
-        line-height: normal;
-      }
     }
     dl dt {
       color: @whiteColor;
@@ -330,8 +327,18 @@ body {
     dl dd {
       .text-overflow();
       color: @whiteSmoke;
+      &:nth-last-of-type(1) img {
+        display: block;
+      }
+    }
+    dl dd img {
+      .img-responsive();
+      .center-block();
+      display: none;
+      margin: 0;
     }
     dl dd a {
+      display: block;
       color: @whiteSmoke;
       line-height: 26px;
       &:hover {
@@ -521,6 +528,7 @@ body {
       border: 1px solid @borderColor;
       #border-radius(5px);
       font-size: 12px;
+      background: @whiteColor;
       appearance: none;
       -moz-appearance: none;
       -webkit-appearance: none;

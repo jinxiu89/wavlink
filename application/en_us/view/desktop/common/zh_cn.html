@@ -4,17 +4,12 @@
             <div class="foot-container clearfix">
                 <dl class="col-md-2 col-sm-5">
                     <dt>{:lang('Store')}</dt>
-                    <dd><a href="#">天猫旗舰店</a></dd>
-                    <dd><a href="#">JD直营</a></dd>
-                    <dd><a href="#">淘宝正品店</a></dd>
-                </dl>
-                <dl class="col-md-2 col-sm-5">
-                    <dt>{:lang('About')}</dt>
-                    {notempty name="about"}
-                    {volist name="about" id="vo"}
-                    <dd><a href="/{$code}/about/{$vo.url_title}.html">{$vo.name}</a></dd>
-                    {/volist}
-                    {/notempty}
+                    <dd><a href="https://shop125236971.taobao.com" target="_blank">淘宝企业店</a></dd>
+                    <dd><a href="https://wavlink.tmall.com" target="_blank">天猫旗舰店</a></dd>
+                    <dd><a href="https://wavlinkrc.tmall.com" target="_blank">天猫专卖店</a></dd>
+                    <dd><a href="https://wav-link.jd.com" target="_blank">京东自营店</a></dd>
+                    <dd><a href="https://mall.jd.com/index-178109.html" target="_blank">京东POP店</a></dd>
+                    <dd><a href="https://shop.suning.com/30001964" target="_blank">苏宁易购</a></dd>
                 </dl>
                 <dl class="col-md-2 col-sm-5">
                     <dt>{:lang('support')}</dt>
@@ -26,11 +21,26 @@
                     <dd><a href="/{$code}/video.html">{:lang('video')}</a></dd>
                 </dl>
                 <dl class="col-md-2 col-sm-5">
+                    <dt>{:lang('About')}</dt>
+                    {notempty name="about"}
+                    {volist name="about" id="vo"}
+                    <dd><a href="/{$code}/about/{$vo.url_title}.html">{$vo.name}</a></dd>
+                    {/volist}
+                    {/notempty}
+                </dl>
+                <dl class="col-md-2 col-sm-5">
                     <dt>{:lang('Community')}</dt>
                     <dd>
-                        <a target="_blank" href="#"><span class="iconfont">&#xe65e;</span></a>
-                        <a target="_blank" href="#"><span class="iconfont">&#xe65f;</span></a>
-                        <a target="_blank" href="#"><span class="iconfont">&#xe661;</span></a>
+                        <a href="https://weibo.com/u/3899927109?is_hot=1">官方微博</a>
+                        <img src="https://cloud.wavlink.com/index.php?user/publicLink&fid=85d58LIfBgb6wcsHtEl4pxa2Hj5jsD3t-uwH_sPH4c18IGI4IF1_av7UBFQk6sYjkpiGx8vadGy4PM1laHaNETZo83AktRAvY6T1wGrGR7W5DmEpph1wrHoIim2KuHaDh1lllOwF3qAkpDfZ&file_name=/weibo.jpg" alt="">
+                    </dd>
+                    <dd>
+                        <a href="javascript:void(0)">微信服务号</a>
+                        <img src="https://cloud.wavlink.com/index.php?user/publicLink&fid=0a78TJ_cjA5OkZRpZwwfHGTRqqbHzwr2zqe0TAVRliX3S7Y7R4veINyBS9YN1JHjnl_PeppIHMaQ8pXZEp_tY3jIRNj4AmUOgxTLrO-mVwrG4ikPRiMx9pumiirOH_BTD_T2z38rYySPQg&file_name=/fwh.jpg" alt="">
+                    </dd>
+                    <dd>
+                        <a href="javascript:void(0)">微信订阅号</a>
+                        <img src="https://cloud.wavlink.com/index.php?user/publicLink&fid=7f80sF1dWTOerl5vNqHQWVYL-7GSimLS9TQf64kdwfS3XgeM5wv_R1pGAWSAWOQpzF11H002CwCaZ1sMo659WQQdi-5a2bWt7ZJo8gtMzHvXQ5PLiPVSMtmC3qBpG-f-p08LWijwkotdWQ&file_name=/dyh.jpg" alt="">
                     </dd>
                 </dl>
             </div>

@@ -35,9 +35,9 @@
 </section>
 <footer>
     {block name="footer"}
-    {if condition="$code == 'en_us'"}
+    {if ($code == 'en_us')}
     {include file="mobile/common/en_us"}
-    {elseif condition="$code == 'zh_cn'" /}
+    {elseif ($code == 'zh_cn')}
     {include file="mobile/common/zh_cn"}
     {/if}
     {/block}

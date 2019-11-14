@@ -28,7 +28,7 @@
                         <h3><a href="{$vo.url}">{$vo.product_title}</a></h3>
                         <p>
                             <span>{$vo.model}</span>
-                            <span><a href="{$vo.url}">LEARN MORE</a></span>
+                            <span><a href="{$vo.url}">{:lang('Learn More')}</a></span>
                         </p>
                     </div>
                 </div>
@@ -42,7 +42,7 @@
 <div class="container">
     <div class="row">
         <div class="new-box">
-            <h3><span>NEWS</span> <a href="{:url('/'.$code.'/article')}">More > </a></h3>
+            <h3><span>{:lang('News')}</span> <a href="{:url('/'.$code.'/article')}">{:lang('More')}  ></a></h3>
             <div class="new">
                 {volist name="News" id="vo"}
                 <div class="item">
@@ -55,7 +55,11 @@
                         <h4><a href="{:url('/'.$code.'/article/details/'.$vo.url_title)}">{$vo.title}</a></h4>
                         <p>{$vo.seo_description}</p>
                         <p>
-                            <span>Update: </span><span>{$vo.update_time}</span>
+                            {if ($code == 'zh_cn')}
+                            <span>{:lang('Update time')}: </span><span>{$vo.update_time|date="Y-m-d"}</span>
+                            {elseif ($code == 'en_us') /}
+                            <span>{:lang('Update')}: </span><span>{$vo.update_time|date="m/d/Y"}</span>
+                            {/if}
                         </p>
                     </div>
                 </div>

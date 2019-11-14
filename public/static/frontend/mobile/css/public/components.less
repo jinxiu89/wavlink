@@ -163,17 +163,6 @@ footer {
             display: none;
             padding: 0 @publicInterval;
         }
-        .about-item:nth-last-of-type(1) ul {
-            display: block;
-            .clearFix();
-            li a {
-                display: block;
-                .fl();
-            }
-            a:nth-of-type(1) span {
-                padding-left: 0;
-            }
-        }
         .about-item ul a {
             line-height: 40px;
             color: #888;
@@ -182,6 +171,27 @@ footer {
         .about-item ul a .iconfont {
             padding: 0 10px;
             font-size: 28px;
+        }
+
+        .about-item:nth-last-of-type(1) ul {
+            display: block;
+            .clearFix();
+        }
+        .about-item:nth-last-of-type(1) ul li {
+            .fl();
+            width: 30%;
+            &:nth-of-type(2) {
+                margin: 0 5%;
+            }
+        }
+        .about-item:nth-last-of-type(1) ul li a {
+            display: block;
+        }
+        .about-item:nth-last-of-type(1) ul li img {
+            .img-responsive();
+            .center-block();
+            width: 80px;
+            margin-left: 0;
         }
     }
 
@@ -303,19 +313,7 @@ footer {
             border: 1px solid @borderColor;
             #border-radius(5px);
             background: @whiteColor;
-            /*font-size: 12px;
-            appearance: none;
-            -moz-appearance: none;
-            -webkit-appearance: none;*/
         }
-        /*.iconfont {
-            position: absolute;
-            top: 0;
-            right: 0;
-            z-index: 1;
-            display: block;
-            line-height: 30px;
-        }*/
     }
     .des {
         .fl();

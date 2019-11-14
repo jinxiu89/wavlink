@@ -37,33 +37,28 @@
         </div>
     </div>
     {/notempty}
+    {notempty name="News"}
     <div class="row">
         <div class="new-box">
-            <h3><span>NEWS</span> <a href="#">More > </a></h3>
+            <h3><span>{:lang('News')}</span> <a href="#">{:lang('More')} > </a></h3>
             <div class="new">
+                {volist name="News" id="vo"}
                 <div class="item">
                     <div class="des">
-                        <h4><a href="#">Based on the policy, WAVLINK official website now provides product manuals and relevant files for downloading!</a></h4>
+                        <h4><a href="{:url('/'.$code.'/article/details/'.$vo.url_title)}">{$vo.title}</a></h4>
                     </div>
                     <div class="img-box">
-                        <a href="#">
-                            <img src="https://cloud.wavlink.com/index.php?user/publicLink&fid=0897_1UQS5DQJ-rGV_y0Qycvismmtt9iufjXXG_5hjU4wkNbCFNuq1hG7Fi-az1MmsAPgW0ukZ9w_hLJTn4zT4J1RNA-x9WAM5YOu4WXJLga0tGGewt4mAGAtgOZJJRlDu8fAMFTTz3OUg&file_name=/1.jpg" alt="">
+                        <a href="{:url('/'.$code.'/article/details/'.$vo.url_title)}">
+                            <img src="{$vo.logo}"
+                                 alt="{$vo.title}">
                         </a>
                     </div>
                 </div>
-                <div class="item">
-                    <div class="des">
-                        <h4><a href="#">Based on the policy, WAVLINK official website now provides product manuals and relevant files for downloading!</a></h4>
-                    </div>
-                    <div class="img-box">
-                        <a href="#">
-                            <img src="https://cloud.wavlink.com/index.php?user/publicLink&fid=deabED3yc8iOqwajGpl3dw3BaF2TgWoMc-EbyPeZ-Rf3FXSZZeGeHdP-AY52h8R3PvjKXBCC6j2867fiewRHJkA7mWxX4om9tzcd9UleKbI0w6jbK1dPar9Fnqmh3Ea_8AVTtmb8kZaSRkAPu6Ng1C3RnB9-w6XuuosB7Kx6PNSQv7dvNIFcM2c&file_name=/IMG_20190316_093703_AO_HDR.jpg" alt="">
-                        </a>
-                    </div>
-                </div>
+                {/volist}
             </div>
         </div>
     </div>
+    {/notempty}
     {notempty name="videos"}
     <div class="row">
         <div class="video-box">

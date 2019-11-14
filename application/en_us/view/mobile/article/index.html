@@ -26,33 +26,35 @@
     <div class="row">
         <div class="box">
             <div class="g-filter">
-                        <div class="des"><span>LIST OF FIRMWARE</span></div>
-                        <div class="result">
-                            <span>{$count} Results Found</span>
-                        </div>
-                    </div>
+                <div class="des"><span>LIST OF FIRMWARE</span></div>
+                <div class="result">
+                    <span>{$count} Results Found</span>
+                </div>
+            </div>
         </div>
     </div>
     <div class="row">
-        <div class="main">
-            {volist name="data" id="vo"}
-            <div class="item">
-                <h3><a href="/{$code}/article/details/{$vo.url_title}.html">{$vo.title}</a></h3>
-                <p>
-                    <span>{:lang('Update Time')}: </span>
-                    {if ($code == 'zh_cn')}
-                    <span>{$vo.update_time|strtotime|date="Y-m-d"}</span>
-                    {elseif ($code == 'en_us')}
-                    <span>{$vo.update_time|strtotime|date="d/m/Y"}</span>
-                    {/if}
-                </p>
+        <div class="box">
+            <div class="main">
+                {volist name="data" id="vo"}
+                <div class="item">
+                    <h3><a href="/{$code}/article/details/{$vo.url_title}.html">{$vo.title}</a></h3>
+                    <p>
+                        <span>{:lang('Update Time')}: </span>
+                        {if ($code == 'zh_cn')}
+                        <span>{$vo.update_time|strtotime|date="Y-m-d"}</span>
+                        {elseif ($code == 'en_us')}
+                        <span>{$vo.update_time|strtotime|date="d/m/Y"}</span>
+                        {/if}
+                    </p>
+                </div>
+                {/volist}
             </div>
-            {/volist}
-            <div class="g-pagination clearfix">
-                <nav>
-                    {:pagination($data)}
-                </nav>
-            </div>
+        </div>
+        <div class="g-pagination clearfix">
+            <nav>
+                {:pagination($data)}
+            </nav>
         </div>
     </div>
 </div>

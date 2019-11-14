@@ -165,7 +165,12 @@ footer {
         }
         .about-item:nth-last-of-type(1) ul {
             display: block;
-            a:nth-of-type(1) i {
+            .clearFix();
+            li a {
+                display: block;
+                .fl();
+            }
+            a:nth-of-type(1) span {
                 padding-left: 0;
             }
         }

@@ -97,7 +97,7 @@
             $(this).siblings("ul").stop(true, false).slideToggle();
             $(this).children("span").toggleClass("iconclose").toggleClass("iconincrease");
             $(this).parent("li").siblings("li").children("ul").stop(true, false).slideUp();
-            $(this).parent("li").siblings("li").find("span").addClass("iconincrease").removeClass("iconclose");
+            $(this).parent("li").siblings("li").children("h3").find("span").addClass("iconincrease").removeClass("iconclose");
         })
     });
 </script>

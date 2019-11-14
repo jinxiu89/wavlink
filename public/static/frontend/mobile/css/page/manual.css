@@ -41,6 +41,9 @@
   -moz-border-radius: 5px;
   border-radius: 5px;
 }
+.box .main .item:nth-last-of-type(1) {
+  margin-bottom: 0;
+}
 .box .main .item .panel {
   margin-bottom: 0;
   border-radius: 0;

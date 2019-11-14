@@ -7,6 +7,7 @@ thinkphp
 /config
 /log/
 test/
+ueditor/
 .env
 .DS_Store
 .vscode

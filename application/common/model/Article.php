@@ -62,7 +62,7 @@ Class Article extends BaseModel
     public function getLastNew($code)
     {
         $language_id = LanguageModel::getLanguageCodeOrID($code);
-        $result = $this->where(['status' => 1, 'language_id' => $language_id])->order(['update_time'=>'desc'])->limit(2)->field('id,title,logo,seo_description,update_time')->select();
+        $result = $this->where(['status' => 1, 'language_id' => $language_id])->order(['update_time'=>'desc'])->limit(2)->field('id,title,url_title,logo,seo_description,update_time')->select();
 
         return Collection::make($result);
     }

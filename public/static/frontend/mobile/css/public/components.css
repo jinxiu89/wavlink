@@ -316,6 +316,7 @@ footer .about .about-item ul a .iconfont {
 }
 footer .about .about-item:nth-last-of-type(1) ul {
   display: block;
+  padding-bottom: 8px;
 }
 footer .about .about-item:nth-last-of-type(1) ulbefore,
 footer .about .about-item:nth-last-of-type(1) ul:after {

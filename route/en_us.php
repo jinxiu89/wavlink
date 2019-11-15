@@ -31,6 +31,7 @@ Route::group('en_us', function () {
     Route::get('/tuya/Appdownload', 'Tuya/index');
     Route::get('/video/:url_title', 'Video/details')->pattern(['url_title' => '[\w-]+']);
     Route::get('/video', 'Video/index');
+    Route::get('/search/el','Search/index');
     Route::get('/', 'Index/index');
 });
 

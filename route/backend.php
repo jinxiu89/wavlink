@@ -153,6 +153,9 @@ Route::group(Config::get('__BACKEND__'), function () {
     Route::get('sn/edit', 'wavlink/sn/edit', [], ['id' => '\d+']);
     Route::get('old_sn/index', 'wavlink/OldSn/index');
     Route::get('old_sn/add', 'wavlink/OldSn/add');
+    //搜索索引管理
+    Route::get('search/index','wavlink/Search/index');
+    Route::get('search/createProduct','wavlink/search/createProduct');
     Route::get('/', 'wavlink/index/index');
 });
 

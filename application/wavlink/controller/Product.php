@@ -12,8 +12,6 @@ namespace app\wavlink\controller;
 use app\common\model\Product as ProductModel;
 use app\common\model\Category as CategoryModel;
 use app\wavlink\validate\ListorderValidate;
-use think\Collection;
-use think\Exception;
 use think\Facade\Request;
 use app\wavlink\validate\Product as ProductValidate;
 
@@ -182,7 +180,7 @@ Class Product extends BaseAdmin
                 $cates = $model::getProductCategory($data['id']);
                 $cate = end($cates);
                 $data['listorder'] = $model->getTopOrder($cate) + 1;
-                $url = $_SERVER['HTTP_REFERER'];
+                $url = Request::header('referer');
                 if ($model->save($data, ['id' => $data['id']])) {
                     return show(1, "success", '', '', $url, '置顶排序成功');
                 }

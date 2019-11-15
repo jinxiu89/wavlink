@@ -47,7 +47,11 @@ class Search
      */
     public static function createClient()
     {
-        return ClientBuilder::create()->setHosts(Config::get('search.client'))->setRetries(2)->build();
+        $builder=ClientBuilder::create()->setHosts(Config::get('search.client'));
+        /*if(Config::get('app.debug') == true){
+            //todo:: 写日志（到thinkphp本地来）
+        }*/
+        return $builder->build();
     }
 
     /**

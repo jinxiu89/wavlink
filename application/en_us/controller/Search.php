@@ -15,6 +15,7 @@ use app\common\model\Product as ProductModel;
 use app\lib\exception\BannerMissException;
 use think\exception\HttpException;
 use app\common\model\ServiceCategory as ServiceCategoryModel;
+use app\common\helper\Search as elSearch;
 
 class Search extends Base
 {
@@ -24,29 +25,16 @@ class Search extends Base
      */
     public function index()
     {
-//        $name = $_GET['key'];
-//        if (empty($name)){
-//            $this->error(lang('key_empty'));
-//        }
-//        $result = model("Product")->getSelectProduct($name,$this->code);
-//        $product=$result['data'];
-//        $count=$result['count'];
-//        return $this->fetch('', [
-//            'result' => $product,
-//            'count'  => $count,
-//            'name'    => $name
-//        ]);
-        if (config('app_debug')) {
-            return '';
-        } else {
-            throw new HttpException(404);
-        }
+       $data=ProductModel::allData($this->language_id);
+       print_r($data);
+
     }
+
 
     //产品搜索
     public function product()
     {
-        $key = input('get.key','','trim');
+        $key = input('get.key', '', 'trim');
         if ($key == '' || empty($key)) {
             return $this->fetch('', [
                 'name' => $key,
@@ -92,7 +80,7 @@ class Search extends Base
     //faq搜索
     public function faq()
     {
-        $key = input('get.key','','trim');
+        $key = input('get.key', '', 'trim');
         //获取一级faq分类
         $parent = ServiceCategoryModel::getTopCategory($this->code, 'faq');
         $cate = ServiceCategoryModel::getSecondCategory($this->code, 'faq');
@@ -112,7 +100,7 @@ class Search extends Base
 
     public function manual()
     {
-        $key = input('get.key','','trim');
+        $key = input('get.key', '', 'trim');
         //获取一级faq分类
         $parent = ServiceCategoryModel::getTopCategory($this->code, 'Manual');
         $cate = ServiceCategoryModel::getSecondCategory($this->code, 'Manual');

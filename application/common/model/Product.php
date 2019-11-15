@@ -12,6 +12,7 @@ use app\common\helper\Algorithm as AlgorithmHelp;
 use app\common\model\Category as CategoryModel;
 use app\common\model\Language as LanguageModel;
 use \app\common\model\Drivers as DriversModel;
+use think\Collection;
 use think\Db;
 use think\facade\Cache;
 
@@ -40,6 +41,12 @@ Class Product extends BaseModel
             $ids[] = $v['id'];
         }
         return $ids;
+    }
+
+    public static function allData($language)
+    {
+        $data = self::where(['language_id' => $language])->field('id,name,url_title,model,seo_title,keywords,description,features')->select();
+        return Collection::make($data)->toArray();
     }
 
     public static function getCategoryWithProduct($id)
@@ -118,7 +125,7 @@ Class Product extends BaseModel
             'listorder' => 'desc',
             'id' => 'desc'
         ];
-        $query = self::whereOr('name','like','%'.$name.'%');
+        $query = self::whereOr('name', 'like', '%' . $name . '%');
         $result['data'] = $query->order($order)->paginate();
         $result['count'] = $query->count();
         return $result;

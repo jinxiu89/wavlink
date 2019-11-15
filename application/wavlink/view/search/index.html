@@ -1,0 +1,45 @@
+{include file="public/system_header" /}
+<section class="Hui-article-box">
+    <nav class="breadcrumb"><i class="Hui-iconfont">&#xe67f;</i> 首页
+        <span class="c-gray en">&gt;</span>
+        缓存管理
+        <span class="c-gray en">&gt;</span>
+        索引管理
+        <a class="btn btn-success radius r" style="line-height:1.6em;margin-top:3px"
+           href="javascript:location.replace(location.href);" title="刷新"><i class="Hui-iconfont">&#xe68f;</i></a>
+    </nav>
+    <div class="Hui-article" style="padding:20px">
+        <article class="cl pd-20" style="min-height: 51em;padding: 5px 10px 0 10px">
+            <div class="mt-20">
+                <table class="table table-border table-bordered table-bg table-hover table-sort">
+                    <thead>
+                    <tr class="text-c">
+                        <th width=10%>名称</th>
+                        <th >描述</th>
+                        <th width=20%>执行</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr class="text-l">
+                        <td>产品索引</td>
+                        <td>将已上传的产品索引到全文搜索中</td>
+                        <td><a href="#">开始索引</a></td>
+                    </tr>
+                    </tbody>
+                </table>
+            </div>
+        </article>
+    </div>
+</section>
+
+{include file="public/footer"/}
+<script>
+    $(document).ready(function () {
+        $("#menu-product dt").addClass("selected");
+        $("#menu-product dd").css("display", "block");
+        $("#product_product").addClass("current");
+        $("#content").addClass("current");
+    });
+</script>
+</body>
+</html>

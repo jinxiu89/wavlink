@@ -49,6 +49,9 @@
 .box .main .item .panel-body .info p span {
   line-height: 20px;
 }
+.box .main .item .panel-body .download a {
+  padding: 2px 12px;
+}
 .box .main .item .panel-footer {
   background: #fff;
 }

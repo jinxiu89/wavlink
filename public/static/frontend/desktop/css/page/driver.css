@@ -88,7 +88,11 @@
   float: left;
   width: 16.6667%;
 }
+.g-main .item .mode span:nth-of-type(1) {
+  float: none;
+}
 .g-main .item .download a {
+  padding: 2px 12px;
   margin-right: 4px;
   font-size: 12px;
   border-color: #f8b300;

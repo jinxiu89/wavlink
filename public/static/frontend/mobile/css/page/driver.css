@@ -82,6 +82,7 @@
   font-size: 12px;
 }
 .item .download a {
+  padding: 2px 12px;
   font-size: 12px;
   border-color: #eaeaea;
 }

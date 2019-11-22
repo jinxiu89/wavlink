@@ -58,7 +58,13 @@
 .g-main .dl-horizontal dd {
   margin-bottom: 10px;
 }
+.g-main .item .download_url {
+  padding: 2px 12px;
+  font-size: 12px;
+  border-color: #f8b300;
+}
 .g-main .item .download a {
+  padding: 2px 12px;
   margin-right: 4px;
   font-size: 12px;
   border-color: #f8b300;

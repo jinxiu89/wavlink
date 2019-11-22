@@ -18,6 +18,10 @@ use think\facade\Config;
  */
 class Search
 {
+    protected $params = [
+        'index' => ''
+    ];
+
     /**
      * @param $model
      * @param $map
@@ -32,10 +36,7 @@ class Search
         $data = model($model)->where($map)->order($order)->paginate($page);
         $counts = model($model)->where($map)->count();
         if ($data) {
-            $result = array(
-                'data' => $data,
-                'count' => $counts,
-            );
+            $result = ['data' => $data, 'count' => $counts,];
             return $result;
         } else {
             return '';
@@ -47,12 +48,18 @@ class Search
      */
     public static function createClient()
     {
-        $builder=ClientBuilder::create()->setHosts(Config::get('search.client'));
+        $builder = ClientBuilder::create()->setHosts(Config::get('search.client'));
         /*if(Config::get('app.debug') == true){
             //todo:: 写日志（到thinkphp本地来）
         }*/
         return $builder->build();
     }
+
+    public static function mappings()
+    {
+
+    }
+
 
     /**
      * @return array|callable
@@ -65,16 +72,12 @@ class Search
             'id' => '',
             'body' => ''
         ];
-        return self::createClient()->index($params);
+        return self::createClient()->indices()->create($params);
     }
 
     public static function getIndex()
     {
-        $params = [
-            'index' => '',
-            'type' => '',
-            'id' => ''
-        ];
+        $params = ['index' => '', 'type' => '', 'id' => ''];
         return self::createClient()->get($params);
     }
 }

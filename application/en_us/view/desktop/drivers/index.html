@@ -84,12 +84,17 @@
                             </div>
                             <div class="download">
                                 <span>{:lang('Download')} : </span>
-                                <a class="btn btn-default" href="{$vo.all_link}">{:lang('ALL')}</a>
+                                {notempty name="$vo.all_link"}
+                                <a class="btn btn-default" href="{$vo.all_link}">{:lang('ALL')}<i class="iconfont">&#xe64f;</i></a>
+                                {/notempty}
                                 {notempty name="$vo.win_link"}
-                                <a class="btn btn-default" href="{$vo.win_link}">{:lang('WINDOWS')}</a>
+                                <a class="btn btn-default" href="{$vo.win_link}">{:lang('WINDOWS')}<i class="iconfont">&#xe64f;</i></a>
                                 {/notempty}
                                 {notempty name="$vo.mac_link"}
-                                <a class="btn btn-default" href="{$vo.mac_link}">{:lang('MAC')}</a>
+                                <a class="btn btn-default" href="{$vo.mac_link}">{:lang('MAC')}<i class="iconfont">&#xe64f;</i></a>
+                                {/notempty}
+                                {notempty name="$vo.linux_link"}
+                                <a class="btn btn-default" href="{$vo.linux_link}">{:lang('Linux')}<i class="iconfont">&#xe64f;</i></a>
                                 {/notempty}
                             </div>
                         </div>

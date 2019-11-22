@@ -381,10 +381,17 @@ body {
   margin: 0 0 10px;
   background: @whiteColor;
   .breadcrumb {
+    .clearFix();
     padding: 0 20px;
     margin: 0 auto;
     background: @whiteColor;
     line-height: 50px;
+    li {
+      .fl();
+    }
+    .active {
+      .text-overflow();
+    }
     a {
       color: @activeColor;
       &:hover {
@@ -411,6 +418,9 @@ body {
   margin: 10px 0;
   padding: 0 15px;
   background: @whiteColor;
+  .pager {
+    margin: 15px 0;
+  }
   li {
     margin: 0 10%;
     a {
@@ -473,9 +483,10 @@ body {
 //分类筛选
 .g-filter {
   .clearFix();
-  padding: 20px;
+  padding: 15px;
   background: @whiteColor;
   border-bottom: 1px solid @borderColor;
+  line-height: 30px;
   .filter {
     .fl();
     margin-right: 20px;

@@ -1,6 +1,8 @@
 $(document).ready(function () {
     handleFootHover();
 
+    gPath();
+
     if ($(document).outerWidth() >= 768) {
         handleMenuBarHover()
     }
@@ -44,5 +46,20 @@ $(document).ready(function () {
                 $(this).siblings('img').css({'display': 'block'})
             }
         })
+    }
+
+    function gPath () {
+        var pathOl = $('.breadcrumb').width(),
+            pathLi = $('.g-path li');
+        var sum = 0;
+        for (var i = 0; i < pathLi.length - 1; i++) {
+            sum += $(pathLi[i]).width()
+        }
+        var activeWidth = $(pathLi[pathLi.length - 1]).width();
+        if (activeWidth + sum > pathOl) {
+            $(pathLi[pathLi.length - 1]).css({
+                width: pathOl - sum
+            })
+        }
     }
 })

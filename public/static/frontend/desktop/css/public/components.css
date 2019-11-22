@@ -441,6 +441,23 @@ body {
   background: #fff;
   line-height: 50px;
 }
+.g-path .breadcrumbbefore,
+.g-path .breadcrumb:after {
+  content: " ";
+  display: table;
+  zoom: 1;
+}
+.g-path .breadcrumb:after {
+  clear: both;
+}
+.g-path .breadcrumb li {
+  float: left;
+}
+.g-path .breadcrumb .active {
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  overflow: hidden;
+}
 .g-path .breadcrumb a {
   color: #f8b300;
 }
@@ -466,6 +483,9 @@ body {
   margin: 10px 0;
   padding: 0 15px;
   background: #fff;
+}
+.g-pagination .pager {
+  margin: 15px 0;
 }
 .g-pagination li {
   margin: 0 10%;
@@ -523,9 +543,10 @@ body {
   }
 }
 .g-filter {
-  padding: 20px;
+  padding: 15px;
   background: #fff;
   border-bottom: 1px solid #eaeaea;
+  line-height: 30px;
 }
 .g-filterbefore,
 .g-filter:after {

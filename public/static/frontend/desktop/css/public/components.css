@@ -208,6 +208,7 @@ body {
 .g-nav .menu-container .menu {
   float: left;
   margin-left: 6%;
+  padding: 0 15px;
 }
 .g-nav .menu-container .menu .menu-item {
   float: left;

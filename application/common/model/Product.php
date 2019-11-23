@@ -12,8 +12,13 @@ use app\common\helper\Algorithm as AlgorithmHelp;
 use app\common\model\Category as CategoryModel;
 use app\common\model\Language as LanguageModel;
 use \app\common\model\Drivers as DriversModel;
+use Exception;
+use PDOStatement;
 use think\Collection;
 use think\Db;
+use think\db\exception\DataNotFoundException;
+use think\db\exception\ModelNotFoundException;
+use think\exception\DbException;
 use think\facade\Cache;
 
 /**
@@ -43,9 +48,16 @@ Class Product extends BaseModel
         return $ids;
     }
 
+    /**
+     * @param $language
+     * @return array
+     * @throws DataNotFoundException
+     * @throws ModelNotFoundException
+     * @throws DbException
+     */
     public static function allData($language)
     {
-        $data = self::where(['language_id' => $language])->field('id,name,url_title,model,seo_title,keywords,description,features')->select();
+        $data = self::where(['language_id' => $language])->field('id,name,url_title,model,seo_title,keywords,description,features,status')->select();
         return Collection::make($data)->toArray();
     }
 
@@ -76,7 +88,7 @@ Class Product extends BaseModel
             } else {
                 return "保存数据失败";
             }
-        } catch (\Exception  $e) {
+        } catch (Exception  $e) {
             return $e->getMessage();
         }
     }
@@ -168,12 +180,12 @@ Class Product extends BaseModel
     /**
      * @param $code
      * @param $list
-     * @return false|\PDOStatement|string|\think\Collection /推荐的产品。取出排名最高的3个产品
+     * @return false|PDOStatement|string|Collection /推荐的产品。取出排名最高的3个产品
      * 取出排序最高的产品
      * 数量为 list
-     * @throws \think\db\exception\DataNotFoundException
-     * @throws \think\db\exception\ModelNotFoundException
-     * @throws \think\exception\DbException
+     * @throws DataNotFoundException
+     * @throws ModelNotFoundException
+     * @throws DbException
      */
     public static function getListProduct($code, $list)
     {

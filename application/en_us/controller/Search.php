@@ -13,9 +13,11 @@ use app\common\model\Faq as FaqModel;
 use app\common\model\Manual as ManualModel;
 use app\common\model\Product as ProductModel;
 use app\lib\exception\BannerMissException;
-use think\exception\HttpException;
 use app\common\model\ServiceCategory as ServiceCategoryModel;
 use app\common\helper\Search as elSearch;
+use think\facade\Request;
+use think\paginator\driver\Bootstrap;
+use think\Paginator;
 
 class Search extends Base
 {
@@ -25,32 +27,35 @@ class Search extends Base
      */
     public function index()
     {
-       $data=ProductModel::allData($this->language_id);
-       print_r($data);
+        $data = ProductModel::allData($this->language_id);
+        print_r($data);
 
     }
 
 
-    //产品搜索
+    /**
+     * @return mixed
+     */
     public function product()
     {
-        $key = input('get.key', '', 'trim');
-        if ($key == '' || empty($key)) {
-            return $this->fetch('', [
-                'name' => $key,
-                'count' => 0
-            ]);
-        } else {
-            $result = (new ProductModel())->frontendGetSelectProduct($key, $this->code);
-            $product = $result['data'];
-            $count = $result['count'];
-            $page = $product->render();
-            return $this->fetch($this->template . '/search/product.html', [
-                'result' => $product,
-                'count' => $count,
-                'name' => $key,
-                'page' => $page,
-            ]);
+        if (Request::isGet()) {
+            $builder = new elSearch();
+            $pages = input('page', 1);
+            $size = 16;//后面加配置里去
+            $builder->paginate($pages, $size);
+            $builder->Index('products_' . $this->language_id);
+            $search = input('key', '');
+            if (!empty($search)) {
+                $keywords = array_filter(explode(' ', $search));
+                $fields = ['name^4', 'url_title^3', 'model^2', 'seo_title^1', 'keywords^1', 'description', 'features'];
+                $builder->keywords($keywords, $fields);
+            }
+            $result = $builder->Client()->search($builder->getParams());
+            $total = $result['hits']['total']['value'];
+            $page = Bootstrap::make($result['hits']['hits'], $size, 0, $total, false, ['var_page' => 'page','path'=>'/'.$this->code.'/search/product/'.$search]);
+            $this->assign('data', $result['hits']['hits']);
+            $this->assign('page', $page);
+            return $this->fetch($this->template . '/search/product.html');
         }
     }
 

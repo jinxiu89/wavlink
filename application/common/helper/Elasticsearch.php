@@ -27,7 +27,7 @@ class Elasticsearch
      * @return Client
      * 创建客户端
      */
-    public static function Client()
+    public  function Client()
     {
         $builder = ClientBuilder::create()->setHosts(Config::get('search.client'));
         /*if(Config::get('app.debug') == true){
@@ -74,7 +74,7 @@ class Elasticsearch
      * @param $params
      * @return array|callable
      */
-    public static function createIndex($params)
+    public  function createIndex($params)
     {
         return self::Client()->indices()->create($params);
     }
@@ -84,7 +84,7 @@ class Elasticsearch
      * @return array|callable|void
      * 删除一个索引
      */
-    public static function delIndex($index)
+    public  function delIndex($index)
     {
         try {
             return self::Client()->indices()->delete(['index' => $index]);
@@ -96,7 +96,7 @@ class Elasticsearch
     /**
      * 改 //todo：后面更新时再来写
      */
-    public static function PutMapping()
+    public  function PutMapping()
     {
 
     }
@@ -104,37 +104,8 @@ class Elasticsearch
     /**
      * get //todo：后面在来写
      */
-    public static function getMapping()
+    public  function getMapping()
     {
 
-    }
-
-    /**
-     * @param $size
-     * @param $page
-     * @return Elasticsearch
-     * 添加分页查询
-     */
-    public function paginate($size, $page)
-    {
-        $this->params['body']['from'] = ($page - 1) * $size;
-        $this->params['body']['size'] = $size;
-        return $this;
-    }
-//    public function getDoc($index,$type,){
-//
-//    }
-
-
-
-    /**
-     * @param $status
-     * @return $this
-     * 传递要查询的状态码
-     */
-    public function status($status)
-    {
-        $this->params['body']['query']['bool']['filter'][] = ['term' => ['status' => $status]];
-        return $this;
     }
 }

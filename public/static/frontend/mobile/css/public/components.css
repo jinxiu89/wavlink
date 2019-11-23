@@ -1,6 +1,6 @@
 /**
 * @name: components.less
-* @description: 公共模块css
+* @description: 公共模塊css
 * @author: Alan(alan_webdeveloper@163.com)
 * @update: 2019-09-10 16:30
 */
@@ -329,13 +329,12 @@ footer .about .about-item:nth-last-of-type(1) ul:after {
 }
 footer .about .about-item:nth-last-of-type(1) ul li {
   float: left;
-  width: 30%;
 }
 footer .about .about-item:nth-last-of-type(1) ul li:nth-of-type(2) {
   margin: 0 5%;
 }
 footer .about .about-item:nth-last-of-type(1) ul li a {
-  display: block;
+  display: inline-block;
 }
 footer .about .about-item:nth-last-of-type(1) ul li img {
   display: block;

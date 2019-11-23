@@ -82,11 +82,11 @@ return [
         'Please offer us your product information, we will reply to you after we check it',
     'ticket success'=>'ticket success we will reply email to you',
     'ticket error'=>'Oops! ticket failed, unknown reason!',
-    'First Name'=>'First Name:',
-    'Last Name'=>'Last Name',
-    'Email'=>'Email:',
-    'Model'=>'Model:',
-    'Order Number'=>'Order Number:',
+    'First Name'=>'First Name: ',
+    'Last Name'=>'Last Name: ',
+    'Email'=>'Email: ',
+    'Model'=>'Model: ',
+    'Order Number'=>'Order Number: ',
     'Order tips'=>
         'The order number is always given when you purchase items on Amazon, eBay, or other platforms. 
         If you have any questions about this, please feel free to contact us at any time. Our live chat tool is available for you.',

@@ -61,6 +61,7 @@ Class Drivers extends BaseAdmin
     /**
      * 提交保存数据
      * @return array
+     * 修复 数据库字段为空时 的500错误，利用try catch 捕获异常
      */
     public function save()
     {
@@ -68,21 +69,29 @@ Class Drivers extends BaseAdmin
             $data = input('post.');
             $validate = new DriversValidate();
             if (isset($data['id']) || !empty($data['id'])) {
-                if ($validate->scene('edit')->check($data)) {
-                    return $this->update($data);
-                } else {
-                    return show(0, '', '', '', '', $validate->getError());
+                try{
+                    if ($validate->scene('edit')->check($data)) {
+                        return $this->update($data);
+                    } else {
+                        return show(0, '', '', '', '', $validate->getError());
+                    }
+                }catch (\Exception $exception){
+                    return show(0, '', '', '', '', $exception->getMessage());
                 }
             } else {
-                if ($validate->scene('add')->check($data)) {
-                    $res = (new DriversModel())->add($data);
-                    if ($res) {
-                        return show(1, '', '', '', '', '添加成功');
+                try{
+                    if ($validate->scene('add')->check($data)) {
+                        $res = (new DriversModel())->add($data);
+                        if ($res) {
+                            return show(1, '', '', '', '', '添加成功');
+                        } else {
+                            return show(0, '', '', '', '', '添加失败');
+                        }
                     } else {
-                        return show(0, '', '', '', '', '添加失败');
+                        return show(0, '', '', '', '', $validate->getError());
                     }
-                } else {
-                    return show(0, '', '', '', '', $validate->getError());
+                }catch (\Exception $exception){
+                    return show(0, '', '', '', '', $exception->getMessage());
                 }
             }
         }

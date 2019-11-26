@@ -337,6 +337,15 @@ function getDownloadUrl($id)
     return implode('', $arr);
 }
 
+/**
+ * @param $id
+ * @return mixed
+ */
+function getProductImage($id){
+    $data=\app\common\model\Product::get($id);
+    return $data['image_litpic_url'];
+}
+
 function getCategoryLevel($id)
 {
     if ($id == '') {

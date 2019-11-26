@@ -1,0 +1,114 @@
+/**
+* @name: article.less
+* @description: article列表樣式
+* @author: Alan(alan_webdeveloper@163.com)
+* @update: 2019-11-25 10:00
+*/
+.g-main {
+  background: none;
+}
+.g-pagination {
+  margin: 10px 0;
+}
+.g-pagination .pagination {
+  margin: 15px 0;
+}
+.g-pagination .paginationbefore,
+.g-pagination .pagination:after {
+  content: " ";
+  display: table;
+  zoom: 1;
+}
+.g-pagination .pagination:after {
+  clear: both;
+}
+.g-pagination .pagination li {
+  display: block;
+  float: left;
+  margin: 0;
+}
+.g-pagination .pagination > li > a:focus,
+.g-pagination .pagination > li > a:hover {
+  border-color: #f8b300;
+}
+.search-product .item {
+  padding: 15px;
+  background: #fff;
+  border-bottom: 1px solid #eaeaea;
+}
+.search-product .itembefore,
+.search-product .item:after {
+  content: " ";
+  display: table;
+  zoom: 1;
+}
+.search-product .item:after {
+  clear: both;
+}
+.search-product .item:nth-last-of-type(1) {
+  border-bottom: none;
+}
+.search-product .item .img-box {
+  display: block;
+  float: left;
+  width: 20%;
+}
+.search-product .item .img-box a {
+  display: block;
+  overflow: hidden;
+  width: 100%;
+  height: 0;
+  padding-bottom: 56.25%;
+  /* 根据图片高宽比设置向下内边距  高/宽 */
+  background: #f5f5f5;
+  border: 1px solid transparent;
+}
+.search-product .item .img-box a img {
+  width: 100%;
+}
+.search-product .item .img-box a:hover {
+  border: 1px solid #f8b300;
+}
+.search-product .item .img-box a img {
+  display: block;
+  max-width: 100%;
+  height: auto;
+  margin-left: auto;
+  margin-right: auto;
+}
+.search-product .item .des {
+  float: left;
+  width: 80%;
+  padding-left: 15px;
+}
+.search-product .item .des .breadcrumb {
+  padding: 0;
+  margin: 0;
+  background: #fff;
+}
+.search-product .item .des .breadcrumb a {
+  color: #777;
+}
+.search-product .item .des .breadcrumb a:hover {
+  color: #f8b300;
+}
+.search-product .item .des h2 {
+  margin: 10px 0;
+  font-size: 16px;
+}
+.search-product .item .des h2 a {
+  color: #000;
+}
+.search-product .item .des h2 a:hover {
+  color: #f8b300;
+}
+.search-product .item .links {
+  margin-top: 10px;
+}
+.search-product .item .links a {
+  color: #777;
+}
+.search-product .item .links a:hover {
+  color: #f8b300;
+}
+/*# sourceMappingURL=search.css.map */

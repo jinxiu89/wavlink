@@ -35,13 +35,18 @@ class Search extends Base
 
     /**
      * @return mixed
+     * 利用elasticsearch来构建全文搜索，重要知识点
+     * 1、$pages : 分页搜索的递一个参数
+     * 2、$size: 每页显示多少数据
+     * 3、$fields = 搜索哪些字段，后面的^数字 是权重的分配
+     * 4、$page 利用thinkphp的Bootstrap 来创建分页
      */
     public function product()
     {
         if (Request::isGet()) {
             $builder = new elSearch();
             $pages = input('page', 1);
-            $size = 16;//后面加配置里去
+            $size = 12;//后面加配置里去
             $builder->paginate($pages, $size);
             $builder->Index('products_' . $this->language_id);
             $search = input('key', '');
@@ -52,9 +57,11 @@ class Search extends Base
             }
             $result = $builder->Client()->search($builder->getParams());
             $total = $result['hits']['total']['value'];
-            $page = Bootstrap::make($result['hits']['hits'], $size, 0, $total, false, ['var_page' => 'page','path'=>'/'.$this->code.'/search/product/'.$search]);
+            $page = Bootstrap::make($result['hits']['hits'], $size, $pages, $total, false, ['var_page' => 'page','path'=>'/'.$this->code.'/search/product','query'=>['key'=>$search]]);
             $this->assign('data', $result['hits']['hits']);
             $this->assign('page', $page);
+            $this->assign('search',$search);
+            $this->assign('count',$total);
             return $this->fetch($this->template . '/search/product.html');
         }
     }

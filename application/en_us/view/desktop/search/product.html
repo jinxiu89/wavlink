@@ -1,5 +1,87 @@
-<div class="g-pagination clearfix">
-    <nav>
-        {$page->render()|raw}
-    </nav>
+{extend name="desktop/common/base"}
+{block name="title"} - {:lang('powered by')}{/block}
+{block name="seo"}
+<meta name="description" content="搜索">
+<meta name="keywords" content="搜索">
+{/block}
+{block name="style"}
+<link rel="stylesheet" href="__DESKTOP__/css/page/search.css">
+{/block}
+{block name="swiper"}
+<div class="container-fluid">
+    <div class="row">
+        <div class="g-path">
+            <ol class="breadcrumb">
+                <li><a href="{:url('/'.$code.'/index')}">{:lang('home')}</a></li>
+                <li><a href="{:url('/'.$code.'/index')}">{:lang('Search')}</a></li>
+                <li class="active">{:lang('driver')}</li>
+            </ol>
+        </div>
+    </div>
 </div>
+{/block}
+{block name="body"}
+<div class="container">
+    <div class="row">
+        <div class="box">
+            <div class="g-aside">
+                <ul>
+                    <li><h3>{:lang('support')}</h3></li>
+                    {include file='desktop/common/support_aside'}
+                </ul>
+            </div>
+            <div class="g-main">
+                <div class="search-product">
+                    {notempty name="data"}
+                    {volist name="data" id="vo"}
+                    <div class="item">
+                        <div class="img-box">
+                            <a href="{:url('/'.$code.'/product/'.$vo['_source']['url_title'])}">
+                                <img src="{$vo['_source']['id']|getProductImage}" alt="">
+                            </a>
+                        </div>
+                        <div class="des">
+                            <ol class="breadcrumb">
+                                <li><a href="/{$code}/index.html">{:lang('home')}</a></li>
+                                <li><a href="/{$code}/category/{$vo['_source']['id']|getCategoryByPid|getUrlTitleByCid}.html">{$vo['_source']['id']|getCategoryByPid|getCNameByCid}</a></li>
+                                <li><a href="/{$code}/category/{$vo['_source']['id']|getCategoryByID|getUrlTitleByCid}.html">{$vo['_source']['id']|getCategoryByID|getCNameByCid}</a></li>
+                            </ol>
+                            <h2><a href="{:url('/'.$code.'/product/'.$vo['_source']['url_title'])}">{$vo['_source']['name']}</a></h2>
+                            <p>{$vo['_source']['model']}</p>
+                            <p class="links">
+                                <a href="{:url('/'.$code.'/product/'.$vo['_source']['url_title'])}">Details</a>
+                                <span>|</span>
+                                <a href="#">support</a>
+                            </p>
+                        </div>
+                    </div>
+                    {/volist}
+                    {/notempty}
+                    <div class="g-pagination clearfix">
+                        <nav>
+                            {$page|raw}
+                        </nav>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{/block}
+{block name="javascript"}
+<!--私有JS-->
+<script>
+    $(function () {
+        $('#support').addClass('active');
+        $('.driver').addClass('active');
+        // 筛选变化时 过滤
+        $('.filter_by').change(function () {
+            window.location.href = ''
+        });
+        $('.order_by').change(function () {
+
+            window.location.href = ''
+        });
+    });
+</script>
+{/block}

@@ -62,7 +62,7 @@ class Search extends BaseAdmin
             $productItems['body'][] = $item;
         }
         try {
-            elSearch::Client()->bulk($productItems);
+            $this->elSearch->Client()->bulk($productItems);
         } catch (elException $exception) {
             $this->error($exception->getMessage(), '', '', 5);
         }

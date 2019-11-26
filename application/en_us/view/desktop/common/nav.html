@@ -64,8 +64,12 @@
                     <span class="iconfont">&#xe68d;</span>
                 </div>
                 <div class="search-box" id="search-box">
-                    <form action="">
-                        <input class="text" type="text" placeholder="{:lang('search tips')}">
+                    <form action="{:url('/'.$code.'/search/product')}" method="get">
+                        {if ($search !="")}
+                        <input class="text" type="text" name="key" value="{$search}">
+                        {else /}
+                        <input class="text" type="text" name="key" placeholder="{:lang('search tips')}">
+                        {/if}
                         <input type="submit" value="{:lang('go')}">
                     </form>
                 </div>

@@ -463,7 +463,7 @@ body {
   color: #f8b300;
 }
 .g-path .breadcrumb a:hover {
-  color: #ffc714;
+  color: #f8b300;
 }
 @media screen and (min-width: 1200px) {
   .g-path .breadcrumb {
@@ -525,7 +525,7 @@ body {
   border-bottom: none;
 }
 .g-aside ul li .active {
-  color: #ffc714;
+  color: #f8b300;
   text-decoration: underline;
 }
 @media screen and (min-width: 768px) and (max-width: 991px) {

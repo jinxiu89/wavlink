@@ -111,4 +111,72 @@
 .search-product .item .links a:hover {
   color: #f8b300;
 }
+.search-driver .panel {
+  margin-bottom: 0;
+  border: none;
+  border-radius: 0;
+  box-shadow: none;
+}
+.search-driver .panel-heading {
+  border-color: #eaeaea;
+  background: none;
+}
+.search-driver .item {
+  padding: 10px 0 0;
+  -webkit-border-radius: 5px;
+  -moz-border-radius: 5px;
+  border-radius: 5px;
+}
+.search-driver .item .title {
+  font-size: 16px;
+}
+.search-driver .item .info {
+  margin-bottom: 5px;
+}
+.search-driver .item .infobefore,
+.search-driver .item .info:after {
+  content: " ";
+  display: table;
+  zoom: 1;
+}
+.search-driver .item .info:after {
+  clear: both;
+}
+.search-driver .item .info p {
+  float: left;
+  padding-right: 20px;
+}
+.search-driver .item .info p span {
+  display: inline-block;
+  line-height: 20px;
+}
+.search-driver .item .mode {
+  margin-bottom: 5px;
+}
+.search-driver .item .mode pbefore,
+.search-driver .item .mode p:after {
+  content: " ";
+  display: table;
+  zoom: 1;
+}
+.search-driver .item .mode p:after {
+  clear: both;
+}
+.search-driver .item .mode span {
+  display: block;
+  float: left;
+  width: 16.6667%;
+}
+.search-driver .item .mode span:nth-of-type(1) {
+  float: none;
+}
+.search-driver .item .download a {
+  padding: 2px 12px;
+  margin-right: 4px;
+  font-size: 12px;
+  border-color: #f8b300;
+}
+.search-driver .item .download a:hover {
+  background: #ffc714;
+}
 /*# sourceMappingURL=search.css.map */

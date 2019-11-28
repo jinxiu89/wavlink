@@ -58,7 +58,7 @@
 /* swiper结束 */
 /* category-icon */
 .category-icon {
-  margin: 0.4rem 0;
+  margin: 8px 0;
   background: #fff;
 }
 .category-iconbefore,
@@ -195,7 +195,7 @@
 /* recommend结束 */
 /* new */
 .new-box {
-  margin: 0.4rem 0;
+  margin: 8px 0;
   padding: 0.4rem 0;
   background: #fff;
 }

@@ -15,12 +15,21 @@ use app\common\model\Product as ProductModel;
 use app\lib\exception\BannerMissException;
 use app\common\model\ServiceCategory as ServiceCategoryModel;
 use app\common\helper\Search as elSearch;
+use think\App;
+use think\Db;
 use think\facade\Request;
 use think\paginator\driver\Bootstrap;
 use think\Paginator;
 
 class Search extends Base
 {
+    protected $elSearch;
+
+    public function __construct(App $app = null)
+    {
+        parent::__construct($app);
+        $this->elSearch = new elSearch();
+    }
 
     /**\
      * 搜索，先展示产品
@@ -32,36 +41,59 @@ class Search extends Base
 
     }
 
-
     /**
      * @return mixed
-     * 利用elasticsearch来构建全文搜索，重要知识点
-     * 1、$pages : 分页搜索的递一个参数
-     * 2、$size: 每页显示多少数据
-     * 3、$fields = 搜索哪些字段，后面的^数字 是权重的分配
-     * 4、$page 利用thinkphp的Bootstrap 来创建分页
+     * @throws \think\db\exception\DataNotFoundException
+     * @throws \think\db\exception\ModelNotFoundException
+     * @throws \think\exception\DbException
      */
-    public function product()
+    public function results()
     {
         if (Request::isGet()) {
-            $builder = new elSearch();
+            $search = input('key', '');
+            $keywords = array_filter(explode(' ', $search));
+            $type = input('type', 'product');
+
             $pages = input('page', 1);
             $size = 12;//后面加配置里去
-            $builder->paginate($pages, $size);
-            $builder->Index('products_' . $this->language_id);
-            $search = input('key', '');
-            if (!empty($search)) {
-                $keywords = array_filter(explode(' ', $search));
-                $fields = ['name^4', 'url_title^3', 'model^2', 'seo_title^1', 'keywords^1', 'description', 'features'];
-                $builder->keywords($keywords, $fields);
+            $this->elSearch->paginate($pages, $size);
+            //产品
+            $product_field = ['name', 'url_title', 'model', 'seo_title', 'keywords', 'description', 'features'];
+            $this->elSearch->keywords($keywords, $product_field);
+            $this->elSearch->Index('products_' . $this->language_id);
+            $products = $this->elSearch->Client()->search($this->elSearch->getParams());
+            //驱动
+            $driver_field = ['name', 'url_title', 'keywords', 'descrip'];
+            $this->elSearch->keywords($keywords, $driver_field);
+            $this->elSearch->Index('drivers_' . $this->language_id);
+            $drivers = $this->elSearch->Client()->search($this->elSearch->getParams());
+            $page_options = ['var_page' => 'page', 'path' => '/' . $this->code . '/search', 'query' => ['key' => $search, 'type' => $type]];
+            $product_total = $products['hits']['total']['value'];
+            $driver_total = $drivers['hits']['total']['value'];
+            if ($type == 'product') {
+                $page = Bootstrap::make($products['hits']['hits'], $size, $pages, $products['hits']['total']['value'], true, $page_options);
+                $this->assign('products', $products['hits']['hits']);
+                $this->assign('page', $page);
             }
-            $result = $builder->Client()->search($builder->getParams());
-            $total = $result['hits']['total']['value'];
-            $page = Bootstrap::make($result['hits']['hits'], $size, $pages, $total, false, ['var_page' => 'page','path'=>'/'.$this->code.'/search/product','query'=>['key'=>$search]]);
-            $this->assign('data', $result['hits']['hits']);
-            $this->assign('page', $page);
-            $this->assign('search',$search);
-            $this->assign('count',$total);
+            if ($type == 'driver') {
+                $ids = [];
+                foreach ($drivers['hits']['hits'] as $driver) {
+                    $ids[] = $driver['_id'];
+                }
+                $items = Db::table('drivers')->where('id', 'in', $ids)->select();
+                $data = [];
+                foreach ($items as $item) {
+                    $item['modelsGroup'] = explode(',', $item['models']);
+                    $data[] = $item;
+                }
+                unset($items);
+                $page = Bootstrap::make($drivers['hits']['hits'], $size, $pages, $products['hits']['total']['value'], true, $page_options);
+                $this->assign('drivers', $data);
+                $this->assign('page', $page);
+            }
+            $this->assign('search', $search);
+            $this->assign('product_total', $product_total);
+            $this->assign('driver_total', $driver_total);
             return $this->fetch($this->template . '/search/product.html');
         }
     }

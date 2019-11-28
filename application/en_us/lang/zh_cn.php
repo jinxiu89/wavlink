@@ -97,6 +97,9 @@ return [
     'Contact Us' => '联系我们',
     'Join Us' => '工作机会',
     'Privacy' => '隐私保护',
+    //搜索结果翻译信息
+    'total result'=>'共查询到',
+    'keyword'=>'关键词',
     //網站版權信息翻譯
     'powered by' => 'Wavlink品牌官方网站'
 ];

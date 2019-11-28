@@ -33,6 +33,7 @@ Route::group('en_us', function () {
     Route::get('/video', 'Video/index');
 //    Route::get('/search/el','Search/index');
     Route::get('/search/product','Search/product')->pattern(['key'=>'[\w-]+','page'=>'[\d]+']);
+    Route::get('/search','Search/results')->pattern(['key'=>'[\w-]+','type'=>'[\w-]+','page'=>'[\d]+']);
     Route::get('/', 'Index/index');
 });
 

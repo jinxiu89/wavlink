@@ -77,7 +77,6 @@ function ModelsArr($data, $key, $newKey)
 {
     foreach ($data as $k => $vo) {
         $models = explode(",", $vo[$key]);
-//        $models = array_chunk($_models,2);
         $vo[$newKey] = $models;
     }
     return $data;

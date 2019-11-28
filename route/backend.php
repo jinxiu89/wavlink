@@ -156,6 +156,7 @@ Route::group(Config::get('__BACKEND__'), function () {
     //搜索索引管理
     Route::get('search/index','wavlink/Search/index');
     Route::get('search/createProduct','wavlink/search/createProduct');
+    Route::get('search/createDriver','wavlink/search/createDriver');
     Route::get('search/createIndex','wavlink/search/createIndex');
     Route::get('search/getProduct','wavlink/search/searchProduct');
     Route::get('/', 'wavlink/index/index');

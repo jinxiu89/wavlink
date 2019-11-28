@@ -1,8 +1,8 @@
 {extend name="desktop/common/base"}
-{block name="title"} - {:lang('powered by')}{/block}
+{block name="title"}{:lang('keyword')} "{$search}"  - {:lang('powered by')}{/block}
 {block name="seo"}
-<meta name="description" content="搜索">
-<meta name="keywords" content="搜索">
+<meta name="description" content="{:lang('keyword')} {$search} {:lang('total result')}">
+<meta name="keywords" content="{:lang('keyword')} {$search}">
 {/block}
 {block name="style"}
 <link rel="stylesheet" href="__DESKTOP__/css/page/search.css">
@@ -14,7 +14,7 @@
             <ol class="breadcrumb">
                 <li><a href="{:url('/'.$code.'/index')}">{:lang('home')}</a></li>
                 <li><a href="{:url('/'.$code.'/index')}">{:lang('Search')}</a></li>
-                <li class="active">{:lang('driver')}</li>
+                <li class="active">{:lang('product')}</li>
             </ol>
         </div>
     </div>
@@ -26,14 +26,14 @@
         <div class="box">
             <div class="g-aside">
                 <ul>
-                    <li><h3>{:lang('support')}</h3></li>
-                    {include file='desktop/common/support_aside'}
+                    <li><h3>{:lang('search result')}</h3></li>
+                    {include file='desktop/common/search_aside'}
                 </ul>
             </div>
             <div class="g-main">
                 <div class="search-product">
-                    {notempty name="data"}
-                    {volist name="data" id="vo"}
+                    {notempty name="products"}
+                    {volist name="products" id="vo"}
                     <div class="item">
                         <div class="img-box">
                             <a href="{:url('/'.$code.'/product/'.$vo['_source']['url_title'])}">
@@ -57,11 +57,57 @@
                     </div>
                     {/volist}
                     {/notempty}
-                    <div class="g-pagination clearfix">
-                        <nav>
-                            {$page|raw}
-                        </nav>
+                </div>
+                <div class="search-driver">
+                    {notempty name="drivers"}
+                    {volist name="drivers" id="vo"}
+                    <div class="item">
+                        <div class="panel panel-default">
+                            <div class="panel-heading">
+                                <h3 class="title">{$vo.name}</h3>
+                            </div>
+                            <div class="panel-body">
+                                <div class="info">
+                                    <p><span>{:lang('File Size')} :</span> <span>{$vo.size}</span></p>
+                                    <p><span>{:lang('Version')} :</span> <span>{$vo.version_number}</span></p>
+                                    <p><span>{:lang('Post Date')} :</span> <span>{$vo.update_time|date="d/m/Y"}</span>
+                                    </p>
+                                    <p><span>{:lang('System Requirements')} :</span> <span>{$vo.running}</span></p>
+                                </div>
+                                <div class="mode">
+                                    <p>
+                                        <span>{:lang('Available')} : </span>
+                                        {volist name="$vo.modelsGroup" id="v"}
+                                        <!-- 2018-4-12 星期四 14:05 添加字体大小给td标签 -->
+                                        <span>{$v}</span>
+                                        {/volist}
+                                    </p>
+                                </div>
+                                <div class="download">
+                                    <span>{:lang('Download')} : </span>
+                                    {notempty name="$vo.all_link"}
+                                    <a class="btn btn-default" href="{$vo.all_link}">{:lang('ALL')}<i class="iconfont">&#xe64f;</i></a>
+                                    {/notempty}
+                                    {notempty name="$vo.win_link"}
+                                    <a class="btn btn-default" href="{$vo.win_link}">{:lang('WINDOWS')}<i class="iconfont">&#xe64f;</i></a>
+                                    {/notempty}
+                                    {notempty name="$vo.mac_link"}
+                                    <a class="btn btn-default" href="{$vo.mac_link}">{:lang('MAC')}<i class="iconfont">&#xe64f;</i></a>
+                                    {/notempty}
+                                    {notempty name="$vo.linux_link"}
+                                    <a class="btn btn-default" href="{$vo.linux_link}">{:lang('Linux')}<i class="iconfont">&#xe64f;</i></a>
+                                    {/notempty}
+                                </div>
+                            </div>
+                        </div>
                     </div>
+                    {/volist}
+                    {/notempty}
+                </div>
+                <div class="g-pagination clearfix">
+                    <nav>
+                        {$page|raw}
+                    </nav>
                 </div>
             </div>
         </div>

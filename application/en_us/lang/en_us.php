@@ -100,6 +100,9 @@ return [
     'More'=>'More',
     'Learn More'=>'Learn More',
     'Privacy'=>'Privacy',
+    //搜索结果翻译信息
+    'total result'=>'total result',
+    'keyword'=>'keyword',
     //網站版權信息翻譯
     'powered by'=>'Powered by Wavlink'
 ];

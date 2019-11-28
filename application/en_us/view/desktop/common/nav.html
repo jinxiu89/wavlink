@@ -65,11 +65,11 @@
                 </div>
                 <div class="search-box" id="search-box">
                     <form action="{:url('/'.$code.'/search/product')}" method="get">
-                        {if ($search !="")}
-                        <input class="text" type="text" name="key" value="{$search}">
-                        {else /}
+                        {empty name="search"}
                         <input class="text" type="text" name="key" placeholder="{:lang('search tips')}">
-                        {/if}
+                        {else /}
+                        <input class="text" type="text" name="key" value="{$search}">
+                        {/empty}
                         <input type="submit" value="{:lang('go')}">
                     </form>
                 </div>

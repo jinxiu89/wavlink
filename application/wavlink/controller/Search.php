@@ -5,8 +5,12 @@ namespace app\wavlink\controller;
 
 use app\common\helper\Search as elSearch;
 use app\common\model\Product;
+use app\common\model\Drivers;
 use think\App;
 use Elasticsearch\Common\Exceptions as elException;
+use think\db\exception\DataNotFoundException;
+use think\db\exception\ModelNotFoundException;
+use think\exception\DbException;
 
 class Search extends BaseAdmin
 {
@@ -26,13 +30,13 @@ class Search extends BaseAdmin
     public function createIndex()
     {
         $properties = [
-            'name' => ['type' => 'text', 'analyzer' => 'standard'],
-            'url_title' => ['type' => 'text', 'analyzer' => 'standard'],
-            'model' => ['type' => 'text', 'analyzer' => 'standard'],
-            'seo_title' => ['type' => 'text', 'analyzer' => 'standard'],
-            'keywords' => ['type' => 'text', 'analyzer' => 'standard'],
-            'description' => ['type' => 'text', 'analyzer' => 'standard'],
-            'features' => ['type' => 'text', 'analyzer' => 'standard'],
+            'name' => ['type' => 'text'],
+            'url_title' => ['type' => 'text'],
+            'model' => ['type' => 'text'],
+            'seo_title' => ['type' => 'text'],
+            'keywords' => ['type' => 'text'],
+            'description' => ['type' => 'text'],
+            'features' => ['type' => 'text'],
         ];
         $params['index'] = 'product_' . $this->currentLanguage['id'];
         $params['body']['mappings']['properties'] = $properties;
@@ -68,11 +72,40 @@ class Search extends BaseAdmin
         }
         $this->success('创建完成！');
     }
-    public function searchProduct(){
-        $params=['index'=>'products_'.$this->currentLanguage['id'],'type'=>'_doc','body'=>[
-            'query'=>['bool'=>['filter'=>[['term'=>['name'=>'6'],],],],],
+
+    public function createDriver()
+    {
+        try {
+            $items = Drivers::allData($this->currentLanguage['id']);
+            $driverItems = ['body' => [],];
+            foreach ($items as $item) {
+                $driverItems['body'][] = [
+                    'index' => [
+                        '_index' => 'drivers_' . $this->currentLanguage['id'],
+                        '_type' => '_doc',
+                        '_id' => $item['id'],
+                    ]
+                ];
+                $driverItems['body'][] = $item;
+            }
+            try {
+                $this->elSearch->Client()->bulk($driverItems);
+            } catch (elException $exception) {
+                //错误异常等一下搞
+            }
+            $this->success('创建完成');
+        } catch (DataNotFoundException $e) {
+        } catch (ModelNotFoundException $e) {
+        } catch (DbException $e) {
+        }
+    }
+
+    public function searchProduct()
+    {
+        $params = ['index' => 'products_' . $this->currentLanguage['id'], 'type' => '_doc', 'body' => [
+            'query' => ['bool' => ['filter' => [['term' => ['name' => '6'],],],],],
         ],];
-        $data=elSearch::Client()->search($params);
+        $data = elSearch::Client()->search($params);
         print_r($data);
     }
 }

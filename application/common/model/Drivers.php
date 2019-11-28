@@ -9,6 +9,7 @@
 namespace app\common\model;
 
 use app\common\model\Language as LanguageModel;
+use think\Collection;
 
 /**
  * Class Drivers
@@ -58,6 +59,9 @@ Class Drivers extends BaseModel
      * @param $code
      * @return array|string
      * 驱动搜索
+     * @throws \think\db\exception\DataNotFoundException
+     * @throws \think\db\exception\ModelNotFoundException
+     * @throws \think\exception\DbException
      */
     public static function getSelectDrivers($name, $code)
     {
@@ -70,5 +74,18 @@ Class Drivers extends BaseModel
             'id' => 'desc',
         ];
         return Search($model, $map, $order);
+    }
+
+    /**
+     * @param $language_id
+     * @return array
+     * @throws \think\db\exception\DataNotFoundException
+     * @throws \think\db\exception\ModelNotFoundException
+     * @throws \think\exception\DbException
+     * 创建索引
+     */
+    public static function allData($language_id){
+        $data = self::where(['language_id' => $language_id, 'status' => 1])->field('id,name,url_title,models,seo_title,keywords,descrip,status')->select();
+        return Collection::make($data)->toArray();
     }
 }

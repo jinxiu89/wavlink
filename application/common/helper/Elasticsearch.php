@@ -7,7 +7,6 @@
  */
 
 namespace app\common\helper;
-
 use Elasticsearch\Client;
 use Elasticsearch\ClientBuilder;
 use think\facade\Config;
@@ -107,5 +106,9 @@ class Elasticsearch
     public  function getMapping()
     {
 
+    }
+    public function customFilter(){
+        $filter=[];
+//        self::Client()->;
     }
 }

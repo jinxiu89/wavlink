@@ -434,7 +434,7 @@ footer .copy-right p a {
   float: right;
 }
 .g-filter {
-  padding: 10px 15px;
+  padding: 10px 0.4rem;
   font-size: 12px;
   background: #fff;
 }

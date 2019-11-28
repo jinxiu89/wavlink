@@ -9,9 +9,10 @@
 
 .panel {
     margin-bottom: 0;
-    border-color: @borderColor;
+    border: none;
     .panel-heading,
     .panel-footer{
+        padding: 10px @publicInterval;
         border-color: @borderColor;
         background: @whiteColor;
     }
@@ -19,6 +20,7 @@
         font-size: 14px;
     }
     .panel-body {
+        padding: 10px @publicInterval;
         font-size: 12px;
         input,textarea {
             box-shadow: none;

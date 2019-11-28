@@ -88,6 +88,59 @@
   }
 }
 
-.search-driver .item {
-
+.search-driver {
+  .panel {
+    margin-bottom: 0;
+    border: none;
+    border-radius: 0;
+    box-shadow: none;
+  }
+  .panel-heading {
+    border-color: @borderColor;
+    background: none;
+  }
+  .item {
+    padding: 10px 0 0;
+    #border-radius(5px);
+  }
+  .item .title {
+    font-size: 16px;
+  }
+  .item .info {
+    .clearFix();
+    margin-bottom: 5px;
+    p {
+      .fl();
+      padding-right: 20px;
+    }
+    p span {
+      display: inline-block;
+      line-height: 20px;
+    }
+  }
+  .item .mode {
+    margin-bottom: 5px;
+    p {
+      .clearFix();
+    }
+    span {
+      display: block;
+      .fl();
+      width: 16.6667%;
+      &:nth-of-type(1) {
+        float: none;
+      }
+    }
+  }
+  .item .download {
+    a {
+      padding: 2px 12px;
+      margin-right: 4px;
+      font-size: 12px;
+      border-color: #f8b300;
+      &:hover {
+        background: #ffc714;
+      }
+    }
+  }
 }

@@ -15,7 +15,7 @@
                     <thead>
                     <tr class="text-c">
                         <th width=10%>名称</th>
-                        <th >描述</th>
+                        <th>描述</th>
                         <th width=20%>执行</th>
                     </tr>
                     </thead>
@@ -23,7 +23,14 @@
                     <tr class="text-l">
                         <td>产品索引</td>
                         <td>将已上传的产品索引到全文搜索中</td>
-                        <td><a href="#">开始索引</a></td>
+                        <td><a class="btn btn-primary " href="javascript:void(0);"
+                               onclick="createIndex('{:url(\'search/createProduct\')}')">更新</a></td>
+                    </tr>
+                    <tr class="text-l">
+                        <td>驱动索引</td>
+                        <td>将驱动索引到全文搜索中</td>
+                        <td><a class="btn btn-primary " href="javascript:void(0);"
+                               onclick="createIndex('{:url(\'search/createDriver\')}')">更新</a></td>
                     </tr>
                     </tbody>
                 </table>
@@ -35,11 +42,30 @@
 {include file="public/footer"/}
 <script>
     $(document).ready(function () {
-        $("#menu-product dt").addClass("selected");
-        $("#menu-product dd").css("display", "block");
-        $("#product_product").addClass("current");
-        $("#content").addClass("current");
+        $("#menu-cache dt").addClass("selected");
+        $("#menu-cache dd").css("display", "block");
+        $("#cache_index").addClass("current");
+        $("#system").addClass("current");
     });
+
+    function createIndex(url) {
+        $.ajax(
+            {
+                type: 'get',
+                url: url,
+                data: '',
+                dataType: "json",
+                success: function (result) {
+                    if (result.status === 1) {
+                        layer.msg(result.data, {icon: 1, time: 3000}, function () {
+                            window.parent.location.reload();
+                        })
+                    } else {
+                        layer.msg(result.data, {icon: 5, time: 3000})
+                    }
+                }
+            });
+    }
 </script>
 </body>
 </html>

@@ -90,8 +90,7 @@ Class Product extends BaseAdmin
             if (isset($data['id']) and !empty($data['id'])) {
                 if ($validate->scene('edit')->check($data)) {
                     try {
-                        $res = (new ProductModel())->productSave($data);
-                        if ($res) {
+                        if ((new ProductModel())->productSave($data)) {
                             return show(1, '', '', '', '', '更新成功');
                         } else {
                             return show(0, '', '', '', '', '添加失败');
@@ -103,8 +102,7 @@ Class Product extends BaseAdmin
             } else {
                 if ($validate->scene('add')->check($data)) {
                     try {
-                        $res = (new ProductModel())->productSave($data);
-                        if ($res) {
+                        if ((new ProductModel())->productSave($data)) {
                             return show(1, '', '', '', '', '添加成功');
                         } else {
                             return show(0, '', '', '', '', '添加失败');

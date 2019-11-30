@@ -123,14 +123,14 @@ function getServiceCategory($id)
  */
 function show($status, $message = '', $title = '', $btn = '', $url = '', $data = array())
 {
-    $res = array(
+    $res = [
         'status' => $status,
         'message' => $message,
         'jump_url' => $url,
         'data' => $data,
         'title' => $title,
         'btn' => $btn
-    );
+    ];
     exit(json_encode($res));
 }
 

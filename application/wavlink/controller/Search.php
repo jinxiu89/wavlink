@@ -16,12 +16,20 @@ class Search extends BaseAdmin
 {
     protected $elSearch;
 
+    /***
+     * Search constructor.
+     * @param App|null $app
+     *
+     */
     public function __construct(App $app = null)
     {
         parent::__construct($app);
         $this->elSearch = new elSearch();
     }
 
+    /***
+     * @return mixed
+     */
     public function index()
     {
         return $this->fetch();
@@ -65,12 +73,15 @@ class Search extends BaseAdmin
             ];
             $productItems['body'][] = $item;
         }
+        if($this->elSearch->Client()->indices()->exists(['index'=>'products_' . $this->currentLanguage['id']])){
+            $this->elSearch->Client()->indices()->delete(['index'=>'products_' . $this->currentLanguage['id']]);
+        }
         try {
             $this->elSearch->Client()->bulk($productItems);
+            return show(1, 'success', '', '', '', '更新成功');
         } catch (elException $exception) {
-            $this->error($exception->getMessage(), '', '', 5);
+            return show(0, 'failed', '', '', '', $exception->getMessage());
         }
-        $this->success('创建完成！');
     }
 
     public function createDriver()
@@ -88,12 +99,15 @@ class Search extends BaseAdmin
                 ];
                 $driverItems['body'][] = $item;
             }
+            if($this->elSearch->Client()->indices()->exists(['index'=>'drivers_' . $this->currentLanguage['id']])){
+                $this->elSearch->Client()->indices()->delete(['index'=>'drivers_' . $this->currentLanguage['id']]);
+            }
             try {
                 $this->elSearch->Client()->bulk($driverItems);
             } catch (elException $exception) {
-                //错误异常等一下搞
+                return show(0, 'failed', '', '', '', $exception->getMessage());
             }
-            $this->success('创建完成');
+            return show(1, 'success', '', '', '', '更新成功');
         } catch (DataNotFoundException $e) {
         } catch (ModelNotFoundException $e) {
         } catch (DbException $e) {

@@ -74,8 +74,12 @@
         </nav>
     </div>
     <div class="search-container">
-        <form action="">
-            <input type="text" placeholder="Please enter the product model to search">
+        <form action="{:url('/'.$code.'/search')}" method="get">
+            {empty name="search"}
+            <input class="text" type="text" name="key" placeholder="{:lang('search tips')}">
+            {else /}
+            <input class="text" type="text" name="key" value="{$search}">
+            {/empty}
             <input type="submit" value="GO">
         </form>
     </div>

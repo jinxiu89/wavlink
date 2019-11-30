@@ -29,7 +29,7 @@ Route::group('zh_cn', function () {
     Route::get('/article', 'Article/index');
     Route::get('/video/:url_title', 'Video/details')->pattern(['url_title' => '[\w-]+']);
     Route::get('/video', 'Video/index');
-    Route::get('/search/product/:key','Search/product')->pattern(['key'=>'[\w-]+','page'=>'[\d]+']);
+    Route::get('/search','Search/results')->pattern(['key'=>'[\w-]+','type'=>'[\w-]+','page'=>'[\d]+']);
     Route::get('/tuya/Appdownload','Tuya/index');
     //根路由在最下面
     Route::get('/', 'Index/index');

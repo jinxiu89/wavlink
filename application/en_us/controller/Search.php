@@ -71,9 +71,9 @@ class Search extends Base
             $product_total = $products['hits']['total']['value'];
             $driver_total = $drivers['hits']['total']['value'];
             if ($type == 'product') {
-                $page = Bootstrap::make($products['hits']['hits'], $size, $pages, $products['hits']['total']['value'], true, $page_options);
+                $product_page = Bootstrap::make($products['hits']['hits'], $size, $pages, $product_total, false, $page_options);
                 $this->assign('products', $products['hits']['hits']);
-                $this->assign('page', $page);
+                $this->assign('product_page', $product_page);
             }
             if ($type == 'driver') {
                 $ids = [];
@@ -86,15 +86,15 @@ class Search extends Base
                     $item['modelsGroup'] = explode(',', $item['models']);
                     $data[] = $item;
                 }
-                unset($items);
-                $page = Bootstrap::make($drivers['hits']['hits'], $size, $pages, $products['hits']['total']['value'], true, $page_options);
+                $driver_page = Bootstrap::make($drivers['hits']['hits'], $size, $pages, $driver_total, false, $page_options);
                 $this->assign('drivers', $data);
-                $this->assign('page', $page);
+                $this->assign('driver_page', $driver_page);
             }
+            $this->assign('type',$type);
             $this->assign('search', $search);
             $this->assign('product_total', $product_total);
             $this->assign('driver_total', $driver_total);
-            return $this->fetch($this->template . '/search/product.html');
+            return $this->fetch($this->template . '/search/results.html');
         }
     }
 

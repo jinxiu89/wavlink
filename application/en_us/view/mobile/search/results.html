@@ -1,11 +1,11 @@
-{extend name="desktop/common/base"}
-{block name="title"}{:lang('keyword')} "{$search}"  - {:lang('powered by')}{/block}
+{extend name="mobile/common/base"}
 {block name="seo"}
-<meta name="description" content="{:lang('keyword')} {$search} {:lang('total result')}">
-<meta name="keywords" content="{:lang('keyword')} {$search}">
+<title> - {:lang('powered by')}</title>
+<meta name="description" content="">
+<meta name="keywords" content="">
 {/block}
 {block name="style"}
-<link rel="stylesheet" href="__DESKTOP__/css/page/search.css">
+<link rel="stylesheet" href="__MOBILE__/css/page/search.css">
 {/block}
 {block name="swiper"}
 <div class="container-fluid">
@@ -14,23 +14,30 @@
             <ol class="breadcrumb">
                 <li><a href="{:url('/'.$code.'/index')}">{:lang('home')}</a></li>
                 <li><a href="{:url('/'.$code.'/index')}">{:lang('Search')}</a></li>
-                <li class="active">{:lang('product')}</li>
+                <li class="active">{$type}</li>
             </ol>
         </div>
     </div>
 </div>
 {/block}
 {block name="body"}
-<div class="container">
+<div class="container-fluid">
     <div class="row">
         <div class="box">
-            <div class="g-aside">
+            <div class="search-category">
                 <ul>
-                    <li><h3>{:lang('search result')}</h3></li>
-                    {include file='desktop/common/search_aside'}
+                    <li><a href="/en_us/search.html?key={$search}&amp;type=product" class="product">{:lang('product')}({$product_total})</a></li>
+                    <li><a href="/en_us/search.html?key={$search}&amp;type=driver" class="driver">{:lang('driver')}({$driver_total})</a></li>
+                    <li><a href="/en_us/manuals.html" class="manual">{:lang('manual')}(0)</a></li>
+                    <li><a href="/en_us/faq.html" class="faq">{:lang('faq')}(0)</a></li>
+                    <li><a href="/en_us/video.html" class="video">{:lang('video')}(0)</a></li>
                 </ul>
             </div>
-            <div class="g-main">
+        </div>
+    </div>
+    <div class="row">
+        <div class="box">
+            <div class="main">
                 <div class="search-product">
                     {notempty name="products"}
                     {volist name="products" id="vo"}
@@ -43,10 +50,15 @@
                         <div class="des">
                             <ol class="breadcrumb">
                                 <li><a href="/{$code}/index.html">{:lang('home')}</a></li>
-                                <li><a href="/{$code}/category/{$vo['_source']['id']|getCategoryByPid|getUrlTitleByCid}.html">{$vo['_source']['id']|getCategoryByPid|getCNameByCid}</a></li>
-                                <li><a href="/{$code}/category/{$vo['_source']['id']|getCategoryByID|getUrlTitleByCid}.html">{$vo['_source']['id']|getCategoryByID|getCNameByCid}</a></li>
+                                <li>
+                                    <a href="/{$code}/category/{$vo['_source']['id']|getCategoryByPid|getUrlTitleByCid}.html">{$vo['_source']['id']|getCategoryByPid|getCNameByCid}</a>
+                                </li>
+                                <li>
+                                    <a href="/{$code}/category/{$vo['_source']['id']|getCategoryByID|getUrlTitleByCid}.html">{$vo['_source']['id']|getCategoryByID|getCNameByCid}</a>
+                                </li>
                             </ol>
-                            <h2><a href="{:url('/'.$code.'/product/'.$vo['_source']['url_title'])}">{$vo['_source']['name']}</a></h2>
+                            <h2><a href="{:url('/'.$code.'/product/'.$vo['_source']['url_title'])}">{$vo['_source']['name']}</a>
+                            </h2>
                             <p>{$vo['_source']['model']}</p>
                             <p class="links">
                                 <a href="{:url('/'.$code.'/product/'.$vo['_source']['url_title'])}">Details</a>
@@ -67,13 +79,6 @@
                                 <h3 class="title">{$vo.name}</h3>
                             </div>
                             <div class="panel-body">
-                                <div class="info">
-                                    <p><span>{:lang('File Size')} :</span> <span>{$vo.size}</span></p>
-                                    <p><span>{:lang('Version')} :</span> <span>{$vo.version_number}</span></p>
-                                    <p><span>{:lang('Post Date')} :</span> <span>{$vo.update_time|date="d/m/Y"}</span>
-                                    </p>
-                                    <p><span>{:lang('System Requirements')} :</span> <span>{$vo.running}</span></p>
-                                </div>
                                 <div class="mode">
                                     <p>
                                         <span>{:lang('Available')} : </span>
@@ -83,19 +88,28 @@
                                         {/volist}
                                     </p>
                                 </div>
+                                <div class="info">
+                                    <p><span>{:lang('File Size')} :</span> <span>{$vo.size}</span></p>
+                                    <p><span>{:lang('Version')} :</span> <span>{$vo.version_number}</span></p>
+                                    <p><span>{:lang('Post Date')} :</span> <span>{$vo.update_time|date="d/m/Y"}</span>
+                                    </p>
+                                    <p><span>{:lang('System Requirements')} :</span> <span>{$vo.running}</span></p>
+                                </div>
                                 <div class="download">
                                     <span>{:lang('Download')} : </span>
                                     {notempty name="$vo.all_link"}
                                     <a class="btn btn-default" href="{$vo.all_link}">{:lang('ALL')}<i class="iconfont">&#xe64f;</i></a>
                                     {/notempty}
                                     {notempty name="$vo.win_link"}
-                                    <a class="btn btn-default" href="{$vo.win_link}">{:lang('WINDOWS')}<i class="iconfont">&#xe64f;</i></a>
+                                    <a class="btn btn-default" href="{$vo.win_link}">{:lang('WINDOWS')}<i
+                                            class="iconfont">&#xe64f;</i></a>
                                     {/notempty}
                                     {notempty name="$vo.mac_link"}
                                     <a class="btn btn-default" href="{$vo.mac_link}">{:lang('MAC')}<i class="iconfont">&#xe64f;</i></a>
                                     {/notempty}
                                     {notempty name="$vo.linux_link"}
-                                    <a class="btn btn-default" href="{$vo.linux_link}">{:lang('Linux')}<i class="iconfont">&#xe64f;</i></a>
+                                    <a class="btn btn-default" href="{$vo.linux_link}">{:lang('Linux')}<i
+                                            class="iconfont">&#xe64f;</i></a>
                                     {/notempty}
                                 </div>
                             </div>
@@ -104,30 +118,28 @@
                     {/volist}
                     {/notempty}
                 </div>
-                <div class="g-pagination clearfix">
-                    <nav>
-                        {$page|raw}
-                    </nav>
-                </div>
             </div>
+        </div>
+        <div class="g-pagination clearfix">
+            <nav>
+                {notempty name="product_page"}
+                {$product_page|raw}
+                {/notempty}
+                {notempty name="driver_page"}
+                {$driver_page|raw}
+                {/notempty}
+            </nav>
         </div>
     </div>
 </div>
+<div id="go-top">
+    <p><span class="iconfont">&#xe60b;</span></p>
+</div>
 {/block}
-{block name="javascript"}
-<!--私有JS-->
-<script>
-    $(function () {
-        $('#support').addClass('active');
-        $('.driver').addClass('active');
-        // 筛选变化时 过滤
-        $('.filter_by').change(function () {
-            window.location.href = ''
-        });
-        $('.order_by').change(function () {
 
-            window.location.href = ''
-        });
-    });
+{block name="javascript"}
+<script>
+    var type = '{$type}';
+    $('.' + type).addClass('active');
 </script>
 {/block}

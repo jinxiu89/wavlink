@@ -36,6 +36,7 @@ class BaseAdmin extends Controller
     public function __construct(App $app = null)
     {
         parent::__construct($app);
+        $this->assign('currentLanguage',$this->currentLanguage);
     }
 
     /***

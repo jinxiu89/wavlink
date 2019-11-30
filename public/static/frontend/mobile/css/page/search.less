@@ -1,0 +1,164 @@
+/**
+* @name: article.less
+* @description: article列表樣式
+* @author: Alan(alan_webdeveloper@163.com)
+* @update: 2019-11-30 14:10
+*/
+@import "../public/mixins";
+@import "../public/variables";
+
+.breadcrumb {
+  white-space: nowrap;
+  overflow-x:scroll;
+  li + li:before {
+    padding: 0;
+  }
+}
+
+.search-category {
+  background: @whiteColor;
+  border-bottom: 1px solid @borderColor;
+  ul {
+    padding: 15px 0 15px @publicInterval;
+    font-size: 12px;
+    white-space: nowrap;
+    overflow-x:scroll;
+    &::-webkit-scrollbar {
+      display: none;
+    }
+  }
+  li {
+    display: inline-block;
+    padding: 0 10px;
+    a {
+      color: @baseColor;
+      &.active {
+        color: @activeColor;
+      }
+    }
+    &:nth-of-type(1){
+      padding-left: 0;
+    }
+    &:nth-last-of-type(1) {
+      padding-right: 0;
+    }
+  }
+  @media screen and (min-width: 321px) and (max-width: 375px) {
+    li {
+      padding: 0 12px;
+    }
+  }
+}
+
+.search-product .item {
+  .clearFix();
+  padding: 15px;
+  background: @whiteColor;
+  border-bottom: 1px solid @borderColor;
+  &:nth-last-of-type(1) {
+    border-bottom: none;
+  }
+  .img-box {
+    display: block;
+    .fl();
+    width: 30%;
+  }
+  .img-box a {
+    #img-optimize(100%, @bodyBgColor);
+    img {
+      .img-responsive();
+      .center-block();
+    }
+  }
+  .des {
+    .fl();
+    width: 70%;
+    padding-left: 15px;
+    font-size: 12px;
+  }
+  .des .breadcrumb {
+    padding: 0;
+    margin: 0;
+    background: @whiteColor;
+    a {
+      color: @lightGrey;
+      &:hover {
+        color: @activeColor;
+      }
+    }
+  }
+  .des h2 {
+    margin: 8px 0;
+    font-size: 12px;
+    a {
+      color: @blackColor;
+      &:hover {
+        color: @activeColor;
+      }
+    }
+  }
+  .links {
+    margin-top: 8px;
+    a {
+      color: @lightGrey;
+      &:hover {
+        color: @activeColor;
+      }
+    }
+  }
+}
+
+.search-driver .item {
+  margin-bottom: 8px;
+  background: @whiteColor;
+  &:nth-last-of-type(1) {
+    margin-bottom: 0;
+  }
+  .panel {
+    margin-bottom: 0;
+    border-radius: 0;
+    border-color: @borderColor;
+  }
+  .panel-heading {
+    background: @whiteColor;
+    padding: 10px @publicInterval;
+    border-color: @borderColor;
+  }
+  .panel-body {
+    padding: @publicInterval;
+  }
+  h3 {
+    font-size: 14px;
+    line-height: 22px;
+  }
+  .mode {
+    font-size: 12px;
+    p {
+      .clearFix();
+    }
+    span {
+      float: left;
+      display: block;
+      width: 33.33%;
+      .text-overflow();
+    }
+    p:nth-last-of-type(1) span {
+      font-size: 12px;
+    }
+  }
+  .info {
+    font-size: 12px;
+    margin: @publicInterval 0;
+    p {
+      margin-bottom: 5px;
+    }
+  }
+  .download {
+    font-size: 12px;
+    a {
+      padding: 2px 12px;
+      font-size: 12px;
+      border-color: @borderColor;
+    }
+  }
+}

@@ -192,11 +192,16 @@ body {
   background: #f2f2f2;
 }
 header {
-  background: #fff;
+  margin-bottom: 50px;
 }
 header .nav-bar {
-  position: relative;
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 99999;
+  width: 100%;
   height: 50px;
+  background: #fff;
   padding: 0 0.4rem;
   border-bottom: 1px solid #eaeaea;
 }
@@ -224,23 +229,15 @@ header .nav-bar .search-bar .iconfont {
   line-height: 50px;
   font-size: 24px;
 }
-header .search-container {
+header .search-container form {
   display: none;
-  position: absolute;
+  position: fixed;
   top: 50px;
   left: 0;
-  z-index: 999;
+  z-index: 9999;
   width: 100%;
-  padding: 0 0.4rem;
+  padding: 15px 65px 15px 15px;
   background: #fff;
-}
-header .search-container form {
-  margin: 11px 0;
-  display: flex;
-  display: -moz-flex;
-  display: -ms-flex;
-  display: -o-flex;
-  justify-content: center;
 }
 header .search-container formbefore,
 header .search-container form:after {
@@ -253,19 +250,23 @@ header .search-container form:after {
 }
 header .search-container form input {
   float: left;
+  width: 100%;
   height: 30px;
   padding: 0 0.4rem;
   border: 1px solid #f8b300;
   font-size: 12px;
 }
 header .search-container form input[type="text"] {
-  width: 80%;
   border-right: none;
   -webkit-border-radius: 5px 0 0 5px;
   -moz-border-radius: 5px 0 0 5px;
   border-radius: 5px 0 0 5px;
 }
 header .search-container form input[type="submit"] {
+  position: absolute;
+  top: 15px;
+  right: 15px;
+  z-index: 1;
   width: 50px;
   border-left: none;
   background: #f8b300;
@@ -273,6 +274,16 @@ header .search-container form input[type="submit"] {
   -webkit-border-radius: 0 5px 5px 0;
   -moz-border-radius: 0 5px 5px 0;
   border-radius: 0 5px 5px 0;
+}
+header .search-container .search-mask-layer {
+  display: none;
+  position: fixed;
+  top: 50px;
+  left: 0;
+  z-index: 1999;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.5);
 }
 .hc-mobile-nav a:hover {
   color: #f8b300;

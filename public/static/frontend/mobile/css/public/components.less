@@ -58,10 +58,15 @@ body {
 
 //header
 header {
-    background: @whiteColor;
+    margin-bottom: 50px;
     .nav-bar {
-        position: relative;
+        position: fixed;
+        top: 0;
+        left: 0;
+        z-index: 99999;
+        width: 100%;
         height: 50px;
+        background: @whiteColor;
         padding: 0 @publicInterval;
         border-bottom: 1px solid @borderColor;
     }
@@ -89,36 +94,32 @@ header {
             font-size: 24px;
         }
     }
-    .search-container {
+    .search-container form {
+        .clearFix();
         display: none;
-        position: absolute;
+        position: fixed;
         top: 50px;
         left: 0;
-        z-index: 999;
+        z-index: 9999;
         width: 100%;
-        padding: 0 @publicInterval;
-        background: #fff;
-        form {
-            .clearFix();
-            margin: 11px 0;
-            display: flex;
-            display: -moz-flex;
-            display: -ms-flex;
-            display: -o-flex;
-            justify-content: center;
-        }
-        form input {
+        padding: 15px 65px 15px 15px;
+        background: @whiteColor;
+        input {
             .fl();
+            width: 100%;
             height: 30px;
             padding: 0 @publicInterval;
             border: 1px solid @activeColor;
             font-size: 12px;
             &[type="text"] {
-                width: 80%;
                 border-right: none;
                 #border-radius(5px 0 0 5px);
             }
             &[type="submit"] {
+                position: absolute;
+                top: 15px;
+                right: 15px;
+                z-index: 1;
                 width: 50px;
                 border-left: none;
                 background: @activeColor;
@@ -126,6 +127,16 @@ header {
                 #border-radius(0 5px 5px 0);
             }
         }
+    }
+    .search-container .search-mask-layer {
+        display: none;
+        position: fixed;
+        top: 50px;
+        left: 0;
+        z-index: 1999;
+        width: 100%;
+        height: 100%;
+        background: rgba(0, 0, 0, .5);
     }
 }
 .hc-mobile-nav {

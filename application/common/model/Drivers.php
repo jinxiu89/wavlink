@@ -85,7 +85,7 @@ Class Drivers extends BaseModel
      * 创建索引
      */
     public static function allData($language_id){
-        $data = self::where(['language_id' => $language_id, 'status' => 1])->field('id,name,url_title,models,seo_title,keywords,descrip,status')->select();
+        $data = self::where(['language_id' => $language_id, 'status' => 1])->field('id,name,url_title,models,seo_title,keywords,descrip,status,listorder')->select();
         return Collection::make($data)->toArray();
     }
 }

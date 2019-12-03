@@ -25,7 +25,7 @@ class Drivers extends BaseValidate
         'category_id'=>'require|number',
         'language_id'=>'require|number',
         'seo_title'=>'require|max:128',
-        'keywords'=>'require|max:128',
+        'keywords'=>'require|max:255',
         'urlfirst'=>'url|max:500',
         'urlsecond'=>'url|max:500',
         'running'=>'require|max:255',

@@ -17,6 +17,9 @@ use app\common\model\ServiceCategory as ServiceCategoryModel;
 use app\common\helper\Search as elSearch;
 use think\App;
 use think\Db;
+use think\db\exception\DataNotFoundException;
+use think\db\exception\ModelNotFoundException;
+use think\exception\DbException;
 use think\facade\Request;
 use think\paginator\driver\Bootstrap;
 use think\Paginator;
@@ -43,9 +46,9 @@ class Search extends Base
 
     /**
      * @return mixed
-     * @throws \think\db\exception\DataNotFoundException
-     * @throws \think\db\exception\ModelNotFoundException
-     * @throws \think\exception\DbException
+     * @throws DataNotFoundException
+     * @throws ModelNotFoundException
+     * @throws DbException
      */
     public function results()
     {
@@ -53,12 +56,12 @@ class Search extends Base
             $search = input('key', '');
             $keywords = array_filter(explode(' ', $search));
             $type = input('type', 'product');
-
             $pages = input('page', 1);
             $size = 12;//后面加配置里去
+
             $this->elSearch->paginate($pages, $size);
             //产品
-            $product_field = ['name', 'url_title', 'model', 'seo_title', 'keywords', 'description', 'features'];
+            $product_field = ['keywords', 'name', 'url_title', 'model', 'seo_title', 'description', 'features'];
             $this->elSearch->keywords($keywords, $product_field);
             $this->elSearch->Index('products_' . $this->language_id);
             $products = $this->elSearch->Client()->search($this->elSearch->getParams());
@@ -68,8 +71,10 @@ class Search extends Base
             $this->elSearch->Index('drivers_' . $this->language_id);
             $drivers = $this->elSearch->Client()->search($this->elSearch->getParams());
             $page_options = ['var_page' => 'page', 'path' => '/' . $this->code . '/search', 'query' => ['key' => $search, 'type' => $type]];
+
             $product_total = $products['hits']['total']['value'];
             $driver_total = $drivers['hits']['total']['value'];
+
             if ($type == 'product') {
                 $product_page = Bootstrap::make($products['hits']['hits'], $size, $pages, $product_total, false, $page_options);
                 $this->assign('products', $products['hits']['hits']);
@@ -90,12 +95,17 @@ class Search extends Base
                 $this->assign('drivers', $data);
                 $this->assign('driver_page', $driver_page);
             }
-            $this->assign('type',$type);
+            $this->assign('type', $type);
             $this->assign('search', $search);
             $this->assign('product_total', $product_total);
             $this->assign('driver_total', $driver_total);
             return $this->fetch($this->template . '/search/results.html');
         }
+    }
+
+    public function wildcard()
+    {
+
     }
 
     //驱动搜索

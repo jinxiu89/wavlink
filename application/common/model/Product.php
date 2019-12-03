@@ -57,7 +57,7 @@ Class Product extends BaseModel
      */
     public static function allData($language)
     {
-        $data = self::where(['language_id' => $language, 'status' => 1])->field('id,name,url_title,model,seo_title,keywords,description,features,status')->select();
+        $data = self::where(['language_id' => $language, 'status' => 1])->field('id,name,url_title,model,seo_title,keywords,description,features,status,listorder')->select();
         return Collection::make($data)->toArray();
     }
 

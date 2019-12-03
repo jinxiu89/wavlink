@@ -85,6 +85,7 @@ class Search extends Elasticsearch
      * }
      * }
      * $this->params['body']['query']['bool']['should']['minimum_should_match'] = 2;
+     * $this->params['body']['query']['bool']['should'][]
      */
     public function keywords($keywords, $fields)
     {
@@ -93,12 +94,25 @@ class Search extends Elasticsearch
             $this->params['body']['query']['bool']['should'][] = [
                 'multi_match' => [
                     "query" => $keyword,
-                    "type" => 'cross_fields',
+//                    "type" => 'cross_fields',
                     "fields" => $fields,
-                    "minimum_should_match" => "50%"
+//                    "minimum_should_match" => "50%"
                 ],
             ];
         }
+        $this->params['body']['sort'] = ['listorder' => 'desc'];
+        return $this;
+    }
+
+    /**
+     * 通配符查询
+     * @param $keyword
+     * @param $filed
+     * @return Search
+     */
+    public function wildcard($keyword, $filed)
+    {
+        $this->params['body']['query']['wildcard'] = [$filed => $keyword];
         return $this;
     }
 
@@ -108,12 +122,12 @@ class Search extends Elasticsearch
      * @return $this
      * 测试
      */
-    public function terms($keyword,$fields)
+    public function terms($keyword, $fields)
     {
         $this->params['body']['query']['bool']['filter'] = [
             "term" => [
-                'name.keyword'=>$keyword,
-                'model.keyword'=>$keyword
+                'name.keyword' => $keyword,
+                'model.keyword' => $keyword
             ],
         ];
         return $this;
@@ -142,4 +156,39 @@ class Search extends Elasticsearch
     {
         return $this->params;
     }
+
+    /**
+     * @param array $keywords
+     * @param array $field
+     * @param int $pages
+     * @param int $size
+     * @param $language
+     * @return array|callable
+     * 模糊搜索产品
+     */
+    public function shouldProduct($keywords = [], $field = [], $pages = 0, $size = 10, $language = 1)
+    {
+        self::paginate($pages, $size);
+        self::keywords($keywords, $field);
+        self::Index('products_' . $language);
+        return self::Client()->search(self::getParams());
+    }
+
+    /**
+     * @param array $keywords
+     * @param string $field
+     * @param int $pages
+     * @param int $size
+     * @param int $language
+     * @return array|callable
+     * 通配符搜索产品
+     */
+    public function wildcardProduct($keywords = [], $field = '', $pages = 0, $size = 10, $language = 1)
+    {
+        self::paginate($pages, $size);
+        self::Index('products_' . $language);
+        self::wildcard($keywords, $field);
+        return self::Client()->search(self::getParams());
+    }
+
 }

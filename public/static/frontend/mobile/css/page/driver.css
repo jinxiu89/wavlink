@@ -8,22 +8,6 @@
   margin-left: auto;
   margin-right: auto;
 }
-.banner {
-  background: #42A4FF;
-}
-.banner img {
-  display: block;
-  max-width: 100%;
-  height: auto;
-  margin-left: auto;
-  margin-right: auto;
-  width: 800px;
-}
-@media screen and (max-width: 800px) {
-  .banner img {
-    width: 100%;
-  }
-}
 .item {
   margin-bottom: 8px;
   background: #fff;
@@ -34,7 +18,7 @@
 .item .panel {
   margin-bottom: 0;
   border-radius: 0;
-  border-color: #eaeaea;
+  border: none;
 }
 .item .panel-heading {
   background: #fff;
@@ -86,4 +70,3 @@
   font-size: 12px;
   border-color: #eaeaea;
 }
-/*# sourceMappingURL=driver.css.map */

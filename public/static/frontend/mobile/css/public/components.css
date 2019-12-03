@@ -198,7 +198,7 @@ header .nav-bar {
   position: fixed;
   top: 0;
   left: 0;
-  z-index: 99999;
+  z-index: 2999;
   width: 100%;
   height: 50px;
   background: #fff;
@@ -234,7 +234,7 @@ header .search-container form {
   position: fixed;
   top: 50px;
   left: 0;
-  z-index: 9999;
+  z-index: 2999;
   width: 100%;
   padding: 15px 65px 15px 15px;
   background: #fff;
@@ -448,6 +448,7 @@ footer .copy-right p a {
   padding: 10px 0.4rem;
   font-size: 12px;
   background: #fff;
+  border-bottom: 1px solid #eaeaea;
 }
 .g-filterbefore,
 .g-filter:after {

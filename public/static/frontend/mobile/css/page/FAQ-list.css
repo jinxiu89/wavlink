@@ -31,9 +31,6 @@
   padding: 0.4rem;
   border-bottom: 1px solid #eaeaea;
 }
-.item:nth-of-type(1) {
-  border-top: 1px solid #eaeaea;
-}
 .item h3 {
   margin-bottom: 10px;
   line-height: 18px;

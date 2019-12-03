@@ -8,94 +8,76 @@
 @import "../public/variables";
 
 //驅動列表布局样式
-.banner {
-  background: #42A4FF;
-  img {
-    .img-responsive();
-    .center-block();
-    width: 800px;
-    @media screen and (max-width: 800px) {
-      width: 100%;
-    }
-  }
-}
-
 .box {
   .clearFix();
 }
 .g-main {
   background: none;
 }
-.g-main .panel {
-  margin-bottom: 0;
-  border: none;
-  border-radius: 0;
-  box-shadow: none;
-}
-
-.g-main .panel-heading {
-  border-color: @borderColor;
-  background: none;
-}
-
-.g-main .item {
+.item {
   padding: 10px 0 0;
   #border-radius(5px);
-}
-
-.g-main .item .title {
-  font-size: 16px;
-}
-
-.g-main .item .info {
-  .clearFix();
-  margin-bottom: 5px;
-  p {
-    .fl();
-    padding-right: 20px;
+  .panel {
+    margin-bottom: 0;
+    border: none;
+    border-radius: 0;
+    box-shadow: none;
   }
-  p span {
-    display: inline-block;
-    line-height: 20px;
+  .panel .panel-heading {
+    border-color: @borderColor;
+    background: none;
+    .title {
+      font-size: 16px;
+    }
   }
-}
-
-.g-main .item .mode {
-  margin-bottom: 5px;
-  p {
-    .clearFix();
-  }
-  span {
-    display: block;
-    .fl();
-    width: 16.6667%;
-    &:nth-of-type(1) {
-      float: none;
+  .panel .panel-body {
+    .info {
+      .clearFix();
+      margin-bottom: 5px;
+      p {
+        .fl();
+        padding-right: 20px;
+      }
+      p span {
+        display: inline-block;
+        line-height: 20px;
+      }
+    }
+    .mode {
+      margin-bottom: 5px;
+      p {
+        .clearFix();
+      }
+      span {
+        display: block;
+        .fl();
+        width: 16.6667%;
+        &:nth-of-type(1) {
+          float: none;
+        }
+      }
+    }
+    .download {
+      a {
+        padding: 2px 12px;
+        margin-right: 4px;
+        font-size: 12px;
+        border-color: #f8b300;
+        &:hover {
+          background: #ffc714;
+        }
+      }
     }
   }
 }
-
-.g-main .item .download {
-  a {
-    padding: 2px 12px;
-    margin-right: 4px;
-    font-size: 12px;
-    border-color: #f8b300;
-    &:hover {
-      background: #ffc714;
-    }
-  }
-}
-
 @media screen and (min-width: 768px) and (max-width: 991px) {
-  .g-main .item .mode span {
+  .item .mode span {
     width: 25%;
   }
 }
 @media screen and (min-width: 992px) and (max-width: 1199px) {
-  .g-main .item .mode span {
+  .item .mode span {
     width: 20%;
   }
 }
-
 //驅動列表布局样式結束

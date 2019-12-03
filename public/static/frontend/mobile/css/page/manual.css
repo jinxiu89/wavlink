@@ -47,7 +47,7 @@
 .box .main .item .panel {
   margin-bottom: 0;
   border-radius: 0;
-  border-color: #eaeaea;
+  border: none;
 }
 .box .main .item .panel-heading {
   background: #fff;

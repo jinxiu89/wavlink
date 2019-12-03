@@ -86,6 +86,9 @@
   margin: 0;
   background: #fff;
 }
+.search-product .item .des .breadcrumb li + li:before {
+  padding: 0;
+}
 .search-product .item .des .breadcrumb a {
   color: #777;
 }
@@ -111,14 +114,24 @@
 .search-product .item .links a:hover {
   color: #f8b300;
 }
-.search-driver .panel {
-  margin-bottom: 0;
-  border: none;
-  border-radius: 0;
-  box-shadow: none;
+.search-driver {
+  /**
+* @name: driver.less
+* @description: 驅動列表页样式
+* @author: Alan(alan_webdeveloper@163.com)
+* @update: 2019-09-16 10:30
+*/
 }
-.search-driver .panel-heading {
-  border-color: #eaeaea;
+.search-driver .boxbefore,
+.search-driver .box:after {
+  content: " ";
+  display: table;
+  zoom: 1;
+}
+.search-driver .box:after {
+  clear: both;
+}
+.search-driver .g-main {
   background: none;
 }
 .search-driver .item {
@@ -127,56 +140,79 @@
   -moz-border-radius: 5px;
   border-radius: 5px;
 }
-.search-driver .item .title {
+.search-driver .item .panel {
+  margin-bottom: 0;
+  border: none;
+  border-radius: 0;
+  box-shadow: none;
+}
+.search-driver .item .panel .panel-heading {
+  border-color: #eaeaea;
+  background: none;
+}
+.search-driver .item .panel .panel-heading .title {
   font-size: 16px;
 }
-.search-driver .item .info {
+.search-driver .item .panel .panel-body .info {
   margin-bottom: 5px;
 }
-.search-driver .item .infobefore,
-.search-driver .item .info:after {
+.search-driver .item .panel .panel-body .infobefore,
+.search-driver .item .panel .panel-body .info:after {
   content: " ";
   display: table;
   zoom: 1;
 }
-.search-driver .item .info:after {
+.search-driver .item .panel .panel-body .info:after {
   clear: both;
 }
-.search-driver .item .info p {
+.search-driver .item .panel .panel-body .info p {
   float: left;
   padding-right: 20px;
 }
-.search-driver .item .info p span {
+.search-driver .item .panel .panel-body .info p span {
   display: inline-block;
   line-height: 20px;
 }
-.search-driver .item .mode {
+.search-driver .item .panel .panel-body .mode {
   margin-bottom: 5px;
 }
-.search-driver .item .mode pbefore,
-.search-driver .item .mode p:after {
+.search-driver .item .panel .panel-body .mode pbefore,
+.search-driver .item .panel .panel-body .mode p:after {
   content: " ";
   display: table;
   zoom: 1;
 }
-.search-driver .item .mode p:after {
+.search-driver .item .panel .panel-body .mode p:after {
   clear: both;
 }
-.search-driver .item .mode span {
+.search-driver .item .panel .panel-body .mode span {
   display: block;
   float: left;
   width: 16.6667%;
 }
-.search-driver .item .mode span:nth-of-type(1) {
+.search-driver .item .panel .panel-body .mode span:nth-of-type(1) {
   float: none;
 }
-.search-driver .item .download a {
+.search-driver .item .panel .panel-body .download a {
   padding: 2px 12px;
   margin-right: 4px;
   font-size: 12px;
   border-color: #f8b300;
 }
-.search-driver .item .download a:hover {
+.search-driver .item .panel .panel-body .download a:hover {
   background: #ffc714;
+}
+@media screen and (min-width: 768px) and (max-width: 991px) {
+  .search-driver .item .mode span {
+    width: 25%;
+  }
+}
+@media screen and (min-width: 992px) and (max-width: 1199px) {
+  .search-driver .item .mode span {
+    width: 20%;
+  }
+}
+.search-driver .item:nth-of-type(1) {
+  padding: 0;
 }
 /*# sourceMappingURL=search.css.map */

@@ -76,7 +76,7 @@
   overflow: hidden;
   width: 100%;
   height: 0;
-  padding-bottom: 100%;
+  padding-bottom: 56.25%;
   background: #f2f2f2;
 }
 .search-product .item .img-box a img {
@@ -125,6 +125,14 @@
 .search-product .item .links a:hover {
   color: #f8b300;
 }
+.search-driver {
+  /**
+* @name: driver.less
+* @description: 驅動頁面css - mobile
+* @author: Alan(alan_webdeveloper@163.com)
+* @update: 2019-09-11 15:00
+*/
+}
 .search-driver .item {
   margin-bottom: 8px;
   background: #fff;
@@ -135,7 +143,7 @@
 .search-driver .item .panel {
   margin-bottom: 0;
   border-radius: 0;
-  border-color: #eaeaea;
+  border: none;
 }
 .search-driver .item .panel-heading {
   background: #fff;

@@ -185,7 +185,7 @@ Route::group(Config::get('__BACKEND__'), function () {
     Route::post('/product/byStatus', 'wavlink/product/byStatus');
     Route::post('/marketing/byStatus', 'wavlink/Marketing/byStatus');
     Route::post('/marketing/del', 'wavlink/Marketing/del');
-    Route::post('/Images/listorder', 'wavlink/Images/listorder');
+    Route::post('/Images/listorder', 'wavlink/images/listorder');
     Route::post('/product/listorder', 'wavlink/product/listorder');
     Route::post('/product/sort', 'wavlink/product/sort');
     Route::post('/product/mark', 'wavlink/product/mark');

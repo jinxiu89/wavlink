@@ -73,7 +73,8 @@
 {include file="public/footer"/}
 <script>
     var SCOPE = {
-      'listorder_url':"{:url('Article/listorder')}"
+        'listorder_url':"{:url('Article/listorder')}",
+        'sort_url':"{:url('Article/listorder')}",
     };
     $(document).ready(function () {
         $("#menu-product dt").addClass("selected");

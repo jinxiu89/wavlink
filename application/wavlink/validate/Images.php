@@ -44,6 +44,7 @@ class Images extends BaseValidate
         'add' => ['listorder', 'product_title', 'image_pc_url', 'image_mobile_url', 'product_type', 'featured_id', 'url', 'status'],
         'edit' => ['id', 'listorder', 'product_title', 'image_pc_url', 'image_mobile_url', 'product_type', 'featured_id', 'url', 'status'],
         'changeStatus'=>['id','status'],
+        'listorder'=>['id','listorder'],
         'del'=>['id'],
     ];
 

@@ -13,6 +13,7 @@ class Article extends BaseValidate
     /**验证规则**/
     protected $rule = [
         'id'=>'number',
+        'listorder' => 'number',
         'title'=>'require',
         'category_id'=>'require|number',
         'language_id'=>'require|number',
@@ -24,6 +25,7 @@ class Article extends BaseValidate
     ];
     protected $message=[
         'id.number'=>'ID不合法！',
+        'listorder.number' => '排序值不合法',
         'title.require'=>'标题不能为空!',
         'category_id.require'=>'分类ID不能为空！',
         'category_id.number'=>'分类ID不合法！',
@@ -43,6 +45,7 @@ class Article extends BaseValidate
     /**场景设置**/
     protected $scene = [
         'add'=>['title','category_id','language_id','seo_title','seo_keys','seo_description','author','status'],
-        'edit'=>['id','title','category_id','language_id','seo_title','seo_keys','seo_description','author','status']
+        'edit'=>['id','title','category_id','language_id','seo_title','seo_keys','seo_description','author','status'],
+        'listorder'=>['id','listorder'],
     ];
 }

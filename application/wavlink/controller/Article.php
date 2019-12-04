@@ -7,8 +7,6 @@
  */
 
 namespace app\wavlink\controller;
-
-use app\wavlink\validate\UrlTitleMustBeOnly;
 use think\facade\Request;
 use app\common\model\Article as ArticleModel;
 use app\wavlink\validate\Article as ArticleValidate;
@@ -133,7 +131,18 @@ Class Article extends BaseAdmin
     {
         if (request()->isAjax()) {
             $data = input('post.'); //id ,type ,language_id
-            self::order(array_filter($data));
+           $validate=new ArticleValidate();
+           if(!$validate->scene('listorder')->check($data)){
+               return show(0, '排序失败', 'error', 'error', '', $validate->getError());
+           }
+            try {
+                if ((new ArticleModel())->allowField(true)->save($data, ['id' => $data['id']])) {
+                    return show(1, '排序成功', 'error', 'error', '', "排序成功");
+                }
+                return show(0, '排序失败，未知错误', 'error', 'error', '', "排序失败，未知错误");
+            } catch (\Exception $exception) {
+                return show(0, '排序失败，数据库错误', 'error', 'error', '', $exception->getMessage());
+            }
         } else {
             return show(0, '置顶失败，未知错误', 'error', 'error', '', '');
         }

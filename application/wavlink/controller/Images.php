@@ -186,11 +186,18 @@ Class Images extends BaseAdmin
     {
         if (request()->isAjax()) {
             $data = input('post.'); //id ,type ,language_id
-            $map = [
-                'featured_id' => $data['map'],
-            ];
-            unset($data['map']);
-            self::order($data, $map);
+            $validate= new ImagesValidate();
+            if(!$validate->scene('listorder')->check($data)){
+                return show(0, '排序失败', 'error', 'error', '', $validate->getError());
+            }
+            try {
+                if ((new ImagesModel())->allowField(true)->save($data, ['id' => $data['id']])) {
+                    return show(1, '排序成功', 'error', 'error', '', "排序成功");
+                }
+                return show(0, '排序失败，未知错误', 'error', 'error', '', "排序失败，未知错误");
+            } catch (\Exception $exception) {
+                return show(0, '排序失败，数据库错误', 'error', 'error', '', $exception->getMessage());
+            }
         } else {
             return show(0, '置顶失败，未知错误', 'error', 'error', '', '');
         }

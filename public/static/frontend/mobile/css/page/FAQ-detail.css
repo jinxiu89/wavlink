@@ -25,15 +25,15 @@
   }
 }
 .main {
-  padding: 0.4rem;
+  padding: 10px;
   background: #fff;
 }
 .main .title {
   font-size: 16px;
 }
 .main .des {
-  margin: 0.4rem 0;
-  padding: 0.4rem 0;
+  margin: 10px 0;
+  padding: 10px 0;
   border-top: 1px solid #eaeaea;
   border-bottom: 1px solid #eaeaea;
 }

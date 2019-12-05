@@ -187,6 +187,9 @@
 }
 .search-driver .item .panel .panel-body .mode span {
   display: block;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  overflow: hidden;
   float: left;
   width: 16.6667%;
 }

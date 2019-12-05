@@ -9,7 +9,7 @@
   margin-right: auto;
 }
 .g-pagination {
-  margin: 3px 0 0;
+  margin: 5px 0 0;
 }
 .list-boxbefore,
 .list-box:after {
@@ -51,7 +51,7 @@
   margin-top: 26%;
 }
 .list-box .list-item .thumbnail .caption {
-  padding: 15px 8px;
+  padding: 15px 6px;
 }
 .list-box .list-item .thumbnail .caption .title {
   width: 100%;

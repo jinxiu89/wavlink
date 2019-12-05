@@ -9,6 +9,7 @@
 
 .g-path {
     margin: 0 auto;
+    border-top: 1px solid @borderColor;
     border-bottom: 1px solid @borderColor;
 }
 
@@ -65,10 +66,10 @@
     ul {
         .clearFix();
         margin: 0 auto;
-        padding: 5px @publicInterval;
+        padding: 5px 10px;
         li {
             .fl();
-            padding: 10px @publicInterval;
+            padding: 10px;
             cursor: pointer;
             a {
                 color: @activeColor;
@@ -199,7 +200,7 @@
         display: block;
         color: @baseColor;
         line-height: 18px;
-        padding: @publicInterval 0;
+        padding: 10px 0;
         vertical-align: middle;
     }
     ul > li:first-child > strong {
@@ -207,7 +208,7 @@
     }
     ul > li > strong {
         line-height: 18px;
-        padding: @publicInterval!important;
+        padding: 10px!important;
         color: #666;
     }
     ul > li > div > p {
@@ -215,10 +216,10 @@
         color: #666;
         font-size: 12px;
         &:nth-last-of-type(1) {
-            padding-bottom: @publicInterval!important;
+            padding-bottom: 10px!important;
         }
     }
     ul > li > div {
-        padding: 0 @publicInterval !important;
+        padding: 0 10px !important;
     }
 }

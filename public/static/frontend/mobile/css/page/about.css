@@ -9,7 +9,7 @@
   margin-right: auto;
 }
 .category {
-  margin-bottom: 0.4rem;
+  margin-bottom: 10px;
   background: #fff;
 }
 .category ulbefore,
@@ -36,7 +36,7 @@
 }
 .category ul li a {
   display: block;
-  padding: 0 0.4rem;
+  padding: 0 10px;
   color: #333;
 }
 .category ul li.active a {
@@ -45,7 +45,7 @@
 .main {
   min-height: 500px;
   margin-bottom: 60px;
-  padding: 0.4rem;
+  padding: 10px;
   background: #fff;
 }
 /*# sourceMappingURL=about.css.map */

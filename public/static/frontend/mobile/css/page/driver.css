@@ -9,7 +9,7 @@
   margin-right: auto;
 }
 .item {
-  margin-bottom: 8px;
+  margin-bottom: 10px;
   background: #fff;
 }
 .item:nth-last-of-type(1) {
@@ -22,11 +22,11 @@
 }
 .item .panel-heading {
   background: #fff;
-  padding: 10px 0.4rem;
+  padding: 10px;
   border-color: #eaeaea;
 }
 .item .panel-body {
-  padding: 0.4rem;
+  padding: 10px;
 }
 .item h3 {
   font-size: 14px;
@@ -57,7 +57,7 @@
 }
 .item .info {
   font-size: 12px;
-  margin: 0.4rem 0;
+  margin: 10px 0;
 }
 .item .info p {
   margin-bottom: 5px;

@@ -14,7 +14,7 @@
 }
 .panel .panel-heading,
 .panel .panel-footer {
-  padding: 10px 0.4rem;
+  padding: 10px;
   border-color: #eaeaea;
   background: #fff;
 }
@@ -22,7 +22,7 @@
   font-size: 14px;
 }
 .panel .panel-body {
-  padding: 10px 0.4rem;
+  padding: 10px;
   font-size: 12px;
 }
 .panel .panel-body input,
@@ -31,7 +31,7 @@
   border-color: #eaeaea;
 }
 .panel .panel-body .form-group {
-  margin-bottom: 0.4rem;
+  margin-bottom: 10px;
 }
 .panel .panel-body .form-group label {
   font-weight: normal;

@@ -202,8 +202,7 @@ header .nav-bar {
   width: 100%;
   height: 50px;
   background: #fff;
-  padding: 0 0.4rem;
-  border-bottom: 1px solid #eaeaea;
+  padding: 0 10px;
 }
 header .nav-bar .menu-bar {
   float: left;
@@ -236,7 +235,7 @@ header .search-container form {
   left: 0;
   z-index: 2999;
   width: 100%;
-  padding: 15px 65px 15px 15px;
+  padding: 15px 60px 15px 10px;
   background: #fff;
 }
 header .search-container formbefore,
@@ -252,7 +251,7 @@ header .search-container form input {
   float: left;
   width: 100%;
   height: 30px;
-  padding: 0 0.4rem;
+  padding: 0 10px;
   border: 1px solid #f8b300;
   font-size: 12px;
 }
@@ -265,7 +264,7 @@ header .search-container form input[type="text"] {
 header .search-container form input[type="submit"] {
   position: absolute;
   top: 15px;
-  right: 15px;
+  right: 10px;
   z-index: 1;
   width: 50px;
   border-left: none;
@@ -294,7 +293,7 @@ footer {
 }
 footer .about {
   background: #333;
-  padding: 50px 0.4rem;
+  padding: 50px 10px;
 }
 footer .about .about-item {
   padding: 0 5px;
@@ -314,7 +313,7 @@ footer .about .about-item h3 span {
 }
 footer .about .about-item ul {
   display: none;
-  padding: 0 0.4rem;
+  padding: 0 10px;
 }
 footer .about .about-item ul a {
   line-height: 40px;
@@ -327,7 +326,7 @@ footer .about .about-item ul a .iconfont {
 }
 footer .about .about-item:nth-last-of-type(1) ul {
   display: block;
-  padding-bottom: 8px;
+  padding-bottom: 10px;
 }
 footer .about .about-item:nth-last-of-type(1) ulbefore,
 footer .about .about-item:nth-last-of-type(1) ul:after {
@@ -358,24 +357,20 @@ footer .about .about-item:nth-last-of-type(1) ul li img {
 }
 footer .copy-right {
   background: #000;
-  padding: 5px 0.4rem;
+  padding: 5px 10px;
 }
 footer .copy-right p {
   margin: 0;
   text-align: center;
-  color: #fff;
+  color: #888;
   font-size: 12px;
 }
-footer .copy-right p a {
-  color: #fff;
-  text-decoration: underline;
-}
 .g-path {
-  margin: 8px 0;
+  margin: 10px 0;
   background: #fff;
 }
 .g-path .breadcrumb {
-  padding: 0 0.4rem;
+  padding: 0 10px;
   margin: 0;
   background: #fff;
   line-height: 50px;
@@ -406,8 +401,8 @@ footer .copy-right p a {
   padding: 0;
 }
 .g-pagination {
-  margin: 8px 0 0;
-  padding: 0 0.4rem;
+  margin: 10px 0 0;
+  padding: 0 10px;
   background: #fff;
   /*.pagination {
         .clearFix();
@@ -445,7 +440,7 @@ footer .copy-right p a {
   float: right;
 }
 .g-filter {
-  padding: 10px 0.4rem;
+  padding: 10px;
   font-size: 12px;
   background: #fff;
   border-bottom: 1px solid #eaeaea;

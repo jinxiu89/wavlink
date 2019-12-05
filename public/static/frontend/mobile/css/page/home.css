@@ -13,7 +13,7 @@
   background: #fff;
 }
 .banner .des {
-  padding: 0.4rem 0.4rem 5px;
+  padding: 10px 10px 5px;
   text-align: center;
 }
 .banner .des dt {
@@ -50,7 +50,7 @@
 .banner .swiper-pagination {
   position: static;
   background: #fff;
-  padding: 0 0.4rem 5px;
+  padding: 0 10px 5px;
 }
 .banner .swiper-pagination-bullet-active {
   background: #f8b300;
@@ -58,7 +58,7 @@
 /* swiper结束 */
 /* category-icon */
 .category-icon {
-  margin: 8px 0;
+  margin: 10px 0;
   background: #fff;
 }
 .category-iconbefore,
@@ -103,11 +103,11 @@
 /* hot */
 .hot {
   display: none;
-  margin-bottom: 0.4rem;
+  margin-bottom: 10px;
   background: #fff;
 }
 .hot .des {
-  padding: 0.4rem;
+  padding: 10px;
   text-align: center;
 }
 .hot .des h2 {
@@ -195,12 +195,12 @@
 /* recommend结束 */
 /* new */
 .new-box {
-  margin: 8px 0;
-  padding: 0.4rem 0;
+  margin: 10px 0;
+  padding: 10px 0;
   background: #fff;
 }
 .new-box h3 {
-  padding: 0 0.4rem 5px;
+  padding: 0 10px 5px;
   font-size: 12px;
   border-bottom: 1px solid #eaeaea;
 }
@@ -208,7 +208,7 @@
   float: right;
 }
 .new-box .item {
-  padding-bottom: 0.4rem;
+  padding-bottom: 10px;
   border-bottom: 1px solid #eaeaea;
 }
 .new-box .item:nth-last-of-type(1) {
@@ -216,7 +216,7 @@
   border-bottom: none;
 }
 .new-box .des {
-  padding: 0.4rem;
+  padding: 10px;
 }
 .new-box .des h4 a {
   color: #333;
@@ -225,7 +225,7 @@
 .new-box .img-box {
   overflow: hidden;
   max-height: 300px;
-  padding: 0 0.4rem;
+  padding: 0 10px;
 }
 .new-box .img-box img {
   display: block;
@@ -237,11 +237,11 @@
 /* new结束 */
 /* video */
 .video-box {
-  padding: 0.4rem;
+  padding: 10px;
   background: #fff;
 }
 .video-box h3 {
-  padding: 0 0.4rem 5px;
+  padding: 0 10px 5px;
   font-size: 12px;
   border-bottom: 1px solid #eaeaea;
 }
@@ -249,7 +249,7 @@
   float: right;
 }
 .video-box .video {
-  padding: 0.4rem 0 0;
+  padding: 10px 0 0;
 }
 .video-box .video video {
   width: 100%;
@@ -257,7 +257,7 @@
 .video-box .swiper-pagination {
   position: static;
   background: #fff;
-  padding: 0.4rem 0 0;
+  padding: 10px 0 0;
 }
 .video-box .swiper-pagination-bullet-active {
   background: #f8b300;

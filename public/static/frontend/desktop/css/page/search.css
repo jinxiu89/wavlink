@@ -154,7 +154,7 @@
   font-size: 16px;
 }
 .search-driver .item .panel .panel-body .info {
-  margin-bottom: 5px;
+  margin-bottom: 10px;
 }
 .search-driver .item .panel .panel-body .infobefore,
 .search-driver .item .panel .panel-body .info:after {
@@ -174,7 +174,7 @@
   line-height: 20px;
 }
 .search-driver .item .panel .panel-body .mode {
-  margin-bottom: 5px;
+  margin-bottom: 10px;
 }
 .search-driver .item .panel .panel-body .mode pbefore,
 .search-driver .item .panel .panel-body .mode p:after {

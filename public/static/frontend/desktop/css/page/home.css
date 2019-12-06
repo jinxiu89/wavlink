@@ -42,6 +42,11 @@
   font-size: 20px;
   margin-bottom: 15px;
 }
+.banner .des dd a {
+  background: #f8b300;
+  border-color: #f8b300;
+  color: #333;
+}
 .banner .img-box a {
   display: block;
   overflow: hidden;
@@ -366,6 +371,9 @@
 .new-box .item .des {
   float: left;
   width: 50%;
+}
+.new-box .item .des:nth-of-type(1) {
+  padding-left: 0!important;
 }
 .new-box .item .des h4 a {
   font-size: 18px;

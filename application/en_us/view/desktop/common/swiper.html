@@ -14,7 +14,9 @@
                                 {$vo.subtitle}
                             </dd>
                             <dd data-swiper-parallax="-4500" data-swiper-parallax-opacity="0">
+                                {notempty name="$vo.model"}
                                 <a href="{$vo.url}" class="btn btn-primary">{$vo.model}</a>
+                                {/notempty}
                             </dd>
                         </dl>
                     </div>

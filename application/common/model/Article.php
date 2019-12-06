@@ -7,8 +7,14 @@
  */
 
 namespace app\common\model;
+use PDOStatement;
 use think\Collection;
 use app\common\model\Language as LanguageModel;
+use think\db\exception\DataNotFoundException;
+use think\db\exception\ModelNotFoundException;
+use think\Exception;
+use think\exception\DbException;
+
 Class Article extends BaseModel
 {
     protected $table = "article";//使用article表
@@ -37,6 +43,15 @@ Class Article extends BaseModel
     }
 
     //前台获取数据开始，调用5篇排序最高的文章，
+
+    /***
+     * @param $code
+     * @param $limit
+     * @return array|PDOStatement|string|Collection
+     * @throws DataNotFoundException
+     * @throws ModelNotFoundException
+     * @throws DbException
+     */
     public function getArticleList($code, $limit)
     {
         $language_id = LanguageModel::getLanguageCodeOrID($code);
@@ -53,17 +68,16 @@ Class Article extends BaseModel
 
     /**
      * @param $code
-     * @return array
-     * @throws \think\Exception
-     * @throws \think\db\exception\DataNotFoundException
-     * @throws \think\db\exception\ModelNotFoundException
-     * @throws \think\exception\DbException 前台首页 新闻调用
+     * @return Collection
+     * @throws Exception
+     * @throws DataNotFoundException
+     * @throws ModelNotFoundException
+     * @throws DbException 前台首页 新闻调用
      */
     public function getLastNew($code)
     {
         $language_id = LanguageModel::getLanguageCodeOrID($code);
         $result = $this->where(['status' => 1, 'language_id' => $language_id])->order(['update_time'=>'desc'])->limit(2)->field('id,title,url_title,logo,seo_description,update_time')->select();
-
         return Collection::make($result);
     }
 }

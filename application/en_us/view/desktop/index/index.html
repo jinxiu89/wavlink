@@ -61,11 +61,14 @@
             <div class="new">
                 {volist name="News" id="vo"}
                 <div class="item">
+                    {notempty name="$vo.logo"}
                     <div class="img-box">
                         <a href="{:url('/'.$code.'/article/details/'.$vo.url_title)}">
                             <img src="{$vo.logo}" alt="{$vo.title}">
                         </a>
                     </div>
+                    {else /}
+                    {/notempty}
                     <div class="des">
                         <h4><a href="{:url('/'.$code.'/article/details/'.$vo.url_title)}">{$vo.title}</a></h4>
                         <p>{$vo.seo_description}</p>

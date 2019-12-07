@@ -66,13 +66,11 @@ Class Product extends BaseAdmin
 
     public function add()
     {
-        $language_id = input('get.language_id');
         //获取语言
         //根据语言id获取语言分类
-        $categorys = (new CategoryModel())->getChildsCategory($language_id);
-
+        $categorys = (new CategoryModel())->getChildsCategory($this->currentLanguage['id']);
         return $this->fetch('', [
-            'language_id' => $language_id,
+            'language_id' => $this->currentLanguage['id'],
             'categorys' => $categorys,
         ]);
     }

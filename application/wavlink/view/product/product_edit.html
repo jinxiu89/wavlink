@@ -9,14 +9,20 @@
             </div>
         </div>
         <div class="row cl">
+            <label class="form-label col-xs-4 col-sm-1"><span class="c-red">*</span>EAN：</label>
+            <div class="formControls col-xs-8 col-sm-2">
+                <input type="text" class="input-text" value="{$product->ean}" placeholder="" id="ean" name="ean">
+            </div>
+        </div>
+        <div class="row cl">
             <label class="form-label col-xs-4 col-sm-1"><span class="c-red">*</span>产品型号：</label>
-            <div class="formControls col-xs-8 col-sm-6">
+            <div class="formControls col-xs-8 col-sm-2">
                 <input type="text" class="input-text" value="{$product->model}" placeholder="" id="model" name="model">
             </div>
         </div>
         <div class="row cl">
             <label class="form-label col-xs-4 col-sm-1"><span class="c-red">*</span>URL标题：</label>
-            <div class="formControls col-xs-8 col-sm-6">
+            <div class="formControls col-xs-8 col-sm-2">
                 <input type="text" class="input-text" value="{$product->url_title}" placeholder="" id="url_title" name="url_title">
             </div>
         </div>

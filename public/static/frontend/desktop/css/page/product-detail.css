@@ -9,6 +9,7 @@
 }
 .absolute {
   position: absolute;
+  z-index: 10;
 }
 .text-center {
   text-align: center;

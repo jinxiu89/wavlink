@@ -14,6 +14,7 @@ use app\common\model\Category as CategoryModel;
 use app\wavlink\validate\ListorderValidate;
 use think\Facade\Request;
 use app\wavlink\validate\Product as ProductValidate;
+use think\paginator\driver\Bootstrap;
 
 /***
  * Class Product
@@ -29,23 +30,38 @@ Class Product extends BaseAdmin
      */
     public function index()
     {
-        $product = ProductModel::getDataByStatus(1, $this->currentLanguage['id']);
-        $category = (new CategoryModel())->getAllCategory($this->currentLanguage['id']);
         $data = input('get.');
-        if (!empty($data) and !empty($data['name'])) {
+        $category = (new CategoryModel())->getAllCategory($this->currentLanguage['id']);
+        if (!empty($data) and !empty($data['category_id'])) {
             try {
-                $result = (new ProductModel())->getSelectProduct($data['name'], $data['category_id'], $this->currentLanguage['id']);
-                $this->assign('product', $result['data']);
-                $this->assign('counts', $result['count']);
-                $this->assign('name', $data['name']);
+                $response = (new ProductModel())->getDataByCategory($data['category_id']);
+                $result = array_unique($response, SORT_REGULAR);//去重
+                $count = count($result);//计数
+                $pages = input('page', 1);//有分页的情况下拿分页
+                $size = 12;//后面加配置里去， 每页显示几个数据
+                $page_options = ['var_page' => 'page', 'path' => '/wavlink/product/index.html', 'query' => ['category_id' => $data['category_id']]];//分页选项
+                $page = Bootstrap::make($result, $size, $pages, $count, false, $page_options);
+                $this->assign('product', array_slice($result, ($pages - 1) * $size, $size));//通过这一条来给前台分页
+                $this->assign('counts', $count);
                 $this->assign('category_id', $data['category_id']);
+                $this->assign('page', $page);
             } catch (\Exception $exception) {
                 $this->error($exception->getMessage());
             };
+        } else if (!empty($data) and !empty($data['name'])) {
+            $response = (new ProductModel())->getDataByName($data['name'], $this->currentLanguage['id']);
+            $page = $response['data']->render();
+            $this->assign('product', $response['data']);
+            $this->assign('counts', $response['count']);
+            $this->assign('page', $page);
+            $this->assign('name',$data['name']);
+            $this->assign('category_id', '');
         } else {
+            $product = ProductModel::getDataByStatus(1, $this->currentLanguage['id']);
+            $page = $product['data']->render();
             $this->assign('product', $product['data']);
             $this->assign('counts', $product['count']);
-            $this->assign('name', '');
+            $this->assign('page', $page);
             $this->assign('category_id', '');
         }
         return $this->fetch('', [

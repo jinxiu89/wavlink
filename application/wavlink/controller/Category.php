@@ -73,8 +73,18 @@ Class Category extends BaseAdmin
     {
         if (request()->isAjax()) {
             $data = input('post.');
+            $category = CategoryModel::get($data['parent_id']);
             if (isset($data['id']) and !empty($data['id'])) {
                 if ($this->validate->scene('edit')->check($data)) {
+                    if ($data['parent_id'] == 0) {
+                        $data['path'] = '-';
+                        $data['level'] = '0';
+                        $data['is_parent'] = 1;
+                    } else {
+                        $data['path'] = $category['path'] . $category['id'] . '-';
+                        $data['level'] = $category['level'] + 1;
+                        $data['is_parent'] = 1;
+                    }
                     if ($data['id'] == $data['parent_id']) {
                         return show(0, '', '不能编辑在自己名下');
                     } else {
@@ -191,7 +201,7 @@ Class Category extends BaseAdmin
         $check['status'] = number_format($data['status']);
         if ($this->validate->scene('changeStatus')->check($data)) {
             try {
-                $result=$this->model->checkData($data['id']);
+                $result = $this->model->checkData($data['id']);
                 if ($result) {
                     return show(0, "failed", '', '', '', $result);
                 }

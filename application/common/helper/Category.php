@@ -9,7 +9,7 @@ class Category {
      * 如果数组里的parent_id 全等于 $parent_id值，则
      * 让level加一
      *
-     * @param $cate 第一个参数接受一个数组
+     * @param 第一个参数接受一个数组 $cate
      * @param string $delimiter 第二个参数指定分界符
      * @param int $parent_id 第三个参数指定默认父ID
      * @param int $level 第四个参数默认等级

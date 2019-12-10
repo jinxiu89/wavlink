@@ -10,6 +10,9 @@
 .g-path .breadcrumb {
   width: 100%;
 }
+.g-pagination {
+  margin: 7.5px 0 10px;
+}
 .category-list {
   padding: 20px;
   background: #fff;

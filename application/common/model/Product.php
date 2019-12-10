@@ -122,13 +122,61 @@ Class Product extends BaseModel
         return ($res !== true) ? true : false;
     }
 
-    //后台搜索多条件模糊查询
-    public function getSelectProduct($name = '', $category_id, $language_id)
+    /**
+     * @param $category_id
+     * @return array|PDOStatement|string|Collection
+     * @throws DataNotFoundException
+     * @throws DbException
+     * @throws ModelNotFoundException
+     */
+    public function getDataByCategory($category_id)
     {
-        if (!empty($category_id)) {
-            $cateID = CategoryModel::getProductCategory($category_id);
-            $map['id'] = ['in', $cateID];
+        //1、如果这个分类有子分类，查出所有的子分类ID
+        //2、通过分类ID查出所有的产品ID
+        $category = CategoryModel::get($category_id);
+        if ($category['parent_id'] == 0) {
+            $childCategory = CategoryModel::where(['parent_id' => $category_id])->select();
+            $child_id = [];
+            foreach ($childCategory as $child) {
+                $child_id[] = $child['id'];
+            }
+            $child_id[] = $category['id'];
+            return Db::table('product_category')->alias('category')->whereOr('category.category_id', 'in', $child_id)
+                ->join('product', ['product.id=category.product_id', 'product.status=1'])->field('id,image_litpic_url,name,model,listorder,create_time,language_id')->select();
+        } else {
+            //todo::其他的操作
+            return Db::table('product_category')->alias('category')->whereOr('category.category_id', '=', $category_id)
+                ->join('product', ['product.id=category.product_id', 'product.status=1'])->field('id,image_litpic_url,name,model,listorder,create_time,language_id')->select();
         }
+    }
+
+    /**
+     * @param string $name
+     * @param $language_id
+     * @return mixed
+     */
+    public function getDataByName($name='',$language_id){
+        $map['name|model|url_title|seo_title|keywords'] = ['like', '%' . $name . '%'];
+        $map['status'] = 1;
+        $map['language_id'] = $language_id;
+        $order=['listorder'=>'desc','id'=>'desc'];
+        try {
+            $query = self::where('name|model|url_title|seo_title|keywords','like','%'.$name.'%')
+                ->where(['status'=>1,'language_id'=>$language_id])
+                ->field('id,image_litpic_url,name,model,listorder,create_time,language_id');
+            $result['data'] = $query->order($order)->paginate();
+            $result['count'] = $query->count();
+            return $result;
+        } catch (DbException $e) {
+        }
+    }
+
+    /***
+     * @param $name
+     * @param $language_id
+     * @return array|string
+     */
+    public function getSelectProduct($name, $language_id) {
         //多条件模糊查询
         $map['status'] = 1;
         $map['name|model|url_title|seo_title|keywords'] = ['like', '%' . $name . '%'];
@@ -137,10 +185,7 @@ Class Product extends BaseModel
             'listorder' => 'desc',
             'id' => 'desc'
         ];
-        $query = self::whereOr('name', 'like', '%' . $name . '%');
-        $result['data'] = $query->order($order)->paginate();
-        $result['count'] = $query->count();
-        return $result;
+        return Search('Product', $map, $order);
     }
 
     //前端搜索当前模块下的语言的数据，en_us/zh_cn模块下search控制器用到这个方法

@@ -56,7 +56,9 @@ function Search($table, $map = [], $order, $field = '')
             'data' => $data,
             'count' => $counts,
         ];
-        return $result;
+        if (!empty($result)) {
+            return $result;
+        }
     } else {
         return '';
     }

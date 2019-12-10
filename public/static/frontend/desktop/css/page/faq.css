@@ -15,11 +15,8 @@
   background-color: #fff;
   border-bottom: 1px solid #eaeaea;
 }
-.g-main .item:nth-of-type(1) {
-  margin-top: 10px;
-}
-.g-main .item:nth-last-of-type(1) {
-  margin-bottom: 0;
+.g-main .item:nth-last-of-type(2) {
+  border-bottom: none;
 }
 .g-main .item a {
   font-size: 16px;

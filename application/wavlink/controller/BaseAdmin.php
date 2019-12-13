@@ -185,6 +185,12 @@ class BaseAdmin extends Controller
     {
         $result = (new LanguageModel())->getLanguageByLanguageId($code);
         $next = Request::header('referer');
+        if(strpos($next,'/product/index') == true){
+            /**特殊情况：但用户进产品筛选后，切换语言，返回产品结果集为空，原因是
+            category_id 语言有别，在中文里有，在英文里就没有这个id
+            **/
+            $next='/wavlink/product/index.html';
+        }
         session('current_language', $result[0], 'admin');
         return redirect($next);
     }

@@ -60,14 +60,15 @@ class Base extends Controller
      * @throws DataNotFoundException
      * @throws DbException
      * @throws ModelNotFoundException
+     * parent::__construct($app)在后面继承 语言切换在URL上直接改就不会有bug
+     *
      */
     public function __construct(App $app = null)
     {
-        parent::__construct($app);
         $path = explode('/', Request::path());
         Cookie::set('lang_var', $path[0]);
         $this->language_id = LanguageModel::getLanguageCodeOrID($this->code);
-        $this->code = $path[0];
+        parent::__construct($app);
     }
 
     public function initialize()
@@ -77,20 +78,9 @@ class Base extends Controller
         $this->module = Request::module();//模块名
         $url = Request::controller();
         $this->assign('url', $url);
+        $this->assign('code', $this->code);
     }
 
-    /***
-     * @param $code
-     * @return Redirect
-     * 手动设置语言
-     *
-     */
-    public function setLanguage($code)
-    {
-        Cookie::set('lang_var', $code);
-        $this->code = $code;
-        return redirect('/' . $code . '/index.html', [], 200);
-    }
 
     /**
      * 关于我们
@@ -212,7 +202,7 @@ class Base extends Controller
      *
      */
     public function autoload()
-    {
+    {//todo:: 默认切换英文在这里处理，先修复bug先
         $code = Cookie::get('lang_var') ? Cookie::get('lang_var') : get_lang(Request::instance()->header()); //这个code需要把‘-’换成‘_’;
         return redirect('/' . $code . '/index.html', [], 200);
     }

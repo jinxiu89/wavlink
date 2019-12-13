@@ -18,6 +18,7 @@ function getskincookie(){
 	var v = $.cookie("Huiskin");
 	var hrefStr=$("#skin").attr("href");
 	if(v==null||v==""){
+		// v="orange";
 		v="default";
 	}
 	if(hrefStr!=undefined){

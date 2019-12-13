@@ -129,7 +129,7 @@ Class Product extends BaseModel
      * @throws DbException
      * @throws ModelNotFoundException
      */
-    public function getDataByCategory($category_id)
+    public function getDataByCategory($category_id,$language_id)
     {
         //1、如果这个分类有子分类，查出所有的子分类ID
         //2、通过分类ID查出所有的产品ID
@@ -142,11 +142,11 @@ Class Product extends BaseModel
             }
             $child_id[] = $category['id'];
             return Db::table('product_category')->alias('category')->whereOr('category.category_id', 'in', $child_id)
-                ->join('product', ['product.id=category.product_id', 'product.status=1'])->field('id,image_litpic_url,name,model,listorder,create_time,language_id')->select();
+                ->join('product', ['product.id=category.product_id', 'product.status=1', 'product.language_id='.$language_id])->field('id,image_litpic_url,name,model,listorder,create_time,language_id')->select();
         } else {
             //todo::其他的操作
             return Db::table('product_category')->alias('category')->whereOr('category.category_id', '=', $category_id)
-                ->join('product', ['product.id=category.product_id', 'product.status=1'])->field('id,image_litpic_url,name,model,listorder,create_time,language_id')->select();
+                ->join('product', ['product.id=category.product_id', 'product.status=1','product.language_id='.$language_id])->field('id,image_litpic_url,name,model,listorder,create_time,language_id')->select();
         }
     }
 

@@ -43,4 +43,4 @@ Route::group('en_us', function () {
  *
  */
 Route::get('/', 'en_us/Base/autoload');
-Route::get('/language/:code', 'en_us/Base/setLanguage', [], ['code' => '[\w-]+']);
+Route::get('/language/:code', 'en_us/Language/setLanguage', [], ['code' => '[\w-]+']);

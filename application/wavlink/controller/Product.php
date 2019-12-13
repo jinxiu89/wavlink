@@ -27,14 +27,20 @@ Class Product extends BaseAdmin
     /***
      * @return mixed
      * 产品列表
+     * 概述：
+     * 后台的产品列表页，支持搜索和筛选，由于当初设计时没有分开设计，导致本控制器稍微长了一点，但思路是正确的，
+     * 分为3个情况:
+     * 1、什么都不选的情况下，load出所有指定语言的产品，按照条件排序
+     * 2、用户选择了筛选条件，则去筛选分支
+     * 3、用户按型号，名称等条件搜索时，去搜索分支
      */
     public function index()
     {
         $data = input('get.');
         $category = (new CategoryModel())->getAllCategory($this->currentLanguage['id']);
-        if (!empty($data) and !empty($data['category_id'])) {
+        if (!empty($data) and !empty($data['category_id'])) {//当选择分类时
             try {
-                $response = (new ProductModel())->getDataByCategory($data['category_id']);
+                $response = (new ProductModel())->getDataByCategory($data['category_id'],$this->currentLanguage['id']);
                 $result = array_unique($response, SORT_REGULAR);//去重
                 $count = count($result);//计数
                 $pages = input('page', 1);//有分页的情况下拿分页
@@ -48,7 +54,7 @@ Class Product extends BaseAdmin
             } catch (\Exception $exception) {
                 $this->error($exception->getMessage());
             };
-        } else if (!empty($data) and !empty($data['name'])) {
+        } else if (!empty($data) and !empty($data['name'])) {//按名称型号搜索时
             $response = (new ProductModel())->getDataByName($data['name'], $this->currentLanguage['id']);
             $page = $response['data']->render();
             $this->assign('product', $response['data']);
@@ -56,7 +62,7 @@ Class Product extends BaseAdmin
             $this->assign('page', $page);
             $this->assign('name',$data['name']);
             $this->assign('category_id', '');
-        } else {
+        } else { //什么都不选时
             $product = ProductModel::getDataByStatus(1, $this->currentLanguage['id']);
             $page = $product['data']->render();
             $this->assign('product', $product['data']);

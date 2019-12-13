@@ -4,6 +4,14 @@ namespace app\en_us\controller;
 
 use app\common\model\Images as ImagesModel;
 use app\common\model\Article;
+use GeoIp2\Exception\AddressNotFoundException;
+use think\App;
+use think\db\exception\DataNotFoundException;
+use think\db\exception\ModelNotFoundException;
+use think\exception\DbException;
+use app\common\helper\CheckIP;
+use think\facade\Request;
+
 /**
  * Class Index
  * @package app\en_us\controller
@@ -11,6 +19,26 @@ use app\common\model\Article;
  */
 class Index extends Base
 {
+    /**
+     * Index constructor.
+     * @param App|null $app
+     * @throws DataNotFoundException
+     * @throws ModelNotFoundException
+     * @throws DbException
+     */
+    public function __construct(App $app = null)
+    {
+        parent::__construct($app);
+    }
+
+    /**
+     *
+     */
+    public function initialize()
+    {
+        parent::initialize();
+    }
+
     public function index($type = "")
     {
         $ImageModel = new ImagesModel();
@@ -21,6 +49,7 @@ class Index extends Base
         //新闻调用
         $News=(new Article())->getLastNew($this->code);
         $imagesNew = (new ImagesModel())->getImagesByFeatured($this->code, 4);//新品推荐位获取图片
+
         $this->assign('Notice', $Notice['data']);
         $this->assign('swiper', $swiper['data']);
         $this->assign("hot", $hot['data']);

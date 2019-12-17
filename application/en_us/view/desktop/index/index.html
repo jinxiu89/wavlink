@@ -64,7 +64,11 @@
                     {notempty name="$vo.logo"}
                     <div class="img-box">
                         <a href="{:url('/'.$code.'/article/details/'.$vo.url_title)}">
+                            {notempty name="$vo.logo"}
                             <img src="{$vo.logo}" alt="{$vo.title}">
+                            {else /}
+                            <p>{$vo.seo_description}</p>
+                            {/notempty}
                         </a>
                     </div>
                     {else /}

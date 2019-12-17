@@ -67,8 +67,8 @@ class Base extends Controller
     {
         $path = explode('/', Request::path());
         Cookie::set('lang_var', $path[0]);
-        $this->language_id = LanguageModel::getLanguageCodeOrID($this->code);
         parent::__construct($app);
+        $this->language_id = LanguageModel::getLanguageCodeOrID($this->code);
     }
 
     public function initialize()

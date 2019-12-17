@@ -2,15 +2,14 @@
 
 namespace app\en_us\controller;
 
-use app\common\model\Images as ImagesModel;
+use app\common\helper\CheckIP;
 use app\common\model\Article;
-use GeoIp2\Exception\AddressNotFoundException;
+use app\common\model\Images as ImagesModel;
 use think\App;
 use think\db\exception\DataNotFoundException;
 use think\db\exception\ModelNotFoundException;
+use think\Exception;
 use think\exception\DbException;
-use app\common\helper\CheckIP;
-use think\facade\Request;
 
 /**
  * Class Index
@@ -39,6 +38,15 @@ class Index extends Base
         parent::initialize();
     }
 
+    /***
+     * @param string $type
+     * @return mixed
+     * @throws DataNotFoundException
+     * @throws DbException
+     * @throws ModelNotFoundException
+     * @throws Exception
+     *
+     */
     public function index($type = "")
     {
         $ImageModel = new ImagesModel();

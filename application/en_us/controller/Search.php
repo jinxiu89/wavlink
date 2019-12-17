@@ -40,7 +40,6 @@ class Search extends Base
     public function index()
     {
         $data = ProductModel::allData($this->language_id);
-        print_r($data);
 
     }
 
@@ -58,7 +57,6 @@ class Search extends Base
             $type = input('type', 'product');
             $pages = input('page', 1);
             $size = 12;//后面加配置里去
-
             $this->elSearch->paginate($pages, $size);
             //产品
             $product_field = ['keywords', 'name', 'url_title', 'model', 'seo_title', 'description', 'features'];

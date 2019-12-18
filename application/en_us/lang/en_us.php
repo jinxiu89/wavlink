@@ -103,6 +103,9 @@ return [
     //搜索结果翻译信息
     'total result'=>'total result',
     'keyword'=>'keyword',
+    //文章 博客
+    'Article for wavlink news and post'=>'Article for wavlink news and post',
     //網站版權信息翻譯
-    'powered by'=>'Powered by Wavlink'
+    'slogan'=>' WAVLINK See the world!',
+    'powered by'=>' Powered by Wavlink'
 ];

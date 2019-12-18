@@ -100,6 +100,9 @@ return [
     //搜索结果翻译信息
     'total result'=>'共查询到',
     'keyword'=>'关键词',
+    //文章 博客
+    'Article for wavlink news and post'=>'Article for wavlink news and post',
     //網站版權信息翻譯
-    'powered by' => 'Wavlink品牌官方网站'
+    'slogan'=>'睿因科技 看世界!',
+    'powered by' => '-Wavlink品牌官方网站'
 ];

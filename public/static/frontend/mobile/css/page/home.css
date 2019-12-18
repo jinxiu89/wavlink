@@ -221,6 +221,7 @@
 .new-box .des h4 a {
   color: #333;
   font-size: 12px;
+  font-weight: bold;
 }
 .new-box .img-box {
   overflow: hidden;
@@ -233,6 +234,10 @@
   height: auto;
   margin-left: auto;
   margin-right: auto;
+}
+.new-box .img-box p {
+  color: #333;
+  font-size: 12px;
 }
 /* new结束 */
 /* video */

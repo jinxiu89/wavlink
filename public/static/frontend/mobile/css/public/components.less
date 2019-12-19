@@ -56,9 +56,39 @@ body {
     background: @bodyBgColor;
 }
 
+//ads广告
+.wavlink-ads {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 9999;
+    width: 100%;
+    font-size: 14px;
+    .ads-box {
+        text-align: center;
+        a {
+            display: block;
+            padding: 10px 15px;
+            color: @whiteColor;
+        }
+        a:hover {
+            text-decoration: underline;
+        }
+    }
+    .ads-close {
+        position: absolute;
+        top: 50%;
+        right: 15px;
+        margin-top: -14px;
+        font-size: 20px;
+        color: @baseColor;
+    }
+}
+//ads广告结束
+
 //header
 header {
-    margin-bottom: 50px;
     .nav-bar {
         position: fixed;
         top: 0;

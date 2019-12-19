@@ -3,6 +3,8 @@ $(document).ready(function () {
 
     gPath();
 
+    wavlinkAds();
+
     if ($(document).outerWidth() >= 768) {
         handleMenuBarHover()
     }
@@ -59,6 +61,32 @@ $(document).ready(function () {
         if (activeWidth + sum > pathOl) {
             $(pathLi[pathLi.length - 1]).css({
                 width: pathOl - sum
+            })
+        }
+    }
+
+    function wavlinkAds() {
+        var ads = $('.wavlink-ads')
+        var nav = $('.g-nav')
+
+        if (ads.length) {
+            console.log('出现广告')
+            var adsH = ads.height();
+            $('body').css({
+                paddingTop: adsH + 50
+            })
+            ads.slideDown(300);
+            nav.css({
+                top: adsH
+            });
+            ads.find('.ads-close').click(function () {
+                ads.slideUp(300);
+                $('body').css({
+                    paddingTop: 50
+                })
+                nav.css({
+                    top: 0
+                });
             })
         }
     }

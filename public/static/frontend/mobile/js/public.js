@@ -61,9 +61,35 @@ function gPath () {
         })
     }
 }
+function wavlinkAds() {
+    var ads = $('.wavlink-ads')
+    var nav = $('.g-nav .nav-bar')
+
+    if (ads.length) {
+        console.log('出现广告')
+        var adsH = ads.height();
+        $('body').css({
+            paddingTop: adsH + 50
+        })
+        ads.slideDown(300);
+        nav.css({
+            top: adsH
+        });
+        ads.find('.ads-close').click(function () {
+            ads.slideUp(300);
+            $('body').css({
+                paddingTop: 50
+            })
+            nav.css({
+                top: 0
+            });
+        })
+    }
+}
 $(document).ready(function () {
     gFoot();
     gSearch();
     goTop();
     gPath();
+    wavlinkAds()
 });

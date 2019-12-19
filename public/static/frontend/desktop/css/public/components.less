@@ -98,6 +98,7 @@ body {
   font-family: Neo_Sans, "Microsoft YaHei", Helvetica, "Meiryo UI", "Malgun Gothic", "Segoe UI", "Trebuchet MS", "Monaco", monospace, Tahoma, STXihei, "华文细黑", STHeiti, "Helvetica Neue", "Droid Sans", "wenquanyi micro hei", FreeSans, Arimo, Arial, SimSun, "宋体", Heiti, "黑体", sans-serif;;
   padding-top: 50px;
   background: @bodyBgColor;
+  transition: all .3S;
 }
 
 //重新定义bootstrap容器宽度
@@ -110,6 +111,41 @@ body {
   }
 }
 
+//ads广告
+.wavlink-ads {
+  display: none;
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 9999;
+  width: 100%;
+  font-size: 14px;
+  .ads-box {
+    text-align: center;
+    a {
+      display: block;
+      padding: 10px 15px;
+      color: @whiteColor;
+      &:hover {
+        text-decoration: none;
+      }
+    }
+  }
+  .ads-close {
+    padding: 10px 15px;
+    position: absolute;
+    top: 0;
+    right: 0;
+    font-size: 14px;
+    color: @activeColor;
+    &:hover {
+      cursor: pointer;
+      color: @activeColor + 10;
+    }
+  }
+}
+//ads广告结束
+
 //header
 .g-nav {
   position: fixed;
@@ -117,6 +153,7 @@ body {
   left: 0;
   z-index: 9999;
   width: 100%;
+  transition: all .3s;
   #text-vertical(50px);
   background: @baseColor;
   .container {
@@ -299,7 +336,6 @@ body {
     }
   }
 }
-
 //header结束
 
 //footer

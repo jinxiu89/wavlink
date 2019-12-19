@@ -11,9 +11,9 @@
 // 应用公共文件
 //分类
 use app\common\model\Manual;
-use think\Collection;
 use PHPMailer\PHPMailer\PHPMailer;
 use PHPMailer\PHPMailer\Exception as emailException;
+use think\Collection;
 
 
 function pagination($obj)

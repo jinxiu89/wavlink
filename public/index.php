@@ -15,7 +15,7 @@ namespace think;
 require __DIR__ . '/../thinkphp/base.php';
 
 //定义vendor目录
-define('VENDOR_PATH', __DIR__ . '/vendor');
+define('VENDOR_PATH', __DIR__ . '/../vendor');
 // 定义应用目录
 define('APP_PATH', __DIR__ . '/../application/');
 // 定义

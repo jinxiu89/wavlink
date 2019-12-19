@@ -23,7 +23,11 @@
         "topthink/think-migration": "^1.1",
         "topthink/think-testing": "^1.0",
         "topthink/think-mongo": "1.7",
-      "ext-json": "*"
+      "ext-json": "*",
+        "topthink/think-captcha": "2.0.*",
+        "elasticsearch/elasticsearch": "^7.3",
+        "phpmailer/phpmailer": "^6.1",
+        "phpoffice/phpexcel": "^1.8"
     },
     "extra": {
         "think-path": "thinkphp"

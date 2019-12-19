@@ -191,8 +191,33 @@ body {
   font-family: Neo_Sans, "Microsoft YaHei", Helvetica, "Meiryo UI", "Malgun Gothic", "Segoe UI", "Trebuchet MS", "Monaco", monospace, Tahoma, STXihei, "华文细黑", STHeiti, "Helvetica Neue", "Droid Sans", "wenquanyi micro hei", FreeSans, Arimo, Arial, SimSun, "宋体", Heiti, "黑体", sans-serif;
   background: #f2f2f2;
 }
-header {
-  margin-bottom: 50px;
+.wavlink-ads {
+  display: none;
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 9999;
+  width: 100%;
+  font-size: 14px;
+}
+.wavlink-ads .ads-box {
+  text-align: center;
+}
+.wavlink-ads .ads-box a {
+  display: block;
+  padding: 10px 15px;
+  color: #fff;
+}
+.wavlink-ads .ads-box a:hover {
+  text-decoration: underline;
+}
+.wavlink-ads .ads-close {
+  position: absolute;
+  top: 50%;
+  right: 15px;
+  margin-top: -14px;
+  font-size: 20px;
+  color: #333;
 }
 header .nav-bar {
   position: fixed;

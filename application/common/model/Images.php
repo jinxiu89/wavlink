@@ -48,5 +48,4 @@ Class Images extends BaseModel
         ];
         return Search('images', $data, $order);
     }
-
 }

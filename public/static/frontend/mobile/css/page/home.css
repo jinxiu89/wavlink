@@ -151,11 +151,11 @@
   width: 50%;
   padding: 0.5px;
 }
-.recommend .des {
+.recommend .common-box .des {
   padding: 10px;
   background: #fff;
 }
-.recommend .des h3 {
+.recommend .common-box .des h3 {
   width: 100%;
   display: -webkit-box;
   -webkit-line-clamp: 2;
@@ -167,14 +167,14 @@
   margin: 0 0 5px;
   font-size: 12px;
 }
-.recommend .des span {
+.recommend .common-box .des span {
   font-size: 12px;
 }
-.recommend .img-box {
+.recommend .common-box .img-box {
   padding: 1px;
   background: #fff;
 }
-.recommend .img-box a {
+.recommend .common-box .img-box a {
   display: block;
   overflow: hidden;
   width: 100%;
@@ -182,10 +182,10 @@
   padding-bottom: 65.106%;
   background: #f2f2f2;
 }
-.recommend .img-box a img {
+.recommend .common-box .img-box a img {
   width: 100%;
 }
-.recommend .img-box a img {
+.recommend .common-box .img-box a img {
   display: block;
   max-width: 100%;
   height: auto;

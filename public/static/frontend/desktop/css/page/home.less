@@ -94,19 +94,21 @@
     .item {
         padding: 0 15px;
         text-align: center;
-        .iconfont {
-            font-size: 60px;
-        }
         a {
             display: block;
-            padding: 24px 0;
+            padding: 15px 0;
             color: @baseColor;
         }
         a:hover {
             background: #e3e3e3;
-            .iconfont {
+            /*.iconfont {
                 color: @activeColor;
-            }
+            }*/
+        }
+        a .iconfont {
+            font-size: 80px;
+            line-height: normal;
+            color: @activeColor;
         }
     }
 
@@ -182,6 +184,42 @@
 /* recommend */
 .recommend {
     margin: 40px 0;
+    .recommend-title {
+        position: relative;
+        margin-bottom: 20px;
+        text-align: center;
+        /*&:after {
+            content: " ";
+            position: absolute;
+            top: 50%;
+            left: 0;
+            z-index: -1;
+            margin-top: -1px;
+            width: 100%;
+            height: 2px;
+            background: @activeColor;
+        }*/
+    }
+    .recommend-title h2{
+        display: inline-block;
+        position: relative;
+        padding: 0 15px;
+        font-size: 32px;
+        background: @bodyBgColor;
+        color: @activeColor;
+        font-weight: normal;
+        text-align: center;
+        &:after {
+            content: " ";
+            position: absolute;
+            bottom: -10px;
+            left: 50%;
+            width: 25%;
+            height: 2px;
+            margin-left: -12.5%;
+            background: @activeColor;
+        }
+    }
     .common-box {
         .fl();
         width: 25%;
@@ -191,7 +229,7 @@
             box-shadow: 0 0 20px rgba(0,0,0,.15)
         }
     }
-    .des {
+    .common-box .des {
         padding: 20px;
         background: @whiteColor;
         h3 {
@@ -221,10 +259,10 @@
             }
         }
     }
-    .img-box {
+    .common-box .img-box {
         background: @whiteColor;
         a {
-            #img-optimize(65.11%, @bodyBgColor);
+            #img-optimize(56.25%, @bodyBgColor);
             img {
                 .img-responsive();
                 .center-block();

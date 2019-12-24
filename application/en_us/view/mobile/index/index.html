@@ -13,13 +13,20 @@
 {/block}
 {block name="body"}
 <!--主体内容-->
+{notempty name="Notice"}
 <div class="wavlink-ads">
     <div class="ads-box">
-        <!--        <a href="#">Consumer Electronics Exhibition</a>-->
-        <img class="img-responsive center-block" src="//cdn.cnbj1.fds.api.mi-img.com/mi-mall/b8bdd93c2aad57ede093b09d40000a48.jpg?thumb=1&w=1226&h=120&f=webp&q=90" alt="">
+        {volist name="Notice" id="vo"}
+        {if (empty($vo.image_pc_url))}
+        <a href="{$vo.url}">{$vo.title}</a>
+        {else /}
+        <a href="{$vo.url}"><img class="img-responsive center-block" src="{$vo.image_pc_url}" alt="{$vo.title}"></a>
+        {/if}
+        {/volist}
     </div>
     <span class="ads-close"> X </span>
 </div>
+{/notempty}
 <div class="container-fluid">
     {notempty name="showcase"}
     <div class="row">
@@ -100,7 +107,27 @@
 </div>
 {/block}
 {block name="javascript"}
+{notempty name="layer"}
 <script src="__LIB__/layer/2.4/layer.js"></script>
+<script>
+    $(function () {
+        var w = $(window).width() - 20;
+        var h = w * 0.5621;//设计图片的宽高比
+        layer.open({
+            type: 1,
+            title: false,
+            area:  [w + 'px',h + 'px'],
+            skin: 'layui-layer-nobg', //没有背景色
+            shadeClose: true,
+            content: '<div id="tong" style="width: 100%; height: 100%">\n' +
+                '    <a href="{$layer[0][\'url\']}" target="_blank">\n' +
+                '        <img class="img-responsive center-block" src="{$layer[0][\'image_mobile_url\']}">\n' +
+                '    </a>\n' +
+                '</div>'
+        });
+    })
+</script>
+{/notempty}
 <!--私有JS-->
 <script>
     var mySwiper = new Swiper('.banner', {

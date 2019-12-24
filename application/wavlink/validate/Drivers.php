@@ -65,6 +65,7 @@ class Drivers extends BaseValidate
     protected $scene = [
         'add'=>['name','size','version_number','category_id','language_id','seo_title','running','listorder','descip','status'],
         'edit'=>['id','size','version_number','category_id','language_id','seo_title','running','listorder','descip','status'],
+        'listorder'=>['id','listorder'],
         'changeStatus'=>['id','status']
     ];
 }

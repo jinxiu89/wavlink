@@ -191,6 +191,7 @@ Route::group(Config::get('__BACKEND__'), function () {
     Route::post('/product/mark', 'wavlink/product/mark');
     /**
      * 系统管理模块Post请求路由
+     * 关于Url 的带杠和不带杠 需要再找时间一一测试
      */
     Route::post('/language/save', 'wavlink/Language/save');
     Route::post('/language/byStatus', 'wavlink/Language/byStatus');
@@ -236,12 +237,13 @@ Route::group(Config::get('__BACKEND__'), function () {
     Route::post('model/byStatus', 'wavlink/model/byStatus');
     Route::post('sn/byStatus', 'wavlink/sn/byStatus');
 
-    Route::post('/service_category/listorder', 'wavlink/ServiceCategory/listorder');
-    Route::post('/article/listorder', 'wavlink/Article/listorder');
-    Route::post('/Document/listorder', 'wavlink/Document/listorder');
-    Route::post('/Drivers/listorder', 'wavlink/Drivers/listorder');
-    Route::post('/Video/listorder', 'wavlink/Video/listorder');
-    Route::post('/faq/listorder', 'wavlink/faq/listorder');
+    Route::post('service_category/listorder', 'wavlink/ServiceCategory/listorder');
+    Route::post('article/listorder', 'wavlink/Article/listorder');
+    Route::post('Document/listorder', 'wavlink/Document/listorder');
+    Route::post('Drivers/listorder', 'wavlink/Drivers/listorder');
+    Route::post('Drivers/sort', 'wavlink/Drivers/sort');
+    Route::post('Video/listorder', 'wavlink/Video/listorder');
+    Route::post('faq/listorder', 'wavlink/faq/listorder');
     //固件模块add保存
     Route::post('firmware/add', 'wavlink/firmware/add');
     Route::post('firmware/edit', 'wavlink/firmware/edit', [], ['id' => '\d+']);

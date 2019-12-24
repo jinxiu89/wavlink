@@ -12,6 +12,7 @@ namespace app\wavlink\controller;
 use app\common\model\Drivers as DriversModel;
 use app\common\model\ServiceCategory as ServiceCategoryModel;
 use app\wavlink\validate\Drivers as DriversValidate;
+use app\wavlink\validate\ListorderValidate;
 use think\exception\DbException;
 use think\Facade\Request;
 use think\Exception;
@@ -190,5 +191,34 @@ Class Drivers extends BaseAdmin
             }
         }
         return show(0, "failed", '', '', '', $validate->getError());
+    }
+    /**
+     *
+     */
+    public function sort()
+    {
+        if (request()->isAjax()) {
+            $data = input('post.');
+            $validate = new ListorderValidate();
+            if ($validate->scene('listorder')->check($data)) {
+                try {
+                    $res = (new DriversModel())
+                        ->allowField(true)
+                        ->isUpdate(true)
+                        ->save(
+                            ['listorder' => $data['listorder']],
+                            ['id' => $data['id']]
+                        );
+                    if ($res) {
+                        return show(1, '操作成功', '', '', $_SERVER['HTTP_REFERER'], '排序成功');
+                    } else {
+                        return show(0, '操作失败', '', '', $_SERVER['HTTP_REFERER'], '排序失败，未知原因');
+                    }
+                } catch (\Exception $exception) {
+                    return show(0, '操作失败', '', '', $_SERVER['HTTP_REFERER'], $exception->getMessage());
+                }
+            }
+            return show(0, '操作失败', '', '', $_SERVER['HTTP_REFERER'], $validate->getError());
+        }
     }
 }

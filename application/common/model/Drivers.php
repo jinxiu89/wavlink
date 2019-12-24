@@ -39,8 +39,8 @@ Class Drivers extends BaseModel
             'language_id' => $language_id,
         ];
         $order = [
-            'update_time' => $order,
             'listorder' => 'desc',
+            'update_time' => $order,
             'id' => 'desc',
         ];
         if (empty($categoryId)) {

@@ -9,9 +9,11 @@
  */
 return [
     //首页 翻译关键词
-    'Wireless & Networking' => '无线&通讯',
-    'PC peripherals' => '电脑周边',
-    'IOT' => '智能家居',
+    'EVERYTHING MESH'=>'EVERYTHING MESH',
+    'ROUTERS'=>'路由器',
+    'THUNDERBOLT™ 3'=>'雷电 3',
+    'USB DOCKING'=>'USB 扩展坞',
+    'Feature Products'=>'精选产品',
     //公共页脚
     'GuestBook' => '留言版',
     'About' => '关于我们',

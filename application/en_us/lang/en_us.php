@@ -9,9 +9,12 @@
  */
 return [
     //首页 翻译关键词
-    'Wireless & Networking'=>'Wireless & Networking',
-    'PC peripherals'=>'PC peripherals',
-    'IOT'=>'IOT',
+    'EVERYTHING MESH'=>'EVERYTHING MESH',
+    'ROUTERS'=>'ROUTERS',
+    'THUNDERBOLT™ 3'=>'THUNDERBOLT™ 3',
+    'USB DOCKING'=>'USB DOCKING',
+    'Feature Products'=>'Feature Products',
+
     //公共页脚
     'GuestBook' => 'Guest Book',
     'About'=>'ABOUT',

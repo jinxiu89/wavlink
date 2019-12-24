@@ -66,7 +66,6 @@ function wavlinkAds() {
     var nav = $('.g-nav .nav-bar')
 
     if (ads.length) {
-        console.log('出现广告')
         var adsH = ads.height();
         $('body').css({
             paddingTop: adsH + 50

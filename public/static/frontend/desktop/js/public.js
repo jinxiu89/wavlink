@@ -70,7 +70,6 @@ $(document).ready(function () {
         var nav = $('.g-nav')
 
         if (ads.length) {
-            console.log('出现广告')
             var adsH = ads.height();
             $('body').css({
                 paddingTop: adsH + 50

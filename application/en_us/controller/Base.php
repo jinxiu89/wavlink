@@ -52,6 +52,10 @@ class Base extends Controller
     protected $articleList; // 最新事件列表
     protected $productList; // 最热产品列表
     protected $template;
+    /**
+     * @var array
+     * loadLanguage : 读取语言
+     */
     protected $beforeActionList = ['loadLanguage', 'languages', 'getTree', 'getCategory', 'checkMobile', 'checkLang', 'setting', 'Popular', 'articles', 'documents', 'about'];
 
     /**
@@ -61,12 +65,17 @@ class Base extends Controller
      * @throws DbException
      * @throws ModelNotFoundException
      * parent::__construct($app)在后面继承 语言切换在URL上直接改就不会有bug
+     * 20191225 解决 当用户浏览器获取不到语言标识时，当用户访问根目录时，没有语言可以选择，需要默认给他传值到英文网站
      *
      */
     public function __construct(App $app = null)
     {
         $path = explode('/', Request::path());
-        Cookie::set('lang_var', $path[0]);
+        if(empty($path[0])){
+            Cookie::set('lang_var','en_us');
+        }else{
+            Cookie::set('lang_var', $path[0]);
+        }
         parent::__construct($app);
         $this->language_id = LanguageModel::getLanguageCodeOrID($this->code);
     }
@@ -147,7 +156,7 @@ class Base extends Controller
         //判断该语言是否是正常状态
         $langStatus = LanguageModel::getIDStatusByCode($this->code);
         if ($langStatus['status'] !== 1) {
-            abort(404);
+            return \redirect('/en_us/index.html');
         }
     }
 

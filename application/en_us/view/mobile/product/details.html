@@ -45,7 +45,13 @@
             </div>
             <div class="des">
                 <h3 class="title">{$result.name}</h3>
-                <p class="mode">{$result.model}</p>
+                <p class="mode">
+                    <span>{:lang('Model')} {$result.model}</span>
+                    {notempty name='$result.ean'}
+                    <br />
+                    <span>{:lang('Ean')} {$result.ean}</span>
+                    {/notempty}
+                </p>
                 <div class="feature">
                     <ul>
                         {$result.features|raw}

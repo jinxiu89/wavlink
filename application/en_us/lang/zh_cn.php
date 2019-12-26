@@ -14,6 +14,7 @@ return [
     'THUNDERBOLT™ 3'=>'雷电 3',
     'USB DOCKING'=>'USB 扩展坞',
     'Feature Products'=>'精选产品',
+    'Your browser does not support video' =>'您的浏览器不支持h5在线视频，请试试谷歌浏览器或者火狐浏览器',
     //公共页脚
     'GuestBook' => '留言版',
     'About' => '关于我们',

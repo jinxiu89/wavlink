@@ -14,7 +14,7 @@ return [
     'THUNDERBOLT™ 3'=>'THUNDERBOLT™ 3',
     'USB DOCKING'=>'USB DOCKING',
     'Feature Products'=>'Feature Products',
-
+    'Your browser does not support video' =>'Your browser doesn\'t support video. you can try chrome.',
     //公共页脚
     'GuestBook' => 'Guest Book',
     'About'=>'ABOUT',

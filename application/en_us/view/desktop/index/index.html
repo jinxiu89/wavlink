@@ -28,16 +28,13 @@
 {/notempty}
 <div class="container-fluid">
     <div class="row">
-        <div class="hot">
-            <div class="des">
-                <h2><a href="#">USB-C Dual 4K Display Docking Station</a></h2>
-                <p>One Cable, All Connect</p>
-            </div>
-            <div class="img-box">
-                <a href="/en_us/product/UG69DK7.html">
-                    <img src="http://files.wavlink.com/fw/2019/08/05/69DK7_pc.jpg" alt="">
-                </a>
-            </div>
+        <div class="hot-video" id="hot-video">
+            <video class=" " preload="auto" autoplay="autoplay" muted="muted" playsinline=""
+                   poster="http://china.wavlink.com/videos/thum.jpg"
+                   src="http://china.wavlink.com/videos/wavlink.mp4"
+                   data-loaded="true" style="width: 100%">
+                Your browser doesn't support video. Try Chrome
+            </video>
         </div>
     </div>
 </div>
@@ -188,5 +185,33 @@
     $(function () {
         $('#home').addClass('active');
     });
+</script>
+<script>
+    $(function () {
+        var $Dom = $("#hot-video"),
+            windowH = $(window).height(),
+            videoOffset = $Dom.offset().top,
+            videoH = $Dom.find("video").height();
+        $Dom.find("video").css({
+            "width": '100%',
+            "height": videoH
+        });
+        $(window).scroll(function () {
+            var docTop = $(document).scrollTop();
+            videoPlay(windowH, videoOffset, videoH, docTop)
+        })
+    })
+    function videoPlay (windowH, videoOffset, videoH, docTop) {
+        var m = (videoOffset - docTop) / windowH,
+            n = docTop - videoOffset;
+        console.log(m);
+        if (m>0&&m<1 || n>0&&n<videoH) {  //进入视窗，播放视频
+            if ($("#hot-video video").attr("src") !== "http://china.wavlink.com/videos/wavlink.mp4") {
+                $("#hot-video video").attr("src", "http://china.wavlink.com/videos/wavlink.mp4");
+            }
+        } else {  //离开视窗，重置视频
+            $("#hot-video video").attr("src", "")
+        }
+    }
 </script>
 {/block}

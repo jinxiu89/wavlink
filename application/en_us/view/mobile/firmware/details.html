@@ -37,7 +37,6 @@
                                 <p><span>{:lang('Post Date')}: </span> <span>{$result.create_time|strtotime|date="d/m/Y"}</span></p>
                                 <p><span>{:lang('Available')}: </span> <span>{$result.model}</span></p>
                                 <p><span>{:lang('Description')}: </span> <span>{$result.description}</span></p>
-                                <p><span>{:lang('Notices')}: </span> <span>{$result.notices}</span></p>
                             </div>
                             <div class="download">
                                 <span>{:lang('Download')}: </span>
@@ -49,9 +48,9 @@
                             <p>* If you find the links are invalid or any other issues, please email to contact@wavlink.com to make feedback or contact online customer service, thank you.</p>
                         </div>
                     </div>
-                </div>
-                <div>
-                    {$result.notices|raw}
+                    <div class="item-notices">
+                        {$result.notices|raw}
+                    </div>
                 </div>
             </div>
         </div>

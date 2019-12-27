@@ -229,6 +229,7 @@ header .nav-bar {
   height: 50px;
   background: #fff;
   padding: 0 10px;
+  border-bottom: 1px solid #eaeaea;
 }
 header .nav-bar .menu-bar {
   float: left;

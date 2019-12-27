@@ -1,0 +1,89 @@
+/**
+* @name: manual.less
+* @description: 固件列表页 + 详情樣式
+* @author: Alan(alan_webdeveloper@163.com)
+* @update: 2019-09-16 10:30
+*/
+@import "../public/mixins";
+@import "../public/variables";
+
+//固件列表布局样式
+.banner {
+  background: #42A4FF;
+  img {
+    .img-responsive();
+    .center-block();
+    width: 800px;
+    @media screen and (max-width: 800px) {
+      width: 100%;
+    }
+  }
+}
+
+.g-main {
+  background: none;
+}
+.g-main .box {
+  .clearFix();
+}
+.g-main .panel {
+  margin-bottom: 0;
+  border: none;
+  border-radius: 0;
+  box-shadow: none;
+}
+.g-main .panel-heading,
+.g-main .panel-footer {
+  border-color: @borderColor;
+  background: none;
+}
+.g-main .item {
+  padding: 10px 0 0;
+  #border-radius(5px);
+}
+.g-main .item .title {
+  font-size: 16px;
+}
+.g-main .info p {
+  margin-bottom: 10px;
+}
+.g-main .dl-horizontal dd{
+  margin-bottom: 10px;
+}
+.g-main .item .download_url {
+  padding: 2px 12px;
+  font-size: 12px;
+  border-color: @activeColor;
+}
+.g-main .item .download {
+  a {
+    padding: 2px 12px;
+    margin-right: 4px;
+    font-size: 12px;
+    border-color: @activeColor;
+    &:hover {
+      background: @activeColor;
+    }
+  }
+}
+
+@media screen and (min-width: 768px) and (max-width: 991px) {
+  .box .aside {
+    width: 23%;
+  }
+  .box .main {
+    width: 75%;
+  }
+}
+//固件列表布局样式結束
+
+//固件详情样式
+.g-main .item .item-notices{
+  background: @whiteColor;
+  padding: 15px;
+  img {
+    .img-responsive();
+    .center-block();
+  }
+}
+//固件详情样式结束

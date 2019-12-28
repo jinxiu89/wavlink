@@ -8,9 +8,9 @@ return [
     'exception_handle' => '',
     'http_exception_template'    =>  [
         // 定义404错误的重定向页面地址
-        404 =>  Env::get('app_path').'/error/404.html',
+        404 =>  Env::get('APP_PATH').'/en_us/view/error/404.html',
         // 还可以定义其它的HTTP status
-        401 =>  Env::get('app_path').'/error/401.html',
-        500 => Env::get('app_path').'/error/500.html'
+        401 =>  Env::get('APP_PATH').'/en_us/view/error/401.html',
+        500 => Env::get('APP_PATH').'/en_us/view/error/500.html'
     ],
 ];

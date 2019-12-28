@@ -167,9 +167,12 @@ class Base extends Controller
     {
         if (isMobile()) {
             $this->template = Env::get('app_path') . Request::module() . '/view/mobile';
+            $this->assign('terminal','{extend name="mobile/common/base" /}');
         } else {
             $this->template = Env::get('app_path') . Request::module() . '/view/desktop';
+            $this->assign('terminal','{extend name="desktop/common/base" /}');
         }
+
     }
 
     /***

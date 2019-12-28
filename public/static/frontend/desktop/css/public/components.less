@@ -442,6 +442,11 @@ body {
       width: 100%;
     }
   }
+  .breadcrumb>li+li:before {
+    padding: 0 5px;
+    color: #ccc;
+    content: "/";
+  }
   @media screen and (min-width: 768px) and (max-width: 1199px) {
     .breadcrumb li {
       font-size: 12px;

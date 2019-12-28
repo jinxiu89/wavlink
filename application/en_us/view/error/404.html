@@ -1,1 +1,44 @@
-{extend name="desktop/common/base" /}
+{block name="seo"}
+<meta name="description" content="{$terminal}">
+<meta name="keywords" content="">
+{/block}
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, minimum-scale=1, user-scalable=no">
+{block name="style"}
+<link rel="stylesheet" href="__LIB__/Bootstrap/bootstrap-3.3.7.min.css">
+<link rel="stylesheet" href="__LIB__/iconfont/iconfont.css">
+<link rel="stylesheet" href="__DESKTOP__/css/public/components.css">
+<script src="__LIB__/JQuery/JQuery-3.4.0.js"></script>
+<link rel="stylesheet" href="__DESKTOP__/css/page/404.css">
+{/block}
+{block name="body"}
+<div class="sec">
+    <div class="container">
+        <div class="row">
+            <div class="page-404">
+                <div class="page-404-des">
+                    <div class="page-404-img">
+                        <img src="//files.wavlink.com/WavlinkBlog/2019/09/01/404.gif" alt="">
+                    </div>
+                    <div class="page-404-reason">
+                        <h2>Error 404-Page Not Found</h2>
+                        <p>Reasons: </p>
+                        <p>1. Weak network connection > Please check your network connection and reload the page</p>
+                        <p>2. The URL has been written or typed into the browser incorrectly> Please check the URL address</p>
+                        <p>3. The URL is no longer available> The website content may have been removed or the event has been offline</p>
+                        <h3>You might try:</h3>
+                        <p>
+                            <span><a class="btn btn-info" href="/">Back to the Homepage</a></span>
+                            <span><a class="btn btn-primary" href="javascript:history.go(-1)"> Back to Previous Page</a></span>
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{/block}
+
+{block name="javascript"}
+<!--私有JS-->
+
+{/block}

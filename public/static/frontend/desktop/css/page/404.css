@@ -4,10 +4,6 @@
 * @author: Alan(alan_webdeveloper@163.com)
 * @update: 2019-11-13 14:00
 */
-body {
-  padding-top: 0!important;
-  background: #fff;
-}
 /*page-404*/
 @media (min-width: 768px) {
   .container {
@@ -99,6 +95,10 @@ body {
   }
 }
 @media screen and (max-width: 767px) {
+  body {
+    padding-top: 0!important;
+    background: #fff;
+  }
   .page-404 {
     margin: 0;
   }

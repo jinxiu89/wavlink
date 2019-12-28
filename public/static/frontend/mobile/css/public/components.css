@@ -430,7 +430,7 @@ footer .copy-right p {
   font-size: 12px;
 }
 .g-path .breadcrumb > li + li:before {
-  padding: 0;
+  padding: 5px;
   color: #ccc;
   content: "/";
 }
@@ -538,6 +538,7 @@ footer .copy-right p {
   bottom: 10%;
   right: 10px;
   z-index: 999;
+  width: auto;
   margin-top: -50px;
   padding: 5px;
 }

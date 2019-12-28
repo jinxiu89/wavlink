@@ -6,10 +6,7 @@
 */
 @import "../public/mixins";
 @import "../public/variables";
-body {
-  padding-top: 0!important;
-  background: #fff;
-}
+
 /*page-404*/
 @media (min-width: 768px) {
   .container {
@@ -94,6 +91,10 @@ body {
 }
 
 @media screen and (max-width: 767px) {
+  body {
+    padding-top: 0!important;
+    background: #fff;
+  }
   .page-404 {
     margin: 0;
     .page-404-des {

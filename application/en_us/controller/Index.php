@@ -50,7 +50,6 @@ class Index extends Base
      */
     public function index($type = "")
     {
-        abort(404);
         $ImageModel = new ImagesModel();
         $Notice = $ImageModel->getImagesByFeatured($this->code, 6);//公告栏推荐位，导航上面的
         $layer = $ImageModel->getImagesByFeatured($this->code, 7);//首页强推层，一般用于用户触达，活动触达等

@@ -108,5 +108,14 @@ return [
     'Article for wavlink news and post'=>'Article for wavlink news and post',
     //網站版權信息翻譯
     'slogan'=>'睿因科技 看世界!',
-    'powered by' => '-Wavlink品牌官方网站'
+    'powered by' => '-Wavlink品牌官方网站',
+    //错误信息
+    'page not found' => '哦嚯！您访问的页面不存在！',
+    'Reasons' => '可能的原因: ',
+    'Weak network connection > Please check your network connection and reload the page' => '1. 您的网络可能有问题，请检查一下网络链接',
+    'The URL has been written or typed into the browser incorrectly> Please check the URL address' => '2. 您输入的URL地址可能存在错误，我们的服务器因此拒绝连接！',
+    'The URL is no longer available> The website content may have been removed or the event has been offline' => '3. 您输入的URL地址可能被我们永久放弃维护，失去有效性，或者您的网络事件已脱机',
+    'You might try' => '您可以试试: ',
+    'Back to the Homepage' => '返回首页',
+    'Back to Previous Page' => '返回上一页',
 ];

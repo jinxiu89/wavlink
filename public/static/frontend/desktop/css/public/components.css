@@ -509,6 +509,11 @@ body {
     width: 100%;
   }
 }
+.g-path .breadcrumb > li + li:before {
+  padding: 0 5px;
+  color: #ccc;
+  content: "/";
+}
 @media screen and (min-width: 768px) and (max-width: 1199px) {
   .g-path .breadcrumb li {
     font-size: 12px;

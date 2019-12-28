@@ -431,6 +431,8 @@ footer .copy-right p {
 }
 .g-path .breadcrumb > li + li:before {
   padding: 0;
+  color: #ccc;
+  content: "/";
 }
 .g-pagination {
   margin: 10px 0 0;

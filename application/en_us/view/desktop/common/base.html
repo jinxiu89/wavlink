@@ -34,7 +34,22 @@
 {include file="desktop/common/zh_cn"}
 {/if}
 {/block}
+<call-us id="callus"
+         style="position: fixed; bottom: 8px; right: 8px; z-index:9999;"
+         phonesystem-url="https://mylivechat.west.3cx.us:5001/"
+         party="wavlink"
+         invite-message="Welcome. Any questions with Wavlink products,pls chat with us"
+         allow-call="false"
+         allow-video="false"
+         allowfocus="true"
+         operator-name="serviceGroup"
+         operator-icon="http://cdn.speedytel.com/image/avatar.jpg"
+         minimized="true"
+         window-title="Let's chat"
+         authentication="both">
+</call-us>
 <script src="__DESKTOP__/js/public.js"></script>
+<script src="__STATIC__/lib/3cx/callus.js"></script>
 {block name="javascript"}
 <!--私有JS-->
 <script src="../lib/Swiper/swiper.min.js"></script>

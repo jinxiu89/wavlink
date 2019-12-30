@@ -4,6 +4,9 @@
  * User: admin
  * Date: 2019/9/11
  * Time: 10:16
+ * 路由说明
+ * 1、不管是路由分组 还是 不分组， 匹配规则都是由小到大，一些宽泛的路由规则需要放到最后，防止有些小的路由规则被劫持
+ * 2、这里设置的路由都没有name()属性，但严格意义上讲需要给一个name属性,后面使用url()函数时方便使用
  */
 
 use think\facade\Route;
@@ -45,3 +48,4 @@ Route::group('en_us', function () {
  */
 Route::get('/', 'en_us/Base/autoload');
 Route::get('/language/:code', 'en_us/Language/setLanguage', [], ['code' => '[\w-]+']);
+Route::miss('en_us/Error/index');  //当所有的路由都匹配不到的时候 就会走到这个miss路由上来

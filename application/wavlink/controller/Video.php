@@ -64,7 +64,7 @@ Class Video extends BaseAdmin
      */
     public function add() {
         //获取服务管理的当前视频分类
-        $categorys = ServiceCategoryModel::getSecondCategory($this->currentLanguage['id'],'Video');
+        $categorys = ServiceCategoryModel::getSecondCategory($this->currentLanguage['id'],'Videos');
         return $this->fetch('', [
             'categorys' => $categorys,
             'language_id' => $this->currentLanguage['id'],

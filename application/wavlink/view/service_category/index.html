@@ -30,7 +30,6 @@
                     <th width="20"><input type="checkbox" name="" value=""></th>
                     <th width="20">ID</th>
                     <th>分类名</th>
-                    <th width="30">缩略图</th>
                     <th width="130">URL标题</th>
                     <th width="80">语言</th>
                     <th width="80">父分类</th>
@@ -47,7 +46,6 @@
                     <td><input type="checkbox" value="{$vo.id}" name="id"></td>
                     <td>{$vo.id}</td>
                     <td>{$vo.name}</td>
-                    <td>{empty name="$vo.imgae"}{else /}<img src="{$vo.image}" alt="" width="30" height="30">{/empty}</td>
                     <td>{$vo.url_title}</td>
                     <td class="text-c">{$vo.language_id|getLanguage|raw}</td>
                     <td class="text-c">{$vo.parent_id|getServiceCategory|raw}</td>
@@ -55,7 +53,7 @@
                     <td>{$vo.update_time}</td>
                     <td class="td-status"><a href="javascript:;" onclick="start('{:url(\'ServiceCategory/byStatus\',[\'id\'=>$vo.id,\'status\'=>$vo.status==1?-1:1])}')" title="点击修改状态">{$vo.status|status|raw}</a></td>
                     <td class="td-manage">
-                        {if condition="$vo.level <= 1"}
+                        {if condition="$vo.level <= 2"}
                         <a title="添加子分类" class="ml-5 btn btn-primary" href="javascript:;" onclick="add('添加子分类（服务）','{:url(\'ServiceCategory/add\',[\'parent_id\'=>$vo.id])}','800','680')"><i class="Hui-iconfont" style="font-size: 18px;color:#fff">&#xe716</i></a>
                         <a title="获取子分类" class="ml-5 btn btn-success" href="{:url('ServiceCategory/index',['parent_id'=>$vo.id])}"><i class="Hui-iconfont" style="font-size: 18px;color: #fff">&#xe715</i></a>
                         {/if}

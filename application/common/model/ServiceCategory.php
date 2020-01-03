@@ -9,6 +9,8 @@
 namespace app\common\model;
 
 use app\common\model\Language as LanguageModel;
+use app\common\helper\Category as Helper;
+use think\Collection;
 
 /***
  * Class ServiceCategory
@@ -116,8 +118,7 @@ Class ServiceCategory extends BaseModel
             'url_title' => $name,
             'parent_id' => 0
         ];
-        $result = self::where($map)->field('id,name,url_title,description,keywords,seo_title')->find();
-        return $result;
+        return self::where($map)->field('id,name,url_title,description,keywords,seo_title,path,parent_id')->find();
     }
 
     //获取对应栏目的二级分类
@@ -141,12 +142,31 @@ Class ServiceCategory extends BaseModel
      */
     public static function getSecondCategory($value, $name = '')
     {
-        $cate=empty($name) ? request()->controller() : $name;
+        $cate = empty($name) ? request()->controller() : $name;
         $parent = self::getTopCategory($value, $cate);
         $data = ['status' => 1, 'parent_id' => $parent['id']];
         $order = ['listorder' => 'desc', 'id' => 'desc'];
         return (new ServiceCategory)->where($data)->order($order)
             ->field('id,name,image,description,keywords,language_id,url_title,seo_title')->select();
+    }
+
+    /**
+     * @param $language
+     * @param string $name
+     * @return array|\PDOStatement|string|\think\Collection
+     * @throws \think\db\exception\DataNotFoundException
+     * @throws \think\db\exception\ModelNotFoundException
+     * @throws \think\exception\DbException
+     */
+    public static function getTree($language, $name = '')
+    {
+        $cate = empty($name) ? request()->controller() : $name;
+        $parent = self::getTopCategory($language, $cate)->toArray();
+        $data = self::where('path', 'like', $parent['path'] . '' . $parent['id'] . '-%')
+            ->field('id,name,url_title,parent_id,path,level,listorder')
+            ->order(['listorder' => 'desc'])->select()->toArray();
+        $data[]=$parent;
+        return Helper::toLevel($data,'-',$parent=0);
     }
 
     /***

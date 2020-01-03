@@ -55,6 +55,7 @@ Class Video extends BaseAdmin
         ]);
     }
 
+
     /**
      * @return mixed
      * 上传视频页面
@@ -64,7 +65,7 @@ Class Video extends BaseAdmin
      */
     public function add() {
         //获取服务管理的当前视频分类
-        $categorys = ServiceCategoryModel::getSecondCategory($this->currentLanguage['id'],'Videos');
+        $categorys = ServiceCategoryModel::getTree($this->currentLanguage['id'],'Videos');
         return $this->fetch('', [
             'categorys' => $categorys,
             'language_id' => $this->currentLanguage['id'],
@@ -115,13 +116,14 @@ Class Video extends BaseAdmin
      * @throws DbException
      */
     public function edit($id = 0) {
-        $id = $this->MustBePositiveInteger($id);
+
+        $categorys = ServiceCategoryModel::getTree($this->currentLanguage['id'],'Videos');
+//        $id = $this->MustBePositiveInteger($id);
         //获取服务管理的当前视频分类
-        $categorys = ServiceCategoryModel::getSecondCategory($this->currentLanguage['id']);
         $video = VideoModel::get($id);
         return $this->fetch('', [
+            'categorys'=>$categorys,
             'video' => $video,
-            'categorys' => $categorys,
             'language_id' => $this->currentLanguage['id'],
         ]);
     }

@@ -11,6 +11,7 @@ namespace app\wavlink\controller;
 
 use app\common\model\ServiceCategory as ServiceCategoryModel;
 use app\wavlink\validate\ServiceCategory as ServiceCategoryValidate;
+use think\App;
 use think\exception\DbException;
 use think\Facade\Request;
 
@@ -20,6 +21,15 @@ use think\Facade\Request;
  */
 class ServiceCategory extends BaseAdmin
 {
+    /**
+     * ServiceCategory constructor.
+     * @param App|null $app
+     */
+    public function __construct(App $app = null)
+    {
+        parent::__construct($app);
+    }
+
     /***
      * 1 MustBePositiveInteger  判断输入的语言ID是否是正整数
      * 2、getServiceCategory根据语言ID来获取分类
@@ -50,54 +60,25 @@ class ServiceCategory extends BaseAdmin
                 return '别添加了！返回一级栏目再添加吧';
             }
             $this->assign('parent_id', $category_id);
+            $this->assign('path',$category['path']);
         } else {
             if (input('get.con')) {
                 // 从其他列表添加对应的分类栏目
                 $con = input('get.con');
                 $category = ServiceCategoryModel::getCategoryIdByName($this->currentLanguage['id'], $con);
                 $this->assign('parent_id', $category['id']);
+                $path = $category['path'];
             } else {
                 //添加一级栏目
+                $path = '-';
                 $this->assign('parent_id', 0);
             }
+            $this->assign('path', $path);
         }
         $this->assign('language_id', $this->currentLanguage['id']);
         return $this->fetch();
     }
 
-    /**
-     *
-     * @return array
-     * 提交保存操作
-     */
-    public function save()
-    {
-        if (Request::isPost()) {
-            $data = input('post.','','htmlspecialchars');
-            $validate = new ServiceCategoryValidate();
-            if ($validate->scene('add')->check($data)) {
-                //todo:: 完成操作
-                if ($data['level'] == '') {
-                    $data['level'] = intval(1);
-                }
-                if (!empty($data['id'])) {
-                    if ($data['id'] == $data['parent_id']) {
-                        return show(0, '', '不能编辑在自己名下');
-                    } else {
-                        return $this->update($data);
-                    }
-                }
-                $res = (new ServiceCategoryModel())->add($data);
-                if ($res) {
-                    return show(1, '', '', '', '', '添加成功');
-                } else {
-                    return show(1, '', '', '', '', '添加失败');
-                }
-            } else {
-                return show(0, '', '', '', '', $validate->getError());
-            }
-        }
-    }
 
     /**
      * @param int $id
@@ -110,7 +91,6 @@ class ServiceCategory extends BaseAdmin
         $id = $this->MustBePositiveInteger($id);
         //获取当前数据
         $serviceCategory = ServiceCategoryModel::get($id);
-
         //传递参数id
         //如果是一级栏目 categorys不选择 parent_id = 0
         // 字段parent_id =0
@@ -134,6 +114,43 @@ class ServiceCategory extends BaseAdmin
             'serviceCategory' => $serviceCategory,
             'language_id' => $this->currentLanguage['id'],
         ]);
+    }
+    /**
+     *
+     * @return array
+     * 提交保存操作
+     */
+    public function save()
+    {
+        if (Request::isPost()) {
+            $data = input('post.', '', 'htmlspecialchars');
+            $validate = new ServiceCategoryValidate();
+            if ($validate->scene('add')->check($data)) {
+                //todo:: 完成操作
+                if ($data['level'] == '') {
+                    $data['level'] = intval(1);
+                }
+                if($data['path'] == ''){
+                    $category = ServiceCategoryModel::get(['status' => 1, 'id' => $data['parent_id'], 'language_id' => $this->currentLanguage['id']]);
+                    $data['path']=$category['path'].$category['id'].'-';
+                }
+                if (!empty($data['id'])) {
+                    if ($data['id'] == $data['parent_id']) {
+                        return show(0, '', '不能编辑在自己名下');
+                    } else {
+                        return $this->update($data);
+                    }
+                }
+                $res = (new ServiceCategoryModel())->add($data);
+                if ($res) {
+                    return show(1, '', '', '', '', '添加成功');
+                } else {
+                    return show(1, '', '', '', '', '添加失败');
+                }
+            } else {
+                return show(0, '', '', '', '', $validate->getError());
+            }
+        }
     }
 
     /**

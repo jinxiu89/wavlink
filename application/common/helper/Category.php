@@ -36,7 +36,7 @@ class Category {
      * @return array
      */
     static public function toLayer($cate, $name = 'title', $parent_id = 0){
-        $arr = array();
+        $arr = [];
         foreach ($cate as $v) {
             if ($v['parent_id'] == $parent_id) {
                 $v[$name] = self::toLayer($cate, $name, $v['id']);

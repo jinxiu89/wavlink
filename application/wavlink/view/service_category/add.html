@@ -10,9 +10,11 @@
                 {if condition="$parent_id eq 0"}
                 <input type="text" class="input-text" value="添加的这是一级分类" placeholder="" disabled>
                 <input type="hidden" name="level" value="">
+                <input type="hidden" name="path" value="-">
                 {else /}
                 <input type="text" class="input-text" value="{$parent_id|getServiceCategory}" placeholder="" disabled>
                 <input type="hidden" name="level" value="{$parent_id|getCategoryLevel}">
+                <input type="hidden" name="path" value="{$path}{$parent_id}-">
                 {/if}
             </div>
         </div>

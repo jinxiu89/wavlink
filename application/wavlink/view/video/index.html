@@ -35,14 +35,13 @@
                     <th width="20"><input type="checkbox" name="" value=""></th>
                     <th width="40">ID</th>
                     <th>视频名称</th>
-                    <th>url标题</th>
                     <th width="80">缩略图</th>
-                    <th width="60">分类</th>
+                    <th width="180">分类</th>
                     <th width="60">语言</th>
                     <th width="30">排序</th>
                     <th width="150">更新时间</th>
                     <th width="100">是否已启用</th>
-                    <th width="100">操作</th>
+                    <th width="180">操作</th>
                 </tr>
                 </thead>
                 <tbody>
@@ -51,7 +50,6 @@
                     <td class="text-c"><input type="checkbox" value="{$vo.id}" name="id"></td>
                     <td>{$vo.id}</td>
                     <td>{$vo.name}</td>
-                    <td>{$vo.url_title}</td>
                     <td><img src="{$vo.image}" alt="" width="80"></td>
                     <td>{$vo.category_id|getServiceCategory|raw}</td>
                     <td>{$vo.language_id|getLanguage|raw}</td>

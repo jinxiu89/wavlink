@@ -34,6 +34,23 @@
         </div>
         {/empty}
         <div class="row cl">
+            <label class="form-label col-xs-4 col-sm-2"><span>目录</span></label>
+            <div class="formControls col-xs=8 col-sm-9">
+                <span class="select-box">
+                    <select name="has_child" class="select">
+                        <option value="">--请选择--</option>
+                        {if($serviceCategory.has_child == 1)}
+                        <option value="1" selected>是</option>
+                        <option value="0" >否</option>
+                        {else /}
+                        <option value="1">是</option>
+                        <option value="0" selected>否</option>
+                        {/if}
+                </select>
+                </span>
+            </div>
+        </div>
+        <div class="row cl">
             <label class="form-label col-xs-4 col-sm-2">所属语言：</label>
             <div class="formControls col-xs-8 col-sm-3">
                 <input type="text" class="input-text" value="{$language_id|getLanguageOne}" disabled>

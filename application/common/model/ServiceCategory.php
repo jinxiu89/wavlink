@@ -162,11 +162,30 @@ Class ServiceCategory extends BaseModel
     {
         $cate = empty($name) ? request()->controller() : $name;
         $parent = self::getTopCategory($language, $cate)->toArray();
-        $data = self::where('path', 'like', $parent['path'] . '' . $parent['id'] . '-%')
+        $data = self::where('path', 'like', $parent['path'] . $parent['id'] . '-%')
             ->field('id,name,url_title,parent_id,path,level,listorder')
             ->order(['listorder' => 'desc'])->select()->toArray();
-        $data[]=$parent;
-        return Helper::toLevel($data,'-',$parent=0);
+        $data[] = $parent;
+        return Helper::toLevel($data, '-', $parent = 0);
+    }
+
+    /**
+     * @param $language
+     * @param $path
+     * @param $parent_id
+     * @return array
+     * @throws \think\db\exception\DataNotFoundException
+     * @throws \think\db\exception\ModelNotFoundException
+     * @throws \think\exception\DbException
+     */
+    public static function getCategoryByPath($path, $parent_id)
+    {
+        $categoryId=[];
+        $category=self::where('path','like',$path.$parent_id.'-%')->field('id')->select()->toArray();
+        foreach ($category as $item){
+            $categoryId[]=$item['id'];
+        }
+        return $categoryId;
     }
 
     /***

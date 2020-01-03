@@ -5,17 +5,33 @@ namespace app\en_us\controller;
 use app\common\model\Video as VideoModel;
 use app\common\model\ServiceCategory as ServiceCategoryModel;
 use think\App;
+use think\db\exception\DataNotFoundException;
+use think\db\exception\ModelNotFoundException;
+use think\exception\DbException;
 use think\facade\Request;
-use think\exception;
 
 class  Video extends Base
 {
     protected $model;
 
+    /**
+     * Video constructor.
+     * @param App|null $app
+     * @throws DataNotFoundException
+     * @throws DbException
+     * @throws ModelNotFoundException
+     */
     public function __construct(App $app = null)
     {
         parent::__construct($app);
         $this->model = new VideoModel();
+        try {
+            $cate = ServiceCategoryModel::getTree($this->code, 'Videos');
+            $this->assign('cate', $cate);
+        } catch (DataNotFoundException $e) {
+        } catch (ModelNotFoundException $e) {
+        } catch (DbException $e) {
+        }
     }
 
     /**
@@ -26,7 +42,7 @@ class  Video extends Base
         if (Request::isGet()) {
             try {
                 $result = $this->model->getVideoByLanguage($this->code);
-                return $this->fetch($this->template . '/video/index.html', ['data' => $result['data'], 'count' => $result['count']]);
+                return $this->fetch($this->template . '/video/index.html', ['data' => $result['data'], 'count' => $result['count'], 'name' => '',]);
             } catch (\Exception $exception) {
                 $this->error($exception->getMessage());
             }
@@ -37,6 +53,45 @@ class  Video extends Base
             } catch (\Exception $e) {
             }
         }
+    }
+
+    /**
+     * @param string $url_title
+     * @param string $order
+     * @return \think\response\View
+     * @throws DataNotFoundException
+     * @throws DbException
+     * @throws ModelNotFoundException
+     */
+    public function category($url_title = "", $order = 'listorder desc')
+    {
+        if (empty($url_title) && !isset($url_title)) {
+            abort(404);
+        }
+        $parent = ServiceCategoryModel::getCategoryIdByName($this->code, $url_title);
+        $field = 'id,name,url_title,image,urlabroad,urlchina';
+        if ($parent['has_child']) {
+            $categorys = ServiceCategoryModel::getCategoryByPath($parent['path'], $parent['id']);
+            $categorys[] = $parent['id'];
+            $result = VideoModel::getDataByPath($categorys, $field, $order);
+            if ($result['status'] == $this) {
+                $this->assign('data', $result['data']);
+                $this->assign('count', $result['count']);
+                $this->assign('name', $parent['name']);
+            } else {
+                abort(404);
+            }
+        } else {
+            $result = VideoModel::getDataByPath([$parent['id']], $field, $order);
+            if ($result['status'] == true) {
+                $this->assign('data', $result['data']);
+                $this->assign('count', $result['count']);
+                $this->assign('name', $parent['name']);
+            } else {
+                abort(404);
+            }
+        }
+        return $this->fetch($this->template . '/video/index.html');
     }
 
     //视频详情页

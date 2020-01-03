@@ -9,6 +9,7 @@
 namespace app\common\model;
 
 use app\common\model\Language as LanguageModel;
+use think\Exception;
 
 /**
  * Class Video
@@ -36,6 +37,24 @@ Class Video extends BaseModel
         $data = $query->order($order)->field('id,name,url_title,image,urlabroad,urlchina')->paginate(8, true);
         $count = $query->count();
         return ['data' => $data, 'count' => $count];
+    }
+
+    /**
+     * @param $categorys
+     * @param $field
+     * @param $order
+     * @return array
+     */
+    public static function getDataByPath($categorys, $field, $order)
+    {
+        try{
+            $query = self::where('category_id', 'in', $categorys);
+            $data = $query->order($order)->field($field)->paginate(8, true);
+            $count = $query->count();
+            return ['status'=>true,'message'=>'ok','data' => $data, 'count' => $count];
+        }catch (Exception $exception){
+            return ['status'=>false,'message'=>$exception->getMessage(),[],[]];
+        }
     }
 
     //获取子分类的视频列表

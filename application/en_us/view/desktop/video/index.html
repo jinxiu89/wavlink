@@ -31,7 +31,18 @@
             </div>
             <div class="g-main">
                 <div class="g-filter">
-                    <div class="sort"><span>{:lang('list or video')}</span></div>
+                    <div class="filter">
+                        <span>{:lang('filter by')} : </span>
+                        <div class="select">
+                            <select name="category" class="filter_by">
+                                {volist name="cate" id="vo"}
+                                <option value="{$vo.url_title}" {if condition='$name eq $vo.name' }selected{/if}>{$vo.delimiter}{$vo.name}</option>
+                                {/volist}
+                            </select>
+                            <span class="iconfont">&#xe8ec;</span>
+                        </div>
+                    </div>
+
                     <div class="result">
                         <span>{:lang('result')} {$count}</span>
                     </div>
@@ -85,6 +96,11 @@
                 area: ['800px', '600px'],
                 content: url,
             })
+        });
+        // 筛选变化时 过滤
+        $('.filter_by').change(function () {
+            var filter_by = $(this).children('option:selected').val();
+            window.location.href = '/{$code}/video/category/' + filter_by + '.html'
         });
     });
 </script>

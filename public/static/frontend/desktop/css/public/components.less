@@ -574,24 +574,16 @@ body {
     position: relative;
     display: inline-block;
     select {
-      width: 150px;
+      width: 250px;
       height: 30px;
       padding: 0 5px;
-      border: 1px solid @borderColor;
+      border: 1px solid @activeColor;
       #border-radius(5px);
-      font-size: 12px;
+      font-size: 14px;
       background: @whiteColor;
-      appearance: none;
-      -moz-appearance: none;
-      -webkit-appearance: none;
     }
-    .iconfont {
-      position: absolute;
-      top: 0;
-      right: 0;
-      z-index: 1;
-      display: block;
-      line-height: 30px;
+    select option {
+      padding: 10px 0;
     }
   }
 }

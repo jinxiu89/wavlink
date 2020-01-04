@@ -36,10 +36,9 @@
                         <div class="select">
                             <select name="category" class="filter_by">
                                 {volist name="cate" id="vo"}
-                                <option value="{$vo.url_title}" {if condition='$name eq $vo.name' }selected{/if}>{$vo.delimiter}{$vo.name}</option>
+                                <option value="{$vo.url_title}" {if condition='$name eq $vo.name' }selected{/if}>{$vo.delimiter|raw}{$vo.name}</option>
                                 {/volist}
                             </select>
-                            <span class="iconfont">&#xe8ec;</span>
                         </div>
                     </div>
 

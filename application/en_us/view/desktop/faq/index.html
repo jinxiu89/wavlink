@@ -36,9 +36,13 @@
                         <span>{:lang('filter by')} : </span>
                         <div class="select">
                             <select name="category" class="filter_by">
-                                <option value="">{:lang('All Category')}</option>
+                                <option value="all">{:lang('All Category')}</option>
                                 {volist name="cate" id="vo"}
-                                <option value="{$vo.url_title}" {if condition='$name eq $vo.name' }selected{/if}>{$vo.name}</option>
+                                {if($vo.level == 1)}
+                                <option value="{$vo.url_title}" style="display: none" {if condition='$name eq $vo.name' }selected{/if}>{$vo.delimiter|raw}{$vo.name}</option>
+                                {else /}
+                                <option value="{$vo.url_title}" {if condition='$name eq $vo.name' }selected{/if}>{$vo.delimiter|raw}{$vo.name}</option>
+                                {/if}
                                 {/volist}
                             </select>
                         </div>

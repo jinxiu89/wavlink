@@ -26,7 +26,7 @@ class Faq extends Base
     {
         parent::__construct($app);
         try {
-            $cate = ServiceCategory::getSecondCategory($this->code);
+            $cate = ServiceCategory::getTree($this->code,'faq');
             $this->assign('cate', $cate);
         } catch (DataNotFoundException $e) {
         } catch (ModelNotFoundException $e) {
@@ -60,6 +60,9 @@ class Faq extends Base
     {
         if (empty($url_title) || !isset($url_title)) {
             abort(404);
+        }
+        if($url_title == 'all'){
+            return redirect(url('/'.$this->code.'/faq'),[],200);
         }
         //获取选择的faq子分类信息
         $parent = ServiceCategory::getCategoryIdByName($this->code, $url_title);

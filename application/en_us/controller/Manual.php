@@ -30,7 +30,7 @@ class Manual extends Base
     {
         parent::__construct($app);
         try {
-            $cate = ServiceCategory::getSecondCategory($this->code);
+            $cate = ServiceCategory::getTree($this->code,'Manual');
             $this->assign('cate', $cate);
         } catch (DataNotFoundException $e) {
         } catch (ModelNotFoundException $e) {
@@ -85,6 +85,9 @@ class Manual extends Base
     {
         if (empty($category) || !isset($category)) {
             abort(404);//直接报404 不存在的意思
+        }
+        if($category == 'all'){
+            return redirect(url('/'.$this->code.'/manuals/index'),[],200);
         }
         $parent = ServiceCategory::getCategoryIdByName($this->code, $category);//Wirless这个分类的数据 array('id'=>52,'name'=>'wirless'
         $nav = ServiceCategory::getNavByCategoryId($this->code, $category);

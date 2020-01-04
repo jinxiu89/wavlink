@@ -24,9 +24,9 @@
 					<option value="">--请选择--</option>
                     {volist name="categorys" id="vo"}
 					{if($video.category_id == $vo.id)}
-                    <option value="{$vo.id}" selected="selected">{$vo.delimiter}{$vo.name}</option>
+                    <option value="{$vo.id}" selected="selected">{$vo.delimiter|raw}{$vo.name}</option>
                     {else /}
-                    <option value="{$vo.id}">{$vo.delimiter}{$vo.name}</option>
+                    <option value="{$vo.id}">{$vo.delimiter|raw}{$vo.name}</option>
                     {/if}
                     {/volist}
 				</select>

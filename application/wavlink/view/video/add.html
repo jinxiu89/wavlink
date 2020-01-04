@@ -21,7 +21,7 @@
 				<select name="category_id" class="select">
 					<option value="">--请选择--</option>
                     {volist name="categorys" id="vo"}
-					<option value="{$vo.id}">{$vo.delimiter}{$vo.name}</option>
+					<option value="{$vo.id}">{$vo.delimiter|raw}{$vo.name}</option>
                     {/volist}
 				</select>
 				</span>

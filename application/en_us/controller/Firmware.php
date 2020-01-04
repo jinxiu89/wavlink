@@ -1,13 +1,21 @@
 <?php
-
-
+/**
+ * Created by PhpStorm.
+ * User: jinxiu89
+ * Date: 2019/7/20
+ * Time: 16:39
+ */
 namespace app\en_us\controller;
 
 
+use app\common\model\ServiceCategory;
 use think\App;
 use app\common\model\Firmware as model;
 use app\en_us\validate\Firmware as validate;
+use think\db\exception\DataNotFoundException;
+use think\db\exception\ModelNotFoundException;
 use think\Exception;
+use think\exception\DbException;
 
 /**
  * Class Firmware
@@ -23,6 +31,13 @@ class Firmware extends Base
         parent::__construct($app);
         $this->model = new model();
         $this->validate = new validate();
+        try {
+            $cate = ServiceCategory::getTree($this->code,'Firmware');
+            $this->assign('cate', $cate);
+        } catch (DataNotFoundException $e) {
+        } catch (ModelNotFoundException $e) {
+        } catch (DbException $e) {
+        }
     }
 
     /***

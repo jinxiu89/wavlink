@@ -68,6 +68,9 @@ class  Video extends Base
         if (empty($url_title) && !isset($url_title)) {
             abort(404);
         }
+        if ($url_title == 'all') {
+            return redirect(url('/' . $this->code . '/video'), [], 200);
+        }
         $parent = ServiceCategoryModel::getCategoryIdByName($this->code, $url_title);
         $field = 'id,name,url_title,image,urlabroad,urlchina';
         if ($parent['has_child']) {

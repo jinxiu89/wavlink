@@ -37,7 +37,7 @@ class Drivers extends Base
     {
         parent::__construct($app);
         try {
-            $cate = ServiceCategoryModel::getSecondCategory($this->code);
+            $cate = ServiceCategoryModel::getTree($this->code,'Drivers');
             $this->assign('cate', $cate);
         } catch (DataNotFoundException $e) {
         } catch (ModelNotFoundException $e) {
@@ -60,7 +60,7 @@ class Drivers extends Base
     public function index($order = 'desc')
     {
         //获取Drivers分类信息
-        $parent = ServiceCategoryModel::getTopCategory($this->code, 'drivers');
+        $parent = ServiceCategoryModel::getTopCategory($this->code, 'Drivers');
         //获取所有驱动下载列表
         $result = (new DriversModel())->getDriversByCategoryId($this->code, '', $order);
         return $this->fetch($this->template . '/drivers/index.html', [
@@ -78,7 +78,7 @@ class Drivers extends Base
     /**
      * @param string $category
      * @param $order
-     * @return View
+     * @return \think\response\Redirect|View
      * @throws DataNotFoundException
      * @throws DbException
      * @throws ModelNotFoundException
@@ -88,6 +88,9 @@ class Drivers extends Base
     {
         if (empty($category) || !isset($category)) {
             abort(404);
+        }
+        if($category == 'all'){
+            return redirect(url('/'.$this->code.'/drivers'),[],200);
         }
         //获取选择的子分类信息
         $parent = ServiceCategoryModel::getCategoryIdByName($this->code, $category);

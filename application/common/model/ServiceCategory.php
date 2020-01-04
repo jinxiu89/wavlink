@@ -166,7 +166,7 @@ Class ServiceCategory extends BaseModel
             ->field('id,name,url_title,parent_id,path,level,listorder')
             ->order(['listorder' => 'desc'])->select()->toArray();
         $data[] = $parent;
-        return Helper::toLevel($data, '&nbsp;&nbsp;', $parent = 0);
+        return Helper::toLevel($data, '&nbsp;', $parent = 0);
     }
 
     /**

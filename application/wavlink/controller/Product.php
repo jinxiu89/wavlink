@@ -11,9 +11,12 @@ namespace app\wavlink\controller;
 
 use app\common\model\Product as ProductModel;
 use app\common\model\Category as CategoryModel;
+use app\common\model\ShopLink;
 use app\wavlink\validate\ListorderValidate;
+use think\Exception;
 use think\Facade\Request;
 use app\wavlink\validate\Product as ProductValidate;
+use app\wavlink\validate\ShopUrl as ShopUrlValidate;
 use think\paginator\driver\Bootstrap;
 
 /***
@@ -40,7 +43,7 @@ Class Product extends BaseAdmin
         $category = (new CategoryModel())->getAllCategory($this->currentLanguage['id']);
         if (!empty($data) and !empty($data['category_id'])) {//当选择分类时
             try {
-                $response = (new ProductModel())->getDataByCategory($data['category_id'],$this->currentLanguage['id']);
+                $response = (new ProductModel())->getDataByCategory($data['category_id'], $this->currentLanguage['id']);
                 $result = array_unique($response, SORT_REGULAR);//去重
                 $count = count($result);//计数
                 $pages = input('page', 1);//有分页的情况下拿分页
@@ -60,7 +63,7 @@ Class Product extends BaseAdmin
             $this->assign('product', $response['data']);
             $this->assign('counts', $response['count']);
             $this->assign('page', $page);
-            $this->assign('name',$data['name']);
+            $this->assign('name', $data['name']);
             $this->assign('category_id', '');
         } else { //什么都不选时
             $product = ProductModel::getDataByStatus(1, $this->currentLanguage['id']);
@@ -136,6 +139,13 @@ Class Product extends BaseAdmin
         }
     }
 
+    /**
+     * @param int $id
+     * @return mixed
+     * 产品编辑
+     * 注意点： $this->currentLanguage['id'] 是全局的语言，在base控制器中有设置，并且在登录的时候 这个值就被写入cookie 供后台使用
+     *
+     */
     public function product_edit($id = 0)
     {
         $id = $this->MustBePositiveInteger($id);
@@ -150,6 +160,108 @@ Class Product extends BaseAdmin
             'product' => $product,
             'cateID' => $cateID,
         ]);
+    }
+
+    /**
+     *
+     * @return mixed/
+     * 查询该产品有多少个销售地址
+     * product_id 是唯一条件，并且必须存在
+     */
+    public function shop_link()
+    {
+        if ($this->request->isGet()) {
+            $product_id = $this->request->param('product_id', '', 'trim,intval');
+            try {
+                $query = ShopLink::where('product_id', '=', $product_id);
+                $data = $query->field('id,name,url,price,create_time,update_time')->select();
+                $count = $query->count();
+                $this->assign('data', $data);
+                $this->assign('count', $count);
+            } catch (Exception $exception) {
+
+            }
+            $this->assign('product_id', $product_id);
+            return $this->fetch();
+        }
+    }
+
+    /**
+     *
+     */
+    public function add_shop_url()
+    {
+        if ($this->request->isGet()) {
+            $product_id = $this->request->param('product_id', '', 'trim,intval');
+            return $this->fetch('', ['product_id' => $product_id]);
+        }
+    }
+
+    /**
+     *
+     */
+    public function edit_shop_url()
+    {
+        if ($this->request->isGet()) {
+            $id = $this->request->param('id', '', 'trim,intval');
+            try {
+                $data = ShopLink::get($id);
+                $this->assign('data', $data);
+            } catch (Exception $exception) {
+
+            }
+            return $this->fetch();
+        }
+    }
+
+    public function del_shop_url()
+    {
+        if ($this->request->isPost()) {
+            $id = $this->request->param('id', '', 'trim,intval');
+            try {
+                $result = ShopLink::where(['id' => $id])->delete();
+                if ($result) {
+                    return show(1, '', '', '', '', '删除成功');
+                }
+                return show(0, '', '', '', '', '删除失败');
+            } catch (Exception $exception) {
+                return show(0, '', '', '', '', $exception->getMessage());
+            }
+        }
+    }
+
+    public function save_shop_url()
+    {
+        if ($this->request->isPost()) {
+            $data = input('post.');
+            $validate = new ShopUrlValidate();
+            if (isset($data['id']) || !empty($data['id'])) {
+                //更新操作
+                if ($validate->scene('edit')->check($data)) {
+                    try {
+                        if ((new ShopLink())->allowField(true)->save($data, ['id' => $data['id']])) return show(1, '', '', '', '', '更新成功');
+                        return show(0, '', '', '', '', '添加失败');
+                    } catch (Exception $exception) {
+                        return show(0, '', '', '', '', $exception->getMessage());
+                    }
+                } else {
+                    return show(0, '', '', '', '', $validate->getError());
+                }
+
+            } else {
+                //add操作
+                if ($validate->scene('add')->check($data)) {
+                    try {
+                        if ((new ShopLink())->allowField(true)->save($data)) return show(1, '', '', '', '', '添加成功');
+                        return show(0, '', '', '', '', '添加失败');
+                    } catch (Exception $exception) {
+                        return show(0, '', '', '', '', $exception->getMessage());
+                    }
+                } else {
+                    return show(0, '', '', '', '', $validate->getError());
+                }
+            }
+        }
     }
 
     /**

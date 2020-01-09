@@ -12,7 +12,7 @@ Route::group(Config::get('__BACKEND__'), function () {
     /**
      * 清理缓存
      */
-    Route::get('/clean','Wavlink/Admin/clean');
+    Route::get('/clean', 'Wavlink/Admin/clean');
     /***
      * 内容管理模块路由
      */
@@ -39,10 +39,19 @@ Route::group(Config::get('__BACKEND__'), function () {
     Route::get('/product/add', 'wavlink/product/add');
     Route::get('/product/product_edit', 'wavlink/product/product_edit', [], ['id' => '\d+']);
     Route::get('/product/product_recycle', 'wavlink/product/product_recycle');
+    //产品的购买链接
+    Route::get('/product/shop_link/add', 'wavlink/product/add_shop_url', [], ['product_id' => '\d+']);
+    Route::get('/product/shop_link/edit', 'wavlink/product/edit_shop_url', [], ['id' => '\d+']);
+    Route::post('/product/shop_link/del', 'wavlink/product/del_shop_url', [], ['id' => '\d+']);
+    Route::post('/product/shop_link/save', 'wavlink/product/save_shop_url');
+    Route::get('/product/shop_link', 'wavlink/product/shop_link', [], ['product_id' => '\d+']);
+
+
     //营销管理
     Route::get('/marketing/index', 'wavlink/marketing/index');
     Route::get('/marketing/add', 'wavlink/Marketing/add');
     Route::get('/marketing/edit', 'wavlink/Marketing/edit', [], ['id' => '\d+']);
+
     /***
      * 系统管理模块路由
      *
@@ -154,11 +163,11 @@ Route::group(Config::get('__BACKEND__'), function () {
     Route::get('old_sn/index', 'wavlink/OldSn/index');
     Route::get('old_sn/add', 'wavlink/OldSn/add');
     //搜索索引管理
-    Route::get('search/index','wavlink/Search/index');
-    Route::get('search/createProduct','wavlink/search/createProduct');
-    Route::get('search/createDriver','wavlink/search/createDriver');
-    Route::get('search/createIndex','wavlink/search/createIndex');
-    Route::get('search/getProduct','wavlink/search/searchProduct');
+    Route::get('search/index', 'wavlink/Search/index');
+    Route::get('search/createProduct', 'wavlink/search/createProduct');
+    Route::get('search/createDriver', 'wavlink/search/createDriver');
+    Route::get('search/createIndex', 'wavlink/search/createIndex');
+    Route::get('search/getProduct', 'wavlink/search/searchProduct');
     Route::get('/', 'wavlink/index/index');
 });
 

@@ -147,7 +147,7 @@ Class ServiceCategory extends BaseModel
         $data = ['status' => 1, 'parent_id' => $parent['id']];
         $order = ['listorder' => 'desc', 'id' => 'desc'];
         return (new ServiceCategory)->where($data)->order($order)
-            ->field('id,name,image,description,keywords,language_id,url_title,seo_title')->select();
+            ->field('id,name,description,keywords,language_id,url_title,seo_title')->select();
     }
 
     /**

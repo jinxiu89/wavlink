@@ -26,6 +26,9 @@ Class Drivers extends BaseAdmin
 {
     /***
      * @return mixed|View
+     * @throws DbException
+     * @throws \think\db\exception\DataNotFoundException
+     * @throws \think\db\exception\ModelNotFoundException
      */
     public function index()
     {

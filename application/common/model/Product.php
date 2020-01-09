@@ -20,6 +20,7 @@ use think\db\exception\DataNotFoundException;
 use think\db\exception\ModelNotFoundException;
 use think\exception\DbException;
 use think\facade\Cache;
+use think\model\relation\HasMany;
 
 /**
  * Class Product
@@ -34,6 +35,14 @@ Class Product extends BaseModel
     public function categorys()
     {
         return $this->belongsToMany('Category');
+    }
+
+    /**
+     * @return HasMany
+     * 产品销售连接：一个产品可以有多个连接
+     */
+    public function links(){
+        return $this->hasMany('ShopLink','product_id','id')->field('id,name,url,price');
     }
 
     //获取中间表数据,得到产品所属分类id
@@ -142,11 +151,14 @@ Class Product extends BaseModel
             }
             $child_id[] = $category['id'];
             return Db::table('product_category')->alias('category')->whereOr('category.category_id', 'in', $child_id)
-                ->join('product', ['product.id=category.product_id', 'product.status=1', 'product.language_id='.$language_id])->field('id,image_litpic_url,name,model,listorder,create_time,language_id')->select();
+                ->join('product', ['product.id=category.product_id', 'product.status=1', 'product.language_id='.$language_id])
+                ->field('id,image_litpic_url,name,model,listorder,create_time,language_id')->select();
         } else {
             //todo::其他的操作
             return Db::table('product_category')->alias('category')->whereOr('category.category_id', '=', $category_id)
-                ->join('product', ['product.id=category.product_id', 'product.status=1','product.language_id='.$language_id])->field('id,image_litpic_url,name,model,listorder,create_time,language_id')->select();
+                ->join('product', ['product.id=category.product_id', 'product.status=1','product.language_id='.$language_id])
+                ->field('id,image_litpic_url,name,model,listorder,create_time,language_id')
+                ->select();
         }
     }
 
@@ -282,7 +294,7 @@ Class Product extends BaseModel
             $allProduct = Cache::get('allProductByCode' . $code);
         } else {
             $language_id = LanguageModel::getLanguageCodeOrID($code);
-            $product = $this::order("category_id desc")->all([
+            $product = $this::with('shopLinks')->order("category_id desc")->all([
                 'language_id' => $language_id,
                 'status' => 1
             ]);

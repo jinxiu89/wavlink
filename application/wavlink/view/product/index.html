@@ -52,7 +52,7 @@
                         <th width="200">所属分类</th>
                         <th width="60">排序</th>
                         <th width="80">加入时间</th>
-                        <th width="250">操作</th>
+                        <th width="300">操作</th>
                     </tr>
                     </thead>
                     <tbody>
@@ -71,8 +71,11 @@
                         <td class="td-manage">
                             <a title="编辑" href="javascript:;"
                                onclick="index_edit('产品编辑','{:url(\'product/product_edit\',[\'id\'=>$vo.id])}')"
+                               class="ml-5 btn btn-primary" style="text-decoration:none"><i class="Hui-iconfont" style="color: #fff">&#xe6df;</i></a>
+                            <a title="查看允许销售的站点" href="javascript:;"
+                               onclick="add('查看允许销售的在线店铺','{:url(\'product/shop_link\',[\'product_id\'=>$vo.id])}',800,680)"
                                class="ml-5 btn btn-primary" style="text-decoration:none"><i class="Hui-iconfont"
-                                                                                            style="color: #fff">&#xe6df;</i></a>
+                                                                                            style="color: #fff">&#xe66a;</i></a>
                             <a title="放入回收站" href="javascript:;"
                                onclick="recycle('{:url(\'product/byStatus\',[\'id\'=>$vo.id,\'status\'=> -1])}')"
                                class="ml-5 btn btn-danger" style="text-decoration:none"><i

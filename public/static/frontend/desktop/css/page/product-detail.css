@@ -69,6 +69,26 @@
   list-style-type: circle;
   padding: 2px 0;
 }
+.feature-box .des .store {
+  margin: 20px 0;
+}
+.feature-box .des .store span {
+  display: inline-block;
+  width: 220px;
+  height: 36px;
+  line-height: 36px;
+  margin: 0 18px 18px 0;
+  text-align: center;
+  border: 1px solid #f8b300;
+}
+.feature-box .des .store span a {
+  display: block;
+  color: #333;
+}
+.feature-box .des .store span a:hover {
+  background: #f8b300;
+  color: #fff;
+}
 .feature-box .container {
   width: 70%;
 }

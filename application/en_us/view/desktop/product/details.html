@@ -60,9 +60,11 @@
                         </ul>
                     </div>
                     <div class="store">
-                        <span><a href="#">天猫购买</a></span>
-                        <span><a href="#">京东购买</a></span>
-                        <span><a href="#">苏宁购买</a></span>
+                        {notempty name="link"}
+                        {volist name="link" id="vo"}
+                        <span><a href="{$vo.url}">{$vo.name}:{$vo.price}</a></span>
+                        {/volist}
+                        {/notempty}
                     </div>
                 </div>
             </div>

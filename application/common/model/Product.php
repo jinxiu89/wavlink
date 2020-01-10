@@ -294,7 +294,7 @@ Class Product extends BaseModel
             $allProduct = Cache::get('allProductByCode' . $code);
         } else {
             $language_id = LanguageModel::getLanguageCodeOrID($code);
-            $product = $this::with('shopLinks')->order("category_id desc")->all([
+            $product = $this::order("category_id desc")->all([
                 'language_id' => $language_id,
                 'status' => 1
             ]);

@@ -6,6 +6,10 @@ use app\common\helper\Category;
 use app\common\model\Category as CategoryModel;
 use app\common\model\Product as ProductModel;
 
+/**
+ * Class Product
+ * @package app\en_us\controller
+ */
 class Product extends Base
 {
 
@@ -23,11 +27,9 @@ class Product extends Base
         if ($system['cache']) {
             $result = (new ProductModel())->binarySearchProduct($product, $this->code);
         } else {
-//            $result = ProductModel::getDetailsByUrlTitle($product, $this->code);
             $result = ProductModel::where(['url_title' => $product, 'status' => 1])->find();
         }
         $link = $result->links;
-        print_r($link);
         if (!empty($result)) {
             if (!empty($result['album'])) {
                 //产品详情页放大镜的图

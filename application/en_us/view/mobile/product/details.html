@@ -57,6 +57,13 @@
                         {$result.features|raw}
                     </ul>
                 </div>
+                <div class="store">
+                    {notempty name="link"}
+                    {volist name="link" id="vo"}
+                    <span><a href="{$vo.url}">{$vo.name}:{$vo.price}</a></span>
+                    {/volist}
+                    {/notempty}
+                </div>
             </div>
         </div>
         {else /}

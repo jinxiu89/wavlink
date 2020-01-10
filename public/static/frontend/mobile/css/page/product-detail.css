@@ -13,7 +13,7 @@
   border-bottom: 1px solid #eaeaea;
 }
 .feature-box {
-  padding: 0 15px 40px;
+  padding: 0 15px;
   background: #fff;
 }
 .feature-boxbefore,
@@ -45,7 +45,7 @@
   color: #333;
 }
 .feature-box .des {
-  margin-top: 20px;
+  margin: 20px 0;
 }
 .feature-box .des .title {
   font-size: 18px;
@@ -62,6 +62,25 @@
 .feature-box .des .feature li {
   list-style-type: circle;
   padding: 2px 0;
+}
+.feature-box .des .store {
+  margin: 20px 0 0;
+}
+.feature-box .des .store span {
+  display: inline-block;
+  width: 220px;
+  height: 36px;
+  line-height: 36px;
+  margin: 0 0 10px 0;
+  text-align: center;
+  border: 1px solid #f8b300;
+}
+.feature-box .des .store span:nth-last-of-type(1) {
+  margin-bottom: 0;
+}
+.feature-box .des .store span a {
+  display: block;
+  color: #333;
 }
 .poster-box img {
   display: block;

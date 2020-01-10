@@ -15,7 +15,7 @@
 //放大鏡 + 特色描述
 .feature-box {
     .clearFix();
-    padding: 0 15px 40px;
+    padding: 0 15px;
     background: @whiteColor;
     .zoom-box {
         .clearFix();
@@ -31,7 +31,7 @@
         }
     }
     .des {
-        margin-top: 20px;
+        margin: 20px 0;
         .title {
             font-size: 18px;
         }
@@ -47,6 +47,25 @@
         .feature li {
             list-style-type: circle;
             padding: 2px 0;
+        }
+        .store {
+            margin: 20px 0 0;
+        }
+        .store span {
+            display: inline-block;
+            width: 220px;
+            height: 36px;
+            line-height: 36px;
+            margin: 0 0 10px 0;
+            text-align: center;
+            border: 1px solid @activeColor;
+        }
+        .store span:nth-last-of-type(1) {
+            margin-bottom: 0;
+        }
+        .store span a {
+            display: block;
+            color: @baseColor;
         }
     }
 }

@@ -317,7 +317,7 @@ function getDownload($id)
     $list = $data->downloads;
     $arr = array();
     foreach ($list as $v) {
-        $arr[] = "<a title=\"编辑\" href=\"javascript:;\" onclick=\"index_edit('更新','/wavlink/manual/edit_download?id=" . $v['id'] . "&manual_id=" . $v['manual_id'] . "')\" class=\"ml-5 btn btn-primary\" style=\"text-decoration:none;margin-bottom: 5px;position: relative\">" . $v['language'] . "</a>";
+        $arr[] = "<a title=\"编辑\" href=\"javascript:;\" onclick=\"add('更新','/wavlink/manual/edit_download?id=" . $v['id'] . "&manual_id=" . $v['manual_id'] . "',800,480)\" class=\"ml-5 btn btn-primary\" style=\"text-decoration:none;margin-bottom: 5px;position: relative\">" . $v['language'] . "</a>";
     }
     return implode('', $arr);
 }

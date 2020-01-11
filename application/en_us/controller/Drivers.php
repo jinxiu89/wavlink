@@ -37,7 +37,7 @@ class Drivers extends Base
     {
         parent::__construct($app);
         try {
-            $cate = ServiceCategoryModel::getTree($this->code,'Drivers');
+            $cate = ServiceCategoryModel::getTree($this->code, 'Drivers');
             $this->assign('cate', $cate);
         } catch (DataNotFoundException $e) {
         } catch (ModelNotFoundException $e) {
@@ -89,8 +89,8 @@ class Drivers extends Base
         if (empty($category) || !isset($category)) {
             abort(404);
         }
-        if($category == 'all'){
-            return redirect(url('/'.$this->code.'/drivers'),[],200);
+        if ($category == 'all') {
+            return redirect(url('/' . $this->code . '/drivers',['order'=>$order]), [], 200);
         }
         //获取选择的子分类信息
         $parent = ServiceCategoryModel::getCategoryIdByName($this->code, $category);

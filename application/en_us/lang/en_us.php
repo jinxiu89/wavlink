@@ -96,7 +96,7 @@ return [
         If you have any questions about this, please feel free to contact us at any time. Our live chat tool is available for you.',
     'Submit' => 'SUBMIT',
     'Reset' => 'RESET',
-    'Guest Notice' => 'If you don’t know your product’s model, please refer to:<a href="#">HOW连接稳定后替换标准文案和地址</a>',
+    'Guest Notice' => 'If you don’t know your product’s model, please refer to:<a href="/en_us/faq/details/how_to_view_wavlink_product_model.html">How to view Wavlink product model</a>',
     'Company' => 'Company',
     'Contact Us' => 'Contact Us',
     'Join Us' => 'Join Us',

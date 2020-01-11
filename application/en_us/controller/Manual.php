@@ -87,7 +87,7 @@ class Manual extends Base
             abort(404);//直接报404 不存在的意思
         }
         if($category == 'all'){
-            return redirect(url('/'.$this->code.'/manuals/index'),[],200);
+            return redirect(url('/'.$this->code.'/manuals/index',['order'=>$order]),[],200);
         }
         $parent = ServiceCategory::getCategoryIdByName($this->code, $category);//Wirless这个分类的数据 array('id'=>52,'name'=>'wirless'
         $nav = ServiceCategory::getNavByCategoryId($this->code, $category);

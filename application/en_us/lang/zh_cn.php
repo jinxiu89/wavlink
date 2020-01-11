@@ -96,7 +96,8 @@ return [
         '订单编号一般为您购买平台的订单流水编号，如果您有非常高着急的事情，可以通过在线客服平台来与我们联系。我们的工作时间是... ',
     'Submit' => '提交',
     'Reset' => '重设',
-    'Guest Notice' => 'If you don’t know your product’s model, please refer to:<a href="#">HOW连接稳定后替换标准文案和地址</a>',
+    'Guest Notice' => '如果您找不到产品型号，请访问<a href="/zh_cn/faq/details/how_to_check_the_product_model.html">如何查看睿因产品型号？
+        </a> 还可以在工作时间内直接拨打4000780755售后服务电话获取帮助',
     'Company' => '公司介绍',
     'Contact Us' => '联系我们',
     'Join Us' => '工作机会',

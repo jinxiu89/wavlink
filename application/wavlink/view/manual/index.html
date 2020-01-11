@@ -21,7 +21,7 @@
             </form>
             <div class="cl pd-5 bg-1 bk-gray mt-20" style="line-height: 31px">
                 <span class="l">
-                    <a class="btn btn-primary radius" onclick="index_add('添加','{:url(\'Manual/add\')}')"
+                    <a class="btn btn-primary radius" onclick="add('添加','{:url(\'Manual/add\')}',800,600)"
                        href="javascript:;"><i class="Hui-iconfont">&#xe600;</i> 添加</a>
                 </span>
                 <span class="r">共有数据：<strong>{$count}</strong> 条</span>
@@ -35,7 +35,7 @@
                     <th width="40">ID</th>
                     <th>型号</th>
                     <th>可下载的语种</th>
-                    <th width="80">分类</th>
+                    <th width="100">分类</th>
                     <th width="60">所属语言</th>
                     <th width="30">排序</th>
                     <th width="75">创建时间</th>
@@ -56,11 +56,11 @@
                     <td class="td-status text-c"><span class="label label-success radius">已启用</span></td>
                     <td class="td-manage">
                         <a title="编辑" href="javascript:;"
-                           onclick="index_edit('更新','{:url(\'Manual/edit\',[\'id\'=>$vo.id])}')"
+                           onclick="add('更新','{:url(\'Manual/edit\',[\'id\'=>$vo.id])}',800,600)"
                            class="ml-5 btn btn-primary" style="text-decoration:none"><i class="Hui-iconfont"
                                                                                         style="font-size: 18px;color: #fff">&#xe6df;</i></a>
                         <a title="添加下载" href="javascript:;"
-                           onclick="index_add('添加下载项','{:url(\'Manual/add_download\',[\'id\'=>$vo.id,\'status\'=>-1])}')"
+                           onclick="add('添加下载项','{:url(\'Manual/add_download\',[\'id\'=>$vo.id,\'status\'=>-1])}',800,480)"
                            class="ml-5 btn btn-secondary" style="text-decoration:none"><i class="Hui-iconfont"
                                                                                           style="font-size: 18px;color: #fff">&#xe600;</i></a>
                         <a title="放入回收站" href="javascript:;"

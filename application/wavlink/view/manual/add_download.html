@@ -4,7 +4,7 @@
     <form class="form form-horizontal" id="form-product-add" method="post" action="">
         <div class="row cl">
             <label class="form-label col-xs-4 col-sm-2"><span class="c-red">*</span>所属：</label>
-            <div class="formControls col-xs-4 col-sm-2">
+            <div class="formControls col-xs-4 col-sm-9">
                 <input type="text" class="input-text" value="{$id|getManualName}" placeholder="" id="manual" disabled>
                 <input type="hidden" class="input-text" value="{$id}" placeholder=""  name="manual_id">
             </div>
@@ -29,13 +29,13 @@
         </div>
         <div class="row cl">
             <label class="form-label col-xs-4 col-sm-2"><span class="c-red">*</span>下载链接：</label>
-            <div class="formControls col-xs-4 col-sm-6">
+            <div class="formControls col-xs-4 col-sm-9">
                 <input type="text" class="input-text" value="" placeholder="https://cloud.wavlink.com/..." id="url" name="url">
             </div>
         </div>
         <div class="row cl">
             <label class="form-label col-xs-4 col-sm-2"><span class="c-red">*</span>描述：</label>
-            <div class="formControls col-xs-8 col-sm-6">
+            <div class="formControls col-xs-8 col-sm-9">
                 <textarea name="description" cols="" rows="" class="textarea" placeholder="下载连接描述" dragonfly="true" ></textarea>
             </div>
         </div>

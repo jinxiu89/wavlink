@@ -9,7 +9,6 @@
 <!--私有样式文件-->
 <link rel="stylesheet" href="__LIB__/JQZoom/product-magnifier.css">
 <link rel="stylesheet" href="__DESKTOP__/css/page/product-detail.css">
-
 {/block}
 {block name="swiper"}
 <div class="container-fluid">
@@ -62,7 +61,7 @@
                     <div class="store">
                         {notempty name="link"}
                         {volist name="link" id="vo"}
-                        <span><a href="{$vo.url}">{$vo.name}:{$vo.price}</a></span>
+                        <span><a href="{$vo.url}" target="_blank">{$vo.name}</a></span>
                         {/volist}
                         {/notempty}
                     </div>
@@ -97,8 +96,6 @@
         {$result.specifications|raw}
     </div>
 </div>
-
-
 <div id="go-top">
     <p>{:lang('Top')}</p>
     <ul>
@@ -113,13 +110,13 @@
 {/block}
 {block name="javascript"}
 <script src="__LIB__/JQZoom/jquery.jqzoom.js"></script>
+<script src="__LIB__/Swiper/swiper.min.js"></script>
 <!--私有JS-->
 <script>
     $(function () {
         $('#product').addClass('active');
     });
 </script>
-
 <script>
     //放大鏡模塊左右切換
     var prev = $("a.prev"),

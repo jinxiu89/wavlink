@@ -24,7 +24,24 @@
     <div class="row">
         <div class="main">
             <div class="g-filter">
-                <div class="des"><span>{:lang('list or video')}</span></div>
+                <!--<div class="des"><span>{:lang('list or video')}</span></div>-->
+                <div class="filter">
+                    <span>{:lang('filter by')} : </span>
+                    <div class="select">
+                        <select name="category" class="filter_by">
+                            <option value="all">{:lang('All Category')}</option>
+                            {volist name="cate" id="vo"}
+                            {if($vo.level == 1)}
+                            <option value="{$vo.url_title}" style="display: none" {if condition='$name eq $vo.name' }selected{/if}>{$vo.delimiter|raw}{$vo.name}</option>
+                            {elseif($vo.level == 2)}
+                            <option value="{$vo.url_title}" {if condition='$name eq $vo.name' }selected{/if}>{$vo.name}</option>
+                            {else /}
+                            <option value="{$vo.url_title}" {if condition='$name eq $vo.name' }selected{/if}>{$vo.delimiter|raw}{$vo.name}</option>
+                            {/if}
+                            {/volist}
+                        </select>
+                    </div>
+                </div>
                 <div class="result">
                     <span>{:lang('result')}{$count}</span>
                 </div>
@@ -60,15 +77,10 @@
 {block name="javascript"}
 <script>
     // 筛选变化时 过滤
+    // 筛选变化时 过滤
     $('.filter_by').change(function () {
         var filter_by = $(this).children('option:selected').val();
-        var order_by = $('.order_by').children('option:selected').val();
-        window.location.href = '/{$code}/drivers/' + filter_by + '.html?order=' + order_by
-    });
-    $('.order_by').change(function () {
-        var filter_by = $('.filter_by').children('option:selected').val();
-        var order_by = $(this).children('option:selected').val();
-        window.location.href = '/{$code}/drivers/' + filter_by + '.html?order=' + order_by
+        window.location.href = '/{$code}/video/category/' + filter_by + '.html'
     });
 </script>
 {/block}

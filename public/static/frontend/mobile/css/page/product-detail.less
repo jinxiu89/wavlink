@@ -49,23 +49,27 @@
             padding: 2px 0;
         }
         .store {
-            margin: 20px 0 0;
+            .clearFix();
+            margin: 20px 0 -10px;
         }
         .store span {
-            display: inline-block;
-            width: 220px;
+            .fl();
+            width: 50%;
             height: 36px;
             line-height: 36px;
             margin: 0 0 10px 0;
-            text-align: center;
-            border: 1px solid @activeColor;
         }
-        .store span:nth-last-of-type(1) {
-            margin-bottom: 0;
+        .store span:nth-of-type(2n + 1) {
+            padding-right: 5px;
+        }
+        .store span:nth-of-type(2n + 2) {
+            padding-left: 5px;
         }
         .store span a {
             display: block;
             color: @baseColor;
+            text-align: center;
+            border: 1px solid @activeColor;
         }
     }
 }
@@ -87,7 +91,7 @@
         padding: 5px 10px;
         li {
             .fl();
-            padding: 10px;
+            padding: 5px 10px;
             cursor: pointer;
             a {
                 color: @activeColor;

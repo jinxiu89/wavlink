@@ -48,11 +48,10 @@ Class Article extends BaseAdmin
 
     public function add()
     {
-        $language_id = input('get.language_id', '', 'intval');
-        $categorys = ServiceCategoryModel::getSecondCategory($language_id,'document');
+        $categorys = ServiceCategoryModel::getSecondCategory($this->currentLanguage['id']);
         return $this->fetch('', [
             'categorys' => $categorys,
-            'language_id' => $language_id
+            'language_id' => $this->currentLanguage['id']
         ]);
     }
 

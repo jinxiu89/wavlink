@@ -51,9 +51,12 @@ class Search extends Base
     {
         if (Request::isGet()) {
             $search = input('key', '', 'htmlspecialchars');
+            if(empty($search) && $search==0){
+                abort(404);
+            }
             $keywords = array_filter(explode(' ', $search));
             foreach ($keywords as &$keyword) {
-                $keyword = '%' . $keyword . "%";
+                $keyword = "%" . $keyword . "%";
             }
             $type = input('type', 'product', 'htmlspecialchars');
             $product_query = Db::table('product')
@@ -63,8 +66,8 @@ class Search extends Base
             $driver_query=Db::table('drivers')
                 ->where('name|url_title|keywords|descrip','like',$keywords)
                 ->where('language_id','=',$this->language_id)
-                ->field('name,url_title,keywords,descrip,models,size,version_number,update_time,running');
-            $product_total=$product_query->count();//产品计数
+                ->field('name,url_title,keywords,descrip,models,size,version_number,update_time,running,all_link,win_link,mac_link,linux_link');
+            $product_total=$product_query->count(); //产品计数
             $driver_total=$driver_query->count();
             $page_options = ['var_page' => 'page', 'path' => '/' . $this->code . '/search', 'query' => ['key' => $search, 'type' => $type]];
             if ($type == 'product') {

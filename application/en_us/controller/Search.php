@@ -45,54 +45,44 @@ class Search extends Base
 
     /**
      * @return mixed
-     * @throws DataNotFoundException
-     * @throws ModelNotFoundException
      * @throws DbException
      */
     public function results()
     {
         if (Request::isGet()) {
-            $search = input('key', '');
+            $search = input('key', '', 'htmlspecialchars');
             $keywords = array_filter(explode(' ', $search));
-            $type = input('type', 'product');
-            $pages = input('page', 1);
-            $size = 12;//后面加配置里去
-            $this->elSearch->paginate($pages, $size);
-            //产品
-            $product_field = ['keywords', 'name', 'url_title', 'model', 'seo_title', 'description', 'features'];
-            $this->elSearch->keywords($keywords, $product_field);
-            $this->elSearch->Index('products_' . $this->language_id);
-            $products = $this->elSearch->Client()->search($this->elSearch->getParams());
-            //驱动
-            $driver_field = ['name', 'url_title', 'keywords', 'descrip'];
-            $this->elSearch->keywords($keywords, $driver_field);
-            $this->elSearch->Index('drivers_' . $this->language_id);
-            $drivers = $this->elSearch->Client()->search($this->elSearch->getParams());
+            foreach ($keywords as &$keyword) {
+                $keyword = '%' . $keyword . "%";
+            }
+            $type = input('type', 'product', 'htmlspecialchars');
+            $product_query = Db::table('product')
+                ->where('name|seo_title|keywords|description|features', 'like', $keywords)
+                ->where('language_id','=',$this->language_id)
+                ->field('id,keywords,name,url_title,model,seo_title,description,features');
+            $driver_query=Db::table('drivers')
+                ->where('name|url_title|keywords|descrip','like',$keywords)
+                ->where('language_id','=',$this->language_id)
+                ->field('name,url_title,keywords,descrip,models,size,version_number,update_time,running');
+            $product_total=$product_query->count();//产品计数
+            $driver_total=$driver_query->count();
             $page_options = ['var_page' => 'page', 'path' => '/' . $this->code . '/search', 'query' => ['key' => $search, 'type' => $type]];
-
-            $product_total = $products['hits']['total']['value'];
-            $driver_total = $drivers['hits']['total']['value'];
-
             if ($type == 'product') {
-                $product_page = Bootstrap::make($products['hits']['hits'], $size, $pages, $product_total, false, $page_options);
-                $this->assign('products', $products['hits']['hits']);
-                $this->assign('product_page', $product_page);
+                $products = $product_query->order(['listorder'=>'desc','id'=>'desc'])->paginate(10,'',$page_options);
+                $this->assign('product_page',$products->render());
+                $this->assign('products', $products);
             }
             if ($type == 'driver') {
-                $ids = [];
-                foreach ($drivers['hits']['hits'] as $driver) {
-                    $ids[] = $driver['_id'];
-                }
-                $items = Db::table('drivers')->where('id', 'in', $ids)->select();
+                $items=$driver_query->paginate(10,'',$page_options);
                 $data = [];
                 foreach ($items as $item) {
                     $item['modelsGroup'] = explode(',', $item['models']);
                     $data[] = $item;
                 }
-                $driver_page = Bootstrap::make($drivers['hits']['hits'], $size, $pages, $driver_total, false, $page_options);
                 $this->assign('drivers', $data);
-                $this->assign('driver_page', $driver_page);
+                $this->assign('driver_page',$items->render());
             }
+
             $this->assign('type', $type);
             $this->assign('search', $search);
             $this->assign('product_total', $product_total);

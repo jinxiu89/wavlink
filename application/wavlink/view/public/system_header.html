@@ -14,17 +14,6 @@
             </dd>
         </dl>
         {/if}
-        {if condition="in_array('about/index',$access)"}
-        <dl id="menu-about">
-            <dt><i class="Hui-iconfont">&#xe627;</i>关于我们 <i class="Hui-iconfont menu_dropdown-arrow">&#xe6d5;</i>
-            </dt>
-            <dd>
-                <ul>
-                    <li id="system_about"><a href="{:url('About/index')}" title="关于我们">关于我们</a></li>
-                </ul>
-            </dd>
-        </dl>
-        {/if}
         <dl id="menu-setting">
             {if condition="in_array('setting/index',$access)"}
             <dt><i class="Hui-iconfont">&#xe62e;</i> 系统设置<i class="Hui-iconfont menu_dropdown-arrow">&#xe6d5;</i>

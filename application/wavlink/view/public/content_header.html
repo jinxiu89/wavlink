@@ -3,46 +3,14 @@
 <aside class="Hui-aside">
     <div><a href="#"><img src=""></a></div>
     <div class="menu_dropdown bk_2">
-        {if condition="in_array('category/index',$access)"}
-        <dl id="menu-category">
-            <dt><i class="Hui-iconfont">&#xe681;</i> 分类管理<i class="Hui-iconfont menu_dropdown-arrow">&#xe6d5;</i></dt>
-            <dd>
-                <ul>
-                    <li id="product_category">
-                        <a href="{:url('Category/index')}" title="分类管理">分类管理</a>
-                    </li>
-                </ul>
-            </dd>
-        </dl>
-        {/if}
-        {if condition="in_array('featured/index',$access)"}
-        <dl id="menu_featured">
-            <dt><i class="Hui-iconfont">&#xe681;</i> 推荐位管理<i class="Hui-iconfont menu_dropdown-arrow">&#xe6d5;</i></dt>
-            <dd>
-                <ul>
-                    <li id="images_featured"><a href="{:url('featured/index')}" title="添加推荐位">推荐位管理</a></li>
-                </ul>
-            </dd>
-            <!--下面的是三级菜单展开-->
-            <!--<dl id="menu_featured1">-->
-            <!--<dt><i class="Hui-iconfont">&#xe63a;</i> 推荐位管理<i class="Hui-iconfont menu_dropdown-arrow">&#xe6d5;</i></dt>-->
-            <!--<dd>-->
-            <!--<ul>-->
-            <!--<li><a data-href="" data-title="采购管理" href="javascript:void(0)">采购管理</a></li>-->
-            <!--<li><a data-href="" data-title="采购管理" href="javascript:void(0)">采购管理</a></li>-->
-            <!--<li id="images_featured"><a href="{:url('featured/index')}" title="添加推荐位">推荐位管理</a></li>-->
-            <!--</ul>-->
-            <!--</dd>-->
-            <!--</dl>-->
-        </dl>
-        {/if}
         {if condition="in_array('images/index',$access)"}
         <dl id="menu-images">
             <dt><i class="Hui-iconfont">&#xe613;</i> 推荐管理<i class="Hui-iconfont menu_dropdown-arrow">&#xe6d5;</i></dt>
             <dd>
                 <ul>
+                    <li id="images_featured"><a href="{:url('featured/index')}" title="推荐位置">推荐位置</a></li>
                     <li id="images_list"><a href="{:url('images/index')}"
-                                                     title="推荐位产品管理">推荐产品</a></li>
+                                                     title="推荐内容">推荐内容</a></li>
                     <li id="images_recycle"><a href="{:url('images/images_recycle')}" title="回收站">回收站</a></li>
                 </ul>
             </dd>
@@ -53,6 +21,9 @@
             <dt><i class="Hui-iconfont">&#xe620;</i> 产品管理<i class="Hui-iconfont menu_dropdown-arrow">&#xe6d5;</i></dt>
             <dd>
                 <ul>
+                    <li id="product_category">
+                        <a href="{:url('Category/index')}" title="产品分类">产品分类</a>
+                    </li>
                     <li id="product_product">
                         <a class="product_product" href="{:url('product/index')}" title="产品管理">产品管理</a>
                     </li>
@@ -70,7 +41,18 @@
                     <li id="article_art">
                         <a href="{:url('wavlink/Article/index')}" title="文章管理">文章列表</a>
                     </li>
-                    <li id="article_rec"><a href="{:url('wavlink/Article/article_recycle')}" title="回收站内文章">禁用列表</a></li>
+                    <li id="article_rec"><a href="{:url('wavlink/Article/article_recycle')}" title="回收站内文章">回收列表</a></li>
+                </ul>
+            </dd>
+        </dl>
+        {/if}
+        {if condition="in_array('about/index',$access)"}
+        <dl id="menu-about">
+            <dt><i class="Hui-iconfont">&#xe627;</i>关于我们 <i class="Hui-iconfont menu_dropdown-arrow">&#xe6d5;</i>
+            </dt>
+            <dd>
+                <ul>
+                    <li id="system_about"><a href="{:url('About/index')}" title="关于我们">关于我们</a></li>
                 </ul>
             </dd>
         </dl>

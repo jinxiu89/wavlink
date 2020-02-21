@@ -10,11 +10,8 @@ namespace app\wavlink\controller;
 
 use app\common\model\BaseModel;
 use app\common\model\Language as LanguageModel;
-use app\wavlink\validate\Mark;
-use app\wavlink\validate\ParamMustBePositiveInt;
 use Exception;
 use think\App;
-use think\Collection;
 use think\Controller;
 use think\facade\Request;
 use think\facade\Session;
@@ -126,9 +123,6 @@ class BaseAdmin extends Controller
     //置顶，上移，下移，置顶操作。需要的数据 type操作类型，语言id，需要移动的数据id
     public static function order($data, $map2 = '')
     {
-//        if((new Mark())->scene('type')->check())
-//        (new Mark())->goCheck('type');
-//        (new ParamMustBePositiveInt())->goCheck();
         $con = request()->controller();
         $res = BaseModel::listorder($data, $con, $map2);
         $url = $_SERVER['HTTP_REFERER'];
@@ -165,7 +159,6 @@ class BaseAdmin extends Controller
             foreach ($ids as $k => $v) {
                 if (model($con)->get($k)) {
                     model($con)->where('id', $k)->update(['status' => -1]);
-//                    model($con)->where('id', $k)->update(['listorder' => $k+100]);
                 } else {
                     return show('0', 'error', '', '', '', '操作失败');
                 }

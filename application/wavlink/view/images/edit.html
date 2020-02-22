@@ -3,7 +3,7 @@
 <div class="page-container">
     <form class="form form-horizontal" id="form-article-add" method="post" action="">
         <div class="row cl">
-            <label class="form-label col-xs-4 col-sm-2"><span class="c-red">*</span>图片标题：</label>
+            <label class="form-label col-xs-4 col-sm-2"><span class="c-red">*</span>标题：</label>
             <div class="formControls col-xs-8 col-sm-9">
                 <input type="text" class="input-text" value="{$images->title}" placeholder="" id="title" name="title">
             </div>
@@ -14,14 +14,14 @@
                 <input type="text" class="input-text" value="{$images->subtitle}" placeholder="" id="subtitle" name="subtitle">
             </div>
         </div>
-        <div class="row cl">
+        <!--<div class="row cl">
             <label class="form-label col-xs-4 col-sm-2"><span class="c-red">*</span>产品标题：</label>
             <div class="formControls col-xs-8 col-sm-9">
                 <input type="text" class="input-text" value="{$images->product_title}" placeholder="" id="product_title" name="product_title">
             </div>
-        </div>
+        </div>-->
         <div class="row cl">
-            <label class="form-label col-xs-4 col-sm-2"><span class="c-red">*</span>产品型号：</label>
+            <label class="form-label col-xs-4 col-sm-2"><span class="c-red">*</span>按钮标识：</label>
             <div class="formControls col-xs-8 col-sm-9">
                 <input type="text" class="input-text" value="{$images->model}" placeholder="" id="model" name="model">
             </div>
@@ -32,26 +32,26 @@
                 <input type="text" class="input-text" value="{$images->listorder}" placeholder="" id="listorder" name="listorder">
             </div>
         </div>
-        <div class="row cl">
+        <!--<div class="row cl">
             <label class="form-label col-xs-4 col-sm-2">产品文字小图地址：</label>
             <div class="formControls col-xs-8 col-sm-9">
                 <textarea name="image_product_url" cols="" rows="" class="textarea" placeholder="针对特殊符号可用无背景图片填充" dragonfly="true" >{$images->image_product_url}</textarea>
             </div>
-        </div>
+        </div>-->
         <div class="row cl">
-            <label class="form-label col-xs-4 col-sm-2">PC端图外链地址：</label>
+            <label class="form-label col-xs-4 col-sm-2">PC端图片地址：</label>
             <div class="formControls col-xs-8 col-sm-9">
                 <textarea name="image_pc_url" cols="" rows="" class="textarea" placeholder="500个字符以内" dragonfly="true" >{$images->image_pc_url}</textarea>
             </div>
         </div>
         <div class="row cl">
-            <label class="form-label col-xs-4 col-sm-2">移动端图外链地址：</label>
+            <label class="form-label col-xs-4 col-sm-2">移动端图片地址：</label>
             <div class="formControls col-xs-8 col-sm-9">
                 <textarea name="image_mobile_url" cols="" rows="" class="textarea"  placeholder="500个字符以内" dragonfly="true" >{$images->image_mobile_url}</textarea>
             </div>
         </div>
         <div class="row cl">
-            <label class="form-label col-xs-4 col-sm-2"><span class="c-red">*</span>推荐位类别：</label>
+            <label class="form-label col-xs-4 col-sm-2"><span class="c-red">*</span>推荐位：</label>
             <div class="formControls col-xs-8 col-sm-3"> <span class="select-box">
 				<select name="featured_id" class="select">
                     <option value="">--请选择</option>
@@ -71,7 +71,7 @@
         </div>
 
         <div class="row cl">
-            <label class="form-label col-xs-4 col-sm-2">产品链接：</label>
+            <label class="form-label col-xs-4 col-sm-2">链接：</label>
             <div class="formControls col-xs-8 col-sm-9">
                 <input type="text" class="input-text" value="{$images->url}" placeholder="" id="url" name="url">
             </div>

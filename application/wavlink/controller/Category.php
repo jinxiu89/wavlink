@@ -53,9 +53,8 @@ Class Category extends BaseAdmin
     {
         if (input('get.parent_id')) {
             //如有存在parent_id ,就是添加子分类
-            $category_id = input('get.parent_id');
+            $category_id = input('get.parent_id',1,'intval');
 //            $category = CategoryModel::get(['status' => 1, 'id' => $category_id, 'language_id' => $language_id]);
-
             $this->assign('parent_id', $category_id);
         } else {
             //添加一级分类

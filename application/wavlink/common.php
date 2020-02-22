@@ -36,6 +36,16 @@ function getChild($id)
     return $nameStr;
 }
 
+/**
+ * GetNameByParentId 根据产品分类的ID来获得他的分类名称
+ * @param $id
+ * @return mixed
+ */
+function GetNameByParentId($id){
+    $data=\app\common\model\Category::get($id);
+    return $data->name;
+}
+
 //首页图片管理获取分类
 function featured($id)
 {

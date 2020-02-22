@@ -5,6 +5,7 @@ namespace app\en_us\controller;
 use app\common\helper\Category;
 use app\common\model\Category as CategoryModel;
 use app\common\model\Product as ProductModel;
+use think\Exception;
 
 /**
  * Class Product
@@ -26,31 +27,35 @@ class Product extends Base
         $system = config('system.system');
         if ($system['cache']) {
             $result = (new ProductModel())->binarySearchProduct($product, $this->code);
-        } else {
-            $result = ProductModel::where(['url_title' => $product, 'status' => 1])->find();
-        }
-        $link = $result->links;
-        if (!empty($result)) {
-            if (!empty($result['album'])) {
-                //产品详情页放大镜的图
-                $albums = explode(',', $result['album']);
-                $this->assign('albums', $albums);
-                $this->assign('album', $albums[0]);
+        } else {//产品详情页如果是搜索过来的数据 状态为禁用时也需要能展示
+            try{
+                $result = ProductModel::where(['url_title' => $product])->find();
+                $link = $result->links;
+                if (!empty($result)) {
+                    if (!empty($result['album'])) {
+                        //产品详情页放大镜的图
+                        $albums = explode(',', $result['album']);
+                        $this->assign('albums', $albums);
+                        $this->assign('album', $albums[0]);
+                    }
+                    $categoryModel = new CategoryModel();
+                    $cate = $categoryModel->getAllCategory($this->code);
+                    //产品详情页路径导航
+                    $path = Category::getParents($cate, $result['category_id']);
+                    //查询是否有驱动
+                    $pDrivers = (new ProductModel())->selectProDriver($result, $this->code);
+                    return $this->fetch($this->template . '/product/details.html', [
+                        'result' => $result,
+                        'path' => $path,
+                        'pDrivers' => $pDrivers,
+                        'link' => $link
+                    ]);
+                } else {
+                    abort(404);
+                }
+            }catch (Exception $exception){
+                abort(404);
             }
-            $categoryModel = new CategoryModel();
-            $cate = $categoryModel->getAllCategory($this->code);
-            //产品详情页路径导航
-            $path = Category::getParents($cate, $result['category_id']);
-            //查询是否有驱动
-            $pDrivers = (new ProductModel())->selectProDriver($result, $this->code);
-            return $this->fetch($this->template . '/product/details.html', [
-                'result' => $result,
-                'path' => $path,
-                'pDrivers' => $pDrivers,
-                'link' => $link
-            ]);
-        } else {
-            abort(404);
         }
     }
 }

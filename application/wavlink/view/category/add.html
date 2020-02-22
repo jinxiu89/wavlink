@@ -8,7 +8,7 @@
                 {if condition="$parent_id eq 0"}
                 <input type="text" class="input-text" value="添加的这是一级分类" placeholder="" disabled>
                 {else /}
-                <input type="text" class="input-text" value="{$parent_id|getChild}" placeholder="" disabled>
+                <input type="text" class="input-text" value="{$parent_id|GetNameByParentId}" placeholder="" disabled>
                 {/if}
             </div>
         </div>

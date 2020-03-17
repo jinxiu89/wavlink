@@ -17,7 +17,6 @@ Class Index extends BaseAdmin
      * @return mixed
      */
     public function index(){
-
         return $this->fetch();
     }
 }

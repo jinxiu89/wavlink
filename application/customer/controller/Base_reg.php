@@ -11,15 +11,23 @@
 
 namespace app\customer\controller;
 
+use think\App;
 use think\Controller;
-use think\Lang;
+use think\facade\Cookie;
+use think\facade\Lang;
 
 class Base_reg extends Controller
 {
-    public function _initialize()
+    public function __construct(App $app = null)
     {
-        $lang = getLang();
+        parent::__construct($app);
+        $lang = Cookie::get('lang_var') ? Cookie::get('lang_var'): 'en_us';
         Lang::load(APP_PATH . 'customer/lang/' . $lang . '.php');//加载该语言下的模块语言包
         $this->assign("lang", $lang);  //给页面一个语言变量，来却确认是否加载验证层以及其他前端语言模块的文件
     }
+
+    /*public function _initialize()
+    {
+
+    }*/
 }

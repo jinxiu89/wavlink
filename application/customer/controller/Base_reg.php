@@ -18,6 +18,10 @@ use think\facade\Lang;
 
 class Base_reg extends Controller
 {
+    /**
+     * Base_reg constructor.
+     * @param App|null $app
+     */
     public function __construct(App $app = null)
     {
         parent::__construct($app);

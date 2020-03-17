@@ -49,7 +49,7 @@ function Search($table, $map = [], $order, $field = '')
 {
     //公共查询函数
     $query = model($table)->where($map);
-    $data = $query->order($order)->field($field)->paginate('',true);
+    $data = $query->order($order)->field($field)->paginate('', true);
     $counts = $query->count();
     if ($data) {
         $result = [
@@ -342,8 +342,9 @@ function getDownloadUrl($id)
  * @param $id
  * @return mixed
  */
-function getProductImage($id){
-    $data=\app\common\model\Product::get($id);
+function getProductImage($id)
+{
+    $data = \app\common\model\Product::get($id);
     return $data['image_litpic_url'];
 }
 
@@ -472,7 +473,8 @@ function getCategoryByPid($id)
  * @return mixed
  *
  */
-function getCategoryByID($id){
+function getCategoryByID($id)
+{
     $categoryIds = \app\common\model\Product::getProductCategory($id);
     return $categoryIds[1];
 }
@@ -518,4 +520,27 @@ function get_lang($header)
         //在extra 里配置各国语言代码对应相应的模块
         return str_ireplace('-', '_', $code);
     }
+}
+
+/**
+ * GetFourStr 生成一个任意长度的随机字符串组合
+ * @param $len
+ * @return string
+ */
+function GetFourStr($len)
+{
+    $chars_array = [
+        "0", "1", "2", "3", "4", "5", "6", "7", "8", "9",
+        "a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k",
+        "l", "m", "n", "o", "p", "q", "r", "s", "t", "u", "v",
+        "w", "x", "y", "z", "A", "B", "C", "D", "E", "F", "G",
+        "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R",
+        "S", "T", "U", "V", "W", "X", "Y", "Z",
+    ];
+    $charsLen = count($chars_array) - 1;
+    $outputstr = "";
+    for ($i = 0; $i < $len; $i++) {
+        $outputstr .= $chars_array[mt_rand(0, $charsLen)];
+    }
+    return $outputstr;
 }

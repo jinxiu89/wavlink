@@ -25,9 +25,4 @@ class Base_reg extends Controller
         Lang::load(APP_PATH . 'customer/lang/' . $lang . '.php');//加载该语言下的模块语言包
         $this->assign("lang", $lang);  //给页面一个语言变量，来却确认是否加载验证层以及其他前端语言模块的文件
     }
-
-    /*public function _initialize()
-    {
-
-    }*/
 }

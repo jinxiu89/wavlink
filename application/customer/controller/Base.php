@@ -7,11 +7,12 @@
  */
 namespace app\customer\controller;
 use think\Controller;
-use think\Lang;
+use think\facade\Cookie;
+use think\facade\Lang;
 class Base extends Controller
 {
-    public function _initialize() {
-        $lang = getLang();
+    public function initialize() {
+        $lang = $lang = Cookie::get('lang_var') ? Cookie::get('lang_var'): 'en_us';
         Lang::load(APP_PATH . 'customer/lang/' . $lang . '.php'); //加载该语言下的模块语言包
         if(!$this->isLogin()){
             $this->redirect('customer/Login/index');

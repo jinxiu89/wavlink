@@ -35,8 +35,10 @@ class Register extends Base_reg
                 return show(1,lang('ok'),'','','/customer/login');
             }
         }
-        print_r(strtolower($_SERVER['HTTP_ACCEPT_LANGUAGE']));
         return $this->fetch();
+    }
+    public function sendCode($email){
+
     }
 
     public function weiXin()

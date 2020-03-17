@@ -9,7 +9,7 @@
 namespace app\common\model;
 
 use think\Exception;
-use think\Session;
+use think\facade\Session;
 
 Class Customer extends BaseModel
 {
@@ -76,7 +76,6 @@ Class Customer extends BaseModel
     /**
      * @param $data
      * @return bool
-     * @throws \think\exception\DbException
      */
     public function reg($data)
     {

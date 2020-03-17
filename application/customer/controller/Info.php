@@ -27,7 +27,7 @@ class Info extends Base
         $id = session('CustomerInfo', '', 'Customer');
         $user = new Customer();
         if (request()->isAjax()) {
-            $data = input('post.');
+            $data = input('post.',[],'htmlspecialchars');
             $result = $user->upDateById($data, $id);
             if ($result == true) {
                 return show(1, lang('Success'), '', '', '/customer/info');

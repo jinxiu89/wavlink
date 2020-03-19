@@ -13,6 +13,8 @@ use app\common\model\Drivers as DriversModel;
 use app\common\model\ServiceCategory as ServiceCategoryModel;
 use app\wavlink\validate\Drivers as DriversValidate;
 use app\wavlink\validate\ListorderValidate;
+use think\db\exception\DataNotFoundException;
+use think\db\exception\ModelNotFoundException;
 use think\exception\DbException;
 use think\Facade\Request;
 use think\Exception;
@@ -27,8 +29,8 @@ Class Drivers extends BaseAdmin
     /***
      * @return mixed|View
      * @throws DbException
-     * @throws \think\db\exception\DataNotFoundException
-     * @throws \think\db\exception\ModelNotFoundException
+     * @throws DataNotFoundException
+     * @throws ModelNotFoundException
      */
     public function index()
     {

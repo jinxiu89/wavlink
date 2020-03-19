@@ -6,9 +6,12 @@ use think\facade\Config;
 //get请求组
 Route::group(Config::get('__BACKEND__'), function () {
     //登录登出
-    Route::get('/login/index', 'wavlink/login/index');
-    Route::get('/login/logout', 'wavlink/login/logout');
-    Route::get('/login', 'wavlink/login/index');
+    Route::get('/login/index$', 'wavlink/login/index')->name('admin_login');
+    Route::post('/login/index$', 'wavlink/login/index')->name('admin_login');
+    Route::get('/login/logout$', 'wavlink/login/logout')->name('admin_logout');
+    Route::post('/login/logout$', 'wavlink/login/logout')->name('admin_logout');
+    Route::get('/login$', 'wavlink/login/index')->name('admin_login');
+    Route::post('/login$', 'wavlink/login/index')->name('admin_login');
     /**
      * 清理缓存
      */
@@ -109,6 +112,7 @@ Route::group(Config::get('__BACKEND__'), function () {
     Route::get('document/edit', 'wavlink/document/edit', [], ['id' => '\d+']);
     //驱动管理
     Route::get('drivers/index', 'wavlink/drivers/index');
+    Route::post('drivers/index', 'wavlink/drivers/index');
     Route::get('drivers/recycle', 'wavlink/drivers/recycle');
     Route::get('drivers/add', 'wavlink/drivers/add');
     Route::get('drivers/edit', 'wavlink/drivers/edit', [], ['id' => '\d+']);

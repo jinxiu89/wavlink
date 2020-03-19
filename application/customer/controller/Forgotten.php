@@ -50,7 +50,7 @@ class Forgotten extends Base_reg
                     <div style=\"border-top:1px solid #ccc;padding:10px 0;font-size:12px;margin:20px 0;color:#A0A0A0;\" >
                     <p>$noreplay</p>
                     <b>$sup</b>
-                    <p></p><image src=\"https://www.wavlink.com/static/frontend/zh-cn/img/wavlink-logo.png\" alt=\"https://www.wavlink.com\",height=\"80px\" width=\"360px\"/>
+                    <p></p><img src=\"https://www.wavlink.com/static/frontend/zh-cn/img/wavlink-logo.png\" alt=\"https://www.wavlink.com\",height=\"80px\" width=\"360px\"/>
                     </div>
                     ";
                 $subject = lang('Retrieve your password');

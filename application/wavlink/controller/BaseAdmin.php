@@ -61,7 +61,7 @@ class BaseAdmin extends Controller
             $this->assign('session', $userSession);
         } else {
             $next = Request::instance()->url(true);
-            $this->redirect(url('login/index', ["next" => $next]));
+            $this->redirect(url('admin_login', ["next" => $next]));
         }
     }
 

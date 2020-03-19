@@ -15,7 +15,11 @@
         </h1>
     </div>
     <div>
-        <form action="" id="login" id="form_reg">
+        <form action="" id="login">
+            <div>
+                <label for="firstname">{:lang('username')}:</label>
+                <input id="firstname" name="firstname" type="text" placeholder="{:lang('Input your user name')}">
+            </div>
             <div>
                 <label for="user_email">{:lang('Email')}:</label>
                 <input id="user_email" name="email" type="email" placeholder="{:lang('Input your E-mail')}">
@@ -34,9 +38,8 @@
                 <div>
                     <input name="captcha" type="text" placeholder="{:lang('Verification')}" datatype="*"
                            nullmsg="{:lang('Please input the verification code in the image on the right')}">
-                    <div style="padding: 0;cursor:pointer" title="{:lang('Click change code')}"><img
-                            src="{:captcha_src()}" alt="{:lang('Click change code')}"
-                            onclick="this.src='{:captcha_src()}?seed='+Math.random()"/></div>
+                    <div style="padding: 0;cursor:pointer" title="{:lang('Click change code')}">
+                        <img src="{:captcha_src()}" alt="{:lang('Click change code')}" onclick="this.src='{:captcha_src()}?seed='+Math.random()"/></div>
                 </div>
             </div>
             <div>
@@ -82,7 +85,7 @@
                 // data:postData,
                 data: $("form").serialize(),//提交表单数据
                 success: function (result) {
-                    if (result.status == 1) {
+                    if (result.status === 1) {
                         //注册成功后要跳转到登录
                         layer.msg(result.message, {icon: 1, time: 3000});
                         setTimeout(function () {

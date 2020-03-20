@@ -33,5 +33,5 @@ Route::group('zh_cn', function () {
     Route::get('/tuya/Appdownload','Tuya/index');
     //根路由在最下面
     Route::get('/', 'Index/index');
-    Route::miss('en_us/Error/index');
-});
+    Route::miss('Error/index');
+})->prefix('en_us/');

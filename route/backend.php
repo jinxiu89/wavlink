@@ -114,6 +114,7 @@ Route::group(Config::get('__BACKEND__'), function () {
     //管理员列表
     Route::get('/manger/index', 'Manger/index');
     Route::get('/manger/add', 'Manger/add');
+    Route::post('/manger/add_manager','Manger/addManger')->name('add_manger');
     Route::get('/manger/edit', 'Manger/edit', [], ['id' => '\d+']);
     Route::get('/manger/password', 'Manger/password', [], ['id' => '\d+']);
     //禁用的管理员

@@ -96,11 +96,17 @@ Class Manger extends BaseAdmin
 
     public function saveEdit()
     {
-        $data = input('post.');
+        $temp = input('post.',[],'htmlspecialchars');
         $validate = new MangerValidate();
-        if (!$validate->scene('edit')->check($data)) {
+        if (!$validate->scene('edit')->check($temp)) {
             return show(0, '', '', '', '', $validate->getError());
         }
+        $temp['language_id']=implode(',',$temp['language']);
+        unset($temp['language']);
+        $rules=$temp['rules'];
+        unset($temp['rules']);
+        $data['data']=$temp;
+        $data['rules']=$rules;
         $manger = (new MangerModel())->saveEditManger($data);
         if ($manger) {
             return show(1, '', '', '', '', '更新成功');
@@ -131,16 +137,30 @@ Class Manger extends BaseAdmin
 
     //关联模型操作
     //保存
+    /**
+     * addManger
+     * 2020.0320 kevin qiu 修正bug：验证不严谨导致的数据问题
+     *
+     */
     public function addManger()
     {
-        $data = input('post.');
+        $temp = input('post.',[],'htmlspecialchars');;
         $validate = Validate('Manger');
-        if (!$validate->check($data)) {
+        if (!$validate->scene('add')->check($temp)) {
             return show(0, '', '', '', '', $validate->getError());
         }
-        if ($data['password'] != $data['password2']) {
+        if ($temp['password'] != $temp['password2']) {
             return show(0, '', '两次输入的密码不一致');
         }
+        $temp['code'] = mt_rand(100, 1000);
+        $temp['password']=md5($temp['password'].$temp['code']);
+        $temp['language_id']=implode(',',$temp['language']);
+        $rules=$temp['rules'];
+        unset($temp['password2']);
+        unset($temp['rules']);
+        unset($temp['language']);
+        $data['data']=$temp;
+        $data['rules']=$rules;
         $res = (new MangerModel())->SaveManger($data);
         if ($res) {
             return show(1, '', '', '', '', '添加成功');

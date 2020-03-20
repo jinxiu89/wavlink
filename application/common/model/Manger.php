@@ -11,7 +11,9 @@ use think\Collection;
 use think\Db;
 use think\db\exception\DataNotFoundException;
 use think\db\exception\ModelNotFoundException;
+use think\Exception;
 use think\exception\DbException;
+use think\exception\PDOException;
 use think\model\relation\BelongsToMany;
 
 /**
@@ -52,24 +54,21 @@ Class Manger extends BaseModel
 
 
     //关联模型添加管理员数据操作
+
+    /**
+     * @param $data
+     * @return bool
+     * @throws PDOException
+     */
     public function SaveManger($data){
-        $data['code'] = mt_rand(100, 1000);
-        $language_id = implode(',',$data['language']);
-        $mangerData=[
-            'username' => $data['username'],
-            'name'     => $data['name'],
-            'password' => md5($data['password'].$data['code']),
-            'mobile_old'   => $data['mobile_old'],
-            'email'    => $data['email'],
-            'code'     => $data['code'],
-            'language_id' => $language_id
-        ];
-        if ($this->save($mangerData) && !empty($data['rules'])){
+        $this->startTrans();
+        try{
+            $this->save($data['data']);
             $mangers = $this::get($this->id);
             $res =  $mangers->AuthGroup()->saveAll([$data['rules']]);
-        }else{
-            //如果没有给这个管理员添加用户组，就不添加进去，直接删了。
-            $this::destroy($this->id);
+            $this->commit();
+        }catch (\Exception $exception){
+            $this->rollback();
             return false;
         }
         if($res){
@@ -84,37 +83,37 @@ Class Manger extends BaseModel
     /**
      * @param $data
      * @return bool
-     * @throws DataNotFoundException
-     * @throws DbException
-     * @throws ModelNotFoundException
+     * @throws PDOException
      */
     public function saveEditManger($data){
-        $language_id = implode(',',$data['language']);
-        $userData=[
-            'username' => $data['username'],
-            'name'     => $data['name'],
-            'mobile_old'   => $data['mobile_old'],
-            'email'    => $data['email'],
-            'language_id' => $language_id
-        ];
-//        更新管理员表数据
-        $result = $this::update($userData,['id'=>$data['id']]);
-        //从关联模型查询数据
-        $groups =Db::table('auth_group_access')->where(['uid'=>$data['id']])->select();
-        $group=[];
-        foreach ($groups as $k => $v){
-            $group[]=$v['group_id'];
+        $this->startTrans();
+        try{
+            $this::update($data['data'],['id'=>$data['data']['id']]);
+            //从关联模型查询数据
+            $groups =Db::table('auth_group_access')->where(['uid'=>$data['data']['id']])->select();
+            $group=[];
+            foreach ($groups as $k => $v){
+                $group[]=$v['group_id'];
+            }
+            $mangerGroup =  $this->get($data['data']['id']);
+            if (!empty($data['rules'])){
+                //先删除中间表数据,然后再新增
+                $mangerGroup->AuthGroup()->detach($group); //删除
+                $res= $mangerGroup->AuthGroup()->attach($data['rules']); //新增
+            }else{
+                //如果更新的数据中没有rules ，就去关联模型中删掉它的记录。
+                $res = $mangerGroup->AuthGroup()->detach($group);
+            }
+            $this->commit();
+        }catch (\Exception $exception){
+            $this->rollback();
+            return false;
         }
-        $mangerGroup =  $this->get($data['id']);
-        if ($result && !empty($data['rules'])){
-            //先删除中间表数据,然后再新增
-            $mangerGroup->AuthGroup()->detach($group); //删除
-            $res= $mangerGroup->AuthGroup()->attach($data['rules']); //新增
-            return($res !==true) ? true : false;
+        if ($res !== true){
+            return  true;
         }else{
-            //如果更新的数据中没有rules ，就去关联模型中删掉它的记录。
-            $res = $mangerGroup->AuthGroup()->detach($group);
-            return ($res !== true) ? true : false ;
+            $this->rollback();
+            return false;
         }
     }
 

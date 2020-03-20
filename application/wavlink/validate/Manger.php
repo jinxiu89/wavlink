@@ -19,7 +19,9 @@ class Manger extends Validate
         'username' => 'require|unique:manger,username|max:50|alphaDash',
         'name' => 'require|max:50',
         'password' => 'require|max:16',
-        'mobile_old' => 'max:11|number',
+        'mobile'=>'max:11|integer',
+        'mobile_old' => 'max:11|integer',
+        'email'=>'max:64',
         'status' => 'integer|in:-1,0,1',
         'language' => 'require',
     ];
@@ -34,11 +36,13 @@ class Manger extends Validate
         'password.require'=>'密码不能为空',
         'password.max'=>'密码不能太长',
         'mobile_old'=>'手机号码不能超过11位数字',
+        'mobile'=>'手机号码不能超过11位数字',
         'status'=>'状态值不在合法范围内',
         'language'=>'语言不能为空',
     ];
     /**场景设置**/
     protected $scene = [
+        'add'=>['username','name','language','password'],
         'edit' => ['username', 'name', 'language'],
         'changeStatus'=>['id','status']
     ];

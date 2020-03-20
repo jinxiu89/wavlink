@@ -44,6 +44,7 @@ class Manger extends Validate
     protected $scene = [
         'add'=>['username','name','language','password'],
         'edit' => ['username', 'name', 'language'],
-        'changeStatus'=>['id','status']
+        'changeStatus'=>['id','status'],
+        'changePassword'=>['id','password'],
     ];
 }

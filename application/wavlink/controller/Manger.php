@@ -144,7 +144,7 @@ Class Manger extends BaseAdmin
      */
     public function addManger()
     {
-        $temp = input('post.',[],'htmlspecialchars');;
+        $temp = input('post.',[],'htmlspecialchars');
         $validate = Validate('Manger');
         if (!$validate->scene('add')->check($temp)) {
             return show(0, '', '', '', '', $validate->getError());
@@ -177,28 +177,30 @@ Class Manger extends BaseAdmin
      */
     public function password($id)
     {
-        if (request()->isPost()) {
-            $data = input('post.');
-            if ($data['password'] !== $data['password2']) {
-                return show(0, '', '两次输入的密码不一样');
+        if($this->request->isGet()){
+            if (intval($id) < 0) {
+                return show(0, '', 'ID不合法','','','ID不合法');
             }
-            $password = [
-                'id' => $id,
-                'password' => $data['password']
-            ];
-            $res = (new MangerModel())->editPassword($password);
+            return $this->fetch('', [
+                'id' => $id
+            ]);
+        }
+        if ($this->request->isPost()) {
+            $data = input('post.',[],'htmlspecialchars');;
+            $validate=new MangerValidate();
+            if(!$validate->scene('changePassword')->check($data)){
+                return show(0, '', '', '', '', $validate->getError());
+            }
+            if ($data['password'] !== $data['password2']) {
+                return show(0, '', '两次输入的密码不一样','','','两次输入的密码不一样');
+            }
+            $res = (new MangerModel())->editPassword($data);
             if ($res) {
                 return show(1, '', '修改密码成功','','','修改密码成功');
             } else {
                 return show(0, '', '修改密码失败','','','修改密码失败');
             }
         }
-        if (intval($id) < 0) {
-            return show(0, '', 'ID不合法','','','ID不合法');
-        }
-        return $this->fetch('', [
-            'id' => $id
-        ]);
     }
 
     public function byStatus()

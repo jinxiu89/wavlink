@@ -8,11 +8,10 @@
 
 namespace app\wavlink\controller;
 
-use think\App;
-use think\Exception;
-use think\facade\Request;
 use app\common\model\AuthGroup as AuthGroupModel;
 use app\wavlink\validate\AuthGroup as AuthGroupValidate;
+use think\App;
+
 /***
  * Class AuthGroup
  * @package app\wavlink\controller
@@ -21,7 +20,7 @@ use app\wavlink\validate\AuthGroup as AuthGroupValidate;
 class AuthGroup extends BaseAdmin
 {
     protected $obj;
-
+    protected $validate;
     /**
      * AuthGroup constructor.
      * @param App|null $app
@@ -30,6 +29,7 @@ class AuthGroup extends BaseAdmin
     {
         parent::__construct($app);
         $this->obj=new AuthGroupModel();
+        $this->validate=new AuthGroupValidate();
     }
 
     /**
@@ -65,22 +65,34 @@ class AuthGroup extends BaseAdmin
      */
     public function save()
     {
-        $data = Request::instance()->post();
-        if ($data['rules']) {
-            $data['rules'] = implode(',', $data['rules']);
-        }
+        $data = input('post.',[],'htmlspecialchars,trim');
         if (!empty($data['id'])) {
+            if(!$this->validate->scene('edit')->check($data)){
+                return show(0, '', '', '', '', $this->validate->getError());
+            }
+            if ($data['rules']) {
+                $data['rules'] = implode(',', $data['rules']);
+            }
             $groupData['title'] = $data['title'];
             $groupData['description'] = $data['description'];
             $groupData['rules'] = $data['rules'];
             $groupData['id'] = $data['id'];
             return $this->update($groupData);
-        }
-        $res = $this->obj->save($data);
-        if ($res) {
-            return show(1, '', '', '', '', '添加成功');
-        } else {
-            return show(0, '', '', '', '', '添加失败');
+        }else{
+
+            if(!$this->validate->scene('add')->check($data)){
+                return show(0, '', '', '', '', $this->validate->getError());
+            }
+            try{
+                $res = $this->obj->save($data);
+                if ($res) {
+                    return show(1, '', '', '', '', '添加成功');
+                } else {
+                    return show(0, '', '', '', '', '添加失败');
+                }
+            }catch (\Exception $exception){
+                return show(0, '', '', '', '', $exception->getMessage());
+            }
         }
     }
 
@@ -112,11 +124,9 @@ class AuthGroup extends BaseAdmin
     public function byStatus()
     {
         $data = input('get.');
-        $validate=new AuthGroupValidate();
-        $model=new AuthGroupModel();
-        if ($validate->scene('changeStatus')->check($data)) {
+        if ($this->validate->scene('changeStatus')->check($data)) {
             try {
-                if ($model->allowField(true)->save($data, ['id' => $data['id']])) {
+                if ($this->obj->allowField(true)->save($data, ['id' => $data['id']])) {
                     return show(1, "success", '', '', '', '操作成功');
                 }
                 return show(0, "success", '', '', '', '操作失败！未知原因');
@@ -124,7 +134,7 @@ class AuthGroup extends BaseAdmin
                 return show(0, "failed", '', '', '', $exception->getMessage());
             }
         }
-        return show(0, "failed", '', '', '', $validate->getError());
+        return show(0, "failed", '', '', '', $this->validate->getError());
     }
 
 }

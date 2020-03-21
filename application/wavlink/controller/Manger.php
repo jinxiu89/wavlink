@@ -205,7 +205,7 @@ Class Manger extends BaseAdmin
 
     public function byStatus()
     {
-        $data = input('get.');
+        $data = input('get.','','trim,intval');
         $validate = new MangerValidate();
         $model = new MangerModel();
         if ($validate->scene('changeStatus')->check($data)) {

@@ -15,12 +15,14 @@ use think\App;
 Class AuthRule extends BaseAdmin
 {
     public $obj;
+    public $validate;
 
 
     public function __construct(App $app = null)
     {
         parent::__construct($app);
         $this->obj = model("AuthRule");
+        $this->validate=new AuthRuleValidate();
     }
 
     public function index()
@@ -28,7 +30,6 @@ Class AuthRule extends BaseAdmin
         $result = $this->obj->authRuleTree();
         return $this->fetch('', [
             'authRule' => $result,
-
         ]);
     }
 
@@ -42,21 +43,33 @@ Class AuthRule extends BaseAdmin
 
     public function save()
     {
-        $data = input('post.');
+        $data = input('post.',[],'trim,htmlspecialchars');
         if (!empty($data['id'])) {
+            if(!$this->validate->scene('edit')->check($data)){
+                return show(0, '', '', '', '', $this->validate->getError());
+            }
             if ($data['id'] == $data['parent_id']) {
                 return show(0, '', '不能分在自己名下');
             }
-
-            $authRuleData = $this->obj->AuthRuleLevel($data);
-
-            return $this->update($authRuleData);
+            try{
+                $authRuleData = $this->obj->AuthRuleLevel($data);
+                return $this->update($authRuleData);
+            }catch (\Exception $exception){
+                return show(0, '', '', '', '', $exception->getMessage());
+            }
         }
-        $result = (new AuthRuleModel())->save($data);
-        if ($result) {
-            return show(1, '', '', '', '', '添加成功');
-        } else {
-            return show(0, '', '', '', '', '添加失败');
+        if(!$this->validate->scene('add')->check($data)){
+            return show(0, '', '', '', '', $this->validate->getError());
+        }
+        try{
+            $result = (new AuthRuleModel())->save($data);
+            if ($result) {
+                return show(1, '', '', '', '', '添加成功');
+            } else {
+                return show(0, '', '', '', '', '添加失败');
+            }
+        }catch (\Exception $exception){
+            return show(0, '', '', '', '', $exception->getMessage());
         }
     }
 
@@ -104,11 +117,9 @@ Class AuthRule extends BaseAdmin
     public function byStatus()
     {
         $data = input('get.');
-        $validate=new AuthRuleValidate();
-        $model=new AuthRuleModel();
-        if ($validate->scene('changeStatus')->check($data)) {
+        if ($this->validate->scene('changeStatus')->check($data)) {
             try {
-                if ($model->allowField(true)->save($data, ['id' => $data['id']])) {
+                if ($this->obj->allowField(true)->save($data, ['id' => $data['id']])) {
                     return show(1, "success", '', '', '', '操作成功');
                 }
                 return show(0, "success", '', '', '', '操作失败！未知原因');
@@ -116,6 +127,6 @@ Class AuthRule extends BaseAdmin
                 return show(0, "failed", '', '', '', $exception->getMessage());
             }
         }
-        return show(0, "failed", '', '', '', $validate->getError());
+        return show(0, "failed", '', '', '', $this->validate->getError());
     }
 }

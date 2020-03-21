@@ -73,6 +73,7 @@ Class BaseModel extends Model
      * @param $status
      * @param string $language_id
      * @return array|string
+     * @throws \think\exception\DbException
      * @internal param int $page
      * @internal param array $map
      * @internal param $status

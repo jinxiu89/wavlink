@@ -126,7 +126,6 @@ class ServiceCategory extends BaseAdmin
             $data = input('post.', '', 'htmlspecialchars');
             $validate = new ServiceCategoryValidate();
             if ($validate->scene('add')->check($data)) {
-                //todo:: 完成操作
                 if ($data['level'] == '') {
                     $data['level'] = intval(1);
                 }
@@ -141,11 +140,15 @@ class ServiceCategory extends BaseAdmin
                         return $this->update($data);
                     }
                 }
-                $res = (new ServiceCategoryModel())->add($data);
-                if ($res) {
-                    return show(1, '', '', '', '', '添加成功');
-                } else {
-                    return show(1, '', '', '', '', '添加失败');
+                try{
+                    $res = (new ServiceCategoryModel())->add($data);
+                    if ($res) {
+                        return show(1, '', '', '', '', '添加成功');
+                    } else {
+                        return show(0, '', '', '', '', '添加失败');
+                    }
+                }catch (\Exception $exception){
+                    return show(0, '', '', '', '', $exception->getMessage());
                 }
             } else {
                 return show(0, '', '', '', '', $validate->getError());
@@ -164,7 +167,7 @@ class ServiceCategory extends BaseAdmin
     public function listorder()
     {
         if (request()->isAjax()) {
-            $data = input('post.');//id ,type ,language_id
+            $data = input('post.','','intval');//id ,type ,language_id
             $data['language_id'] = $this->currentLanguage['id'];
             //得到它的parent_id
             $map = [

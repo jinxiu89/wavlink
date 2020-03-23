@@ -57,7 +57,7 @@ Class Drivers extends BaseAdmin
                 ]);
             } catch (\Exception $exception) {
                 //TODO:: 做一个专门的错误页面，没有数据的错误页面，同时写好日志
-                return view('', []);
+//                return view('', []);
             }
 
         }
@@ -70,7 +70,7 @@ Class Drivers extends BaseAdmin
             ]);
         } catch (\Exception $exception) {
             //TODO:: 做一个专门的错误页面，没有数据的错误页面，同时写好日志
-            return view('', []);
+//            return view('', []);
         }
     }
 

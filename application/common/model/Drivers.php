@@ -10,6 +10,11 @@ namespace app\common\model;
 
 use app\common\model\Language as LanguageModel;
 use think\Collection;
+use think\db\exception\DataNotFoundException;
+use think\db\exception\ModelNotFoundException;
+use think\Exception;
+use think\exception\DbException;
+use think\Paginator;
 
 /**
  * Class Drivers
@@ -25,11 +30,11 @@ Class Drivers extends BaseModel
      * @param $code
      * @param $categoryId
      * @param string $order
-     * @return mixed|\think\Paginator
-     * @throws \think\Exception
-     * @throws \think\db\exception\DataNotFoundException
-     * @throws \think\db\exception\ModelNotFoundException
-     * @throws \think\exception\DbException
+     * @return mixed|Paginator
+     * @throws Exception
+     * @throws DataNotFoundException
+     * @throws ModelNotFoundException
+     * @throws DbException
      */
     public function getDriversByCategoryId($code, $categoryId, $order = "desc")
     {
@@ -59,29 +64,29 @@ Class Drivers extends BaseModel
      * @param $code
      * @return array|string
      * 驱动搜索
-     * @throws \think\db\exception\DataNotFoundException
-     * @throws \think\db\exception\ModelNotFoundException
-     * @throws \think\exception\DbException
+     * @throws DataNotFoundException
+     * @throws ModelNotFoundException
+     * @throws DbException
      */
     public static function getSelectDrivers($name, $code)
     {
         $language_id = LanguageModel::getLanguageCodeOrID($code);
         $model = 'Drivers';
         $map['status'] = '1';
-        $map['name|url_title|keywords|description|models'] = array('like', '%' . $name . '%');
+        $map['name|url_title|keywords|description|models'] = ['like', '%' . $name . '%'];
         $map['language_id'] = $language_id;
-        $order = [
-            'id' => 'desc',
-        ];
-        return Search($model, $map, $order);
+        $order = ['id' => 'desc'];
+        return self::where($map)->order($order)->paginate('',true);
+        //todo:: 搜索这个地方官改下一版优化后台搜索功能更时优化功能
+//        return Search($model, $map, $order);
     }
 
     /**
      * @param $language_id
      * @return array
-     * @throws \think\db\exception\DataNotFoundException
-     * @throws \think\db\exception\ModelNotFoundException
-     * @throws \think\exception\DbException
+     * @throws DataNotFoundException
+     * @throws ModelNotFoundException
+     * @throws DbException
      * 创建索引
      */
     public static function allData($language_id){

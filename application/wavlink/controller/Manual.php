@@ -11,7 +11,6 @@ namespace app\wavlink\controller;
 use app\common\model\Manual as ManualModel;
 use app\common\model\ManualDownload;
 use app\common\model\ServiceCategory as ServiceCategoryModel;
-use app\wavlink\validate\UrlTitleMustBeOnly;
 use app\wavlink\validate\Manual as ManualValidate;
 use think\App;
 use think\db\exception\DataNotFoundException;
@@ -25,7 +24,8 @@ use think\exception\DbException;
 class Manual extends BaseAdmin
 {
     protected $language_id;
-
+    protected $model;
+    protected $validate;
     /**
      * Manual constructor.
      * @param App|null $app
@@ -34,13 +34,15 @@ class Manual extends BaseAdmin
     {
         parent::__construct($app);
         $this->language_id = $this->currentLanguage['id'];
+        $this->model=new ManualModel();
+        $this->validate=new ManualValidate();
         $this->assign('language_id', $this->language_id);
     }
 
     /**
      * @return mixed
      * 20190917 更新
-     *
+     * @throws DbException
      */
     public function index()
     {
@@ -79,25 +81,29 @@ class Manual extends BaseAdmin
             'data' => $data
         ]);
     }
+
+    /**
+     * 20200321
+     * 优化代码结构
+     */
     public function byStatus()
     {
         $data = input('get.');
-        $validate=new ManualValidate();
-        $model=new ManualModel();
-        if ($validate->scene('changeStatus')->check($data)) {
-            try {
-                if($model->checkDownload($data['id']) == false){
-                    return show(0, "failed", '', '', '', '该条目有下载项，需要核实下载文件是否需要删除');
-                }
-                if ($model->allowField(true)->save($data, ['id' => $data['id']])) {
-                    return show(1, "success", '', '', '', '操作成功');
-                }
-                return show(0, "failed", '', '', '', '操作失败！未知原因');
-            } catch (\Exception $exception) {
-                return show(0, "failed", '', '', '', $exception->getMessage());
-            }
+        if (!$this->validate->scene('changeStatus')->check($data)) {
+            return show(0, "failed", '', '', '', $this->validate->getError());
         }
-        return show(0, "failed", '', '', '', $validate->getError());
+        try {
+            if($this->model->checkDownload($data['id']) == false){
+                return show(0, "failed", '', '', '', '该条目有下载项，需要核实下载文件是否需要删除');
+            }
+            if ($this->model->allowField(true)->save($data, ['id' => $data['id']])) {
+                return show(1, "success", '', '', '', '操作成功');
+            }
+            return show(0, "failed", '', '', '', '操作失败！未知原因');
+        } catch (\Exception $exception) {
+            return show(0, "failed", '', '', '', $exception->getMessage());
+        }
+
     }
 
     /**
@@ -196,6 +202,4 @@ class Manual extends BaseAdmin
             }
         }
     }
-
-
 }

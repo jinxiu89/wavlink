@@ -122,17 +122,17 @@ class Firmware extends BaseAdmin
     public function byStatus()
     {
         $data = input('get.');
-        if ($this->validate->scene('changeStatus')->check($data)) {
-            try {
-                if ($this->model->allowField(true)->save($data, ['id' => $data['id']])) {
-                    return show(1, "success", '', '', '', '操作成功');
-                }
-                return show(0, "success", '', '', '', '操作失败！未知原因');
-            } catch (\Exception $exception) {
-                return show(0, "failed", '', '', '', $exception->getMessage());
-            }
+        if (!$this->validate->scene('changeStatus')->check($data)) {
+            return show(0, "failed", '', '', '', $this->validate->getError());
         }
-        return show(0, "failed", '', '', '', $this->validate->getError());
+        try {
+            if ($this->model->allowField(true)->save($data, ['id' => $data['id']])) {
+                return show(1, "success", '', '', '', '操作成功');
+            }
+            return show(0, "success", '', '', '', '操作失败！未知原因');
+        } catch (\Exception $exception) {
+            return show(0, "failed", '', '', '', $exception->getMessage());
+        }
     }
 
     public function del()

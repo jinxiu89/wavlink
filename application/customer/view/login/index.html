@@ -28,7 +28,7 @@
         </form>
     </div>
     <div>
-        <a href="/customer/register.html">{:lang('No account yet')}</a>
+        <a href="{:url('customer_register')}">{:lang('No account yet')}</a>
         <a href="/customer/forgotten.html">{:lang('Retrieve your password')}</a>
         <span></span>
         <span>{:lang('Or')}</span>
@@ -77,7 +77,7 @@
         success: "valid",
         submitHandler: function (form) {
             $.ajax({
-                url: '/customer/login',
+                url: '/customer/logindcvb',
                 type: "post",
                 dataType: "json",
                 // data:postData,

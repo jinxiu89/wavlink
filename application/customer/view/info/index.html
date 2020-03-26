@@ -10,7 +10,7 @@
     <ul>
         <li><a href="https://www.wavlink.com">{:lang('home')}</a></li>
         <li> ></li>
-        <li><a href="/customer/info.html">{:lang('Experience Center')}</a></li>
+        <li><a href="{:url('customer_info')}">{:lang('Experience Center')}</a></li>
         <li> ></li>
         <li><a href="#">{:lang('Base Info')}</a></li>
     </ul>
@@ -202,7 +202,7 @@
     });
     $("#base_info").addClass("current");
     $("#btn").click(function () {
-        if($(".tabInfo").css("display") != "none"){
+        if($(".tabInfo").css("display") !== "none"){
             //info 修改器
             $("#baseInfo").validate({
                 errorElement: "em",
@@ -211,12 +211,12 @@
                 success: "valid",
                 submitHandler: function (form) {
                     $.ajax({
-                        url: '/customer/info',
+                        url: '{:url(\'customer_info\')}',
                         type: "post",
                         dataType: "json",
                         data: $("#baseInfo").serialize(),//提交表单数据
                         success: function (result) {
-                            if (result.status == 1) {
+                            if (result.status === 1) {
                                 //注册成功后要跳转到登录
                                 layer.msg(result.message, {icon: 1, time: 3000});
                                 setTimeout(function () {
@@ -230,7 +230,7 @@
                     })
                 }
             });
-        }else if ($(".tabPassword").css("display") != "none"){
+        }else if ($(".tabPassword").css("display") !== "none"){
             //密码修改器
             $("#baseInfo").validate({
                 rules: {
@@ -250,15 +250,15 @@
                 success: "valid",
                 submitHandler: function (form) {
                     $.ajax({
-                        url: '/customer/edit/password',
+                        url: '{:url(\'customer_password\')}',
                         type: "post",
                         dataType: "json",
                         data: $("#baseInfo").serialize(),//提交表单数据
                         success: function (result) {
-                            if (result.status == 1) {
+                            if (result.status === 1) {
                                 //注册成功后要跳转到登录
                                 layer.msg(result.message, {icon: 1, time: 2000});
-                                window.parent.location.href = '/customer/logout'
+                                window.parent.location.href = '{:url(\'customer_logout\')}'
                             } else {
                                 layer.msg(result.message, {icon: 5, time: 2000});
                             }
@@ -266,7 +266,7 @@
                     })
                 }
             });
-        }else if($(".tabEmail").css("display") != "none"){
+        }else if($(".tabEmail").css("display") !== "none"){
             //邮箱修改器
             $("#baseInfo").validate({
                 rules: {
@@ -281,7 +281,7 @@
                 success: "valid",
                 submitHandler: function (form) {
                     $.ajax({
-                        url: '/customer/info',
+                        url: '{:url(\'customer_info\')}',
                         type: "post",
                         dataType: "json",
                         data: $("#baseInfo").serialize(),//提交表单数据
@@ -289,7 +289,7 @@
                             if (result.status == 1) {
                                 //注册成功后要跳转到登录
                                 layer.msg(result.message, {icon: 1, time: 2000});
-                                window.parent.location.href = '/customer/logout'
+                                window.parent.location.href = '{:url(\'customer_logout\')}'
                             } else {
                                 layer.msg(result.message, {icon: 5, time: 2000});
                             }

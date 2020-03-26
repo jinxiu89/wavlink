@@ -52,6 +52,5 @@ class GuestBook extends Base
         } else {
             return show(0, '', '', '', '', $validate->getError());
         }
-
     }
 }

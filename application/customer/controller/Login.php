@@ -19,14 +19,16 @@ class Login extends Base_reg
             //先验证是否这个邮箱是否有注册，如果是就不应该让他注册两次哇   逗比：你的AOP在哪里？
             $data = input('post.');
             $result = (new User())->CheckCustomer($data);
+            $login_url=url('customer_login');
+            $index=url('customer_index');
             if ($result == -1){
-                return show(0,lang('User does not exist'),'','','/customer/login.html','');
+                return show(0,lang('User does not exist'),'','',$login_url,'');
             }
             if ($result == -2){
-                return show(0,lang('Password Error'),'','','/customer/login.html');
+                return show(0,lang('Password Error'),'','',$login_url);
             }
             if ($result == 1){
-                return show(1,lang('Success'),'','','/customer/info.html');
+                return show(1,lang('Success'),'','',$index);
             }
         }
         return $this->fetch();
@@ -37,6 +39,6 @@ class Login extends Base_reg
         //todo::登录逻辑
         //设置session
         Session::set('username', '', 'Customer');
-        $this->redirect('/customer/info.html');
+        $this->redirect(url('customer_index'));
     }
 }

@@ -51,7 +51,7 @@ function Search($table, $map = [], $order, $field = '')
     $query = model($table)->where($map);
     $data = $query->order($order)->field($field)->paginate('', true);
     $counts = $query->count();
-    if (!$data->isEmpty()) {
+    if ($data) {
         $result = [
             'data' => $data,
             'count' => $counts,

@@ -268,6 +268,9 @@ Class Product extends BaseModel
      * $result 单独的一个产品的信息
      * @param $code
      * @return bool|mixed
+     * @throws DataNotFoundException
+     * @throws DbException
+     * @throws ModelNotFoundException
      */
     public function selectProDriver($result, $code)
     {

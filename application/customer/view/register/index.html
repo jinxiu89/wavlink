@@ -79,10 +79,9 @@
         success: "valid",
         submitHandler: function (form) {
             $.ajax({
-                url: '/customer/register',
+                url: '{:url(\'customer_register\')}',
                 type: "post",
                 dataType: "json",
-                // data:postData,
                 data: $("form").serialize(),//提交表单数据
                 success: function (result) {
                     if (result.status === 1) {

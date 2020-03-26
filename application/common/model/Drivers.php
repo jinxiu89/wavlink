@@ -76,9 +76,10 @@ Class Drivers extends BaseModel
         $map['name|url_title|keywords|description|models'] = ['like', '%' . $name . '%'];
         $map['language_id'] = $language_id;
         $order = ['id' => 'desc'];
-        return self::where($map)->order($order)->paginate('',true);
+//        return self::where($map)->order($order)->paginate('',true);
         //todo:: 搜索这个地方官改下一版优化后台搜索功能更时优化功能
-//        return Search($model, $map, $order);
+        //notice:这个地方影响到产品驱动搜索，后期要优化时要注意切分开
+        return Search($model, $map, $order);
     }
 
     /**

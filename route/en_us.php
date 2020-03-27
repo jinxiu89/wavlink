@@ -38,7 +38,7 @@ Route::group('en_us', function () {
     Route::get('/search','Search/results')->pattern(['key'=>'[\w-]+','type'=>'[\w-]+','page'=>'[\d]+']);
     Route::get('/tuya/Appdownload','Tuya/index');
     Route::get('/', 'Index/index');
-    Route::miss('Error/index');
+//    Route::miss('Error/index');
 })->prefix('en_us/');
 
 
@@ -49,4 +49,4 @@ Route::group('en_us', function () {
  */
 Route::get('/', 'en_us/Base/autoload');
 Route::get('/language/:code', 'en_us/Language/setLanguage', [], ['code' => '[\w-]+']);
-Route::miss('en_us/Error/index');  //当所有的路由都匹配不到的时候 就会走到这个miss路由上来
+//Route::miss('en_us/Error/index');  //当所有的路由都匹配不到的时候 就会走到这个miss路由上来

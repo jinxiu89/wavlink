@@ -11,7 +11,7 @@
 
 namespace app\common\service\customer;
 
-use app\common\model\Customer;
+use app\common\model\customer\User as UserModel;
 use think\facade\Session;
 
 /**
@@ -23,11 +23,24 @@ class User extends BaseService
     public function __construct()
     {
         parent::__construct();
-        $this->model = new Customer();
+        $this->model = new UserModel();
+    }
+
+    /**
+     * @param $id
+     * @return mixed
+     */
+    public function getDataByIdWithInfo($id){
+        try{
+            return $this->model->withJoin('info','left')->get($id);
+        }catch (\Exception $exception){
+            //todo 异常处理
+        }
     }
 
     /**
      * @param $data
+     * 当用户的基本信息被确认存在且一切正常之后，执行登录操作
      * @return array
      */
     public function login($data)
@@ -54,7 +67,10 @@ class User extends BaseService
             }
             return ['status' => 0, 'message' => lang('未知错误'), 'url' => url('customer_login')];
         } catch (\Exception $exception) {
-            return ['status' => 0, 'message' => lang('Server Error'), 'url' => url('customer_login')];
+            return ['status' => 0, 'message' => $exception->getMessage(), 'url' => url('customer_login')];
         }
+    }
+    public function reg($data){
+        //todo::注册操作
     }
 }

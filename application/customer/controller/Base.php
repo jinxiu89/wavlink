@@ -22,22 +22,18 @@ class Base extends Controller
     public function initialize() {
         $lang = $lang = Cookie::get('lang_var') ? Cookie::get('lang_var'): 'en_us';
         Lang::load(APP_PATH . 'customer/lang/' . $lang . '.php'); //加载该语言下的模块语言包
-        if(!$this->isLogin()){
-            $this->redirect('customer/Login/index');
-        }
         $this->assign('lang',$lang);
     }
 
+    /**
+     * @return bool
+     */
     public function isLogin(){
         //获取session
-        $customer = $this->getLoginCustomer();
+        $customer = session('CustomerInfo','','Customer');
         if ($customer){
             return true;
         }
         return false;
-    }
-    public function getLoginCustomer(){
-        $customer = session('CustomerInfo','','Customer');
-        return $customer;
     }
 }

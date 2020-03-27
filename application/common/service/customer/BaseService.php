@@ -23,4 +23,16 @@ class BaseService
     {
 
     }
+
+    /**
+     * @param $id
+     * @return
+     */
+    public function getDataById($id){
+        try{
+            return $this->model->get($id);
+        }catch (\Exception $exception){
+            //todo 异常处理
+        }
+    }
 }

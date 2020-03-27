@@ -21,50 +21,7 @@ class Forgotten extends Base_reg
 
     public function forgotten()
     {
-        if (request()->isAjax()) {
-            $data = input('post.');
-            if (!captcha_check($data['captcha'])) {
-                return show(0, lang('Verification Error'), '', '', '', '验证码错误');
-            }
-            $email = (new Customer())->CheckEmail($data['email']);
-            $url=request()->domain()."/customer/reset/".$data['email'];
-            $dear=lang('Dear');
-            $welcome=lang('Welcome to wavlink');
-            $message=lang('Your email address is ').' '.$data['email'];
-            $please=lang('Please');
-            $click=lang('Click me');
-            $reset=lang('Reset your password');
-            $ifNot=lang('If the above connection cannot be opened');
-            $noreplay=lang('noreplay');
-            $sup=lang('Wavlink Support');
-            if ($email == true) {
-                $content = "
-                    <div>
-                    <p><strong>$dear</strong></p>
-                    <p>$welcome</p>
-                    <p>$message</p>
-                    <p>$please <a href='$url'>$click</a>$reset</p>
-                    $ifNot
-                    <p>$url</p>
-                    </div>
-                    <div style=\"border-top:1px solid #ccc;padding:10px 0;font-size:12px;margin:20px 0;color:#A0A0A0;\" >
-                    <p>$noreplay</p>
-                    <b>$sup</b>
-                    <p></p><img src=\"https://www.wavlink.com/static/frontend/zh-cn/img/wavlink-logo.png\" alt=\"https://www.wavlink.com\",height=\"80px\" width=\"360px\"/>
-                    </div>
-                    ";
-                $subject = lang('Retrieve your password');
-                $result = sendMail($data['email'], '', $subject, $content);
-                if ($result){
-                    return show(1,lang('Send Mail is Success'),'','','/customer/login.html',lang('Message Sent Successfully!'));
-                }else{
-                    return show(0,lang('Send Error'),'','','',lang('Message Sent Failed!'));
-                }
-            } elseif ($email == false) {
-                return show(0, lang('User does not exist'), '', '', '', '');
-            }
-        }
-        return $this->fetch();
+
     }
     public function reset($email=''){
         if (!isset($email) || empty($email)) {

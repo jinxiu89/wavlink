@@ -21,19 +21,7 @@ class Register extends Base_reg
     public function index()
     {
         if (request()->isAjax()) {
-            $data = input('post.');
-            if (!captcha_check($data['captcha'])) {
-                return show(0, lang('Verification Error'), '', '', '', lang('The security code is invalid.'));
-            }
-            $user=new User();
-            //先验证是否这个邮箱是否有注册，如果是就不应该让他注册两次哇   逗比：你的AOP在哪里？
-            $data = input('post.');
-            $result = $user->reg($data);
-            if ($result == false){
-                return show('0',lang('Already existed'),'','','/customer/login','');
-            }else{
-                return show(1,lang('ok'),'','','/customer/login');
-            }
+
         }
         return $this->fetch();
     }

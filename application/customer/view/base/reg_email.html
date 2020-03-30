@@ -1,0 +1,48 @@
+<div class="user_login_right">
+    <div>
+        <h1>
+            <a href="https://www.wavlink.com">
+                <img class="img-responsive center-block" src="__USER__/img/icon/wavlink_logo.png"
+                     alt="{:lang('Experience Center')}"></a>
+        </h1>
+    </div>
+    <div>
+        <form action="" id="login">
+            <div>
+                <label for="firstname">{:lang('username')}:</label>
+                <input id="firstname" name="firstname" type="text" placeholder="{:lang('Input your user name')}">
+            </div>
+            <div>
+                <label for="user_email">{:lang('Email')}:</label>
+                <input id="user_email" name="email" type="email" placeholder="{:lang('Input your E-mail')}">
+            </div>
+            <div>
+                <label for="user_password">{:lang('Password')}:</label>
+                <input id="user_password" name="password" type="password" placeholder="{:lang('Input your password')}">
+            </div>
+            <div>
+                <label for="user_password_again">{:lang('confirm')}:</label>
+                <input id="user_password_again" name="repassword" type="password"
+                       placeholder="{:lang('Input your password again')}">
+            </div>
+            <div>
+                <label>{:lang('Verification')}</label>
+                <div>
+                    <input name="captcha" type="text" placeholder="{:lang('Verification')}" datatype="*"
+                           nullmsg="{:lang('Please input the verification code in the image on the right')}">
+                    <div style="padding: 0;cursor:pointer" title="{:lang('Click change code')}">
+                        <img src="{:captcha_src()}" alt="{:lang('Click change code')}"
+                             onclick="this.src='{:captcha_src()}?seed='+Math.random()"/></div>
+                </div>
+            </div>
+            <div>
+                <input id="declare" name="disclaimer" value="1" type="checkbox">
+                <a href="#">{:lang('Disclaimer')}</a>
+                <input id="is_Subscribe" name="is_Subscribe" value="1" type="checkbox">
+                <a href="#">{:lang('Subscribe me')}</a>
+            </div>
+            <input type="hidden" name="languages" value="{$lang}">
+            <button class="btn-success">{:lang('GO')}</button>
+        </form>
+    </div>
+</div>

@@ -14,7 +14,7 @@ use app\common\model\Manual;
 use PHPMailer\PHPMailer\PHPMailer;
 use PHPMailer\PHPMailer\Exception as emailException;
 use think\Collection;
-
+use think\facade\Config;
 
 function pagination($obj)
 {
@@ -385,19 +385,19 @@ function toLevel($cate, $delimiter = '--', $parent_id = 1)
 function sendMail($toMail, $toName, $subject, $content, $attachment = null)
 {
     $mail = new PHPMailer();
-    $mail->CharSet = 'utf-8';
+    $mail->CharSet = Config::get('email.charSet');
     $mail->IsSMTP();
     $mail->isHTML(true);
-    $mail->SMTPDebug = 0;
-    $mail->Debugoutput = 'html';
-    $mail->Host = 'smtpdm-ap-southeast-1.aliyun.com';                         // SMTP服务器地址
-    $mail->Port = 465;                         // 端口号
-    $mail->SMTPAuth = true;                // SMTP登录认证
-    $mail->SMTPSecure = 'ssl';            // SMTP安全协议
-    $mail->Username = 'system@service.wavlink.us';                 // SMTP登录邮箱
-    $mail->Password = 'Wh32Ym69B10c';                 // SMTP登录密码
-    $mail->setFrom('system@service.wavlink.us', 'system');            // 发件人邮箱和名称
-    $mail->addReplyTo('contact@wavlink.com', 'Wavlink.com'); // 回复邮箱和名称
+    $mail->SMTPDebug = Config::get('email.debug');
+    $mail->Debugoutput = Config::get('mail.debug_output');
+    $mail->Host = Config::get('email.host');                         // SMTP服务器地址
+    $mail->Port = Config::get('email.port');                         // 端口号
+    $mail->SMTPAuth = Config::get('email.auth');                // SMTP登录认证
+    $mail->SMTPSecure = Config::get('email.secure');            // SMTP安全协议
+    $mail->Username = Config::get('email.user');                 // SMTP登录邮箱
+    $mail->Password = Config::get('email.password');                 // SMTP登录密码
+    $mail->setFrom(Config::get('email.from'), Config::get('email.name'));            // 发件人邮箱和名称
+    $mail->addReplyTo(Config::get('email.replay'), Config::get('email.replay_name')); // 回复邮箱和名称
     $mail->AddAddress($toMail, $toName);
     $mail->Subject = $subject;
     $mail->Body = $content;

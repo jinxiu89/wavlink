@@ -66,7 +66,7 @@ return [
     'New Password' => '新密码',
     'Save' => '保存',
     //info 内容提示
-    'Input your first name' => '请输入姓氏',
+    'Input your first name' => '请输入姓名',
     'Input your last name' => '请输入名字',
     'Secret' => '保密',
     'Sir.' => '先生',

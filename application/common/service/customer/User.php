@@ -27,6 +27,30 @@ class User extends BaseService
     }
 
     /**
+     * @param $email
+     * @return bool
+     */
+    public function CheckEmail($email){
+        try{
+            return $this->model->CheckEmail($email);
+        }catch (\Exception $exception){//todo:日志再完善哈
+            return $exception->getMessage();
+        }
+    }
+
+    /**
+     * @param $phone
+     * @return array|bool
+     */
+    public function CheckPhone($phone){
+        try{
+            return $this->model->CheckPhone($phone);
+        }catch (\Exception $exception){//todo::日志再完善
+            return $exception->getMessage();
+        }
+    }
+
+    /**
      * @param $id
      * @return mixed
      */
@@ -46,7 +70,7 @@ class User extends BaseService
     public function login($data)
     {
         try {
-            $user = $this->model->get(['email' => $data['email']]);
+            $user = $this->model->CheckEmail(['email' => $data['email']]);
             if (!$user) {
                 return ['status' => 0, 'message' => lang('User does not exist'), 'url' => url('customer_login')];
             }

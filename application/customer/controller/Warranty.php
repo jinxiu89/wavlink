@@ -11,7 +11,7 @@
 
 namespace app\customer\controller;
 
-use app\common\model\Warranty as WarrantyModel;
+use app\common\model\customer\Warranty as WarrantyModel;
 use app\customer\validate\warranty as WarrantyValidate;
 
 class Warranty extends Base

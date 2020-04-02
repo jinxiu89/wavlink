@@ -73,6 +73,19 @@ Class User extends BaseModel
         }
     }
 
+    /**
+     * @param $phone
+     * @return bool
+     */
+    public function CheckPhone($phone){
+        $result=$this::get(['phone'=>$phone]);
+        if(!$result){
+            return false;
+        }else{
+            return true;
+        }
+    }
+
     public function CheckPassword($oldPassword,$id){
         $result = $this::get($id);
         if($result['password'] == GetPassword($oldPassword)){

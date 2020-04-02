@@ -20,6 +20,17 @@
 <script type="text/javascript" src="__STATIC__/admin/lib/jquery.validation/1.14.0/messages_zh.js"></script>
 {/if}
 <script type="text/javascript">
+    $('#send_code').click(function () {
+        var param = $("#type").val();
+        var attr = $("#type").attr('attr-name');
+        $.ajax({
+            url: '{:url(\'verification\')}' + '?' + attr + '=' + param,
+            type: 'get',
+            success: function (result) {
+                //todo::成功还是失败，成功把按钮弄成倒计时，没有的话要提示用户失败，
+            }
+        });
+    });
     //    表单验证
     $("#login").validate({
         rules: {

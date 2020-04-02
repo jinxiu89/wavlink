@@ -23,6 +23,13 @@ class BaseService
     {
 
     }
+    public function create($data){
+        try{
+            return $this->model->create($data); //返回的是一个当前模型的实例
+        }catch (\Exception $exception){
+            return $exception->getMessage();//todo:: 异常
+        }
+    }
 
     /**
      * @param $id
@@ -35,4 +42,5 @@ class BaseService
             //todo 异常处理
         }
     }
+
 }

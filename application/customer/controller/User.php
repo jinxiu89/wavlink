@@ -12,10 +12,10 @@
 namespace app\customer\controller;
 
 use app\common\model\Country;
-use app\common\model\Customer;
-use think\App;
 use app\common\service\customer\User as Service;
 use app\customer\validate\User as Validate;
+use think\App;
+use think\facade\Cache;
 
 /**
  * Class User
@@ -32,32 +32,34 @@ class User extends Base
     public function __construct(App $app = null)
     {
         parent::__construct($app);
-        $this->service=new Service();
-        $this->validate=new Validate();
+        $this->service = new Service();
+        $this->validate = new Validate();
     }
-    protected $middleware=[];
+
+    protected $middleware = [];
 
     /**
      * login
      * 会员登录控制器
      * 已严格代码
      */
-    public function login(){
-        if(request()->isGet()){
+    public function login()
+    {
+        if (request()->isGet()) {
             return $this->fetch();
         }
-        if(request()->isPost()){
-            $data = input('post.',[],'htmlspecialchars,trim');
-            $login_url=url('customer_login');
-            $index=url('customer_index');
-            if(!$this->validate->scene('login')->check($data)){
-                return show(0,$this->validate->getError(),'','',$login_url,'');
+        if (request()->isPost()) {
+            $data = input('post.', [], 'htmlspecialchars,trim');
+            $login_url = url('customer_login');
+            $index = url('customer_index');
+            if (!$this->validate->scene('login')->check($data)) {
+                return show(0, $this->validate->getError(), '', '', $login_url, '');
             }
-            $result=$this->service->login($data);
-            if(!empty($index)){
-                return show($result['status'],$result['message'],'','',$index,'');
+            $result = $this->service->login($data);
+            if (!empty($index)) {
+                return show($result['status'], $result['message'], '', '', $index, '');
             }
-            return show($result['status'],$result['message'],'','',$result['url'],'');
+            return show($result['status'], $result['message'], '', '', $result['url'], '');
         }
     }
 
@@ -65,7 +67,8 @@ class User extends Base
      * 会员登出控制器
      * 只有在登入的情况下才能执行登出操作
      */
-    public function logout(){
+    public function logout()
+    {
         //清除session
         session(null, 'Customer');
         //跳出
@@ -75,28 +78,29 @@ class User extends Base
     /**
      * 会员找回密码控制器
      */
-    public function forgotten(){
+    public function forgotten()
+    {
         if (request()->isAjax()) {
             $data = input('post.');
             if (!captcha_check($data['captcha'])) {
                 return show(0, lang('Verification Error'), '', '', '', '验证码错误');
             }
             $email = (new Customer())->CheckEmail($data['email']);
-            $url=request()->domain()."/customer/reset/".$data['email'];
-            $dear=lang('Dear');
-            $welcome=lang('Welcome to wavlink');
-            $message=lang('Your email address is ').' '.$data['email'];
-            $please=lang('Please');
-            $click=lang('Click me');
-            $reset=lang('Reset your password');
-            $ifNot=lang('If the above connection cannot be opened');
-            $noreplay=lang('noreplay');
-            $sup=lang('Wavlink Support');
+            $url = request()->domain() . "/customer/reset/" . $data['email'];
+            $dear = lang('Dear');
+            $welcome = lang('Welcome to wavlink');
+            $message = lang('Your email address is ') . ' ' . $data['email'];
+            $please = lang('Please');
+            $click = lang('Click me');
+            $reset = lang('Reset your password');
+            $ifNot = lang('If the above connection cannot be opened');
+            $noreplay = lang('noreplay');
+            $sup = lang('Wavlink Support');
             if ($email == true) {
                 $content = "
                     <div>
-                    <p><strong>$dear</strong></p>
-                    <p>$welcome</p>
+                    <p><strong>lang('Dear')</strong></p>
+                    <p>lang('Welcome to wavlink')</p>
                     <p>$message</p>
                     <p>$please <a href='$url'>$click</a>$reset</p>
                     $ifNot
@@ -110,10 +114,10 @@ class User extends Base
                     ";
                 $subject = lang('Retrieve your password');
                 $result = sendMail($data['email'], '', $subject, $content);
-                if ($result){
-                    return show(1,lang('Send Mail is Success'),'','','/customer/login.html',lang('Message Sent Successfully!'));
-                }else{
-                    return show(0,lang('Send Error'),'','','',lang('Message Sent Failed!'));
+                if ($result) {
+                    return show(1, lang('Send Mail is Success'), '', '', '/customer/login.html', lang('Message Sent Successfully!'));
+                } else {
+                    return show(0, lang('Send Error'), '', '', '', lang('Message Sent Failed!'));
                 }
             } elseif ($email == false) {
                 return show(0, lang('User does not exist'), '', '', '', '');
@@ -127,24 +131,25 @@ class User extends Base
      * 通过邮箱重设密码
      * @return mixed|void
      */
-    public function reset($email=''){
+    public function reset($email = '')
+    {
         if (!isset($email) || empty($email)) {
             abort(404);
         }
-        if(request()->isAjax()){
-            $data=input('post.');
+        if (request()->isAjax()) {
+            $data = input('post.');
             if (!captcha_check($data['captcha'])) {
                 return show(0, lang('Verification Error'), '', '', '', '');
             }
             //ID 根据 email  返回他的ID
-            $user=new Customer();
-            $id=$user->getNameByEmail($email);
-            $result=$user->upDateById($data,$id);
-            if($result){
-                return show(1,lang('Ok'),'','','/customer/login.html','');
-            }elseif ($result == false){
+            $user = new Customer();
+            $id = $user->getNameByEmail($email);
+            $result = $user->upDateById($data, $id);
+            if ($result) {
+                return show(1, lang('Ok'), '', '', '/customer/login.html', '');
+            } elseif ($result == false) {
                 return show(0, lang('User does not exist'), '', '', '', '');
-            }else{
+            } else {
                 return show(0, lang('User does not exist'), '', '', '', '');
             }
         }
@@ -153,30 +158,57 @@ class User extends Base
 
     /**
      * 会员注册控制器
+     * 分为两种注册方式 type=1时 表示为email注册 type=2时表示为手机号注册
      */
-    public function register(){
-        if($this->request->isGet()){
+    public function register()
+    {
+        if ($this->request->isGet()) {
             return $this->fetch();
         }
-        if($this->request->isPost()){
-            $data = input('post.',[],'trim,htmlspecialchars');
-            if (!captcha_check($data['captcha'])) {
-                return show(0, lang('Verification Error'), '', '', '', lang('The security code is invalid.'));
+        if ($this->request->isPost()) {
+            $data = input('post.', [], 'trim,htmlspecialchars');
+            $data['password'] = GetPassword($data['password']);
+            if ($data['type'] == 1) { //todo::email 注册
+                $code = Cache::store('redis')->get($data['email'], '') ? Cache::store('redis')->get($data['email'], '') : Cache::store('default')->get($data['email'], '');
+                if ($code != $data['verification']) {
+                    return show(0, lang('The verification code is invalid'), '', '', '', lang('The verification code is invalid'));
+                }
+                $check=$this->service->CheckEmail($data['email']);
+                if ($check == true) {
+                    return show(0, lang('Your Email address Already existed'), '', '', '', lang('Your Email address Already existed'));
+                }
+                if(is_string($check)){
+                    return show(0, lang('Server Error'), '', '', '', lang('Server Error'));
+                }
             }
-            $user=new \app\common\model\Customer();
-            //先验证是否这个邮箱是否有注册，如果是就不应该让他注册两次哇   逗比：你的AOP在哪里？
-            $result = $this->service->reg($data);
-            if ($result == false){
-                return show('0',lang('Already existed'),'','','/customer/login','');
-            }else{
-                return show(1,lang('ok'),'','','/customer/login');
+            if ($data['type'] == 2) { //短信注册
+                $code = Cache::store('redis')->get($data['phone'], '') ? Cache::store('redis')->get($data['phone'], '') : Cache::store('default')->get($data['phone'], '');
+                if ($code != $data['verification']) {
+                    return show(0, lang('The verification code is invalid'), '', '', '', lang('The verification code is invalid'));
+                }
+                $check = $this->service->CheckPhone($data['phone']);
+                if ( $check== true) {
+                    return show(0, lang('Your phone  Already existed'), '', '', '', lang('Your phone  Already existed'));
+                }
+                if(is_string($check)){
+                    return show(0, lang('Server Error'), '', '', '', lang('Server Error'));
+                }
+            }
+            $instance = $this->service->create($data); //instance 是实例的意思
+            if ($instance->id) {//注册第二步，填写产品信息
+                redirect(url('customer_reg_product',['user_id'=>$instance->id]));
+                return show(1, lang('Success'), '', '', url('customer_login'), lang('Successfully!'));
+            } else {
+                return show(0, lang('Error'), '', '', '', lang('Failed!'));
             }
         }
     }
 
-    public function info(){
+
+    public function info()
+    {
         $id = session('CustomerInfo', '', 'Customer');
-        if(request()->isGet()){
+        if (request()->isGet()) {
             $customer = $this->service->getDataByIdWithInfo($id);
             $country = (new Country())->field('country_id,name')->select();
             if (isMobile()) {
@@ -204,7 +236,8 @@ class User extends Base
     /**
      * 会员信息修改控制器
      */
-    public function modifyInfo(){
+    public function modifyInfo()
+    {
 
     }
 

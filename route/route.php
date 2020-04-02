@@ -1,8 +1,10 @@
 <?php
 use think\facade\Route;
 Route::group('customer', function () {
-    //登入登出
+    //注册
     Route::rule('/register$', 'User/register','GET|POST')->name('customer_register');
+    Route::rule('/verification$', 'Base/sendVerification','GET')->parent(['email'=>'[\w!#$%&\'*+/=?^_`{|}~-]+(?:\.[\w!#$%&\'*+/=?^_`{|}~-]+)*@(?:[\w](?:[\w-]*[\w])?\.)+[\w](?:[\w-]*[\w])?','phone'=>'\d+'])->name('verification');//验证码
+    //登入登出
     Route::rule('/login$', 'User/login','GET|POST')->name('customer_login');
     Route::get('/logout$', 'User/logout')->name('customer_logout');
     //用户信息

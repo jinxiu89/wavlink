@@ -10,8 +10,10 @@
  **/
 
 namespace app\lib\utils;
+use PHPMailer\PHPMailer\Exception;
 use PHPMailer\PHPMailer\PHPMailer;
 use PHPMailer\PHPMailer\Exception as emailException;
+use think\facade\Config;
 /**
  * Class email
  * @package app\lib\utils
@@ -29,7 +31,7 @@ class email
      * @throws emailException
      * @internal param $to
      */
-    public function sendMail($toMail, $toName, $subject, $content, $attachment = null)
+    public static function sendMail($toMail, $toName, $subject, $content, $attachment = null)
     {
         $mail = new PHPMailer();
         $mail->CharSet = Config::get('email.charSet');
@@ -57,7 +59,11 @@ class email
                 }
             }
         }
-        $result = $mail->send();
-        return $result ? true : $mail->ErrorInfo;
+        try{
+            $result = $mail->send();
+            return $result ? true : $mail->ErrorInfo;
+        }catch (Exception $exception){
+            return $exception->getMessage();
+        }
     }
 }

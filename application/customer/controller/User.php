@@ -52,7 +52,8 @@ class User extends Base
             $data = input('post.', [], 'htmlspecialchars,trim');
             $login_url = url('customer_login');
             $index = url('customer_index');
-            if (!$this->validate->scene('login')->check($data)) {
+            $scene = empty($data['email']) ? 'phone' : 'email';
+            if (!$this->validate->scene($scene)->check($data)) {
                 return show(0, $this->validate->getError(), '', '', $login_url, '');
             }
             $result = $this->service->login($data);
@@ -173,11 +174,11 @@ class User extends Base
                 if ($code != $data['verification']) {
                     return show(0, lang('The verification code is invalid'), '', '', '', lang('The verification code is invalid'));
                 }
-                $check=$this->service->CheckEmail($data['email']);
+                $check = $this->service->CheckEmail($data['email']);
                 if ($check == true) {
                     return show(0, lang('Your Email address Already existed'), '', '', '', lang('Your Email address Already existed'));
                 }
-                if(is_string($check)){
+                if (is_string($check)) {
                     return show(0, lang('Server Error'), '', '', '', lang('Server Error'));
                 }
             }
@@ -187,16 +188,16 @@ class User extends Base
                     return show(0, lang('The verification code is invalid'), '', '', '', lang('The verification code is invalid'));
                 }
                 $check = $this->service->CheckPhone($data['phone']);
-                if ( $check== true) {
+                if ($check == true) {
                     return show(0, lang('Your phone  Already existed'), '', '', '', lang('Your phone  Already existed'));
                 }
-                if(is_string($check)){
+                if (is_string($check)) {
                     return show(0, lang('Server Error'), '', '', '', lang('Server Error'));
                 }
             }
             $instance = $this->service->create($data); //instance 是实例的意思
             if ($instance->id) {//注册第二步，填写产品信息
-                redirect(url('customer_reg_product',['user_id'=>$instance->id]));
+                redirect(url('customer_reg_product', ['user_id' => $instance->id]));
                 return show(1, lang('Success'), '', '', url('customer_login'), lang('Successfully!'));
             } else {
                 return show(0, lang('Error'), '', '', '', lang('Failed!'));

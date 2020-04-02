@@ -21,13 +21,16 @@ class User extends Validate
 {
     protected $rule=[
         'email'=>'require|email',
+        'phone'=>'require'
     ];
     protected $message=[
         'email.require'=>'{%email is required}',
-        'email.email'=>'{%email format is Error}'
+        'email.email'=>'{%email format is Error}',
+        'phone'=>'{%phone number is require}'
     ];
     protected $scene=[
-        'login'=>['email'],
+        'email'=>['email'],
+        'phone'=>['phone'],
         'register'=>['email']
     ];
 }

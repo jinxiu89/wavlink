@@ -40,9 +40,13 @@ function status($status)
 }
 
 //用户登录密码 key 校验
+/**
+ * @param $password
+ * @return string
+ */
 function GetPassword($password)
 {
-    return md5(sha1($password) . $key = 'ad;lkfjSDAF@@#$@#Q%4>>><KJJH11111111111111########sdfasdf!!!bbbsdf');
+    return md5(sha1($password) . Config::get('app.APP_TOKEN_MD5') );
 }
 
 function Search($table, $map = [], $order, $field = '')

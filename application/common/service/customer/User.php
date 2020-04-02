@@ -69,12 +69,18 @@ class User extends BaseService
      */
     public function login($data)
     {
+        $user=[];
         try {
-            $user = $this->model->CheckEmail(['email' => $data['email']]);
+            if(isset($data['email']) || !empty($data['email'])){
+                $user = $this->model->get(['email' => $data['email']]);
+            }
+            if(isset($data['phone']) || !empty($data['phone'])){
+                $user = $this->model->get(['phone'=>$data['phone']]);
+            }
             if (!$user) {
                 return ['status' => 0, 'message' => lang('User does not exist'), 'url' => url('customer_login')];
             }
-            if ($user['password'] !== GetPassword($data['password'])) {
+            if ($user->password !== GetPassword($data['password'])) {
                 return ['status' => 0, 'message' => lang('Password Error'), 'url' => url('customer_login')];
             }
         } catch (\Exception $exception) {

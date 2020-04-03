@@ -19,10 +19,6 @@ class BaseService
 {
     protected $model;
 
-    public function __construct()
-    {
-
-    }
     public function create($data){
         try{
             return $this->model->create($data); //返回的是一个当前模型的实例

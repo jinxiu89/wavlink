@@ -197,8 +197,7 @@ class User extends Base
             }
             $instance = $this->service->create($data); //instance 是实例的意思
             if ($instance->id) {//注册第二步，填写产品信息
-                redirect(url('customer_reg_product', ['user_id' => $instance->id]));
-                return show(1, lang('Success'), '', '', url('customer_login'), lang('Successfully!'));
+                return show(1, lang('Success'), '', '', url('customer_product_register', ['user_id' => $instance->id]), lang('Successfully!'));
             } else {
                 return show(0, lang('Error'), '', '', '', lang('Failed!'));
             }

@@ -58,8 +58,6 @@ class Login extends Controller
             session('current_language', (new Language())->getLanguageByLanguageId($data['language_id'])[0], 'admin');
             $uid = session('userName', '', 'admin')->id;
             if ($uid != 1) {
-                $auth = new Auth();
-                $_access = $auth->getAuthById($uid);
                 return show(1, 'success', '', '', $this->next, '登录成功，请稍后');
             } else {
                 //超级用户登录

@@ -12,8 +12,9 @@ Route::group('customer', function () {
 
     Route::post('/edit/password$','Info/editPassword')->name('customer_password');
     //产品注册
+    Route::rule('/product/register$','Product/register','GET|POST')->parent(['user_id'=>'[\d+]'])->name('customer_product_register');
     Route::get('/warranty$','Warranty/index')->name('customer_warranty_list');
-    Route::get('/warranty/register$','Warranty/register')->name('customer_warranty_register');
+
     Route::rule('/index$','Index/index','GET')->name('customer_index');
 })->prefix('customer/');
 

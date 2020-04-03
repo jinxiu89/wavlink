@@ -9,6 +9,9 @@
 // | Author: luofei614 <weibo.com/luofei614>　
 // +----------------------------------------------------------------------
 namespace app\wavlink\controller;
+use think\db\exception\DataNotFoundException;
+use think\db\exception\ModelNotFoundException;
+use think\exception\DbException;
 use think\facade\Config;
 use think\facade\Session;
 use think\Db;
@@ -157,19 +160,12 @@ class Auth {
      * @param integer $uid 用户id
      * @param integer $type
      * @return array|mixed
-     * @throws \think\db\exception\DataNotFoundException
-     * @throws \think\db\exception\ModelNotFoundException
-     * @throws \think\exception\DbException
+     * @throws DataNotFoundException
+     * @throws ModelNotFoundException
+     * @throws DbException
      */
     protected function getAuthList($uid, $type) {
         static $_authList = []; //保存用户验证通过的权限列表
-        $t = implode(',', (array) $type);
-        if (isset($_authList[$uid . $t])) {
-            return $_authList[$uid . $t];
-        }
-        if ($this->config['auth_type'] == 2 && Session::has('_auth_list_' . $uid . $t)) {
-            return Session::get('_auth_list_' . $uid . $t);
-        }
         //读取用户所属用户组
         $groups = $this->getGroups($uid);
         $ids = []; //保存用户所属用户组设置的所有权限规则id
@@ -177,12 +173,8 @@ class Auth {
             $ids = array_merge($ids, explode(',', trim($g['rules'], ',')));
         }
         $ids = array_unique($ids);
-        if (empty($ids)) {
-            $_authList[$uid . $t] = [];
-            return [];
-        }
         $map = [
-            'id' => ['in', $ids],
+            'id' => $ids,
             'type' => $type,
             'status' => 1,
         ];
@@ -194,16 +186,13 @@ class Auth {
             if (!empty($rule['condition'])) { //根据condition进行验证
                 $this->getUserInfo($uid); //获取用户信息,一维数组
                 $command = preg_replace('/\{(\w*?)\}/', '$user[\'\\1\']', $rule['condition']);
-                (eval('$condition=(' . $command . ');'));
+                @(eval('$condition=(' . $command . ');'));
                 $condition && $authList[] = strtolower($rule['name']);
             } else {
                 $authList[] = strtolower($rule['name']); //只要存在就记录
             }
         }
-        $_authList[$uid . $t] = $authList;
-        if ($this->config['auth_type'] == 2) {
-            $_SESSION['_auth_list_' . $uid . $t] = $authList; //规则列表结果保存到session
-        }
+        $_authList[$uid . $type] = $authList;
         return array_unique($authList);
     }
     /**
@@ -222,9 +211,9 @@ class Auth {
      * @param $uid
      * @param int $type
      * @return array
-     * @throws \think\db\exception\DataNotFoundException
-     * @throws \think\db\exception\ModelNotFoundException
-     * @throws \think\exception\DbException
+     * @throws DataNotFoundException
+     * @throws ModelNotFoundException
+     * @throws DbException
      */
     public function getAuthById($uid,$type = 1){
         return static::getAuthList($uid,$type);

@@ -78,7 +78,7 @@ class BaseAdmin extends Controller
         $action = $request->action();
         $name = $con . '/' . $action;
         $uid = $userSession->id;
-        $notCheck = array('Index/index', 'Content/index', 'Service/index', 'System/index');//对一些（控制器/方法）不需要验证
+        $notCheck = ['Index/index', 'Content/index', 'Service/index', 'System/index'];//对一些（控制器/方法）不需要验证
         //权限部分
         if ($uid != 1) {
             $_access = $auth->getAuthById($uid);

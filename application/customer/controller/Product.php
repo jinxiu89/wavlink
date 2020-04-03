@@ -13,6 +13,7 @@ namespace app\customer\controller;
 
 
 use app\customer\validate\warranty as WarrantyValidate;
+use think\App;
 
 /**
  * Class product
@@ -20,10 +21,16 @@ use app\customer\validate\warranty as WarrantyValidate;
  */
 class product extends Base
 {
+    public function __construct(App $app = null)
+    {
+        parent::__construct($app);
+        $this->validate=new WarrantyValidate();
+    }
+
     public function register()
     {
         if (request()->isAjax()) {
-            $data = input('post.');
+            $data = input('post.',[],'htmlspecialchars,trim');
             if (strtotime($data['prd_time']) - strtotime($data['create_time']) < 0) {
                 //执行保存操作
                 $data['user_id'] = $this->getLoginCustomer();
@@ -40,7 +47,6 @@ class product extends Base
                         return show(0, '', '', '', '', lang('Unknown Error'));
                     }
                 }
-
             } else {
                 return show(0, '', '', '', '', lang('The “Purchase Time” has to be later than the Date of Manufacture in your registration.'));
             }

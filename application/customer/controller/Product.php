@@ -12,7 +12,8 @@
 namespace app\customer\controller;
 
 
-use app\customer\validate\warranty as WarrantyValidate;
+use app\common\service\customer\Product as Service;
+use app\customer\validate\Product as Validate;
 use think\App;
 
 /**
@@ -21,36 +22,39 @@ use think\App;
  */
 class product extends Base
 {
+    /**
+     * product constructor.
+     * @param App|null $app
+     */
     public function __construct(App $app = null)
     {
         parent::__construct($app);
-        $this->validate=new WarrantyValidate();
+        $this->validate=new Validate();
+        $this->service=new Service();
     }
 
+    /**
+     * register
+     * @return mixed|void
+     */
     public function register()
     {
+        if(request()->isGet()){
+            $country = $this->service->getCountry();
+            return $this->fetch('',['user_id'=>input('get.user_id'),'country'=>$country]);
+        }
         if (request()->isAjax()) {
             $data = input('post.',[],'htmlspecialchars,trim');
-            if (strtotime($data['prd_time']) - strtotime($data['create_time']) < 0) {
-                //执行保存操作
-                $data['user_id'] = $this->getLoginCustomer();
-                $data['status'] = 2;
-                $data['create_time'] = date('Y-m-d', time());
-                $data['expiry_time'] = date("Y-m-d", strtotime("+1 year", strtotime($data['create_time'])));
-                $validate = new WarrantyValidate();
-                if (!$validate->check($data)) {
-                    return show(0, '', '', '', '', $validate->getError());
-                } else {
-                    if ((new WarrantyModel())->allowField(true)->save($data)) {
-                        return show(1, '', '', '', '', lang('Success'));
-                    } else {
-                        return show(0, '', '', '', '', lang('Unknown Error'));
-                    }
-                }
+            $data['create_time']=strtotime($data['create_time']);
+            if(!$this->validate->scene('add')->check($data)){
+                return show(0, '', '', '', '', $this->validate->getError());
+            }
+            $instance = $this->service->create($data); //instance 是实例的意思
+            if ($instance->id) {
+                return show(1, lang('Success'), '', '', url('customer_login'), lang('Successfully!'));
             } else {
-                return show(0, '', '', '', '', lang('The “Purchase Time” has to be later than the Date of Manufacture in your registration.'));
+                return show(0, lang('Error'), '', '', '', lang('Failed!'));
             }
         }
-        return $this->fetch();
     }
 }

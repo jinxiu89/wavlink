@@ -18,15 +18,18 @@ class Product extends Validate
 {
     protected $rule=[
         'model'=>'require',
-        'phone'=>'require'
+        'platform'=>'require',
+        'country'=>'require',
+        'create_time'=>'require',
     ];
     protected $message=[
-        'email.require'=>'{%email is required}',
-        'email.email'=>'{%email format is Error}',
-        'phone'=>'{%phone number is require}'
+        'model.require'=>'{%model is required}',
+        'platform.require'=>'{%platform  is required}',
+        'country'=>'{%country is require}',
+        'create_time'=>'{%create time is require}',
     ];
     protected $scene=[
-        'email'=>['email'],
+        'add'=>['model','platform','country','create_time'],
         'phone'=>['phone'],
         'register'=>['email']
     ];

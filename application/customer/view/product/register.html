@@ -5,10 +5,8 @@
         <div class="row cl">
             <label class="form-label col-xs-4 col-sm-3"><span class="c-red">*</span>{:lang('Model')}:</label>
             <div class="formControls col-xs-4 col-sm-4">
+                <input type="hidden" name="user_id" value="{$user_id}">
                 <input id="model" class="input-text" value="" placeholder="" name="model">
-            </div>
-            <div class="formControls col-xs-2 col-sm-8">
-
             </div>
         </div>
         <div class="row cl">
@@ -16,30 +14,26 @@
             <div class="formControls col-xs-4 col-sm-4">
                 <input id="sn" class="input-text" value="" placeholder="" name="sn">
             </div>
-            <div class="formControls col-xs-4 col-sm-5">
-                <span style="font-size: 12px;color: red"></span>
-            </div>
         </div>
         <div class="row cl">
             <label class="form-label col-xs-4 col-sm-3"><span class="c-red">*</span>Where to buy:</label>
             <div class="formControls col-xs-4 col-sm-4">
                 <input class="input-text" value="" placeholder="" name="platform">
             </div>
-            <div class="formControls col-xs-2 col-sm-8">
-
-            </div>
         </div>
         <div class="row cl">
             <label class="form-label col-xs-4 col-sm-3"><span class="c-red">*</span>{:lang('Country')}:</label>
             <div class="formControls col-xs-4 col-sm-4">
-                <input id="country" class="input-text" value="" placeholder="" name="country">
-            </div>
-            <div class="formControls col-xs-2 col-sm-8">
-
+                <select name="country" id="country">
+                    <option value="">请选择</option>
+                    {volist name="country" id="vo"}
+                    <option value="{$vo.name}">{$vo.name}</option>
+                    {/volist}
+                </select>
             </div>
         </div>
         <div class="row cl">
-            <label class="form-label col-xs-4 col-sm-3"><span class="c-red">*</span>{:lang('Order Number')}:</label>
+            <label class="form-label col-xs-4 col-sm-3">{:lang('Order Number')}:</label>
             <div class="formControls col-xs-4 col-sm-4">
                 <input class="input-text" value="" placeholder="" name="order_number">
             </div>
@@ -55,7 +49,7 @@
             </div>
         </div>
         <div class="row cl">
-            <label class="form-label col-xs-4 col-sm-3"><span class="c-red">*</span>{:lang('Category')}:</label>
+            <label class="form-label col-xs-4 col-sm-3">{:lang('Category')}:</label>
             <div class="formControls col-xs-4 col-sm-4">
                 <input id="category" class="input-text" value="" placeholder="" name="category">
             </div>
@@ -63,7 +57,6 @@
 
             </div>
         </div>
-        <input type="hidden" name="prd_time" id="prd_time" value="">
         <div class="row cl">
             <div class="col-xs-8 col-sm-9 col-xs-offset-4 col-sm-offset-3">
                 <button class="btn btn-primary" type="submit">{:lang('GO')}</button>
@@ -92,12 +85,16 @@
     $('#add').validate({
         rules:{
             model:{required:true},
+            country:{required:true},
+            platform:{required:true},
+            create_time:{required:true}
         },
         errorElement:"em",
         onkeyup:false,
         focusCleanup:true,
         success:"valid",
         submitHandler:function (form) {
+
             $.ajax({
                 url:"{:url('customer_product_register')}",
                 type:"post",
@@ -106,10 +103,9 @@
                 success: function (result) {
                     if (result.status === 1) {
                         //注册成功后要跳转到登录
-                        layer.msg(result.message, {icon: 1, time: 3000});
-                        setTimeout(function () {
+                        layer.msg(result.message, {icon: 1, time: 3000},function () {
                             window.location.href = result.jump_url
-                        }, 1000)
+                        });
                     } else {
                         layer.msg(result.message, {icon: 5, time: 1000});
                     }

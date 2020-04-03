@@ -10,16 +10,29 @@
  **/
 
 namespace app\common\service\customer;
+use app\common\model\Country;
 use app\common\model\customer\Product as Model;
 /**
  * Class product
  * @package app\common\service\customer
  */
-class product extends BaseService
+class Product extends BaseService
 {
     public function __construct()
     {
         $this->model=new Model();
+    }
+
+    /**
+     * @return array
+     */
+    public function getCountry(){
+        try{
+            $data=(new Country())->field('country_id,name')->select();
+            return $data->toArray();
+        }catch (\Exception $exception){
+            return [];
+        }
     }
 
 }

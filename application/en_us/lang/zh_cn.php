@@ -44,7 +44,7 @@ return [
     'list or video'=>'视频列表',
     'Update Time'=>'更新时间',
     'video'=>'视频',
-    'Details' => '详细信心',
+    'Details' => '详细信息',
     'Notices' => '注意',
     'faq' => '常见问题',
     'filter by' => '分类筛选',

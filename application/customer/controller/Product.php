@@ -20,7 +20,7 @@ use think\App;
  * Class product
  * @package app\customer\controller
  */
-class product extends Base
+class Product extends Base
 {
     /**
      * product constructor.

@@ -1,0 +1,24 @@
+<form action="" id="login">
+    <div class="info">
+        <label for="user_email"><i class="iconfont iconuser"></i></label>
+        <input id="user_email" type="text" name="email" placeholder="{:lang('Input your E-mail')}">
+    </div>
+    <div class="info">
+        <label for="user_password"><i class="iconfont iconpassword1"></i></label>
+        <input id="user_password" type="password" name="password" placeholder="{:lang('Input your password')}">
+    </div>
+    <div class="info">
+        <label for="captcha"><i class="iconfont iconpassword"></i></label>
+        <input id="captcha" type="text" name="captcha" placeholder="{:lang('验证码')}">
+        <div class="code-box">
+            <a href="javascript:void(0);" onclick="genCode(this)"><img src="{:url('gen_verify')}" alt="captcha"/></a>
+        </div>
+    </div>
+    <div class="tips">
+        <span class="to-register"><a href="{:url('customer_register')}">{:lang('No account yet')}</a></span>
+        <span class="retrieve"><a href="/customer/forgotten.html">{:lang('Retrieve your password')}</a></span>
+    </div>
+    <div class="btn-box">
+        <button class="btn-submit">{:lang('login')}</button>
+    </div>
+</form>

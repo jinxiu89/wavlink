@@ -1,0 +1,11 @@
+/**
+* @name: mixins.less
+* @description: 通用类定义
+* @author: Alan(alan_webdeveloper@163.com)
+* @update: 2019-07-06 10:46
+*/
+.center-block {
+  margin-left: auto;
+  margin-right: auto;
+}
+/*# sourceMappingURL=mixins.css.map */

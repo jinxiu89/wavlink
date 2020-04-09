@@ -1,0 +1,68 @@
+/**
+* @name: manual.less
+* @description: 說明書列表页樣式
+* @author: Alan(alan_webdeveloper@163.com)
+* @update: 2019-09-16 10:30
+*/
+@import "../../public/mixins";
+@import "../../public/variables";
+
+//驅動列表布局样式
+.banner {
+    background: #42A4FF;
+    img {
+        .img-responsive();
+        .center-block();
+        width: 800px;
+        @media screen and (max-width: 800px) {
+            width: 100%;
+        }
+    }
+}
+
+.box {
+    .clearFix();
+}
+.g-main .item {
+    margin-bottom: 20px;
+    padding: 20px;
+    border-bottom: 1px solid @borderColor;
+    background: @whiteColor;
+    #border-radius(5px);
+}
+.g-main .item .panel {
+    margin-bottom: 0;
+    border-color: @borderColor;
+}
+.g-main .item .panel-heading {
+    border-color: @borderColor;
+}
+.g-main .item .title{
+    font-size: 16px;
+}
+.g-main .item .info{
+    div p span {
+        &:after {
+            content: ",";
+        }
+        &:nth-last-of-type(1):after,
+        &:nth-of-type(1):after {
+            content: none;
+        }
+    }
+    p {
+        margin-bottom: 5px;
+    }
+    p span {
+        display: inline-block;
+        line-height: 20px;
+    }
+}
+.g-main .item .download{
+    a {
+        font-size: 12px;
+        border-color: @borderColor;
+    }
+}
+
+//驅動列表布局样式結束

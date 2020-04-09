@@ -1,35 +1,208 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <!--头部公共因素-->
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <!--wavlink公共部分-->
-    <link rel="stylesheet" href="__LIB__/Bootstrap/bootstrap-3.3.7.min.css">
-    <link rel="stylesheet" href="__LIB__/fontawesome/css/font-awesome.min.css">
-    <link rel="stylesheet" href="__USER__/css/wavlink_user_public.css">
-    <!--title-->
-    {block name="title"}
-    {/block}
-    <!--wavlink用户中心私有部分-->
-    {block name="style"}
-    {/block}
-    <!--私有业务结束-->
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, minimum-scale=1, user-scalable=no">
+    <title>register - wavlink</title>
+    <script rel="stylesheet" src="__LIB__/JQuery/JQuery-3.4.0.js"></script>
+    <script src="http://static.runoob.com/assets/jquery-validation-1.14.0/dist/jquery.validate.min.js"></script>
+    <script src="../js/public.js"></script>
+    <link rel="stylesheet" href="../css/public/components.css">
+    <link rel="stylesheet" href="../css/page/login_register.css">
 </head>
 <body>
-<div class="user_login">
-    <div>
-        {block name="right"}
-        {/block}
-        <div class="user_login_left">
-            <h2>{:lang('Experience Center')}</h2>
-            {:lang('notice for login')}
+
+<div class="register">
+    <div class="box">
+        <div class="logo-box">
+            <h2><a href="#"><img class="" src="https://cloud.wavlink.com/index.php?user/publicLink&fid=bb50yNmQ9Uq6Cd3K4xnP7f4s6XTIQRL4VC0zRTOCg6uD3u4sD4Fq1rba3mEGfQg2ZPfdpGI9jz0oV8fX-smuZ4C2yokEppUXskovnb1iUWYZDDl2W-lXqo_X6bFTJ5qnEbjrshyO_5eKfdm9a8V3x9BFL-Ms&file_name=/SeeTheWord_black.png" alt=""></a></h2>
+        </div>
+
+        <div class="info-box">
+            <form action="" id="registerForm">
+                <div class="info">
+                    <label for="UserName">UserName<span> * </span></label>
+                    <input id="UserName" name="UserName" type="text" placeholder="">
+                </div>
+                <div class="info">
+                    <label for="Password">Password<span> * </span></label>
+                    <input id="Password" name="Password" type="password" placeholder="">
+                </div>
+                <div class="info">
+                    <label for="Confirm">Confirm<span> * </span></label>
+                    <input id="Confirm" name="Confirm" type="password" placeholder="">
+                </div>
+                <div class="info">
+                    <label for="Email">E-mail<span> * </span></label>
+                    <input id="Email" name="Email" type="email" placeholder="">
+                    <button id="emailCode">获取验证码</button>
+                </div>
+                <div class="info">
+                    <label for="Verification">Verification<span> * </span></label>
+                    <input id="Verification" name="Verification" type="text" placeholder="">
+                </div>
+
+                <div class="des">
+                    <div>
+                        <input id="agree" name="agree" type="checkbox">
+                        <label for="agree">
+                            <span> * </span>
+                            I accept the
+                            <a href="#" target="_blank" >Disclaimer</a>
+                            and
+                            <a href="#" target="_blank">Privacy agreement.</a>
+                        </label>
+                    </div>
+                    <div>
+                        <input id="newsletter" name="newsletter" type="checkbox">
+                        <label for="newsletter">
+                            Subscribe WAVLINK
+                        </label>
+                    </div>
+                </div>
+                <button id="submit">Register</button>
+            </form>
         </div>
     </div>
 </div>
+
+<script>
+    // 离开页面/刷新页面 重新运行计时器
+    function monitor(obj) {
+        var LocalDelay = getLocalDelay();
+        if (LocalDelay.time != null) {
+            var timeLine = parseInt((new Date().getTime() - LocalDelay.time) / 1000);
+            if (timeLine > LocalDelay.delay) {
+                console.log("过期");
+            } else {
+                _delay = LocalDelay.delay - timeLine;
+                obj.text(_delay + 's latter');
+                document.getElementById("emailCode").disabled = true;
+                var timer = setInterval(function () {
+                    if (_delay > 1) {
+                        _delay--;
+                        obj.text(_delay + 's latter');
+                        setLocalDelay(_delay);
+                    } else {
+                        clearInterval(timer);
+                        obj.text("获取验证码");
+                        document.getElementById("emailCode").disabled = false;
+                    }
+                }, 1000);
+            }
+        }
+    }
+    //设置setLocalDelay
+    function setLocalDelay(delay) {
+        sessionStorage.setItem("delay_" + location.href, delay);
+        sessionStorage.setItem("time_" + location.href, new Date().getTime());
+    }
+    //getLocalDelay()
+    // 第二步
+    function getLocalDelay() {
+        var LocalDelay = {};
+        LocalDelay.delay = sessionStorage.getItem("delay_" + location.href);
+        LocalDelay.time = sessionStorage.getItem("time_" + location.href);
+        return LocalDelay;
+    }
+    //倒计时效果
+    /**
+     *
+     * @param {Object} obj 获取验证码按钮
+     * @param {Function} callback 获取验证码接口函数
+     */
+    function countDown(obj, callback) {
+        if (obj.text() == "获取验证码") {
+            var _delay = 120; //设置定时时间长度
+            var delay = _delay;
+            obj.text(_delay + 's latter');
+            document.getElementById("emailCode").disabled = true;
+            // 定时器
+            var timer = setInterval(function () {
+                if (delay > 1) {
+                    delay--;
+                    obj.html(delay + 's latter');
+                    setLocalDelay(delay);
+                } else {
+                    clearInterval(timer);
+                    obj.text("获取验证码");
+                    document.getElementById("emailCode").disabled = false;
+                }
+            }, 1000);
+            callback();
+        } else {
+            return false;
+        }
+    }
+    // 初始化
+    $(function () {
+        var btn = document.getElementById("emailCode");
+        monitor($(btn));
+        btn.onclick = function () {
+            //倒计时效果 getCode回调函数 获取验证码api
+            countDown($(this), getCode);
+        };
+        // 回调提示
+        function getCode() {
+            alert("验证码发送成功");
+        }
+    });
+</script>
+
+<script>
+    $.validator.setDefaults({
+        submitHandler: function() {
+            if ($('#agree').is(":checked")) {
+                alert('提交事件!');
+            } else {
+                alert('请仔细阅读我么的隐私政策')
+            }
+        }
+    });
+    $().ready(function () {
+        $('#registerForm').validate({
+            errorClass: 'infoError',
+            errorElement: 'p',
+            rules: {
+                UserName: 'required',
+                Password: {
+                    required: true,
+                    minlength: 5,
+                    maxlength: 12
+                },
+                Confirm: {
+                    required: true,
+                    minlength: 5,
+                    maxlength: 12,
+                    equalTo: '#Password'
+                },
+                Email: {
+                    required: true,
+                    email: true
+                },
+                Verification: 'required',
+                // agree: 'required'
+            },
+            messages: {
+                UserName: 'Please enter User name',
+                Password: {
+                    required: 'Please enter the password',
+                    minlength: 'Password must be at least 5 letters',
+                    maxlength: 'Password cannot be longer than 12 letters'
+                },
+                Confirm: {
+                    required: 'Please enter the password again',
+                    minlength: 'Password must be at least 5 letters',
+                    maxlength: 'Password cannot be longer than 12 letters',
+                    equalTo: 'The password is different twice'
+                },
+                Email: 'Please enter a correct email',
+                // agree: '请接受我们的隐私政策声明'
+                Verification: 'Please enter the correct email verification code'
+            }
+        })
+    })
+</script>
+
 </body>
-<script rel="stylesheet" src="__LIB__/JQuery/JQuery-3.4.0.js"></script>
-<script src="__USER__/js/wavlink_user_public.js"></script>
-{block name="js"}
-{/block}
 </html>

@@ -30,14 +30,17 @@
 <script type="text/javascript" src="__STATIC__/admin/lib/jquery.validation/1.14.0/validate-methods.js"></script>
 <script type="text/javascript" src="__STATIC__/admin/lib/layer/2.4/layer.js"></script>
 {if condition="$lang == 'zh_cn'"}
+<script type="text/javascript" src="__STATIC__/admin/lib/jquery.validation/1.14.0/messages_zh.js"></script>
 {/if}
 <script>
     $("#login").validate({
         errorClass: 'infoError',
+        errorElement: "p",
         rules: {
+            email:{},
             password: {
                 required: true,
-                minlength: 8,
+                minlength: 5,
                 maxlength: 16
             },
             repassword: {
@@ -45,10 +48,9 @@
                 equalTo: "#user_password"
             }
         },
-        errorElement: "em",
-        onkeyup: false,
+        /*onkeyup: false,
         focusCleanup: true,
-        success: "valid",
+        success: "valid",*/
         submitHandler: function (form) {
             $.ajax({
                 url: '{:url(\'customer_login\')}',

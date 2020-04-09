@@ -35,6 +35,7 @@
     // 离开页面/刷新页面 重新运行计时器
     function monitor(obj) {
         var LocalDelay = getLocalDelay();
+        var btnDom = document.getElementById("send_code");
         if (LocalDelay.time != null) {
             var timeLine = parseInt((new Date().getTime() - LocalDelay.time) / 1000);
             if (timeLine > LocalDelay.delay) {
@@ -42,7 +43,7 @@
             } else {
                 _delay = LocalDelay.delay - timeLine;
                 obj.text(_delay + 's latter');
-                document.getElementById("send_code").disabled = true;
+                btnDom.disabled = true;
                 var timer = setInterval(function () {
                     if (_delay > 1) {
                         _delay--;
@@ -51,7 +52,7 @@
                     } else {
                         clearInterval(timer);
                         obj.text("{:lang('send')}");//todo:: 翻译
-                        document.getElementById("send_code").disabled = false;
+                        btnDom.disabled = false;
                     }
                 }, 1000);
             }
@@ -80,8 +81,10 @@
         if (obj.text() === "{:lang('send')}") {
             var _delay = 20; //设置定时时间长度
             var delay = _delay;
+            var btnDom = document.getElementById("send_code")
             obj.text(_delay + 's latter');
-            document.getElementById("send_code").disabled = true;
+            btnDom.disabled = true;
+            btnDom.style.cursor = 'no-drop'
             // 定时器
             var timer = setInterval(function () {
                 if (delay > 1) {
@@ -91,7 +94,8 @@
                 } else {
                     clearInterval(timer);
                     obj.text("{:lang('send')}"); // todo::翻译
-                    document.getElementById("send_code").disabled = false;
+                    btnDom.disabled = false;
+                    btnDom.style.cursor = 'pointer'
                 }
             }, 1000);
         } else {
@@ -165,12 +169,12 @@
                 password: {
                     required: true,
                     minlength: 5,
-                    maxlength: 12
+                    maxlength: 16
                 },
                 confirm: {
                     required: true,
                     minlength: 5,
-                    maxlength: 12,
+                    maxlength: 16,
                     equalTo: '#password'
                 },
                 email: {

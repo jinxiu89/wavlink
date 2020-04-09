@@ -1,0 +1,369 @@
+/**
+* @name: login_register.less
+* @description: 驅動列表页样式
+* @author: Alan(alan_webdeveloper@163.com)
+* @update: 2020-04-01 16:00
+*/
+* {
+  margin: 0;
+  padding: 0;
+}
+.infoError {
+  display: block;
+  float: left;
+  width: 100%;
+  margin-left: 110px;
+  color: #f00;
+  text-align: left;
+  font-size: 12px;
+}
+body {
+  padding-top: 0;
+}
+.register-box {
+  float: left;
+  width: 100%;
+  min-height: 100vh;
+  background: url("../../img/bg.jpg") fixed center center repeat-y;
+  position: relative;
+}
+.register-box .box {
+  width: 500px;
+  padding: 40px 20px;
+  margin: 0 auto;
+  background: rgba(255, 255, 255, 0.9);
+}
+.register-box .box .logo-box h2 {
+  margin-bottom: 10px;
+  text-align: center;
+}
+.register-box .box .logo-box h2 img {
+  height: 70px;
+}
+.register-box .box .info-box .info {
+  margin-bottom: 10px;
+}
+.register-box .box .info-box .infobefore,
+.register-box .box .info-box .info:after {
+  content: " ";
+  display: table;
+  zoom: 1;
+}
+.register-box .box .info-box .info:after {
+  clear: both;
+}
+.register-box .box .info-box .info label {
+  float: left;
+  width: 100px;
+  margin-right: 10px;
+  margin-bottom: 0;
+  font-size: 14px;
+  line-height: 30px;
+  text-align: right;
+  font-weight: normal;
+}
+.register-box .box .info-box .info label span {
+  color: #f00;
+}
+.register-box .box .info-box .info input {
+  float: left;
+  width: 235px;
+  height: 30px;
+  margin-left: 0;
+  padding: 0 5px;
+  border: 1px solid #ccc;
+  box-sizing: border-box;
+}
+.register-box .box .info-box .info #send_code {
+  height: 30px;
+  margin-left: 5px;
+  padding: 0 10px;
+  font-size: 12px;
+  border: 1px solid #ccc;
+  background: none;
+}
+.register-box .box .info-box .info #send_code:hover {
+  background: #ccc;
+  cursor: pointer;
+}
+.register-box .box .info-box .des {
+  margin: 10px 0 10px 110px;
+}
+.register-box .box .info-box .des div:nth-last-of-type(1) {
+  margin-top: 5px;
+}
+.register-box .box .info-box .des div:nth-last-of-type(1) label {
+  margin-left: 10px;
+}
+.register-box .box .info-box .des input {
+  width: 15px;
+  height: 15px;
+  margin: 0;
+  cursor: pointer;
+}
+.register-box .box .info-box .des label {
+  display: inline-block;
+  font-size: 12px;
+  font-weight: normal;
+  line-height: 15px;
+}
+.register-box .box .info-box .des label span {
+  color: #f00;
+}
+.register-box .box .info-box .des label a {
+  display: inline-block;
+  line-height: 15px;
+}
+.register-box .box .info-box .des label a:hover {
+  color: #f8b300;
+  text-decoration: underline;
+}
+.register-box .box .info-box .btn-box {
+  margin: 10px 0 0 110px;
+}
+.register-box .box .info-box .btn-box .btn-submit {
+  width: 119px;
+  height: 27px;
+  font-size: 12px;
+  text-align: center;
+  background: url("../../img/btn.png") no-repeat left top;
+  cursor: pointer;
+}
+.register-box .box .info-box .btn-box .btn-submit:hover {
+  background: url("../../img/btn-hover.png") no-repeat left top;
+}
+.proRegister-box {
+  float: left;
+  width: 100%;
+  min-height: 100vh;
+  background: url("../../img/bg.jpg") fixed center center repeat-y;
+  position: relative;
+}
+.proRegister-box .box {
+  width: 500px;
+  padding: 40px 20px;
+  margin: 0 auto;
+  background: rgba(255, 255, 255, 0.9);
+}
+.proRegister-box .box .logo-box h2 {
+  margin-bottom: 10px;
+  text-align: center;
+}
+.proRegister-box .box .logo-box h2 img {
+  height: 70px;
+}
+.proRegister-box .box .info-box .info {
+  margin-bottom: 10px;
+}
+.proRegister-box .box .info-box .infobefore,
+.proRegister-box .box .info-box .info:after {
+  content: " ";
+  display: table;
+  zoom: 1;
+}
+.proRegister-box .box .info-box .info:after {
+  clear: both;
+}
+.proRegister-box .box .info-box .info label {
+  float: left;
+  width: 100px;
+  margin-right: 10px;
+  margin-bottom: 0;
+  font-size: 14px;
+  line-height: 30px;
+  text-align: right;
+  font-weight: normal;
+}
+.proRegister-box .box .info-box .info label span {
+  color: #f00;
+}
+.proRegister-box .box .info-box .info input,
+.proRegister-box .box .info-box .info select {
+  float: left;
+  width: 235px;
+  height: 30px;
+  margin-left: 0;
+  padding: 0 5px;
+  border: 1px solid #ccc;
+  box-sizing: border-box;
+}
+.proRegister-box .box .info-box .info #send_code {
+  height: 30px;
+  margin-left: 5px;
+  padding: 0 10px;
+  font-size: 12px;
+  border: 1px solid #ccc;
+  background: none;
+}
+.proRegister-box .box .info-box .info #send_code:hover {
+  background: #ccc;
+  cursor: pointer;
+}
+.proRegister-box .box .info-box .des {
+  margin: 10px 0 10px 110px;
+}
+.proRegister-box .box .info-box .des div:nth-last-of-type(1) {
+  margin-top: 5px;
+}
+.proRegister-box .box .info-box .des div:nth-last-of-type(1) label {
+  margin-left: 10px;
+}
+.proRegister-box .box .info-box .des input {
+  width: 15px;
+  height: 15px;
+  margin: 0;
+  cursor: pointer;
+}
+.proRegister-box .box .info-box .des label {
+  display: inline-block;
+  font-size: 12px;
+  font-weight: normal;
+  line-height: 15px;
+}
+.proRegister-box .box .info-box .des label span {
+  color: #f00;
+}
+.proRegister-box .box .info-box .des label a {
+  display: inline-block;
+  line-height: 15px;
+}
+.proRegister-box .box .info-box .des label a:hover {
+  color: #f8b300;
+  text-decoration: underline;
+}
+.proRegister-box .box .info-box .btn-box {
+  margin: 10px 0 0 110px;
+}
+.proRegister-box .box .info-box .btn-box .btn-submit {
+  width: 119px;
+  height: 27px;
+  font-size: 12px;
+  text-align: center;
+  background: url("../../img/btn.png") no-repeat left top;
+  cursor: pointer;
+}
+.proRegister-box .box .info-box .btn-box .btn-submit:hover {
+  background: url("../../img/btn-hover.png") no-repeat left top;
+}
+.proRegister-box .box .tips {
+  margin-top: 20px;
+  font-size: 12px;
+}
+.login-box {
+  float: left;
+  width: 100%;
+  min-height: 100vh;
+  background: url("../../img/bg.jpg") fixed center center repeat-y;
+  position: relative;
+}
+.login-box .box {
+  width: 400px;
+  padding: 40px 20px;
+  margin: 0 auto 0;
+  background: rgba(255, 255, 255, 0.9);
+}
+.login-box .box .logo-box h2 {
+  margin-bottom: 20px;
+  text-align: center;
+}
+.login-box .box .logo-box h2 img {
+  height: 70px;
+}
+.login-box .box .info-box {
+  text-align: center;
+}
+.login-box .box .info-box formbefore,
+.login-box .box .info-box form:after {
+  content: " ";
+  display: table;
+  zoom: 1;
+}
+.login-box .box .info-box form:after {
+  clear: both;
+}
+.login-box .box .info-box .info {
+  float: left;
+  margin: 0 67.5px;
+}
+.login-box .box .info-box .info:nth-of-type(1),
+.login-box .box .info-box .info:nth-of-type(2) {
+  margin-bottom: 10px;
+}
+.login-box .box .info-box .info label {
+  float: left;
+  width: 30px;
+  height: 30px;
+  line-height: 30px;
+  text-align: center;
+  border: 1px solid #ccc;
+  border-right: none;
+  box-sizing: border-box;
+  background: rgba(0, 0, 0, 0.29);
+}
+.login-box .box .info-box .info label .iconfont {
+  font-size: 18px;
+  color: #fff;
+}
+.login-box .box .info-box .info input {
+  float: left;
+  width: 235px;
+  height: 30px;
+  margin-left: 0;
+  padding: 0 5px;
+  border: 1px solid #ccc;
+  box-sizing: border-box;
+}
+.login-box .box .info-box .info input#captcha {
+  width: 110px;
+}
+.login-box .box .info-box .info .code-box {
+  float: left;
+  width: 125px;
+  height: 30px;
+  border: 1px solid #ccc;
+  border-left: none;
+  box-sizing: border-box;
+}
+.login-box .box .info-box .info .code-box img {
+  height: 100%;
+}
+.login-box .box .info-box .tips {
+  float: left;
+  width: 265px;
+  margin: 20px 67.5px;
+  font-size: 12px;
+}
+.login-box .box .info-box .tips .to-register {
+  float: left;
+  width: 50%;
+  text-align: left;
+}
+.login-box .box .info-box .tips .retrieve {
+  float: left;
+  width: 50%;
+  text-align: right;
+}
+.login-box .box .info-box .tips a {
+  display: inline;
+  font-size: 12px;
+}
+.login-box .box .info-box .tips a:hover {
+  text-decoration: underline;
+  color: #f8b300;
+}
+.login-box .box .info-box .btn-box {
+  float: left;
+  width: 100%;
+}
+.login-box .box .info-box .btn-box .btn-submit {
+  width: 119px;
+  height: 27px;
+  font-size: 12px;
+  text-align: center;
+  background: url("../../img/btn.png") no-repeat left top;
+  cursor: pointer;
+}
+.login-box .box .info-box .btn-box .btn-submit:hover {
+  background: url("../../img/btn-hover.png") no-repeat left top;
+}
+/*# sourceMappingURL=login_register.css.map */

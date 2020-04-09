@@ -1,88 +1,83 @@
-{extend name="base/base_form"}
-{block name="body"}
-<article class="cl pd-20">
-    <form action=""  class="form form-horizontal" id="add">
-        <div class="row cl">
-            <label class="form-label col-xs-4 col-sm-3"><span class="c-red">*</span>{:lang('Model')}:</label>
-            <div class="formControls col-xs-4 col-sm-4">
-                <input type="hidden" name="user_id" value="{$user_id}">
-                <input id="model" class="input-text" value="" placeholder="" name="model">
-            </div>
+{extend name="base/form"}
+{block name="title"}
+{:lang('完善产品信息')}
+{/block}
+{block name="style"}
+<link rel="stylesheet" href="__USER__/ui/css/page/login_register.css">
+{/block}
+{block name="main"}
+<div class="form-box proRegister-box">
+    <!--表单容器容器-->
+    <!--业务处理区块-->
+    <div class="box" id="box">
+        <div class="logo-box">
+            <h2><a href="#"><img class="" src="https://cloud.wavlink.com/index.php?user/publicLink&fid=bb50yNmQ9Uq6Cd3K4xnP7f4s6XTIQRL4VC0zRTOCg6uD3u4sD4Fq1rba3mEGfQg2ZPfdpGI9jz0oV8fX-smuZ4C2yokEppUXskovnb1iUWYZDDl2W-lXqo_X6bFTJ5qnEbjrshyO_5eKfdm9a8V3x9BFL-Ms&file_name=/SeeTheWord_black.png" alt=""></a></h2>
         </div>
-        <div class="row cl">
-            <label class="form-label col-xs-4 col-sm-3">{:lang('Sn')}:</label>
-            <div class="formControls col-xs-4 col-sm-4">
-                <input id="sn" class="input-text" value="" placeholder="" name="sn">
-            </div>
-        </div>
-        <div class="row cl">
-            <label class="form-label col-xs-4 col-sm-3"><span class="c-red">*</span>Where to buy:</label>
-            <div class="formControls col-xs-4 col-sm-4">
-                <input class="input-text" value="" placeholder="" name="platform">
-            </div>
-        </div>
-        <div class="row cl">
-            <label class="form-label col-xs-4 col-sm-3"><span class="c-red">*</span>{:lang('Country')}:</label>
-            <div class="formControls col-xs-4 col-sm-4">
-                <select name="country" id="country">
-                    <option value="">请选择</option>
-                    {volist name="country" id="vo"}
-                    <option value="{$vo.name}">{$vo.name}</option>
-                    {/volist}
-                </select>
-            </div>
-        </div>
-        <div class="row cl">
-            <label class="form-label col-xs-4 col-sm-3">{:lang('Order Number')}:</label>
-            <div class="formControls col-xs-4 col-sm-4">
-                <input class="input-text" value="" placeholder="" name="order_number">
-            </div>
-            <div class="formControls col-xs-2 col-sm-8">
-            </div>
-        </div>
-        <div class="row cl">
-            <label class="form-label col-xs-4 col-sm-3"><span class="c-red">*</span>{:lang('Purchase time')}:</label>
-            <div class="formControls col-xs-4 col-sm-3">
-                <input class="input-text" type="date" value="" placeholder="" name="create_time">
-            </div>
-            <div class="formControls col-xs-2 col-sm-8">
-            </div>
-        </div>
-        <div class="row cl">
-            <label class="form-label col-xs-4 col-sm-3">{:lang('Category')}:</label>
-            <div class="formControls col-xs-4 col-sm-4">
-                <input id="category" class="input-text" value="" placeholder="" name="category">
-            </div>
-            <div class="formControls col-xs-2 col-sm-8">
+        <div class="info-box">
+            <form action="" id="registerForm" method="post">
+                <div class="info">
+                    <label for="model">{:lang('Model')}</label>
+                    <input type="hidden" name="user_id" value="{$user_id}">
+                    <input id="model" name="model" type="text" placeholder="">
+                </div>
+                <div class="info">
+                    <label for="sn">{:lang('Sn')}</label>
+                    <input id="sn" name="sn" type="text" placeholder="">
+                </div>
+                <div class="info">
+                    <label for="platform">Where to buy <span>*</span></label>
+                    <input id="platform" name="platform" type="text" placeholder="">
+                </div>
+                <div class="info">
+                    <label for="country">{:lang('Country')} <span>*</span></label>
+                    <select id="country" name="country">
+                        <option value="">请选择</option>
+                        {volist name="country" id="vo"}
+                        <option value="{$vo.name}">{:lang($vo.name)}</option>
+                        {/volist}
+                    </select>
+                </div>
+                <div class="info">
+                    <label for="order_number">{:lang('Order Number')}</label>
+                    <input id="order_number" name="order_number" type="text" placeholder="" >
+                </div>
+                <div class="info">
+                    <label for="create_time">{:lang('Purchase time')} <span>*</span></label>
+                    <input id="create_time" name="create_time" type="date" placeholder="">
+                </div>
+                <div class="info">
+                    <label for="category">{:lang('Category')}</label>
+                    <select name="category" id="category">
+                        <option value="0">{:lang('请选择')}</option>
+                        {volist name="category" id="vo"}
+                        <option value="{$vo.name}">{$vo.delimiter|raw}{$vo.name}</option>
+                        {/volist}
+                    </select>
+                </div>
 
-            </div>
+                <div class="btn-box">
+                    <button class="btn-submit" id="submit" type="submit">{:lang('GO')}</button>
+                    <input class="btn-submit" type="reset" onclick="save('{:url(\'sn/index\')}')"  value="&nbsp;&nbsp;{:lang('ReWrite')}&nbsp;&nbsp;">
+                </div>
+            </form>
         </div>
-        <div class="row cl">
-            <div class="col-xs-8 col-sm-9 col-xs-offset-4 col-sm-offset-3">
-                <button class="btn btn-primary" type="submit">{:lang('GO')}</button>
-                <!--<input class="btn btn-primary" type="button" onclick="save('{:url(\'/customer/warranty/register\')}')"  value="&nbsp;&nbsp;{:lang('Submit')}&nbsp;&nbsp;">-->
-                <input class="btn btn-danger" type="button" onclick="save('{:url(\'sn/index\')}')"  value="&nbsp;&nbsp;{:lang('ReWrite')}&nbsp;&nbsp;">
-            </div>
-        </div>
-    </form>
-    <div class="form form-horizontal">
-        <div class="row cl">
-            <label class="form-label col-sm-10" style="text-align: left">
-                {:lang('Product reg tips')}
-            </label>
+        <div class="tips">
+            {:lang('Product reg tips')}
         </div>
     </div>
-</article>
+    <!--业务处理区块-->
+</div>
 {/block}
-{block name="js"}
+{block name="javascript"}
 <script type="text/javascript" src="__STATIC__/admin/lib/jquery.validation/1.14.0/jquery.validate.js"></script>
 <script type="text/javascript" src="__STATIC__/admin/lib/jquery.validation/1.14.0/validate-methods.js"></script>
 <script type="text/javascript" src="__STATIC__/admin/lib/layer/2.4/layer.js"></script>
 {if condition="$lang == 'zh_cn'"}
 <script type="text/javascript" src="__STATIC__/admin/lib/jquery.validation/1.14.0/messages_zh.js"></script>
 {/if}
+<script src="__STATIC__/admin/lib/jquery.validation/1.14.0/validate-methods.js"></script>
 <script>
-    $('#add').validate({
+    $('#registerForm').validate({
         rules:{
             model:{required:true},
             country:{required:true},
@@ -94,7 +89,6 @@
         focusCleanup:true,
         success:"valid",
         submitHandler:function (form) {
-
             $.ajax({
                 url:"{:url('customer_product_register')}",
                 type:"post",

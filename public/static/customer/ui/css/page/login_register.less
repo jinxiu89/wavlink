@@ -1,0 +1,384 @@
+/**
+* @name: login_register.less
+* @description: 驅動列表页样式
+* @author: Alan(alan_webdeveloper@163.com)
+* @update: 2020-04-01 16:00
+*/
+@import "../../public/mixins";
+@import "../../public/variables";
+
+*{margin: 0; padding: 0}
+.infoError {
+    display: block;
+    .fl();
+    width: 100%;
+    margin-left: 110px;
+    color: #f00;
+    text-align: left;
+    font-size: 12px;
+}
+body {
+    padding-top: 0;
+}
+
+//账户注册
+.register-box {
+    .fl();
+    width: 100%;
+    min-height: 100vh;
+    background: url("../../img/bg.jpg") fixed center center repeat-y;
+    position: relative;
+}
+.register-box .box {
+    width: 500px;
+    padding: 40px 20px;
+    margin: 0 auto;
+    background: rgba(255, 255, 255, .9);
+}
+.register-box .box .logo-box {
+    h2 {
+        margin-bottom: 10px;
+        text-align: center;
+        img {
+            height: 70px;
+        }
+    }
+}
+.register-box .box .info-box {
+    .info {
+        .clearFix();
+        margin-bottom: 10px;
+    }
+    .info label {
+        .fl();
+        width: 100px;
+        margin-right: 10px;
+        margin-bottom: 0;
+        font-size: 14px;
+        line-height: 30px;
+        text-align: right;
+        font-weight: normal;
+        span {
+            color: #f00;
+        }
+    }
+    .info input {
+        .fl();
+        width: 235px;
+        height: 30px;
+        margin-left: 0;
+        padding: 0 5px;
+        border: 1px solid #ccc;
+        box-sizing: border-box;
+    }
+    .info #send_code {
+        height: 30px;
+        margin-left: 5px;
+        padding: 0 10px;
+        font-size: 12px;
+        border: 1px solid #ccc;
+        background: none;
+        &:hover {
+            background: #ccc;
+            cursor: pointer;
+        }
+    }
+    .des {
+        margin: 10px 0 10px 110px;
+        div:nth-last-of-type(1) {
+            margin-top: 5px;
+            label {
+                margin-left: 10px;
+            }
+        }
+        input {
+            width: 15px;
+            height: 15px;
+            margin: 0;
+            cursor: pointer;
+        }
+        label {
+            display: inline-block;
+            font-size: 12px;
+            font-weight: normal;
+            line-height: 15px;
+        }
+        label span {
+            color: #f00;
+        }
+        label a {
+            display: inline-block;
+            line-height: 15px;
+            &:hover {
+                color: @activeColor;
+                text-decoration: underline;
+            }
+        }
+    }
+    .btn-box {
+        margin: 10px 0 0 110px;
+    }
+    .btn-box .btn-submit {
+        width: 119px;
+        height: 27px;
+        font-size: 12px;
+        text-align: center;
+        background: url("../../img/btn.png") no-repeat left top;
+        cursor: pointer;
+        &:hover {
+            background: url("../../img/btn-hover.png") no-repeat left top;
+        }
+    }
+}
+//账户注册结束
+
+//产品注册
+.proRegister-box {
+    .fl();
+    width: 100%;
+    min-height: 100vh;
+    background: url("../../img/bg.jpg") fixed center center repeat-y;
+    position: relative;
+}
+.proRegister-box .box {
+    width: 500px;
+    padding: 40px 20px;
+    margin: 0 auto;
+    background: rgba(255, 255, 255, .9);
+}
+.proRegister-box .box .logo-box {
+    h2 {
+        margin-bottom: 10px;
+        text-align: center;
+        img {
+            height: 70px;
+        }
+    }
+}
+.proRegister-box .box .info-box {
+    .info {
+        .clearFix();
+        margin-bottom: 10px;
+    }
+    .info label {
+        .fl();
+        width: 100px;
+        margin-right: 10px;
+        margin-bottom: 0;
+        font-size: 14px;
+        line-height: 30px;
+        text-align: right;
+        font-weight: normal;
+        span {
+            color: #f00;
+        }
+    }
+    .info input,
+    .info select {
+        .fl();
+        width: 235px;
+        height: 30px;
+        margin-left: 0;
+        padding: 0 5px;
+        border: 1px solid #ccc;
+        box-sizing: border-box;
+    }
+    .info #send_code {
+        height: 30px;
+        margin-left: 5px;
+        padding: 0 10px;
+        font-size: 12px;
+        border: 1px solid #ccc;
+        background: none;
+        &:hover {
+            background: #ccc;
+            cursor: pointer;
+        }
+    }
+    .des {
+        margin: 10px 0 10px 110px;
+        div:nth-last-of-type(1) {
+            margin-top: 5px;
+            label {
+                margin-left: 10px;
+            }
+        }
+        input {
+            width: 15px;
+            height: 15px;
+            margin: 0;
+            cursor: pointer;
+        }
+        label {
+            display: inline-block;
+            font-size: 12px;
+            font-weight: normal;
+            line-height: 15px;
+        }
+        label span {
+            color: #f00;
+        }
+        label a {
+            display: inline-block;
+            line-height: 15px;
+            &:hover {
+                color: @activeColor;
+                text-decoration: underline;
+            }
+        }
+    }
+    .btn-box {
+        margin: 10px 0 0 110px;
+    }
+    .btn-box .btn-submit {
+        width: 119px;
+        height: 27px;
+        font-size: 12px;
+        text-align: center;
+        background: url("../../img/btn.png") no-repeat left top;
+        cursor: pointer;
+        &:hover {
+            background: url("../../img/btn-hover.png") no-repeat left top;
+        }
+    }
+}
+.proRegister-box .box .tips {
+    margin-top: 20px;
+    font-size: 12px;
+}
+//产品注册结束
+
+
+//登录
+.login-box {
+    .fl();
+    width: 100%;
+    min-height: 100vh;
+    background: url("../../img/bg.jpg") fixed center center repeat-y;
+    position: relative;
+}
+.login-box .box {
+    width: 400px;
+    padding: 40px 20px;
+    margin: 0 auto 0;
+    background: rgba(255, 255, 255, .9);
+}
+.login-box .box .logo-box {
+    h2 {
+        margin-bottom: 20px;
+        text-align: center;
+        img {
+            height: 70px;
+        }
+    }
+}
+.login-box .box .info-box {
+    text-align: center;
+    form {
+        .clearFix();
+    }
+    .info {
+        .fl();
+        margin: 0 67.5px;
+        &:nth-of-type(1),
+        &:nth-of-type(2) {
+            margin-bottom: 10px;
+        }
+    }
+    .info label {
+        .fl();
+        width: 30px;
+        height: 30px;
+        line-height: 30px;
+        text-align: center;
+        border: 1px solid #ccc;
+        border-right: none;
+        box-sizing: border-box;
+        background: rgba(0, 0, 0, .29);
+        .iconfont {
+            font-size: 18px;
+            color: @whiteColor;
+        }
+    }
+    .info input {
+        .fl();
+        width: 235px;
+        height: 30px;
+        margin-left: 0;
+        padding: 0 5px;
+        border: 1px solid #ccc;
+        box-sizing: border-box;
+    }
+    .info input#captcha {
+        width: 110px;
+    }
+    .info .code-box {
+        .fl();
+        width: 125px;
+        height: 30px;
+        border: 1px solid #ccc;
+        border-left: none;
+        box-sizing: border-box;
+        img {
+            height: 100%;
+        }
+    }
+
+    .tips {
+        .fl();
+        width: 265px;
+        margin: 20px 67.5px;
+        font-size: 12px;
+        .to-register {
+            .fl();
+            width: 50%;
+            text-align: left;
+        }
+        .retrieve {
+            .fl();
+            width: 50%;
+            text-align: right;
+        }
+        a {
+            display: inline;
+            font-size: 12px;
+            &:hover {
+                text-decoration: underline;
+                color: @activeColor;
+            }
+        }
+    }
+    .btn-box {
+        .fl();
+        width: 100%;
+        .btn-submit {
+            width: 119px;
+            height: 27px;
+            font-size: 12px;
+            text-align: center;
+            background: url("../../img/btn.png") no-repeat left top;
+            cursor: pointer;
+            &:hover {
+                background: url("../../img/btn-hover.png") no-repeat left top;
+            }
+        }
+    }
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

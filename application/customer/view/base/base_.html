@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <link rel="stylesheet" href="__LIB__/Bootstrap/bootstrap-3.3.7.min.css">
+    <link rel="stylesheet" href="__LIB__/fontawesome/css/font-awesome.min.css">
+    <!--wavlink公共部分-->
+    <link rel="stylesheet" href="__USER__/css/wavlink_user_public.css">
+    {block name="title"}
+    {/block}
+    <!--wavlink用户中心私有部分-->
+    {block name="style"}
+    {/block}
+</head>
+<body>
+<header>
+    <div class="logo">
+        <h1>
+            <a href="#">
+                <img class="hidden-xs" src="__USER__/img/icon/wavlink-logo.png" alt="wavlink用户中心"
+                     title="返回睿因(wavlink)官网首页">
+            </a>
+        </h1>
+    </div>
+    <div class="title visible-xs">
+        <a href="#">
+            <i class="icon-angle-left"></i>
+        </a>
+        <p>{:lang('Experience Center')}</p>
+        <a href="https://www.wavlink.com">
+            <i class="icon-home"></i>
+        </a>
+    </div>
+    <div class="icons">
+        <div>
+            <i class="icon-user"></i>
+            <span></span>
+        </div>
+        <!--<div>-->
+            <!--<i class="icon-bell-alt"></i>-->
+            <!--<span>2</span>-->
+        <!--</div>-->
+        <div>
+            <i class="icon-off"></i>
+            <span onclick="logout()">{:lang('Exit')}</span>
+        </div>
+    </div>
+</header>
+<div>
+    <img class="img-responsive center-block visible-xs" src="__USER__/img/318168.jpg" alt="title图">
+</div>
+
+<section>
+    <div>
+        {block name="path"}
+        <div class="path">
+            <ul>
+                <li><a href="https://www.wavlink.com">首页</a></li>
+                <li> ></li>
+                <li><a href="1-public.html">个人中心</a></li>
+                <li> ></li>
+                <li><a href="#">基本信息</a></li>
+            </ul>
+        </div>
+        {/block}
+        {block name="navbar"}
+        {include file="base/navbar" /}
+        {/block}
+        {block name="main"}
+        {/block}
+    </div>
+</section>
+
+<footer>
+    <div>Copyright © 2018 Wavlink.com All Rights Reserved.</div>
+    <div>
+        <span><a href="#">免责声明</a></span>
+        <span><a href="#">隐私声明</a></span>
+    </div>
+</footer>
+<script rel="stylesheet" src="__LIB__/JQuery/JQuery-3.4.0.js"></script>
+<script type="text/javascript" src="__STATIC__/admin/lib/layer/2.4/layer.js"></script>
+<script src="__USER__/js/wavlink_user_public.js"></script>
+<script>
+    function logout() {
+        window.location.href='{:url(\'customer_logout\')}'
+    }
+</script>
+{block name="js"}
+
+{/block}
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+

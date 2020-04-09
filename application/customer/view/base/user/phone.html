@@ -21,15 +21,15 @@
         <input id="verification" name="verification" type="text" placeholder="">
     </div>
 
-    <div class="des">
+    <div class="terms">
         <div>
             <input id="agree" name="agree" type="checkbox">
             <label for="agree">
                 <span> * </span>
                 {:lang('I accept the')}
-                <a href="#" target="_blank" >{:lang('Disclaimer')}</a>
+                <a href="javascript:void(0);" onclick="layer_open('{:lang(\'Terms Of Use Notice\')}','{:url(\'terms\')}')"  >{:lang('Terms Of Use Notice')}</a>
                 {:lang('and')}
-                <a href="#" target="_blank">{:lang('Privacy agreement')}</a>
+                <a href="javascript:void(0);" onclick="layer_open('{:lang(\'Privacy agreement\')}','{:url(\'privacy\')}')">{:lang('Privacy agreement')}</a>
             </label>
         </div>
         <div>

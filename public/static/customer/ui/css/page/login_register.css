@@ -31,7 +31,8 @@ body {
   width: 500px;
   padding: 40px 20px;
   margin: 0 auto;
-  background: rgba(255, 255, 255, 0.9);
+  background: rgba(196, 214, 226, 0.9);
+  border-radius: 5px;
 }
 .register-box .box .logo-box h2 {
   margin-bottom: 10px;
@@ -67,54 +68,54 @@ body {
 }
 .register-box .box .info-box .info input {
   float: left;
-  width: 235px;
+  width: 280px;
   height: 30px;
   margin-left: 0;
   padding: 0 5px;
+  font-size: 12px;
   border: 1px solid #ccc;
   box-sizing: border-box;
 }
 .register-box .box .info-box .info #send_code {
+  width: 105px;
   height: 30px;
   margin-left: 5px;
-  padding: 0 10px;
   font-size: 12px;
-  border: 1px solid #ccc;
-  background: none;
+  background: url("../../img/btn.png") no-repeat left top;
 }
 .register-box .box .info-box .info #send_code:hover {
-  background: #ccc;
   cursor: pointer;
+  background: url("../../img/btn-hover.png") no-repeat left top;
 }
-.register-box .box .info-box .des {
+.register-box .box .info-box .terms {
   margin: 10px 0 10px 110px;
 }
-.register-box .box .info-box .des div:nth-last-of-type(1) {
+.register-box .box .info-box .terms div:nth-last-of-type(1) {
   margin-top: 5px;
 }
-.register-box .box .info-box .des div:nth-last-of-type(1) label {
+.register-box .box .info-box .terms div:nth-last-of-type(1) label {
   margin-left: 10px;
 }
-.register-box .box .info-box .des input {
+.register-box .box .info-box .terms input {
   width: 15px;
   height: 15px;
   margin: 0;
   cursor: pointer;
 }
-.register-box .box .info-box .des label {
+.register-box .box .info-box .terms label {
   display: inline-block;
   font-size: 12px;
   font-weight: normal;
   line-height: 15px;
 }
-.register-box .box .info-box .des label span {
+.register-box .box .info-box .terms label span {
   color: #f00;
 }
-.register-box .box .info-box .des label a {
+.register-box .box .info-box .terms label a {
   display: inline-block;
   line-height: 15px;
 }
-.register-box .box .info-box .des label a:hover {
+.register-box .box .info-box .terms label a:hover {
   color: #f8b300;
   text-decoration: underline;
 }
@@ -143,7 +144,8 @@ body {
   width: 500px;
   padding: 40px 20px;
   margin: 0 auto;
-  background: rgba(255, 255, 255, 0.9);
+  background: rgba(196, 214, 226, 0.9);
+  border-radius: 5px;
 }
 .proRegister-box .box .logo-box h2 {
   margin-bottom: 10px;
@@ -180,56 +182,13 @@ body {
 .proRegister-box .box .info-box .info input,
 .proRegister-box .box .info-box .info select {
   float: left;
-  width: 235px;
+  width: 280px;
   height: 30px;
   margin-left: 0;
   padding: 0 5px;
+  font-size: 12px;
   border: 1px solid #ccc;
   box-sizing: border-box;
-}
-.proRegister-box .box .info-box .info #send_code {
-  height: 30px;
-  margin-left: 5px;
-  padding: 0 10px;
-  font-size: 12px;
-  border: 1px solid #ccc;
-  background: none;
-}
-.proRegister-box .box .info-box .info #send_code:hover {
-  background: #ccc;
-  cursor: pointer;
-}
-.proRegister-box .box .info-box .des {
-  margin: 10px 0 10px 110px;
-}
-.proRegister-box .box .info-box .des div:nth-last-of-type(1) {
-  margin-top: 5px;
-}
-.proRegister-box .box .info-box .des div:nth-last-of-type(1) label {
-  margin-left: 10px;
-}
-.proRegister-box .box .info-box .des input {
-  width: 15px;
-  height: 15px;
-  margin: 0;
-  cursor: pointer;
-}
-.proRegister-box .box .info-box .des label {
-  display: inline-block;
-  font-size: 12px;
-  font-weight: normal;
-  line-height: 15px;
-}
-.proRegister-box .box .info-box .des label span {
-  color: #f00;
-}
-.proRegister-box .box .info-box .des label a {
-  display: inline-block;
-  line-height: 15px;
-}
-.proRegister-box .box .info-box .des label a:hover {
-  color: #f8b300;
-  text-decoration: underline;
 }
 .proRegister-box .box .info-box .btn-box {
   margin: 10px 0 0 110px;
@@ -240,9 +199,9 @@ body {
   font-size: 12px;
   text-align: center;
   background: url("../../img/btn.png") no-repeat left top;
-  cursor: pointer;
 }
 .proRegister-box .box .info-box .btn-box .btn-submit:hover {
+  cursor: pointer;
   background: url("../../img/btn-hover.png") no-repeat left top;
 }
 .proRegister-box .box .tips {
@@ -260,7 +219,8 @@ body {
   width: 400px;
   padding: 40px 20px;
   margin: 0 auto 0;
-  background: rgba(255, 255, 255, 0.9);
+  background: rgba(196, 214, 226, 0.9);
+  border-radius: 5px;
 }
 .login-box .box .logo-box h2 {
   margin-bottom: 20px;
@@ -310,15 +270,16 @@ body {
   height: 30px;
   margin-left: 0;
   padding: 0 5px;
+  font-size: 12px;
   border: 1px solid #ccc;
   box-sizing: border-box;
 }
 .login-box .box .info-box .info input#captcha {
-  width: 110px;
+  width: 145px;
 }
 .login-box .box .info-box .info .code-box {
   float: left;
-  width: 125px;
+  width: 90px;
   height: 30px;
   border: 1px solid #ccc;
   border-left: none;
@@ -361,9 +322,12 @@ body {
   font-size: 12px;
   text-align: center;
   background: url("../../img/btn.png") no-repeat left top;
-  cursor: pointer;
 }
 .login-box .box .info-box .btn-box .btn-submit:hover {
+  cursor: pointer;
   background: url("../../img/btn-hover.png") no-repeat left top;
+}
+.login-box .infoError {
+  margin-left: 0;
 }
 /*# sourceMappingURL=login_register.css.map */

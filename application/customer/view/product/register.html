@@ -78,16 +78,14 @@
 <script src="__STATIC__/admin/lib/jquery.validation/1.14.0/validate-methods.js"></script>
 <script>
     $('#registerForm').validate({
+        errorClass: 'infoError',
+        errorElement: "p",
         rules:{
             model:{required:true},
             country:{required:true},
             platform:{required:true},
             create_time:{required:true}
         },
-        errorElement:"em",
-        onkeyup:false,
-        focusCleanup:true,
-        success:"valid",
         submitHandler:function (form) {
             $.ajax({
                 url:"{:url('customer_product_register')}",

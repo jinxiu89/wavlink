@@ -33,7 +33,8 @@ body {
     width: 500px;
     padding: 40px 20px;
     margin: 0 auto;
-    background: rgba(255, 255, 255, .9);
+    background: rgba(196, 214, 226, 0.9);
+    border-radius: 5px;
 }
 .register-box .box .logo-box {
     h2 {
@@ -64,26 +65,26 @@ body {
     }
     .info input {
         .fl();
-        width: 235px;
+        width: 280px;
         height: 30px;
         margin-left: 0;
         padding: 0 5px;
+        font-size: 12px;
         border: 1px solid #ccc;
         box-sizing: border-box;
     }
     .info #send_code {
+        width: 105px;
         height: 30px;
         margin-left: 5px;
-        padding: 0 10px;
         font-size: 12px;
-        border: 1px solid #ccc;
-        background: none;
+        background: url("../../img/btn.png") no-repeat left top;
         &:hover {
-            background: #ccc;
             cursor: pointer;
+            background: url("../../img/btn-hover.png") no-repeat left top;
         }
     }
-    .des {
+    .terms {
         margin: 10px 0 10px 110px;
         div:nth-last-of-type(1) {
             margin-top: 5px;
@@ -144,7 +145,8 @@ body {
     width: 500px;
     padding: 40px 20px;
     margin: 0 auto;
-    background: rgba(255, 255, 255, .9);
+    background: rgba(196, 214, 226, 0.9);
+    border-radius: 5px;
 }
 .proRegister-box .box .logo-box {
     h2 {
@@ -176,56 +178,13 @@ body {
     .info input,
     .info select {
         .fl();
-        width: 235px;
+        width: 280px;
         height: 30px;
         margin-left: 0;
         padding: 0 5px;
-        border: 1px solid #ccc;
-        box-sizing: border-box;
-    }
-    .info #send_code {
-        height: 30px;
-        margin-left: 5px;
-        padding: 0 10px;
         font-size: 12px;
         border: 1px solid #ccc;
-        background: none;
-        &:hover {
-            background: #ccc;
-            cursor: pointer;
-        }
-    }
-    .des {
-        margin: 10px 0 10px 110px;
-        div:nth-last-of-type(1) {
-            margin-top: 5px;
-            label {
-                margin-left: 10px;
-            }
-        }
-        input {
-            width: 15px;
-            height: 15px;
-            margin: 0;
-            cursor: pointer;
-        }
-        label {
-            display: inline-block;
-            font-size: 12px;
-            font-weight: normal;
-            line-height: 15px;
-        }
-        label span {
-            color: #f00;
-        }
-        label a {
-            display: inline-block;
-            line-height: 15px;
-            &:hover {
-                color: @activeColor;
-                text-decoration: underline;
-            }
-        }
+        box-sizing: border-box;
     }
     .btn-box {
         margin: 10px 0 0 110px;
@@ -236,8 +195,8 @@ body {
         font-size: 12px;
         text-align: center;
         background: url("../../img/btn.png") no-repeat left top;
-        cursor: pointer;
         &:hover {
+            cursor: pointer;
             background: url("../../img/btn-hover.png") no-repeat left top;
         }
     }
@@ -247,7 +206,6 @@ body {
     font-size: 12px;
 }
 //产品注册结束
-
 
 //登录
 .login-box {
@@ -261,7 +219,8 @@ body {
     width: 400px;
     padding: 40px 20px;
     margin: 0 auto 0;
-    background: rgba(255, 255, 255, .9);
+    background: rgba(196, 214, 226, 0.9);
+    border-radius: 5px;
 }
 .login-box .box .logo-box {
     h2 {
@@ -306,15 +265,16 @@ body {
         height: 30px;
         margin-left: 0;
         padding: 0 5px;
+        font-size: 12px;
         border: 1px solid #ccc;
         box-sizing: border-box;
     }
     .info input#captcha {
-        width: 110px;
+        width: 145px;
     }
     .info .code-box {
         .fl();
-        width: 125px;
+        width: 90px;
         height: 30px;
         border: 1px solid #ccc;
         border-left: none;
@@ -323,7 +283,6 @@ body {
             height: 100%;
         }
     }
-
     .tips {
         .fl();
         width: 265px;
@@ -357,12 +316,15 @@ body {
             font-size: 12px;
             text-align: center;
             background: url("../../img/btn.png") no-repeat left top;
-            cursor: pointer;
             &:hover {
+                cursor: pointer;
                 background: url("../../img/btn-hover.png") no-repeat left top;
             }
         }
     }
+}
+.login-box .infoError {
+    margin-left: 0;
 }
 
 

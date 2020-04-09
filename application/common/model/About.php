@@ -32,7 +32,22 @@ class About extends BaseModel
         $data['count']=$query->count();
         return $data;
     }
-    public function getAboutByLanguageId($language){
 
+    /**
+     * @param $url_title
+     * @param $code
+     * @return array|PDOStatement|string|\think\Model|null
+     * @throws DataNotFoundException
+     * @throws DbException
+     * @throws ModelNotFoundException
+     */
+    public function getArticleByUrlTitle($url_title,$code){
+        $language_id = LanguageModel::getLanguageCodeOrID($code);
+        $map = [
+            'status' => 1,
+            'language_id' => $language_id,
+            'url_title' => $url_title
+        ];
+        return self::where($map)->find();
     }
 }

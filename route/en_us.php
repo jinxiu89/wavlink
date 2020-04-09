@@ -47,6 +47,8 @@ Route::group('en_us', function () {
  * 对于根来说，他需要的是得到语言信息 然后跳转
  *
  */
+Route::get('/en_us/terms$','en_us/Base/terms')->name('terms');
+Route::get('/en_us/privacy$','en_us/Base/privacy')->name('privacy');
 Route::get('/', 'en_us/Base/autoload');
 Route::get('/language/:code', 'en_us/Language/setLanguage', [], ['code' => '[\w-]+']);
 //Route::miss('en_us/Error/index');  //当所有的路由都匹配不到的时候 就会走到这个miss路由上来

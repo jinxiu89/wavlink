@@ -55,11 +55,13 @@ return [
     'Input your password again' => '再次确认您的密码',
     'confirm' => '确认密码',
     'Verification' => '验证码',
+
     'Verification Error' => '验证码错误',
     'The verification code is invalid' => '验证码错误',
     'Please input the verification code in the image on the right' => '请输入右边的图像所示验证码！',
     'Click change code' => '点击更换验证码',
     'Disclaimer' => '免责申明',
+    'Terms Of Use Notice' => '服务条款',
     'GO' => '点击提交',
     'next'=>'下一步',
     'Already existed' => '已存在或者没有输入',

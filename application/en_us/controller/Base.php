@@ -5,11 +5,11 @@ namespace app\en_us\controller;
 use app\common\model\About as AboutModel;
 use app\common\model\Article as ArticleModel;
 use app\common\model\Category as CategoryModel;
-use app\common\model\ServiceCategory;
 use app\common\model\Document as DocumentModel;
 use app\common\model\Language as LanguageModel;
 use app\common\model\Product as ProductModel;
 use app\common\model\Setting as SettingModel;
+use app\common\service\en_us\About as aboutService;
 use think\App;
 use think\Collection;
 use think\Controller;
@@ -71,9 +71,9 @@ class Base extends Controller
     public function __construct(App $app = null)
     {
         $path = explode('/', Request::path());
-        if(empty($path[0])){
-            Cookie::set('lang_var','en_us');
-        }else{
+        if (empty($path[0])) {
+            Cookie::set('lang_var', 'en_us');
+        } else {
             Cookie::set('lang_var', $path[0]);
         }
         parent::__construct($app);
@@ -167,10 +167,10 @@ class Base extends Controller
     {
         if (isMobile()) {
             $this->template = Env::get('app_path') . Request::module() . '/view/mobile';
-            $this->assign('terminal','{extend name="mobile/common/base" /}');
+            $this->assign('terminal', '{extend name="mobile/common/base" /}');
         } else {
             $this->template = Env::get('app_path') . Request::module() . '/view/desktop';
-            $this->assign('terminal','{extend name="desktop/common/base" /}');
+            $this->assign('terminal', '{extend name="desktop/common/base" /}');
         }
 
     }
@@ -229,6 +229,18 @@ class Base extends Controller
         //加载当前模块语言包
         Lang::load(Env::get('app_path') . $this->module . '/lang/' . $this->code . '.php');
         $this->assign('code', $this->code);
+    }
+
+    public function terms()
+    {
+        $result = (new aboutService())->getArticle('terms_en', $this->code);
+        return $this->fetch('', ['result' => $result->toArray()]);
+    }
+
+    public function privacy()
+    {
+        $result = (new aboutService())->getArticle('Privacy', $this->code);
+        return $this->fetch('', ['result' => $result->toArray()]);
     }
 
 

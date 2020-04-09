@@ -11,8 +11,12 @@ namespace app\common\model;
 use app\common\model\Language as LanguageModel;
 use app\common\helper\Category as CategoryHelp;
 use app\common\model\Product as ProductModel;
+use think\Collection;
 use think\Db;
+use think\db\exception\DataNotFoundException;
+use think\db\exception\ModelNotFoundException;
 use think\Exception;
+use think\exception\DbException;
 
 /**
  * Class Category
@@ -79,7 +83,7 @@ Class Category extends BaseModel
     /**
      * @param $id
      * @return \think\Paginator
-     * @throws \think\exception\DbException
+     * @throws DbException
      *
      */
     public static function getCategoryWithProduct($id)
@@ -168,10 +172,10 @@ Class Category extends BaseModel
 
     /**
      * @param $language_id
-     * @return array|\PDOStatement|string|\think\Collection
-     * @throws \think\db\exception\DataNotFoundException
-     * @throws \think\db\exception\ModelNotFoundException
-     * @throws \think\exception\DbException
+     * @return array|\PDOStatement|string|Collection
+     * @throws DataNotFoundException
+     * @throws ModelNotFoundException
+     * @throws DbException
      * 前端导航的树形结构,先获取到本语言所有的分类
      */
     public function getDataByLanguage($language_id)
@@ -195,7 +199,7 @@ Class Category extends BaseModel
         } else {
             $category = Category::all($data_language);
         }
-        $categorys = CategoryHelp::toLevel($category, '--', 0);
+        $categorys = CategoryHelp::toLevel($category, '&nbsp;&nbsp;', 0);
         return $categorys;
     }
 
@@ -208,15 +212,6 @@ Class Category extends BaseModel
             'language_id' => $language_id
         ];
         $cate = self::all($map);
-        $data = CategoryHelp::toLayer($cate, 'child');
-//        $data = $this->getNormalCategory($language_id);
-//        foreach ($data as $v) {
-//            foreach ($cate as $vo) {
-//                if($vo['parent_id'] == $v['id']) {
-//                    $v['childs'] = CategoryHelp::getChilds($cate,$v['id']);
-//                }
-//            }
-//        }
-        return $data;
+        return CategoryHelp::toLayer($cate, 'child');
     }
 }

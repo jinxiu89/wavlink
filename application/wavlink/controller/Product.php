@@ -36,6 +36,7 @@ Class Product extends BaseAdmin
      * 1、什么都不选的情况下，load出所有指定语言的产品，按照条件排序
      * 2、用户选择了筛选条件，则去筛选分支
      * 3、用户按型号，名称等条件搜索时，去搜索分支
+     * @throws \think\exception\DbException
      */
     public function index()
     {

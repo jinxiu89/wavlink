@@ -12,6 +12,7 @@
 namespace app\common\service\customer;
 use app\common\model\Country;
 use app\common\model\customer\Product as Model;
+use app\common\model\Category;
 /**
  * Class product
  * @package app\common\service\customer
@@ -30,6 +31,13 @@ class Product extends BaseService
         try{
             $data=(new Country())->field('country_id,name')->select();
             return $data->toArray();
+        }catch (\Exception $exception){
+            return [];
+        }
+    }
+    public function getCategory($code){
+        try{
+            return (new Category())->getAllCategory($code);
         }catch (\Exception $exception){
             return [];
         }

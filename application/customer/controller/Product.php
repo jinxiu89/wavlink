@@ -15,7 +15,8 @@ namespace app\customer\controller;
 use app\common\service\customer\Product as Service;
 use app\customer\validate\Product as Validate;
 use think\App;
-
+use think\facade\Cookie;
+use app\customer\middleware\Auth;
 /**
  * Class product
  * @package app\customer\controller
@@ -33,6 +34,10 @@ class Product extends Base
         $this->service=new Service();
     }
 
+    /*protected $middleware=[
+        Auth::class =>['only'=>['register']]
+    ];*/
+
     /**
      * register
      * @return mixed|void
@@ -41,7 +46,8 @@ class Product extends Base
     {
         if(request()->isGet()){
             $country = $this->service->getCountry();
-            return $this->fetch('',['user_id'=>input('get.user_id'),'country'=>$country]);
+            $category = $this->service->getCategory(Cookie::get('lang_var'));
+            return $this->fetch('',['user_id'=>input('get.user_id'),'country'=>$country,'category'=>$category]);
         }
         if (request()->isAjax()) {
             $data = input('post.',[],'htmlspecialchars,trim');

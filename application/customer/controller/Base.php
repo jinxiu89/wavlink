@@ -12,8 +12,10 @@ use app\lib\utils\tools;
 use app\lib\utils\sms;
 use app\lib\utils\email;
 use think\App;
+use think\captcha\Captcha;
 use think\Controller;
 use think\facade\Cache;
+use think\facade\Config;
 use think\facade\Cookie;
 use think\facade\Lang;
 
@@ -32,6 +34,15 @@ class Base extends Controller
         $lang = $lang = Cookie::get('lang_var') ? Cookie::get('lang_var') : 'en_us';
         Lang::load(APP_PATH . 'customer/lang/' . $lang . '.php'); //加载该语言下的模块语言包
         $this->assign('lang', $lang);
+    }
+
+    /**
+     * @return \think\Response
+     * 生成验证码
+     */
+    public function verify(){
+        $captcha=new Captcha(Config::get('verify.config'));
+        return $captcha->entry();
     }
 
     /**

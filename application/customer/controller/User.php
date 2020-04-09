@@ -16,6 +16,8 @@ use app\common\service\customer\User as Service;
 use app\customer\validate\User as Validate;
 use think\App;
 use think\facade\Cache;
+use app\customer\middleware\Auth;
+use think\facade\Config;
 
 /**
  * Class User
@@ -36,7 +38,9 @@ class User extends Base
         $this->validate = new Validate();
     }
 
-    protected $middleware = [];
+    protected $middleware = [
+        Auth::class=>['except'=>['login','register']]
+    ];
 
     /**
      * login
@@ -50,6 +54,11 @@ class User extends Base
         }
         if (request()->isPost()) {
             $data = input('post.', [], 'htmlspecialchars,trim');
+            if(!Config::get('app.app_debug')){/*如果开启了debug 就不走验证，不开启就走验证码*/
+                if (!captcha_check($data['captcha'])) {
+                    return show(0, '', '', '', '', '验证码错误');
+                }
+            }
             $login_url = url('customer_login');
             $index = url('customer_index');
             $scene = empty($data['email']) ? 'phone' : 'email';

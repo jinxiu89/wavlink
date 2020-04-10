@@ -18,6 +18,7 @@ use think\App;
 use think\facade\Cache;
 use app\customer\middleware\Auth;
 use think\facade\Config;
+use think\Route;
 
 /**
  * Class User
@@ -39,7 +40,7 @@ class User extends Base
     }
 
     protected $middleware = [
-        Auth::class=>['except'=>['login','register']]
+        Auth::class=>['except'=>['login','register','forgotPassword']]
     ];
 
     /**
@@ -83,6 +84,15 @@ class User extends Base
         session(null, 'Customer');
         //跳出
         $this->redirect(url('customer_login'));
+    }
+
+    public function forgotPassword(){
+        if(request()->isGet()){
+            return $this->fetch();
+        }
+        if(request()->isPost()){
+
+        }
     }
 
     /**
@@ -178,7 +188,7 @@ class User extends Base
         if ($this->request->isPost()) {
             $data = input('post.', [], 'trim,htmlspecialchars');
             $data['password'] = GetPassword($data['password']);
-            if ($data['type'] == 1) { //todo::email 注册
+            if ($data['type'] == 1) { //email 注册
                 $code = Cache::store('redis')->get($data['email'], '') ? Cache::store('redis')->get($data['email'], '') : Cache::store('default')->get($data['email'], '');
                 if ($code != $data['verification']) {
                     return show(0, lang('The verification code is invalid'), '', '', '', lang('The verification code is invalid'));

@@ -58,6 +58,13 @@ return [
     'home' => 'HOME',
     'product' => 'PRODUCT',
     'driver' => 'DRIVER',
+    /**
+     * 产品注册翻译
+     */
+    'Add product cases'=>'Add product cases',
+    'Where to buy'=>'Where to buy',
+    'select'=>'Select',
+
     'Warranty tips' => '<h4>Tips:</h4>
 <p>1. For warranty service, you are supposed to create an account on the official website of WAVLINK to complete the product registration.</p>
 <p>2. Entering correct information of your purchased product is a must, otherwise you will fail to register. </p>

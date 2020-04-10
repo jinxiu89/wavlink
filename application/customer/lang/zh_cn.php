@@ -107,6 +107,13 @@ return [
     'home' => '首页',
     'product' => '产品',
     'driver' => '驱动',
+
+    /**
+     * 产品注册翻译
+     */
+    'Add product cases'=>'添加产品信息',
+    'Where to buy'=>'购买平台',
+    'select'=>'请选择',
     //邮件--找回密码的邮件内容
     'Dear' => '亲！',
     'noreplay' => '这封邮件由wavlink系统发出，他不接受回复',

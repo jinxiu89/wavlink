@@ -7,6 +7,7 @@ Route::group('customer', function () {
     //登入登出
     Route::rule('/login$', 'User/login','GET|POST')->name('customer_login')->parent(['next'=>'[\w-]+']);
     Route::get('/logout$', 'User/logout')->name('customer_logout');
+    Route::get('/forgot/password$','User/forgotPassword')->name('forgot_password');
     //用户信息
     Route::rule('/info$','User/info','GET|POST')->name('customer_info');
 

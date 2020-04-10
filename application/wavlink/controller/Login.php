@@ -45,9 +45,7 @@ class Login extends Controller
             }
             //验证码判断
             $config = config('app_debug');
-            if ($config) {
-                //如果是开启调试，就不验证验证码
-            } else {
+            if (!$config) {
                 if (!captcha_check($data['captcha'])) {
                     return show(0, '', '', '', '', '验证码错误');
                 }

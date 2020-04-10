@@ -12,7 +12,9 @@ use app\common\model\BaseModel;
 use app\common\model\Language as LanguageModel;
 use Exception;
 use think\App;
+use think\captcha\Captcha;
 use think\Controller;
+use think\facade\Config;
 use think\facade\Request;
 use think\facade\Session;
 use think\response\Redirect;
@@ -187,4 +189,13 @@ class BaseAdmin extends Controller
         session('current_language', $result[0], 'admin');
         return redirect($next);
     }
+
+//    /**
+//     * @return \think\Response
+//     * 后台简化验证码
+//     */
+//    public function genCode(){
+//        $captcha=new Captcha(Config::get('verify.config'));
+//        return $captcha->entry();
+//    }
 }

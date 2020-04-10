@@ -1,0 +1,16 @@
+<form action="" id="registerForm" method="post">
+
+    <div class="info">
+        <label for="email">{:lang('Email')}<span> * </span></label>
+        <input id="email" class="code" name="email" type="email" placeholder="" >
+        <button id="send_code" type="button">{:lang('send')}</button>
+    </div>
+    <div class="info">
+        <label for="verification">{:lang('Verification')}<span> * </span></label>
+        <input id="verification" name="verification" type="text" placeholder="">
+    </div>
+    <div class="btn-box">
+        <input type="hidden" name="type" value="1">
+        <button class="btn-submit" id="submit">{:lang('next')}</button>
+    </div>
+</form>

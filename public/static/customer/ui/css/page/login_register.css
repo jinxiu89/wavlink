@@ -33,6 +33,7 @@ body {
   margin: 0 auto;
   background: rgba(196, 214, 226, 0.9);
   border-radius: 5px;
+  box-sizing: border-box;
 }
 .register-box .box .logo-box h2 {
   margin-bottom: 10px;
@@ -68,7 +69,7 @@ body {
 }
 .register-box .box .info-box .info input {
   float: left;
-  width: 280px;
+  width: 240px;
   height: 30px;
   margin-left: 0;
   padding: 0 5px;
@@ -146,6 +147,7 @@ body {
   margin: 0 auto;
   background: rgba(196, 214, 226, 0.9);
   border-radius: 5px;
+  box-sizing: border-box;
 }
 .proRegister-box .box .logo-box h2 {
   margin-bottom: 10px;
@@ -182,7 +184,7 @@ body {
 .proRegister-box .box .info-box .info input,
 .proRegister-box .box .info-box .info select {
   float: left;
-  width: 280px;
+  width: 240px;
   height: 30px;
   margin-left: 0;
   padding: 0 5px;

@@ -1,6 +1,6 @@
 {extend name="base/form"}
 {block name="title"}
-{:lang('完善产品信息')}
+{:lang('Add product cases')}
 {/block}
 {block name="style"}
 <link rel="stylesheet" href="__USER__/ui/css/page/login_register.css">
@@ -25,13 +25,13 @@
                     <input id="sn" name="sn" type="text" placeholder="">
                 </div>
                 <div class="info">
-                    <label for="platform">Where to buy <span>*</span></label>
+                    <label for="platform">{:lang('Where to buy')} <span>*</span></label>
                     <input id="platform" name="platform" type="text" placeholder="">
                 </div>
                 <div class="info">
                     <label for="country">{:lang('Country')} <span>*</span></label>
                     <select id="country" name="country">
-                        <option value="">请选择</option>
+                        <option value="">{:lang('select')}</option>
                         {volist name="country" id="vo"}
                         <option value="{$vo.name}">{:lang($vo.name)}</option>
                         {/volist}
@@ -48,7 +48,7 @@
                 <div class="info">
                     <label for="category">{:lang('Category')}</label>
                     <select name="category" id="category">
-                        <option value="0">{:lang('请选择')}</option>
+                        <option value="0">{:lang('select')}</option>
                         {volist name="category" id="vo"}
                         <option value="{$vo.name}">{$vo.delimiter|raw}{$vo.name}</option>
                         {/volist}

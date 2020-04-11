@@ -20,17 +20,21 @@ use think\Validate;
 class User extends Validate
 {
     protected $rule=[
+        'id'=>'integer',
         'email'=>'require|email',
-        'phone'=>'require'
+        'phone'=>'require',
+        'password'=>['regex'=>'^(?![0-9]+$)(?![a-z]+$)(?![A-Z]+$)(?!([^(0-9a-zA-Z)])+$).{6,20}$'],
     ];
     protected $message=[
         'email.require'=>'{%email is required}',
         'email.email'=>'{%email format is Error}',
-        'phone'=>'{%phone number is require}'
+        'phone'=>'{%phone number is require}',
+        'password'=>'{%password is to easy }'
     ];
     protected $scene=[
         'email'=>['email'],
         'phone'=>['phone'],
-        'register'=>['email']
+        'register'=>['email'],
+        'change_password'=>['id','password']
     ];
 }

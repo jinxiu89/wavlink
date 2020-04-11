@@ -19,10 +19,11 @@ class BaseService
 {
     protected $model;
 
-    public function create($data){
-        try{
+    public function create($data)
+    {
+        try {
             return $this->model->create($data); //返回的是一个当前模型的实例
-        }catch (\Exception $exception){
+        } catch (\Exception $exception) {
             return $exception->getMessage();//todo:: 异常
         }
     }
@@ -31,11 +32,25 @@ class BaseService
      * @param $id
      * @return
      */
-    public function getDataById($id){
-        try{
+    public function getDataById($id)
+    {
+        try {
             return $this->model->get($id);
-        }catch (\Exception $exception){
+        } catch (\Exception $exception) {
             //todo 异常处理
+        }
+    }
+
+    /**
+     * @param $data
+     * @return mixed
+     */
+    public function updateData($data)
+    {
+        try {
+            return $this->model->save($data, $data['id']);
+        }catch (\Exception $exception){
+
         }
     }
 

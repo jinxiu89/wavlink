@@ -50,6 +50,32 @@ class User extends BaseService
     }
 
     /**
+     * @param string $email
+     * @return array
+     */
+    public function getUserByEmail($email=''){
+        try{
+            $result=$this->model->getUserByEmail($email);
+            return  $result->toArray();
+        }catch (\Exception $exception){
+            return [];
+        }
+    }
+
+    /**
+     * @param string $phone
+     * @return array
+     */
+    public function getUserByPhone($phone=''){
+        try{
+            $result=$this->model->getUserByPhone($phone);
+            return $result->toArray();
+        }catch (\Exception $exception){
+            return [];
+        }
+    }
+
+    /**
      * @param $id
      * @return mixed
      */

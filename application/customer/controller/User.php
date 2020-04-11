@@ -18,7 +18,6 @@ use think\App;
 use think\facade\Cache;
 use app\customer\middleware\Auth;
 use think\facade\Config;
-use think\Route;
 
 /**
  * Class User
@@ -40,7 +39,7 @@ class User extends Base
     }
 
     protected $middleware = [
-        Auth::class=>['except'=>['login','register','forgotPassword']]
+        Auth::class => ['except' => ['login', 'register', 'forgotPassword', 'changePassword']]
     ];
 
     /**
@@ -55,9 +54,9 @@ class User extends Base
         }
         if (request()->isPost()) {
             $data = input('post.', [], 'htmlspecialchars,trim');
-            if(!Config::get('app.app_debug')){/*如果开启了debug 就不走验证，不开启就走验证码*/
+            if (!Config::get('app.app_debug')) {/*如果开启了debug 就不走验证，不开启就走验证码*/
                 if (!captcha_check($data['captcha'])) {
-                    return show(0, '', '', '', '', '验证码错误');
+                    return show(0, '', '', '', '', lang('The verification code is invalid'));
                 }
             }
             $login_url = url('customer_login');
@@ -86,12 +85,38 @@ class User extends Base
         $this->redirect(url('customer_login'));
     }
 
-    public function forgotPassword(){
-        if(request()->isGet()){
+    /**3.
+     * @return mixed|void
+     */
+    public function forgotPassword()
+    {
+        if (request()->isGet()) {
             return $this->fetch();
         }
-        if(request()->isPost()){
+        if (request()->isPost()) {
+            $data = input('post.', [], 'htmlspecialchars,trim');
+            if ($data['type'] == 1) {
+                $code = Cache::store('redis')->get($data['email'], '') ? Cache::store('redis')->get($data['email'], '') : Cache::store('default')->get($data['email'], '');
+                if ($data['verification'] != $code) {
+                    return show(0, lang('The verification code is invalid'), '', '', '', lang('The verification code is invalid'));
+                }
+                $user = $this->service->getUserByEmail($data['email']);
+                if (!empty($user)) {
+                    return show(1, lang('Wait a moment'), '', '', url('change_password', ['id' => $user['id'], 'email' => $user['email']]));
+                }
+            }
+            if ($data['type'] == 2) {
+                $code = Cache::store('redis')->get($data['phone'], '') ? Cache::store('redis')->get($data['phone'], '') : Cache::store('default')->get($data['phone'], '');
+                if ($data['verification'] != $code) {
+                    return show(0, lang('The verification code is invalid'), '', '', '', lang('The verification code is invalid'));
+                }
+                $user = $this->service->getUserByPhone($data['phone']);
+                if (!empty($user)) {
+                    return show(1, lang('Wait a moment'), '', '', url('change_password', ['id' => $user['id'], 'phone' => $user['phone']]));
+                }
+            }
 
+            return show(0, lang('The user does not exist'), '', '', '', lang('The user does not exist'));
         }
     }
 
@@ -239,15 +264,6 @@ class User extends Base
                 ]);
             }
         }
-        /*if (request()->isAjax()) {
-            $data = input('post.',[],'htmlspecialchars');
-            $result = $user->upDateById($data, $id);
-            if ($result == true) {
-                return show(1, lang('Success'), '', '', url('customer_info'));
-            } else {
-                return show(0, lang('Success'), '', '', url('customer_info'));
-            }
-        }*/
 
     }
 
@@ -258,6 +274,44 @@ class User extends Base
     public function modifyInfo()
     {
 
+    }
+
+    /***
+     * changePassword 在没有登录的情况下 找回密码 修改密码通过该路由
+     * @return mixed
+     */
+    public function changePassword()
+    {
+        if ($this->request->isGet()) {
+            $email = input('get.email', '', 'htmlspecialchars,trim');
+            $phone = input('get.phone', '', 'htmlspecialchars,trim');
+            if (isset($email) && !empty($email)) {
+                $this->assign('email', $email);
+            }
+            if (isset($phone) && !empty($phone)) {
+                $this->assign('phone', input('get.phone', '', 'htmlspecialchars,trim'));
+            }
+            return $this->fetch('', ['id' => input('get.id', '', 'intval')]);
+        }
+        if ($this->request->isPost()) {
+            $data = input('post.', '', 'htmlspecialchars,trim');
+            if (!$this->validate->scene('change_password')->check($data)) {
+                return show(0, 'failed', '', '', '', $this->validate->getError());
+            }
+            $code = '';
+            if ($data['type'] == 1) {
+                $code = Cache::store('redis')->get($data['email'], '') ? Cache::store('redis')->get($data['email'], '') : Cache::store('default')->get($data['email'], '');
+            }
+            if ($data['type'] == 2) {
+                $code = Cache::store('redis')->get($data['phone'], '') ? Cache::store('redis')->get($data['phone'], '') : Cache::store('default')->get($data['phone'], '');
+            }
+            if ($code != ($data['captcha'])) {
+                return show(0, lang('The verification code is invalid'), '', '', '', lang('The verification code is invalid'));
+            }
+            if ($this->service->updateData($data)) {
+                return show(1, lang('success'), '', '', url('customer_login'), lang('success'));
+            }
+        }
     }
 
     /**

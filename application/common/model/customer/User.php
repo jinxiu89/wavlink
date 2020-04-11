@@ -61,6 +61,10 @@ Class User extends BaseModel
         return 1;
     }
 
+    /**
+     * @param $email
+     * @return bool
+     */
     public function CheckEmail($email)
     {
         $result = $this::get(['email' => $email]);
@@ -84,6 +88,23 @@ Class User extends BaseModel
         }else{
             return true;
         }
+    }
+
+    /**
+     * @param $email
+     * @return mixed
+     */
+    public function getUserByEmail($email){
+        return $this::get(['email'=>$email]);
+
+    }
+
+    /**
+     * @param $phone
+     * @return mixed
+     */
+    public function getUserByPhone($phone){
+        return $this::get(['phone'=>$phone]);
     }
 
     public function CheckPassword($oldPassword,$id){

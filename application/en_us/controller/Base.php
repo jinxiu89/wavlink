@@ -243,6 +243,10 @@ class Base extends Controller
         return $this->fetch('', ['result' => $result->toArray()]);
     }
 
+    public function manual(){
+        return \redirect(url('manual_list'));
+    }
+
 
     /**
      * @return mixed

@@ -308,6 +308,7 @@ class User extends Base
             if ($code != ($data['captcha'])) {
                 return show(0, lang('The verification code is invalid'), '', '', '', lang('The verification code is invalid'));
             }
+            $data['password'] = GetPassword($data['password']);
             if ($this->service->updateData($data)) {
                 return show(1, lang('success'), '', '', url('customer_login'), lang('success'));
             }

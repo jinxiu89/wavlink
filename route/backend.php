@@ -8,7 +8,7 @@ Route::group(Config::get('__BACKEND__'), function () {
     //登录登出
     Route::rule('/login/index$','wavlink/login/index','GET|POST')->name('admin_login');
     Route::rule('/login/logout$', 'wavlink/login/logout','GET|POST')->name('admin_logout');
-    Route::rule('/login$', 'wavlink/login/index','GET|POST')->name('admin_login');
+//    Route::rule('/login$', 'wavlink/login/index','GET|POST')->name('admin_login');
     /**
      * 清理缓存
      */

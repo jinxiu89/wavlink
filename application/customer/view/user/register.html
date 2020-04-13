@@ -42,16 +42,16 @@
                 /*console.log("过期");*/
             } else {
                 _delay = LocalDelay.delay - timeLine;
-                obj.text(_delay + 's latter');
+                obj.text(_delay + 's');
                 btnDom.disabled = true;
                 var timer = setInterval(function () {
                     if (_delay > 1) {
                         _delay--;
-                        obj.text(_delay + 's latter');
+                        obj.text(_delay + 's');
                         setLocalDelay(_delay);
                     } else {
                         clearInterval(timer);
-                        obj.text("{:lang('send')}");//todo:: 翻译
+                        obj.text("{:lang('send')}");
                         btnDom.disabled = false;
                     }
                 }, 1000);
@@ -82,18 +82,18 @@
             var _delay = 20; //设置定时时间长度
             var delay = _delay;
             var btnDom = document.getElementById("send_code")
-            obj.text(_delay + 's latter');
+            obj.text(_delay + 's');
             btnDom.disabled = true;
             btnDom.style.cursor = 'no-drop'
             // 定时器
             var timer = setInterval(function () {
                 if (delay > 1) {
                     delay--;
-                    obj.html(delay + 's latter');
+                    obj.html(delay + 's');
                     setLocalDelay(delay);
                 } else {
                     clearInterval(timer);
-                    obj.text("{:lang('send')}"); // todo::翻译
+                    obj.text("{:lang('send')}");
                     btnDom.disabled = false;
                     btnDom.style.cursor = 'pointer'
                 }
@@ -103,7 +103,6 @@
         }
     }
     // 初始化
-    // todo:: 发送验证码倒计时时需要禁止交互，暂时先做其他功能
     $(function () {
         var btn = document.getElementById("send_code");
         monitor($(btn));
@@ -115,10 +114,10 @@
             var emailReg = /^([a-zA-Z]|[0-9])(\w|\-)+@[a-zA-Z0-9]+\.([a-zA-Z]{2,4})$/;
             var phoneReg = /^1(3|4|5|6|7|8|9)\d{9}$/;
             if(attr === 'email' && !emailReg.test(value)){
-                layer.msg("请输入正确的邮箱地址") //todo::翻译
+                layer.msg("{:lang('Please input the correct phone number or e-mail address')}")
             }
             if(attr === 'phone' && !phoneReg.test(value)){
-                layer.msg("请输入正确的手机号") //todo::翻译
+                layer.msg("{:lang('Please input the correct phone number or e-mail address')}")
             }
             $.ajax({
                 url: '{:url(\'verification\')}' + '?' + attr + '=' + value,
@@ -157,7 +156,7 @@
                     }
                 })
             } else {
-                layer.msg('请认真阅读隐私政策和服务条款'); //todo::翻译
+                layer.msg('{:lang(\'Agree is required\')}');
             }
         }
     });

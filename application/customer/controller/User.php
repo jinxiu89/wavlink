@@ -97,7 +97,7 @@ class User extends Base
             $data = input('post.', [], 'htmlspecialchars,trim');
             if ($data['type'] == 1) {
                 $code = Cache::store('redis')->get($data['email'], '') ? Cache::store('redis')->get($data['email'], '') : Cache::store('default')->get($data['email'], '');
-                if ($data['verification'] != $code) {
+                if ($data['captcha'] != $code) {
                     return show(0, lang('The verification code is invalid'), '', '', '', lang('The verification code is invalid'));
                 }
                 $user = $this->service->getUserByEmail($data['email']);
@@ -107,7 +107,7 @@ class User extends Base
             }
             if ($data['type'] == 2) {
                 $code = Cache::store('redis')->get($data['phone'], '') ? Cache::store('redis')->get($data['phone'], '') : Cache::store('default')->get($data['phone'], '');
-                if ($data['verification'] != $code) {
+                if ($data['captcha'] != $code) {
                     return show(0, lang('The verification code is invalid'), '', '', '', lang('The verification code is invalid'));
                 }
                 $user = $this->service->getUserByPhone($data['phone']);
@@ -251,9 +251,8 @@ class User extends Base
 
     public function info()
     {
-        $id = session('CustomerInfo', '', 'Customer');
         if (request()->isGet()) {
-            $customer = $this->service->getDataByIdWithInfo($id);
+            $customer = $this->service->getDataByIdWithInfo($this->uid);
             $country = (new Country())->field('country_id,name')->select();
             if (isMobile()) {
                 return "hello world";
@@ -273,7 +272,10 @@ class User extends Base
      */
     public function modifyInfo()
     {
+        if($this->request->isPost()){
+            $data=input('post.','','htmlspecialchars,trim');
 
+        }
     }
 
     /***
@@ -285,18 +287,14 @@ class User extends Base
         if ($this->request->isGet()) {
             $email = input('get.email', '', 'htmlspecialchars,trim');
             $phone = input('get.phone', '', 'htmlspecialchars,trim');
-            if (isset($email) && !empty($email)) {
-                $this->assign('email', $email);
-            }
-            if (isset($phone) && !empty($phone)) {
-                $this->assign('phone', input('get.phone', '', 'htmlspecialchars,trim'));
-            }
+            if (isset($email) && !empty($email))  $this->assign('email', $email);
+            if (isset($phone) && !empty($phone)) $this->assign('phone', input('get.phone', '', 'htmlspecialchars,trim'));
             return $this->fetch('', ['id' => input('get.id', '', 'intval')]);
         }
         if ($this->request->isPost()) {
             $data = input('post.', '', 'htmlspecialchars,trim');
             if (!$this->validate->scene('change_password')->check($data)) {
-                return show(0, 'failed', '', '', '', $this->validate->getError());
+                return show(0, $this->validate->getError(), '', '', '', $this->validate->getError());
             }
             $code = '';
             if ($data['type'] == 1) {

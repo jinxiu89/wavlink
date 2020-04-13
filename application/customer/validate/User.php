@@ -32,8 +32,8 @@ class User extends Validate
         'password'=>'{%password is to easy }'
     ];
     protected $scene=[
-        'email'=>['email'],
-        'phone'=>['phone'],
+        'email'=>['email','password'],
+        'phone'=>['phone','password'],
         'register'=>['email'],
         'change_password'=>['id','password']
     ];

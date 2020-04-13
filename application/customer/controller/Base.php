@@ -11,6 +11,7 @@ namespace app\customer\controller;
 use app\lib\utils\tools;
 use app\lib\utils\sms;
 use app\lib\utils\email;
+use Exception;
 use think\App;
 use think\captcha\Captcha;
 use think\Controller;
@@ -18,15 +19,18 @@ use think\facade\Cache;
 use think\facade\Config;
 use think\facade\Cookie;
 use think\facade\Lang;
+use think\Response;
 
 class Base extends Controller
 {
     protected $service;
     protected $validate;
+    protected $uid;
 
     public function __construct(App $app = null)
     {
         parent::__construct($app);
+        $this->uid = session('CustomerInfo', '', 'Customer');
     }
 
     public function initialize()
@@ -37,7 +41,7 @@ class Base extends Controller
     }
 
     /**
-     * @return \think\Response
+     * @return Response
      * 生成验证码
      */
     public function verify(){
@@ -68,7 +72,7 @@ class Base extends Controller
         if (!empty($email = input('email'))) { /*邮件验证分支*/
             try {
                 Cache::store('redis')->set($email, $str, 300);
-            } catch (\Exception $exception) {
+            } catch (Exception $exception) {
                 Cache::store('default')->set($email, $str, 300);
             }
             $dear = lang('Dear');
@@ -96,7 +100,7 @@ class Base extends Controller
         } elseif (!empty($phone = input('phone'))) {
             try {
                 Cache::store('redis')->set($phone, $str, 300);
-            } catch (\Exception $exception) {
+            } catch (Exception $exception) {
                 Cache::store('default')->set($phone, $str, 300);
             }
             $result = sms::ali($phone, $str);

@@ -20,6 +20,7 @@ return [
     'Register' => 'Register',
     'No account yet' => 'No account yet?',
     'Retrieve your password' => 'Forgot Password',
+    'Please input the correct phone number or e-mail address' => 'Please input the correct e-mail address',
     'Or' => 'Or',
     'Reset Password' => 'Reset Password',
     'Please enter your phone number or e-mail address' => 'Please enter your e-mail address',
@@ -41,6 +42,7 @@ return [
     'and'=>'and',
     'Privacy agreement'=>'Privacy agreement',
     'Subscribe me'=>'Subscribe me',
+    'Agree is required' => 'Please agree to our terms of service and privacy',
     /*注册验证文案结束*/
     'Input your first name'=>'Input your first name',
     'Input your E-mail' => 'Input your E-mail',

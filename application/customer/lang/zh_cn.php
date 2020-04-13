@@ -32,6 +32,7 @@ return [
     'No account yet' => '还没有账号？',
     'Retrieve your password' => '找回密码',
     'Reset your password' => '重置您的密码',
+    'Please input the correct phone number or e-mail address' => '请输入正确的手机号',
     'Or' => '或者',
     'Reset Password' => '重置密码',
     'Please enter your phone number or e-mail address' => '请输入您的手机号',
@@ -53,6 +54,7 @@ return [
     'and'=>'和',
     'Privacy agreement'=>'隐私条款',
     'Subscribe me'=>'订阅',
+    'Agree is required' => '请勾选我们的服务条款和隐私条款',
     /*注册验证文案结束*/
     'Input your first name'=>'输入姓名',
     'Input your E-mail' => '请输入您的E-mail',

@@ -11,8 +11,7 @@
 .infoError {
   display: block;
   float: left;
-  width: 100%;
-  margin-left: 110px;
+  margin-left: 126px;
   color: #f00;
   text-align: left;
   font-size: 12px;
@@ -58,7 +57,8 @@ body {
   height: 100%;
 }
 .btn-box {
-  margin: 10px 0 0 110px;
+  margin: 0;
+  text-align: center;
 }
 .btn-box .btn-submit {
   width: 119px;
@@ -108,137 +108,60 @@ body {
 .change-box .box .logo-box h2 img {
   height: 70px;
 }
-.register-box .box .info-box .info {
+.register-box .box .info-box .info,
+.forgot-box .box .info-box .info,
+.change-box .box .info-box .info {
   margin-bottom: 10px;
 }
 .register-box .box .info-box .infobefore,
-.register-box .box .info-box .info:after {
+.forgot-box .box .info-box .infobefore,
+.change-box .box .info-box .infobefore,
+.register-box .box .info-box .info:after,
+.forgot-box .box .info-box .info:after,
+.change-box .box .info-box .info:after {
   content: " ";
   display: table;
   zoom: 1;
 }
-.register-box .box .info-box .info:after {
+.register-box .box .info-box .info:after,
+.forgot-box .box .info-box .info:after,
+.change-box .box .info-box .info:after {
   clear: both;
 }
-.register-box .box .info-box .info label {
+.register-box .box .info-box .info label,
+.forgot-box .box .info-box .info label,
+.change-box .box .info-box .info label {
   float: left;
-  width: 100px;
-  margin-right: 10px;
+  width: 121px;
+  margin-right: 5px;
   margin-bottom: 0;
   font-size: 14px;
   line-height: 30px;
   text-align: right;
   font-weight: normal;
 }
-.register-box .box .info-box .info label span {
+.register-box .box .info-box .info label span,
+.forgot-box .box .info-box .info label span,
+.change-box .box .info-box .info label span {
   color: #f00;
 }
-.register-box .box .info-box .info input {
+.register-box .box .info-box .info input,
+.forgot-box .box .info-box .info input,
+.change-box .box .info-box .info input {
   float: left;
-  width: 240px;
+  width: 210px;
   height: 30px;
   margin-left: 0;
   padding: 0 5px;
   font-size: 12px;
   border: 1px solid #ccc;
   box-sizing: border-box;
-}
-.register-box .box .info-box .terms {
-  margin: 10px 0 10px 110px;
-}
-.register-box .box .info-box .terms div:nth-last-of-type(1) {
-  margin-top: 5px;
-}
-.register-box .box .info-box .terms div:nth-last-of-type(1) label {
-  margin-left: 10px;
-}
-.register-box .box .info-box .terms input {
-  width: 15px;
-  height: 15px;
-  margin: 0;
-  cursor: pointer;
-}
-.register-box .box .info-box .terms label {
-  display: inline-block;
-  font-size: 12px;
-  font-weight: normal;
-  line-height: 15px;
-}
-.register-box .box .info-box .terms label span {
-  color: #f00;
-}
-.register-box .box .info-box .terms label a {
-  display: inline-block;
-  line-height: 15px;
-}
-.register-box .box .info-box .terms label a:hover {
-  color: #f8b300;
-  text-decoration: underline;
-}
-.proRegister-box .box .info-box .info {
-  margin-bottom: 10px;
-}
-.proRegister-box .box .info-box .infobefore,
-.proRegister-box .box .info-box .info:after {
-  content: " ";
-  display: table;
-  zoom: 1;
-}
-.proRegister-box .box .info-box .info:after {
-  clear: both;
-}
-.proRegister-box .box .info-box .info label {
-  float: left;
-  width: 100px;
-  margin-right: 10px;
-  margin-bottom: 0;
-  font-size: 14px;
-  line-height: 30px;
-  text-align: right;
-  font-weight: normal;
-}
-.proRegister-box .box .info-box .info label span {
-  color: #f00;
-}
-.proRegister-box .box .info-box .info input,
-.proRegister-box .box .info-box .info select {
-  float: left;
-  width: 240px;
-  height: 30px;
-  margin-left: 0;
-  padding: 0 5px;
-  font-size: 12px;
-  border: 1px solid #ccc;
-  box-sizing: border-box;
-}
-.proRegister-box .box .info-box .btn-boxbefore,
-.proRegister-box .box .info-box .btn-box:after {
-  content: " ";
-  display: table;
-  zoom: 1;
-}
-.proRegister-box .box .info-box .btn-box:after {
-  clear: both;
-}
-.proRegister-box .box .info-box .btn-box .btn-submit {
-  float: left;
-}
-.proRegister-box .box .info-box .btn-box .btn-submit-Jump {
-  float: left;
-  display: block;
-  margin-left: 2px;
-  line-height: 27px;
-  color: #000;
-}
-.proRegister-box .box .tips {
-  margin-top: 20px;
-  font-size: 12px;
 }
 .login-box .box {
   width: 400px;
   padding: 40px 20px;
   margin: 0 auto;
-  background: rgba(196, 214, 226, 0.9);
+  background: #fff;
   border-radius: 5px;
 }
 .login-box .box .info-box {
@@ -320,19 +243,51 @@ body {
 .login-box .infoError {
   margin-left: 0;
 }
-.forgot-box .box .info-box .info {
+.register-box .box .info-box .terms {
+  margin: 10px 0 10px 102px;
+}
+.register-box .box .info-box .terms div:nth-last-of-type(1) {
+  margin-top: 5px;
+}
+.register-box .box .info-box .terms div:nth-last-of-type(1) label {
+  margin-left: 10px;
+}
+.register-box .box .info-box .terms input {
+  width: 15px;
+  height: 15px;
+  margin: 0;
+  cursor: pointer;
+}
+.register-box .box .info-box .terms label {
+  display: inline-block;
+  font-size: 12px;
+  font-weight: normal;
+  line-height: 15px;
+}
+.register-box .box .info-box .terms label span {
+  color: #f00;
+}
+.register-box .box .info-box .terms label a {
+  display: inline-block;
+  line-height: 15px;
+}
+.register-box .box .info-box .terms label a:hover {
+  color: #f8b300;
+  text-decoration: underline;
+}
+.proRegister-box .box .info-box .info {
   margin-bottom: 10px;
 }
-.forgot-box .box .info-box .infobefore,
-.forgot-box .box .info-box .info:after {
+.proRegister-box .box .info-box .infobefore,
+.proRegister-box .box .info-box .info:after {
   content: " ";
   display: table;
   zoom: 1;
 }
-.forgot-box .box .info-box .info:after {
+.proRegister-box .box .info-box .info:after {
   clear: both;
 }
-.forgot-box .box .info-box .info label {
+.proRegister-box .box .info-box .info label {
   float: left;
   width: 100px;
   margin-right: 10px;
@@ -342,10 +297,11 @@ body {
   text-align: right;
   font-weight: normal;
 }
-.forgot-box .box .info-box .info label span {
+.proRegister-box .box .info-box .info label span {
   color: #f00;
 }
-.forgot-box .box .info-box .info input {
+.proRegister-box .box .info-box .info input,
+.proRegister-box .box .info-box .info select {
   float: left;
   width: 240px;
   height: 30px;
@@ -355,132 +311,13 @@ body {
   border: 1px solid #ccc;
   box-sizing: border-box;
 }
-.forgot-box .box .info-box .terms {
-  margin: 10px 0 10px 110px;
-}
-.forgot-box .box .info-box .terms div:nth-last-of-type(1) {
-  margin-top: 5px;
-}
-.forgot-box .box .info-box .terms div:nth-last-of-type(1) label {
-  margin-left: 10px;
-}
-.forgot-box .box .info-box .terms input {
-  width: 15px;
-  height: 15px;
-  margin: 0;
-  cursor: pointer;
-}
-.forgot-box .box .info-box .terms label {
+.proRegister-box .box .info-box .btn-box .btn-submit-Jump {
   display: inline-block;
+  line-height: 27px;
+  color: #000;
+}
+.proRegister-box .box .tips {
+  margin-top: 20px;
   font-size: 12px;
-  font-weight: normal;
-  line-height: 15px;
-}
-.forgot-box .box .info-box .terms label span {
-  color: #f00;
-}
-.forgot-box .box .info-box .terms label a {
-  display: inline-block;
-  line-height: 15px;
-}
-.forgot-box .box .info-box .terms label a:hover {
-  color: #f8b300;
-  text-decoration: underline;
-}
-.forgot-box .title-box {
-  width: 240px;
-  margin: 10px 0 10px 110px;
-}
-.forgot-box .title-box .title {
-  font-size: 18px;
-  color: #f00;
-  text-align: center;
-}
-.forgot-box .title-box .des {
-  font-size: 12px;
-  color: #f00;
-}
-.change-box .box .info-box .info {
-  margin-bottom: 10px;
-}
-.change-box .box .info-box .infobefore,
-.change-box .box .info-box .info:after {
-  content: " ";
-  display: table;
-  zoom: 1;
-}
-.change-box .box .info-box .info:after {
-  clear: both;
-}
-.change-box .box .info-box .info label {
-  float: left;
-  width: 100px;
-  margin-right: 10px;
-  margin-bottom: 0;
-  font-size: 14px;
-  line-height: 30px;
-  text-align: right;
-  font-weight: normal;
-}
-.change-box .box .info-box .info label span {
-  color: #f00;
-}
-.change-box .box .info-box .info input {
-  float: left;
-  width: 240px;
-  height: 30px;
-  margin-left: 0;
-  padding: 0 5px;
-  font-size: 12px;
-  border: 1px solid #ccc;
-  box-sizing: border-box;
-}
-.change-box .box .info-box .info input#captcha {
-  width: 145px;
-}
-.change-box .box .info-box .terms {
-  margin: 10px 0 10px 110px;
-}
-.change-box .box .info-box .terms div:nth-last-of-type(1) {
-  margin-top: 5px;
-}
-.change-box .box .info-box .terms div:nth-last-of-type(1) label {
-  margin-left: 10px;
-}
-.change-box .box .info-box .terms input {
-  width: 15px;
-  height: 15px;
-  margin: 0;
-  cursor: pointer;
-}
-.change-box .box .info-box .terms label {
-  display: inline-block;
-  font-size: 12px;
-  font-weight: normal;
-  line-height: 15px;
-}
-.change-box .box .info-box .terms label span {
-  color: #f00;
-}
-.change-box .box .info-box .terms label a {
-  display: inline-block;
-  line-height: 15px;
-}
-.change-box .box .info-box .terms label a:hover {
-  color: #f8b300;
-  text-decoration: underline;
-}
-.change-box .title-box {
-  width: 240px;
-  margin: 10px 0 10px 110px;
-}
-.change-box .title-box .title {
-  font-size: 18px;
-  color: #f00;
-  text-align: center;
-}
-.change-box .title-box .des {
-  font-size: 12px;
-  color: #f00;
 }
 /*# sourceMappingURL=login_register.css.map */

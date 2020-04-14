@@ -11,8 +11,7 @@
 .infoError {
     display: block;
     .fl();
-    width: 100%;
-    margin-left: 110px;
+    margin-left: 126px;
     color: #f00;
     text-align: left;
     font-size: 12px;
@@ -21,7 +20,7 @@ body {
     padding-top: 0;
 }
 
-//登陆注册/密码重置几个页面公用css
+//登陆、账户注册、产品注册、忘记密码、重置密码几个页面公用css
 ::-webkit-input-placeholder { /* WebKit browsers */
     color:    #ccc;
 }
@@ -56,7 +55,8 @@ body {
     }
 }
 .btn-box {
-    margin: 10px 0 0 110px;
+    margin: 0;
+    text-align: center;
 }
 .btn-box .btn-submit {
     width: 119px;
@@ -105,16 +105,18 @@ body {
     }
 }
 
-//账户注册
-.register-box .box .info-box {
+//账户注册、忘记密码、重置密码页面公用
+.register-box .box .info-box,
+.forgot-box .box .info-box,
+.change-box .box .info-box {
     .info {
         .clearFix();
         margin-bottom: 10px;
     }
     .info label {
         .fl();
-        width: 100px;
-        margin-right: 10px;
+        width: 121px;
+        margin-right: 5px;
         margin-bottom: 0;
         font-size: 14px;
         line-height: 30px;
@@ -126,7 +128,7 @@ body {
     }
     .info input {
         .fl();
-        width: 240px;
+        width: 210px;
         height: 30px;
         margin-left: 0;
         padding: 0 5px;
@@ -134,97 +136,14 @@ body {
         border: 1px solid #ccc;
         box-sizing: border-box;
     }
-    .terms {
-        margin: 10px 0 10px 110px;
-        div:nth-last-of-type(1) {
-            margin-top: 5px;
-            label {
-                margin-left: 10px;
-            }
-        }
-        input {
-            width: 15px;
-            height: 15px;
-            margin: 0;
-            cursor: pointer;
-        }
-        label {
-            display: inline-block;
-            font-size: 12px;
-            font-weight: normal;
-            line-height: 15px;
-        }
-        label span {
-            color: #f00;
-        }
-        label a {
-            display: inline-block;
-            line-height: 15px;
-            &:hover {
-                color: @activeColor;
-                text-decoration: underline;
-            }
-        }
-    }
 }
-//账户注册结束
-
-//产品注册
-.proRegister-box .box .info-box {
-    .info {
-        .clearFix();
-        margin-bottom: 10px;
-    }
-    .info label {
-        .fl();
-        width: 100px;
-        margin-right: 10px;
-        margin-bottom: 0;
-        font-size: 14px;
-        line-height: 30px;
-        text-align: right;
-        font-weight: normal;
-        span {
-            color: #f00;
-        }
-    }
-    .info input,
-    .info select {
-        .fl();
-        width: 240px;
-        height: 30px;
-        margin-left: 0;
-        padding: 0 5px;
-        font-size: 12px;
-        border: 1px solid #ccc;
-        box-sizing: border-box;
-    }
-    .btn-box {
-        .clearFix();
-        .btn-submit {
-            .fl();
-        }
-        .btn-submit-Jump{
-            .fl();
-            display: block;
-            margin-left: 2px;
-            line-height: 27px;
-            color: #000;
-        }
-    }
-}
-.proRegister-box .box .tips {
-    margin-top: 20px;
-    font-size: 12px;
-}
-//产品注册结束
 
 //登录
 .login-box .box {
     width: 400px;
     padding: 40px 20px;
     margin: 0 auto;
-    background: rgba(196, 214, 226, 0.9);
+    background: @whiteColor;
     border-radius: 5px;
 }
 .login-box .box .info-box {
@@ -301,37 +220,10 @@ body {
     margin-left: 0;
 }
 
-//忘记密码
-.forgot-box .box .info-box {
-    .info {
-        .clearFix();
-        margin-bottom: 10px;
-    }
-    .info label {
-        .fl();
-        width: 100px;
-        margin-right: 10px;
-        margin-bottom: 0;
-        font-size: 14px;
-        line-height: 30px;
-        text-align: right;
-        font-weight: normal;
-        span {
-            color: #f00;
-        }
-    }
-    .info input {
-        .fl();
-        width: 240px;
-        height: 30px;
-        margin-left: 0;
-        padding: 0 5px;
-        font-size: 12px;
-        border: 1px solid #ccc;
-        box-sizing: border-box;
-    }
+//账户注册
+.register-box .box .info-box {
     .terms {
-        margin: 10px 0 10px 110px;
+        margin: 10px 0 10px 102px;
         div:nth-last-of-type(1) {
             margin-top: 5px;
             label {
@@ -363,98 +255,56 @@ body {
         }
     }
 }
-.forgot-box .title-box {
-    width: 240px;
-    margin: 10px 0 10px 110px;
-    .title {
-        font-size: 18px;
-        color: #f00;
-        text-align: center;
+//账户注册结束
+
+//产品注册
+.proRegister-box .box .info-box {
+    .info {
+        .clearFix();
+        margin-bottom: 10px;
     }
-    .des {
+    .info label {
+        .fl();
+        width: 100px;
+        margin-right: 10px;
+        margin-bottom: 0;
+        font-size: 14px;
+        line-height: 30px;
+        text-align: right;
+        font-weight: normal;
+        span {
+            color: #f00;
+        }
+    }
+    .info input,
+    .info select {
+        .fl();
+        width: 240px;
+        height: 30px;
+        margin-left: 0;
+        padding: 0 5px;
         font-size: 12px;
-        color: #f00;
+        border: 1px solid #ccc;
+        box-sizing: border-box;
+    }
+    .btn-box {
+        .btn-submit-Jump{
+            display: inline-block;
+            line-height: 27px;
+            color: #000;
+        }
     }
 }
+.proRegister-box .box .tips {
+    margin-top: 20px;
+    font-size: 12px;
+}
+//产品注册结束
+
+//忘记密码
+.forgot-box .box .info-box {}
 //忘记密码结束
 
 //重置密码
-.change-box .box .info-box {
-    .info {
-        .clearFix();
-        margin-bottom: 10px;
-    }
-    .info label {
-        .fl();
-        width: 100px;
-        margin-right: 10px;
-        margin-bottom: 0;
-        font-size: 14px;
-        line-height: 30px;
-        text-align: right;
-        font-weight: normal;
-        span {
-            color: #f00;
-        }
-    }
-    .info input {
-        .fl();
-        width: 240px;
-        height: 30px;
-        margin-left: 0;
-        padding: 0 5px;
-        font-size: 12px;
-        border: 1px solid #ccc;
-        box-sizing: border-box;
-    }
-    .info input#captcha {
-        width: 145px;
-    }
-    .terms {
-        margin: 10px 0 10px 110px;
-        div:nth-last-of-type(1) {
-            margin-top: 5px;
-            label {
-                margin-left: 10px;
-            }
-        }
-        input {
-            width: 15px;
-            height: 15px;
-            margin: 0;
-            cursor: pointer;
-        }
-        label {
-            display: inline-block;
-            font-size: 12px;
-            font-weight: normal;
-            line-height: 15px;
-        }
-        label span {
-            color: #f00;
-        }
-        label a {
-            display: inline-block;
-            line-height: 15px;
-            &:hover {
-                color: @activeColor;
-                text-decoration: underline;
-            }
-        }
-    }
-}
-.change-box .title-box {
-    width: 240px;
-    margin: 10px 0 10px 110px;
-    .title {
-        font-size: 18px;
-        color: #f00;
-        text-align: center;
-    }
-    .des {
-        font-size: 12px;
-        color: #f00;
-    }
-}
+.change-box .box .info-box {}
 //重置密码结束
-

@@ -26,6 +26,7 @@ return [
     'Change Email address' => '修改邮箱',
     'login' => '登录',
     'Password' => '密码',
+    'New password' => '新密码',
     'Change Password' => '修改密码',
     'Remember_Me' => '记住密码',
     'Register' => '注册',

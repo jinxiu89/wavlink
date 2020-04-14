@@ -20,6 +20,22 @@
 body {
   padding-top: 0;
 }
+::-webkit-input-placeholder {
+  /* WebKit browsers */
+  color: #ccc;
+}
+:-moz-placeholder {
+  /* Mozilla Firefox 4 to 18 */
+  color: #ccc;
+}
+::-moz-placeholder {
+  /* Mozilla Firefox 19+ */
+  color: #ccc;
+}
+:-ms-input-placeholder {
+  /* Internet Explorer 10+ */
+  color: #ccc;
+}
 #send_code {
   height: 30px;
   margin-left: 5px;
@@ -41,6 +57,20 @@ body {
 #code-box img {
   height: 100%;
 }
+.btn-box {
+  margin: 10px 0 0 110px;
+}
+.btn-box .btn-submit {
+  width: 119px;
+  height: 27px;
+  font-size: 12px;
+  text-align: center;
+  background: url("../../img/btn.png") no-repeat left top;
+  cursor: pointer;
+}
+.btn-box .btn-submit:hover {
+  background: url("../../img/btn-hover.png") no-repeat left top;
+}
 .register-box,
 .proRegister-box,
 .login-box,
@@ -59,7 +89,7 @@ body {
   width: 500px;
   padding: 40px 20px;
   margin: 0 auto;
-  background: rgba(196, 214, 226, 0.9);
+  background: #fff;
   border-radius: 5px;
   box-sizing: border-box;
 }
@@ -145,20 +175,6 @@ body {
   color: #f8b300;
   text-decoration: underline;
 }
-.register-box .box .info-box .btn-box {
-  margin: 10px 0 0 110px;
-}
-.register-box .box .info-box .btn-box .btn-submit {
-  width: 119px;
-  height: 27px;
-  font-size: 12px;
-  text-align: center;
-  background: url("../../img/btn.png") no-repeat left top;
-  cursor: pointer;
-}
-.register-box .box .info-box .btn-box .btn-submit:hover {
-  background: url("../../img/btn-hover.png") no-repeat left top;
-}
 .proRegister-box .box .info-box .info {
   margin-bottom: 10px;
 }
@@ -195,19 +211,24 @@ body {
   border: 1px solid #ccc;
   box-sizing: border-box;
 }
-.proRegister-box .box .info-box .btn-box {
-  margin: 10px 0 0 110px;
+.proRegister-box .box .info-box .btn-boxbefore,
+.proRegister-box .box .info-box .btn-box:after {
+  content: " ";
+  display: table;
+  zoom: 1;
+}
+.proRegister-box .box .info-box .btn-box:after {
+  clear: both;
 }
 .proRegister-box .box .info-box .btn-box .btn-submit {
-  width: 119px;
-  height: 27px;
-  font-size: 12px;
-  text-align: center;
-  background: url("../../img/btn.png") no-repeat left top;
+  float: left;
 }
-.proRegister-box .box .info-box .btn-box .btn-submit:hover {
-  cursor: pointer;
-  background: url("../../img/btn-hover.png") no-repeat left top;
+.proRegister-box .box .info-box .btn-box .btn-submit-Jump {
+  float: left;
+  display: block;
+  margin-left: 2px;
+  line-height: 27px;
+  color: #000;
 }
 .proRegister-box .box .tips {
   margin-top: 20px;
@@ -296,17 +317,6 @@ body {
   float: left;
   width: 100%;
 }
-.login-box .box .info-box .btn-box .btn-submit {
-  width: 119px;
-  height: 27px;
-  font-size: 12px;
-  text-align: center;
-  background: url("../../img/btn.png") no-repeat left top;
-}
-.login-box .box .info-box .btn-box .btn-submit:hover {
-  cursor: pointer;
-  background: url("../../img/btn-hover.png") no-repeat left top;
-}
 .login-box .infoError {
   margin-left: 0;
 }
@@ -376,20 +386,6 @@ body {
 .forgot-box .box .info-box .terms label a:hover {
   color: #f8b300;
   text-decoration: underline;
-}
-.forgot-box .box .info-box .btn-box {
-  margin: 10px 0 0 110px;
-}
-.forgot-box .box .info-box .btn-box .btn-submit {
-  width: 119px;
-  height: 27px;
-  font-size: 12px;
-  text-align: center;
-  background: url("../../img/btn.png") no-repeat left top;
-  cursor: pointer;
-}
-.forgot-box .box .info-box .btn-box .btn-submit:hover {
-  background: url("../../img/btn-hover.png") no-repeat left top;
 }
 .forgot-box .title-box {
   width: 240px;
@@ -473,20 +469,6 @@ body {
 .change-box .box .info-box .terms label a:hover {
   color: #f8b300;
   text-decoration: underline;
-}
-.change-box .box .info-box .btn-box {
-  margin: 10px 0 0 110px;
-}
-.change-box .box .info-box .btn-box .btn-submit {
-  width: 119px;
-  height: 27px;
-  font-size: 12px;
-  text-align: center;
-  background: url("../../img/btn.png") no-repeat left top;
-  cursor: pointer;
-}
-.change-box .box .info-box .btn-box .btn-submit:hover {
-  background: url("../../img/btn-hover.png") no-repeat left top;
 }
 .change-box .title-box {
   width: 240px;

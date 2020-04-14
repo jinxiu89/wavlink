@@ -11,7 +11,7 @@ return [
     'Welcome to wavlink' => '',
     'notice for login' => '<p>Welcome to register WAVLINK user center；You will enjoy the following services after registration: </p><p>1、 Product warranty service</p><p>2、Promotion preview </p><p>3、New product notice dffd</p><p>4、Half-price test</p><p>这段文案还需要市场部核对后发布</p>',
     'Email' => 'E-mail',
-    'username'=>'User Name',
+    'username'=>'User name',
     'phone'=>'phone',
     'send'=>'Send',
     'login' => 'Login',
@@ -28,7 +28,7 @@ return [
     'Please enter your name' => 'Please enter your name',
     'Please enter your password' => 'Please enter your password',
     'Please enter your password again' => 'Please enter your password again',
-    'Please enter your e-mail captcha' => 'Please enter your e-mail Verification Code',
+    'Please enter your e-mail captcha' => 'Please enter e-mail verification code',
     '' => '',
     /*注册验证文案*/
     'user name is required'=>'first name is required',

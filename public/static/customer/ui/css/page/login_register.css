@@ -58,7 +58,8 @@ body {
   height: 100%;
 }
 .btn-box {
-  margin: 10px 0 0 110px;
+  margin: 0;
+  text-align: center;
 }
 .btn-box .btn-submit {
   width: 119px;
@@ -108,6 +109,92 @@ body {
 .change-box .box .logo-box h2 img {
   height: 70px;
 }
+.login-box .box {
+  width: 400px;
+  padding: 40px 20px;
+  margin: 0 auto;
+  background: #fff;
+  border-radius: 5px;
+}
+.login-box .box .info-box {
+  text-align: center;
+}
+.login-box .box .info-box formbefore,
+.login-box .box .info-box form:after {
+  content: " ";
+  display: table;
+  zoom: 1;
+}
+.login-box .box .info-box form:after {
+  clear: both;
+}
+.login-box .box .info-box .info {
+  float: left;
+  margin: 0 67.5px;
+}
+.login-box .box .info-box .info:nth-of-type(1),
+.login-box .box .info-box .info:nth-of-type(2) {
+  margin-bottom: 10px;
+}
+.login-box .box .info-box .info label {
+  float: left;
+  width: 30px;
+  height: 30px;
+  line-height: 30px;
+  text-align: center;
+  border: 1px solid #ccc;
+  border-right: none;
+  box-sizing: border-box;
+  background: rgba(0, 0, 0, 0.29);
+}
+.login-box .box .info-box .info label .iconfont {
+  font-size: 18px;
+  color: #fff;
+}
+.login-box .box .info-box .info input {
+  float: left;
+  width: 235px;
+  height: 30px;
+  margin-left: 0;
+  padding: 0 5px;
+  font-size: 12px;
+  border: 1px solid #ccc;
+  box-sizing: border-box;
+}
+.login-box .box .info-box .info input#captcha {
+  width: 145px;
+}
+.login-box .box .info-box .tips {
+  float: left;
+  width: 265px;
+  margin: 20px 67.5px;
+  font-size: 12px;
+}
+.login-box .box .info-box .tips .to-register {
+  float: left;
+  width: 50%;
+  text-align: left;
+}
+.login-box .box .info-box .tips .retrieve {
+  float: left;
+  width: 50%;
+  text-align: right;
+}
+.login-box .box .info-box .tips a {
+  display: inline;
+  font-size: 12px;
+}
+.login-box .box .info-box .tips a:hover {
+  text-decoration: underline;
+  color: #f8b300;
+}
+.login-box .box .info-box .btn-box {
+  float: left;
+  width: 100%;
+}
+.login-box .infoError {
+  margin-left: 0;
+}
 .register-box .box .info-box .info {
   margin-bottom: 10px;
 }
@@ -122,7 +209,7 @@ body {
 }
 .register-box .box .info-box .info label {
   float: left;
-  width: 100px;
+  width: 121px;
   margin-right: 10px;
   margin-bottom: 0;
   font-size: 14px;
@@ -135,7 +222,7 @@ body {
 }
 .register-box .box .info-box .info input {
   float: left;
-  width: 240px;
+  width: 210px;
   height: 30px;
   margin-left: 0;
   padding: 0 5px;
@@ -144,7 +231,7 @@ body {
   box-sizing: border-box;
 }
 .register-box .box .info-box .terms {
-  margin: 10px 0 10px 110px;
+  margin: 10px 0 10px 102px;
 }
 .register-box .box .info-box .terms div:nth-last-of-type(1) {
   margin-top: 5px;
@@ -234,92 +321,6 @@ body {
   margin-top: 20px;
   font-size: 12px;
 }
-.login-box .box {
-  width: 400px;
-  padding: 40px 20px;
-  margin: 0 auto;
-  background: rgba(196, 214, 226, 0.9);
-  border-radius: 5px;
-}
-.login-box .box .info-box {
-  text-align: center;
-}
-.login-box .box .info-box formbefore,
-.login-box .box .info-box form:after {
-  content: " ";
-  display: table;
-  zoom: 1;
-}
-.login-box .box .info-box form:after {
-  clear: both;
-}
-.login-box .box .info-box .info {
-  float: left;
-  margin: 0 67.5px;
-}
-.login-box .box .info-box .info:nth-of-type(1),
-.login-box .box .info-box .info:nth-of-type(2) {
-  margin-bottom: 10px;
-}
-.login-box .box .info-box .info label {
-  float: left;
-  width: 30px;
-  height: 30px;
-  line-height: 30px;
-  text-align: center;
-  border: 1px solid #ccc;
-  border-right: none;
-  box-sizing: border-box;
-  background: rgba(0, 0, 0, 0.29);
-}
-.login-box .box .info-box .info label .iconfont {
-  font-size: 18px;
-  color: #fff;
-}
-.login-box .box .info-box .info input {
-  float: left;
-  width: 235px;
-  height: 30px;
-  margin-left: 0;
-  padding: 0 5px;
-  font-size: 12px;
-  border: 1px solid #ccc;
-  box-sizing: border-box;
-}
-.login-box .box .info-box .info input#captcha {
-  width: 145px;
-}
-.login-box .box .info-box .tips {
-  float: left;
-  width: 265px;
-  margin: 20px 67.5px;
-  font-size: 12px;
-}
-.login-box .box .info-box .tips .to-register {
-  float: left;
-  width: 50%;
-  text-align: left;
-}
-.login-box .box .info-box .tips .retrieve {
-  float: left;
-  width: 50%;
-  text-align: right;
-}
-.login-box .box .info-box .tips a {
-  display: inline;
-  font-size: 12px;
-}
-.login-box .box .info-box .tips a:hover {
-  text-decoration: underline;
-  color: #f8b300;
-}
-.login-box .box .info-box .btn-box {
-  float: left;
-  width: 100%;
-}
-.login-box .infoError {
-  margin-left: 0;
-}
 .forgot-box .box .info-box .info {
   margin-bottom: 10px;
 }
@@ -334,7 +335,7 @@ body {
 }
 .forgot-box .box .info-box .info label {
   float: left;
-  width: 100px;
+  width: 121px;
   margin-right: 10px;
   margin-bottom: 0;
   font-size: 14px;
@@ -347,7 +348,7 @@ body {
 }
 .forgot-box .box .info-box .info input {
   float: left;
-  width: 240px;
+  width: 210px;
   height: 30px;
   margin-left: 0;
   padding: 0 5px;
@@ -387,19 +388,6 @@ body {
   color: #f8b300;
   text-decoration: underline;
 }
-.forgot-box .title-box {
-  width: 240px;
-  margin: 10px 0 10px 110px;
-}
-.forgot-box .title-box .title {
-  font-size: 18px;
-  color: #f00;
-  text-align: center;
-}
-.forgot-box .title-box .des {
-  font-size: 12px;
-  color: #f00;
-}
 .change-box .box .info-box .info {
   margin-bottom: 10px;
 }
@@ -414,7 +402,7 @@ body {
 }
 .change-box .box .info-box .info label {
   float: left;
-  width: 100px;
+  width: 121px;
   margin-right: 10px;
   margin-bottom: 0;
   font-size: 14px;
@@ -427,16 +415,13 @@ body {
 }
 .change-box .box .info-box .info input {
   float: left;
-  width: 240px;
+  width: 210px;
   height: 30px;
   margin-left: 0;
   padding: 0 5px;
   font-size: 12px;
   border: 1px solid #ccc;
   box-sizing: border-box;
-}
-.change-box .box .info-box .info input#captcha {
-  width: 145px;
 }
 .change-box .box .info-box .terms {
   margin: 10px 0 10px 110px;
@@ -469,18 +454,5 @@ body {
 .change-box .box .info-box .terms label a:hover {
   color: #f8b300;
   text-decoration: underline;
-}
-.change-box .title-box {
-  width: 240px;
-  margin: 10px 0 10px 110px;
-}
-.change-box .title-box .title {
-  font-size: 18px;
-  color: #f00;
-  text-align: center;
-}
-.change-box .title-box .des {
-  font-size: 12px;
-  color: #f00;
 }
 /*# sourceMappingURL=login_register.css.map */

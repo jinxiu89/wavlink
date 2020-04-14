@@ -73,7 +73,9 @@ return [
     'Add product cases'=>'Add product cases',
     'Where to buy'=>'Where to buy',
     'select'=>'Select',
-
+    'Please enter your sn code' => 'Please enter your sn code',
+    'Where did you buy our products' => 'Where did you buy our products',
+    'Please enter your order number' => 'Please enter your order number',
     'Warranty tips' => '<h4>Tips:</h4>
 <p>1. For warranty service, you are supposed to create an account on the official website of WAVLINK to complete the product registration.</p>
 <p>2. Entering correct information of your purchased product is a must, otherwise you will fail to register. </p>

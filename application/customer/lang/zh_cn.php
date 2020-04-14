@@ -151,8 +151,8 @@ return [
         <p>3、在您申请产品保修时，请确保您的产品仍在保修期内，当您成功申请保修后，我们的客服人员将尽快以邮件的方式与您取得联系。</p>',
     'Product reg tips' => '<h4>提示：</h4>
                 <ul>
-                    <li>1、SN 为必填项，且SN 长度须为十五位。</li>
-                    <li>2、SN 查找方法点击<a href="https://www.wavlink.com/en_us/faq/details/how_to_view_wavlink_product_model.html" target="_blank">EN FAQ</a> or <a href="https://www.wavlink.com/zh_cn/faq/details/how_to_check_the_product_model.html" target="_blank">zh_CN</a> </li>
+                    <li>1、SN 为您购买我们产品</li>
+                    <li>2、SN 查找方法点击<a href="https://www.wavlink.com/zh_cn/faq/details/how_to_check_the_product_model.html" target="_blank">如何查看睿因产品型号？</a> </li>
                     <li>3、Model和Category 由SN自动识别。</li>
                     <li>4、购买时间不能早于出厂日期。</li>
                     <li>5、订单号为您购买平台的订单号。</li>
@@ -165,6 +165,10 @@ return [
     'Purchase time' => '购买时间',
     'ReWrite' => '重填',
     'Submit' => '提交',
+    'Please enter your product model' => '请输入您的产品型号',
+    'Please enter your sn code' => '请输入您的产品SN',
+    'Where did you buy our products' => '购买渠道',
+    'Please enter your order number' => '请输入您的订单编号',
     'Products under review cannot perform extended warranty operation.'=>'正在审核中的产品无法执行延保操作。',
     'If you are in the process of enjoying the warranty service, you can’t perform the extended warranty operation.'=>'若您正处于保修服务的使用过程中，将不能执行延保操作。',
     'The extended warranty operation can only be performed once. It is not allowed to prolong the extended warranty by repeating the operation.'=>'延保操作只能执行一次，不可通过重复操作来增加延保时长。',

@@ -1,0 +1,323 @@
+/**
+* @name: login_register.less
+* @description: 驅動列表页样式
+* @author: Alan(alan_webdeveloper@163.com)
+* @update: 2020-04-01 16:00
+*/
+* {
+  margin: 0;
+  padding: 0;
+}
+.infoError {
+  display: block;
+  float: left;
+  margin-left: 126px;
+  color: #f00;
+  text-align: left;
+  font-size: 12px;
+}
+body {
+  padding-top: 0;
+}
+::-webkit-input-placeholder {
+  /* WebKit browsers */
+  color: #ccc;
+}
+:-moz-placeholder {
+  /* Mozilla Firefox 4 to 18 */
+  color: #ccc;
+}
+::-moz-placeholder {
+  /* Mozilla Firefox 19+ */
+  color: #ccc;
+}
+:-ms-input-placeholder {
+  /* Internet Explorer 10+ */
+  color: #ccc;
+}
+#send_code {
+  height: 30px;
+  margin-left: 5px;
+  padding: 0 15px;
+  font-size: 12px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  background: #fff;
+  cursor: pointer;
+}
+#code-box {
+  float: left;
+  width: 90px;
+  height: 30px;
+  border: 1px solid #ccc;
+  border-left: none;
+  box-sizing: border-box;
+}
+#code-box img {
+  height: 100%;
+}
+.btn-box {
+  margin: 0;
+  text-align: center;
+}
+.btn-box .btn-submit {
+  width: 119px;
+  height: 27px;
+  font-size: 12px;
+  text-align: center;
+  background: url("../../img/btn.png") no-repeat left top;
+  cursor: pointer;
+}
+.btn-box .btn-submit:hover {
+  background: url("../../img/btn-hover.png") no-repeat left top;
+}
+.register-box,
+.proRegister-box,
+.login-box,
+.forgot-box,
+.change-box {
+  float: left;
+  width: 100%;
+  min-height: 100vh;
+  background: url("../../img/bg.jpg") fixed center center repeat-y;
+  position: relative;
+}
+.register-box .box,
+.proRegister-box .box,
+.forgot-box .box,
+.change-box .box {
+  width: 500px;
+  padding: 40px 20px;
+  margin: 0 auto;
+  background: #fff;
+  border-radius: 5px;
+  box-sizing: border-box;
+}
+.register-box .box .logo-box h2,
+.proRegister-box .box .logo-box h2,
+.login-box .box .logo-box h2,
+.forgot-box .box .logo-box h2,
+.change-box .box .logo-box h2 {
+  margin-bottom: 10px;
+  text-align: center;
+}
+.register-box .box .logo-box h2 img,
+.proRegister-box .box .logo-box h2 img,
+.login-box .box .logo-box h2 img,
+.forgot-box .box .logo-box h2 img,
+.change-box .box .logo-box h2 img {
+  height: 70px;
+}
+.register-box .box .info-box .info,
+.forgot-box .box .info-box .info,
+.change-box .box .info-box .info {
+  margin-bottom: 10px;
+}
+.register-box .box .info-box .infobefore,
+.forgot-box .box .info-box .infobefore,
+.change-box .box .info-box .infobefore,
+.register-box .box .info-box .info:after,
+.forgot-box .box .info-box .info:after,
+.change-box .box .info-box .info:after {
+  content: " ";
+  display: table;
+  zoom: 1;
+}
+.register-box .box .info-box .info:after,
+.forgot-box .box .info-box .info:after,
+.change-box .box .info-box .info:after {
+  clear: both;
+}
+.register-box .box .info-box .info label,
+.forgot-box .box .info-box .info label,
+.change-box .box .info-box .info label {
+  float: left;
+  width: 121px;
+  margin-right: 5px;
+  margin-bottom: 0;
+  font-size: 14px;
+  line-height: 30px;
+  text-align: right;
+  font-weight: normal;
+}
+.register-box .box .info-box .info label span,
+.forgot-box .box .info-box .info label span,
+.change-box .box .info-box .info label span {
+  color: #f00;
+}
+.register-box .box .info-box .info input,
+.forgot-box .box .info-box .info input,
+.change-box .box .info-box .info input {
+  float: left;
+  width: 210px;
+  height: 30px;
+  margin-left: 0;
+  padding: 0 5px;
+  font-size: 12px;
+  border: 1px solid #ccc;
+  box-sizing: border-box;
+}
+.login-box .box {
+  width: 400px;
+  padding: 40px 20px;
+  margin: 0 auto;
+  background: #fff;
+  border-radius: 5px;
+}
+.login-box .box .info-box {
+  text-align: center;
+}
+.login-box .box .info-box formbefore,
+.login-box .box .info-box form:after {
+  content: " ";
+  display: table;
+  zoom: 1;
+}
+.login-box .box .info-box form:after {
+  clear: both;
+}
+.login-box .box .info-box .info {
+  float: left;
+  margin: 0 67.5px;
+}
+.login-box .box .info-box .info:nth-of-type(1),
+.login-box .box .info-box .info:nth-of-type(2) {
+  margin-bottom: 10px;
+}
+.login-box .box .info-box .info label {
+  float: left;
+  width: 30px;
+  height: 30px;
+  line-height: 30px;
+  text-align: center;
+  border: 1px solid #ccc;
+  border-right: none;
+  box-sizing: border-box;
+  background: rgba(0, 0, 0, 0.29);
+}
+.login-box .box .info-box .info label .iconfont {
+  font-size: 18px;
+  color: #fff;
+}
+.login-box .box .info-box .info input {
+  float: left;
+  width: 235px;
+  height: 30px;
+  margin-left: 0;
+  padding: 0 5px;
+  font-size: 12px;
+  border: 1px solid #ccc;
+  box-sizing: border-box;
+}
+.login-box .box .info-box .info input#captcha {
+  width: 145px;
+}
+.login-box .box .info-box .tips {
+  float: left;
+  width: 265px;
+  margin: 20px 67.5px;
+  font-size: 12px;
+}
+.login-box .box .info-box .tips .to-register {
+  float: left;
+  width: 50%;
+  text-align: left;
+}
+.login-box .box .info-box .tips .retrieve {
+  float: left;
+  width: 50%;
+  text-align: right;
+}
+.login-box .box .info-box .tips a {
+  display: inline;
+  font-size: 12px;
+}
+.login-box .box .info-box .tips a:hover {
+  text-decoration: underline;
+  color: #f8b300;
+}
+.login-box .box .info-box .btn-box {
+  float: left;
+  width: 100%;
+}
+.login-box .infoError {
+  margin-left: 0;
+}
+.register-box .box .info-box .terms {
+  margin: 10px 0 10px 102px;
+}
+.register-box .box .info-box .terms div:nth-last-of-type(1) {
+  margin-top: 5px;
+}
+.register-box .box .info-box .terms div:nth-last-of-type(1) label {
+  margin-left: 10px;
+}
+.register-box .box .info-box .terms input {
+  width: 15px;
+  height: 15px;
+  margin: 0;
+  cursor: pointer;
+}
+.register-box .box .info-box .terms label {
+  display: inline-block;
+  font-size: 12px;
+  font-weight: normal;
+  line-height: 15px;
+}
+.register-box .box .info-box .terms label span {
+  color: #f00;
+}
+.register-box .box .info-box .terms label a {
+  display: inline-block;
+  line-height: 15px;
+}
+.register-box .box .info-box .terms label a:hover {
+  color: #f8b300;
+  text-decoration: underline;
+}
+.proRegister-box .box .info-box .info {
+  margin-bottom: 10px;
+}
+.proRegister-box .box .info-box .infobefore,
+.proRegister-box .box .info-box .info:after {
+  content: " ";
+  display: table;
+  zoom: 1;
+}
+.proRegister-box .box .info-box .info:after {
+  clear: both;
+}
+.proRegister-box .box .info-box .info label {
+  float: left;
+  width: 100px;
+  margin-right: 10px;
+  margin-bottom: 0;
+  font-size: 14px;
+  line-height: 30px;
+  text-align: right;
+  font-weight: normal;
+}
+.proRegister-box .box .info-box .info label span {
+  color: #f00;
+}
+.proRegister-box .box .info-box .info input,
+.proRegister-box .box .info-box .info select {
+  float: left;
+  width: 240px;
+  height: 30px;
+  margin-left: 0;
+  padding: 0 5px;
+  font-size: 12px;
+  border: 1px solid #ccc;
+  box-sizing: border-box;
+}
+.proRegister-box .box .info-box .btn-box .btn-submit-Jump {
+  display: inline-block;
+  line-height: 27px;
+  color: #000;
+}
+.proRegister-box .box .tips {
+  margin-top: 20px;
+  font-size: 12px;
+}
+/*# sourceMappingURL=login_register.css.map */

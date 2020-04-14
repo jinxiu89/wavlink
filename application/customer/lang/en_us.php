@@ -16,6 +16,7 @@ return [
     'send'=>'Send',
     'login' => 'Login',
     'Password' => 'Password',
+    'New password' => 'New password',
     'Remember_Me' => 'Remember me',
     'Register' => 'Register',
     'No account yet' => 'No account yet?',
@@ -27,7 +28,7 @@ return [
     'Please enter your name' => 'Please enter your name',
     'Please enter your password' => 'Please enter your password',
     'Please enter your password again' => 'Please enter your password again',
-    'Please enter your e-mail captcha' => 'Please enter your e-mail captcha',
+    'Please enter your e-mail captcha' => 'Please enter your e-mail Verification Code',
     '' => '',
     /*注册验证文案*/
     'user name is required'=>'first name is required',
@@ -37,7 +38,7 @@ return [
     'Input password again'=>'Input password again',
     'The password is different twice'=>'The password is different twice',
     'Please enter a correct email'=>'Please enter a correct email',
-    'Please enter the correct email captcha'=>'Please enter the correct email captcha',
+    'Please enter the correct email captcha'=>'Please enter the correct email Verification Code',
     'I accept the'=>'I accept the',
     'and'=>'and',
     'Privacy agreement'=>'Privacy agreement',
@@ -49,9 +50,9 @@ return [
     'Input your phone number' => 'Input your phone number',
     'Input your password' => 'Input your password',
     'Input your password again' => 'Input your password again',
-    'confirm' => 'Confirm',
-    'captcha' => 'Captcha',
-    'The captcha is invalid' => 'The captcha is invalid',
+    'confirm' => 'Confirm password',
+    'captcha' => 'Verification code',
+    'The captcha is invalid' => 'The Verification Code is invalid',
     'Disclaimer' => 'Disclaimer',
     'Terms Of Use Notice' => 'Terms Of Use Notice',
     'GO' => 'Go',
@@ -73,18 +74,17 @@ return [
     'Add product cases'=>'Add product cases',
     'Where to buy'=>'Where to buy',
     'select'=>'Select',
-
+    'Please enter your sn code' => 'Please enter your sn code',
+    'Where did you buy our products' => 'Where did you buy our products',
+    'Please enter your order number' => 'Please enter your order number',
     'Warranty tips' => '<h4>Tips:</h4>
 <p>1. For warranty service, you are supposed to create an account on the official website of WAVLINK to complete the product registration.</p>
 <p>2. Entering correct information of your purchased product is a must, otherwise you will fail to register. </p>
 <p>3. Before applying for the warranty, you need to make sure that your product is still within the guarantee. If registering successfully, you will get contacted by our customer service as soon as possible through e-mail.</p>',
     'Product reg tips' => '<h4>Tips：</h4>
                 <ul>
-                    <li>SN is the required field and it must have at least 15 characters.</li>
-                    <li>For more information on SN, click <a href="https://www.wavlink.com/en_us/faq/details/how_to_view_wavlink_product_model.html" target="_blank">here</a> .</li>
-                    <li>The information about Model and Category will be automatically recognized by SN. </li>
-                    <li>Your entering purchase time should be later than the date of manufacture.</li>
-                    <li>The order number is from your purchase order platform. </li>
+                    <li>* Is required</li>
+                    <li>You can read this article to see your product model <a href="https://www.wavlink.com/en_us/faq/details/how_to_view_wavlink_product_model.html" target="_blank">here</a> .</li>
                 </ul>',
     'SN is required' => 'SN is the required field and it must have at least 15 characters.',
     'SN is max 15 bit' => 'SN is the required field and it must have at least 15 characters.',

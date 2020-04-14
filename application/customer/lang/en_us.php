@@ -82,11 +82,8 @@ return [
 <p>3. Before applying for the warranty, you need to make sure that your product is still within the guarantee. If registering successfully, you will get contacted by our customer service as soon as possible through e-mail.</p>',
     'Product reg tips' => '<h4>Tips：</h4>
                 <ul>
-                    <li>SN is the required field and it must have at least 15 characters.</li>
-                    <li>For more information on SN, click <a href="https://www.wavlink.com/en_us/faq/details/how_to_view_wavlink_product_model.html" target="_blank">here</a> .</li>
-                    <li>The information about Model and Category will be automatically recognized by SN. </li>
-                    <li>Your entering purchase time should be later than the date of manufacture.</li>
-                    <li>The order number is from your purchase order platform. </li>
+                    <li>* Is required</li>
+                    <li>You can read this article to see your product model <a href="https://www.wavlink.com/en_us/faq/details/how_to_view_wavlink_product_model.html" target="_blank">here</a> .</li>
                 </ul>',
     'SN is required' => 'SN is the required field and it must have at least 15 characters.',
     'SN is max 15 bit' => 'SN is the required field and it must have at least 15 characters.',

@@ -151,11 +151,8 @@ return [
         <p>3、在您申请产品保修时，请确保您的产品仍在保修期内，当您成功申请保修后，我们的客服人员将尽快以邮件的方式与您取得联系。</p>',
     'Product reg tips' => '<h4>提示：</h4>
                 <ul>
-                    <li>1、SN 为您购买我们产品</li>
-                    <li>2、SN 查找方法点击<a href="https://www.wavlink.com/zh_cn/faq/details/how_to_check_the_product_model.html" target="_blank">如何查看睿因产品型号？</a> </li>
-                    <li>3、Model和Category 由SN自动识别。</li>
-                    <li>4、购买时间不能早于出厂日期。</li>
-                    <li>5、订单号为您购买平台的订单号。</li>
+                    <li>1、*为必填项</li>
+                    <li>2、可以阅读这篇文章产看自己的产品型号<a href="https://www.wavlink.com/zh_cn/faq/details/how_to_check_the_product_model.html" target="_blank">如何查看睿因产品型号？</a> </li>
                 </ul>',
     'SN is required' => 'SN 为必填项，且SN 长度须为十五位。',
     'SN is max 15 bit'=>'SN 长度须为十五位。',

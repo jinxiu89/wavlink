@@ -11,8 +11,7 @@
 .infoError {
   display: block;
   float: left;
-  width: 100%;
-  margin-left: 110px;
+  margin-left: 126px;
   color: #f00;
   text-align: left;
   font-size: 12px;
@@ -109,6 +108,55 @@ body {
 .change-box .box .logo-box h2 img {
   height: 70px;
 }
+.register-box .box .info-box .info,
+.forgot-box .box .info-box .info,
+.change-box .box .info-box .info {
+  margin-bottom: 10px;
+}
+.register-box .box .info-box .infobefore,
+.forgot-box .box .info-box .infobefore,
+.change-box .box .info-box .infobefore,
+.register-box .box .info-box .info:after,
+.forgot-box .box .info-box .info:after,
+.change-box .box .info-box .info:after {
+  content: " ";
+  display: table;
+  zoom: 1;
+}
+.register-box .box .info-box .info:after,
+.forgot-box .box .info-box .info:after,
+.change-box .box .info-box .info:after {
+  clear: both;
+}
+.register-box .box .info-box .info label,
+.forgot-box .box .info-box .info label,
+.change-box .box .info-box .info label {
+  float: left;
+  width: 121px;
+  margin-right: 5px;
+  margin-bottom: 0;
+  font-size: 14px;
+  line-height: 30px;
+  text-align: right;
+  font-weight: normal;
+}
+.register-box .box .info-box .info label span,
+.forgot-box .box .info-box .info label span,
+.change-box .box .info-box .info label span {
+  color: #f00;
+}
+.register-box .box .info-box .info input,
+.forgot-box .box .info-box .info input,
+.change-box .box .info-box .info input {
+  float: left;
+  width: 210px;
+  height: 30px;
+  margin-left: 0;
+  padding: 0 5px;
+  font-size: 12px;
+  border: 1px solid #ccc;
+  box-sizing: border-box;
+}
 .login-box .box {
   width: 400px;
   padding: 40px 20px;
@@ -195,41 +243,6 @@ body {
 .login-box .infoError {
   margin-left: 0;
 }
-.register-box .box .info-box .info {
-  margin-bottom: 10px;
-}
-.register-box .box .info-box .infobefore,
-.register-box .box .info-box .info:after {
-  content: " ";
-  display: table;
-  zoom: 1;
-}
-.register-box .box .info-box .info:after {
-  clear: both;
-}
-.register-box .box .info-box .info label {
-  float: left;
-  width: 121px;
-  margin-right: 10px;
-  margin-bottom: 0;
-  font-size: 14px;
-  line-height: 30px;
-  text-align: right;
-  font-weight: normal;
-}
-.register-box .box .info-box .info label span {
-  color: #f00;
-}
-.register-box .box .info-box .info input {
-  float: left;
-  width: 210px;
-  height: 30px;
-  margin-left: 0;
-  padding: 0 5px;
-  font-size: 12px;
-  border: 1px solid #ccc;
-  box-sizing: border-box;
-}
 .register-box .box .info-box .terms {
   margin: 10px 0 10px 102px;
 }
@@ -298,161 +311,13 @@ body {
   border: 1px solid #ccc;
   box-sizing: border-box;
 }
-.proRegister-box .box .info-box .btn-boxbefore,
-.proRegister-box .box .info-box .btn-box:after {
-  content: " ";
-  display: table;
-  zoom: 1;
-}
-.proRegister-box .box .info-box .btn-box:after {
-  clear: both;
-}
-.proRegister-box .box .info-box .btn-box .btn-submit {
-  float: left;
-}
 .proRegister-box .box .info-box .btn-box .btn-submit-Jump {
-  float: left;
-  display: block;
-  margin-left: 2px;
+  display: inline-block;
   line-height: 27px;
   color: #000;
 }
 .proRegister-box .box .tips {
   margin-top: 20px;
   font-size: 12px;
-}
-.forgot-box .box .info-box .info {
-  margin-bottom: 10px;
-}
-.forgot-box .box .info-box .infobefore,
-.forgot-box .box .info-box .info:after {
-  content: " ";
-  display: table;
-  zoom: 1;
-}
-.forgot-box .box .info-box .info:after {
-  clear: both;
-}
-.forgot-box .box .info-box .info label {
-  float: left;
-  width: 121px;
-  margin-right: 10px;
-  margin-bottom: 0;
-  font-size: 14px;
-  line-height: 30px;
-  text-align: right;
-  font-weight: normal;
-}
-.forgot-box .box .info-box .info label span {
-  color: #f00;
-}
-.forgot-box .box .info-box .info input {
-  float: left;
-  width: 210px;
-  height: 30px;
-  margin-left: 0;
-  padding: 0 5px;
-  font-size: 12px;
-  border: 1px solid #ccc;
-  box-sizing: border-box;
-}
-.forgot-box .box .info-box .terms {
-  margin: 10px 0 10px 110px;
-}
-.forgot-box .box .info-box .terms div:nth-last-of-type(1) {
-  margin-top: 5px;
-}
-.forgot-box .box .info-box .terms div:nth-last-of-type(1) label {
-  margin-left: 10px;
-}
-.forgot-box .box .info-box .terms input {
-  width: 15px;
-  height: 15px;
-  margin: 0;
-  cursor: pointer;
-}
-.forgot-box .box .info-box .terms label {
-  display: inline-block;
-  font-size: 12px;
-  font-weight: normal;
-  line-height: 15px;
-}
-.forgot-box .box .info-box .terms label span {
-  color: #f00;
-}
-.forgot-box .box .info-box .terms label a {
-  display: inline-block;
-  line-height: 15px;
-}
-.forgot-box .box .info-box .terms label a:hover {
-  color: #f8b300;
-  text-decoration: underline;
-}
-.change-box .box .info-box .info {
-  margin-bottom: 10px;
-}
-.change-box .box .info-box .infobefore,
-.change-box .box .info-box .info:after {
-  content: " ";
-  display: table;
-  zoom: 1;
-}
-.change-box .box .info-box .info:after {
-  clear: both;
-}
-.change-box .box .info-box .info label {
-  float: left;
-  width: 121px;
-  margin-right: 10px;
-  margin-bottom: 0;
-  font-size: 14px;
-  line-height: 30px;
-  text-align: right;
-  font-weight: normal;
-}
-.change-box .box .info-box .info label span {
-  color: #f00;
-}
-.change-box .box .info-box .info input {
-  float: left;
-  width: 210px;
-  height: 30px;
-  margin-left: 0;
-  padding: 0 5px;
-  font-size: 12px;
-  border: 1px solid #ccc;
-  box-sizing: border-box;
-}
-.change-box .box .info-box .terms {
-  margin: 10px 0 10px 110px;
-}
-.change-box .box .info-box .terms div:nth-last-of-type(1) {
-  margin-top: 5px;
-}
-.change-box .box .info-box .terms div:nth-last-of-type(1) label {
-  margin-left: 10px;
-}
-.change-box .box .info-box .terms input {
-  width: 15px;
-  height: 15px;
-  margin: 0;
-  cursor: pointer;
-}
-.change-box .box .info-box .terms label {
-  display: inline-block;
-  font-size: 12px;
-  font-weight: normal;
-  line-height: 15px;
-}
-.change-box .box .info-box .terms label span {
-  color: #f00;
-}
-.change-box .box .info-box .terms label a {
-  display: inline-block;
-  line-height: 15px;
-}
-.change-box .box .info-box .terms label a:hover {
-  color: #f8b300;
-  text-decoration: underline;
 }
 /*# sourceMappingURL=login_register.css.map */

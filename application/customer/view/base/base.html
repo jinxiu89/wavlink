@@ -2,21 +2,30 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, minimum-scale=1, user-scalable=no">
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1, maximum-scale=1, minimum-scale=1, user-scalable=no">
     <title>{block name="title"}base{/block} - wavlink</title>
     <link rel="stylesheet" href="__USER__/ui/public/components.css">
+    {block name="plugins"}
+
+    {/block}
     {block name="style"}
-    <link rel="stylesheet" href="__USER__/ui/css/page/login_register.css">
+    <!--    具体业务的css样式文件区块，在业务块重新申明该区块即可-->
     {/block}
 </head>
 <body>
-{block name="main"}
-<!--登录注册容器-->
 <div class="form-box">
+    {block name="navbar"}
+    {/block}
+    {block name="aside"}
+    {/block}
+    {block name="main"}
     <!--业务处理区块-->
     <div class="box" id="box">
         <div class="logo-box">
-            <h2><a href="#"><img class="" src="https://cloud.wavlink.com/index.php?user/publicLink&fid=bb50yNmQ9Uq6Cd3K4xnP7f4s6XTIQRL4VC0zRTOCg6uD3u4sD4Fq1rba3mEGfQg2ZPfdpGI9jz0oV8fX-smuZ4C2yokEppUXskovnb1iUWYZDDl2W-lXqo_X6bFTJ5qnEbjrshyO_5eKfdm9a8V3x9BFL-Ms&file_name=/SeeTheWord_black.png" alt=""></a></h2>
+            <h2><a href="#"><img class=""
+                                 src="https://cloud.wavlink.com/index.php?user/publicLink&fid=bb50yNmQ9Uq6Cd3K4xnP7f4s6XTIQRL4VC0zRTOCg6uD3u4sD4Fq1rba3mEGfQg2ZPfdpGI9jz0oV8fX-smuZ4C2yokEppUXskovnb1iUWYZDDl2W-lXqo_X6bFTJ5qnEbjrshyO_5eKfdm9a8V3x9BFL-Ms&file_name=/SeeTheWord_black.png"
+                                 alt=""></a></h2>
         </div>
         <div class="info-box">
             <form action="" id="registerForm">
@@ -48,7 +57,7 @@
                         <label for="agree">
                             <span> * </span>
                             I accept the
-                            <a href="#" target="_blank" >Disclaimer</a>
+                            <a href="#" target="_blank">Disclaimer</a>
                             and
                             <a href="#" target="_blank">Privacy agreement.</a>
                         </label>
@@ -65,8 +74,10 @@
         </div>
     </div>
     <!--业务处理区块-->
+    {/block}
+    {block name="footer"}
+    {/block}
 </div>
-{/block}
 <script rel="stylesheet" src="__LIB__/JQuery/JQuery-3.4.0.js"></script>
 <script type="text/javascript" src="__STATIC__/admin/lib/layer/2.4/layer.js"></script>
 <script type="text/javascript" src="__USER__/ui/js/public.js"></script>

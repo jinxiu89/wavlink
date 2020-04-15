@@ -1,21 +1,16 @@
 {extend name="base/base" />
-{block name="main"}
-<div class="main-box">
-    <!--导航-->
-    {block name="navbar"}
-    {include file="base/navbar"}
-    {/block}
-    <!--    侧边栏-->
-    {block name="aside"}
-    {include file="base/aside"}
-    {/block}
-    <!--    内容块-->
-    {block name="main"}
-
-    {/block}
-    {block name="footer"}
-    {include file="base/footer"}
-    {/block}
-    <!--    footer-->
-</div>
+{block name="plugins"}
+<!--公共插件引入区块-->
+{/block}
+{block name="navbar"}
+<!--导航-->
+{include file="base/components/navbar"}
+{/block}
+{block name="aside"}
+<!--    侧边栏-->
+{include file="base/components/aside"}
+{/block}
+{block name="footer"}
+{include file="base/components/footer"}
+<!--    footer-->
 {/block}

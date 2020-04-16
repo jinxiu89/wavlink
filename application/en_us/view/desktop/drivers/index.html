@@ -85,18 +85,22 @@
                                 </p>
                             </div>
                             <div class="download">
-                                <span>{:lang('Download')} : </span>
+                                <span class="download-list">{:lang('Download')} : </span>
                                 {notempty name="$vo.all_link"}
-                                <a class="btn btn-default" href="{$vo.all_link}">{:lang('ALL')}<i class="iconfont">&#xe64f;</i></a>
+<!--                                <a class="btn btn-default" href="{$vo.all_link}">{:lang('ALL')}<i class="iconfont">&#xe64f;</i></a>-->
+                                <a class="btn btn-default all" href="{$vo.all_link}" title="{:lang('ALL')}"><span class="iconfont iconISO"></span></a>
                                 {/notempty}
                                 {notempty name="$vo.win_link"}
-                                <a class="btn btn-default" href="{$vo.win_link}">{:lang('WINDOWS')}<i class="iconfont">&#xe64f;</i></a>
+<!--                                <a class="btn btn-default" href="{$vo.win_link}">{:lang('WINDOWS')}<i class="iconfont">&#xe64f;</i></a>-->
+                                <a class="btn btn-default windows" href="{$vo.win_link}" title="{:lang('WINDOWS')}"><span class="iconfont iconwindows"></span></a>
                                 {/notempty}
                                 {notempty name="$vo.mac_link"}
-                                <a class="btn btn-default" href="{$vo.mac_link}">{:lang('MAC')}<i class="iconfont">&#xe64f;</i></a>
+<!--                                <a class="btn btn-default" href="{$vo.mac_link}">{:lang('MAC')}<i class="iconfont">&#xe64f;</i></a>-->
+                                <a class="btn btn-default mac" href="{$vo.mac_link}" title="{:lang('MAC')}"><span class="iconfont iconmacos"></span></a>
                                 {/notempty}
                                 {notempty name="$vo.linux_link"}
-                                <a class="btn btn-default" href="{$vo.linux_link}">{:lang('Linux')}<i class="iconfont">&#xe64f;</i></a>
+<!--                                <a class="btn btn-default" href="{$vo.linux_link}">{:lang('Linux')}<i class="iconfont">&#xe64f;</i></a>-->
+                                <a class="btn btn-default linux" href="{$vo.linux_link}" title="{:lang('Linux')}"><span class="iconfont iconlinux"></span></a>
                                 {/notempty}
                             </div>
                         </div>

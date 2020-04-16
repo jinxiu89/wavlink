@@ -1,282 +1,132 @@
-{extend name="base/base" /}
+{extend name="base/main" /}
 {block name="title"}
-<title>{:lang('Base Info')}</title>
+基本信息
 {/block}
 {block name="style"}
-<link rel="stylesheet" href="__USER__/css/information.css">
+<link rel="stylesheet" href="__USER__/ui/css/page/info.css">
 {/block}
 {block name="path"}
-<div class="path">
-    <ul>
-        <li><a href="https://www.wavlink.com">{:lang('home')}</a></li>
-        <li> ></li>
-        <li><a href="{:url('customer_info')}">{:lang('Experience Center')}</a></li>
-        <li> ></li>
-        <li><a href="#">{:lang('Base Info')}</a></li>
-    </ul>
+<div class="common-width">
+    <div class="g-path">
+        <ol class="breadcrumb">
+            <li><a href="/{$lang}/index.html">Home</a></li>
+            <li><a href="/{$lang}/index.html">Experience Center</a></li>
+            <li class="active">Base Info</li>
+        </ol>
+    </div>
 </div>
-{/block}
-{block name="navbar"}
-{include file="base/navbar" /}
 {/block}
 {block name="main"}
-<div class="main">
-    <div class="main_title">
-        <h2>{:lang('Base Info')}</h2>
-    </div>
-    <div class="main_container">
-        <form action="" method="post" class="form form-horizontal" id="baseInfo">
-            <div id="tab-system" class="HuiTab">
-                <div class="tabBar">
-                    <span id="info">{:lang('Base Info')}</span>
-                    <span id="ePassword">{:lang('Change Password')}</span>
-                    <span id="eEmail">{:lang('Change Email address')}</span>
+<div class="g-main">
+        <div class="Introduction">
+            <div class="person-box" id="person-box">
+                <div class="img-box">
+                    <img src="../img/Title.jpg" alt="">
                 </div>
-                <div class="tabInfo tabCon">
-                    <div>
-                        <label class="form-label">{:lang('First name')}</label>
-                        <div class="formControls">
-                            <input id="frastName" name="first_name" type="text"
-                                   placeholder="{if condition='$result.info.first_name != NULL'}{$result.info.first_name}{else /}{:lang('Input your first name')}{/if}">
-                        </div>
-                    </div>
-                    <div>
-                        <label class="form-label">{:lang('Last name')}</label>
-                        <div class="formControls">
-                            <input id="lastName" type="text" name="last_name"
-                                   placeholder="{if condition='$result.info.last_name != NULL'}{$result.info.last_name}{else /}{:lang('Input your last name')}{/if}">
-                        </div>
-                    </div>
-                    <div>
-                        <label class="form-label">{:lang('Title')}</label>
-                        <div class="formControls">
-                            <select name="title" id="selectSex">
-                                <option value="-1" {if condition="$result.info.title == -1" } selected {/if}>{:lang('Secret')}</option>
-                                <option value="1" {if condition="$result.info.title == 1" } selected {/if}>{:lang('Sir.')}</option>
-                                <option value="2" {if condition="$result.info.title == 2" } selected {/if}>{:lang('Ms.')}</option>
-                            </select>
-                        </div>
-                    </div>
-                    <div>
-                        <label class="form-label">{:lang('Country')}</label>
-                        <div class="formControls">
-                            <select name="country_id" id="county">
-                                <option disabled="disabled" {if condition="$result.info.country_id == NULL" }selected{/if}>
-                                {:lang('Please choose your country')}
-                                </option>
-                                {volist name="country" id="vo"}
-                                <option value="{$vo.country_id}" {if condition="$vo.country_id == $result.info.country_id " }selected{/if} >
-                                {:lang($vo.name)}
-                                </option>
-                                {/volist}
-                            </select>
-                        </div>
-                    </div>
-                    <div>
-                        <label class="form-label">{:lang('Tel')}</label>
-                        <div class="formControls">
-                            <input id="phone" name="tel" type="text"
-                                   placeholder="{if condition='$result.info.tel != NULL'}{$result.info.tel}{else /}{:lang('Input your telephone number')}{/if}">
-                        </div>
-                    </div>
-                    <div>
-                        <label class="form-label">{:lang('ZipCode')}</label>
-                        <div class="formControls">
-                            <input id="postalCode" type="text" name="zip_code"
-                                   placeholder="{if condition='$result.info.zip_code != NULL'}{$result.info.zip_code}{else /}{:lang('Input your Zip code')}{/if}">
-                        </div>
-                    </div>
-                    <div>
-                        <label class="form-label">{:lang('Billing address')}</label>
-                        <div class="formControls">
-                            <input id="billingAddress" type="text" name="billing_address"
-                                   placeholder="{if condition='$result.info.billing_address != NULL'}{$result.info.billing_address}{else /}{:lang('Input your Billing address')}{/if}">
-                        </div>
-                    </div>
-                    <div>
-                        <label class="form-label">{:lang('Delivery address')}</label>
-                        <div class="formControls">
-                            <input id="mailingAddress" type="text" name="delivery_address"
-                                   placeholder="{if condition='$result.info.delivery_address != NULL'}{$result.info.delivery_address}{else /}{:lang('Input your Delivery address')}{/if}">
-                        </div>
-                    </div>
-                    {if condition='$result.info.where_to == NULL'}
-                    <div>
-                        <label class="form-label">{:lang('Where to')}</label>
-                        <div class="formControls">
-                            <input id="whereToKnow" type="text" name="where_to"
-                                   placeholder="{:lang('Where did you learn about us?')}">
-                        </div>
-                    </div>
-                    {/if}
-                </div>
-                <div style="display: none" class="tabPassword tabCon">
-                    <div>
-                        <label class="form-label">{:lang('Old Password')}</label>
-                        <div class="formControls">
-                            <input id="oldPassword" name="oldPassword" type="password" placeholder="*************">
-                        </div>
-                    </div>
-                    <div>
-                        <label class="form-label">{:lang('Input your password')}</label>
-                        <div class="formControls">
-                            <input id="newPassword" type="password" name="password"
-                                   placeholder="{:lang('Input your new password')}">
-                        </div>
-                    </div>
-                    <div>
-                        <label class="form-label">{:lang('Input your password again')}</label>
-                        <div class="formControls">
-                            <input id="newPasswordSure" name="repassword" type="password" placeholder="">
-                        </div>
-                    </div>
-                </div>
-                <div style="display: none" class="tabEmail tabCon">
-                    <div>
-                        <label class="form-label">{:lang('email')}</label>
-                        <div class="formControls">
-                            <input id="changeEmail" type="email" name="email"
-                                   placeholder="{:lang('Input your E-mail')}">
-                        </div>
+                <div class="img-edit" id="img-edit">
+                    <div class="btn-box">
+                        <button class="UploadPicture-btn" id="UploadPicture-btn"><span class="iconfont iconedit"></span></button>
+                        <input class="UploadPicture-input" id="UploadPicture-input" type="file"  accept="image/png,image/jpeg">
                     </div>
                 </div>
             </div>
-            <div class="submit_btn">
-                <div>
-                    <button id="btn" class="btn btn-primary radius" type="submit">{:lang('save')}</button>
-                </div>
+            <div class="person-des">
+                <h2 class="title">Personal Info</h2>
+                <p>Basic info, like your name and photo, that you use on WAVLINK services</p>
             </div>
-        </form>
-        <div class="tips">
-            <p>{:lang('Tips')}</p>
-            {:lang('Base info tips')}
+        </div>
+        <div class="Module">
+            <h3 class="title">Personal</h3>
+            <form class="Field" action="">
+                <h4 class="Field-label">NAME</h4>
+                <div class="Field-content">
+                    <div>
+                        <span class="Field-text">Alan</span>
+                        <button class="Field-modify" type="button"><span class="iconfont iconedit"></span> Modify</button>
+                    </div>
+                </div>
+            </form>
+            <form class="Field" action="">
+                <h4 class="Field-label">GENDER</h4>
+                <div class="Field-content">
+                    <div>
+                        <span class="Field-text">Secret</span>
+                        <button class="Field-modify" type="button"><span class="iconfont iconedit"></span> Modify</button>
+                    </div>
+                </div>
+            </form>
+            <form class="Field" action="">
+                <h4 class="Field-label">BIRTHDAY</h4>
+                <div class="Field-content">
+                    <div>
+                        <span class="Field-text">January 01, 1993</span>
+                        <button class="Field-modify" type="button"><span class="iconfont iconedit"></span> Modify</button>
+                    </div>
+                </div>
+            </form>
+        </div>
+        <div class="Module">
+            <h3 class="title">Contact info</h3>
+            <form class="Field" action="">
+                <h4 class="Field-label">PHONE</h4>
+                <div class="Field-content">
+                    <div>
+                        <span class="Field-text"></span>
+                        <button class="Field-modify" type="button"><span class="iconfont iconedit"></span> Modify</button>
+                    </div>
+                </div>
+            </form>
+            <form class="Field" action="">
+                <h4 class="Field-label">E-MAIL</h4>
+                <div class="Field-content">
+                    <div>
+                        <span class="Field-text">Alanwebdevelop@gmail.com</span>
+                        <button class="Field-modify" type="button"><span class="iconfont iconedit"></span> Modify</button>
+                    </div>
+                </div>
+            </form>
+        </div>
+        <div class="Module">
+            <h3 class="title">Contact Address</h3>
+            <form class="Field" action="">
+                <h4 class="Field-label">BILLING ADDRESS</h4>
+                <div class="Field-content">
+                    <div>
+                        <span class="Field-text"></span>
+                        <button class="Field-modify" type="button"><span class="iconfont iconedit"></span> Modify</button>
+                    </div>
+                </div>
+            </form>
+            <form class="Field" action="">
+                <h4 class="Field-label">DELIVERY ADDRESS</h4>
+                <div class="Field-content">
+                    <div>
+                        <span class="Field-text"></span>
+                        <button class="Field-modify" type="button"><span class="iconfont iconedit"></span> Modify</button>
+                    </div>
+                </div>
+            </form>
+        </div>
+        <div class="Module">
+            <h3 class="title">Where did you buy our products</h3>
+            <form class="Field" action="">
+                <h4 class="Field-label">BUY PLATFORM</h4>
+                <div class="Field-content">
+                    <div>
+                        <span class="Field-text"></span>
+                        <button class="Field-modify" type="button"><span class="iconfont iconedit"></span> Modify</button>
+                    </div>
+                </div>
+            </form>
         </div>
     </div>
-</div>
 {/block}
-{block name="js"}
+{block name="javascript"}
 <!--私有JS-->
-<script type="text/javascript" src="__STATIC__/admin/lib/jquery.validation/1.14.0/jquery.validate.js"></script>
-<script type="text/javascript" src="__STATIC__/admin/lib/jquery.validation/1.14.0/validate-methods.js"></script>
-<script type="text/javascript" src="__STATIC__/admin/lib/layer/2.4/layer.js"></script>
+<script src="__STATIC__/admin/lib/jquery.validation/1.14.0/jquery.validate.js"></script>
+<script src="__STATIC__/admin/lib/jquery.validation/1.14.0/validate-methods.js"></script>
+<script src="__STATIC__/admin/lib/layer/2.4/layer.js"></script>
 {if condition="$lang == 'zh_cn'"}
-<script type="text/javascript" src="__STATIC__/admin/lib/jquery.validation/1.14.0/messages_zh.js"></script>
+<script src="__STATIC__/admin/lib/jquery.validation/1.14.0/messages_zh.js"></script>
 {/if}
-<script>
-    $(document).ready(function () {
-        var spanNumbers = $('div#tab-system>div.tabBar>span'),
-            divNumbers = $('div#tab-system>div.tabCon'),
-            divpassword = $('div#tab-system>div.tabCon:nth-of-type(2)'),
-            divemail = $('div#tab-system>div.tabCon:nth-of-type(3)');
-        for (var i = 0; i < spanNumbers.length; i++) {
-            (function (i) {
-                spanNumbers[i].onclick = function () {
-                    spanNumbers.eq(i).css('background', '#fff');
-                    spanNumbers.eq(i).siblings().css('background', '#f2f2f2');
-                    divNumbers.eq(i).siblings('.tabCon').css('display', 'none');
-                    divNumbers.eq(i).fadeIn();
-                };
-            })(i)
-        }
-    });
-    $("#base_info").addClass("current");
-    $("#btn").click(function () {
-        if($(".tabInfo").css("display") !== "none"){
-            //info 修改器
-            $("#baseInfo").validate({
-                errorElement: "em",
-                onkeyup: false,
-                focusCleanup: true,
-                success: "valid",
-                submitHandler: function (form) {
-                    $.ajax({
-                        url: '{:url(\'customer_info\')}',
-                        type: "post",
-                        dataType: "json",
-                        data: $("#baseInfo").serialize(),//提交表单数据
-                        success: function (result) {
-                            if (result.status === 1) {
-                                //注册成功后要跳转到登录
-                                layer.msg(result.message, {icon: 1, time: 3000});
-                                setTimeout(function () {
-                                    window.parent.location.href=result.jump_url
-                                },1000)
-                            } else {
-                                layer.msg(result.message, {icon: 5, time: 3000});
-                                window.parent.location.reload();
-                            }
-                        }
-                    })
-                }
-            });
-        }else if ($(".tabPassword").css("display") !== "none"){
-            //密码修改器
-            $("#baseInfo").validate({
-                rules: {
-                    'password': {
-                        required: true,
-                        minlength: 8,
-                        maxlength: 16
-                    },
-                    'repassword': {
-                        required: true,
-                        equalTo: "#newPassword"
-                    }
-                },
-                errorElement: "em",
-                onkeyup: false,
-                focusCleanup: true,
-                success: "valid",
-                submitHandler: function (form) {
-                    $.ajax({
-                        url: '{:url(\'customer_password\')}',
-                        type: "post",
-                        dataType: "json",
-                        data: $("#baseInfo").serialize(),//提交表单数据
-                        success: function (result) {
-                            if (result.status === 1) {
-                                //注册成功后要跳转到登录
-                                layer.msg(result.message, {icon: 1, time: 2000});
-                                window.parent.location.href = '{:url(\'customer_logout\')}'
-                            } else {
-                                layer.msg(result.message, {icon: 5, time: 2000});
-                            }
-                        }
-                    })
-                }
-            });
-        }else if($(".tabEmail").css("display") !== "none"){
-            //邮箱修改器
-            $("#baseInfo").validate({
-                rules: {
-                    'email': {
-                        required: true,
-                        email: true
-                    }
-                },
-                errorElement: "em",
-                onkeyup: false,
-                focusCleanup: true,
-                success: "valid",
-                submitHandler: function (form) {
-                    $.ajax({
-                        url: '{:url(\'customer_info\')}',
-                        type: "post",
-                        dataType: "json",
-                        data: $("#baseInfo").serialize(),//提交表单数据
-                        success: function (result) {
-                            if (result.status === 1) {
-                                //注册成功后要跳转到登录
-                                layer.msg(result.message, {icon: 1, time: 2000});
-                                window.parent.location.href = '{:url(\'customer_logout\')}'
-                            } else {
-                                layer.msg(result.message, {icon: 5, time: 2000});
-                            }
-                        }
-                    })
-                }
-            });
-        }
-    });
-</script>
 {/block}

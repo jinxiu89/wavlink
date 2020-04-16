@@ -135,7 +135,7 @@
   background: none;
 }
 .search-driver .item {
-  padding: 10px 0 0;
+  padding: 20px 0 0;
   -webkit-border-radius: 5px;
   -moz-border-radius: 5px;
   border-radius: 5px;
@@ -151,7 +151,10 @@
   background: none;
 }
 .search-driver .item .panel .panel-heading .title {
-  font-size: 16px;
+  font-size: 24px;
+  font-weight: 700;
+  color: #f8b300;
+  text-transform: uppercase;
 }
 .search-driver .item .panel .panel-body .info {
   margin-bottom: 10px;
@@ -172,6 +175,11 @@
 .search-driver .item .panel .panel-body .info p span {
   display: inline-block;
   line-height: 20px;
+  color: #888;
+}
+.search-driver .item .panel .panel-body .info p span:nth-of-type(1) {
+  color: #333;
+  font-weight: 700;
 }
 .search-driver .item .panel .panel-body .mode {
   margin-bottom: 10px;
@@ -192,18 +200,37 @@
   overflow: hidden;
   float: left;
   width: 16.6667%;
+  color: #888;
 }
 .search-driver .item .panel .panel-body .mode span:nth-of-type(1) {
   float: none;
+  color: #333;
+  font-weight: 700;
 }
-.search-driver .item .panel .panel-body .download a {
+.search-driver .item .panel .panel-body .download .download-list {
+  font-size: 18px;
+  font-weight: 700;
+}
+.search-driver .item .panel .panel-body .download a.btn {
   padding: 2px 12px;
   margin-right: 4px;
   font-size: 12px;
-  border-color: #f8b300;
+  border: none;
 }
-.search-driver .item .panel .panel-body .download a:hover {
-  background: #ffc714;
+.search-driver .item .panel .panel-body .download a.btn:hover {
+  background: none;
+}
+.search-driver .item .panel .panel-body .download a.btn:hover .iconfont {
+  color: #f8b300;
+}
+.search-driver .item .panel .panel-body .download a .iconfont {
+  font-size: 30px;
+}
+.search-driver .item .panel .panel-body .download a.all .iconfont {
+  color: #f8b300;
+}
+.search-driver .item .panel .panel-body .download a.windows .iconfont {
+  color: #00ADEF;
 }
 @media screen and (min-width: 768px) and (max-width: 991px) {
   .search-driver .item .mode span {

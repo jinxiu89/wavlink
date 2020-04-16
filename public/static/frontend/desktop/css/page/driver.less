@@ -15,7 +15,7 @@
   background: none;
 }
 .item {
-  padding: 10px 0 0;
+  padding: 20px 0 0;
   #border-radius(5px);
   .panel {
     margin-bottom: 0;
@@ -27,7 +27,10 @@
     border-color: @borderColor;
     background: none;
     .title {
-      font-size: 16px;
+      font-size: 24px;
+      font-weight: normal;
+      color: @activeColor;
+      text-transform: uppercase;
     }
   }
   .panel .panel-body {
@@ -41,6 +44,11 @@
       p span {
         display: inline-block;
         line-height: 20px;
+        color: @whiteSmoke;
+        &:nth-of-type(1) {
+          color: @baseColor;
+          font-weight: 700;
+        }
       }
     }
     .mode {
@@ -53,20 +61,39 @@
         .text-overflow();
         .fl();
         width: 16.6667%;
+        color: @whiteSmoke;
         &:nth-of-type(1) {
           float: none;
+          color: @baseColor;
+          font-weight: 700;
         }
       }
     }
     .download {
-      a {
+      .download-list {
+        font-size: 18px;
+        font-weight: 700;
+      }
+      a.btn {
         padding: 2px 12px;
         margin-right: 4px;
         font-size: 12px;
-        border-color: #f8b300;
+        border: none;
         &:hover {
-          background: #ffc714;
+          background: none;
+          .iconfont {
+           color: @activeColor;
+          }
         }
+      }
+      a .iconfont {
+        font-size: 30px;
+      }
+      a.all .iconfont {
+        color: @activeColor;
+      }
+      a.windows .iconfont {
+        color: #00ADEF;
       }
     }
   }

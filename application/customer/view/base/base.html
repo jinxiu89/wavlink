@@ -17,64 +17,69 @@
 <div class="form-box">
     {block name="navbar"}
     {/block}
-    {block name="aside"}
+    {block name="path"}
+    <!--    路径区块-->
     {/block}
-    {block name="main"}
-    <!--业务处理区块-->
-    <div class="box" id="box">
-        <div class="logo-box">
-            <h2><a href="#"><img class=""
-                                 src="https://cloud.wavlink.com/index.php?user/publicLink&fid=bb50yNmQ9Uq6Cd3K4xnP7f4s6XTIQRL4VC0zRTOCg6uD3u4sD4Fq1rba3mEGfQg2ZPfdpGI9jz0oV8fX-smuZ4C2yokEppUXskovnb1iUWYZDDl2W-lXqo_X6bFTJ5qnEbjrshyO_5eKfdm9a8V3x9BFL-Ms&file_name=/SeeTheWord_black.png"
-                                 alt=""></a></h2>
-        </div>
-        <div class="info-box">
-            <form action="" id="registerForm">
-                <div class="info">
-                    <label for="UserName">UserName<span> * </span></label>
-                    <input id="UserName" name="UserName" type="text" placeholder="">
-                </div>
-                <div class="info">
-                    <label for="Password">Password<span> * </span></label>
-                    <input id="Password" name="Password" type="password" placeholder="">
-                </div>
-                <div class="info">
-                    <label for="Confirm">Confirm<span> * </span></label>
-                    <input id="Confirm" name="Confirm" type="password" placeholder="">
-                </div>
-                <div class="info">
-                    <label for="Email">E-mail<span> * </span></label>
-                    <input id="Email" name="Email" type="email" placeholder="">
-                    <button id="emailCode">获取验证码</button>
-                </div>
-                <div class="info">
-                    <label for="Verification">Verification<span> * </span></label>
-                    <input id="Verification" name="Verification" type="text" placeholder="">
-                </div>
+    <div class="common-width">
+        {block name="aside"}
+        {/block}
+        {block name="main"}
+        <!--业务处理区块-->
+        <div class="box" id="box">
+            <div class="logo-box">
+                <h2><a href="#"><img class=""
+                                     src="https://cloud.wavlink.com/index.php?user/publicLink&fid=bb50yNmQ9Uq6Cd3K4xnP7f4s6XTIQRL4VC0zRTOCg6uD3u4sD4Fq1rba3mEGfQg2ZPfdpGI9jz0oV8fX-smuZ4C2yokEppUXskovnb1iUWYZDDl2W-lXqo_X6bFTJ5qnEbjrshyO_5eKfdm9a8V3x9BFL-Ms&file_name=/SeeTheWord_black.png"
+                                     alt=""></a></h2>
+            </div>
+            <div class="info-box">
+                <form action="" id="registerForm">
+                    <div class="info">
+                        <label for="UserName">UserName<span> * </span></label>
+                        <input id="UserName" name="UserName" type="text" placeholder="">
+                    </div>
+                    <div class="info">
+                        <label for="Password">Password<span> * </span></label>
+                        <input id="Password" name="Password" type="password" placeholder="">
+                    </div>
+                    <div class="info">
+                        <label for="Confirm">Confirm<span> * </span></label>
+                        <input id="Confirm" name="Confirm" type="password" placeholder="">
+                    </div>
+                    <div class="info">
+                        <label for="Email">E-mail<span> * </span></label>
+                        <input id="Email" name="Email" type="email" placeholder="">
+                        <button id="emailCode">获取验证码</button>
+                    </div>
+                    <div class="info">
+                        <label for="Verification">Verification<span> * </span></label>
+                        <input id="Verification" name="Verification" type="text" placeholder="">
+                    </div>
 
-                <div class="des">
-                    <div>
-                        <input id="agree" name="agree" type="checkbox">
-                        <label for="agree">
-                            <span> * </span>
-                            I accept the
-                            <a href="#" target="_blank">Disclaimer</a>
-                            and
-                            <a href="#" target="_blank">Privacy agreement.</a>
-                        </label>
+                    <div class="des">
+                        <div>
+                            <input id="agree" name="agree" type="checkbox">
+                            <label for="agree">
+                                <span> * </span>
+                                I accept the
+                                <a href="#" target="_blank">Disclaimer</a>
+                                and
+                                <a href="#" target="_blank">Privacy agreement.</a>
+                            </label>
+                        </div>
+                        <div>
+                            <input id="newsletter" name="newsletter" type="checkbox">
+                            <label for="newsletter">
+                                Subscribe WAVLINK
+                            </label>
+                        </div>
                     </div>
-                    <div>
-                        <input id="newsletter" name="newsletter" type="checkbox">
-                        <label for="newsletter">
-                            Subscribe WAVLINK
-                        </label>
-                    </div>
-                </div>
-                <button id="submit">Register</button>
-            </form>
+                    <button id="submit">Register</button>
+                </form>
+            </div>
         </div>
+        <!--业务处理区块-->
+        {/block}
     </div>
-    <!--业务处理区块-->
-    {/block}
     {block name="footer"}
     {/block}
 </div>

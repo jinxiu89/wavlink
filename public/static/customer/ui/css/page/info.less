@@ -1,0 +1,101 @@
+/**
+* @name: info.less
+* @description: 個人信息样式
+* @author: Alan(alan_webdeveloper@163.com)
+* @update: 2020-04-15 11:20
+*/
+@import "../../public/mixins";
+@import "../../public/variables";
+
+.Introduction {
+  .clearFix();
+  margin: 20px 13.5%;
+  .person-box {
+    .fl();
+    position: relative;
+    .img-box img {
+      width: 80px;
+      height: 80px;
+      border: 1px solid #ccc;
+      border-radius: 50%;
+    }
+    .img-edit {
+      display: none;
+      position: absolute;
+      top: 0;
+      left: 0;
+      background: rgba(0, 0, 0, .5);
+      border-radius: 50%;
+    }
+    .img-edit .btn-box {
+      text-align: center;
+    }
+    .img-edit .btn-box .UploadPicture-input {
+      display: none;
+    }
+    .img-edit .btn-box .UploadPicture-btn {
+      width: 80px;
+      height: 80px;
+      border-radius: 50%;
+      background: none;
+      cursor: pointer;
+    }
+    .img-edit .btn-box .UploadPicture-btn .iconfont {
+      font-size: 18px;
+      color: @whiteColor;
+    }
+  }
+  .person-des {
+    .fl();
+    height: 80px;
+    padding: 10px 0 0 20px;
+    .title {
+      font-size: 22px;
+    }
+    p {
+      margin-top: 10px;
+      color: @whiteSmoke;
+    }
+  }
+}
+
+.Module {
+  margin: 20px 13.5%;
+  padding: 20px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  .title {
+    margin-bottom: 20px;
+    font-size: 18px;
+    font-weight: 700;
+    color: @baseColor;
+  }
+  .Field {
+    position: relative;
+    padding: 15px 0;
+    border-bottom: 1px solid #ccc;
+    &:nth-last-of-type(1) {
+      padding-bottom: 0;
+      border: none;
+    }
+  }
+  .Field-label {
+    position: absolute;
+    top: 15px;
+    left: 0;
+    color: @whiteSmoke;
+  }
+  .Field-content {
+    padding: 0 0 0 175px;
+  }
+  .Field-content .Field-modify {
+    margin-left: 5px;
+    background: none;
+    font-size: 12px;
+    color: #136ec2;
+    cursor: pointer;
+    &:hover {
+      color: #136ec2 + 10
+    }
+  }
+}

@@ -39,14 +39,20 @@ a:visited {text-decoration: none;}
     font-family: Neo_Sans;
     src: url("../../../lib/font/Neo_Sans.ttf");
 }
+* {
+    box-sizing: border-box;
+}
 body {
     font-family: Neo_Sans, "Microsoft YaHei", Helvetica, "Meiryo UI", "Malgun Gothic", "Segoe UI", "Trebuchet MS", "Monaco", monospace, Tahoma, STXihei, "华文细黑", STHeiti, "Helvetica Neue", "Droid Sans", "wenquanyi micro hei", FreeSans, Arimo, Arial, SimSun, "宋体", Heiti, "黑体", sans-serif;;
-    padding-top: 50px;
     background: @bodyBgColor;
+    font-size: 14px;
+    line-height: 1.42857143;
 }
 
-//重新定义bootstrap容器宽度
+//container容器宽度
 .container {
+    .clearFix();
+    margin: 0 auto;
     @media screen and (min-width: 1200px) {
         width: 83.333%;
     }
@@ -54,235 +60,108 @@ body {
         width: 100%;
     }
 }
+//定义公共容器宽度
+.common-width {
+    .clearFix();
+    margin: 0 auto;
+    @media screen and (min-width: 1200px) {
+        width: 70%;
+    }
+    @media screen and (max-width: 1199px) {
+        width: 100%;
+    }
+}
+
 
 //header
-.g-nav {
-    position: fixed;
-    top: 0;
-    left: 0;
-    z-index: 9999;
-    width: 100%;
-    #text-vertical(50px);
+header {
+    height: 50px;
     background: @baseColor;
-    .container {
-        position: relative;
-    }
-    .nav-container {
-        display: flex;
-    }
-
     .logo {
         .fl();
+        margin: 10px 0;
         img {
             .img-responsive();
             .center-block();
-            width: 153px;
-            margin: 12px 0;
+            height: 30px;
         }
     }
-
-    .menu-container {
-        flex: 1;
-        text-align: center;
-        .menu {
-            .fl();
-            margin-left: 6%;
-        }
-        .menu .menu-item {
-            .fl();
-            position: relative;
-            &:hover a{
-                color: @activeColor;
-                background: none;
-            }
-
-        }
-        .menu .menu-item a {
-            display: block;
-            padding: 0 20px;
-            color: @whiteColor;
-            background: @baseColor;
-            #text-vertical(50px);
-        }
-        .menu .active {
-            background: @activeColor;
-            a {
-                background: @activeColor;
-                color: @baseColor;
-                &:hover {
-                    background: @activeColor;
-                    color: @baseColor;
-                }
-            }
-        }
-        .menu .menu-item .dropdown-menu {
-            position: absolute;
-            top: 50px; left: 0;
-            padding: 0;
-            border: none;
-        }
-        .menu .menu-item .dropdown-menu li {
-            border-bottom: 1px solid @borderColor;
-            &:nth-last-of-type(1) {
-                border-bottom: none;
-            }
-        }
-        .menu .menu-item .dropdown-menu li a {
-            padding: 15px 30px;
-            color: @whiteColor;
-            background: @baseColor;
-            text-align: center;
-            height: auto;
-            line-height: normal;
-            &:hover {
-                color: @baseColor;
-                background: @whiteColor;
-            }
-        }
-    }
-
-    .search-bar {
-        display: none;
+    .nav-box {
         .fr();
-        padding: 0 20px;
+    }
+    .nav-box .account {
+        .fl();
+        position: relative;
+    }
+    .nav-box .account .ico-box {
+        display: block;
+        height: 50px;
+        line-height: 50px;
         cursor: pointer;
         .iconfont {
-            display: block;
-            line-height: 50px;
-            color: @whiteColor;
             font-size: 24px;
         }
-    }
-    .search-box {
-       .fr();
-        form {
-            .clearFix();
-            position: relative;
-            line-height: normal;
-            margin: 11px 0;
+        .iconfont:nth-of-type(1) {
+            color: @activeColor;
         }
-        form input {
+        .iconfont:nth-of-type(2) {
+            color: @whiteColor;
+        }
+    }
+    .nav-box .account .user-menu-wrapper {
+        display: none;
+        position: absolute;
+        top: 50px;
+        left: 0;
+        width: 120px;
+        background: @whiteColor;
+
+        .user-menu-item {
+            padding: 5px 15px;
+            color: @baseColor;
+        }
+        .user-menu-item a {
+            &:hover {
+                color: @activeColor;
+                text-decoration: underline;
+            }
+        }
+    }
+    .nav-box .exit {
+        .fl();
+        height: 50px;
+        line-height: 50px;
+        margin-left: 50px;
+        color: @whiteColor;
+        span {
             .fl();
-            height: 28px;
-            font-size: 12px;
-            border: 1px solid @borderColor;
-            background: @whiteColor;
-            outline: none;
-            &[type="text"] {
-                width: 200px;
-                padding: 0 10px;
-                color: @baseColor;
-                border-right: none;
-                #border-radius(5px 0 0 5px);
-            }
-            &[type="submit"] {
-                padding: 0 10px;
-                color: @whiteColor;
-                background: @baseColor;
-                border-left: none;
-                #border-radius(0 5px 5px 0);
-
+            height: 50px;
+            line-height: 50px;
+            &:nth-last-of-type(1) {
+                margin-left: 5px;
             }
         }
-    }
-
-    @media screen and (min-width: 768px) and (max-width: 1199px) {
-        .logo {
-            padding-left: 20px;
-        }
-
-        .menu-container {
-            .menu {
-                margin-left: 50px;
-            }
-            .menu .menu-item a {
-                padding: 0 15px;
-                font-size: 12px;
-            }
-        }
-
-        .search-bar {
-            display: block;
-            padding-right: 20px;
-        }
-        .search-box {
-            display: none;
-            overflow: hidden;
-            position: absolute;
-            top: 50px;
-            left: 0;
-            z-index: 9999;
-            width: 100%;
-            line-height: normal;
-            text-align: center;
-            background: @whiteColor;
-            -webkit-box-shadow: 0 15px 20px @borderColor;
-            box-shadow: 0 15px 20px @borderColor;
-            form {
-                display: inline-block;
-            }
+        .iconfont {
+            font-size: 24px;
         }
     }
 }
 //header结束
 
-//header垂暮導航
-.g-hd {
-    position: fixed;
-    top: 0;
-    left: 0;
-    z-index: 999;
-    width: 100%;
-    .clearFix();
-    background: @baseColor;
-    height: 50px;
-    .logo {
-        .fl();
-        width: 15%;
-        img {
-            .img-responsive();
-            .center-block();
-            height: 26px!important;
-            margin: 12px 0;
-        }
-    }
-
-    .nav-container {
-        .fl();
-        width: 70%;
-        text-align: center;
-        .nav-item {
-            display: inline-block;
-        }
-        .nav-item .nav-item-parent {
-            display: block;
-            line-height: 50px;
-            margin: 0 15px;
-            color: @whiteColor;
-        }
-        .nav-item .nav-item-child {
-            display: none;
-        }
-    }
-
-    .icon-container {
-        .fl();
-        width: 15%;
-    }
-}
-//header垂暮結束導航
-
 //footer
 .g-footer {
-    margin: 60px 0 0;
     background: @baseColor;
+    margin: 60px 0 0;
 
     .foot-container {
+        .clearFix();
         padding: 20px 0;
         dl {
             .fl();
+            width: 16.66666667%;
             padding: 20px;
             margin-bottom: 0;
+            box-sizing: border-box;
             &:nth-of-type(1) {
                 padding-left: 0;
                 margin-left: 16.6%;
@@ -290,19 +169,27 @@ body {
             &:nth-last-of-type(1) {
                 padding-right: 0;
             }
-            &:nth-last-of-type(1) dd a {
-                line-height: normal;
-            }
         }
         dl dt {
             color: @whiteColor;
             line-height: 26px;
+            font-weight: 700;
         }
         dl dd {
             .text-overflow();
             color: @whiteSmoke;
+            &:nth-last-of-type(1) img {
+                display: block;
+            }
+        }
+        dl dd img {
+            .img-responsive();
+            .center-block();
+            display: none;
+            margin: 0;
         }
         dl dd a {
+            display: inline-block;
             color: @whiteSmoke;
             line-height: 26px;
             &:hover {
@@ -319,13 +206,25 @@ body {
         background: @blackColor;
         color: @whiteSmoke;
         font-size: 12px;
+        text-align: center;
+    }
+
+    @media screen and (min-width: 768px) and (max-width: 991px) {
+        .foot-container {
+            dl {
+                width: 25%;
+            }
+            dl:nth-of-type(1) {
+                margin-left: 0;
+            }
+        }
     }
 
     @media screen and (min-width: 768px) and (max-width: 1199px) {
         .foot-container {
             dl {
                 margin-bottom: 20px;
-                padding: 0 20px!important;
+                padding: 0 20px !important;
             }
         }
     }
@@ -334,25 +233,31 @@ body {
 
 //面包屑导航
 .g-path {
-    margin: 0 0 10px;
+    margin: 20px 0;
     background: @whiteColor;
     .breadcrumb {
+        .clearFix();
         padding: 0 20px;
         margin: 0 auto;
         background: @whiteColor;
         line-height: 50px;
+        li {
+            .fl();
+        }
+        .active {
+            .text-overflow();
+        }
         a {
             color: @activeColor;
             &:hover {
-                color: @hoverColor;
+                text-decoration: underline;
             }
         }
-        @media screen and (min-width: 1200px) {
-            width: 83.333%;
-        }
-        @media screen and (max-width: 1199px) {
-            width: 100%;
-        }
+    }
+    .breadcrumb>li+li:before {
+        padding: 0 5px;
+        color: #ccc;
+        content: ">";
     }
     @media screen and (min-width: 768px) and (max-width: 1199px) {
         .breadcrumb li {
@@ -362,74 +267,25 @@ body {
 }
 //面包屑导航结束
 
-//分页
-.g-pagination {
-    height: 54px;
-    margin: 20px 0;
-    padding-left: 20px;
-    background: @whiteColor;
-    .pagination {
-        .clearFix();
-        margin: 10px 0;
-    }
-    .pagination > li > a, .pagination > li > span {
-        color: @activeColor;
-    }
-    .pagination > .disabled > a,
-    .pagination > .disabled > a:focus,
-    .pagination > .disabled > a:hover,
-    .pagination > .disabled > span,
-    .pagination > .disabled > span:focus,
-    .pagination > .disabled > span:hover {
-        color: #777;
-    }
-    .pagination > .active > a,
-    .pagination > .active > a:focus,
-    .pagination > .active > a:hover,
-    .pagination > .active > span,
-    .pagination > .active > span:focus,
-    .pagination > .active > span:hover {
-        color: @baseColor;
-        background: @activeColor;
-        border-color: @activeColor;
-    }
-}
-//分頁結束
-
 //側邊導航aside
 .g-aside {
     .fl();
     width: 20%;
-    padding-right: 10px;
+    padding-right: 20px;
     ul {
         background: @whiteColor;
     }
-    ul li {
-        position: relative;
-        .iconfont {
-            position: absolute;
-            top: 0;
-            right: 20px;
-            line-height: 50px;
-        }
-    }
     ul li h3 {
         padding: 0 20px;
-        font-size: 14px;
-        font-weight: bold;
+        font-size: 16px;
         line-height: 50px;
         border-bottom: 1px solid @borderColor;
-        background: @activeColor;
-    }
-    ul li .active {
-        color: @activeColor;
-        text-decoration: underline;
     }
     ul li a {
         display: block;
         padding: 0 20px;
         line-height: 50px;
-        color: @baseColor;
+        color: @whiteSmoke;
         border-bottom: 1px solid @borderColor;
         &:hover {
             color: @activeColor;
@@ -439,17 +295,9 @@ body {
     ul li:nth-last-of-type(1) a {
         border-bottom: none;
     }
-
-    ul li .aside-child {
-        display: none;
-        li {
-            padding-left: 15px;
-            border-bottom: 1px solid @borderColor;
-        }
-        li a {
-            padding: 0 10px 0 15px;
-            border-bottom: none
-        }
+    ul li .active {
+        color: @whiteColor;
+        background: @baseColor;
     }
 
     @media screen and (min-width: 768px) and (max-width: 991px) {
@@ -460,174 +308,9 @@ body {
 .g-main {
     .fl();
     width: 80%;
-    background: @whiteColor;
+    background: #fff;
     @media screen and (min-width: 768px) and (max-width: 991px) {
         width: 75%;
     }
 }
 //側邊導航aside結束
-
-//分類篩選
-/*.g-filter {
-    .clearFix();
-    padding: 20px;
-    background: @whiteColor;
-    border-bottom: 1px solid @borderColor;
-    .filter {
-        .fl();
-        margin-right: 20px;
-    }
-    .sort {
-        .fl();
-    }
-    .result {
-        .fr();
-        color: @activeColor;
-    }
-    span {
-        display: inline-block;
-        padding-right: 5px;
-        font-size: 12px;
-        font-weight: bold;
-    }
-    .select {
-        position: relative;
-        display: inline-block;
-        select {
-            width: 150px;
-            height: 30px;
-            padding: 0 5px;
-            border: 1px solid @borderColor;
-            #border-radius(5px);
-            font-size: 12px;
-            background: @whiteColor;
-            appearance: none;
-            -moz-appearance: none;
-            -webkit-appearance: none;
-        }
-        .iconfont {
-            position: absolute;
-            top: 0;
-            right: 0;
-            z-index: 1;
-            display: block;
-            line-height: 30px;
-        }
-    }
-}*/
-
-.g-filter {
-    .clearFix();
-    padding: 20px;
-    background: @whiteColor;
-    border-bottom: 1px solid @borderColor;
-    .filter {
-        .fl();
-        margin-right: 20px;
-    }
-    .sort {
-        .fl();
-    }
-    .result {
-        .fr();
-        color: @activeColor;
-    }
-    .filter > span, .sort > span, .result > span {
-        display: inline-block;
-        padding-right: 5px;
-        font-size: 12px;
-        font-weight: bold;
-    }
-    .select {
-        display: inline-block;
-        position: relative;
-        h3 {
-            position: relative;
-            padding: 0 5px;
-            font-size: 14px;
-            height: 26px;
-            line-height: 26px;
-            border: 1px solid @activeColor;
-            border-radius: 5px;
-            width: 200px;
-        }
-        h3 .iconfont {
-            position: absolute;
-            top: 0;
-            right: 5px;
-            font-size: 14px;
-            line-height: 26px;
-        }
-        .select-item {
-            display: none;
-            position: absolute;
-            top: 26px;
-            left: 0;
-            z-index: 10;
-            width: 100%;
-            padding: 0 5px;
-            background: @whiteColor;
-            border: 1px solid @activeColor;
-            border-top: none;
-            border-radius: 0 0 5px 5px;
-        }
-        .select-item li {
-            line-height: 22px;
-        }
-        .select-item li a {
-            display: block;
-            width: 100%;
-            color: @baseColor;
-            .text-overflow();
-            &:hover {
-                color: @activeColor;
-
-            }
-        }
-        .select-item li ul {
-            padding-left: 10px;
-        }
-    }
-}
-//分類篩選結束
-
-//404
-.page-404 {
-    margin: 0 0 -60px;
-    background: @whiteColor;
-    .page-404-box {
-        .clearFix();
-        margin: 0 auto;
-        padding: 10% 0;
-        @media screen and (min-width: 1200px) {
-            width: 83.333%;
-        }
-        @media screen and (max-width: 1199px) {
-            width: 100%;
-        }
-    }
-    .page-404-img {
-        .fl();
-        width: 50%;
-    }
-    .page-404-reason {
-        .fl();
-        width: 50%;
-        h3 {
-            font-size: 24px;
-            margin-bottom: 5px;
-        }
-        p {
-            font-size: 14px;
-            margin-bottom: 5px;
-        }
-        h4 {
-            margin-bottom: 5px;
-            font-size: 16px;
-        }
-        a.btn {
-            font-size: 12px;
-        }
-    }
-}
-//404結束

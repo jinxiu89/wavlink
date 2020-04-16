@@ -36,3 +36,27 @@ function layer_open(title, url, w, h) {
         content: url
     });
 }
+
+function Account() {
+    var Dom = $('#account')
+    Dom.hover(function () {
+        $(this).find('#user-menu-wrapper').stop(false, true).slideToggle(300)
+    })
+}
+
+function PersonImg () {
+    var uploadBtn = $('.UploadPicture-btn'),
+        uploadInput = $('#UploadPicture-input'),
+        PersonBox = $('#person-box');
+    PersonBox.hover(function () {
+        $(this).find('#img-edit').fadeToggle(300)
+    })
+    uploadBtn.on('click',function(){
+        uploadInput.click() //点击按钮触发input
+    })
+}
+
+$(document).ready(function () {
+    Account()
+    PersonImg()
+})

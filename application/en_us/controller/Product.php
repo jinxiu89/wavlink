@@ -6,6 +6,7 @@ use app\common\helper\Category;
 use app\common\model\Category as CategoryModel;
 use app\common\model\Product as ProductModel;
 use think\Exception;
+use think\facade\Log;
 
 /**
  * Class Product
@@ -53,10 +54,12 @@ class Product extends Base
                     'link' => $link
                 ]);
             } else {
-                abort(404);
+                $this->redirect(url('404'),[],404);
             }
         }catch (Exception $exception){
-            abort(404);
+            Log::error($exception->getMessage());
+            Log::close();
+            $this->redirect(url('500'),[],500);
         }
     }
 }

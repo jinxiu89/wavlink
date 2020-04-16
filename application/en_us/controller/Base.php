@@ -20,6 +20,7 @@ use think\facade\Cookie;
 use think\facade\Lang;
 use think\facade\Request;
 use think\facade\Env;
+use think\Response;
 use think\response\Redirect;
 
 /***
@@ -243,8 +244,27 @@ class Base extends Controller
         return $this->fetch('', ['result' => $result->toArray()]);
     }
 
-    public function manual(){
-        return \redirect(url('manual_list'));
+
+
+
+
+    /**
+     * notFound : 通过response 创建 一个状态码为404的页面
+     * @return Response
+     */
+    public function notFound()
+    {
+        //todo:: 这里修改这个控制器的状态码为404
+        return Response::create($template = '', 'view', 404);
+    }
+
+    /**
+     * @return Response
+     *
+     */
+    public function serverError()
+    {
+        return Response::create('', 'view', 500);
     }
 
 
@@ -255,6 +275,5 @@ class Base extends Controller
     {
         return $this->fetch($this->template . '/common/ie.html');
     }
-
 
 }

@@ -232,17 +232,7 @@ class Base extends Controller
         $this->assign('code', $this->code);
     }
 
-    public function terms()
-    {
-        $result = (new aboutService())->getArticle('terms_en', $this->code);
-        return $this->fetch('', ['result' => $result->toArray()]);
-    }
 
-    public function privacy()
-    {
-        $result = (new aboutService())->getArticle('Privacy', $this->code);
-        return $this->fetch('', ['result' => $result->toArray()]);
-    }
 
 
 

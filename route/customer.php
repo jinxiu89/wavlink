@@ -19,7 +19,3 @@ Route::group('customer', function () {
 
     Route::rule('/index$','Index/index','GET')->name('customer_index');
 })->prefix('customer/');
-
-Route::rule('/login$','customer/User/login','GET|POST')->parent(['next'=>'[\w-]+']);
-Route::rule('/register$','customer/User/register','GET|POST');
-Route::rule('/verify/code$','customer/Base/verify','GET')->name('gen_verify');

@@ -16,8 +16,8 @@ class Error extends Base
     /**
      * @return string
      */
-    public function index()
+    /*public function index()
     {
         return view(Env::get('APP_PATH').'/en_us/view/error/404.html', [], $code = 404);
-    }
+    }*/
 }

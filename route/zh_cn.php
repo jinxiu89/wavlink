@@ -32,6 +32,4 @@ Route::group('zh_cn', function () {
     Route::get('/search','Search/results')->pattern(['key'=>'[\w-]+','type'=>'[\w-]+','page'=>'[\d]+']);
     Route::get('/tuya/Appdownload','Tuya/index');
     //根路由在最下面
-    Route::get('/', 'Index/index');
-//    Route::miss('Error/index');
 })->prefix('en_us/');

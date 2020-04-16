@@ -38,9 +38,9 @@ class User extends Base
         $this->validate = new Validate();
     }
 
-    protected $middleware = [
+    /*protected $middleware = [
         Auth::class => ['except' => ['login', 'register', 'forgotPassword', 'changePassword']]
-    ];
+    ];*/
 
     /**
      * login
@@ -248,7 +248,12 @@ class User extends Base
         }
     }
 
-
+    /**
+     * @return mixed|string
+     * @throws \think\db\exception\DataNotFoundException
+     * @throws \think\db\exception\ModelNotFoundException
+     * @throws \think\exception\DbException
+     */
     public function info()
     {
         if (request()->isGet()) {

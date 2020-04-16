@@ -12,9 +12,14 @@
 namespace app\en_us\controller;
 
 
+use app\common\service\en_us\About as aboutService;
 use think\App;
+use think\captcha\Captcha;
 use think\Controller;
+use think\facade\Config;
 use think\facade\Cookie;
+use think\facade\Env;
+use think\Response;
 use think\response\Redirect;
 
 /**
@@ -24,10 +29,11 @@ use think\response\Redirect;
 class Common extends Controller
 {
     protected $lang;
+
     public function __construct(App $app = null)
     {
         parent::__construct($app);
-        $this->lang=Cookie::get('lang_var') ? Cookie::get('lang_var') : 'en_us';
+        $this->lang = Cookie::get('lang_var') ? Cookie::get('lang_var') : 'en_us';
     }
 
     /**
@@ -35,8 +41,8 @@ class Common extends Controller
      */
     public function driver()
     {
-
-        return $this->fetch();
+        //TODO::中间跳转页面后面准备做
+        return \redirect('/' . $this->lang . '/drivers.html');
     }
 
     /**
@@ -44,6 +50,43 @@ class Common extends Controller
      */
     public function manual()
     {
+        //TODO::中间跳转页面后面准备做
         return \redirect('/' . $this->lang . '/manuals.html');
+    }
+
+    /**
+     * @return mixed
+     */
+    public function terms()
+    {
+        $result = (new aboutService())->getArticle('terms_en', $this->code);
+        return $this->fetch('', ['result' => $result->toArray()]);
+    }
+
+    /**
+     * @return mixed
+     */
+    public function privacy()
+    {
+        $result = (new aboutService())->getArticle('Privacy', $this->code);
+        return $this->fetch('', ['result' => $result->toArray()]);
+    }
+
+    /**
+     * @return Response
+     * 生成验证码
+     */
+    public function verify()
+    {
+        $captcha = new Captcha(Config::get('verify.config'));
+        return $captcha->entry();
+    }
+
+    /**
+     * @return string
+     */
+    public function miss()
+    {
+        return view(Env::get('APP_PATH') . '/en_us/view/error/404.html', [], $code = 404);
     }
 }

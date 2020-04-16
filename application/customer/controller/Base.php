@@ -40,14 +40,7 @@ class Base extends Controller
         $this->assign('lang', $lang);
     }
 
-    /**
-     * @return Response
-     * 生成验证码
-     */
-    public function verify(){
-        $captcha=new Captcha(Config::get('verify.config'));
-        return $captcha->entry();
-    }
+
 
     /**
      * @return bool

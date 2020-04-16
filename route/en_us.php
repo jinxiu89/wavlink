@@ -40,19 +40,3 @@ Route::group('en_us', function () {
     Route::get('/', 'Index/index');
 //    Route::miss('Error/index');
 })->prefix('en_us/');
-
-
-/***
- * 前端路由控制
- * 对于根来说，他需要的是得到语言信息 然后跳转
- *
- */
-Route::get('/driver$','en_us/Common/driver')->name('driver'); // 驱动下载永久短地址
-Route::get('/en_us/terms$','en_us/Base/terms')->name('terms'); //
-Route::get('/en_us/privacy$','en_us/Base/privacy')->name('privacy');
-Route::get('/manual$','en_us/Common/manual')->name('manual');//说明书下载永久短网址
-Route::get('/', 'en_us/Base/autoload');
-Route::get('/language/:code', 'en_us/Language/setLanguage', [], ['code' => '[\w-]+']);
-Route::get('/notfound','en_us/Base/notFound')->name('404');
-Route::get('server_error','en_us/Base/serverError')->name('500');
-Route::miss('en_us/Error/index');  //当所有的路由都匹配不到的时候 就会走到这个miss路由上来

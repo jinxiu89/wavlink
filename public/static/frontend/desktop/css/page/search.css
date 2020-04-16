@@ -152,7 +152,7 @@
 }
 .search-driver .item .panel .panel-heading .title {
   font-size: 24px;
-  font-weight: 700;
+  font-weight: normal;
   color: #f8b300;
   text-transform: uppercase;
 }

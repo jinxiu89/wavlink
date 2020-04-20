@@ -521,8 +521,11 @@ function get_lang($header)
         $lang_code = $header['accept-language'];
         $result = explode(',', $lang_code);
         $code = strtolower($result[0]);
-        //在extra 里配置各国语言代码对应相应的模块
-        return str_ireplace('-', '_', $code);
+        $result=str_ireplace('-', '_', $code);
+        if(in_array($result,Config::get('language.allow_lang'))){
+            return $result;
+        }
+        return 'en_us';
     }
 }
 

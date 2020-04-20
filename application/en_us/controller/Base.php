@@ -66,17 +66,17 @@ class Base extends Controller
      * @throws DbException
      * @throws ModelNotFoundException
      * parent::__construct($app)在后面继承 语言切换在URL上直接改就不会有bug
-     * 20191225 解决 当用户浏览器获取不到语言标识时，当用户访问根目录时，没有语言可以选择，需要默认给他传值到英文网站
+     * 20200420 ：国内用户日益增多，把国内的网站导入到国内来，所以将默认跳英文网站的代码块去掉
      *
      */
     public function __construct(App $app = null)
     {
-        $path = explode('/', Request::path());
+        /*$path = explode('/', Request::path());
         if (empty($path[0])) {
             Cookie::set('lang_var', 'en_us');
         } else {
             Cookie::set('lang_var', $path[0]);
-        }
+        }*/
         parent::__construct($app);
         $this->language_id = LanguageModel::getLanguageCodeOrID($this->code);
     }
@@ -215,7 +215,7 @@ class Base extends Controller
      *
      */
     public function autoload()
-    {//todo:: 默认切换英文在这里处理，先修复bug先
+    {
         $code = Cookie::get('lang_var') ? Cookie::get('lang_var') : get_lang(Request::instance()->header()); //这个code需要把‘-’换成‘_’;
         return redirect('/' . $code . '/index.html', [], 200);
     }
@@ -230,13 +230,8 @@ class Base extends Controller
         //加载当前模块语言包
         Lang::load(Env::get('app_path') . $this->module . '/lang/' . $this->code . '.php');
         $this->assign('code', $this->code);
+        return \redirect('/'.$this->code.'/index.html',[],200);
     }
-
-
-
-
-
-
 
     /**
      * notFound : 通过response 创建 一个状态码为404的页面

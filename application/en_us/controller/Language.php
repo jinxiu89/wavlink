@@ -2,6 +2,7 @@
 namespace app\en_us\controller;
 
 use think\Controller;
+use think\facade\Config;
 use think\facade\Cookie;
 use think\response\Redirect;
 
@@ -19,6 +20,11 @@ class Language extends Controller
      */
     public function setLanguage($code)
     {
+        if(in_array($code,Config::get('language.allow_lang'))){
+            Cookie::set('lang_var',$code);
+        }else{
+            Cookie::set('lang_var', 'en_us');
+        }
         return redirect('/' . $code . '/index.html', [], 200);
     }
 }

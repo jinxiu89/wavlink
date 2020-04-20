@@ -23,11 +23,23 @@ audio,canvas,video{display:inline-block;*display:inline;*zoom:1}
 blockquote:before,blockquote:after,q:before,q:after{content:"\0020"}
 textarea{overflow:auto;resize:vertical}
 input,textarea,button,select,a{outline:0 none;border: none;}
+::-webkit-input-placeholder {
+    color: #ccc;
+}
+:-moz-placeholder {
+    color: #ccc;
+}
+::-moz-placeholder {
+    color: #ccc;
+}
+:-ms-input-placeholder {
+    color: #ccc;
+}
 button::-moz-focus-inner,input::-moz-focus-inner{padding:0;border:0}
 mark{background-color:transparent}
 a,ins,s,u,del{text-decoration:none}
 sup,sub{vertical-align:baseline}
-html {overflow-x: hidden;height: 100%;-webkit-tap-highlight-color: transparent;}
+html {overflow-x: hidden;height: 100%;-webkit-tap-highlight-color: transparent;background: #fff}
 a {color: #25a4bb;}
 a:hover,
 a:active,
@@ -71,7 +83,6 @@ body {
         width: 100%;
     }
 }
-
 
 //header
 header {
@@ -144,6 +155,9 @@ header {
         .iconfont {
             font-size: 24px;
         }
+    }
+    @media screen and (max-width: 1199px) {
+        padding: 0 20px;
     }
 }
 //header结束
@@ -248,7 +262,7 @@ header {
             .text-overflow();
         }
         a {
-            color: @activeColor;
+            color: #136ec2;
             &:hover {
                 text-decoration: underline;
             }
@@ -314,3 +328,69 @@ header {
     }
 }
 //側邊導航aside結束
+
+//个人信息修改表单
+.info-change-box {
+    background: @whiteColor;
+    .form-title .title {
+        margin: 20px;
+        font-size: 16px;
+        text-align: center;
+    }
+    .info {
+        margin-bottom: 10px;
+    }
+    .info label {
+        display: inline-block;
+        width: 130px;
+        height: 28px;
+        line-height: 28px;
+        margin: 0 10px 0 6.5px;
+        text-align: right;
+    }
+    .info input {
+        display: inline-block;
+        width: 240px;
+        height: 28px;
+        padding: 0 5px;
+        border: 1px solid #ccc;
+    }
+    .btn-group {
+        margin: 20px 0 0;
+        text-align: center;
+        .btn {
+            display: inline-block;
+            padding: 8px 20px;
+            font-size: 12px;
+            text-align: center;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        .btn:nth-of-type(1) {
+            background: #5cb85c;
+            color: @whiteColor;
+            &:hover {
+                background: #5cb85c + 10;
+            }
+        }
+        .btn:nth-last-of-type(1) {
+            background: #ccc;
+            border-color: #ccc;
+            &:hover {
+                background: #ccc + 10;
+            }
+        }
+    }
+    .form-tips {
+        margin: 20px;
+        font-size: 12px;
+        color: @whiteSmoke;
+        .tip-title {
+            font-size: 14px;
+            color: @baseColor;
+        }
+    }
+
+    .personal-name {}
+}
+//个人信息修改表单结束

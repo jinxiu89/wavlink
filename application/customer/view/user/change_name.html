@@ -1,0 +1,33 @@
+{extend name="base/form" /}
+{block name="title"}
+{:lang('login')}
+{/block}
+{block name="main"}
+<div class="form-box">
+    <div class="box" id="box">
+        <div class="info-change-box">
+            <div class="form-title">
+                <h3 class="title">Modify Your Username</h3>
+            </div>
+            <form class="personal-name" action="">
+                <div class="info">
+                    <label for="firstName">First Name: </label>
+                    <input id="firstName" type="text" placeholder="Alan">
+                </div>
+                <div class="info">
+                    <label for="lastName">Last Name: </label>
+                    <input id="lastName" type="text" placeholder="Alan">
+                </div>
+                <div class="btn-group">
+                    <button class="btn" type="submit">SUBMIT</button>
+                    <button class="btn" type="button">CANCEL</button>
+                </div>
+            </form>
+            <!--<div class="form-tips">
+                <h4 class="tip-title">Tips：</h4>
+                <span>Only letters, numbers, Chinese characters are allowed, and they are limited to 12 characters</span>
+            </div>-->
+        </div>
+    </div>
+</div>
+{/block}

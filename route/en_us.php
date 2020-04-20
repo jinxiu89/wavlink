@@ -38,5 +38,4 @@ Route::group('en_us', function () {
     Route::get('/search','Search/results')->pattern(['key'=>'[\w-]+','type'=>'[\w-]+','page'=>'[\d]+']);
     Route::get('/tuya/Appdownload','Tuya/index');
     Route::get('/', 'Index/index');
-//    Route::miss('Error/index');
 })->prefix('en_us/');

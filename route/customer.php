@@ -11,6 +11,8 @@ Route::group('customer', function () {
     Route::rule('/change/password$','User/changePassword','GET|POST')->name('change_password');
     //用户信息
     Route::rule('/info$','User/info','GET|POST')->name('customer_info');
+    //修改名字
+    Route::rule('/changeName','User/changeName')->name('changeName')->parent(['id'=>'[-\d+]']);
 
     Route::post('/edit/password$','Info/editPassword')->name('customer_password');
     //产品注册

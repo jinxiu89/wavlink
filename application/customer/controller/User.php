@@ -15,6 +15,9 @@ use app\common\model\Country;
 use app\common\service\customer\User as Service;
 use app\customer\validate\User as Validate;
 use think\App;
+use think\db\exception\DataNotFoundException;
+use think\db\exception\ModelNotFoundException;
+use think\exception\DbException;
 use think\facade\Cache;
 use app\customer\middleware\Auth;
 use think\facade\Config;
@@ -250,25 +253,44 @@ class User extends Base
 
     /**
      * @return mixed|string
-     * @throws \think\db\exception\DataNotFoundException
-     * @throws \think\db\exception\ModelNotFoundException
-     * @throws \think\exception\DbException
+     * @throws DataNotFoundException
+     * @throws ModelNotFoundException
+     * @throws DbException
+     * 我的个人资料
      */
     public function info()
     {
         if (request()->isGet()) {
-            $customer = $this->service->getDataByIdWithInfo($this->uid);
+//            $customer = $this->service->getDataByIdWithInfo($this->uid)->toArray();
             $country = (new Country())->field('country_id,name')->select();
+//            unset($customer['password'],$customer['referee_code'],$customer['create_time'],$customer['update_time'],$customer['is_subscribe'],$customer['disclaimer']);
+//            print_r($customer);
             if (isMobile()) {
                 return "hello world";
             } else {
                 return $this->fetch('', [
-                    'country' => $country,
-                    'result' => $customer
+                    'country' => $country->toArray(),
+//                    'result' => $customer
                 ]);
             }
         }
 
+    }
+
+    /***
+     * 修改名字
+     * @return mixed
+     */
+    public function changeName()
+    {
+        if ($this->request->isGet()) {
+            $id = input('get.id', '', 'htmlspecialchars,intval');
+            $this->assign('id', $id);
+            return $this->fetch();
+        }
+        if ($this->request->isPost()) {
+            //todo:保存操作
+        }
     }
 
 
@@ -277,9 +299,8 @@ class User extends Base
      */
     public function modifyInfo()
     {
-        if($this->request->isPost()){
-            $data=input('post.','','htmlspecialchars,trim');
-
+        if ($this->request->isPost()) {
+            $data = input('post.', '', 'htmlspecialchars,trim');
         }
     }
 
@@ -292,7 +313,7 @@ class User extends Base
         if ($this->request->isGet()) {
             $email = input('get.email', '', 'htmlspecialchars,trim');
             $phone = input('get.phone', '', 'htmlspecialchars,trim');
-            if (isset($email) && !empty($email))  $this->assign('email', $email);
+            if (isset($email) && !empty($email)) $this->assign('email', $email);
             if (isset($phone) && !empty($phone)) $this->assign('phone', input('get.phone', '', 'htmlspecialchars,trim'));
             return $this->fetch('', ['id' => input('get.id', '', 'intval')]);
         }

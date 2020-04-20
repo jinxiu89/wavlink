@@ -121,6 +121,7 @@ return [
     /**
      * 产品注册翻译
      */
+    'Skip' => '跳过',
     'Add product cases'=>'添加产品信息',
     'Where to buy'=>'购买平台',
     'select'=>'请选择',

@@ -71,6 +71,7 @@ return [
     /**
      * 产品注册翻译
      */
+    'Skip' => 'Skip',
     'Add product cases'=>'Add product cases',
     'Where to buy'=>'Where to buy',
     'select'=>'Select',

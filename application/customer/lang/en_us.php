@@ -33,8 +33,9 @@ return [
     /*注册验证文案*/
     'user name is required'=>'first name is required',
     'password is required'=>'password is required',
-    'Password must be at least 5 letters'=>'Password must be at least 5 letters',
-    'Password cannot be longer than 12 letters'=>'Password cannot be longer than 12 letters',
+    'Password must be at least 6 letters'=>'Password must be at least 6 letters',
+    'Password cannot be longer than 20 letters'=>'Password cannot be longer than 20 letters',
+    'Password verification' => 'The length of the password is 6-20 characters, and the format is number + letter!',
     'Input password again'=>'Input password again',
     'The password is different twice'=>'The password is different twice',
     'Please enter a correct email'=>'Please enter a correct email',
@@ -101,5 +102,8 @@ return [
     'Serial Number Error, the fourth o sixth number is incorrect.'=>'Serial Number Error, the fourth o sixth number is incorrect.',
     'Serial Number Error'=>'Serial Number Error',
     'Number Segment Error'=>'Number Segment Error',
-
+    //信息页翻译
+    'Female'=>'Female',
+    'Male'=>'Male',
+    'Secret'=>'Secret',
 ];

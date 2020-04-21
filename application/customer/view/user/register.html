@@ -173,8 +173,8 @@
                 },
                 confirm: {
                     required: true,
-                    minlength: 5,
-                    maxlength: 16,
+                    minlength: 6,
+                    maxlength: 20,
                     equalTo: '#password'
                 },
                 email: {
@@ -191,8 +191,8 @@
                 username: '{:lang(\'user name is required\')}',
                 password: {
                     required: '{:lang(\'password is required\')}',
-                    minlength: '{:lang(\'Password must be at least 5 letters\')}',
-                    maxlength: '{:lang(\'Password cannot be longer than 12 letters\')}'
+                    minlength: '{:lang(\'Password must be at least 6 letters\')}',
+                    maxlength: '{:lang(\'Password cannot be longer than 20 letters\')}'
                 },
                 confirm: {
                     required: '{:lang(\'Input password again\')}',
@@ -204,8 +204,12 @@
                 // agree: '请接受我们的隐私政策声明'
                 verification: '{:lang(\'Please enter the correct email verification code\')}',
             }
-
         })
+        //自定义正则表达示验证方法
+        $.validator.addMethod("password",function(value,element,params){
+            var rel = /^(?![0-9]+$)(?![a-z]+$)(?![A-Z]+$)(?!([^(0-9a-zA-Z)])+$).{6,20}$/;
+            return this.optional(element)||(rel.test(value));
+        }, '{:lang(\'Password verification\')}');
     })
 </script>
 <!--JS业务处理区块-->

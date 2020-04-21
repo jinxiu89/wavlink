@@ -45,8 +45,9 @@ return [
     /*注册验证文案*/
     'user name is required'=>'姓名必须填写',
     'password is required'=>'密码必须填写',
-    'Password must be at least 5 letters'=>'密码必须输入大于5个字符',
-    'Password cannot be longer than 12 letters'=>'密码必须输入小于12个字符',
+    'Password must be at least 6 letters'=>'密码必须输入大于6个字符',
+    'Password cannot be longer than 20 letters'=>'密码必须输入小于20个字符',
+    'Password verification' => '密码长度为6-20字符，且为数字+字母格式！',
     'Input password again'=>'再输入一边密码',
     'The password is different twice'=>'两次密码输入不一致',
     'Please enter a correct email'=>'输入的邮箱格式必须要正确',
@@ -102,9 +103,6 @@ return [
     'Save' => '保存',
     //info 内容提示
     'Input your last name' => '请输入名字',
-    'Secret' => '保密',
-    'Sir.' => '先生',
-    'Ms.' => '女士',
     'Input your telephone number' => '输入您的手机或者电话',
     'Input your Zip code' => '输入您的邮政编码',
     'Input your Billing address' => '请输入您的账单地址',
@@ -179,6 +177,10 @@ return [
     'Serial Number Error, the fourth o sixth number is incorrect.'=>'序列号错误，第四位到第六位的数据信息有误。',
     'Serial Number Error'=>'序列号错误',
     'Number Segment Error'=>'序列号号段错误',
+    //信息页翻译
+    'Female'=>'女',
+    'Male'=>'男',
+    'Secret'=>'保密',
     //国家 名称翻译
     'china' => '中国',
     'Afghanistan' => '阿富汗',

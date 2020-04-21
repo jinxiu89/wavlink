@@ -44,21 +44,19 @@
 {/if}
 <script>
     $("#reset").validate({
+        errorClass: 'infoError',
+        errorElement: 'p',
         rules: {
-           password: {
-                required: true,
-               minlength: 8,
-               maxlength: 16
+            user_password: {
+               required: true,
+               minlength: 6,
+               maxlength: 20
             },
-            repassword: {
+            user_password_again: {
                 required: true,
                 equalTo: "#user_password"
             }
         },
-        errorElement: "em",
-        onkeyup: false,
-        focusCleanup: true,
-        success: "valid",
         submitHandler: function (form) {
             $.ajax({
                 url: window.location.href,
@@ -79,5 +77,10 @@
             })
         }
     });
+    //自定义正则表达示验证方法
+    $.validator.addMethod("password",function(value,element,params){
+        var rel = /^(?![0-9]+$)(?![a-z]+$)(?![A-Z]+$)(?!([^(0-9a-zA-Z)])+$).{6,20}$/;
+        return this.optional(element)||(rel.test(value));
+    }, '{:lang(\'Password verification\')}');
 </script>
 {/block}

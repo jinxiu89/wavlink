@@ -8,11 +8,10 @@
 @import "../../public/variables";
 
 .Introduction {
-  .clearFix();
+  position: relative;
   margin: 20px 13.5%;
   .person-box {
-    .fl();
-    position: relative;
+    position: absolute;
     .img-box img {
       width: 80px;
       height: 80px;
@@ -46,14 +45,14 @@
     }
   }
   .person-des {
-    .fl();
     height: 80px;
-    padding: 10px 0 0 20px;
+    padding: 10px 0 0 100px;
     .title {
       font-size: 22px;
     }
     p {
       margin-top: 10px;
+      font-size: 14px;
       color: @whiteSmoke;
     }
   }
@@ -83,10 +82,14 @@
     position: absolute;
     top: 15px;
     left: 0;
+    font-size: 14px;
     color: @whiteSmoke;
   }
   .Field-content {
     padding: 0 0 0 175px;
+  }
+  .Field-content .text {
+    font-size: 14px;
   }
   .Field-content .Field-modify {
     margin-left: 5px;

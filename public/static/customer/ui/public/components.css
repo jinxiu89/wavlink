@@ -482,21 +482,6 @@ header .nav-box .exit .iconfont {
 .info-change-box .info {
   margin-bottom: 10px;
 }
-.info-change-box .info label {
-  display: inline-block;
-  width: 130px;
-  height: 28px;
-  line-height: 28px;
-  margin: 0 10px 0 6.5px;
-  text-align: right;
-}
-.info-change-box .info input {
-  display: inline-block;
-  width: 240px;
-  height: 28px;
-  padding: 0 5px;
-  border: 1px solid #ccc;
-}
 .info-change-box .btn-group {
   margin: 20px 0 0;
   text-align: center;
@@ -523,13 +508,30 @@ header .nav-box .exit .iconfont {
 .info-change-box .btn-group .btn:nth-last-of-type(1):hover {
   background: #d6d6d6;
 }
-.info-change-box .form-tips {
-  margin: 20px;
-  font-size: 12px;
-  color: #888;
+.info-change-box .personal-name .info label {
+  display: inline-block;
+  width: 130px;
+  height: 28px;
+  line-height: 28px;
+  margin: 0 10px 0 6.5px;
+  text-align: right;
 }
-.info-change-box .form-tips .tip-title {
-  font-size: 14px;
-  color: #333;
+.info-change-box .personal-name .info input {
+  display: inline-block;
+  width: 240px;
+  height: 28px;
+  padding: 0 5px;
+  border: 1px solid #ccc;
+}
+.info-change-box .personal-gender {
+  text-align: center;
+}
+.info-change-box .personal-gender .info {
+  display: inline-block;
+  margin: 0 10px;
+}
+.info-change-box .personal-gender .info label,
+.info-change-box .personal-gender .info input {
+  cursor: pointer;
 }
 /*# sourceMappingURL=components.css.map */

@@ -5,20 +5,11 @@
 * @update: 2020-04-15 11:20
 */
 .Introduction {
+  position: relative;
   margin: 20px 13.5%;
 }
-.Introductionbefore,
-.Introduction:after {
-  content: " ";
-  display: table;
-  zoom: 1;
-}
-.Introduction:after {
-  clear: both;
-}
 .Introduction .person-box {
-  float: left;
-  position: relative;
+  position: absolute;
 }
 .Introduction .person-box .img-box img {
   width: 80px;
@@ -52,15 +43,15 @@
   color: #fff;
 }
 .Introduction .person-des {
-  float: left;
   height: 80px;
-  padding: 10px 0 0 20px;
+  padding: 10px 0 0 100px;
 }
 .Introduction .person-des .title {
   font-size: 22px;
 }
 .Introduction .person-des p {
   margin-top: 10px;
+  font-size: 14px;
   color: #888;
 }
 .Module {
@@ -88,10 +79,14 @@
   position: absolute;
   top: 15px;
   left: 0;
+  font-size: 14px;
   color: #888;
 }
 .Module .Field-content {
   padding: 0 0 0 175px;
+}
+.Module .Field-content .text {
+  font-size: 14px;
 }
 .Module .Field-content .Field-modify {
   margin-left: 5px;

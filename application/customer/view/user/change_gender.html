@@ -7,16 +7,20 @@
     <div class="box" id="box">
         <div class="info-change-box">
             <div class="form-title">
-                <h3 class="title">Modify Your Username</h3>
+                <h3 class="title">Modify Your Gender</h3>
             </div>
-            <form class="personal-name" id="personal-name" action="">
+            <form class="personal-gender" id="personal-gender" action="">
                 <div class="info">
-                    <label for="firstName">First Name: </label>
-                    <input id="firstName" name="first_name" type="text" placeholder="Alan">
+                    <input id="Secret" name="gender" value="3" type="radio" checked/>
+                    <label for="Secret">Secret</label>
                 </div>
                 <div class="info">
-                    <label for="lastName">Last Name: </label>
-                    <input id="lastName" name="last_name" type="text" placeholder="Alan">
+                    <input id="Male" name="gender" value="1" type="radio" />
+                    <label for="Male">Male</label>
+                </div>
+                <div class="info">
+                    <input id="Female" name="gender" value="2" type="radio" />
+                    <label for="Female">Female</label>
                 </div>
                 <input type="hidden" id="id" name="id" value="{$id}">
                 <div class="btn-group">
@@ -40,21 +44,14 @@
 <script src="__STATIC__/admin/lib/jquery.validation/1.14.0/messages_zh.js"></script>
 {/if}
 <script>
-    $("#personal-name").validate({
+    $("#personal-gender").validate({
         errorClass: 'infoError',
         errorElement: 'p',
         rules: {
-            firstName: {
-                required: true,
-                minlength: 2
-            },
-            lastName: {
-                required: true,
-                minlength: 2
-            }
+
         },
         submitHandler: function (form) {
-            InfoChange('{:url(\'changeName\')}', form)
+            InfoChange('{:url(\'changeGender\')}', form)
         }
     });
 </script>

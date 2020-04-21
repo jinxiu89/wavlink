@@ -1,8 +1,8 @@
-$(function () {
+function loginRegisterBox () {
     var formBox = $('#box');
     var formBoxH = formBox.outerHeight(true);
     var windowH = $(window).outerHeight(true);
-    var marginTop = (windowH - formBoxH)/2;
+    var marginTop = (windowH - formBoxH) / 2;
     if (windowH > formBoxH) {
         formBox.css({
             'marginTop': marginTop
@@ -12,7 +12,8 @@ $(function () {
             'margin': '5% auto'
         })
     }
-});
+}
+
 function layer_open(title, url, w, h) {
     if (title == null || title === '') {
         title = false;
@@ -44,19 +45,39 @@ function Account() {
     })
 }
 
-function PersonImg () {
+function PersonImg() {
     var uploadBtn = $('.UploadPicture-btn'),
         uploadInput = $('#UploadPicture-input'),
         PersonBox = $('#person-box');
     PersonBox.hover(function () {
-        $(this).find('#img-edit').fadeToggle(300)
+        $(this).find('#img-edit').stop(false, true).fadeToggle(300)
     })
-    uploadBtn.on('click',function(){
+    uploadBtn.on('click', function () {
         uploadInput.click() //点击按钮触发input
     })
 }
 
+function InfoChange(url, form) {
+    $.ajax({
+        url: url,
+        type: "post",
+        dataType: "json",
+        data: $(form).serialize(),//提交表单数据
+        success: function (result) {
+            if (result.status === 1) {
+                //更新信息成功后刷新页面
+                layer.msg(result.message, {icon: 1, time: 2000}, function () {
+                    window.parent.location.href = result.jump_url
+                });
+            } else {
+                layer.msg(result.message, {icon: 5, time: 3000});
+            }
+        }
+    })
+}
+
 $(document).ready(function () {
+    loginRegisterBox()
     Account()
     PersonImg()
 })

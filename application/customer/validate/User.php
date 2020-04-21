@@ -22,12 +22,18 @@ class User extends Validate
     protected $rule=[
         'id'=>'integer',
         'email'=>'require|email',
+        'first_name'=>'require|max:20',
+        'gender'=>'require|in:1,2,3',
         'phone'=>'require',
         'password'=>['regex'=>'^(?![0-9]+$)(?![a-z]+$)(?![A-Z]+$)(?!([^(0-9a-zA-Z)])+$).{6,20}$'],
     ];
     protected $message=[
         'email.require'=>'{%email is required}',
         'email.email'=>'{%email format is Error}',
+        'first_name.require'=>'{%first name is required}',
+        'first_name.max'=>'{%first name is max 20}',
+        'gender.require'=>'{%gender is require}',
+        'gender.integer'=>'{%gender is error}',
         'phone'=>'{%phone number is require}',
         'password'=>'{%password is to easy }'
     ];
@@ -35,6 +41,8 @@ class User extends Validate
         'email'=>['email','password'],
         'phone'=>['phone','password'],
         'register'=>['email'],
-        'change_password'=>['id','password']
+        'change_password'=>['id','password'],
+        'changeName'=>['id','first_name'],
+        'changeGender'=>['id','gender']
     ];
 }

@@ -12,7 +12,6 @@ use think\Exception;
 use think\facade\Session;
 use app\common\model\BaseModel;
 use think\model\relation\HasOne;
-
 /**
  * Class Customer
  * @package app\common\model\customer
@@ -27,7 +26,7 @@ Class User extends BaseModel
      * 用户信息表关联模型
      */
     public function info(){
-        return $this->hasOne('UserInfo');
+        return $this->hasOne(UserInfo::class);
     }
     /**
      * @param $id

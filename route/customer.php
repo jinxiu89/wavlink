@@ -13,6 +13,10 @@ Route::group('customer', function () {
     Route::rule('/info$','User/info','GET|POST')->name('customer_info');
     //修改名字
     Route::rule('/changeName','User/changeName')->name('changeName')->parent(['id'=>'[-\d+]']);
+    Route::rule('/changeGender','User/changeGender','GET|POST')->name('changeGender')->parent(['id'=>'[-\d+]']);
+    Route::rule('/changeBir','User/changeBir','GET|POST')->name('changeBir')->parent(['id'=>'[-\d+]']);
+    Route::rule('/changeBillAddress','User/changeBillAddress','GET|POST')->name('changeBillAddress')->parent(['id'=>'[-\d+]']);
+    Route::rule('/changeDeliveryAddress','User/changeDeliveryAddress','GET|POST')->name('changeDeliveryAddress')->parent(['id'=>'[-\d+]']);
 
     Route::post('/edit/password$','Info/editPassword')->name('customer_password');
     //产品注册

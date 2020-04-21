@@ -12,6 +12,8 @@
 namespace app\common\service\customer;
 
 use app\common\model\customer\User as UserModel;
+use think\db\Query;
+use think\Exception;
 use think\facade\Session;
 
 /**
@@ -45,6 +47,37 @@ class User extends BaseService
         try{
             return $this->model->CheckPhone($phone);
         }catch (\Exception $exception){//todo::日志再完善
+            return $exception->getMessage();
+        }
+    }
+
+    /**
+     * @param $id
+     * @return Query|null
+     */
+    public function getUserWithInfoByID($id){
+        try{
+            return $this->model->with('info')->get($id);
+        }catch (\Exception $exception){
+            //todo:hello 等一下搞
+        }
+    }
+
+    /**+
+     * @param $data
+     * @return bool|string
+     *
+     */
+    public function changeInfo($data){
+        try{
+            $user=$this->model->get($data['id']);
+            $info=$user->info;
+            unset($data['id']);
+            if(!empty($info)){
+                return $user->info->save($data)?true:false;
+            }
+            return $user->info()->save($data)?true:false;
+        }catch (\Exception $exception){
             return $exception->getMessage();
         }
     }

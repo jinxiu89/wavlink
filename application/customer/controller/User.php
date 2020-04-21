@@ -41,9 +41,9 @@ class User extends Base
         $this->validate = new Validate();
     }
 
-    /*protected $middleware = [
+    protected $middleware = [
         Auth::class => ['except' => ['login', 'register', 'forgotPassword', 'changePassword']]
-    ];*/
+    ];
 
     /**
      * login
@@ -261,16 +261,15 @@ class User extends Base
     public function info()
     {
         if (request()->isGet()) {
-//            $customer = $this->service->getDataByIdWithInfo($this->uid)->toArray();
+            $customer = $this->service->getDataByIdWithInfo($this->uid)->toArray();
             $country = (new Country())->field('country_id,name')->select();
-//            unset($customer['password'],$customer['referee_code'],$customer['create_time'],$customer['update_time'],$customer['is_subscribe'],$customer['disclaimer']);
-//            print_r($customer);
+            unset($customer['password'],$customer['referee_code'],$customer['create_time'],$customer['update_time'],$customer['is_subscribe'],$customer['disclaimer']);
             if (isMobile()) {
                 return "hello world";
             } else {
                 return $this->fetch('', [
                     'country' => $country->toArray(),
-//                    'result' => $customer
+                    'result' => $customer
                 ]);
             }
         }
@@ -289,20 +288,124 @@ class User extends Base
             return $this->fetch();
         }
         if ($this->request->isPost()) {
-            //todo:保存操作
+            $data=input('post.',[],'trim,htmlspecialchars');
+            if(!$this->validate->scene('changeName')->check($data)){
+                return show(0, $this->validate->getError(), '', '', '', $this->validate->getError());
+            }
+            $result=$this->service->changeInfo($data);
+            if(true ==$result){
+                return show(1, lang('Success'), '', '', url('customer_info'));
+            }elseif (false ==$result){
+                return show(0,lang('失败'),'','');
+            }else{
+                return show(0,lang($result),'','');
+            }
         }
     }
-
 
     /**
-     * 会员信息修改控制器
+     * @return mixed
+     * 改变性别
      */
-    public function modifyInfo()
-    {
-        if ($this->request->isPost()) {
-            $data = input('post.', '', 'htmlspecialchars,trim');
+    public function changeGender(){
+        if($this->request->isGet()){
+            $id =input('get.id','','htmlspecialchars,intval');
+            $this->assign('id',$id);
+            return $this->fetch();
+        }
+        if($this->request->isPost()){
+            $data=input('post.',[],'trim,htmlspecialchars');
+            if(!$this->validate->scene('changeGender')->check($data)){
+                return show(0, $this->validate->getError(), '', '', '', $this->validate->getError());
+            }
+            $result=$this->service->changeInfo($data);
+            if(true ==$result){
+                return show(1, lang('Success'), '', '', url('customer_info'));
+            }elseif (false ==$result){
+                return show(0,lang('失败'),'','');
+            }else{
+                return show(0,lang($result),'','');
+            }
         }
     }
+
+    /**
+     *
+     * @return mixed
+     * 修改生日
+     */
+    public function changeBir(){
+        if($this->request->isGet()){
+            $id =input('get.id','','htmlspecialchars,intval');
+            $this->assign('id',$id);
+            return $this->fetch();
+        }
+        if($this->request->isPost()){
+            $data=input('post.',[],'trim,htmlspecialchars');
+            if(!$this->validate->scene('changeBirth')->check($data)){
+                return show(0, $this->validate->getError(), '', '', '', $this->validate->getError());
+            }
+            $result=$this->service->changeInfo($data);
+            if(true ==$result){
+                return show(1, lang('Success'), '', '', url('customer_info'));
+            }elseif (false ==$result){
+                return show(0,lang('失败'),'','');
+            }else{
+                return show(0,lang($result),'','');
+            }
+        }
+    }
+
+    /**
+     * @return mixed|void
+     */
+    public function changeBillAddress(){
+        if($this->request->isGet()){
+            $id =input('get.id','','htmlspecialchars,intval');
+            $this->assign('id',$id);
+            return $this->fetch();
+        }
+        if($this->request->isPost()){
+            $data=input('post.',[],'trim,htmlspecialchars');
+            if(!$this->validate->scene('changeBillAddress')->check($data)){
+                return show(0, $this->validate->getError(), '', '', '', $this->validate->getError());
+            }
+            $result=$this->service->changeInfo($data);
+            if(true ==$result){
+                return show(1, lang('Success'), '', '', url('customer_info'));
+            }elseif (false ==$result){
+                return show(0,lang('失败'),'','');
+            }else{
+                return show(0,lang($result),'','');
+            }
+        }
+    }
+
+    /**
+     * @return mixed|void
+     */
+    public function changeDeliveryAddress(){
+        if($this->request->isGet()){
+            $id =input('get.id','','htmlspecialchars,intval');
+            $this->assign('id',$id);
+            return $this->fetch();
+        }
+        if($this->request->isPost()){
+            $data=input('post.',[],'trim,htmlspecialchars');
+            if(!$this->validate->scene('changeDeliveryAddress')->check($data)){
+                return show(0, $this->validate->getError(), '', '', '', $this->validate->getError());
+            }
+            $result=$this->service->changeInfo($data);
+            if(true ==$result){
+                return show(1, lang('Success'), '', '', url('customer_info'));
+            }elseif (false ==$result){
+                return show(0,lang('失败'),'','');
+            }else{
+                return show(0,lang($result),'','');
+            }
+        }
+    }
+
 
     /***
      * changePassword 在没有登录的情况下 找回密码 修改密码通过该路由

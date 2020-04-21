@@ -28,12 +28,12 @@ use think\response\Redirect;
  */
 class Common extends Controller
 {
-    protected $lang;
+    protected $code;
 
     public function __construct(App $app = null)
     {
         parent::__construct($app);
-        $this->lang = Cookie::get('lang_var') ? Cookie::get('lang_var') : 'en_us';
+        $this->code = Cookie::get('lang_var') ? Cookie::get('lang_var') : 'en_us';
     }
 
     /**
@@ -42,7 +42,7 @@ class Common extends Controller
     public function driver()
     {
         //TODO::中间跳转页面后面准备做
-        return \redirect('/' . $this->lang . '/drivers.html');
+        return \redirect('/' . $this->code . '/drivers.html');
     }
 
     /**
@@ -51,7 +51,7 @@ class Common extends Controller
     public function manual()
     {
         //TODO::中间跳转页面后面准备做
-        return \redirect('/' . $this->lang . '/manuals.html');
+        return \redirect('/' . $this->code . '/manuals.html');
     }
 
     /**

@@ -18,7 +18,7 @@
                     <select name="category_id" id="category" class="select filter_by">
                         <option value="">--选择分类名称--</option>
                         {volist name="category" id="vo"}
-                        <option value="{$vo.id}" {if condition="$category_id eq $vo.id" } selected="selected" {/if}>{$vo.delimiter}{$vo.name}</option>
+                        <option value="{$vo.id}" {if condition="$category_id eq $vo.id" } selected="selected" {/if}>{$vo.delimiter|raw}{$vo.name}</option>
                         {/volist}
                     </select>
                 </span>

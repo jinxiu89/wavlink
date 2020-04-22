@@ -3,18 +3,25 @@ use think\facade\Route;
 Route::group('customer', function () {
     //注册
     Route::rule('/register$', 'User/register','GET|POST')->name('customer_register');
-    Route::rule('/verification$', 'Base/sendVerification','GET')->parent(['email'=>'[\w!#$%&\'*+/=?^_`{|}~-]+(?:\.[\w!#$%&\'*+/=?^_`{|}~-]+)*@(?:[\w](?:[\w-]*[\w])?\.)+[\w](?:[\w-]*[\w])?','phone'=>'\d+'])->name('verification');//验证码
+    //验证码
+    Route::rule('/verification$', 'Base/sendVerification','GET')
+        ->parent(['email'=>'[\w!#$%&\'*+/=?^_`{|}~-]+(?:\.[\w!#$%&\'*+/=?^_`{|}~-]+)*@(?:[\w](?:[\w-]*[\w])?\.)+[\w](?:[\w-]*[\w])?','phone'=>'\d+'])
+        ->name('verification');
     //登入登出
     Route::rule('/login$', 'User/login','GET|POST')->name('customer_login')->parent(['next'=>'[\w-]+']);
     Route::get('/logout$', 'User/logout')->name('customer_logout');
+    //找回密码
     Route::rule('/forgot/password$','User/forgotPassword','GET|POST')->name('forgot_password');
     Route::rule('/change/password$','User/changePassword','GET|POST')->name('change_password');
     //用户信息
     Route::rule('/info$','User/info','GET|POST')->name('customer_info');
     //修改名字
     Route::rule('/changeName','User/changeName')->name('changeName')->parent(['id'=>'[-\d+]']);
+    //修改性别
     Route::rule('/changeGender','User/changeGender','GET|POST')->name('changeGender')->parent(['id'=>'[-\d+]']);
+    //修改生日
     Route::rule('/changeBirthday','User/changeBirthday','GET|POST')->name('changeBirthday')->parent(['id'=>'[-\d+]']);
+
     Route::rule('/changeBillAddress','User/changeBillAddress','GET|POST')->name('changeBillAddress')->parent(['id'=>'[-\d+]']);
     Route::rule('/changeDeliveryAddress','User/changeDeliveryAddress','GET|POST')->name('changeDeliveryAddress')->parent(['id'=>'[-\d+]']);
 

@@ -16,6 +16,7 @@ use think\Controller;
 use think\db\exception\DataNotFoundException;
 use think\db\exception\ModelNotFoundException;
 use think\exception\DbException;
+use think\facade\Config;
 use think\facade\Cookie;
 use think\facade\Lang;
 use think\facade\Request;
@@ -67,16 +68,18 @@ class Base extends Controller
      * @throws ModelNotFoundException
      * parent::__construct($app)在后面继承 语言切换在URL上直接改就不会有bug
      * 20200420 ：国内用户日益增多，把国内的网站导入到国内来，所以将默认跳英文网站的代码块去掉
-     *
+     * 20200422 : 解决url手动输入语言code初始化语言的bug
+     * if (!empty($path[0]) && in_array($path[0],Config::get('language.allow_lang'))) {
+    Cookie::set('lang_var', $path[0]);
+    }
+     * 除了这句其他的都按照前面的autoload方法来走
      */
     public function __construct(App $app = null)
     {
-        /*$path = explode('/', Request::path());
-        if (empty($path[0])) {
-            Cookie::set('lang_var', 'en_us');
-        } else {
+        $path = explode('/', Request::path());
+        if (!empty($path[0]) && in_array($path[0],Config::get('language.allow_lang'))) {
             Cookie::set('lang_var', $path[0]);
-        }*/
+        }
         parent::__construct($app);
         $this->language_id = LanguageModel::getLanguageCodeOrID($this->code);
     }

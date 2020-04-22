@@ -39,3 +39,4 @@ Route::rule('/login$', 'customer/User/login', 'GET|POST')->parent(['next' => '[\
 Route::rule('/register$', 'customer/User/register', 'GET|POST');
 //发送验证码连接，永久保留
 Route::rule('/verify/code$', 'en_us/Common/verify', 'GET')->name('gen_verify');
+Route::get('/index$','en_us/Index/index');

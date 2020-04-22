@@ -334,7 +334,7 @@ class User extends Base
      * @return mixed
      * 修改生日
      */
-    public function changeBir(){
+    public function changeBirthday(){
         if($this->request->isGet()){
             $id =input('get.id','','htmlspecialchars,intval');
             $this->assign('id',$id);

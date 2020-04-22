@@ -14,7 +14,7 @@ Route::group('customer', function () {
     //修改名字
     Route::rule('/changeName','User/changeName')->name('changeName')->parent(['id'=>'[-\d+]']);
     Route::rule('/changeGender','User/changeGender','GET|POST')->name('changeGender')->parent(['id'=>'[-\d+]']);
-    Route::rule('/changeBir','User/changeBir','GET|POST')->name('changeBir')->parent(['id'=>'[-\d+]']);
+    Route::rule('/changeBirthday','User/changeBirthday','GET|POST')->name('changeBirthday')->parent(['id'=>'[-\d+]']);
     Route::rule('/changeBillAddress','User/changeBillAddress','GET|POST')->name('changeBillAddress')->parent(['id'=>'[-\d+]']);
     Route::rule('/changeDeliveryAddress','User/changeDeliveryAddress','GET|POST')->name('changeDeliveryAddress')->parent(['id'=>'[-\d+]']);
 

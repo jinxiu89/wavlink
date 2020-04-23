@@ -25,7 +25,7 @@
                 <input type="hidden" id="id" name="id" value="{$id}">
                 <div class="btn-group">
                     <button class="btn" type="submit">SUBMIT</button>
-                    <button class="btn" type="button">CANCEL</button>
+                    <button class="btn" type="button" id="btn-close">CANCEL</button>
                 </div>
             </form>
             <!--<div class="form-tips">
@@ -54,5 +54,6 @@
             InfoChange('{:url(\'changeGender\')}', form)
         }
     });
+    layer_close();
 </script>
 {/block}

@@ -69,9 +69,9 @@
             <h4 class="Field-label">BIRTHDAY</h4>
             <div class="Field-content">
                 <div>
-                    <span class="Field-text">January 01, 1993</span>
+                    <span class="Field-text">{$result.info.birthday|date='Y-m-d'}</span>
                     <button class="Field-modify" type="button"
-                            onclick="layer_open('Modify Your Username','{:url(\'changeBirthday\',[\'id\'=>$result.id])}',533,300)">
+                            onclick="layer_open('Modify Your Birthday','{:url(\'changeBirthday\',[\'id\'=>$result.id])}',533,300)">
                         <span class="iconfont iconedit"></span> Modify
                     </button>
                 </div>
@@ -135,7 +135,7 @@
             <h4 class="Field-label">COUNTRY</h4>
             <div class="Field-content">
                 <div>
-                    <span class="Field-text">{:lang($result.info.country)}</span>
+                    <span class="Field-text">{notempty name="$result.info.country"}{$result.info.country|getCountry|lang}{/notempty}</span>
                     <button class="Field-modify" type="button"
                             onclick="layer_open('Modify Your Country','{:url(\'changeCountry\',[\'id\'=>$result.id])}',533,300)">
                         <span class="iconfont iconedit"></span> Modify

@@ -12,13 +12,13 @@
             <form class="personal-billing" id="personal-billing" action="">
                 <div class="info">
                     <label for="billing_address">Billing Address: </label>
-                    <input id="billing_address" name="billing_address" type="text">
+                    <input id="billing_address" name="billing_address" type="text" value="{$billing_address}">
                 </div>
 
                 <input type="hidden" id="id" name="id" value="{$id}">
                 <div class="btn-group">
                     <button class="btn" type="submit">SUBMIT</button>
-                    <button class="btn" type="button">CANCEL</button>
+                    <button class="btn" type="button" id="btn-close">CANCEL</button>
                 </div>
             </form>
         </div>
@@ -44,5 +44,6 @@
             InfoChange('{:url(\'changeBillingAddress\')}', form)
         }
     });
+    layer_close();
 </script>
 {/block}

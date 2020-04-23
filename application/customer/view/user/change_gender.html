@@ -11,21 +11,21 @@
             </div>
             <form class="personal-gender" id="personal-gender" action="">
                 <div class="info">
-                    <input id="Secret" name="gender" value="3" type="radio" checked/>
+                    <input id="Secret" name="gender" value="3" type="radio" {if($gender == 3)}checked{/if} />
                     <label for="Secret">Secret</label>
                 </div>
                 <div class="info">
-                    <input id="Male" name="gender" value="1" type="radio" />
+                    <input id="Male" name="gender" value="1" type="radio" {if($gender == 1)}checked{/if} />
                     <label for="Male">Male</label>
                 </div>
                 <div class="info">
-                    <input id="Female" name="gender" value="2" type="radio" />
+                    <input id="Female" name="gender" value="2" type="radio" {if($gender == 2)}checked{/if}/>
                     <label for="Female">Female</label>
                 </div>
                 <input type="hidden" id="id" name="id" value="{$id}">
                 <div class="btn-group">
                     <button class="btn" type="submit">SUBMIT</button>
-                    <button class="btn" type="button">CANCEL</button>
+                    <button class="btn" type="button" id="btn-close">CANCEL</button>
                 </div>
             </form>
             <!--<div class="form-tips">
@@ -54,5 +54,6 @@
             InfoChange('{:url(\'changeGender\')}', form)
         }
     });
+    layer_close();
 </script>
 {/block}

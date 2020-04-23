@@ -15,7 +15,7 @@
                     <select id="country" name="country">
                         <option value="">{:lang('select')}</option>
                         {volist name="country" id="vo"}
-                        <option value="{$vo.name}">{:lang($vo.name)}</option>
+                        <option value="{$vo.country_id}">{:lang($vo.name)}</option>
                         {/volist}
                     </select>
                 </div>
@@ -23,7 +23,7 @@
                 <input type="hidden" id="id" name="id" value="{$id}">
                 <div class="btn-group">
                     <button class="btn" type="submit">SUBMIT</button>
-                    <button class="btn" type="button">CANCEL</button>
+                    <button class="btn" type="button" id="btn-close">CANCEL</button>
                 </div>
             </form>
         </div>
@@ -49,5 +49,6 @@
             InfoChange('{:url(\'changeBillingAddress\')}', form)
         }
     });
+    layer_close();
 </script>
 {/block}

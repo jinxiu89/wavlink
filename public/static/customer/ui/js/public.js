@@ -38,6 +38,13 @@ function layer_open(title, url, w, h) {
     });
 }
 
+function layer_close() {
+    $('#btn-close').click(function (){
+        var index = parent.layer.getFrameIndex(window.name);
+        parent.layer.close(index);
+    })
+}
+
 function Account() {
     var Dom = $('#account')
     Dom.hover(function () {

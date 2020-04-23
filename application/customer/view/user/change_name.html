@@ -12,16 +12,16 @@
             <form class="personal-name" id="personal-name" action="">
                 <div class="info">
                     <label for="firstName">First Name: </label>
-                    <input id="firstName" name="first_name" type="text" placeholder="Alan">
+                    <input id="firstName" name="first_name" type="text" value="{$name.first_name}">
                 </div>
                 <div class="info">
                     <label for="lastName">Last Name: </label>
-                    <input id="lastName" name="last_name" type="text" placeholder="Alan">
+                    <input id="lastName" name="last_name" type="text" value="{$name.last_name}">
                 </div>
                 <input type="hidden" id="id" name="id" value="{$id}">
                 <div class="btn-group">
                     <button class="btn" type="submit">SUBMIT</button>
-                    <button class="btn" type="button">CANCEL</button>
+                    <button class="btn" type="button" id="btn-close">CANCEL</button>
                 </div>
             </form>
             <!--<div class="form-tips">
@@ -57,5 +57,7 @@
             InfoChange('{:url(\'changeName\')}', form)
         }
     });
+
+    layer_close();
 </script>
 {/block}

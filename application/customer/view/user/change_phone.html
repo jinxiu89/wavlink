@@ -12,7 +12,7 @@
             <form class="personal-phone" id="personal-phone" action="">
                 <div class="info">
                     <label for="phone">Phone Number: </label>
-                    <input class="code" id="phone" name="phone" type="text">
+                    <input class="code" id="phone" name="phone" type="text" value="{$phone}">
                     <button id="send_code" type="button">{:lang('send')}</button>
                 </div>
                 <div class="info">
@@ -23,7 +23,7 @@
                 <input type="hidden" id="id" name="id" value="{$id}">
                 <div class="btn-group">
                     <button class="btn" type="submit">SUBMIT</button>
-                    <button class="btn" type="button">CANCEL</button>
+                    <button class="btn" type="button" id="btn-close">CANCEL</button>
                 </div>
             </form>
         </div>
@@ -152,5 +152,7 @@
             InfoChange('{:url(\'changePhone\')}', form)
         }
     });
+
+    layer_close();
 </script>
 {/block}

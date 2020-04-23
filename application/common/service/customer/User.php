@@ -89,7 +89,9 @@ class User extends BaseService
     /**
      * @param $data
      * @return bool|string
-     * 小方：桑葚10克，槐米6克，决明子6克。久坐便秘者。
+     * 小方：桑葚10g，槐米6g，决明子6g。久坐便秘者。
+     * 加班严重，喝可乐是没用的，需要调理一下身体，别到30岁就干不动了。
+     * 熬夜加班者可以使用这个方子泡茶喝，上述一天的分量，不分时候喝
      */
     public function updateInfo($data)
     {
@@ -104,6 +106,7 @@ class User extends BaseService
     /**
      * @param string $email
      * @return array
+     *
      */
     public function getUserByEmail($email = '')
     {

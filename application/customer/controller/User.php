@@ -218,7 +218,7 @@ class User extends Base
             $data['password'] = GetPassword($data['password']);
             if ($data['type'] == 1) { //email 注册
                 $code = Cache::store('redis')->get($data['email'], '') ? Cache::store('redis')->get($data['email'], '') : Cache::store('default')->get($data['email'], '');
-                if ($code != $data['verification']) {
+                if ($code != $data['captcha']) {
                     return show(0, lang('The verification code is invalid'), '', '', '', lang('The verification code is invalid'));
                 }
                 $check = $this->service->CheckEmail($data['email']);
@@ -231,7 +231,7 @@ class User extends Base
             }
             if ($data['type'] == 2) { //短信注册
                 $code = Cache::store('redis')->get($data['phone'], '') ? Cache::store('redis')->get($data['phone'], '') : Cache::store('default')->get($data['phone'], '');
-                if ($code != $data['verification']) {
+                if ($code != $data['captcha']) {
                     return show(0, lang('The verification code is invalid'), '', '', '', lang('The verification code is invalid'));
                 }
                 $check = $this->service->CheckPhone($data['phone']);
@@ -373,6 +373,10 @@ class User extends Base
             if (!$this->validate->scene('changePhone')->check($data)) {
                 return show(0, $this->validate->getError(), '', '', '', $this->validate->getError());
             }
+            $code = Cache::store('redis')->get($data['phone'], '') ? Cache::store('redis')->get($data['phone'], '') : Cache::store('default')->get($data['phone'], '');
+            if ($code != $data['captcha']) {
+                return show(0, lang('The verification code is invalid'), '', '', '', lang('The verification code is invalid'));
+            }
             $result = $this->service->updateInfo($data);
             if (true == $result) {
                 return show(1, lang('Success'), '', '', url('customer_info'));
@@ -397,6 +401,10 @@ class User extends Base
             $data = input('post.', [], 'trim,htmlspecialchars');
             if (!$this->validate->scene('changeEmail')->check($data)) {
                 return show(0, $this->validate->getError(), '', '', '', $this->validate->getError());
+            }
+            $code = Cache::store('redis')->get($data['email'], '') ? Cache::store('redis')->get($data['email'], '') : Cache::store('default')->get($data['email'], '');
+            if ($code != $data['captcha']) {
+                return show(0, lang('The verification code is invalid'), '', '', '', lang('The verification code is invalid'));
             }
             $result = $this->service->updateInfo($data);
             if (true == $result) {

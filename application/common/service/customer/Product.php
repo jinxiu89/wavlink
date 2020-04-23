@@ -24,7 +24,13 @@ class Product extends BaseService
         $this->model=new Model();
     }
 
-
+    /**
+     * @param $code
+     * @return array
+     * 小方：银杏叶10g，沙棘10g，红曲10g,桑葚10g，槐米6g，决明子6g。高血脂小方
+     * 对于多年加班且容易累的人，可以使用这个小方调理，使用方法是，自己去要点按剂量抓取，上述是一天的剂量，泡茶喝，每喝15天歇几天再喝
+     *
+     */
     public function getCategory($code){
         try{
             return (new Category())->getAllCategory($code);

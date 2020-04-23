@@ -97,9 +97,22 @@ class User extends BaseService
     {
         try {
             $user = $this->model->get($data['id']);
-            return $user->save($data)?true:false;
-        }catch (\Exception $exception){
+            return $user->save($data) ? true : false;
+        } catch (\Exception $exception) {
             return $exception->getMessage();
+        }
+    }
+
+    /***
+     * @param $id
+     * @return mixed
+     */
+    public function getInfo($id)
+    {
+        try {
+            return $this->model->get($id);
+        } catch (\Exception $exception) {
+            //TODO:
         }
     }
 

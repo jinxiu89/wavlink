@@ -284,6 +284,11 @@ class User extends Base
     {
         if ($this->request->isGet()) {
             $id = input('get.id', '', 'htmlspecialchars,intval');
+            $data = $this->service->getInfo($id);
+            $name['first_name'] = $data->info->first_name;
+            $name['last_name'] = $data->info->last_name;
+            unset($data);
+            $this->assign('name', $name);
             $this->assign('id', $id);
             return $this->fetch();
         }
@@ -311,6 +316,10 @@ class User extends Base
     {
         if ($this->request->isGet()) {
             $id = input('get.id', '', 'htmlspecialchars,intval');
+            $data = $this->service->getInfo($id);
+            $gender = $data->info->gender;
+            unset($data);
+            $this->assign('gender', $gender);
             $this->assign('id', $id);
             return $this->fetch();
         }
@@ -339,6 +348,10 @@ class User extends Base
     {
         if ($this->request->isGet()) {
             $id = input('get.id', '', 'htmlspecialchars,intval');
+            $data = $this->service->getDataById($id);
+            $birthday = $data->info->birthday;
+            unset($data);
+            $this->assign('birthday', $birthday);
             $this->assign('id', $id);
             return $this->fetch();
         }
@@ -365,10 +378,14 @@ class User extends Base
     {
         if ($this->request->isGet()) {
             $id = input('get.id', '', 'htmlspecialchars,intval');
+            $data = $this->service->getInfo($id);
+            $phone = $data->phone;
+            unset($data);
+            $this->assign('phone',$phone);
             $this->assign('id', $id);
             return $this->fetch();
         }
-        if($this->request->isPost()){
+        if ($this->request->isPost()) {
             $data = input('post.', [], 'trim,htmlspecialchars');
             if (!$this->validate->scene('changePhone')->check($data)) {
                 return show(0, $this->validate->getError(), '', '', '', $this->validate->getError());
@@ -391,13 +408,18 @@ class User extends Base
     /***
      * @return mixed|void
      */
-    public function changeEmail(){
+    public function changeEmail()
+    {
         if ($this->request->isGet()) {
             $id = input('get.id', '', 'htmlspecialchars,intval');
+            $data = $this->service->getInfo($id);
+            $email = $data->email;
+            unset($data);
+            $this->assign('email',$email);
             $this->assign('id', $id);
             return $this->fetch();
         }
-        if($this->request->isPost()){
+        if ($this->request->isPost()) {
             $data = input('post.', [], 'trim,htmlspecialchars');
             if (!$this->validate->scene('changeEmail')->check($data)) {
                 return show(0, $this->validate->getError(), '', '', '', $this->validate->getError());
@@ -416,6 +438,7 @@ class User extends Base
             }
         }
     }
+
     /**
      * @return mixed|void
      * changeCountry 用户修改自己的所属国家
@@ -426,7 +449,7 @@ class User extends Base
             $country = $this->service->getCountry();
             $id = input('get.id', '', 'htmlspecialchars,intval');
             $this->assign('id', $id);
-            $this->assign('country',$country);
+            $this->assign('country', $country);
             return $this->fetch();
         }
         if ($this->request->isPost()) {
@@ -453,7 +476,11 @@ class User extends Base
     {
         if ($this->request->isGet()) {
             $id = input('get.id', '', 'htmlspecialchars,intval');
+            $data = $this->service->getInfo($id);
+            $code = $data->info->zip_code;
+            unset($data);
             $this->assign('id', $id);
+            $this->assign('code',$code);
             return $this->fetch();
         }
         if ($this->request->isPost()) {
@@ -479,7 +506,11 @@ class User extends Base
     {
         if ($this->request->isGet()) {
             $id = input('get.id', '', 'htmlspecialchars,intval');
+            $data = $this->service->getInfo($id);
+            $billing_address = $data->info->billing_address;
+            unset($data);
             $this->assign('id', $id);
+            $this->assign('billing_address', $billing_address);
             return $this->fetch();
         }
         if ($this->request->isPost()) {
@@ -505,7 +536,11 @@ class User extends Base
     {
         if ($this->request->isGet()) {
             $id = input('get.id', '', 'htmlspecialchars,intval');
+            $data = $this->service->getInfo($id);
+            $delivery_address = $data->info->delivery_address;
+            unset($data);
             $this->assign('id', $id);
+            $this->assign('delivery_address', $delivery_address);
             return $this->fetch();
         }
         if ($this->request->isPost()) {

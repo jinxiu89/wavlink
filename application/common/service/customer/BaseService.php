@@ -54,6 +54,7 @@ class BaseService
         }
     }
 
+
     /**
      * @param $data
      * @return mixed

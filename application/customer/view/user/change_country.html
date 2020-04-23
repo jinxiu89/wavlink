@@ -15,7 +15,7 @@
                     <select id="country" name="country">
                         <option value="">{:lang('select')}</option>
                         {volist name="country" id="vo"}
-                        <option value="{$vo.name}">{:lang($vo.name)}</option>
+                        <option value="{$vo.country_id}">{:lang($vo.name)}</option>
                         {/volist}
                     </select>
                 </div>

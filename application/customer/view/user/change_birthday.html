@@ -7,16 +7,12 @@
     <div class="box" id="box">
         <div class="info-change-box">
             <div class="form-title">
-                <h3 class="title">Modify Your Gender</h3>
+                <h3 class="title">Modify Your Birthday</h3>
             </div>
             <form class="personal-birthday" id="personal-birthday" action="">
                 <div class="info">
                     <label for="year">Year: </label>
                     <select id="year" class="sel_year" rel=""></select>
-                    <!--<label>生日：</label>
-                    <select class="sel_year" rel="2000"></select>年
-                    <select class="sel_month" rel="2"></select>月
-                    <select class="sel_day" rel="14"></select>日-->
                 </div>
                 <div class="info">
                     <label for="month">Month: </label>
@@ -29,7 +25,7 @@
 
                 <input type="hidden" id="id" name="id" value="{$id}">
                 <div class="btn-group">
-                    <button class="btn" type="submit">SUBMIT</button>
+                    <button class="btn" type="button" id="btn-submit">SUBMIT</button>
                     <button class="btn" type="button" id="btn-close">CANCEL</button>
                 </div>
             </form>
@@ -46,26 +42,63 @@
 <script src="__STATIC__/admin/lib/jquery.validation/1.14.0/messages_zh.js"></script>
 {/if}
 <script>
+    $(document).ready(function(){
+        var time = '{$birthday}' + '000';
+        var date = new Date(Number(time));
+        var y = date.getFullYear();
+        var m = date.getMonth() + 1;
+        m = m < 10 ? ('0' + m) : m;
+        var d = date.getDate();
+        d = d < 10 ? ('0' + d) : d;
+        $('#year').attr('rel', y)
+        $('#month').attr('rel', m)
+        $('#day').attr('rel', d)
+
+        $.ms_DatePicker({
+            YearSelector: ".sel_year",
+            MonthSelector: ".sel_month",
+            DaySelector: ".sel_day"
+        });
+    })
     $("#personal-gender").validate({
         errorClass: 'infoError',
         errorElement: 'p',
         rules: {
 
         },
-        submitHandler: function (form) {
+        /*submitHandler: function (form) {
             InfoChange('{:url(\'changeBirthday\')}', form)
-        }
+        }*/
     });
 
-    $.ms_DatePicker({
-        YearSelector: ".sel_year",
-        MonthSelector: ".sel_month",
-        DaySelector: ".sel_day"
+    $('#btn-submit').click(function () {
+        var y = $('.sel_year').val(),
+            m = $('.sel_month').val(),
+            d = $('.sel_day').val();
+        m = m < 10 ? ('0' + m) : m;
+        d = d < 10 ? ('0' + d) : d;
+        var time = y + '-' + m + '-' + d
+        var birthday =  new Date(time).getTime()/1000;
+        var postData={};
+        postData['id']=$('#id').val();
+        postData['birthday']= birthday;
+        $.ajax({
+            url: '{:url(\'changeBirthday\')}',
+            type: "post",
+            dataType: "json",
+            data: postData,//提交表单数据
+            success: function (result) {
+                if (result.status === 1) {
+                    //更新信息成功后刷新页面
+                    layer.msg(result.message, {icon: 1, time: 2000}, function () {
+                        window.parent.location.href = result.jump_url
+                    });
+                } else {
+                    layer.msg(result.message, {icon: 5, time: 3000});
+                }
+            }
+        })
     });
-    console.log($('.sel_year').val());
-    console.log($('.sel_month').val());
-    console.log($('.sel_day').val());
-
     layer_close();
 </script>
 {/block}

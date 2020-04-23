@@ -85,8 +85,15 @@
 .Module .Field-content {
   padding: 0 0 0 175px;
 }
-.Module .Field-content .text {
+.Module .Field-content .Field-text {
   font-size: 14px;
+}
+.Module .Field-content .Field-text .link {
+  color: #136ec2;
+}
+.Module .Field-content .Field-text .link:hover {
+  color: #1d78cc;
+  text-decoration: underline;
 }
 .Module .Field-content .Field-modify {
   margin-left: 5px;

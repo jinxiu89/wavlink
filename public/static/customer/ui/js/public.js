@@ -66,7 +66,7 @@ function InfoChange(url, form) {
         success: function (result) {
             if (result.status === 1) {
                 //更新信息成功后刷新页面
-                layer.msg(result.message, {icon: 1, time: 2000}, function () {
+                layer.msg(result.message, {icon: 1, time: 1000}, function () {
                     window.parent.location.href = result.jump_url
                 });
             } else {

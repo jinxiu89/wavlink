@@ -11,6 +11,8 @@
 
 namespace app\common\service\customer;
 
+use app\common\model\Country;
+
 /**
  * Class BaseService
  * @package app\common\service\customer
@@ -25,6 +27,17 @@ class BaseService
             return $this->model->create($data); //返回的是一个当前模型的实例
         } catch (\Exception $exception) {
             return $exception->getMessage();//todo:: 异常
+        }
+    }
+    /**
+     * @return array
+     */
+    public function getCountry(){
+        try{
+            $data=(new Country())->field('country_id,name')->select();
+            return $data->toArray();
+        }catch (\Exception $exception){
+            return [];
         }
     }
 

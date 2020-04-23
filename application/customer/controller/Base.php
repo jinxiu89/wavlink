@@ -29,6 +29,7 @@ class Base extends Controller
 
     public function __construct(App $app = null)
     {
+
         parent::__construct($app);
         $this->uid = session('CustomerInfo', '', 'Customer');
     }

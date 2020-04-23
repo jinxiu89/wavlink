@@ -31,10 +31,11 @@ class User extends BaseService
      * @param $email
      * @return bool
      */
-    public function CheckEmail($email){
-        try{
+    public function CheckEmail($email)
+    {
+        try {
             return $this->model->CheckEmail($email);
-        }catch (\Exception $exception){//todo:日志再完善哈
+        } catch (\Exception $exception) {//todo:日志再完善哈
             return $exception->getMessage();
         }
     }
@@ -43,10 +44,11 @@ class User extends BaseService
      * @param $phone
      * @return array|bool
      */
-    public function CheckPhone($phone){
-        try{
+    public function CheckPhone($phone)
+    {
+        try {
             return $this->model->CheckPhone($phone);
-        }catch (\Exception $exception){//todo::日志再完善
+        } catch (\Exception $exception) {//todo::日志再完善
             return $exception->getMessage();
         }
     }
@@ -55,10 +57,11 @@ class User extends BaseService
      * @param $id
      * @return Query|null
      */
-    public function getUserWithInfoByID($id){
-        try{
+    public function getUserWithInfoByID($id)
+    {
+        try {
             return $this->model->with('info')->get($id);
-        }catch (\Exception $exception){
+        } catch (\Exception $exception) {
             //todo:hello 等一下搞
         }
     }
@@ -68,15 +71,31 @@ class User extends BaseService
      * @return bool|string
      *
      */
-    public function changeInfo($data){
-        try{
-            $user=$this->model->get($data['id']);
-            $info=$user->info;
+    public function changeInfo($data)
+    {
+        try {
+            $user = $this->model->get($data['id']);
+            $info = $user->info;
             unset($data['id']);
-            if(!empty($info)){
-                return $user->info->save($data)?true:false;
+            if (!empty($info)) {
+                return $user->info->save($data) ? true : false;
             }
-            return $user->info()->save($data)?true:false;
+            return $user->info()->save($data) ? true : false;
+        } catch (\Exception $exception) {
+            return $exception->getMessage();
+        }
+    }
+
+    /**
+     * @param $data
+     * @return bool|string
+     * 小方：桑葚10克，槐米6克，决明子6克。久坐便秘者。
+     */
+    public function updateInfo($data)
+    {
+        try {
+            $user = $this->model->get($data['id']);
+            return $user->save($data)?true:false;
         }catch (\Exception $exception){
             return $exception->getMessage();
         }
@@ -86,11 +105,12 @@ class User extends BaseService
      * @param string $email
      * @return array
      */
-    public function getUserByEmail($email=''){
-        try{
-            $result=$this->model->getUserByEmail($email);
-            return  $result->toArray();
-        }catch (\Exception $exception){
+    public function getUserByEmail($email = '')
+    {
+        try {
+            $result = $this->model->getUserByEmail($email);
+            return $result->toArray();
+        } catch (\Exception $exception) {
             return [];
         }
     }
@@ -99,11 +119,12 @@ class User extends BaseService
      * @param string $phone
      * @return array
      */
-    public function getUserByPhone($phone=''){
-        try{
-            $result=$this->model->getUserByPhone($phone);
+    public function getUserByPhone($phone = '')
+    {
+        try {
+            $result = $this->model->getUserByPhone($phone);
             return $result->toArray();
-        }catch (\Exception $exception){
+        } catch (\Exception $exception) {
             return [];
         }
     }
@@ -112,10 +133,11 @@ class User extends BaseService
      * @param $id
      * @return mixed
      */
-    public function getDataByIdWithInfo($id){
-        try{
-            return $this->model->withJoin('info','left')->get($id);
-        }catch (\Exception $exception){
+    public function getDataByIdWithInfo($id)
+    {
+        try {
+            return $this->model->withJoin('info', 'left')->get($id);
+        } catch (\Exception $exception) {
             //todo 异常处理
         }
     }
@@ -127,13 +149,13 @@ class User extends BaseService
      */
     public function login($data)
     {
-        $user=[];
+        $user = [];
         try {
-            if(isset($data['email']) || !empty($data['email'])){
+            if (isset($data['email']) || !empty($data['email'])) {
                 $user = $this->model->get(['email' => $data['email']]);
             }
-            if(isset($data['phone']) || !empty($data['phone'])){
-                $user = $this->model->get(['phone'=>$data['phone']]);
+            if (isset($data['phone']) || !empty($data['phone'])) {
+                $user = $this->model->get(['phone' => $data['phone']]);
             }
             if (!$user) {
                 return ['status' => 0, 'message' => lang('User does not exist'), 'url' => url('customer_login')];
@@ -158,7 +180,9 @@ class User extends BaseService
             return ['status' => 0, 'message' => $exception->getMessage(), 'url' => url('customer_login')];
         }
     }
-    public function reg($data){
+
+    public function reg($data)
+    {
         //todo::注册操作
     }
 }

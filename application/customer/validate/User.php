@@ -21,28 +21,45 @@ class User extends Validate
 {
     protected $rule=[
         'id'=>'integer',
-        'email'=>'require|email',
+        'email'=>'require|email|unique:tb_user,email',
         'first_name'=>'require|max:20',
         'gender'=>'require|in:1,2,3',
-        'phone'=>'require',
+        'phone'=>'require|unique:tb_user,phone',
         'password'=>['regex'=>'^(?![0-9]+$)(?![a-z]+$)(?![A-Z]+$)(?!([^(0-9a-zA-Z)])+$).{6,20}$'],
+        'country'=>'require|max:20',
+        'zip_code'=>'require|max:20',
+        'billing_address'=>'max:120',
+        'delivery_address'=>'max:120',
     ];
     protected $message=[
         'email.require'=>'{%email is required}',
         'email.email'=>'{%email format is Error}',
+        'email.unique'=>'{%email 不能重复}',
         'first_name.require'=>'{%first name is required}',
         'first_name.max'=>'{%first name is max 20}',
         'gender.require'=>'{%gender is require}',
         'gender.integer'=>'{%gender is error}',
         'phone'=>'{%phone number is require}',
-        'password'=>'{%password is to easy }'
+        'phone.unique'=>'{%phone number is 重复}',
+        'password'=>'{%password is to easy }',
+        'country.require'=>'{%Country is required }',
+        'country.max'=>'{%Country is mast be to 20 letter }',
+        'zip_code'=>'{%Zip code is required }',
+        'billing_address'=>'billing address not 太长',
+        'delivery_address'=>'delivery address not 太长'
     ];
     protected $scene=[
-        'email'=>['email','password'],
-        'phone'=>['phone','password'],
+        'email'=>['password'],
+        'phone'=>['password'],
         'register'=>['email'],
         'change_password'=>['id','password'],
         'changeName'=>['id','first_name'],
-        'changeGender'=>['id','gender']
+        'changeGender'=>['id','gender'],
+        'changeCountry'=>['id','country'],
+        'changePhone'=>['id','phone'],
+        'changeEmail'=>['id','email'],
+        'changeCode'=>['id','zip_code'],
+        'changeBillAddress'=>['id','billing_address'],
+        'changeDeliveryAddress'=>['id','delivery_address'],
     ];
 }

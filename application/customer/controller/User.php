@@ -263,7 +263,7 @@ class User extends Base
         if (request()->isGet()) {
             $customer = $this->service->getDataByIdWithInfo($this->uid)->toArray();
             $country = (new Country())->field('country_id,name')->select();
-            unset($customer['password'],$customer['referee_code'],$customer['create_time'],$customer['update_time'],$customer['is_subscribe'],$customer['disclaimer']);
+            unset($customer['password'], $customer['referee_code'], $customer['create_time'], $customer['update_time'], $customer['is_subscribe'], $customer['disclaimer']);
             if (isMobile()) {
                 return "hello world";
             } else {
@@ -288,17 +288,17 @@ class User extends Base
             return $this->fetch();
         }
         if ($this->request->isPost()) {
-            $data=input('post.',[],'trim,htmlspecialchars');
-            if(!$this->validate->scene('changeName')->check($data)){
+            $data = input('post.', [], 'trim,htmlspecialchars');
+            if (!$this->validate->scene('changeName')->check($data)) {
                 return show(0, $this->validate->getError(), '', '', '', $this->validate->getError());
             }
-            $result=$this->service->changeInfo($data);
-            if(true ==$result){
+            $result = $this->service->changeInfo($data);
+            if (true == $result) {
                 return show(1, lang('Success'), '', '', url('customer_info'));
-            }elseif (false ==$result){
-                return show(0,lang('失败'),'','');
-            }else{
-                return show(0,lang($result),'','');
+            } elseif (false == $result) {
+                return show(0, lang('失败'), '', '');
+            } else {
+                return show(0, lang($result), '', '');
             }
         }
     }
@@ -307,24 +307,25 @@ class User extends Base
      * @return mixed
      * 改变性别
      */
-    public function changeGender(){
-        if($this->request->isGet()){
-            $id =input('get.id','','htmlspecialchars,intval');
-            $this->assign('id',$id);
+    public function changeGender()
+    {
+        if ($this->request->isGet()) {
+            $id = input('get.id', '', 'htmlspecialchars,intval');
+            $this->assign('id', $id);
             return $this->fetch();
         }
-        if($this->request->isPost()){
-            $data=input('post.',[],'trim,htmlspecialchars');
-            if(!$this->validate->scene('changeGender')->check($data)){
+        if ($this->request->isPost()) {
+            $data = input('post.', [], 'trim,htmlspecialchars');
+            if (!$this->validate->scene('changeGender')->check($data)) {
                 return show(0, $this->validate->getError(), '', '', '', $this->validate->getError());
             }
-            $result=$this->service->changeInfo($data);
-            if(true ==$result){
+            $result = $this->service->changeInfo($data);
+            if (true == $result) {
                 return show(1, lang('Success'), '', '', url('customer_info'));
-            }elseif (false ==$result){
-                return show(0,lang('失败'),'','');
-            }else{
-                return show(0,lang($result),'','');
+            } elseif (false == $result) {
+                return show(0, lang('失败'), '', '');
+            } else {
+                return show(0, lang($result), '', '');
             }
         }
     }
@@ -334,24 +335,131 @@ class User extends Base
      * @return mixed
      * 修改生日
      */
-    public function changeBirthday(){
-        if($this->request->isGet()){
-            $id =input('get.id','','htmlspecialchars,intval');
-            $this->assign('id',$id);
+    public function changeBirthday()
+    {
+        if ($this->request->isGet()) {
+            $id = input('get.id', '', 'htmlspecialchars,intval');
+            $this->assign('id', $id);
+            return $this->fetch();
+        }
+        if ($this->request->isPost()) {
+            $data = input('post.', [], 'trim,htmlspecialchars');
+            if (!$this->validate->scene('changeBirth')->check($data)) {
+                return show(0, $this->validate->getError(), '', '', '', $this->validate->getError());
+            }
+            $result = $this->service->changeInfo($data);
+            if (true == $result) {
+                return show(1, lang('Success'), '', '', url('customer_info'));
+            } elseif (false == $result) {
+                return show(0, lang('失败'), '', '');
+            } else {
+                return show(0, lang($result), '', '');
+            }
+        }
+    }
+
+    /***
+     * @return mixed|void
+     */
+    public function changePhone()
+    {
+        if ($this->request->isGet()) {
+            $id = input('get.id', '', 'htmlspecialchars,intval');
+            $this->assign('id', $id);
             return $this->fetch();
         }
         if($this->request->isPost()){
-            $data=input('post.',[],'trim,htmlspecialchars');
-            if(!$this->validate->scene('changeBirth')->check($data)){
+            $data = input('post.', [], 'trim,htmlspecialchars');
+            if (!$this->validate->scene('changePhone')->check($data)) {
                 return show(0, $this->validate->getError(), '', '', '', $this->validate->getError());
             }
-            $result=$this->service->changeInfo($data);
-            if(true ==$result){
+            $result = $this->service->updateInfo($data);
+            if (true == $result) {
                 return show(1, lang('Success'), '', '', url('customer_info'));
-            }elseif (false ==$result){
-                return show(0,lang('失败'),'','');
-            }else{
-                return show(0,lang($result),'','');
+            } elseif (false == $result) {
+                return show(0, lang('失败'), '', '');
+            } else {
+                return show(0, lang($result), '', '');
+            }
+        }
+    }
+
+    /***
+     * @return mixed|void
+     */
+    public function changeEmail(){
+        if ($this->request->isGet()) {
+            $id = input('get.id', '', 'htmlspecialchars,intval');
+            $this->assign('id', $id);
+            return $this->fetch();
+        }
+        if($this->request->isPost()){
+            $data = input('post.', [], 'trim,htmlspecialchars');
+            if (!$this->validate->scene('changeEmail')->check($data)) {
+                return show(0, $this->validate->getError(), '', '', '', $this->validate->getError());
+            }
+            $result = $this->service->updateInfo($data);
+            if (true == $result) {
+                return show(1, lang('Success'), '', '', url('customer_info'));
+            } elseif (false == $result) {
+                return show(0, lang('失败'), '', '');
+            } else {
+                return show(0, lang($result), '', '');
+            }
+        }
+    }
+    /**
+     * @return mixed|void
+     * changeCountry 用户修改自己的所属国家
+     */
+    public function changeCountry()
+    {
+        if ($this->request->isGet()) {
+            $country = $this->service->getCountry();
+            $id = input('get.id', '', 'htmlspecialchars,intval');
+            $this->assign('id', $id);
+            $this->assign('country',$country);
+            return $this->fetch();
+        }
+        if ($this->request->isPost()) {
+            $data = input('post.', [], 'trim,htmlspecialchars');
+            if (!$this->validate->scene('changeCountry')->check($data)) {
+                return show(0, $this->validate->getError(), '', '', '', $this->validate->getError());
+            }
+            $result = $this->service->changeInfo($data);
+            if (true == $result) {
+                return show(1, lang('Success'), '', '', url('customer_info'));
+            } elseif (false == $result) {
+                return show(0, lang('失败'), '', '');
+            } else {
+                return show(0, lang($result), '', '');
+            }
+        }
+    }
+
+    /**
+     * @return mixed|void
+     * changeCountry 用户修改自己的所属国家
+     */
+    public function changeCode()
+    {
+        if ($this->request->isGet()) {
+            $id = input('get.id', '', 'htmlspecialchars,intval');
+            $this->assign('id', $id);
+            return $this->fetch();
+        }
+        if ($this->request->isPost()) {
+            $data = input('post.', [], 'trim,htmlspecialchars');
+            if (!$this->validate->scene('changeCode')->check($data)) {
+                return show(0, $this->validate->getError(), '', '', '', $this->validate->getError());
+            }
+            $result = $this->service->changeInfo($data);
+            if (true == $result) {
+                return show(1, lang('Success'), '', '', url('customer_info'));
+            } elseif (false == $result) {
+                return show(0, lang('失败'), '', '');
+            } else {
+                return show(0, lang($result), '', '');
             }
         }
     }
@@ -359,24 +467,25 @@ class User extends Base
     /**
      * @return mixed|void
      */
-    public function changeBillAddress(){
-        if($this->request->isGet()){
-            $id =input('get.id','','htmlspecialchars,intval');
-            $this->assign('id',$id);
+    public function changeBillingAddress()
+    {
+        if ($this->request->isGet()) {
+            $id = input('get.id', '', 'htmlspecialchars,intval');
+            $this->assign('id', $id);
             return $this->fetch();
         }
-        if($this->request->isPost()){
-            $data=input('post.',[],'trim,htmlspecialchars');
-            if(!$this->validate->scene('changeBillAddress')->check($data)){
+        if ($this->request->isPost()) {
+            $data = input('post.', [], 'trim,htmlspecialchars');
+            if (!$this->validate->scene('changeBillAddress')->check($data)) {
                 return show(0, $this->validate->getError(), '', '', '', $this->validate->getError());
             }
-            $result=$this->service->changeInfo($data);
-            if(true ==$result){
+            $result = $this->service->changeInfo($data);
+            if (true == $result) {
                 return show(1, lang('Success'), '', '', url('customer_info'));
-            }elseif (false ==$result){
-                return show(0,lang('失败'),'','');
-            }else{
-                return show(0,lang($result),'','');
+            } elseif (false == $result) {
+                return show(0, lang('失败'), '', '');
+            } else {
+                return show(0, lang($result), '', '');
             }
         }
     }
@@ -384,28 +493,28 @@ class User extends Base
     /**
      * @return mixed|void
      */
-    public function changeDeliveryAddress(){
-        if($this->request->isGet()){
-            $id =input('get.id','','htmlspecialchars,intval');
-            $this->assign('id',$id);
+    public function changeDeliveryAddress()
+    {
+        if ($this->request->isGet()) {
+            $id = input('get.id', '', 'htmlspecialchars,intval');
+            $this->assign('id', $id);
             return $this->fetch();
         }
-        if($this->request->isPost()){
-            $data=input('post.',[],'trim,htmlspecialchars');
-            if(!$this->validate->scene('changeDeliveryAddress')->check($data)){
+        if ($this->request->isPost()) {
+            $data = input('post.', [], 'trim,htmlspecialchars');
+            if (!$this->validate->scene('changeDeliveryAddress')->check($data)) {
                 return show(0, $this->validate->getError(), '', '', '', $this->validate->getError());
             }
-            $result=$this->service->changeInfo($data);
-            if(true ==$result){
+            $result = $this->service->changeInfo($data);
+            if (true == $result) {
                 return show(1, lang('Success'), '', '', url('customer_info'));
-            }elseif (false ==$result){
-                return show(0,lang('失败'),'','');
-            }else{
-                return show(0,lang($result),'','');
+            } elseif (false == $result) {
+                return show(0, lang('失败'), '', '');
+            } else {
+                return show(0, lang($result), '', '');
             }
         }
     }
-
 
     /***
      * changePassword 在没有登录的情况下 找回密码 修改密码通过该路由

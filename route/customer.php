@@ -21,8 +21,18 @@ Route::group('customer', function () {
     Route::rule('/changeGender','User/changeGender','GET|POST')->name('changeGender')->parent(['id'=>'[-\d+]']);
     //修改生日
     Route::rule('/changeBirthday','User/changeBirthday','GET|POST')->name('changeBirthday')->parent(['id'=>'[-\d+]']);
+    //改手机号
+    Route::rule('/changePhone','User/changePhone','GET|POST')->name('changePhone')->parent(['id'=>'[-\d+]']);
+    //修改邮箱
+    Route::rule('/changeEmail','User/changeEmail','GET|POST')->name('changeEmail')->parent(['id'=>'[-\d+]']);
 
-    Route::rule('/changeBillAddress','User/changeBillAddress','GET|POST')->name('changeBillAddress')->parent(['id'=>'[-\d+]']);
+    //修改国家
+    Route::rule('/changeCountry','User/changeCountry','GET|POST')->name('changeCountry')->parent(['id'=>'[-\d+]']);
+    //修改邮政编码
+    Route::rule('/changeCode','User/changeCode','GET|POST')->name('changeCode')->parent(['id'=>'[-\d+]']);
+    //修改账单地址
+    Route::rule('/changeBillingAddress','User/changeBillingAddress','GET|POST')->name('changeBillingAddress')->parent(['id'=>'[-\d+]']);
+    //修改收货地址
     Route::rule('/changeDeliveryAddress','User/changeDeliveryAddress','GET|POST')->name('changeDeliveryAddress')->parent(['id'=>'[-\d+]']);
 
     Route::post('/edit/password$','Info/editPassword')->name('customer_password');

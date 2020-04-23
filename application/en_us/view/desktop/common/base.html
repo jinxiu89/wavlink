@@ -30,10 +30,6 @@
 {block name="footer"}
 {if condition="$code == 'en_us'"}
 {include file="desktop/common/en_us"}
-{elseif condition="$code == 'zh_cn'" /}
-{include file="desktop/common/zh_cn"}
-{/if}
-{/block}
 <call-us id="callus"
          style="position: fixed; bottom: 8px; right: 8px; z-index:9999;"
          phonesystem-url="https://mylivechat.west.3cx.us:5001/"
@@ -48,6 +44,10 @@
          window-title="Let's chat"
          authentication="both">
 </call-us>
+{elseif condition="$code == 'zh_cn'" /}
+{include file="desktop/common/zh_cn"}
+{/if}
+{/block}
 <script src="__DESKTOP__/js/public.js"></script>
 <script src="__STATIC__/lib/3cx/callus.js"></script>
 {block name="javascript"}

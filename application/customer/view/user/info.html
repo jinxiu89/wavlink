@@ -18,112 +18,170 @@
 {/block}
 {block name="main"}
 <div class="g-main">
-        <div class="Introduction">
-            <div class="person-box" id="person-box">
-                <div class="img-box">
-                    <img src="__USER__/ui/img/n-avator-bg.png" alt="">
-                </div>
-                <div class="img-edit" id="img-edit">
-                    <div class="btn-box">
-                        <button class="UploadPicture-btn" id="UploadPicture-btn"><span class="iconfont iconedit"></span></button>
-                        <input class="UploadPicture-input" id="UploadPicture-input" type="file"  accept="image/png,image/jpeg">
-                    </div>
+
+    <div class="Introduction">
+        <div class="person-box" id="person-box">
+            <div class="img-box">
+                <img src="__USER__/ui/img/n-avator-bg.png" alt="">
+            </div>
+            <div class="img-edit" id="img-edit">
+                <div class="btn-box">
+                    <button class="UploadPicture-btn" id="UploadPicture-btn"><span class="iconfont iconedit"></span>
+                    </button>
+                    <input class="UploadPicture-input" id="UploadPicture-input" type="file"
+                           accept="image/png,image/jpeg">
                 </div>
             </div>
-            <div class="person-des">
-                <h2 class="title">Personal Info</h2>
-                <p>Basic info, like your name and photo, that you use on WAVLINK services</p>
-            </div>
         </div>
-        <div class="Module">
-            <h3 class="title">Personal</h3>
-            <form class="Field" action="">
-                <h4 class="Field-label">NAME</h4>
-                <div class="Field-content">
-                    <div>
-                        <span class="Field-text">{$result.info.first_name} {$result.info.last_name}</span>
-                        <button class="Field-modify" type="button"
-                                onclick="layer_open('Modify Your Username','{:url(\'changeName\',[\'id\'=>$result.id])}',533,300)">
-                            <span class="iconfont iconedit"></span> Modify</button>
-                    </div>
-                </div>
-            </form>
-            <form class="Field" action="">
-                <h4 class="Field-label">GENDER</h4>
-                <div class="Field-content">
-                    <div>
-                        <span class="Field-text">{$result.info.gender|getGender|raw}</span>
-                        <button class="Field-modify" type="button"
-                                onclick="layer_open('Modify Your changeGender','{:url(\'changeGender\',[\'id\'=>$result.id])}',533,300)">
-                            <span class="iconfont iconedit"></span> Modify</button>
-                    </div>
-                </div>
-            </form>
-            <form class="Field" action="">
-                <h4 class="Field-label">BIRTHDAY</h4>
-                <div class="Field-content">
-                    <div>
-                        <span class="Field-text">January 01, 1993</span>
-                        <button class="Field-modify" type="button"><span class="iconfont iconedit"></span> Modify</button>
-                    </div>
-                </div>
-            </form>
-        </div>
-        <div class="Module">
-            <h3 class="title">Contact info</h3>
-            <form class="Field" action="">
-                <h4 class="Field-label">PHONE</h4>
-                <div class="Field-content">
-                    <div>
-                        <span class="Field-text"></span>
-                        <button class="Field-modify" type="button"><span class="iconfont iconedit"></span> Modify</button>
-                    </div>
-                </div>
-            </form>
-            <form class="Field" action="">
-                <h4 class="Field-label">E-MAIL</h4>
-                <div class="Field-content">
-                    <div>
-                        <span class="Field-text">Alanwebdevelop@gmail.com</span>
-                        <button class="Field-modify" type="button"><span class="iconfont iconedit"></span> Modify</button>
-                    </div>
-                </div>
-            </form>
-        </div>
-        <div class="Module">
-            <h3 class="title">Contact Address</h3>
-            <form class="Field" action="">
-                <h4 class="Field-label">BILLING ADDRESS</h4>
-                <div class="Field-content">
-                    <div>
-                        <span class="Field-text"></span>
-                        <button class="Field-modify" type="button"><span class="iconfont iconedit"></span> Modify</button>
-                    </div>
-                </div>
-            </form>
-            <form class="Field" action="">
-                <h4 class="Field-label">DELIVERY ADDRESS</h4>
-                <div class="Field-content">
-                    <div>
-                        <span class="Field-text"></span>
-                        <button class="Field-modify" type="button"><span class="iconfont iconedit"></span> Modify</button>
-                    </div>
-                </div>
-            </form>
-        </div>
-        <div class="Module">
-            <h3 class="title">Where did you buy our products</h3>
-            <form class="Field" action="">
-                <h4 class="Field-label">BUY PLATFORM</h4>
-                <div class="Field-content">
-                    <div>
-                        <span class="Field-text"></span>
-                        <button class="Field-modify" type="button"><span class="iconfont iconedit"></span> Modify</button>
-                    </div>
-                </div>
-            </form>
+        <div class="person-des">
+            <h2 class="title">Personal Info</h2>
+            <p>Basic info, like your name and photo, that you use on WAVLINK services</p>
         </div>
     </div>
+
+    <div class="Module">
+        <h3 class="title">Personal</h3>
+        <form class="Field" action="">
+            <h4 class="Field-label">NAME</h4>
+            <div class="Field-content">
+                <div>
+                    <span class="Field-text">{$result.info.first_name} {$result.info.last_name}</span>
+                    <button class="Field-modify" type="button"
+                            onclick="layer_open('Modify Your Username','{:url(\'changeName\',[\'id\'=>$result.id])}',533,300)">
+                        <span class="iconfont iconedit"></span> Modify
+                    </button>
+                </div>
+            </div>
+        </form>
+        <form class="Field" action="">
+            <h4 class="Field-label">GENDER</h4>
+            <div class="Field-content">
+                <div>
+                    <span class="Field-text">{$result.info.gender|getGender|raw}</span>
+                    <button class="Field-modify" type="button"
+                            onclick="layer_open('Modify Your Gender','{:url(\'changeGender\',[\'id\'=>$result.id])}',533,300)">
+                        <span class="iconfont iconedit"></span> Modify
+                    </button>
+                </div>
+            </div>
+        </form>
+        <form class="Field" action="">
+            <h4 class="Field-label">BIRTHDAY</h4>
+            <div class="Field-content">
+                <div>
+                    <span class="Field-text">January 01, 1993</span>
+                    <button class="Field-modify" type="button"
+                            onclick="layer_open('Modify Your Username','{:url(\'changeBirthday\',[\'id\'=>$result.id])}',533,300)">
+                        <span class="iconfont iconedit"></span> Modify
+                    </button>
+                </div>
+            </div>
+        </form>
+    </div>
+
+    <div class="Module">
+        <h3 class="title">Member</h3>
+        <form class="Field" action="">
+            <h4 class="Field-label">INTEGRAL</h4>
+            <div class="Field-content">
+                <div>
+                    <span class="Field-text">100</span>
+                </div>
+            </div>
+        </form>
+        <form class="Field" action="">
+            <h4 class="Field-label">MEMBERSHIP LEVEL</h4>
+            <div class="Field-content">
+                <div>
+                    <span class="Field-text">VIP 1 <a class="link"
+                                                      href="#">How to upgrade the membership level?</a></span>
+                </div>
+            </div>
+        </form>
+    </div>
+
+    <div class="Module">
+        <h3 class="title">Contact info</h3>
+        <form class="Field" action="">
+            <h4 class="Field-label">PHONE</h4>
+            <div class="Field-content">
+                <div>
+                    <span class="Field-text">{$result.phone}</span>
+                    <button class="Field-modify" type="button"
+                            onclick="layer_open('Modify Your Phone Number','{:url(\'changePhone\',[\'id\'=>$result.id])}',533,300)">
+                        <span class="iconfont iconedit"></span> Modify
+                    </button>
+                </div>
+            </div>
+        </form>
+        <form class="Field" action="">
+            <h4 class="Field-label">E-MAIL</h4>
+            <div class="Field-content">
+                <div>
+                    <span class="Field-text">{$result.email}</span>
+                    <button class="Field-modify" type="button"
+                            onclick="layer_open('Modify Your Email','{:url(\'changeEmail\',[\'id\'=>$result.id])}',533,300)">
+                        <span class="iconfont iconedit"></span> Modify
+                    </button>
+                </div>
+            </div>
+        </form>
+        <p></p>
+    </div>
+
+    <div class="Module">
+        <h3 class="title">Contact Address</h3>
+        <form class="Field" action="">
+            <h4 class="Field-label">COUNTRY</h4>
+            <div class="Field-content">
+                <div>
+                    <span class="Field-text">{:lang($result.info.country)}</span>
+                    <button class="Field-modify" type="button"
+                            onclick="layer_open('Modify Your Country','{:url(\'changeCountry\',[\'id\'=>$result.id])}',533,300)">
+                        <span class="iconfont iconedit"></span> Modify
+                    </button>
+                </div>
+            </div>
+        </form>
+        <form class="Field" action="">
+            <h4 class="Field-label">ZIP CODE</h4>
+            <div class="Field-content">
+                <div>
+                    <span class="Field-text">{$result.info.zip_code}</span>
+                    <button class="Field-modify" type="button"
+                            onclick="layer_open('Modify Your Zip Code','{:url(\'changeCode\',[\'id\'=>$result.id])}',533,300)">
+                        <span class="iconfont iconedit"></span> Modify
+                    </button>
+                </div>
+            </div>
+        </form>
+        <form class="Field" action="">
+            <h4 class="Field-label">BILLING ADDRESS</h4>
+            <div class="Field-content">
+                <div>
+                    <span class="Field-text">{$result.info.billing_address}</span>
+                    <button class="Field-modify" type="button"
+                            onclick="layer_open('Modify Your Bill Address','{:url(\'changeBillingAddress\',[\'id\'=>$result.id])}',533,300)">
+                        <span class="iconfont iconedit"></span> Modify
+                    </button>
+                </div>
+            </div>
+        </form>
+        <form class="Field" action="">
+            <h4 class="Field-label">DELIVERY ADDRESS</h4>
+            <div class="Field-content">
+                <div>
+                    <span class="Field-text">{$result.info.delivery_address}</span>
+                    <button class="Field-modify" type="button"
+                            onclick="layer_open('Modify Your Delivery Address','{:url(\'changeDeliveryAddress\',[\'id\'=>$result.id])}',533,300)">
+                        <span class="iconfont iconedit"></span> Modify
+                    </button>
+                </div>
+            </div>
+        </form>
+    </div>
+
+</div>
 {/block}
 {block name="javascript"}
 <!--私有JS-->

@@ -332,6 +332,16 @@ header {
 //个人信息修改表单
 .info-change-box {
     background: @whiteColor;
+    #send_code {
+        height: 30px;
+        margin-left: 5px;
+        padding: 0 15px;
+        font-size: 12px;
+        border: 1px solid #ccc;
+        border-radius: 5px;
+        background: @whiteColor;
+        cursor: pointer;
+    }
     .form-title .title {
         margin: 20px;
         font-size: 16px;
@@ -367,7 +377,12 @@ header {
         }
     }
 
-    .personal-name {
+    .personal-name,
+    .personal-billing,
+    .personal-delivery,
+    .personal-zipCode,
+    .personal-phone,
+    .personal-email {
         .info label {
             display: inline-block;
             width: 130px;
@@ -393,6 +408,39 @@ header {
         }
         .info label, .info input {
             cursor: pointer;
+        }
+    }
+
+    .personal-birthday {
+        text-align: center;
+        .info {
+            display: inline-block;
+            margin: 0 10px;
+        }
+        .info select {
+            width: 80px;
+            border: 1px solid #ccc;
+            cursor: pointer;
+        }
+    }
+
+    .personal-billing {}
+
+    .personal-country {
+        .info label {
+            display: inline-block;
+            width: 130px;
+            height: 28px;
+            line-height: 28px;
+            margin: 0 10px 0 6.5px;
+            text-align: right;
+        }
+        .info select {
+            display: inline-block;
+            width: 240px;
+            height: 28px;
+            padding: 0 5px;
+            border: 1px solid #ccc;
         }
     }
 }

@@ -1,0 +1,53 @@
+{extend name="base/form" /}
+{block name="title"}
+{:lang('login')}
+{/block}
+{block name="main"}
+<div class="form-box">
+    <div class="box" id="box">
+        <div class="info-change-box">
+            <div class="form-title">
+                <h3 class="title">Modify Your Country</h3>
+            </div>
+            <form class="personal-country" id="personal-country" action="">
+                <div class="info">
+                    <label for="country">Country: </label>
+                    <select id="country" name="country">
+                        <option value="">{:lang('select')}</option>
+                        {volist name="country" id="vo"}
+                        <option value="{$vo.name}">{:lang($vo.name)}</option>
+                        {/volist}
+                    </select>
+                </div>
+
+                <input type="hidden" id="id" name="id" value="{$id}">
+                <div class="btn-group">
+                    <button class="btn" type="submit">SUBMIT</button>
+                    <button class="btn" type="button">CANCEL</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+{/block}
+{block name="javascript"}
+<script src="__STATIC__/admin/lib/jquery.validation/1.14.0/jquery.validate.js"></script>
+<script src="__STATIC__/admin/lib/jquery.validation/1.14.0/validate-methods.js"></script>
+<script src="__STATIC__/admin/lib/layer/2.4/layer.js"></script>
+<script src="__USER__/ui/js/birthday.js"></script>
+{if condition="$lang == 'zh_cn'"}
+<script src="__STATIC__/admin/lib/jquery.validation/1.14.0/messages_zh.js"></script>
+{/if}
+<script>
+    $("#personal-country").validate({
+        errorClass: 'infoError',
+        errorElement: 'p',
+        rules: {
+
+        },
+        submitHandler: function (form) {
+            InfoChange('{:url(\'changeBillingAddress\')}', form)
+        }
+    });
+</script>
+{/block}

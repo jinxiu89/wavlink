@@ -474,6 +474,16 @@ header .nav-box .exit .iconfont {
 .info-change-box {
   background: #fff;
 }
+.info-change-box #send_code {
+  height: 30px;
+  margin-left: 5px;
+  padding: 0 15px;
+  font-size: 12px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  background: #fff;
+  cursor: pointer;
+}
 .info-change-box .form-title .title {
   margin: 20px;
   font-size: 16px;
@@ -508,7 +518,12 @@ header .nav-box .exit .iconfont {
 .info-change-box .btn-group .btn:nth-last-of-type(1):hover {
   background: #d6d6d6;
 }
-.info-change-box .personal-name .info label {
+.info-change-box .personal-name .info label,
+.info-change-box .personal-billing .info label,
+.info-change-box .personal-delivery .info label,
+.info-change-box .personal-zipCode .info label,
+.info-change-box .personal-phone .info label,
+.info-change-box .personal-email .info label {
   display: inline-block;
   width: 130px;
   height: 28px;
@@ -516,7 +531,12 @@ header .nav-box .exit .iconfont {
   margin: 0 10px 0 6.5px;
   text-align: right;
 }
-.info-change-box .personal-name .info input {
+.info-change-box .personal-name .info input,
+.info-change-box .personal-billing .info input,
+.info-change-box .personal-delivery .info input,
+.info-change-box .personal-zipCode .info input,
+.info-change-box .personal-phone .info input,
+.info-change-box .personal-email .info input {
   display: inline-block;
   width: 240px;
   height: 28px;
@@ -533,5 +553,32 @@ header .nav-box .exit .iconfont {
 .info-change-box .personal-gender .info label,
 .info-change-box .personal-gender .info input {
   cursor: pointer;
+}
+.info-change-box .personal-birthday {
+  text-align: center;
+}
+.info-change-box .personal-birthday .info {
+  display: inline-block;
+  margin: 0 10px;
+}
+.info-change-box .personal-birthday .info select {
+  width: 80px;
+  border: 1px solid #ccc;
+  cursor: pointer;
+}
+.info-change-box .personal-country .info label {
+  display: inline-block;
+  width: 130px;
+  height: 28px;
+  line-height: 28px;
+  margin: 0 10px 0 6.5px;
+  text-align: right;
+}
+.info-change-box .personal-country .info select {
+  display: inline-block;
+  width: 240px;
+  height: 28px;
+  padding: 0 5px;
+  border: 1px solid #ccc;
 }
 /*# sourceMappingURL=components.css.map */

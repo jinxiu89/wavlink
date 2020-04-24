@@ -8,18 +8,15 @@
 
 namespace app\customer\controller;
 
-use app\lib\utils\tools;
-use app\lib\utils\sms;
 use app\lib\utils\email;
+use app\lib\utils\sms;
+use app\lib\utils\tools;
 use Exception;
 use think\App;
-use think\captcha\Captcha;
 use think\Controller;
 use think\facade\Cache;
-use think\facade\Config;
 use think\facade\Cookie;
 use think\facade\Lang;
-use think\Response;
 
 class Base extends Controller
 {
@@ -27,6 +24,25 @@ class Base extends Controller
     protected $validate;
     protected $uid;
 
+    /**
+     * 构造函数，用来注册全局变量，供整个系统使用（这里指customer这个模块）,每个控制器都继承到base控制器
+     * @param App|null $app
+     * 处理问题一般是一件非常高惹人痛苦的事情，我们每天都在一个问题和另一个问题之间来回窜动。
+     * 发现问题：出了什么问题？谁发现的？是个什么背景下出现的什么问题？
+     * 分析问题：这是个什么问题？为什么只有这个独特的场景下有这个问题？有什么办法来解决这个问题呢？列出一二三来！
+     * 解决问题：根据分析出来的问题，一步一步的处理并反馈问题是否还会出现！再次走同样的步骤，直到解决问题为止。
+     * 为什么程序员30岁就是去竞争力了呢？
+     * 因为自己平时只懂得写代码，不足以自己其他方面的只是的积累，身体是去优势，加不了班，脾气不好，和人处不来等都是问题
+     * 分析问题：只懂写代码是不行的，需要从产品，运营，商业几个角度来辅助自己的成长，学会架构知识，懂得应用产品运营商业几个角度获得的启发来做决策。
+     * 当然写代码是硬技能，如果不够硬，就需要把他变硬，虚心求教。身体不行了，怎么办？锻炼，养生，休息，读书都是办法。
+     * 解决问题：我们分析得到，我们专业不够硬，身体不够好，知识不够广，我们应该从哪一个切入点着手呢？第一，就是要坐得住，沉得住气。沉得住气的话就需要有一个好身体，一般养生和锻炼能够实现他。
+     * 我们不应该上班时玩手机，玩手机的时候想着工作，睡觉的时候刷视频看笑话。这说明我们应该保持一定的作息时间，不要想过多的事情，让大脑充分释放休息。能够让我们能 在某一个领域坚持久一点。
+     * 这样周而复始的解决问题，就会使我们越来越厉害，身体不垮，一切都能拥有更多的变数。
+     * 我的第一不是养生，然后再锻炼，三是不要操心过多的事情，专心做好当下手头的这一件事情。我在程序里隐藏了很多养生秘方，等待伙计们发掘。也留了很多我学到的新知识在各个代码注释里，我立求把代码写的够精炼和注释清楚的同时，
+     * 把我新的理解和所悟写到注释的下面
+     *
+     *
+     */
     public function __construct(App $app = null)
     {
 

@@ -63,7 +63,7 @@ class User extends Base
                 }
             }
             $login_url = url('customer_login');
-            $index = url('customer_index');
+            $index = url('customer_info');
             $scene = empty($data['email']) ? 'phone' : 'email';
             if (!$this->validate->scene($scene)->check($data)) {
                 return show(0, $this->validate->getError(), '', '', $login_url, '');

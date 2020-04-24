@@ -88,10 +88,11 @@
 .Module .Field-content .Field-text {
   font-size: 14px;
 }
-.Module .Field-content .Field-text .link {
+.Module .Field-content .link {
+  margin-left: 10px;
   color: #136ec2;
 }
-.Module .Field-content .Field-text .link:hover {
+.Module .Field-content .link:hover {
   color: #1d78cc;
   text-decoration: underline;
 }

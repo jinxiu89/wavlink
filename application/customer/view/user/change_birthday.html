@@ -8,6 +8,7 @@
         <div class="info-change-box">
             <div class="form-title">
                 <h3 class="title">Modify Your Birthday</h3>
+                <p class="notice"><span>*</span> Please note: Once the birthday information is filled in, it cannot be changed</p>
             </div>
             <form class="personal-birthday" id="personal-birthday" action="">
                 <div class="info">
@@ -80,7 +81,7 @@
         var time = y + '-' + m + '-' + d
         var birthday =  new Date(time).getTime()/1000;
         if (isNaN(birthday)) {
-            layer.msg('请选择正确的日期', {
+            layer.msg('Please select the correct date', {
                 icon: 2,
                 time: 2000,
             })

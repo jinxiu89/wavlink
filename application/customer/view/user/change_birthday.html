@@ -79,25 +79,32 @@
         d = d < 10 ? ('0' + d) : d;
         var time = y + '-' + m + '-' + d
         var birthday =  new Date(time).getTime()/1000;
-        var postData={};
-        postData['id']=$('#id').val();
-        postData['birthday']= birthday;
-        $.ajax({
-            url: '{:url(\'changeBirthday\')}',
-            type: "post",
-            dataType: "json",
-            data: postData,//提交表单数据
-            success: function (result) {
-                if (result.status === 1) {
-                    //更新信息成功后刷新页面
-                    layer.msg(result.message, {icon: 1, time: 2000}, function () {
-                        window.parent.location.href = result.jump_url
-                    });
-                } else {
-                    layer.msg(result.message, {icon: 5, time: 3000});
+        if (isNaN(birthday)) {
+            layer.msg('请选择正确的日期', {
+                icon: 2,
+                time: 2000,
+            })
+        } else {
+            var postData={};
+            postData['id']=$('#id').val();
+            postData['birthday']= birthday;
+            $.ajax({
+                url: '{:url(\'changeBirthday\')}',
+                type: "post",
+                dataType: "json",
+                data: postData,//提交表单数据
+                success: function (result) {
+                    if (result.status === 1) {
+                        //更新信息成功后刷新页面
+                        layer.msg(result.message, {icon: 1, time: 2000}, function () {
+                            window.parent.location.href = result.jump_url
+                        });
+                    } else {
+                        layer.msg(result.message, {icon: 5, time: 3000});
+                    }
                 }
-            }
-        })
+            })
+        }
     });
     layer_close();
 </script>

@@ -1,6 +1,6 @@
-(function($){
-$.extend({
-ms_DatePicker: function (options) {
+(function ($) {
+    $.extend({
+        ms_DatePicker: function (options) {
             var defaults = {
                 YearSelector: "#sel_year",
                 MonthSelector: "#sel_month",
@@ -23,18 +23,18 @@ ms_DatePicker: function (options) {
 
             // 年份列表
             var yearNow = new Date().getFullYear();
-			var yearSel = $YearSelector.attr("rel");
+            var yearSel = $YearSelector.attr("rel");
             for (var i = yearNow; i >= 1900; i--) {
-				var sed = yearSel==i?"selected":"";
-				var yearStr = "<option value=\"" + i + "\" " + sed+">" + i + "</option>";
+                var sed = yearSel == i ? "selected" : "";
+                var yearStr = "<option value=\"" + i + "\" " + sed + ">" + i + "</option>";
                 $YearSelector.append(yearStr);
             }
 
             // 月份列表
-			var monthSel = $MonthSelector.attr("rel");
+            var monthSel = $MonthSelector.attr("rel");
             for (var i = 1; i <= 12; i++) {
-				var sed = monthSel==i?"selected":"";
-                var monthStr = "<option value=\"" + i + "\" "+sed+">" + i + "</option>";
+                var sed = monthSel == i ? "selected" : "";
+                var monthStr = "<option value=\"" + i + "\" " + sed + ">" + i + "</option>";
                 $MonthSelector.append(monthStr);
             }
 
@@ -73,24 +73,25 @@ ms_DatePicker: function (options) {
                         default:
                             break;
                     }
-					
-					var daySel = $DaySelector.attr("rel");
+
+                    var daySel = $DaySelector.attr("rel");
                     for (var i = 1; i <= dayCount; i++) {
-						var sed = daySel==i?"selected":"";
-						var dayStr = "<option value=\"" + i + "\" "+sed+">" + i + "</option>";
+                        var sed = daySel == i ? "selected" : "";
+                        var dayStr = "<option value=\"" + i + "\" " + sed + ">" + i + "</option>";
                         $DaySelector.append(dayStr);
                     }
                 }
             }
+
             $MonthSelector.change(function () {
                 BuildDay();
             });
             $YearSelector.change(function () {
                 BuildDay();
             });
-			if($DaySelector.attr("rel")!=""){
-				BuildDay();
-			}
+            if ($DaySelector.attr("rel") != "") {
+                BuildDay();
+            }
         } // End ms_DatePicker
-});
+    });
 })(jQuery);

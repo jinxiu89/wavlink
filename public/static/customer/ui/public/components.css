@@ -484,10 +484,18 @@ header .nav-box .exit .iconfont {
   background: #fff;
   cursor: pointer;
 }
-.info-change-box .form-title .title {
-  margin: 20px;
-  font-size: 16px;
+.info-change-box .form-title {
+  margin: 20px 0;
   text-align: center;
+}
+.info-change-box .form-title .title {
+  font-size: 16px;
+}
+.info-change-box .form-title .notice {
+  font-size: 12px;
+}
+.info-change-box .form-title .notice span {
+  color: red;
 }
 .info-change-box .info {
   margin-bottom: 10px;

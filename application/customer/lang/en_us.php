@@ -6,6 +6,7 @@
  * Time: 17:59
  */
 return [
+    'logout' => 'Exit',
     //注册登录用到的词汇
     'Experience Center' => 'Experience Center',
     'Welcome to wavlink' => '',

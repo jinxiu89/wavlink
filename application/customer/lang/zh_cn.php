@@ -6,6 +6,7 @@
  * Time: 17:57
  */
 return [
+    'logout' => '退出登录',
     //注册登录用到的词汇
     'Experience Center' => '用户体验中心',
     'Service' => '服务支持',

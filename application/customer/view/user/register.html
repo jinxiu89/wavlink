@@ -28,84 +28,16 @@
 {block name="javascript"}
 <script type="text/javascript" src="__STATIC__/admin/lib/jquery.validation/1.14.0/jquery.validate.js"></script>
 <script type="text/javascript" src="__STATIC__/admin/lib/jquery.validation/1.14.0/validate-methods.js"></script>
+<script src="__USER__/ui/js/countDown.js"></script>
 {if condition="$lang == 'zh_cn'"}
 <script type="text/javascript" src="__STATIC__/admin/lib/jquery.validation/1.14.0/messages_zh.js"></script>
 {/if}
 <script>
-    // 离开页面/刷新页面 重新运行计时器
-    function monitor(obj) {
-        var LocalDelay = getLocalDelay();
-        var btnDom = document.getElementById("send_code");
-        if (LocalDelay.time != null) {
-            var timeLine = parseInt((new Date().getTime() - LocalDelay.time) / 1000);
-            if (timeLine > LocalDelay.delay) {
-                /*console.log("过期");*/
-            } else {
-                _delay = LocalDelay.delay - timeLine;
-                obj.text(_delay + 's');
-                btnDom.disabled = true;
-                var timer = setInterval(function () {
-                    if (_delay > 1) {
-                        _delay--;
-                        obj.text(_delay + 's');
-                        setLocalDelay(_delay);
-                    } else {
-                        clearInterval(timer);
-                        obj.text("{:lang('send')}");
-                        btnDom.disabled = false;
-                    }
-                }, 1000);
-            }
-        }
-    }
-    //设置setLocalDelay
-    function setLocalDelay(delay) {
-        sessionStorage.setItem("delay_" + location.href, delay);
-        sessionStorage.setItem("time_" + location.href, new Date().getTime());
-    }
-    //getLocalDelay()
-    // 第二步
-    function getLocalDelay() {
-        var LocalDelay = {};
-        LocalDelay.delay = sessionStorage.getItem("delay_" + location.href);
-        LocalDelay.time = sessionStorage.getItem("time_" + location.href);
-        return LocalDelay;
-    }
-    //倒计时效果
-    /**
-     *
-     * @param {Object} obj 获取验证码按钮
-     * @param {Function} callback 获取验证码接口函数
-     */
-    function countDown(obj) {
-        if (obj.text() === "{:lang('send')}") {
-            var _delay = 20; //设置定时时间长度
-            var delay = _delay;
-            var btnDom = document.getElementById("send_code")
-            obj.text(_delay + 's');
-            btnDom.disabled = true;
-            btnDom.style.cursor = 'no-drop'
-            // 定时器
-            var timer = setInterval(function () {
-                if (delay > 1) {
-                    delay--;
-                    obj.html(delay + 's');
-                    setLocalDelay(delay);
-                } else {
-                    clearInterval(timer);
-                    obj.text("{:lang('send')}");
-                    btnDom.disabled = false;
-                    btnDom.style.cursor = 'pointer'
-                }
-            }, 1000);
-        } else {
-            return false;
-        }
-    }
     // 初始化
     $(function () {
         var btn = document.getElementById("send_code");
-        monitor($(btn));
+        var btnText = "{:lang('send')}";
+        monitor($(btn), btnText);
         btn.onclick = function () {
             //倒计时效果 getCode回调函数 获取验证码api
             var _this = this;
@@ -125,7 +57,7 @@
                 success: function (result) {
                     var json=JSON.parse(result);
                     if(json.status === 1){
-                        countDown($(_this));
+                        countDown($(_this), 20, btnText);
                     }else{
                         console.log(0);
                     }

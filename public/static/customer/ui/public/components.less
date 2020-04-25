@@ -108,6 +108,7 @@ header {
         display: block;
         height: 50px;
         line-height: 50px;
+        padding: 0 20px;
         cursor: pointer;
         .iconfont {
             font-size: 24px;
@@ -125,13 +126,15 @@ header {
         top: 50px;
         left: 0;
         width: 120px;
-        background: @whiteColor;
+        background: @baseColor;
 
         .user-menu-item {
             padding: 5px 15px;
-            color: @baseColor;
         }
         .user-menu-item a {
+            text-align: center;
+            line-height: 40px;
+            color: @whiteColor;
             &:hover {
                 color: @activeColor;
                 text-decoration: underline;

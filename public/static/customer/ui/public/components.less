@@ -136,6 +136,13 @@ header {
                 border-bottom: none;
             }
         }
+        .user-menu-item .userName {
+            display: block;
+            padding: 0 10px;
+            text-align: center;
+            color: @whiteColor;
+            .text-overflow()
+        }
         .user-menu-item a {
             display: block;
             padding: 0 10px;
@@ -303,6 +310,7 @@ header {
         font-size: 16px;
         line-height: 50px;
         border-bottom: 1px solid @borderColor;
+        text-transform: uppercase;
     }
     ul li a {
         display: block;
@@ -358,6 +366,7 @@ header {
             font-size: 16px;
         }
         .notice {
+            color: red;
             font-size: 12px;
         }
         .notice span {

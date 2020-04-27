@@ -125,15 +125,21 @@ header {
         position: absolute;
         top: 50px;
         left: 0;
-        width: 120px;
         background: @baseColor;
 
         .user-menu-item {
-            padding: 5px 15px;
+            width: 140px;
+            height: 50px;
+            line-height: 50px;
+            border-bottom: 1px solid @whiteColor;
+            &:nth-last-of-type(1) {
+                border-bottom: none;
+            }
         }
         .user-menu-item a {
+            display: block;
+            padding: 0 10px;
             text-align: center;
-            line-height: 40px;
             color: @whiteColor;
             &:hover {
                 color: @activeColor;

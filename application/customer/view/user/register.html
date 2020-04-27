@@ -71,24 +71,12 @@
     $.validator.setDefaults({
         submitHandler: function(form) {
             if ($('#agree').is(":checked")) {
-                $.ajax({
-                    url: '{:url(\'customer_register\')}',
-                    type: "post",
-                    dataType: "json",
-                    data: $(form).serialize(),//提交表单数据
-                    success: function (result) {
-                        if (result.status === 1) {
-                            //注册成功后要跳转到登录
-                            layer.msg(result.message,{icon:1,time:2000},function () {
-                                window.parent.location.href = result.jump_url
-                            });
-                        } else {
-                            layer.msg(result.message, {icon: 5, time: 2000});
-                        }
-                    }
-                })
+                InfoChange('{:url(\'customer_register\')}', form)
             } else {
-                layer.msg('{:lang(\'Agree is required\')}');
+                layer.msg('{:lang(\'Agree is required\')}', {
+                    icon: 5,
+                    time: 3000
+                });
             }
         }
     });

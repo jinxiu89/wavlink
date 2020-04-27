@@ -14,6 +14,8 @@ use OSS\Model\ObjectListInfo;
 use OSS\OssClient;
 use OSS\Core\OssException;
 use OSS\Core\OssUtil;
+use think\facade\Config;
+
 /**
  * Class upload
  * @package app\lib\utils
@@ -24,9 +26,9 @@ class ali
      * @return OssClient
      */
     public static function createClient(){
-        $accessKeyID='';
-        $accessKeySecret='';
-        $endpoint='';
+        $accessKeyID=Config::get('alicloud.app.accessKeyId');
+        $accessKeySecret=Config::get('alicloud.app.accessSecret');
+        $endpoint=Config::get('alicloud.oss.endpoint');
         try{
             return new OssClient($accessKeyID,$accessKeySecret,$endpoint);
         }catch (OssException $ossException){
@@ -36,20 +38,33 @@ class ali
 
     /***
      * 列出 桶里的数据
-     * 后面使用的时候再来丰富注释和功能
+     * 后面使用的时候再来丰富注释和功能 列出桶里的文件，参数说明：
+     * 1、默认桶为wavlink通，我们wavlink 的所有资料都放在wavlink里
+     * 2、prefix参数，是指列出桶里的哪个文件夹里的文件，默认拿images文件夹
+     * 3、如果我们在视频的功能里列出文件就应该拿videos文件夹里的文件
      * @param string $bucket
+     * @param string $prefix
      * @return ObjectListInfo|string
-     *
      */
-    public function listObj($bucket='wavlink'){
-        $instance=self::createClient();
-        try{
-            $data=$instance->listObjects($bucket);
-            if(!empty($data)){
-                return $data;
+    public static function listObj($bucket='wavlink',$prefix='images'){
+        $nextMarker='';
+        $options = ['delimiter' => '', 'marker' => $nextMarker,'prefix'=>$prefix];
+        try {
+            $listObjectInfo = self::createClient()->listObjects($bucket, $options);
+        } catch (OssException $e) {
+            //todo:异常还没处理
+            printf(__FUNCTION__ . ": FAILED\n");
+            printf($e->getMessage() . "\n");
+            return;
+        }
+        $objectList = $listObjectInfo->getObjectList(); // object list
+        if (!empty($objectList)) {
+            $items=[];
+            foreach ($objectList as $objectInfo) {
+                $items[]=$objectInfo->getKey();
+//                print($objectInfo->getKey() . "\n");
             }
-        }catch (OssException $exception){
-            return $exception->getMessage();
+            return $items;
         }
     }
 
@@ -57,13 +72,31 @@ class ali
      * @param string $bucket
      * @param string $object
      * @param $file
+     * @return bool
      */
     public function putFile($bucket='wavlink',$object='',$file){
-        $instance=self::createClient();
         try{
-            $instance->uploadFile($bucket,$object,$file);
+            if(self::createClient()->uploadFile($bucket,$object,$file)) return true;
+            return false;
         }catch (OssException $exception){
-
+            //todo::待解决异常问题
+            return false;
         }
     }
+
+    /**
+     * @param $bucket
+     * @param $object
+     * @return bool
+     */
+    public function delFile($bucket,$object){
+        try{
+            if(self::createClient()->deleteObject($bucket,$object)) return true;
+            return  false;//不明原因失败
+        }catch (OssException $exception){
+            //todo::阿里云那边的异常在此不做
+            return false;
+        }
+    }
+
 }

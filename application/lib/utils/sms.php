@@ -35,22 +35,22 @@ class sms
     public static function ali($phone, $code)
     {
         $query = [
-            'RegionId' => Config::get('sms.ali.regionId'),
+            'RegionId' => strval(Config::get('alicloud.sms.regionId')),
             'PhoneNumbers' => $phone,
-            'SignName' => Config::get('sms.ali.SignName'),
-            'TemplateCode' => Config::get('sms.ali.TemplateCode'),
+            'SignName' => Config::get('alicloud.sms.SignName'),
+            'TemplateCode' => Config::get('alicloud.sms.TemplateCode'),
             'TemplateParam' => json_encode(['code' => $code]),
         ];
         //todo::阿里短信接口
-        AlibabaCloud::accessKeyClient(Config::get('sms.ali.accessKeyId'), Config::get('sms.ali.accessSecret'))
-            ->regionId(Config::get('sms.ali.regionId'))->asDefaultClient();
+        AlibabaCloud::accessKeyClient(Config::get('alicloud.app.accessKeyId'), Config::get('alicloud.app.accessSecret'))
+            ->regionId(Config::get('alicloud.sms.regionId'))->asDefaultClient();
         try {
             $result = AlibabaCloud::rpc()
-                ->product(Config::get('sms.ali.product'))
-                ->version(Config::get('sms.ali.version'))
-                ->action(Config::get('sms.ali.action'))
-                ->method(Config::get('sms.ali.methods'))
-                ->host(Config::get('sms.ali.host'))
+                ->product(Config::get('alicloud.sms.product'))
+                ->version(Config::get('alicloud.sms.version'))
+                ->action(Config::get('alicloud.sms.action'))
+                ->method(Config::get('alicloud.sms.methods'))
+                ->host(Config::get('alicloud.sms.host'))
                 ->options([
                     'query' => $query,
                 ])

@@ -285,8 +285,15 @@ class User extends Base
         if ($this->request->isGet()) {
             $id = input('get.id', '', 'htmlspecialchars,intval');
             $data = $this->service->getInfo($id);
-            $name['first_name'] = $data->info->first_name;
-            $name['last_name'] = $data->info->last_name;
+            $name = [];
+
+            if (empty($data->info)) {
+                $name['first_name'] = '';
+                $name['last_name'] = '';
+            } else {
+                $name['first_name'] = $data->info->first_name;
+                $name['last_name'] = $data->info->last_name;
+            }
             unset($data);
             $this->assign('name', $name);
             $this->assign('id', $id);
@@ -317,7 +324,10 @@ class User extends Base
         if ($this->request->isGet()) {
             $id = input('get.id', '', 'htmlspecialchars,intval');
             $data = $this->service->getInfo($id);
-            $gender = $data->info->gender;
+            $gender = '';
+            if (!empty($data->info)) {
+                $gender = $data->info->gender;
+            }
             unset($data);
             $this->assign('gender', $gender);
             $this->assign('id', $id);
@@ -349,7 +359,8 @@ class User extends Base
         if ($this->request->isGet()) {
             $id = input('get.id', '', 'htmlspecialchars,intval');
             $data = $this->service->getDataById($id);
-            $birthday = $data->info->birthday;
+            $birthday = '';
+            if (!empty($data->info)) $birthday = $data->info->birthday;
             unset($data);
             $this->assign('birthday', $birthday);
             $this->assign('id', $id);
@@ -381,7 +392,7 @@ class User extends Base
             $data = $this->service->getInfo($id);
             $phone = $data->phone;
             unset($data);
-            $this->assign('phone',$phone);
+            $this->assign('phone', $phone);
             $this->assign('id', $id);
             return $this->fetch();
         }
@@ -415,7 +426,7 @@ class User extends Base
             $data = $this->service->getInfo($id);
             $email = $data->email;
             unset($data);
-            $this->assign('email',$email);
+            $this->assign('email', $email);
             $this->assign('id', $id);
             return $this->fetch();
         }
@@ -477,10 +488,11 @@ class User extends Base
         if ($this->request->isGet()) {
             $id = input('get.id', '', 'htmlspecialchars,intval');
             $data = $this->service->getInfo($id);
-            $code = $data->info->zip_code;
+            $code = '';
+            if (!empty($data->info)) $code = $data->info->zip_code;
             unset($data);
             $this->assign('id', $id);
-            $this->assign('code',$code);
+            $this->assign('code', $code);
             return $this->fetch();
         }
         if ($this->request->isPost()) {
@@ -507,7 +519,9 @@ class User extends Base
         if ($this->request->isGet()) {
             $id = input('get.id', '', 'htmlspecialchars,intval');
             $data = $this->service->getInfo($id);
-            $billing_address = $data->info->billing_address;
+            $billing_address = '';
+            if (!empty($data->info)) $billing_address = $data->info->billing_address;
+
             unset($data);
             $this->assign('id', $id);
             $this->assign('billing_address', $billing_address);
@@ -537,7 +551,8 @@ class User extends Base
         if ($this->request->isGet()) {
             $id = input('get.id', '', 'htmlspecialchars,intval');
             $data = $this->service->getInfo($id);
-            $delivery_address = $data->info->delivery_address;
+            $delivery_address='';
+            if(!empty($data->info) )$delivery_address = $data->info->delivery_address;
             unset($data);
             $this->assign('id', $id);
             $this->assign('delivery_address', $delivery_address);

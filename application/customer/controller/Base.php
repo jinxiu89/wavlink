@@ -17,6 +17,7 @@ use think\Controller;
 use think\facade\Cache;
 use think\facade\Cookie;
 use think\facade\Lang;
+use app\lib\utils\cloud\ali;
 
 class Base extends Controller
 {
@@ -56,7 +57,6 @@ class Base extends Controller
         Lang::load(APP_PATH . 'customer/lang/' . $lang . '.php'); //加载该语言下的模块语言包
         $this->assign('lang', $lang);
     }
-
 
 
     /**
@@ -120,5 +120,13 @@ class Base extends Controller
                 return show(0, lang('Send Error'), '', '', '', lang('Message Send Failed!'));
             }
         }
+    }
+
+    public function listObj()
+    {
+        $prefix = !empty(input('get.prefix', '', 'htmlspecialchars,trim')) ? input('get.prefix', '', 'htmlspecialchars,trim') : 'videos';
+        $items=ali::listObj('wavlink',  $prefix);
+        unset($items[0]);
+        print_r($items);
     }
 }

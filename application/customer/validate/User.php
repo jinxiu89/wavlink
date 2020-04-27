@@ -21,6 +21,7 @@ class User extends Validate
 {
     protected $rule=[
         'id'=>'integer',
+        'username'=>'require|unique:tb_user,username',
         'email'=>'require|email|unique:tb_user,email',
         'first_name'=>'require|max:20',
         'gender'=>'require|in:1,2,3',
@@ -33,16 +34,19 @@ class User extends Validate
         'delivery_address'=>'max:120',
     ];
     protected $message=[
+        'id'=>'ID illegal',
+        'username.require'=>'{%username is required}',
+        'username.unique'=>'{%This username has been used}',
         'email.require'=>'{%email is required}',
         'email.email'=>'{%email format is Error}',
-        'email.unique'=>'{%Your Email  Already existed}',
+        'email.unique'=>'{%This e-mail has been used}',
         'first_name.require'=>'{%first name is required}',
         'first_name.max'=>'{%first name is max 20}',
         'gender.require'=>'{%gender is require}',
         'gender.integer'=>'{%gender is error}',
         'birthday'=>'{%birthday is required}',
         'phone'=>'{%phone number is require}',
-        'phone.unique'=>'{%Your Phone address Already existed}',
+        'phone.unique'=>'{%This phone number has been used}',
         'password'=>'{%password is to easy }',
         'country.require'=>'{%Country is required }',
         'country.max'=>'{%Country is mast be to 20 letter }',

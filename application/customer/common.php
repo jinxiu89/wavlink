@@ -28,6 +28,24 @@ function getGender($gender){
 }
 
 /**
+ * @param $email
+ * @return string
+ * 如果前台（info）页邮箱没有填的话，默认给他N/A
+ */
+function getEmail($email){
+    if($email == 1){
+        return '';
+    }
+    return $email;
+}
+function getPhone($phone){
+    if($phone == 1){
+        return '';
+    }
+    return $phone;
+}
+
+/**
  * 用户端的国家输出并翻译
  * @param $id
  * @return mixed

@@ -200,5 +200,17 @@ class User extends BaseService
     public function reg($data)
     {
         //todo::注册操作
+        try {
+            return $this->model->create($data);  //返回的是一个当前模型的实例
+            /*if(!$user->isEmpty()){
+                $info=$this->model->get($user->id);
+                if($info->info->save(['gender'=>3])){
+                    return $user;
+                }
+            }*/
+        } catch (\Exception $exception) {
+            return $exception->getMessage();//todo:: 异常
+        }
+
     }
 }

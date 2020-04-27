@@ -58,23 +58,7 @@
             }
         },
         submitHandler: function (form) {
-            $.ajax({
-                url: window.location.href,
-                type: "post",
-                dataType: "json",
-                // data:postData,
-                data: $("form").serialize(),//提交表单数据
-                success: function (result) {
-                    if (result.status == 1) {
-                        layer.msg(result.message, {icon:1, time: 3000});
-                        setTimeout(function () {
-                            window.parent.location.href=result.jump_url
-                        },2000)
-                    } else {
-                        layer.msg(result.message, {icon:5, time: 1000});
-                    }
-                }
-            })
+            InfoChange(window.location.href, form)
         }
     });
     //自定义正则表达示验证方法

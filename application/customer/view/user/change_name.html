@@ -7,16 +7,16 @@
     <div class="box" id="box">
         <div class="info-change-box">
             <div class="form-title">
-                <h3 class="title">Modify Your Username</h3>
+                <h3 class="title">Modify Your Real Name</h3>
             </div>
             <form class="personal-name" id="personal-name" action="">
                 <div class="info">
                     <label for="firstName">First Name: </label>
-                    <input id="firstName" name="first_name" type="text" value="{$name.first_name}">
+                    <input id="firstName" name="first_name" type="text" value="{if (empty($name.first_name))}{$name.first_name}{/if}">
                 </div>
                 <div class="info">
                     <label for="lastName">Last Name: </label>
-                    <input id="lastName" name="last_name" type="text" value="{$name.last_name}">
+                    <input id="lastName" name="last_name" type="text" value="{if($name.last_name != NULL)}{$name.last_name}{/if}">
                 </div>
                 <input type="hidden" id="id" name="id" value="{$id}">
                 <div class="btn-group">

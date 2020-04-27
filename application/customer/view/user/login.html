@@ -48,26 +48,8 @@
                 equalTo: "#user_password"
             }
         },
-        /*onkeyup: false,
-        focusCleanup: true,
-        success: "valid",*/
         submitHandler: function (form) {
-            $.ajax({
-                url: '{:url(\'customer_login\')}',
-                type: "post",
-                dataType: "json",
-                data: $("form").serialize(),//提交表单数据
-                success: function (result) {
-                    if (result.status === 1) {
-                        //注册成功后要跳转到登录
-                        layer.msg(result.message, {icon: 1, time: 3000},function () {
-                            window.parent.location.href = result.jump_url
-                        });
-                    } else {
-                        layer.msg(result.message, {icon: 5, time: 3000});
-                    }
-                }
-            })
+            InfoChange('{:url(\'customer_login\')}', form)
         }
     });
     function genCode(dom) {

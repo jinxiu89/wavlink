@@ -7,12 +7,12 @@
     <div class="box" id="box">
         <div class="info-change-box">
             <div class="form-title">
-                <h3 class="title">Modify Your Email</h3>
-                <p class="notice"><span>*</span> Please note: Modifying your email address will change the account you log in with</p>
+                <h3 class="title">Modify Your E-mail</h3>
+                <p class="notice"><span>*</span> Please note that you should use the new e-mail address to log in after it is changed.</p>
             </div>
             <form class="personal-email" id="personal-email" action="">
                 <div class="info">
-                    <label for="email">Email: </label>
+                    <label for="email">E-mail: </label>
                     <input class="code" id="email" name="email" type="text" value="{$email}">
                     <button id="send_code" type="button">{:lang('send')}</button>
                 </div>
@@ -36,84 +36,17 @@
 <script src="__STATIC__/admin/lib/jquery.validation/1.14.0/validate-methods.js"></script>
 <script src="__STATIC__/admin/lib/layer/2.4/layer.js"></script>
 <script src="__USER__/ui/js/birthday.js"></script>
+<script src="__USER__/ui/js/countDown.js"></script>
 {if condition="$lang == 'zh_cn'"}
 <script src="__STATIC__/admin/lib/jquery.validation/1.14.0/messages_zh.js"></script>
 {/if}
 <script>
-    // 离开页面/刷新页面 重新运行计时器
-    function monitor(obj) {
-        var LocalDelay = getLocalDelay();
-        var btnDom = document.getElementById("send_code");
-        if (LocalDelay.time != null) {
-            var timeLine = parseInt((new Date().getTime() - LocalDelay.time) / 1000);
-            if (timeLine > LocalDelay.delay) {
-                /*console.log("过期");*/
-            } else {
-                _delay = LocalDelay.delay - timeLine;
-                obj.text(_delay + 's');
-                btnDom.disabled = true;
-                var timer = setInterval(function () {
-                    if (_delay > 1) {
-                        _delay--;
-                        obj.text(_delay + 's');
-                        setLocalDelay(_delay);
-                    } else {
-                        clearInterval(timer);
-                        obj.text("{:lang('send')}");
-                        btnDom.disabled = false;
-                    }
-                }, 1000);
-            }
-        }
-    }
-    //设置setLocalDelay
-    function setLocalDelay(delay) {
-        sessionStorage.setItem("delay_" + location.href, delay);
-        sessionStorage.setItem("time_" + location.href, new Date().getTime());
-    }
-    //getLocalDelay()
-    // 第二步
-    function getLocalDelay() {
-        var LocalDelay = {};
-        LocalDelay.delay = sessionStorage.getItem("delay_" + location.href);
-        LocalDelay.time = sessionStorage.getItem("time_" + location.href);
-        return LocalDelay;
-    }
-    //倒计时效果
-    /**
-     *
-     * @param {Object} obj 获取验证码按钮
-     * @param {Function} callback 获取验证码接口函数
-     */
-    function countDown(obj) {
-        if (obj.text() === "{:lang('send')}") {
-            var _delay = 20; //设置定时时间长度
-            var delay = _delay;
-            var btnDom = document.getElementById("send_code")
-            obj.text(_delay + 's');
-            btnDom.disabled = true;
-            btnDom.style.cursor = 'no-drop'
-            // 定时器
-            var timer = setInterval(function () {
-                if (delay > 1) {
-                    delay--;
-                    obj.html(delay + 's');
-                    setLocalDelay(delay);
-                } else {
-                    clearInterval(timer);
-                    obj.text("{:lang('send')}");
-                    btnDom.disabled = false;
-                    btnDom.style.cursor = 'pointer'
-                }
-            }, 1000);
-        } else {
-            return false;
-        }
-    }
     // 初始化
     $(function () {
         var btn = document.getElementById("send_code");
-        monitor($(btn));
+        // monitor($(btn));
+        var btnText = "{:lang('send')}";
+        monitor($(btn), btnText);
         btn.onclick = function () {
             //倒计时效果 getCode回调函数 获取验证码api
             var _this = this;
@@ -122,10 +55,16 @@
             var emailReg = /^([a-zA-Z]|[0-9])(\w|\-)+@[a-zA-Z0-9]+\.([a-zA-Z]{2,4})$/;
             var phoneReg = /^1(3|4|5|6|7|8|9)\d{9}$/;
             if(attr === 'email' && !emailReg.test(value)){
-                layer.msg("{:lang('Please input the correct phone number or e-mail address')}")
+                layer.msg("{:lang('Please input the correct phone number or e-mail address')}", {
+                    icon: 5,
+                    time: 2000,
+                })
             }
             if(attr === 'phone' && !phoneReg.test(value)){
-                layer.msg("{:lang('Please input the correct phone number or e-mail address')}")
+                layer.msg("{:lang('Please input the correct phone number or e-mail address')}", {
+                    icon: 5,
+                    time: 2000,
+                })
             }
             $.ajax({
                 url: '{:url(\'verification\')}' + '?' + attr + '=' + value,
@@ -133,7 +72,8 @@
                 success: function (result) {
                     var json=JSON.parse(result);
                     if(json.status === 1){
-                        countDown($(_this));
+                        // countDown($(_this));
+                        countDown($(_this), 20, btnText);
                     }else{
                         console.log(0);
                     }

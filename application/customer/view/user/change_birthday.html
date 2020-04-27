@@ -8,7 +8,7 @@
         <div class="info-change-box">
             <div class="form-title">
                 <h3 class="title">Modify Your Birthday</h3>
-                <p class="notice"><span>*</span> Please note: Once the birthday information is filled in, it cannot be changed</p>
+                <p class="notice"><span>*</span> Please note that it cannot be changed after it is confirmed.</p>
             </div>
             <form class="personal-birthday" id="personal-birthday" action="">
                 <div class="info">
@@ -61,7 +61,7 @@
             DaySelector: ".sel_day"
         });
     })
-    $("#personal-gender").validate({
+    $("#personal-birthday").validate({
         errorClass: 'infoError',
         errorElement: 'p',
         rules: {
@@ -81,8 +81,8 @@
         var time = y + '-' + m + '-' + d
         var birthday =  new Date(time).getTime()/1000;
         if (isNaN(birthday)) {
-            layer.msg('Please select the correct date', {
-                icon: 2,
+            layer.msg('Please select the full date', {
+                icon: 5,
                 time: 2000,
             })
         } else {

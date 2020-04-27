@@ -6,7 +6,14 @@
  * Time: 17:57
  */
 return [
+    'ID illegal' => '非法ID',
+    'This username has been used' => '用户名已存在',
+    'username is required' => '用户名为必填项',
+    'This e-mail has been used' => '改邮件已注册',
+    'This phone number has been used' => '改电话号码已被注册',
     'logout' => '退出登录',
+    'This e-mail already existed' => '邮箱已存在',
+    'This phone number already existed' => '手机号已存在',
     //注册登录用到的词汇
     'Experience Center' => '用户体验中心',
     'Service' => '服务支持',
@@ -56,8 +63,8 @@ return [
     'I accept the'=>'我同意',
     'and'=>'和',
     'Privacy agreement'=>'隐私条款',
-    'Subscribe me'=>'订阅',
-    'Agree is required' => '请勾选我们的服务条款和隐私条款',
+    'Subscribe me'=>'订阅以获取最新优惠推送及更多资讯',
+    'Agree is required' => '请先阅读并勾选同意我们的服务条款和隐私政策',
     /*注册验证文案结束*/
     'Input your first name'=>'输入姓名',
     'Input your E-mail' => '请输入您的E-mail',
@@ -179,6 +186,22 @@ return [
     'Serial Number Error'=>'序列号错误',
     'Number Segment Error'=>'序列号号段错误',
     //信息页翻译
+    'My Account' => '我的账户',
+    'Personal Profile' => '个人信息',
+    'Security' => '账户安全',
+    'Member Center' => '会员中心',
+    'My Product' => '我的产品',
+    'Basic info, like your name and photo, that you use on WAVLINK services' => '您在WAVLINK服务上使用的基本信息，例如您的姓名和照片',
+    'Basic Info' => '基本信息',
+    'User Name'=>'用户名',
+    'Real Name' => '姓名',
+    'Gender' => '性别',
+    'Modify' => '修改',
+    'Birthday' => '生日',
+    'Contact Info' => '联系信息',
+    'ZIP Code' => '邮政编码',
+    'Delivery Address' => '送货地址',
+
     'Female'=>'女',
     'Male'=>'男',
     'Secret'=>'保密',

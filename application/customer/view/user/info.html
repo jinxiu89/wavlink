@@ -9,9 +9,9 @@
 <div class="common-width">
     <div class="g-path">
         <ol class="breadcrumb">
-            <li><a href="/{$lang}/index.html">Home</a></li>
-            <li><a href="/{$lang}/index.html">Member Center</a></li>
-            <li class="active">Base Info</li>
+            <li><a href="/{$lang}/index.html">{:lang('home')}</a></li>
+            <li><a href="/{$lang}/index.html">{:lang('Member Center')}</a></li>
+            <li class="active">{:lang('Personal Profile')}</li>
         </ol>
     </div>
 </div>
@@ -34,18 +34,18 @@
             </div>
         </div>
         <div class="person-des">
-            <h2 class="title">Personal Profile</h2>
-            <p>Basic info, like your name and photo, that you use on WAVLINK services</p>
+            <h2 class="title">{:lang('Personal Profile')}</h2>
+            <p>{:lang('Basic info, like your name and photo, that you use on WAVLINK services')}</p>
         </div>
     </div>
 
     <div class="Module">
-        <h3 class="title">Basic Info</h3>
+        <h3 class="title">{:lang('Basic Info')}</h3>
         <form class="Field" action="">
-            <h4 class="Field-label">User Name</h4>
+            <h4 class="Field-label">{:lang('User Name')}</h4>
             <div class="Field-content">
                 <div>
-                    <span class="Field-text">132</span>
+                    <span class="Field-text">{$result.username}</span>
                     <!--<button class="Field-modify" type="button"
                             onclick="layer_open('Modify Your Username','{:url(\'changeName\',[\'id\'=>$result.id])}',533,300)">
                         <span class="iconfont iconedit"></span> Modify
@@ -54,50 +54,50 @@
             </div>
         </form>
         <form class="Field" action="">
-            <h4 class="Field-label">Real Name</h4>
+            <h4 class="Field-label">{:lang('Real Name')}</h4>
             <div class="Field-content">
                 <div>
                     <span class="Field-text">{$result.info.first_name} {$result.info.last_name}</span>
                     <button class="Field-modify" type="button"
                             onclick="layer_open('Modify Your Real Name','{:url(\'changeName\',[\'id\'=>$result.id])}',533,300)">
-                        <span class="iconfont iconedit"></span> Modify
+                        <span class="iconfont iconedit"></span> {:lang('Modify')}
                     </button>
                 </div>
             </div>
         </form>
         <form class="Field" action="">
-            <h4 class="Field-label">Gender</h4>
+            <h4 class="Field-label">{:lang('Gender')}</h4>
             <div class="Field-content">
                 <div>
                     <span class="Field-text">{$result.info.gender|getGender|raw}</span>
                     <button class="Field-modify" type="button"
                             onclick="layer_open('Modify Your Gender','{:url(\'changeGender\',[\'id\'=>$result.id])}',533,300)">
-                        <span class="iconfont iconedit"></span> Modify
+                        <span class="iconfont iconedit"></span> {:lang('Modify')}
                     </button>
                 </div>
             </div>
         </form>
         <form class="Field" action="">
-            <h4 class="Field-label">Birthday</h4>
+            <h4 class="Field-label">{:lang('Birthday')}</h4>
             <div class="Field-content">
                 <div>
                     <span class="Field-text">{$result.info.birthday|date='Y-m-d'}</span>
                     <button class="Field-modify" type="button"
                             onclick="layer_open('Modify Your Birthday','{:url(\'changeBirthday\',[\'id\'=>$result.id])}',533,300)">
-                        <span class="iconfont iconedit"></span> Modify
+                        <span class="iconfont iconedit"></span> {:lang('Modify')}
                     </button>
                     <!--<span><a class="link" href="#">(Why do I need to fill in this information?)</a></span>-->
                 </div>
             </div>
         </form>
         <form class="Field" action="">
-            <h4 class="Field-label">Country</h4>
+            <h4 class="Field-label">{:lang('Country')}</h4>
             <div class="Field-content">
                 <div>
                     <span class="Field-text">{notempty name="$result.info.country"}{$result.info.country|getCountry|lang}{/notempty}</span>
                     <button class="Field-modify" type="button"
                             onclick="layer_open('Modify Your Country','{:url(\'changeCountry\',[\'id\'=>$result.id])}',533,300)">
-                        <span class="iconfont iconedit"></span> Modify
+                        <span class="iconfont iconedit"></span> {:lang('Modify')}
                     </button>
                 </div>
             </div>
@@ -105,65 +105,65 @@
     </div>
 
     <div class="Module">
-        <h3 class="title">Contact Info</h3>
+        <h3 class="title">{:lang('Contact Info')}</h3>
         <form class="Field" action="">
-            <h4 class="Field-label">Phone</h4>
+            <h4 class="Field-label">{:lang('phone')}</h4>
             <div class="Field-content">
                 <div>
-                    <span class="Field-text">{$result.phone}</span>
+                    <span class="Field-text">{$result.phone|getPhone}</span>
                     <button class="Field-modify" type="button"
                             onclick="layer_open('Modify Your Phone Number','{:url(\'changePhone\',[\'id\'=>$result.id])}',533,300)">
-                        <span class="iconfont iconedit"></span> Modify
+                        <span class="iconfont iconedit"></span> {:lang('Modify')}
                     </button>
                 </div>
             </div>
         </form>
         <form class="Field" action="">
-            <h4 class="Field-label">E-mail</h4>
+            <h4 class="Field-label">{:lang('Email')}</h4>
             <div class="Field-content">
                 <div>
-                    <span class="Field-text">{$result.email}</span>
+                    <span class="Field-text">{$result.email|getEmail}</span>
                     <button class="Field-modify" type="button"
                             onclick="layer_open('Modify Your E-mail','{:url(\'changeEmail\',[\'id\'=>$result.id])}',533,300)">
-                        <span class="iconfont iconedit"></span> Modify
+                        <span class="iconfont iconedit"></span> {:lang('Modify')}
                     </button>
                 </div>
             </div>
         </form>
         <form class="Field" action="">
-            <h4 class="Field-label">ZIP Code</h4>
+            <h4 class="Field-label">{:lang('ZIP Code')}</h4>
             <div class="Field-content">
                 <div>
                     <span class="Field-text">{$result.info.zip_code}</span>
                     <button class="Field-modify" type="button"
                             onclick="layer_open('Modify Your Zip Code','{:url(\'changeCode\',[\'id\'=>$result.id])}',533,300)">
-                        <span class="iconfont iconedit"></span> Modify
+                        <span class="iconfont iconedit"></span> {:lang('Modify')}
                     </button>
                 </div>
             </div>
         </form>
         {if($lang == 'en_us')}
         <form class="Field" action="">
-            <h4 class="Field-label">Billing Address</h4>
+            <h4 class="Field-label">{:lang('Billing Address')}</h4>
             <div class="Field-content">
                 <div>
                     <span class="Field-text">{$result.info.billing_address}</span>
                     <button class="Field-modify" type="button"
                             onclick="layer_open('Modify Your Bill Address','{:url(\'changeBillingAddress\',[\'id\'=>$result.id])}',533,300)">
-                        <span class="iconfont iconedit"></span> Modify
+                        <span class="iconfont iconedit"></span> {:lang('Modify')}
                     </button>
                 </div>
             </div>
         </form>
         {/if}
         <form class="Field" action="">
-            <h4 class="Field-label">Delivery Address</h4>
+            <h4 class="Field-label">{:lang('Delivery Address')}</h4>
             <div class="Field-content">
                 <div>
                     <span class="Field-text">{$result.info.delivery_address}</span>
                     <button class="Field-modify" type="button"
                             onclick="layer_open('Modify Your Delivery Address','{:url(\'changeDeliveryAddress\',[\'id\'=>$result.id])}',533,300)">
-                        <span class="iconfont iconedit"></span> Modify
+                        <span class="iconfont iconedit"></span> {:lang('Modify')}
                     </button>
                 </div>
             </div>

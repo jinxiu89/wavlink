@@ -61,6 +61,26 @@ body {
     line-height: 1.42857143;
 }
 
+p.infoError {
+    display: block;
+    .fl();
+    width: 100%;
+    padding-left: 150px;
+    color: #f00;
+    text-align: left;
+    font-size: 12px;
+}
+#send_code {
+    height: 30px;
+    margin-left: 5px;
+    padding: 0 15px;
+    font-size: 12px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    background: @whiteColor;
+    cursor: pointer;
+}
+
 //container容器宽度
 .container {
     .clearFix();
@@ -339,6 +359,7 @@ header {
 .g-main {
     .fl();
     width: 80%;
+    min-height: 600px;
     background: #fff;
     @media screen and (min-width: 768px) and (max-width: 991px) {
         width: 75%;
@@ -349,18 +370,8 @@ header {
 //个人信息修改表单
 .info-change-box {
     background: @whiteColor;
-    #send_code {
-        height: 30px;
-        margin-left: 5px;
-        padding: 0 15px;
-        font-size: 12px;
-        border: 1px solid #ccc;
-        border-radius: 5px;
-        background: @whiteColor;
-        cursor: pointer;
-    }
     .form-title {
-        margin: 20px 0;
+        margin: 20px;
         text-align: center;
         .title {
             font-size: 16px;
@@ -374,7 +385,11 @@ header {
         }
     }
     .info {
+        .clearFix();
         margin-bottom: 10px;
+    }
+    #send_code {
+        height: 28px;
     }
     .btn-group {
         margin: 20px 0 0;
@@ -409,18 +424,23 @@ header {
     .personal-zipCode,
     .personal-phone,
     .personal-email {
+        .info {
+            .clearFix();
+        }
         .info label {
-            display: inline-block;
+            .fl();
             width: 130px;
             height: 28px;
             line-height: 28px;
-            margin: 0 10px 0 6.5px;
+            margin: 0 10px;
             text-align: right;
+            font-weight: normal;
         }
         .info input {
-            display: inline-block;
+            .fl();
             width: 240px;
             height: 28px;
+            margin-left: 0;
             padding: 0 5px;
             border: 1px solid #ccc;
         }
@@ -459,7 +479,7 @@ header {
             width: 130px;
             height: 28px;
             line-height: 28px;
-            margin: 0 10px 0 6.5px;
+            margin: 0 10px 0;
             text-align: right;
         }
         .info select {

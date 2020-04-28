@@ -74,7 +74,7 @@ return [
     'Input your password again' => '再次确认您的密码',
     'confirm' => '确认密码',
     'captcha' => '验证码',
-
+    'The verification code is invalid' => '请输入验证码',
     'Captcha Error' => '验证码错误',
     'The captcha is invalid' => '验证码错误',
     'Please input the captcha in the image on the right' => '请输入右边的图像所示验证码！',
@@ -114,7 +114,7 @@ return [
     'Input your telephone number' => '输入您的手机或者电话',
     'Input your Zip code' => '输入您的邮政编码',
     'Input your Billing address' => '请输入您的账单地址',
-    'Input your Delivery address' => '请输入您的收货地址',
+    'Input your Delivery address' => '请输入您的收件地址',
     'Input your new password' => '请输入您的新密码',
     'Where did you learn about us?' => '您从哪里了解到我们的呢？',
     'Please choose your country' => '请选择您所在的国家',
@@ -123,6 +123,8 @@ return [
     'home' => '首页',
     'product' => '产品',
     'driver' => '驱动',
+    'password is to easy' => '密码太简单了',
+    'Wait a moment' => '稍等片刻',
 
     /**
      * 产品注册翻译
@@ -168,8 +170,6 @@ return [
     //产品注册相关的
     'Order Number' => '订单号',
     'Purchase time' => '购买时间',
-    'ReWrite' => '重填',
-    'Submit' => '提交',
     'Please enter your product model' => '请输入您的产品型号',
     'Please enter your sn code' => '请输入您的产品SN',
     'Where did you buy our products' => '购买渠道',
@@ -200,11 +200,43 @@ return [
     'Birthday' => '生日',
     'Contact Info' => '联系信息',
     'ZIP Code' => '邮政编码',
-    'Delivery Address' => '送货地址',
-
+    'Delivery Address' => '收件地址',
+    'Modify Your Real Name' => '填写您的姓名',
+    'first name is required' => '请填写您的姓名',
+    'First Name' => '姓名',
+    'Modify Your Gender' => '选择您的性别',
+    'gender is require' => '请选择您的性别',
+    'Modify Your Birthday' => '选择您的生日',
+    'Please note that it cannot be changed after it is confirmed' => '生日仅能设置一次，请谨慎填写',
+    'Year' => '年',
+    'Month' => '月',
+    'Day' => '日',
+    'Please select the full date' => '请填写完整的生日信息',
+    'Modify Your Country' => '选择您的国家',
+    'Modify Your Phone Number' => '填写您的手机号',
+    'phone number is require' => '填写您的手机号',
+    'Mobile format Error' => '请填写正确的手机号',
+    'Please note that the phone number cannot be changed after it is confirmed' => '电话号码仅能设置一次，请谨慎填写',
+    'Modify Your E-mail' => '填写您的邮件地址',
+    'email is required' => '请填写您的邮件地址',
+    'email format Error' => '请填写正确的邮件地址',
+    'email format is Error' => '邮件地址格式错误',
+    'Please note that you should use the new e-mail address to log in after it is changed' => 'E-mail地址默认为注册账户邮箱，修改E-mail地址同时会修改注册账户。邮箱仅能设置一次，请谨慎填写',
+    'Modify Your Zip Code' => '填写您的邮政编码',
+    'billing address too long' => '账单地址太长',
+    'Modify Your Delivery Address' => '填写您的收件地址',
+    'delivery address too long' => '收件地址太长',
+    'ReWrite' => '重填',
+    'Submit' => '提交',
+    'Cancel' => '关闭',
     'Female'=>'女',
     'Male'=>'男',
     'Secret'=>'保密',
+
+
+    'After the password is changed, you need to log in again, please remember your password'=>'密码修改后，您需要重新登录，请牢记您的密码',
+
+
     //国家 名称翻译
     'china' => '中国',
     'Afghanistan' => '阿富汗',

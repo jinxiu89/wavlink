@@ -7,23 +7,27 @@
     <div class="box" id="box">
         <div class="info-change-box">
             <div class="form-title">
-                <h3 class="title">Modify Your Country</h3>
+                <h3 class="title">{:lang('Modify Your Country')}</h3>
             </div>
             <form class="personal-country" id="personal-country" action="">
                 <div class="info">
-                    <label for="country">Country: </label>
+                    <label for="country">{:lang('Country')}: </label>
                     <select id="country" name="country">
                         <option value="">{:lang('select')}</option>
                         {volist name="country" id="vo"}
+                        {if($vo.country_id == $country_id)}
+                        <option value="{$vo.country_id}" selected="selected">{:lang($vo.name)}</option>
+                        {else /}
                         <option value="{$vo.country_id}">{:lang($vo.name)}</option>
+                        {/if}
                         {/volist}
                     </select>
                 </div>
 
                 <input type="hidden" id="id" name="id" value="{$id}">
                 <div class="btn-group">
-                    <button class="btn" type="submit">SUBMIT</button>
-                    <button class="btn" type="button" id="btn-close">CANCEL</button>
+                    <button class="btn" type="submit">{:lang('Submit')}</button>
+                    <button class="btn" type="button" id="btn-close">{:lang('Cancel')}</button>
                 </div>
             </form>
         </div>

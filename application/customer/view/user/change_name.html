@@ -7,21 +7,26 @@
     <div class="box" id="box">
         <div class="info-change-box">
             <div class="form-title">
-                <h3 class="title">Modify Your Real Name</h3>
+                <h3 class="title">{:lang('Modify Your Real Name')}</h3>
             </div>
             <form class="personal-name" id="personal-name" action="">
                 <div class="info">
-                    <label for="firstName">First Name: </label>
-                    <input id="firstName" name="first_name" type="text" value="{if (empty($name.first_name))}{$name.first_name}{/if}">
+                    <label for="firstName">{:lang('First Name')}: </label>
+                    <input id="firstName" name="first_name" type="text" value="{if ($name.first_name != NULL)}{$name.first_name}{/if}">
                 </div>
+                {if($lang == 'zh_cn')}
+
+                {/if}
+                {if($lang == 'en_us')}
                 <div class="info">
                     <label for="lastName">Last Name: </label>
                     <input id="lastName" name="last_name" type="text" value="{if($name.last_name != NULL)}{$name.last_name}{/if}">
                 </div>
+                {/if}
                 <input type="hidden" id="id" name="id" value="{$id}">
                 <div class="btn-group">
-                    <button class="btn" type="submit">SUBMIT</button>
-                    <button class="btn" type="button" id="btn-close">CANCEL</button>
+                    <button class="btn" type="submit">{:lang('Submit')}</button>
+                    <button class="btn" type="button" id="btn-close">{:lang('Cancel')}</button>
                 </div>
             </form>
             <!--<div class="form-tips">

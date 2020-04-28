@@ -7,18 +7,18 @@
     <div class="box" id="box">
         <div class="info-change-box">
             <div class="form-title">
-                <h3 class="title">Modify Your Billing Address</h3>
+                <h3 class="title">{:lang('Modify Your Billing Address')}</h3>
             </div>
             <form class="personal-billing" id="personal-billing" action="">
                 <div class="info">
-                    <label for="billing_address">Billing Address: </label>
+                    <label for="billing_address">{:lang('Billing Address')}: </label>
                     <input id="billing_address" name="billing_address" type="text" value="{$billing_address}">
                 </div>
 
                 <input type="hidden" id="id" name="id" value="{$id}">
                 <div class="btn-group">
-                    <button class="btn" type="submit">SUBMIT</button>
-                    <button class="btn" type="button" id="btn-close">CANCEL</button>
+                    <button class="btn" type="submit">{:lang('Submit')}</button>
+                    <button class="btn" type="button" id="btn-close">{:lang('Cancel')}</button>
                 </div>
             </form>
         </div>
@@ -38,7 +38,7 @@
         errorClass: 'infoError',
         errorElement: 'p',
         rules: {
-
+            billing_address: 'required'
         },
         submitHandler: function (form) {
             InfoChange('{:url(\'changeBillingAddress\')}', form)

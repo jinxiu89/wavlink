@@ -59,7 +59,7 @@
                 <div>
                     <span class="Field-text">{$result.info.first_name} {$result.info.last_name}</span>
                     <button class="Field-modify" type="button"
-                            onclick="layer_open('Modify Your Real Name','{:url(\'changeName\',[\'id\'=>$result.id])}',533,300)">
+                            onclick="layer_open('{:lang(\'Modify Your Real Name\')}','{:url(\'changeName\',[\'id\'=>$result.id])}',533,300)">
                         <span class="iconfont iconedit"></span> {:lang('Modify')}
                     </button>
                 </div>
@@ -71,7 +71,7 @@
                 <div>
                     <span class="Field-text">{$result.info.gender|getGender|raw}</span>
                     <button class="Field-modify" type="button"
-                            onclick="layer_open('Modify Your Gender','{:url(\'changeGender\',[\'id\'=>$result.id])}',533,300)">
+                            onclick="layer_open('{:lang(\'Modify Your Gender\')}','{:url(\'changeGender\',[\'id\'=>$result.id])}',533,300)">
                         <span class="iconfont iconedit"></span> {:lang('Modify')}
                     </button>
                 </div>
@@ -83,7 +83,7 @@
                 <div>
                     <span class="Field-text">{$result.info.birthday|date='Y-m-d'}</span>
                     <button class="Field-modify" type="button"
-                            onclick="layer_open('Modify Your Birthday','{:url(\'changeBirthday\',[\'id\'=>$result.id])}',533,300)">
+                            onclick="layer_open('{:lang(\'Modify Your Birthday\')}','{:url(\'changeBirthday\',[\'id\'=>$result.id])}',533,300)">
                         <span class="iconfont iconedit"></span> {:lang('Modify')}
                     </button>
                     <!--<span><a class="link" href="#">(Why do I need to fill in this information?)</a></span>-->
@@ -96,7 +96,7 @@
                 <div>
                     <span class="Field-text">{notempty name="$result.info.country"}{$result.info.country|getCountry|lang}{/notempty}</span>
                     <button class="Field-modify" type="button"
-                            onclick="layer_open('Modify Your Country','{:url(\'changeCountry\',[\'id\'=>$result.id])}',533,300)">
+                            onclick="layer_open('{:lang(\'Modify Your Country\')}','{:url(\'changeCountry\',[\'id\'=>$result.id])}',533,300)">
                         <span class="iconfont iconedit"></span> {:lang('Modify')}
                     </button>
                 </div>
@@ -112,7 +112,7 @@
                 <div>
                     <span class="Field-text">{$result.phone|getPhone}</span>
                     <button class="Field-modify" type="button"
-                            onclick="layer_open('Modify Your Phone Number','{:url(\'changePhone\',[\'id\'=>$result.id])}',533,300)">
+                            onclick="layer_open('{:lang(\'Modify Your Phone Number\')}','{:url(\'changePhone\',[\'id\'=>$result.id])}',533,300)">
                         <span class="iconfont iconedit"></span> {:lang('Modify')}
                     </button>
                 </div>
@@ -136,7 +136,7 @@
                 <div>
                     <span class="Field-text">{$result.info.zip_code}</span>
                     <button class="Field-modify" type="button"
-                            onclick="layer_open('Modify Your Zip Code','{:url(\'changeCode\',[\'id\'=>$result.id])}',533,300)">
+                            onclick="layer_open('{:lang(\'Modify Your Zip Code\')}','{:url(\'changeCode\',[\'id\'=>$result.id])}',533,300)">
                         <span class="iconfont iconedit"></span> {:lang('Modify')}
                     </button>
                 </div>
@@ -149,7 +149,7 @@
                 <div>
                     <span class="Field-text">{$result.info.billing_address}</span>
                     <button class="Field-modify" type="button"
-                            onclick="layer_open('Modify Your Bill Address','{:url(\'changeBillingAddress\',[\'id\'=>$result.id])}',533,300)">
+                            onclick="layer_open('{:lang(\'Modify Your Billing Address\')}','{:url(\'changeBillingAddress\',[\'id\'=>$result.id])}',533,300)">
                         <span class="iconfont iconedit"></span> {:lang('Modify')}
                     </button>
                 </div>
@@ -162,7 +162,7 @@
                 <div>
                     <span class="Field-text">{$result.info.delivery_address}</span>
                     <button class="Field-modify" type="button"
-                            onclick="layer_open('Modify Your Delivery Address','{:url(\'changeDeliveryAddress\',[\'id\'=>$result.id])}',533,300)">
+                            onclick="layer_open('{:lang(\'Modify Your Delivery Address\')}','{:url(\'changeDeliveryAddress\',[\'id\'=>$result.id])}',533,300)">
                         <span class="iconfont iconedit"></span> {:lang('Modify')}
                     </button>
                 </div>
@@ -175,4 +175,7 @@
 {/block}
 {block name="javascript"}
 <!--私有JS-->
+<script>
+    $('.Info').addClass('active');
+</script>
 {/block}

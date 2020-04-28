@@ -104,7 +104,7 @@
                 phone: {
                     required: true,
                 },
-                Verification: 'required',
+                captcha: 'required',
                 // agree: 'required'
             },
             messages: {
@@ -122,7 +122,7 @@
                 },
                 email: '{:lang(\'Please enter a correct email\')}',
                 // agree: '请接受我们的隐私政策声明'
-                verification: '{:lang(\'Please enter the correct email verification code\')}',
+                captcha: '{:lang(\'The verification code is invalid\')}',
             }
         })
         //自定义正则表达示验证方法

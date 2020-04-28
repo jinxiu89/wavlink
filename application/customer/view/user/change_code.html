@@ -7,18 +7,18 @@
     <div class="box" id="box">
         <div class="info-change-box">
             <div class="form-title">
-                <h3 class="title">Modify Your Zip Code</h3>
+                <h3 class="title">{:lang('Modify Your Zip Code')}</h3>
             </div>
             <form class="personal-zipCode" id="personal-zipCode" action="">
                 <div class="info">
-                    <label for="zip_code">Zip Code: </label>
+                    <label for="zip_code">{:lang('Zip Code')}: </label>
                     <input id="zip_code" name="zip_code" type="text" value="{$code}">
                 </div>
 
                 <input type="hidden" id="id" name="id" value="{$id}">
                 <div class="btn-group">
-                    <button class="btn" type="submit">SUBMIT</button>
-                    <button class="btn" type="button" id="btn-close">CANCEL</button>
+                    <button class="btn" type="submit">{:lang('Submit')}</button>
+                    <button class="btn" type="button" id="btn-close">{:lang('Cancel')}</button>
                 </div>
             </form>
         </div>
@@ -38,7 +38,7 @@
         errorClass: 'infoError',
         errorElement: 'p',
         rules: {
-
+            zip_code: 'required'
         },
         submitHandler: function (form) {
             InfoChange('{:url(\'changeBillingAddress\')}', form)

@@ -175,6 +175,25 @@ body {
   font-size: 14px;
   line-height: 1.42857143;
 }
+p.infoError {
+  display: block;
+  float: left;
+  width: 100%;
+  padding-left: 150px;
+  color: #f00;
+  text-align: left;
+  font-size: 12px;
+}
+#send_code {
+  height: 30px;
+  margin-left: 5px;
+  padding: 0 15px;
+  font-size: 12px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  background: #fff;
+  cursor: pointer;
+}
 .container {
   margin: 0 auto;
 }
@@ -485,6 +504,7 @@ header .nav-box .exit .iconfont {
 .g-main {
   float: left;
   width: 80%;
+  min-height: 600px;
   background: #fff;
 }
 @media screen and (min-width: 768px) and (max-width: 991px) {
@@ -495,18 +515,8 @@ header .nav-box .exit .iconfont {
 .info-change-box {
   background: #fff;
 }
-.info-change-box #send_code {
-  height: 30px;
-  margin-left: 5px;
-  padding: 0 15px;
-  font-size: 12px;
-  border: 1px solid #ccc;
-  border-radius: 5px;
-  background: #fff;
-  cursor: pointer;
-}
 .info-change-box .form-title {
-  margin: 20px 0;
+  margin: 20px;
   text-align: center;
 }
 .info-change-box .form-title .title {
@@ -521,6 +531,18 @@ header .nav-box .exit .iconfont {
 }
 .info-change-box .info {
   margin-bottom: 10px;
+}
+.info-change-box .infobefore,
+.info-change-box .info:after {
+  content: " ";
+  display: table;
+  zoom: 1;
+}
+.info-change-box .info:after {
+  clear: both;
+}
+.info-change-box #send_code {
+  height: 28px;
 }
 .info-change-box .btn-group {
   margin: 20px 0 0;
@@ -548,18 +570,43 @@ header .nav-box .exit .iconfont {
 .info-change-box .btn-group .btn:nth-last-of-type(1):hover {
   background: #d6d6d6;
 }
+.info-change-box .personal-name .infobefore,
+.info-change-box .personal-billing .infobefore,
+.info-change-box .personal-delivery .infobefore,
+.info-change-box .personal-zipCode .infobefore,
+.info-change-box .personal-phone .infobefore,
+.info-change-box .personal-email .infobefore,
+.info-change-box .personal-name .info:after,
+.info-change-box .personal-billing .info:after,
+.info-change-box .personal-delivery .info:after,
+.info-change-box .personal-zipCode .info:after,
+.info-change-box .personal-phone .info:after,
+.info-change-box .personal-email .info:after {
+  content: " ";
+  display: table;
+  zoom: 1;
+}
+.info-change-box .personal-name .info:after,
+.info-change-box .personal-billing .info:after,
+.info-change-box .personal-delivery .info:after,
+.info-change-box .personal-zipCode .info:after,
+.info-change-box .personal-phone .info:after,
+.info-change-box .personal-email .info:after {
+  clear: both;
+}
 .info-change-box .personal-name .info label,
 .info-change-box .personal-billing .info label,
 .info-change-box .personal-delivery .info label,
 .info-change-box .personal-zipCode .info label,
 .info-change-box .personal-phone .info label,
 .info-change-box .personal-email .info label {
-  display: inline-block;
+  float: left;
   width: 130px;
   height: 28px;
   line-height: 28px;
-  margin: 0 10px 0 6.5px;
+  margin: 0 10px;
   text-align: right;
+  font-weight: normal;
 }
 .info-change-box .personal-name .info input,
 .info-change-box .personal-billing .info input,
@@ -567,9 +614,10 @@ header .nav-box .exit .iconfont {
 .info-change-box .personal-zipCode .info input,
 .info-change-box .personal-phone .info input,
 .info-change-box .personal-email .info input {
-  display: inline-block;
+  float: left;
   width: 240px;
   height: 28px;
+  margin-left: 0;
   padding: 0 5px;
   border: 1px solid #ccc;
 }
@@ -602,7 +650,7 @@ header .nav-box .exit .iconfont {
   width: 130px;
   height: 28px;
   line-height: 28px;
-  margin: 0 10px 0 6.5px;
+  margin: 0 10px 0;
   text-align: right;
 }
 .info-change-box .personal-country .info select {

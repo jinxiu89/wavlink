@@ -7,18 +7,18 @@
     <div class="box" id="box">
         <div class="info-change-box">
             <div class="form-title">
-                <h3 class="title">Modify Your Delivery Address</h3>
+                <h3 class="title">{:lang('Modify Your Delivery Address')}</h3>
             </div>
             <form class="personal-delivery" id="personal-delivery" action="">
                 <div class="info">
-                    <label for="delivery_address">Delivery Address: </label>
+                    <label for="delivery_address">{:lang('Delivery Address')}: </label>
                     <input id="delivery_address" name="delivery_address" type="text" value="{$delivery_address}">
                 </div>
 
                 <input type="hidden" id="id" name="id" value="{$id}">
                 <div class="btn-group">
-                    <button class="btn" type="submit">SUBMIT</button>
-                    <button class="btn" type="button" id="btn-close">CANCEL</button>
+                    <button class="btn" type="submit">{:lang('Submit')}</button>
+                    <button class="btn" type="button" id="btn-close">{:lang('Cancel')}</button>
                 </div>
             </form>
         </div>
@@ -38,7 +38,7 @@
         errorClass: 'infoError',
         errorElement: 'p',
         rules: {
-
+            delivery_address: 'required'
         },
         submitHandler: function (form) {
             InfoChange('{:url(\'changeDeliveryAddress\')}', form)

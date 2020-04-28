@@ -24,6 +24,7 @@ class Base extends Controller
     protected $service;
     protected $validate;
     protected $uid;
+    protected $username;
 
     /**
      * 构造函数，用来注册全局变量，供整个系统使用（这里指customer这个模块）,每个控制器都继承到base控制器
@@ -48,7 +49,11 @@ class Base extends Controller
     {
 
         parent::__construct($app);
-        $this->uid = session('CustomerInfo', '', 'Customer');
+        $user = session('CustomerInfo', '', 'Customer');
+        if (isset($user) and !empty($user)) $this->uid = $user['id'];
+        if (isset($user) and !empty($user)) $this->username = $user['username'];
+        $this->assign('id', $this->uid);
+        $this->assign('username', $this->username);
     }
 
     public function initialize()
@@ -124,9 +129,10 @@ class Base extends Controller
 
     public function listObj()
     {
-        $prefix = !empty(input('get.prefix', '', 'htmlspecialchars,trim')) ? input('get.prefix', '', 'htmlspecialchars,trim') : 'videos';
-        $items=ali::listObj('wavlink',  $prefix);
-        unset($items[0]);
+        $prefix = !empty(input('get.prefix', '', 'htmlspecialchars,trim')) ? input('get.prefix', '', 'htmlspecialchars,trim') . '/' : 'videos/';
+        $items = ali::listObj('wavlink', $prefix);
+        $key = array_search($prefix, $items);
+        array_splice($items, $key, 1);
         print_r($items);
     }
 }

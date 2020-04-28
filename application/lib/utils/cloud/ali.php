@@ -48,7 +48,7 @@ class ali
      */
     public static function listObj($bucket='wavlink',$prefix='images'){
         $nextMarker='';
-        $options = ['delimiter' => '', 'marker' => $nextMarker,'prefix'=>$prefix];
+        $options = ['delimiter' => '/', 'marker' => $nextMarker,'prefix'=>$prefix];
         try {
             $listObjectInfo = self::createClient()->listObjects($bucket, $options);
         } catch (OssException $e) {
@@ -58,14 +58,19 @@ class ali
             return;
         }
         $objectList = $listObjectInfo->getObjectList(); // object list
+        $prefixList = $listObjectInfo->getPrefixList();
+        $items=[];
+        if(!empty($prefixList)){
+            foreach ($prefixList as $prefixInfo){
+                $items[]=$prefixInfo->getPrefix();
+            }
+        }
         if (!empty($objectList)) {
-            $items=[];
             foreach ($objectList as $objectInfo) {
                 $items[]=$objectInfo->getKey();
-//                print($objectInfo->getKey() . "\n");
             }
-            return $items;
         }
+        return $items;
     }
 
     /**

@@ -283,10 +283,8 @@ class User extends Base
     public function changeName()
     {
         if ($this->request->isGet()) {
-            $id = input('get.id', '', 'htmlspecialchars,intval');
-            $data = $this->service->getInfo($id);
+            $data = $this->service->getInfo($this->uid);
             $name = [];
-
             if (empty($data->info)) {
                 $name['first_name'] = '';
                 $name['last_name'] = '';
@@ -296,7 +294,6 @@ class User extends Base
             }
             unset($data);
             $this->assign('name', $name);
-            $this->assign('id', $id);
             return $this->fetch();
         }
         if ($this->request->isPost()) {
@@ -322,15 +319,13 @@ class User extends Base
     public function changeGender()
     {
         if ($this->request->isGet()) {
-            $id = input('get.id', '', 'htmlspecialchars,intval');
-            $data = $this->service->getInfo($id);
+            $data = $this->service->getInfo($this->uid);
             $gender = '';
             if (!empty($data->info)) {
                 $gender = $data->info->gender;
             }
             unset($data);
             $this->assign('gender', $gender);
-            $this->assign('id', $id);
             return $this->fetch();
         }
         if ($this->request->isPost()) {
@@ -357,13 +352,11 @@ class User extends Base
     public function changeBirthday()
     {
         if ($this->request->isGet()) {
-            $id = input('get.id', '', 'htmlspecialchars,intval');
-            $data = $this->service->getDataById($id);
+            $data = $this->service->getInfo($this->uid);
             $birthday = '';
             if (!empty($data->info)) $birthday = $data->info->birthday;
             unset($data);
             $this->assign('birthday', $birthday);
-            $this->assign('id', $id);
             return $this->fetch();
         }
         if ($this->request->isPost()) {
@@ -388,17 +381,15 @@ class User extends Base
     public function changePhone()
     {
         if ($this->request->isGet()) {
-            $id = input('get.id', '', 'htmlspecialchars,intval');
-            $data = $this->service->getInfo($id);
+            $data = $this->service->getInfo($this->uid);
             $phone = $data->phone;
             unset($data);
             $this->assign('phone', $phone);
-            $this->assign('id', $id);
             return $this->fetch();
         }
         if ($this->request->isPost()) {
             $data = input('post.', [], 'trim,htmlspecialchars');
-            if (!$this->validate->scene('changePhone')->check($data)) {
+            if (!$this->validate->scene('changePhone')->check($data)) {//todo:计划加上海外手机的匹配
                 return show(0, $this->validate->getError(), '', '', '', $this->validate->getError());
             }
             $code = Cache::store('redis')->get($data['phone'], '') ? Cache::store('redis')->get($data['phone'], '') : Cache::store('default')->get($data['phone'], '');
@@ -422,12 +413,10 @@ class User extends Base
     public function changeEmail()
     {
         if ($this->request->isGet()) {
-            $id = input('get.id', '', 'htmlspecialchars,intval');
-            $data = $this->service->getInfo($id);
+            $data = $this->service->getInfo($this->uid);
             $email = $data->email;
             unset($data);
             $this->assign('email', $email);
-            $this->assign('id', $id);
             return $this->fetch();
         }
         if ($this->request->isPost()) {
@@ -458,9 +447,14 @@ class User extends Base
     {
         if ($this->request->isGet()) {
             $country = $this->service->getCountry();
-            $id = input('get.id', '', 'htmlspecialchars,intval');
-            $this->assign('id', $id);
+            $data = $this->service->getInfo($this->uid);
+            if (empty($data->info)) {
+                $country_id = '';
+            } else {
+                $country_id = $data->info->country;
+            }
             $this->assign('country', $country);
+            $this->assign('country_id', $country_id);
             return $this->fetch();
         }
         if ($this->request->isPost()) {
@@ -468,7 +462,8 @@ class User extends Base
             if (!$this->validate->scene('changeCountry')->check($data)) {
                 return show(0, $this->validate->getError(), '', '', '', $this->validate->getError());
             }
-            $result = $this->service->changeInfo($data);
+            if (!$data[''])
+                $result = $this->service->changeInfo($data);
             if (true == $result) {
                 return show(1, lang('Success'), '', '', url('customer_info'));
             } elseif (false == $result) {
@@ -486,12 +481,10 @@ class User extends Base
     public function changeCode()
     {
         if ($this->request->isGet()) {
-            $id = input('get.id', '', 'htmlspecialchars,intval');
-            $data = $this->service->getInfo($id);
+            $data = $this->service->getInfo($this->uid);
             $code = '';
             if (!empty($data->info)) $code = $data->info->zip_code;
             unset($data);
-            $this->assign('id', $id);
             $this->assign('code', $code);
             return $this->fetch();
         }
@@ -517,13 +510,10 @@ class User extends Base
     public function changeBillingAddress()
     {
         if ($this->request->isGet()) {
-            $id = input('get.id', '', 'htmlspecialchars,intval');
-            $data = $this->service->getInfo($id);
+            $data = $this->service->getInfo($this->uid);
             $billing_address = '';
             if (!empty($data->info)) $billing_address = $data->info->billing_address;
-
             unset($data);
-            $this->assign('id', $id);
             $this->assign('billing_address', $billing_address);
             return $this->fetch();
         }
@@ -549,12 +539,10 @@ class User extends Base
     public function changeDeliveryAddress()
     {
         if ($this->request->isGet()) {
-            $id = input('get.id', '', 'htmlspecialchars,intval');
-            $data = $this->service->getInfo($id);
-            $delivery_address='';
-            if(!empty($data->info) )$delivery_address = $data->info->delivery_address;
+            $data = $this->service->getInfo($this->uid);
+            $delivery_address = '';
+            if (!empty($data->info)) $delivery_address = $data->info->delivery_address;
             unset($data);
-            $this->assign('id', $id);
             $this->assign('delivery_address', $delivery_address);
             return $this->fetch();
         }
@@ -585,7 +573,7 @@ class User extends Base
             $phone = input('get.phone', '', 'htmlspecialchars,trim');
             if (isset($email) && !empty($email)) $this->assign('email', $email);
             if (isset($phone) && !empty($phone)) $this->assign('phone', input('get.phone', '', 'htmlspecialchars,trim'));
-            return $this->fetch('', ['id' => input('get.id', '', 'intval')]);
+            return $this->fetch('');
         }
         if ($this->request->isPost()) {
             $data = input('post.', '', 'htmlspecialchars,trim');

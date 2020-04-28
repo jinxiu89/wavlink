@@ -20,11 +20,11 @@
  */
 function getGender($gender){
     if($gender == 1){
-        return 'Male';
+        return lang('Male');
     }elseif ($gender == 2){
-        return 'Female';
+        return lang('Female');
     }
-    return 'Secret';
+    return lang('Secret');
 }
 
 /**

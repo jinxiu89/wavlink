@@ -188,7 +188,9 @@ class User extends BaseService
                 'last_login_ip' => request()->ip(),
             ];
             if ($this->model->upDateById($customerUpdateData, $user['id'])) {
-                Session::set('CustomerInfo', $user['id'], 'Customer');
+                $session['id']=$user['id'];
+                $session['username']=$user['username'];
+                Session::set('CustomerInfo', $session, 'Customer');
                 return ['status' => 1, 'message' => lang('Success'), 'url' => url('customer_info')];
             }
             return ['status' => 0, 'message' => lang('未知错误'), 'url' => url('customer_login')];

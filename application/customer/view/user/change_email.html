@@ -87,10 +87,8 @@
         errorClass: 'infoError',
         errorElement: 'p',
         rules: {
+            email: 'required',
             captcha: 'required'
-        },
-        message: {
-            captcha: '{:lang(\'Please enter your e-mail captcha\')}',
         },
         submitHandler: function (form) {
             InfoChange('{:url(\'changeEmail\')}', form)

@@ -82,10 +82,10 @@
         errorClass: 'infoError',
         errorElement: "p",
         rules:{
-            model:{required:true},
-            country:{required:true},
-            platform:{required:true},
-            create_time:{required:true}
+            model: 'required',
+            country: 'required',
+            platform: 'required',
+            create_time: 'required'
         },
         submitHandler:function (form) {
             $.ajax({

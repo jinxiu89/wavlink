@@ -37,16 +37,14 @@
         errorClass: 'infoError',
         errorElement: "p",
         rules: {
-            email:{},
+            email: 'required',
+            phone: 'required',
             password: {
                 required: true,
                 minlength: 5,
                 maxlength: 16
             },
-            repassword: {
-                required: true,
-                equalTo: "#user_password"
-            }
+            captcha: 'required'
         },
         submitHandler: function (form) {
             InfoChange('{:url(\'customer_login\')}', form)

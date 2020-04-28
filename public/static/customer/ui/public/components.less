@@ -61,13 +61,24 @@ body {
     line-height: 1.42857143;
 }
 
-.infoError {
+p.infoError {
     display: block;
     .fl();
-    margin-left: 150px;
+    width: 100%;
+    padding-left: 150px;
     color: #f00;
     text-align: left;
     font-size: 12px;
+}
+#send_code {
+    height: 30px;
+    margin-left: 5px;
+    padding: 0 15px;
+    font-size: 12px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    background: @whiteColor;
+    cursor: pointer;
 }
 
 //container容器宽度
@@ -358,16 +369,6 @@ header {
 //个人信息修改表单
 .info-change-box {
     background: @whiteColor;
-    #send_code {
-        height: 30px;
-        margin-left: 5px;
-        padding: 0 15px;
-        font-size: 12px;
-        border: 1px solid #ccc;
-        border-radius: 5px;
-        background: @whiteColor;
-        cursor: pointer;
-    }
     .form-title {
         margin: 20px;
         text-align: center;
@@ -383,7 +384,11 @@ header {
         }
     }
     .info {
+        .clearFix();
         margin-bottom: 10px;
+    }
+    #send_code {
+        height: 28px;
     }
     .btn-group {
         margin: 20px 0 0;
@@ -422,17 +427,16 @@ header {
             .clearFix();
         }
         .info label {
-            display: inline-block;
-            float: left;
+            .fl();
             width: 130px;
             height: 28px;
             line-height: 28px;
             margin: 0 10px;
             text-align: right;
+            font-weight: normal;
         }
         .info input {
-            display: inline-block;
-            float: left;
+            .fl();
             width: 240px;
             height: 28px;
             margin-left: 0;

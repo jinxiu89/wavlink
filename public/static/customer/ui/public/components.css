@@ -175,13 +175,24 @@ body {
   font-size: 14px;
   line-height: 1.42857143;
 }
-.infoError {
+p.infoError {
   display: block;
   float: left;
-  margin-left: 150px;
+  width: 100%;
+  padding-left: 150px;
   color: #f00;
   text-align: left;
   font-size: 12px;
+}
+#send_code {
+  height: 30px;
+  margin-left: 5px;
+  padding: 0 15px;
+  font-size: 12px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  background: #fff;
+  cursor: pointer;
 }
 .container {
   margin: 0 auto;
@@ -503,16 +514,6 @@ header .nav-box .exit .iconfont {
 .info-change-box {
   background: #fff;
 }
-.info-change-box #send_code {
-  height: 30px;
-  margin-left: 5px;
-  padding: 0 15px;
-  font-size: 12px;
-  border: 1px solid #ccc;
-  border-radius: 5px;
-  background: #fff;
-  cursor: pointer;
-}
 .info-change-box .form-title {
   margin: 20px;
   text-align: center;
@@ -529,6 +530,18 @@ header .nav-box .exit .iconfont {
 }
 .info-change-box .info {
   margin-bottom: 10px;
+}
+.info-change-box .infobefore,
+.info-change-box .info:after {
+  content: " ";
+  display: table;
+  zoom: 1;
+}
+.info-change-box .info:after {
+  clear: both;
+}
+.info-change-box #send_code {
+  height: 28px;
 }
 .info-change-box .btn-group {
   margin: 20px 0 0;
@@ -586,13 +599,13 @@ header .nav-box .exit .iconfont {
 .info-change-box .personal-zipCode .info label,
 .info-change-box .personal-phone .info label,
 .info-change-box .personal-email .info label {
-  display: inline-block;
   float: left;
   width: 130px;
   height: 28px;
   line-height: 28px;
   margin: 0 10px;
   text-align: right;
+  font-weight: normal;
 }
 .info-change-box .personal-name .info input,
 .info-change-box .personal-billing .info input,
@@ -600,7 +613,6 @@ header .nav-box .exit .iconfont {
 .info-change-box .personal-zipCode .info input,
 .info-change-box .personal-phone .info input,
 .info-change-box .personal-email .info input {
-  display: inline-block;
   float: left;
   width: 240px;
   height: 28px;

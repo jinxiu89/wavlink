@@ -8,14 +8,6 @@
 @import "../../public/variables";
 
 *{margin: 0; padding: 0}
-.infoError {
-    display: block;
-    .fl();
-    margin-left: 126px;
-    color: #f00;
-    text-align: left;
-    font-size: 12px;
-}
 body {
     padding-top: 0;
 }
@@ -25,18 +17,13 @@ body {
 }
 
 //登陆、账户注册、产品注册、忘记密码、重置密码几个页面公用css
-#send_code {
-    height: 30px;
-    margin-left: 5px;
-    padding: 0 15px;
-    font-size: 12px;
-    border: 1px solid #ccc;
-    border-radius: 5px;
-    background: @whiteColor;
-    cursor: pointer;
+.info {
+    position: relative;
 }
 #code-box {
-    .fl();
+    position: absolute;
+    top: 0;
+    right: 0;
     width: 90px;
     height: 30px;
     border: 1px solid #ccc;
@@ -145,6 +132,7 @@ body {
     }
     .info {
         .fl();
+        width: 265px;
         margin: 0 67.5px;
         &:nth-of-type(1),
         &:nth-of-type(2) {
@@ -209,11 +197,14 @@ body {
     }
 }
 .login-box .infoError {
-    margin-left: 0;
+    padding-left: 0;
 }
 
 //账户注册
 .register-box .box .info-box {
+    p.infoError {
+        padding-left: 126px;
+    }
     .terms {
         margin: 10px 0 10px 102px;
         div:nth-last-of-type(1) {
@@ -251,6 +242,9 @@ body {
 
 //产品注册
 .proRegister-box .box .info-box {
+    p.infoError {
+        padding-left: 110px;
+    }
     .info {
         .clearFix();
         margin-bottom: 10px;
@@ -294,9 +288,17 @@ body {
 //产品注册结束
 
 //忘记密码
-.forgot-box .box .info-box {}
+.forgot-box .box .info-box {
+    p.infoError {
+        padding-left: 126px;
+    }
+}
 //忘记密码结束
 
 //重置密码
-.change-box .box .info-box {}
+.change-box .box .info-box {
+    p.infoError {
+        padding-left: 126px;
+    }
+}
 //重置密码结束

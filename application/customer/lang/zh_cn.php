@@ -74,7 +74,7 @@ return [
     'Input your password again' => '再次确认您的密码',
     'confirm' => '确认密码',
     'captcha' => '验证码',
-
+    'The verification code is invalid' => '请输入验证码',
     'Captcha Error' => '验证码错误',
     'The captcha is invalid' => '验证码错误',
     'Please input the captcha in the image on the right' => '请输入右边的图像所示验证码！',
@@ -123,6 +123,8 @@ return [
     'home' => '首页',
     'product' => '产品',
     'driver' => '驱动',
+    'password is to easy' => '密码太简单了',
+    'Wait a moment' => '稍等片刻',
 
     /**
      * 产品注册翻译

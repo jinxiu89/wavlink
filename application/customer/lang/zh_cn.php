@@ -226,13 +226,17 @@ return [
     'billing address too long' => '账单地址太长',
     'Modify Your Delivery Address' => '填写您的收件地址',
     'delivery address too long' => '收件地址太长',
-
     'ReWrite' => '重填',
     'Submit' => '提交',
     'Cancel' => '关闭',
     'Female'=>'女',
     'Male'=>'男',
     'Secret'=>'保密',
+
+
+    'After the password is changed, you need to log in again, please remember your password'=>'密码修改后，您需要重新登录，请牢记您的密码',
+
+
     //国家 名称翻译
     'china' => '中国',
     'Afghanistan' => '阿富汗',

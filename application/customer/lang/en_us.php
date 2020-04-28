@@ -31,6 +31,7 @@ return [
     'Retrieve your password' => 'Forgot Password',
     'Please input the correct phone number or e-mail address' => 'Please input the correct e-mail address',
     'Or' => 'Or',
+    'Reset' => 'RESET',
     'Reset Password' => 'Reset Password',
     'Please enter your phone number or e-mail address' => 'Please enter your e-mail address',
     'Please enter your name' => 'Please enter your name',

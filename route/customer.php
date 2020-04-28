@@ -13,6 +13,8 @@ Route::group('customer', function () {
     //找回密码
     Route::rule('/forgot/password$','User/forgotPassword','GET|POST')->name('forgot_password');
     Route::rule('/change/password$','User/changePassword','GET|POST')->name('change_password');
+    //登录情况下重设密码
+    Route::rule('/reset/password','User/resetPassword','GET|POST')->name('reset_password');
     //用户信息
     Route::rule('/info$','User/info','GET|POST')->name('customer_info');
     //修改名字

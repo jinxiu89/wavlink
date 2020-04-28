@@ -99,6 +99,11 @@ Route::group(Config::get('__BACKEND__'), function () {
     Route::post('/marketing/byStatus', 'Marketing/byStatus');
     Route::post('/marketing/del', 'Marketing/del');
 
+    /**
+     * 资源管理
+     */
+    Route::rule('/media/image/list','content.MediaImage/lists')->name('image_list');
+
     /***
      * 系统管理模块路由
      *

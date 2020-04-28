@@ -600,24 +600,30 @@ class User extends Base
     /**
      * editPassword 登录用户，修改密码
      */
-    public function editPassword()
+    public function resetPassword()
     {
-        $id = session('CustomerInfo', '', 'Customer');
+        $data = $this->service->getInfo($this->uid);
+        if ($this->request->isGet()) {
+            $this->assign('password', $data->password);
+            return $this->fetch();
+        }
         if (request()->isAjax()) {
-            $data = input('post.');
-            //核对老密码
-            $user = new Customer();
-            $oldPassword = $data['oldPassword'];
-            $result = $user->CheckPassword($oldPassword, $id);
-            if ($result == true) {
-                $result = $user->upDateById($data, $id);
-            } else {
-                return show(0, lang('Old Password input Error'), '', '', '', '');
+            $data = input('post.', [], 'trim,htmlspecialchars');
+            if (!$this->validate->scene('change_password')->check($data)) {
+                return show(0, $this->validate->getError(), '', '', '', $this->validate->getError());
             }
-            if ($result == true) {
-                return show(1, lang('Success'), '', '', url('customer_info'));
+            if (!empty($data['old_password']) and GetPassword($data['old_password']) != $data->password) {
+                return show(0, lang('old password is error'), '', '');
+            }
+            $data['password'] = GetPassword($data['password']);
+            $data['id'] = $this->uid;
+            $result = $this->service->updateInfo($data);
+            if (true == $result) {
+                return show(1, lang('Success'), '', '', url('customer_logout'));
+            } elseif (false == $result) {
+                return show(0, lang('失败'), '', '');
             } else {
-                return show(0, lang('Success'), '', '', url('customer_info'));
+                return show(0, lang($result), '', '');
             }
         }
     }

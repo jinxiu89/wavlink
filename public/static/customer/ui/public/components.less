@@ -61,6 +61,15 @@ body {
     line-height: 1.42857143;
 }
 
+.infoError {
+    display: block;
+    .fl();
+    margin-left: 150px;
+    color: #f00;
+    text-align: left;
+    font-size: 12px;
+}
+
 //container容器宽度
 .container {
     .clearFix();
@@ -360,7 +369,7 @@ header {
         cursor: pointer;
     }
     .form-title {
-        margin: 20px 0;
+        margin: 20px;
         text-align: center;
         .title {
             font-size: 16px;
@@ -409,18 +418,24 @@ header {
     .personal-zipCode,
     .personal-phone,
     .personal-email {
+        .info {
+            .clearFix();
+        }
         .info label {
             display: inline-block;
+            float: left;
             width: 130px;
             height: 28px;
             line-height: 28px;
-            margin: 0 10px 0 6.5px;
+            margin: 0 10px;
             text-align: right;
         }
         .info input {
             display: inline-block;
+            float: left;
             width: 240px;
             height: 28px;
+            margin-left: 0;
             padding: 0 5px;
             border: 1px solid #ccc;
         }
@@ -459,7 +474,7 @@ header {
             width: 130px;
             height: 28px;
             line-height: 28px;
-            margin: 0 10px 0 6.5px;
+            margin: 0 10px 0;
             text-align: right;
         }
         .info select {

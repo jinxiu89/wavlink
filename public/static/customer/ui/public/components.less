@@ -347,8 +347,12 @@ header {
         border-bottom: none;
     }
     ul li .active {
-        color: @whiteColor;
-        background: @baseColor;
+        color: @baseColor;
+        background: @activeColor;
+        &:hover {
+            color: @baseColor;
+            text-decoration: underline;
+        }
     }
 
     @media screen and (min-width: 768px) and (max-width: 991px) {

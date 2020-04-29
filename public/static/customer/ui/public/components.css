@@ -493,8 +493,12 @@ header .nav-box .exit .iconfont {
   border-bottom: none;
 }
 .g-aside ul li .active {
-  color: #fff;
-  background: #333;
+  color: #333;
+  background: #f8b300;
+}
+.g-aside ul li .active:hover {
+  color: #333;
+  text-decoration: underline;
 }
 @media screen and (min-width: 768px) and (max-width: 991px) {
   .g-aside {

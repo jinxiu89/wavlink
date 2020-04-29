@@ -10,6 +10,7 @@
  **/
 
 namespace app\lib\utils\cloud;
+
 use OSS\Model\ObjectListInfo;
 use OSS\OssClient;
 use OSS\Core\OssException;
@@ -25,13 +26,14 @@ class ali
     /***
      * @return OssClient
      */
-    public static function createClient(){
-        $accessKeyID=Config::get('alicloud.app.accessKeyId');
-        $accessKeySecret=Config::get('alicloud.app.accessSecret');
-        $endpoint=Config::get('alicloud.oss.endpoint');
-        try{
-            return new OssClient($accessKeyID,$accessKeySecret,$endpoint);
-        }catch (OssException $ossException){
+    public static function createClient()
+    {
+        $accessKeyID = Config::get('alicloud.app.accessKeyId');
+        $accessKeySecret = Config::get('alicloud.app.accessSecret');
+        $endpoint = Config::get('alicloud.oss.endpoint');
+        try {
+            return new OssClient($accessKeyID, $accessKeySecret, $endpoint);
+        } catch (OssException $ossException) {
             //todo: 抛出异常
         }
     }
@@ -46,9 +48,10 @@ class ali
      * @param string $prefix
      * @return ObjectListInfo|string
      */
-    public static function listObj($bucket='wavlink',$prefix='images'){
-        $nextMarker='';
-        $options = ['delimiter' => '/', 'marker' => $nextMarker,'prefix'=>$prefix];
+    public static function listObj($bucket = 'wavlink', $prefix = 'images')
+    {
+        $nextMarker = '';
+        $options = ['delimiter' => '/', 'marker' => $nextMarker, 'prefix' => $prefix];
         try {
             $listObjectInfo = self::createClient()->listObjects($bucket, $options);
         } catch (OssException $e) {
@@ -59,15 +62,22 @@ class ali
         }
         $objectList = $listObjectInfo->getObjectList(); // object list
         $prefixList = $listObjectInfo->getPrefixList();
-        $items=[];
-        if(!empty($prefixList)){
-            foreach ($prefixList as $prefixInfo){
-                $items[]=$prefixInfo->getPrefix();
+        $items = [];
+        if (!empty($prefixList)) {
+            foreach ($prefixList as $prefixInfo) {
+                $items[] = $prefixInfo->getPrefix();
             }
         }
         if (!empty($objectList)) {
             foreach ($objectList as $objectInfo) {
-                $items[]=$objectInfo->getKey();
+                if ($objectInfo->getSize() != 0) {
+                    $tem['size'] = $objectInfo->getSize();
+                    $tem['key'] = $objectInfo->getKey();
+                    $tem['type'] = $objectInfo->getType();
+                    $tem['last_modified'] = $objectInfo->getLastModified();
+
+                    $items[] = $tem;
+                }
             }
         }
         return $items;
@@ -79,11 +89,12 @@ class ali
      * @param $file
      * @return bool
      */
-    public function putFile($bucket='wavlink',$object='',$file){
-        try{
-            if(self::createClient()->uploadFile($bucket,$object,$file)) return true;
+    public function putFile($bucket = 'wavlink', $object = '', $file)
+    {
+        try {
+            if (self::createClient()->uploadFile($bucket, $object, $file)) return true;
             return false;
-        }catch (OssException $exception){
+        } catch (OssException $exception) {
             //todo::待解决异常问题
             return false;
         }
@@ -94,11 +105,12 @@ class ali
      * @param $object
      * @return bool
      */
-    public function delFile($bucket,$object){
-        try{
-            if(self::createClient()->deleteObject($bucket,$object)) return true;
-            return  false;//不明原因失败
-        }catch (OssException $exception){
+    public function delFile($bucket, $object)
+    {
+        try {
+            if (self::createClient()->deleteObject($bucket, $object)) return true;
+            return false;//不明原因失败
+        } catch (OssException $exception) {
             //todo::阿里云那边的异常在此不做
             return false;
         }

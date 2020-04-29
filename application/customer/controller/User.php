@@ -305,7 +305,7 @@ class User extends Base
             if (true == $result) {
                 return show(1, lang('Success'), '', '', url('customer_info'));
             } elseif (false == $result) {
-                return show(0, lang('失败'), '', '');
+                return show(0, lang('Unknown Error'), '', '');
             } else {
                 return show(0, lang($result), '', '');
             }
@@ -337,7 +337,7 @@ class User extends Base
             if (true == $result) {
                 return show(1, lang('Success'), '', '', url('customer_info'));
             } elseif (false == $result) {
-                return show(0, lang('失败'), '', '');
+                return show(0, lang('Unknown Error'), '', '');
             } else {
                 return show(0, lang($result), '', '');
             }
@@ -368,7 +368,7 @@ class User extends Base
             if (true == $result) {
                 return show(1, lang('Success'), '', '', url('customer_info'));
             } elseif (false == $result) {
-                return show(0, lang('失败'), '', '');
+                return show(0, lang('Unknown Error'), '', '');
             } else {
                 return show(0, lang($result), '', '');
             }
@@ -400,7 +400,7 @@ class User extends Base
             if (true == $result) {
                 return show(1, lang('Success'), '', '', url('customer_info'));
             } elseif (false == $result) {
-                return show(0, lang('失败'), '', '');
+                return show(0, lang('Unknown Error'), '', '');
             } else {
                 return show(0, lang($result), '', '');
             }
@@ -432,7 +432,7 @@ class User extends Base
             if (true == $result) {
                 return show(1, lang('Success'), '', '', url('customer_info'));
             } elseif (false == $result) {
-                return show(0, lang('失败'), '', '');
+                return show(0, lang('Unknown Error'), '', '');
             } else {
                 return show(0, lang($result), '', '');
             }
@@ -467,7 +467,7 @@ class User extends Base
             if (true == $result) {
                 return show(1, lang('Success'), '', '', url('customer_info'));
             } elseif (false == $result) {
-                return show(0, lang('失败'), '', '');
+                return show(0, lang('Unknown Error'), '', '');
             } else {
                 return show(0, lang($result), '', '');
             }
@@ -497,7 +497,7 @@ class User extends Base
             if (true == $result) {
                 return show(1, lang('Success'), '', '', url('customer_info'));
             } elseif (false == $result) {
-                return show(0, lang('失败'), '', '');
+                return show(0, lang('Unknown Error'), '', '');
             } else {
                 return show(0, lang($result), '', '');
             }
@@ -526,7 +526,7 @@ class User extends Base
             if (true == $result) {
                 return show(1, lang('Success'), '', '', url('customer_info'));
             } elseif (false == $result) {
-                return show(0, lang('失败'), '', '');
+                return show(0, lang('Unknown Error'), '', '');
             } else {
                 return show(0, lang($result), '', '');
             }
@@ -555,7 +555,7 @@ class User extends Base
             if (true == $result) {
                 return show(1, lang('Success'), '', '', url('customer_info'));
             } elseif (false == $result) {
-                return show(0, lang('失败'), '', '');
+                return show(0, lang('Unknown Error'), '', '');
             } else {
                 return show(0, lang($result), '', '');
             }
@@ -621,7 +621,7 @@ class User extends Base
             if (true == $result) {
                 return show(1, lang('Success'), '', '', url('customer_logout'));
             } elseif (false == $result) {
-                return show(0, lang('失败'), '', '');
+                return show(0, lang('Unknown Error'), '', '');
             } else {
                 return show(0, lang($result), '', '');
             }

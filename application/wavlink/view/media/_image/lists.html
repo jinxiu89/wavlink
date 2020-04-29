@@ -1,0 +1,49 @@
+{include file="public/media_header" /}
+<section class="Hui-article-box">
+    <nav class="breadcrumb"><i class="Hui-iconfont"></i> <a href="/" class="maincolor">首页</a> <span class="c-999 en">&gt;</span>
+        <span class="c-666">媒体资源</span>
+        <span class="c-999 en">&gt;</span>
+        <span class="c-666">图片资源</span>
+    </nav>
+    <div class="Hui-article">
+        <article class="cl pd-20" style="min-height: 50em">
+            <div class="text-l">
+                    <input type="text" class="btn btn-primary" style="width: 80px" value="上传图片">
+                    <input type="text" class="btn btn btn-secondary" style="width: 80px" value="创建目录">
+
+            </div>
+            <div class="panel panel-default mt-20">
+                <div class="panel-header">
+                    文件列表
+                </div>
+                <div class="panel-body pd-20">
+                    {volist name="items" id="item"}
+                    <div style="width: 140px; height: 180px;display: inline-block;padding: 10px">
+                        <img src="https://china.wavlink.com/{$item}" alt="140x140" class="radius" style="width: 140px;height: 140px">
+                        <span>更新时间</span>||<a href="#">复制链接</a></span>
+                    </div>
+                    {/volist}
+                </div>
+            </div>
+
+        </article>
+        <footer class="footer">
+            <p>
+                本系统由winstars系统管理组设计制作，采用先进的bootstrap框架为基础，使用h-ui框架作为后台框架<br>
+                Copyright &copy;2015 win-star All Rights Reserved.
+                <br> 本后台系统由<a href="http://www.win-star.com/" target="_blank" title="得星科技">webmaster GROUP</a>提供技术支持
+            </p>.
+        </footer>
+    </div>
+</section>
+
+<!--包含footer文件-->
+{include file="public/footer" /}
+<script>
+    $(document).ready(function () {
+        $("#media").addClass("current");
+        $("#menu-media dt").addClass("selected");
+        $("#menu-media dd").css("display", "block");
+        $("#media_images").addClass("current");
+    });
+</script>

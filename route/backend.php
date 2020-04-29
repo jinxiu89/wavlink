@@ -99,10 +99,6 @@ Route::group(Config::get('__BACKEND__'), function () {
     Route::post('/marketing/byStatus', 'Marketing/byStatus');
     Route::post('/marketing/del', 'Marketing/del');
 
-    /**
-     * 资源管理
-     */
-    Route::rule('/media/image/list','content.MediaImage/lists')->name('image_list');
 
     /***
      * 系统管理模块路由
@@ -263,6 +259,12 @@ Route::group(Config::get('__BACKEND__'), function () {
     Route::post('/old_sn/index', 'OldSn/index');
     Route::post('/sn/index', 'Sn/index');
     Route::post('/sn/byStatus', 'Sn/byStatus');
+
+    /**
+     * 资源管理
+     */
+    Route::rule('/media/index','Media.Index/index')->name('media_index');
+    Route::rule('/media/image/lists','Media.Image/lists')->name('image_lists');
 
     //搜索索引管理
     Route::get('/search/index', 'Search/index');

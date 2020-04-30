@@ -29,8 +29,8 @@ class Image extends BaseAdmin
         if ($this->request->isGet()) {
             $prefix = !empty(input('get.prefix', '', 'htmlspecialchars,trim')) ? input('get.prefix', '', 'htmlspecialchars,trim') . '/' : 'videos/';
             $items = ali::listObj('wavlink', $prefix);
-            print_r($items);exit;
-            $key = array_search($prefix, $items);
+            print_r($items);
+           /* $key = array_search($prefix, $items);
             array_splice($items, $key, 1);
             $data=[];
             foreach ($items as $item){
@@ -38,7 +38,7 @@ class Image extends BaseAdmin
                 if(empty(end($temp))) $data['type']='dir';
 
                 $data[]=end($temp);
-            }
+            }*/
             $this->assign('items',$items);
             return $this->fetch();
         }

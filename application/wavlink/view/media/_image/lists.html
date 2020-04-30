@@ -18,10 +18,17 @@
                 </div>
                 <div class="panel-body pd-20">
                     {volist name="items" id="item"}
+                    {if(is_array($item))}
                     <div style="width: 140px; height: 180px;display: inline-block;padding: 10px">
-                        <img src="https://china.wavlink.com/{$item}" alt="140x140" class="radius" style="width: 140px;height: 140px">
+                        <img src="https://china.wavlink.com/{$item.key}" alt="140x140" class="radius" style="width: 140px;height: 140px">
                         <span>更新时间</span>||<a href="#">复制链接</a></span>
                     </div>
+                    {else /}
+                    <div style="width: 140px; height: 180px;display: inline-block;padding: 10px">
+                        <i class="iconfont">&#xe667;</i>
+                        <span>更新时间</span>||<a href="#">复制链接</a></span>
+                    </div>
+                    {/if}
                     {/volist}
                 </div>
             </div>

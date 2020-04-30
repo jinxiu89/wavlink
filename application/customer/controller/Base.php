@@ -8,6 +8,7 @@
 
 namespace app\customer\controller;
 
+use app\common\model\About as AboutModel;
 use app\lib\utils\email;
 use app\lib\utils\sms;
 use app\lib\utils\tools;
@@ -25,6 +26,9 @@ class Base extends Controller
     protected $validate;
     protected $uid;
     protected $username;
+    protected $code;
+
+    public $beforeActionList=['about'];
 
     /**
      * 构造函数，用来注册全局变量，供整个系统使用（这里指customer这个模块）,每个控制器都继承到base控制器
@@ -48,6 +52,7 @@ class Base extends Controller
     public function __construct(App $app = null)
     {
 
+
         parent::__construct($app);
         $user = session('CustomerInfo', '', 'Customer');
         if (isset($user) and !empty($user)) $this->uid = $user['id'];
@@ -60,7 +65,15 @@ class Base extends Controller
     {
         $lang = $lang = Cookie::get('lang_var') ? Cookie::get('lang_var') : 'en_us';
         Lang::load(APP_PATH . 'customer/lang/' . $lang . '.php'); //加载该语言下的模块语言包
+        $this->code=$lang;
         $this->assign('lang', $lang);
+    }
+
+
+    public function about()
+    {
+        $about = (new AboutModel())->getAbouts($this->code);
+        $this->assign("about", $about['data']);
     }
 
 

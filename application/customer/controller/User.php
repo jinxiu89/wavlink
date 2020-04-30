@@ -59,7 +59,7 @@ class User extends Base
             $data = input('post.', [], 'htmlspecialchars,trim');
             if (!Config::get('app.app_debug')) {/*如果开启了debug 就不走验证，不开启就走验证码*/
                 if (!captcha_check($data['captcha'])) {
-                    return show(0, lang('Please enter the correct email captcha'), '', '', '', lang('Please enter the correct email captcha'));
+                    return show(0, lang('Please enter the correct captcha'), '', '', '', lang('Please enter the correct captcha'));
                 }
             }
             $login_url = url('customer_login');

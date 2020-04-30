@@ -34,12 +34,12 @@ class Product extends Base
         $this->service=new Service();
     }
 
-    /*protected $middleware=[
-        Auth::class =>['only'=>['register']]
-    ];*/
+    protected $middleware=[
+        Auth::class =>['except'=>['register']]
+    ];
 
     /**
-     * register
+     * register 在用户注册时 的第二步注册产品 不需要验证是否登录
      * @return mixed|void
      */
     public function register()

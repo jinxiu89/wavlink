@@ -33,6 +33,8 @@ return [
     'This e-mail already existed' => 'This e-mail already existed',
     'This phone number already existed' => 'This phone number already existed',
     //注册登录用到的词汇
+    'Already have an account?' => 'Already have an account?',
+    'Sign in' => 'Sign in',
     'Experience Center' => 'Experience Center',
     'Welcome to wavlink' => '',
     'notice for login' => '<p>Welcome to register WAVLINK user center；You will enjoy the following services after registration: </p><p>1、 Product warranty service</p><p>2、Promotion preview </p><p>3、New product notice dffd</p><p>4、Half-price test</p><p>这段文案还需要市场部核对后发布</p>',
@@ -56,6 +58,7 @@ return [
     'Please enter your password' => 'Please enter your password',
     'Please enter your password again' => 'Please enter your password again',
     'Please enter your e-mail captcha' => 'Please enter the correct verification code',
+    'Please click \"Send\" to receive the verification code.' => 'Please click "Send" to receive the verification code.',
     '' => '',
     /*注册验证文案*/
     'user name is required'=>'First Name Is Required',
@@ -156,4 +159,5 @@ return [
     'Female'=>'Female',
     'Male'=>'Male',
     'Secret'=>'Secret',
+    'Your verification code is' => 'Your verification code is',
 ];

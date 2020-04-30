@@ -33,6 +33,8 @@ return [
     'This e-mail already existed' => '邮箱已存在',
     'This phone number already existed' => '手机号已存在',
     //注册登录用到的词汇
+    'Already have an account?' => '已有账号？',
+    'Sign in' => '登录',
     'Experience Center' => '用户体验中心',
     'Service' => '服务支持',
     'Warranty Card' => '保修卡',
@@ -68,6 +70,7 @@ return [
     'Please enter your password again' => '请再次输入您的密码',
     'Please enter your e-mail address' => '请输入您的手机号',
     'Please enter your e-mail captcha' => '请输入您的手机验证码',
+    'Please click \"Send\" to receive the verification code.' => '请单击“发送”接收验证码',
     /*注册验证文案*/
     'user name is required'=>'姓名必须填写',
     'password is required'=>'密码必须填写',
@@ -242,6 +245,8 @@ return [
     'Male'=>'男',
     'Secret'=>'保密',
     'After the password is changed, you need to log in again, please remember your password'=>'密码修改后，您需要重新登录，请牢记您的密码',
+
+    'Your verification code is' => '您的验证码是',
 
     //国家 名称翻译
     'china' => '中国',

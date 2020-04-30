@@ -218,11 +218,15 @@ body {
 .login-box .infoError {
   padding-left: 0;
 }
+.register-box .box .link-box {
+  margin-top: 20px;
+  text-align: center;
+}
 .register-box .box .info-box p.infoError {
   padding-left: 126px;
 }
 .register-box .box .info-box .terms {
-  margin: 10px 0 10px 102px;
+  margin: 10px 0 20px 102px;
 }
 .register-box .box .info-box .terms div:nth-last-of-type(1) {
   margin-top: 5px;

@@ -59,7 +59,7 @@ class User extends Base
             $data = input('post.', [], 'htmlspecialchars,trim');
             if (!Config::get('app.app_debug')) {/*如果开启了debug 就不走验证，不开启就走验证码*/
                 if (!captcha_check($data['captcha'])) {
-                    return show(0, '', '', '', '', lang('The verification code is invalid'));
+                    return show(0, lang('Please enter the correct email captcha'), '', '', '', lang('Please enter the correct email captcha'));
                 }
             }
             $login_url = url('customer_login');
@@ -100,8 +100,11 @@ class User extends Base
             $data = input('post.', [], 'htmlspecialchars,trim');
             if ($data['type'] == 1) {
                 $code = Cache::store('redis')->get($data['email'], '') ? Cache::store('redis')->get($data['email'], '') : Cache::store('default')->get($data['email'], '');
-                if ($data['captcha'] != $code) {
-                    return show(0, lang('The verification code is invalid'), '', '', '', lang('The verification code is invalid'));
+                if(empty($code)){
+                    return show(0, lang('Please click \"Send\" to receive the verification code.'), '', '', '', lang('Please click \"Send\" to receive the verification code.'));
+                }
+                if (empty($data['captcha']) && $data['captcha'] != $code) {
+                    return show(0, lang('Please enter the correct email captcha'), '', '', '', lang('Please enter the correct email captcha'));
                 }
                 $user = $this->service->getUserByEmail($data['email']);
                 if (!empty($user)) {
@@ -110,7 +113,10 @@ class User extends Base
             }
             if ($data['type'] == 2) {
                 $code = Cache::store('redis')->get($data['phone'], '') ? Cache::store('redis')->get($data['phone'], '') : Cache::store('default')->get($data['phone'], '');
-                if ($data['captcha'] != $code) {
+                if(empty($code)){
+                    return show(0, lang('Please click \"Send\" to receive the verification code.'), '', '', '', lang('Please click \"Send\" to receive the verification code.'));
+                }
+                if (empty($data['captcha']) && $data['captcha'] != $code) {
                     return show(0, lang('The verification code is invalid'), '', '', '', lang('The verification code is invalid'));
                 }
                 $user = $this->service->getUserByPhone($data['phone']);
@@ -219,7 +225,7 @@ class User extends Base
             if ($data['type'] == 1) { //email 注册
                 $code = Cache::store('redis')->get($data['email'], '') ? Cache::store('redis')->get($data['email'], '') : Cache::store('default')->get($data['email'], '');
                 if ($code != $data['captcha']) {
-                    return show(0, lang('The verification code is invalid'), '', '', '', lang('The verification code is invalid'));
+                    return show(0, lang('Captcha Error'), '', '', '', lang('Captcha Error'));
                 }
                 $check = $this->service->CheckEmail($data['email']);
                 if ($check == true) {
@@ -242,7 +248,7 @@ class User extends Base
                     return show(0, lang('Server Error'), '', '', '', lang('Server Error'));
                 }
             }
-            $instance = $this->service->create($data); //instance 是实例的意思
+            $instance = $this->service->reg($data); //instance 是实例的意思
             if ($instance->id) {//注册第二步，填写产品信息
                 return show(1, lang('Success'), '', '', url('customer_product_register', ['user_id' => $instance->id]), lang('Successfully!'));
             } else {
@@ -305,7 +311,7 @@ class User extends Base
             if (true == $result) {
                 return show(1, lang('Success'), '', '', url('customer_info'));
             } elseif (false == $result) {
-                return show(0, lang('失败'), '', '');
+                return show(0, lang('Unknown Error'), '', '');
             } else {
                 return show(0, lang($result), '', '');
             }
@@ -337,7 +343,7 @@ class User extends Base
             if (true == $result) {
                 return show(1, lang('Success'), '', '', url('customer_info'));
             } elseif (false == $result) {
-                return show(0, lang('失败'), '', '');
+                return show(0, lang('Unknown Error'), '', '');
             } else {
                 return show(0, lang($result), '', '');
             }
@@ -368,7 +374,7 @@ class User extends Base
             if (true == $result) {
                 return show(1, lang('Success'), '', '', url('customer_info'));
             } elseif (false == $result) {
-                return show(0, lang('失败'), '', '');
+                return show(0, lang('Unknown Error'), '', '');
             } else {
                 return show(0, lang($result), '', '');
             }
@@ -393,6 +399,9 @@ class User extends Base
                 return show(0, $this->validate->getError(), '', '', '', $this->validate->getError());
             }
             $code = Cache::store('redis')->get($data['phone'], '') ? Cache::store('redis')->get($data['phone'], '') : Cache::store('default')->get($data['phone'], '');
+            if(empty($code)){
+                return show(0, lang('Please click \"Send\" to receive the verification code.'), '', '', '', lang('Please click \"Send\" to receive the verification code.'));
+            }
             if ($code != $data['captcha']) {
                 return show(0, lang('The verification code is invalid'), '', '', '', lang('The verification code is invalid'));
             }
@@ -400,7 +409,7 @@ class User extends Base
             if (true == $result) {
                 return show(1, lang('Success'), '', '', url('customer_info'));
             } elseif (false == $result) {
-                return show(0, lang('失败'), '', '');
+                return show(0, lang('Unknown Error'), '', '');
             } else {
                 return show(0, lang($result), '', '');
             }
@@ -425,6 +434,9 @@ class User extends Base
                 return show(0, $this->validate->getError(), '', '', '', $this->validate->getError());
             }
             $code = Cache::store('redis')->get($data['email'], '') ? Cache::store('redis')->get($data['email'], '') : Cache::store('default')->get($data['email'], '');
+            if(empty($code)){
+                return show(0, lang('Please click \"Send\" to receive the verification code.'), '', '', '', lang('Please click \"Send\" to receive the verification code.'));
+            }
             if ($code != $data['captcha']) {
                 return show(0, lang('The verification code is invalid'), '', '', '', lang('The verification code is invalid'));
             }
@@ -432,7 +444,7 @@ class User extends Base
             if (true == $result) {
                 return show(1, lang('Success'), '', '', url('customer_info'));
             } elseif (false == $result) {
-                return show(0, lang('失败'), '', '');
+                return show(0, lang('Unknown Error'), '', '');
             } else {
                 return show(0, lang($result), '', '');
             }
@@ -467,7 +479,7 @@ class User extends Base
             if (true == $result) {
                 return show(1, lang('Success'), '', '', url('customer_info'));
             } elseif (false == $result) {
-                return show(0, lang('失败'), '', '');
+                return show(0, lang('Unknown Error'), '', '');
             } else {
                 return show(0, lang($result), '', '');
             }
@@ -497,7 +509,7 @@ class User extends Base
             if (true == $result) {
                 return show(1, lang('Success'), '', '', url('customer_info'));
             } elseif (false == $result) {
-                return show(0, lang('失败'), '', '');
+                return show(0, lang('Unknown Error'), '', '');
             } else {
                 return show(0, lang($result), '', '');
             }
@@ -518,7 +530,7 @@ class User extends Base
             return $this->fetch();
         }
         if ($this->request->isPost()) {
-            $data = input('post.', [], 'trim,htmlspecialchars');
+            $data = input('post.', [], 'htmlspecialchars');
             if (!$this->validate->scene('changeBillAddress')->check($data)) {
                 return show(0, $this->validate->getError(), '', '', '', $this->validate->getError());
             }
@@ -526,7 +538,7 @@ class User extends Base
             if (true == $result) {
                 return show(1, lang('Success'), '', '', url('customer_info'));
             } elseif (false == $result) {
-                return show(0, lang('失败'), '', '');
+                return show(0, lang('Unknown Error'), '', '');
             } else {
                 return show(0, lang($result), '', '');
             }
@@ -547,7 +559,7 @@ class User extends Base
             return $this->fetch();
         }
         if ($this->request->isPost()) {
-            $data = input('post.', [], 'trim,htmlspecialchars');
+            $data = input('post.', [], 'htmlspecialchars');
             if (!$this->validate->scene('changeDeliveryAddress')->check($data)) {
                 return show(0, $this->validate->getError(), '', '', '', $this->validate->getError());
             }
@@ -555,7 +567,7 @@ class User extends Base
             if (true == $result) {
                 return show(1, lang('Success'), '', '', url('customer_info'));
             } elseif (false == $result) {
-                return show(0, lang('失败'), '', '');
+                return show(0, lang('Unknown Error'), '', '');
             } else {
                 return show(0, lang($result), '', '');
             }
@@ -621,7 +633,7 @@ class User extends Base
             if (true == $result) {
                 return show(1, lang('Success'), '', '', url('customer_logout'));
             } elseif (false == $result) {
-                return show(0, lang('失败'), '', '');
+                return show(0, lang('Unknown Error'), '', '');
             } else {
                 return show(0, lang($result), '', '');
             }

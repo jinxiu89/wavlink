@@ -28,7 +28,7 @@ class Auth
      */
     public function handle($request, \Closure $next)
     {
-        $next_jump = Request::header('Referer') ? Request::header('Referer') : url('index');
+        $next_jump = Request::header('Referer') ? Request::header('Referer') : url('customer_info');
         if (!Session::get('CustomerInfo', 'Customer')) {
             return \redirect(url('customer_login',['next'=>$next_jump]));
         }

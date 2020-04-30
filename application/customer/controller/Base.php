@@ -94,7 +94,7 @@ class Base extends Controller
             $welcome = lang('Welcome to wavlink');
             $noreplay = lang('noreplay');
             $support = lang('Wavlink Support');
-            $message = lang('Your verification code  is ') . ' ' . $str;
+            $message = lang('Your verification code is') . ' ' . $str;
             $content = "<div>
                     <p><strong>$dear</strong></p>
                     <p>$welcome</p>

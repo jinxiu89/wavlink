@@ -76,7 +76,7 @@ return [
     'Password verification' => '密码长度为6-20个字符，且必须包含字母和数字',
     'Input password again'=>'再输入一边密码',
     'The password is different twice'=>'两次密码输入不一致',
-    'Please enter a correct email'=>'输入的邮箱格式必须要正确',
+    'Please enter a correct email'=>'请输入正确的邮箱格式',
     'Please enter the correct email captcha'=>'请输入正确的验证码',
     'I accept the'=>'我同意',
     'and'=>'和',

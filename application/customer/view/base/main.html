@@ -11,6 +11,11 @@
 {include file="base/components/aside"}
 {/block}
 {block name="footer"}
+{if($lang=='en_us')}
 {include file="base/components/footer"}
+{/if}
+{if($lang=='zh_cn')}
+{include file="base/components/footer_cn"}
+{/if}
 <!--    footer-->
 {/block}

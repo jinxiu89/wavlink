@@ -100,6 +100,9 @@ class User extends Base
             $data = input('post.', [], 'htmlspecialchars,trim');
             if ($data['type'] == 1) {
                 $code = Cache::store('redis')->get($data['email'], '') ? Cache::store('redis')->get($data['email'], '') : Cache::store('default')->get($data['email'], '');
+                if(empty($code)){
+                    return show(0, lang('Please click \"Send\" to receive the verification code.'), '', '', '', lang('Please click \"Send\" to receive the verification code.'));
+                }
                 if (empty($data['captcha']) && $data['captcha'] != $code) {
                     return show(0, lang('Please enter the correct email captcha'), '', '', '', lang('Please enter the correct email captcha'));
                 }
@@ -110,6 +113,9 @@ class User extends Base
             }
             if ($data['type'] == 2) {
                 $code = Cache::store('redis')->get($data['phone'], '') ? Cache::store('redis')->get($data['phone'], '') : Cache::store('default')->get($data['phone'], '');
+                if(empty($code)){
+                    return show(0, lang('Please click \"Send\" to receive the verification code.'), '', '', '', lang('Please click \"Send\" to receive the verification code.'));
+                }
                 if (empty($data['captcha']) && $data['captcha'] != $code) {
                     return show(0, lang('The verification code is invalid'), '', '', '', lang('The verification code is invalid'));
                 }
@@ -242,7 +248,7 @@ class User extends Base
                     return show(0, lang('Server Error'), '', '', '', lang('Server Error'));
                 }
             }
-            $instance = $this->service->create($data); //instance 是实例的意思
+            $instance = $this->service->reg($data); //instance 是实例的意思
             if ($instance->id) {//注册第二步，填写产品信息
                 return show(1, lang('Success'), '', '', url('customer_product_register', ['user_id' => $instance->id]), lang('Successfully!'));
             } else {
@@ -393,6 +399,9 @@ class User extends Base
                 return show(0, $this->validate->getError(), '', '', '', $this->validate->getError());
             }
             $code = Cache::store('redis')->get($data['phone'], '') ? Cache::store('redis')->get($data['phone'], '') : Cache::store('default')->get($data['phone'], '');
+            if(empty($code)){
+                return show(0, lang('Please click \"Send\" to receive the verification code.'), '', '', '', lang('Please click \"Send\" to receive the verification code.'));
+            }
             if ($code != $data['captcha']) {
                 return show(0, lang('The verification code is invalid'), '', '', '', lang('The verification code is invalid'));
             }
@@ -425,6 +434,9 @@ class User extends Base
                 return show(0, $this->validate->getError(), '', '', '', $this->validate->getError());
             }
             $code = Cache::store('redis')->get($data['email'], '') ? Cache::store('redis')->get($data['email'], '') : Cache::store('default')->get($data['email'], '');
+            if(empty($code)){
+                return show(0, lang('Please click \"Send\" to receive the verification code.'), '', '', '', lang('Please click \"Send\" to receive the verification code.'));
+            }
             if ($code != $data['captcha']) {
                 return show(0, lang('The verification code is invalid'), '', '', '', lang('The verification code is invalid'));
             }

@@ -199,17 +199,18 @@ class User extends BaseService
         }
     }
 
+    /**
+     * @param $data
+     * @return UserModel|string
+     * 关联保存
+     */
     public function reg($data)
     {
         //todo::注册操作
         try {
-            return $this->model->create($data);  //返回的是一个当前模型的实例
-            /*if(!$user->isEmpty()){
-                $info=$this->model->get($user->id);
-                if($info->info->save(['gender'=>3])){
-                    return $user;
-                }
-            }*/
+            $user= $this->model->create($data);  //返回的是一个当前模型的实例
+            $info=$this->model->get($user->id);
+            if($info->info()->save(['user_id'=>$user->id,'gender'=>3])) return $user;
         } catch (\Exception $exception) {
             return $exception->getMessage();//todo:: 异常
         }

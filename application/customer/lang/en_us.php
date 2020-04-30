@@ -55,7 +55,7 @@ return [
     'Please enter your name' => 'Please enter your name',
     'Please enter your password' => 'Please enter your password',
     'Please enter your password again' => 'Please enter your password again',
-    'Please enter your e-mail captcha' => 'Please enter e-mail verification code',
+    'Please enter your e-mail captcha' => 'Please enter the correct verification code',
     '' => '',
     /*注册验证文案*/
     'user name is required'=>'First Name Is Required',
@@ -72,6 +72,7 @@ return [
     'Privacy agreement'=>'Privacy Policy',
     'Subscribe me'=>'Subscribe me for early-bird notice and more news.',
     'Agree is required' => 'Please read and accept our Terms Of Use Notice and Privacy Policy',
+    'Captcha Error' => 'Captcha Error',
     /*注册验证文案结束*/
     'Input your first name'=>'Input your first name',
     'Input your E-mail' => 'Input your E-mail',

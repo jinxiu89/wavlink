@@ -3,30 +3,29 @@
         <div class="row">
             <div class="foot-container">
                 <dl>
-                    <dt>STORE</dt>
+                    <dt>{:lang('Store')}</dt>
                     <dd><a href="https://www.amazon.com/s?me=A1ZAFAL1WND4H&marketplaceID=ATVPDKIKX0DER" target="_blank">Amazon</a></dd>
                     <dd><a href="https://www.newegg.com/Wavlink-Technology" target="_blank">Newegg</a></dd>
                 </dl>
                 <dl>
-                    <dt>SUPPORTS</dt>
-                    <dd><a href="">Driver</a></dd>
-                    <dd><a href="">Firmware</a></dd>
-                    <dd><a href="">Manual</a></dd>
-                    <dd><a href="">Q&A</a></dd>
-                    <dd><a href="">Guest Book</a></dd>
-                    <dd><a href="">Video</a></dd>
+                    <dt>{:lang('support')}</dt>
+                    <dd><a href="/{$lang}/drivers.html">{:lang('Driver')}</a></dd>
+                    <dd><a href="/{$lang}/Firmware.html">{:lang('Firmware')}</a></dd>
+                    <dd><a href="/{$lang}/manuals.html">{:lang('manual')}</a></dd>
+                    <dd><a href="/{$lang}/faq.html">{:lang('faq')}</a></dd>
+                    <dd><a href="/{$lang}/guest_book/">{:lang('GuestBook')}</a></dd>
+                    <dd><a href="/{$lang}/video.html">{:lang('video')}</a></dd>
                 </dl>
                 <dl>
-                    <dt>ABOUT</dt>
-                    <dd><a href="">Company</a></dd>
-                    <dd><a href="">Contact Us</a></dd>
-                    <dd><a href="">Where To Buy</a></dd>
-                    <dd><a href="">Privacy</a></dd>
-                    <dd><a href="">Join Us</a></dd>
-                    <dd><a href="">Terms Of Use Notice</a></dd>
+                    <dt>{:lang('About')}</dt>
+                    {notempty name="about"}
+                    {volist name="about" id="vo"}
+                    <dd><a href="/{$lang}/about/{$vo.url_title}.html">{$vo->name}</a></dd>
+                    {/volist}
+                    {/notempty}
                 </dl>
                 <dl>
-                    <dt>COMMUNITY</dt>
+                    <dt>{:lang('Community')}</dt>
                     <dd>
                         <a target="_blank" href="https://www.facebook.com/WavlinkOfficial/"><span class="iconfont">&#xe65e;</span></a>
                         <a target="_blank" href="https://twitter.com/WavlinkOfficial"><span class="iconfont">&#xe65f;</span></a>

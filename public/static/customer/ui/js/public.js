@@ -83,8 +83,19 @@ function InfoChange(url, form) {
     })
 }
 
+function handleFootHover () {
+    var footItem = $('.g-footer .foot-container dl dd a')
+    footItem.hover(function () {
+        if ($(this).siblings('img').length > 0) {
+            $(this).parent('dd').siblings('dd').children('img').css({'display': 'none'})
+            $(this).siblings('img').css({'display': 'block'})
+        }
+    })
+}
+
 $(document).ready(function () {
     loginRegisterBox()
     Account()
     PersonImg()
+    handleFootHover()
 })

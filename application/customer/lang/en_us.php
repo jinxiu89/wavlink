@@ -69,7 +69,7 @@ return [
     'Input password again'=>'Input password again',
     'The password is different twice'=>'The password is different, please re-type.',
     'Please enter a correct email'=>'Please enter a correct email',
-    'Please enter the correct email captcha'=>'Please enter the correct email Verification Code',
+    'Please enter the correct email captcha'=>'Please enter the correct Verification Code',
     'I accept the'=>'I accept the',
     'and'=>'and',
     'Privacy agreement'=>'Privacy Policy',

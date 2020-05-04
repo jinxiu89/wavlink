@@ -87,11 +87,17 @@
   }
   .Field-content {
     padding: 0 0 0 175px;
+    min-height: 20px;
+  }
+  .Field-content > div {
+    .clearFix();
   }
   .Field-content .Field-text {
     font-size: 14px;
+    float: left;
   }
   .Field-content .link {
+    float: left;
     margin-left: 10px;
     color: #136ec2;
     &:hover {
@@ -100,6 +106,7 @@
     }
   }
   .Field-content .Field-modify {
+    float: left;
     margin-left: 5px;
     background: none;
     font-size: 12px;

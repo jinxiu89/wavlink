@@ -81,7 +81,7 @@
             <h4 class="Field-label">{:lang('Birthday')}</h4>
             <div class="Field-content">
                 <div>
-                    <span class="Field-text">{notempty name="$result.info.birthday"}{$result.info.birthday|date='Y-m-d'}{/notempty}</span>
+                    <span class="Field-text" id="birthday-changed">{notempty name="$result.info.birthday"}{$result.info.birthday|date='Y-m-d'}{/notempty}</span>
                     <button class="Field-modify" type="button"
                             onclick="layer_open('{:lang(\'Modify Your Birthday\')}','{:url(\'changeBirthday\',[\'id\'=>$result.id])}',533,300)">
                         <span class="iconfont iconedit"></span> {:lang('Modify')}
@@ -177,5 +177,12 @@
 <!--私有JS-->
 <script>
     $('.Info').addClass('active');
+    $(document).ready(function () {
+        var birthdayDom = $('#birthday-changed');
+        var birthday = birthdayDom.text();
+        if (birthday !== '') {
+            birthdayDom.siblings('.Field-modify').remove()
+        }
+    })
 </script>
 {/block}

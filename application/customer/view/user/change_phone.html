@@ -14,7 +14,7 @@
                 <div class="info">
                     <label for="phone">{:lang('Phone')}: </label>
                     <input class="code" id="phone" name="phone" type="text" value="{if($phone != 1)}{$phone}{/if}">
-                    <button id="send_code" type="button">{:lang('send')}</button>
+                    <button id="send_code" type="button"><span id="send_code_text">{:lang('send')}</span><span id="send_code_unit"></span></button>
                 </div>
                 <div class="info">
                     <label for="captcha">{:lang('captcha')}: </label>

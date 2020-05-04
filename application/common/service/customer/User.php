@@ -87,6 +87,28 @@ class User extends BaseService
     }
 
     /**
+     * @param $id
+     * @return array|bool[]
+     * 存在生日值就表明有修改过
+     * 本方法还有一个功能，就是后期如果要校验生日是否填写，也是一个工具
+     *
+     */
+    public function checkBirth($id)
+    {
+        try {
+            $user = $this->model->get($id);
+            $birth = $user->info->birthday;
+            if (!empty($birth)) {
+                return true;
+            }
+            return false;
+        } catch (\Exception $exception) {
+            //todo::日志 抛出异常
+
+        }
+    }
+
+    /**
      * @param $data
      * @return bool|string
      * 小方：桑葚10g，槐米6g，决明子6g。久坐便秘者。
@@ -188,8 +210,8 @@ class User extends BaseService
                 'last_login_ip' => request()->ip(),
             ];
             if ($this->model->upDateById($customerUpdateData, $user['id'])) {
-                $session['id']=$user['id'];
-                $session['username']=$user['username'];
+                $session['id'] = $user['id'];
+                $session['username'] = $user['username'];
                 Session::set('CustomerInfo', $session, 'Customer');
                 return ['status' => 1, 'message' => lang('Success'), 'url' => url('customer_info')];
             }
@@ -208,9 +230,9 @@ class User extends BaseService
     {
         //todo::注册操作
         try {
-            $user= $this->model->create($data);  //返回的是一个当前模型的实例
-            $info=$this->model->get($user->id);
-            if($info->info()->save(['user_id'=>$user->id,'gender'=>3])) return $user;
+            $user = $this->model->create($data);  //返回的是一个当前模型的实例
+            $info = $this->model->get($user->id);
+            if ($info->info()->save(['user_id' => $user->id, 'gender' => 3])) return $user;
         } catch (\Exception $exception) {
             return $exception->getMessage();//todo:: 异常
         }

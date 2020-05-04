@@ -100,7 +100,7 @@ class User extends Base
             $data = input('post.', [], 'htmlspecialchars,trim');
             if ($data['type'] == 1) {
                 $code = Cache::store('redis')->get($data['email'], '') ? Cache::store('redis')->get($data['email'], '') : Cache::store('default')->get($data['email'], '');
-                if(empty($code)){
+                if (empty($code)) {
                     return show(0, lang('Please click \"Send\" to receive the verification code.'), '', '', '', lang('Please click \"Send\" to receive the verification code.'));
                 }
                 if (empty($data['captcha']) && $data['captcha'] != $code) {
@@ -113,7 +113,7 @@ class User extends Base
             }
             if ($data['type'] == 2) {
                 $code = Cache::store('redis')->get($data['phone'], '') ? Cache::store('redis')->get($data['phone'], '') : Cache::store('default')->get($data['phone'], '');
-                if(empty($code)){
+                if (empty($code)) {
                     return show(0, lang('Please click \"Send\" to receive the verification code.'), '', '', '', lang('Please click \"Send\" to receive the verification code.'));
                 }
                 if (empty($data['captcha']) && $data['captcha'] != $code) {
@@ -370,6 +370,9 @@ class User extends Base
             if (!$this->validate->scene('changeBirth')->check($data)) {
                 return show(0, $this->validate->getError(), '', '', '', $this->validate->getError());
             }
+            if (false != $this->service->checkBirth($data['id'])) {
+                return show(0, lang('Please note that your birthday can only be modified once.'), '', '', '', lang('Please note that your birthday can only be modified once.'));
+            }
             $result = $this->service->changeInfo($data);
             if (true == $result) {
                 return show(1, lang('Success'), '', '', url('customer_info'));
@@ -399,7 +402,7 @@ class User extends Base
                 return show(0, $this->validate->getError(), '', '', '', $this->validate->getError());
             }
             $code = Cache::store('redis')->get($data['phone'], '') ? Cache::store('redis')->get($data['phone'], '') : Cache::store('default')->get($data['phone'], '');
-            if(empty($code)){
+            if (empty($code)) {
                 return show(0, lang('Please click \"Send\" to receive the verification code.'), '', '', '', lang('Please click \"Send\" to receive the verification code.'));
             }
             if ($code != $data['captcha']) {
@@ -434,7 +437,7 @@ class User extends Base
                 return show(0, $this->validate->getError(), '', '', '', $this->validate->getError());
             }
             $code = Cache::store('redis')->get($data['email'], '') ? Cache::store('redis')->get($data['email'], '') : Cache::store('default')->get($data['email'], '');
-            if(empty($code)){
+            if (empty($code)) {
                 return show(0, lang('Please click \"Send\" to receive the verification code.'), '', '', '', lang('Please click \"Send\" to receive the verification code.'));
             }
             if ($code != $data['captcha']) {

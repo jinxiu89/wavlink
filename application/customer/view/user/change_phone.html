@@ -13,7 +13,7 @@
             <form class="personal-phone" id="personal-phone" action="">
                 <div class="info">
                     <label for="phone">{:lang('Phone')}: </label>
-                    <input class="code" id="phone" name="phone" type="text" value="{$phone}">
+                    <input class="code" id="phone" name="phone" type="text" value="{if($phone != 1)}{$phone}{/if}">
                     <button id="send_code" type="button">{:lang('send')}</button>
                 </div>
                 <div class="info">

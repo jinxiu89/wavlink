@@ -8,20 +8,20 @@
         <div class="info-change-box">
             <div class="form-title">
                 <h3 class="title">{:lang('Modify Your Birthday')}</h3>
-                <p class="notice"><span>*</span> {:lang('Please note that it cannot be changed after it is confirmed')}.</p>
+                <p class="notice"><span>*</span> {:lang('Please note that your birthday can only be modified once.')}</p>
             </div>
             <form class="personal-birthday" id="personal-birthday" action="">
                 <div class="info">
                     <label for="year">{:lang('Year')}: </label>
-                    <select id="year" class="sel_year" rel=""></select>
+                    <select id="year" class="sel_year" rel="--"></select>
                 </div>
                 <div class="info">
                     <label for="month">{:lang('Month')}: </label>
-                    <select id="month" class="sel_month" rel=""></select>
+                    <select id="month" class="sel_month" rel="--"></select>
                 </div>
                 <div class="info">
                     <label for="day">{:lang('Day')}: </label>
-                    <select id="day" class="sel_day" rel=""></select>
+                    <select id="day" class="sel_day" rel="--"></select>
                 </div>
 
                 <input type="hidden" id="id" name="id" value="{$id}">
@@ -44,16 +44,22 @@
 {/if}
 <script>
     $(document).ready(function(){
-        var time = '{$birthday}' + '000';
-        var date = new Date(Number(time));
-        var y = date.getFullYear();
-        var m = date.getMonth() + 1;
-        m = m < 10 ? ('0' + m) : m;
-        var d = date.getDate();
-        d = d < 10 ? ('0' + d) : d;
-        $('#year').attr('rel', y)
-        $('#month').attr('rel', m)
-        $('#day').attr('rel', d)
+        if ('{$birthday}' === '') {
+            $('#year').attr('rel', '--');
+            $('#month').attr('rel', '--');
+            $('#day').attr('rel', '--');
+        } else {
+            var time = '{$birthday}' + '000';
+            var date = new Date(Number(time));
+            var y = date.getFullYear();
+            var m = date.getMonth() + 1;
+            m = m < 10 ? ('0' + m) : m;
+            var d = date.getDate();
+            d = d < 10 ? ('0' + d) : d;
+            $('#year').attr('rel', y);
+            $('#month').attr('rel', m);
+            $('#day').attr('rel', d);
+        }
 
         $.ms_DatePicker({
             YearSelector: ".sel_year",
@@ -78,7 +84,7 @@
             d = $('.sel_day').val();
         m = m < 10 ? ('0' + m) : m;
         d = d < 10 ? ('0' + d) : d;
-        var time = y + '-' + m + '-' + d
+        var time = y + '-' + m + '-' + d;
         var birthday =  new Date(time).getTime()/1000;
         if (isNaN(birthday)) {
             layer.msg('{:lang(\'Please select the full date\')}', {
@@ -89,6 +95,7 @@
             var postData={};
             postData['id']=$('#id').val();
             postData['birthday']= birthday;
+            console.log(postData);
             $.ajax({
                 url: '{:url(\'changeBirthday\')}',
                 type: "post",

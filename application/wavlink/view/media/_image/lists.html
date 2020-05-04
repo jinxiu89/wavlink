@@ -8,8 +8,9 @@
     <div class="Hui-article">
         <article class="cl pd-20" style="min-height: 50em">
             <div class="text-l">
-                    <input type="text" class="btn btn-primary" style="width: 80px" value="上传图片">
-                    <input type="text" class="btn btn btn-secondary" style="width: 80px" value="创建目录">
+                <span><a href="javascript:;" class="btn btn-primary" style="width: 90px"
+                         onclick="add('上传图片','{:url(\'image_upload\')}',640,480)"><i class="Hui-iconfont">&#xe642;</i>上传图片</a></span>
+                <input type="text" class="btn btn btn-secondary" style="width: 80px" value="创建目录">
 
             </div>
             <div class="panel panel-default mt-20">
@@ -20,7 +21,8 @@
                     {volist name="items" id="item"}
                     {if(is_array($item))}
                     <div style="width: 140px; height: 180px;display: inline-block;padding: 10px">
-                        <img src="https://china.wavlink.com/{$item.key}" alt="140x140" class="radius" style="width: 140px;height: 140px">
+                        <img src="https://china.wavlink.com/{$item.key}" alt="140x140" class="radius"
+                             style="width: 140px;height: 140px">
                         <span>更新时间</span>||<a href="#">复制链接</a></span>
                     </div>
                     {else /}

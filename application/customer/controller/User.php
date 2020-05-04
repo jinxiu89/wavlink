@@ -227,12 +227,8 @@ class User extends Base
                 if ($code != $data['captcha']) {
                     return show(0, lang('Captcha Error'), '', '', '', lang('Captcha Error'));
                 }
-                $check = $this->service->CheckEmail($data['email']);
-                if ($check == true) {
-                    return show(0, lang('Your Email address Already existed'), '', '', '', lang('Your Email address Already existed'));
-                }
-                if (is_string($check)) {
-                    return show(0, lang('Server Error'), '', '', '', lang('Server Error'));
+                if(!$this->validate->scene('registerEmail')->check($data)){
+                    return show(0, $this->validate->getError(), '', '', '', $this->validate->getError());
                 }
             }
             if ($data['type'] == 2) { //短信注册
@@ -240,12 +236,8 @@ class User extends Base
                 if ($code != $data['captcha']) {
                     return show(0, lang('The verification code is invalid'), '', '', '', lang('The verification code is invalid'));
                 }
-                $check = $this->service->CheckPhone($data['phone']);
-                if ($check == true) {
-                    return show(0, lang('Your phone  Already existed'), '', '', '', lang('Your phone  Already existed'));
-                }
-                if (is_string($check)) {
-                    return show(0, lang('Server Error'), '', '', '', lang('Server Error'));
+                if(!$this->validate->scene('registerPhone')->check($data)){
+                    return show(0, $this->validate->getError(), '', '', '', $this->validate->getError());
                 }
             }
             $instance = $this->service->reg($data); //instance 是实例的意思

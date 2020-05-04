@@ -1,0 +1,31 @@
+{include file="public/headers" /}
+<div class="page-container">
+    <form class="form form-horizontal" id="form-product-add" method="post" action="">
+        <div class="row cl">
+            <label class="form-label col-xs-4 col-sm-1"><span class="c-red">*</span>产品名称：</label>
+            <div class="formControls col-xs-8 col-sm-6">
+                <input type="text" class="input-text" value="" placeholder="" id="name" name="name">
+            </div>
+        </div>
+        <div class="row cl">
+            <div class="col-xs-8 col-sm-9 col-xs-offset-4 col-sm-offset-2">
+                <button class="btn btn-primary radius" type="button" onclick="save('{:url(\'product/save\')}')"><i class="Hui-iconfont">&#xe632;</i> 保存
+                </button>
+
+                <button onClick="layer_close();" class="btn btn-default radius" type="button">
+                    &nbsp;&nbsp;取消&nbsp;&nbsp;</button>
+            </div>
+        </div>
+    </form>
+</div>
+<!--包含头部文件-->
+{include file="public/footer" /}
+<!--请在下方写此页面业务相关的脚本-->
+<script type="text/javascript">
+    var SCOPE = {
+//            'category_url': "{:url('api/category/getCategoryByParentId')}",
+        'uploadify_swf':'__STATIC__/admin/uploadify/uploadify.swf',
+        'image_upload':"{:url('api/image/upload')}"};
+</script>
+</body>
+</html>

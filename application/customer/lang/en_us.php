@@ -153,6 +153,8 @@ return [
     'Modify Your Real Name' => 'Modify Your Real Name',
     'Modify Your Gender' => 'Modify Your Gender',
     'Modify Your Birthday' => 'Modify Your Birthday',
+    'Please note that your birthday can only be modified once.' => 'Please note that your birthday can only be modified once.',
+    'Do not select a date before 1940.' => 'Do not select a date before 1940.',
 
     'Submit' => 'SUBMIT',
     'Cancel' => 'CANCEL',

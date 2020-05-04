@@ -103,7 +103,10 @@ return [
     /**
      * 产品注册翻译
      */
+    'Sn' => 'SN Number',
     'Skip' => 'Skip',
+    'Purchase Time' => 'Purchase Time',
+    'Purchase Platform' => 'Purchase Platform',
     'Add product cases'=>'Add product cases',
     'Where to buy'=>'Where to buy',
     'select'=>'Select',

@@ -149,6 +149,8 @@ return [
     /**
      * 产品注册翻译
      */
+    'Date Purchased' => '购买日期',
+    'Purchase Platform' => '购买平台',
     'Skip' => '跳过',
     'Add product cases'=>'添加产品信息',
     'Where to buy'=>'购买平台',
@@ -167,9 +169,9 @@ return [
     'Warranty' => '保修',
     'Register Product' => '注册产品',
     'Sn' => 'SN',
+    'Purchase Time' => '购买时间',
     'Model' => '型号',
     'Category' => '分类',
-    'Date Purchased' => '购买日期',
     'Warranty Status' => '保修状态',
     'Warranty Action' => '保修操作',
     'Extend' => '延保',
@@ -189,7 +191,6 @@ return [
     'Has been registered'=>'该产品已经被注册了',
     //产品注册相关的
     'Order Number' => '订单号',
-    'Purchase time' => '购买时间',
     'Please enter your product model' => '请输入您的产品型号',
     'Please enter your sn code' => '请输入您的产品SN',
     'Where did you buy our products' => '购买渠道',

@@ -84,15 +84,15 @@ class ali
     }
 
     /**
-     * @param string $bucket
-     * @param string $object
-     * @param $file
+     * @param string $bucket 桶，默认为wavlink桶
+     * @param string $key 文件名
+     * @param 实体文件（也可以是路径，一般上传时就指定到） $file
      * @return bool
      */
-    public function putFile($bucket = 'wavlink', $object = '', $file)
+    public static function putFile($bucket='wavlink',$key = '', $file)
     {
         try {
-            if (self::createClient()->uploadFile($bucket, $object, $file)) return true;
+            if (self::createClient()->uploadFile($bucket, $key, $file)) return true;
             return false;
         } catch (OssException $exception) {
             //todo::待解决异常问题

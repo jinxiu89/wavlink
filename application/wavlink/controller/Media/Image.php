@@ -27,16 +27,33 @@ class Image extends BaseAdmin
     public function lists()
     {
         if ($this->request->isGet()) {
-            $prefix = !empty(input('get.prefix', '', 'htmlspecialchars,trim')) ? input('get.prefix', '', 'htmlspecialchars,trim') . '/' : 'videos/';
-            $items = ali::listObj('wavlink', $prefix);
-            print_r($items);
-            $this->assign('items',$items);
+            $path = input('get.path', 'images', 'htmlspecialchars,trim') . '/';
+            $items = ali::listObj('wavlink', $path);
+            $this->assign('items', $items);
+            $this->assign('path', $path);
             return $this->fetch();
         }
     }
-    public function upload(){
-        if($this->request->isGet()){
+
+    /**
+     * @return bool|mixed
+     */
+    public function upload()
+    {
+        if ($this->request->isGet()) {
+            $path = input('get.path', 'images', 'htmlspecialchars,trim');
+            $this->assign('path', $path);
             return $this->fetch();
+        }
+        if ($this->request->isPost()) {
+            $file = $this->request->file('file');
+            $filePath=$file->getInfo('tmp_name');
+            $key = input('get.path', 'images/', 'htmlspecialchars,trim') . $file->getInfo('name');
+
+            $result = ali::putFile('',$file->getInfo('name'), $filePath);
+            if ($result) {
+                return $result;
+            }
         }
     }
 }

@@ -149,6 +149,7 @@ class User extends BaseService
             $result = $this->model->getUserByEmail($email);
             return $result->toArray();
         } catch (\Exception $exception) {
+
             return [];
         }
     }

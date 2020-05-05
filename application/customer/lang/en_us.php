@@ -98,8 +98,9 @@ return [
     'Success' => 'Success',
     //登录页面用到的
     'home' => 'Home',
-    'product' => 'PRODUCT',
-    'driver' => 'DRIVER',
+    'product' => 'Product',
+    'driver' => 'Driver',
+    'Please enter the correct captcha' => 'Please enter the correct captcha',
     /**
      * 产品注册翻译
      */
@@ -158,6 +159,7 @@ return [
     'Modify Your Birthday' => 'Modify Your Birthday',
     'Please note that your birthday can only be modified once.' => 'Please note that your birthday can only be modified once.',
     'Do not select a date before 1940.' => 'Do not select a date before 1940.',
+    'Please keep your password. After changing the password, you need to log in again.' => 'Please keep your password. After changing the password, you need to log in again.',
 
     'Submit' => 'SUBMIT',
     'Cancel' => 'CANCEL',

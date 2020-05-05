@@ -274,8 +274,8 @@ body {
 }
 .proRegister-box .box .info-box .info label {
   float: left;
-  width: 100px;
-  margin-right: 10px;
+  width: 124px;
+  margin-right: 5px;
   margin-bottom: 0;
   font-size: 14px;
   line-height: 30px;
@@ -288,7 +288,7 @@ body {
 .proRegister-box .box .info-box .info input,
 .proRegister-box .box .info-box .info select {
   float: left;
-  width: 240px;
+  width: 210px;
   height: 30px;
   margin-left: 0;
   padding: 0 5px;

@@ -8,24 +8,18 @@
             </div>
         </div>
         <div class="row clearfix">
-            <label class="form-label col-sm-2">上传</label>
+            <label class="form-label col-sm-2"></label>
             <div class="formControls col-sm-10">
                 <div class="uploader-thum-container">
                     <div id="fileList" class="uploader-list"></div>
                     <div id="filePicker" style="display: inline-block">选择文件</div>
                     <button id="btn-star" type="button" class="btn btn-default  btn-uploadstar radius ml-10">开始上传</button>
+                    <button  type="button" class="btn btn-default  btn-uploadstar radius ml-10">结束上传</button>
                 </div>
                 <div id="imageInput">
                 </div>
             </div>
         </div>
-        <!--<div class="row clearfix">
-            <div class="col-xs-10 col-sm-10 col-xs-offset-4 col-sm-offset-2">
-                <button class="btn btn-secondary radius add" type="button"><i class="Hui-iconfont">&#xe632;</i>
-                    保存
-                </button>
-            </div>
-        </div>-->
     </form>
 </div>
 <!--包含头部文件-->
@@ -96,13 +90,13 @@
         // 文件上传成功，给item添加成功class, 用样式标记上传成功。
         uploader.on('uploadSuccess', function (file, result) {
             $('#' + file.id).addClass('upload-state-success').find(".state").text("已上传");
-            var $input = $('<input type="hidden" name="key" value="' + result._raw + '">');
-            $imageInput.append($input);
+            /*var $input = $('<input type="hidden" name="key" value="' + result.key + '">');
+            $imageInput.append($input);*/
         });
 
         // 文件上传失败，显示上传出错。
-        uploader.on('uploadError', function (file, reason) {
-            $('#' + file.id).addClass('upload-state-error').find(".state").text(reason);
+        uploader.on('uploadError', function (file) {
+            $('#' + file.id).addClass('upload-state-error').find(".state").text('上传失败');
         });
 
         // 完成上传完了，成功或者失败，先删除进度条。

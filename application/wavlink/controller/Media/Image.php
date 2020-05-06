@@ -36,6 +36,29 @@ class Image extends BaseAdmin
     }
 
     /**
+     * createFolder
+     * @return mixed
+     */
+    public function createFolder()
+    {
+        if ($this->request->isGet()) {
+            $path = input('get.path', 'images', 'htmlspecialchars,trim');
+            $this->assign('path', $path);
+            return $this->fetch();
+        }
+        if ($this->request->isPost()) {
+            $post = input('post.', '', 'htmlspecialchars,trim');
+            $key = input('get.path', 'images/', 'htmlspecialchars,trim') . $post['folder'];
+            //todo::阿里云和亚马逊云合体在这里分分支
+            $result = ali::mkdir($key);
+            if($result == 200){
+                return show(true, '创建成功', '', '', '', '创建成功');
+            }
+            return show(false, '创建失败', '', '', '', '创建失败');
+        }
+    }
+
+    /**
      * @return bool|mixed
      */
     public function upload()
@@ -47,13 +70,13 @@ class Image extends BaseAdmin
         }
         if ($this->request->isPost()) {
             $file = $this->request->file('file');
-            $filePath=$file->getInfo('tmp_name');
+            $filePath = $file->getInfo('tmp_name');
             $key = input('get.path', 'images/', 'htmlspecialchars,trim') . $file->getInfo('name');
-
-            $result = ali::putFile('',$file->getInfo('name'), $filePath);
-            if ($result) {
-                return $result;
+            ali::putFile($bucket = 'wavlink', $key, $filePath);
+            /*if($result){
+                return ['status'=>200,'key'=>$key];
             }
+            return ['status'=>500,'key'=>''];*/
         }
     }
 }

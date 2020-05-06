@@ -265,6 +265,7 @@ Route::group(Config::get('__BACKEND__'), function () {
      */
     Route::rule('/media/index','Media.Index/index')->name('media_index');
     Route::rule('/media/image/lists','Media.Image/lists')->name('image_lists');
+    Route::rule('/media/image/create/folder','Media.Image/createFolder')->name('create_image_folder');
     Route::rule('/media/image/upload','Media.Image/upload')->name('image_upload');
 
     //搜索索引管理

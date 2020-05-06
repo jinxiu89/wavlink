@@ -53,7 +53,7 @@ class ali
         $nextMarker = '';
         $options = ['delimiter' => '/', 'marker' => $nextMarker, 'prefix' => $prefix];
         try {
-            $listObjectInfo = self::createClient()->listObjects($bucket, $options);
+            $listObjectInfo = self::createClient()->listObjects($bucket=Config::get('alicloud.oss.bucket'), $options);
         } catch (OssException $e) {
             //todo:异常还没处理
             printf(__FUNCTION__ . ": FAILED\n");
@@ -83,17 +83,29 @@ class ali
         return $items;
     }
 
+    public static function mkdir($key)
+    {
+        try {
+            $result=self::createClient()->createObjectDir($bucket=Config::get('alicloud.oss.bucket'), $key);
+            return $result['info']['http_code'];
+        } catch (OssException $exception) {
+            //todo：：日志
+            return false;
+        }
+
+    }
+
     /**
-     * @param string $bucket 桶，默认为wavlink桶
+     *
      * @param string $key 文件名
      * @param 实体文件（也可以是路径，一般上传时就指定到） $file
      * @return bool
      */
-    public static function putFile($bucket='wavlink',$key = '', $file)
+    public static function putFile($key = '', $file)
     {
         try {
-            if (self::createClient()->uploadFile($bucket, $key, $file)) return true;
-            return false;
+            $data = self::createClient()->uploadFile($bucket=Config::get('alicloud.oss.bucket'), $key, $file);
+            return $data['info']['http_code'];
         } catch (OssException $exception) {
             //todo::待解决异常问题
             return false;

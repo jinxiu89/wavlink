@@ -50,14 +50,16 @@
                     <select name="category" id="category">
                         <option value="0">{:lang('select')}</option>
                         {volist name="category" id="vo"}
-                        <option value="{$vo.name}">{$vo.delimiter|raw}{$vo.name}</option>
+                        <option value="{$vo.name}" {if($vo.level == 1)}disabled{/if}>{$vo.delimiter|raw}{$vo.name}</option>
                         {/volist}
                     </select>
+
+
                 </div>
 
                 <div class="btn-box">
-                    <button class="btn-submit" id="submit" type="submit">{:lang('GO')}</button>
-                    <a class="btn-submit btn-submit-Jump" href="{:url('customer_login')}">{:lang('Skip')}</a>
+                    <button class="btn-submit" id="submit" type="submit">{:lang('Submit')}</button>
+                    <!--<a class="btn-submit btn-submit-Jump" href="{:url('customer_login')}">{:lang('Skip')}</a>-->
                     <!--<input class="btn-submit" type="submit" onclick="save('{:url(\'sn/index\')}')"  value="&nbsp;&nbsp;{:lang('ReWrite')}&nbsp;&nbsp;">-->
                 </div>
             </form>
@@ -106,25 +108,5 @@
             });
         }
     });
-    /*$('#sn').blur(function () {
-        $.ajax({
-            url: '/customer/sn/Verification',
-            type: "post",
-            dataType: "json",
-            data: $("form").serialize(),//提交表单数据
-            success: function (result) {
-                console.log(result);
-                if(result.status === 0){
-                    layer.msg(result.data,{icon:5,time:2000});
-                }
-                if (result.status === "1" || result.status ===1) {
-                    $('#model').val(result.models['model']);
-                    $('#country').val(result.country);
-                    $('#category').val(result.cate);
-                    $('#prd_time').val(result.prd_time);
-                }
-            }
-        })
-    });*/
 </script>
 {/block}

@@ -264,10 +264,16 @@ Route::group(Config::get('__BACKEND__'), function () {
      * 资源管理
      */
     Route::rule('/media/index','Media.Index/index')->name('media_index');
+    //图片
     Route::rule('/media/image/lists','Media.Image/lists')->name('image_lists');
     Route::rule('/media/image/create/folder','Media.Image/createFolder')->name('create_image_folder');
     Route::rule('/media/image/upload','Media.Image/upload')->name('image_upload');
-
+    Route::rule('/media/image/del','Media.Image/delImage')->name('del_image');
+    //驱动
+    Route::rule('media/driver/lists','Media.Driver/lists')->name('driver_lists');
+    Route::rule('media/driver/upload','Media.Driver/upload')->name('upload_driver');
+    Route::rule('/media/driver/create/folder','Media.Driver/createFolder')->name('create_driver_folder');
+    Route::rule('/media/driver/del','Media.Driver/del')->name('del_driver');
     //搜索索引管理
     Route::get('/search/index', 'Search/index');
     Route::get('/search/createProduct', 'Search/createProduct');

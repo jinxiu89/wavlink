@@ -1,4 +1,18 @@
 {include file="public/media_header" /}
+<style>
+    .item-list {
+
+    }
+    .item-list:hover {
+        background: #e5f3ff
+    }
+    .item-list:hover .item-link-box{
+        display: block;
+    }
+    .item-link-box {
+        display: none;
+    }
+</style>
 <section class="Hui-article-box">
     <nav class="breadcrumb"><i class="Hui-iconfont"></i> <a href="/" class="maincolor">首页</a> <span class="c-999 en">&gt;</span>
         <span class="c-666">媒体资源</span>
@@ -21,18 +35,34 @@
                 <div class="panel-header">
                     文件列表
                 </div>
-                <div class="panel-body pd-20">
+                <div class="panel-body pd-20 cl">
                     {volist name="items" id="item"}
-                    {if(is_array($item))}
-                    <div style="width: 140px; height: 180px;display: inline-block;padding: 10px">
-                        <img src="https://china.wavlink.com/{$item.key}" alt="140x140" class="radius"
-                             style="width: 140px;height: 140px">
-                        <span>更新时间</span>||<a href="#">复制链接</a></span>
+                    {if(isset($item['dir']) && $item['dir'] == true)}
+                    <div style="height: 126px;display: inline-block;padding: 10px;text-align: center;float: left">
+                        <a href="{:url('image_lists',['path'=>$item.key])}" style="display: inline-block">
+                            <i class="wav-confont" style="font-size: 100px;color: #ffdc69">&#xe611;</i>
+                        </a>
+                        <p><a href="{:url('image_lists',['path'=>$item.key])}">{$item['name']}</a></p>
                     </div>
                     {else /}
-                    <div style="width: 140px; height: 180px;display: inline-block;padding: 10px">
-                        <i class="iconfont">&#xe667;</i>
-                        <span>更新时间</span>||<a href="#">复制链接</a></span>
+                    <div class="item-list" style="position: relative; height: 126px;display: inline-block;padding: 10px;text-align: center;float: left">
+                        <div style="line-height: 110px;">
+                            <img src="{$baseUrl}/{$item.key}" alt="140x140" class="radius"
+                                 style="width: 100px;">
+                        </div>
+                        <p style="text-overflow: ellipsis;white-space: nowrap;overflow: hidden; width: 100px"><a href="#" title="{$item.name}">{$item.name}</a></p>
+                        <div class="item-link-box" style="position: absolute; top: 5px; left: 5px;z-index: 999">
+                            <span class="dropDown dropDown_hover">
+                                <a class="dropDown_A" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+                                    <i class="Hui-iconfont" style="font-size: 16px; color: #00a9ff">&#xe698;</i>
+                                </a>
+                                <ul class="dropDown-menu menu radius box-shadow">
+                                    <input class="ByCopy" type="text" value="{$baseUrl}/{$item.key}" style="position: absolute;top: 0;left: 0;z-index: -99;width: 1px;height: 1px;border: none;background: transparent">
+                                    <li class="btnCopy"><a href="#" class="Hui-iconfont" title="复制url链接" style="font-size: 16px">&#xe6ea;</a></li>
+                                    <li><a href="javascript:;" onclick="del('{:url(\'del_image\',[\'key\'=>$item.key])}')" class="Hui-iconfont" title="删除" style="font-size: 16px">&#xe6e2;</a></li>
+                                </ul>
+                            </span>
+                        </div>
                     </div>
                     {/if}
                     {/volist}
@@ -58,5 +88,11 @@
         $("#menu-media dt").addClass("selected");
         $("#menu-media dd").css("display", "block");
         $("#media_images").addClass("current");
+        $('.btnCopy').click(function () {
+            console.log($(this).siblings('.ByCopy'));
+            $(this).siblings('.ByCopy').select()
+            document.execCommand("Copy"); //执行浏览器复制命令
+            layer.msg('复制成功',{icon: 1, time: 1000});
+        })
     });
 </script>

@@ -14,6 +14,7 @@ namespace app\wavlink\controller\Media;
 
 use app\lib\utils\cloud\ali;
 use app\wavlink\controller\BaseAdmin;
+use think\facade\Config;
 
 /**
  * Class MediaImage
@@ -27,10 +28,14 @@ class Image extends BaseAdmin
     public function lists()
     {
         if ($this->request->isGet()) {
-            $path = input('get.path', 'images', 'htmlspecialchars,trim') . '/';
+            $path = input('get.path', 'images/', 'htmlspecialchars,trim');
             $items = ali::listObj('wavlink', $path);
+//            print_r($items);exit;
+            $baseUrl=Config::get('alicloud.oss.baseUrl'); //传递到前端 防止换来换去，全部都要手撸
+            $this->assign('baseUrl',$baseUrl);
             $this->assign('items', $items);
             $this->assign('path', $path);
+//            print_r($items);
             return $this->fetch();
         }
     }
@@ -72,11 +77,15 @@ class Image extends BaseAdmin
             $file = $this->request->file('file');
             $filePath = $file->getInfo('tmp_name');
             $key = input('get.path', 'images/', 'htmlspecialchars,trim') . $file->getInfo('name');
-            ali::putFile($bucket = 'wavlink', $key, $filePath);
-            /*if($result){
-                return ['status'=>200,'key'=>$key];
-            }
-            return ['status'=>500,'key'=>''];*/
+            ali::putFile($key, $filePath);
+        }
+    }
+    public function delImage(){
+        if($this->request->isPost()){
+            $key=input('get.key','','htmlspecialchars,trim');
+            $result=ali::delFile($key);
+            if($result == 204) return show(true, '删除成功', '', '', '', '删除成功');
+            return show(false,'删除失败','','','','删除失败');
         }
     }
 }

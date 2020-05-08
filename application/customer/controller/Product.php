@@ -46,7 +46,8 @@ class Product extends Base
     {
         if(request()->isGet()){
             $country = $this->service->getCountry();
-            $category = $this->service->getCategory(Cookie::get('lang_var'));
+            $code=Cookie::get('lang_var')?Cookie::get('lang_var'):'en_us';
+            $category = $this->service->getCategory($code);
             return $this->fetch('',['user_id'=>input('get.user_id'),'country'=>$country,'category'=>$category]);
         }
         if (request()->isAjax()) {

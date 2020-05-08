@@ -257,9 +257,9 @@ function del(url) {
             type: "post",
             dataType: "json",
             success: function (result) {
-                if (result.status === 1) {
+                if (result.status === true) {
                     layer.msg(result.data, {icon: 1, time: 2000},function () {
-                        location.href = ''
+                        location.replace(location.href)
                     });
                 } else {
                     layer.msg(result.data, {icon: 5, time: 2000});

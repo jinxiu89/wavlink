@@ -62,25 +62,36 @@ class ali
         }
         $objectList = $listObjectInfo->getObjectList(); // object list
         $prefixList = $listObjectInfo->getPrefixList();
-        $items = [];
+        $dir=[];
         if (!empty($prefixList)) {
             foreach ($prefixList as $prefixInfo) {
-                $items[] = $prefixInfo->getPrefix();
+                $tem['dir']=true;
+                $dirName=explode('/',$prefixInfo->getPrefix());
+                $tem['key']=$prefixInfo->getPrefix();
+                $name=array_splice($dirName,-2,1)[0];
+                $tem['name']=$name;
+                $dir[]=$tem;
             }
+            unset($dirName);
+            unset($tem);
         }
+        $items=[];
         if (!empty($objectList)) {
             foreach ($objectList as $objectInfo) {
                 if ($objectInfo->getSize() != 0) {
-                    $tem['size'] = $objectInfo->getSize();
-                    $tem['key'] = $objectInfo->getKey();
-                    $tem['type'] = $objectInfo->getType();
-                    $tem['last_modified'] = $objectInfo->getLastModified();
-
-                    $items[] = $tem;
+                    $tmp['size'] = $objectInfo->getSize();
+                    $tmp['key'] = $objectInfo->getKey();
+                    $Filenames=explode('/',$objectInfo->getKey());
+                    $tmp['name']=array_pop($Filenames);
+                    $tmp['type'] = $objectInfo->getType();
+                    $tmp['last_modified'] = $objectInfo->getLastModified();
+                    $items[] = $tmp;
                 }
             }
+            unset($Filenames);
+            unset($tmp);
         }
-        return $items;
+        return array_merge($dir,$items);
     }
 
     public static function mkdir($key)
@@ -108,23 +119,22 @@ class ali
             return $data['info']['http_code'];
         } catch (OssException $exception) {
             //todo::待解决异常问题
-            return false;
+            return show(false,$exception->getMessage(),'','','',$exception->getMessage());
         }
     }
 
     /**
-     * @param $bucket
      * @param $object
      * @return bool
      */
-    public function delFile($bucket, $object)
+    public static function delFile($object)
     {
         try {
-            if (self::createClient()->deleteObject($bucket, $object)) return true;
-            return false;//不明原因失败
+            $data=self::createClient()->deleteObject($bucket=Config::get('alicloud.oss.bucket'), $object);
+            return $data['info']['http_code'];
         } catch (OssException $exception) {
-            //todo::阿里云那边的异常在此不做
-            return false;
+            //todo::阿里云那边的异常在此做
+            return show(false,$exception->getMessage(),'','','',$exception->getMessage());
         }
     }
 

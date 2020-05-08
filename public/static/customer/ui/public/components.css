@@ -369,6 +369,7 @@ header .nav-box .exit .iconfont {
   color: #fff;
   line-height: 26px;
   font-weight: 700;
+  text-transform: uppercase;
 }
 .g-footer .foot-container dl dd {
   text-overflow: ellipsis;

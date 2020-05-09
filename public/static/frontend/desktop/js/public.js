@@ -5,6 +5,8 @@ $(document).ready(function () {
 
     wavlinkAds();
 
+    handleSearchBarClickNew();
+
     if ($(document).outerWidth() >= 768) {
         handleMenuBarHover()
     }
@@ -32,11 +34,11 @@ $(document).ready(function () {
 
     function handleMenuBarHover () {
         // header 头部导航 划过显示效果;
-        var menu = $("#menu > .menu-item");
+        var menu = $(".wavlink-menu > .menu-item");
         menu.hover(function () {
-            $(this).children("ul").stop(true, false).slideDown(50)
+            $(this).children("ul").stop(false, true).slideDown(50)
         }, function () {
-            $(this).children("ul").stop(true, false).slideUp(50)
+            $(this).children("ul").stop(false, true).slideUp(50)
         });
     }
 
@@ -88,5 +90,26 @@ $(document).ready(function () {
                 });
             })
         }
+    }
+
+    //2020.05.09 添加搜索交互
+    function handleSearchBarClickNew() {
+        var bar = $('#search-bar'),
+            searchBox = $('#search-form'),
+            bgPander = $('.wavlink-bgPander'),
+            menu = $('#menu');
+        bar.click(function () {
+            $(this).stop(false, true).toggleClass('iconsearch').toggleClass('iconclose');
+            bgPander.stop(false, true).fadeToggle(300);
+            menu.stop(false, true).fadeToggle(200);
+            searchBox.stop(false, true).fadeToggle(300);
+            searchBox.find('.wavlink-input').focus();
+        });
+        bgPander.click(function () {
+            bar.stop(false, true).removeClass('iconclose').addClass('iconsearch');
+            bgPander.stop(false, true).fadeOut(300);
+            menu.stop(false, true).fadeIn(200);
+            searchBox.stop(false, true).fadeOut(300)
+        })
     }
 })

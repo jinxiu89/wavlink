@@ -216,6 +216,50 @@ body {
   height: 50px;
   line-height: 50px;
   background: #333;
+  /*.search-bar {
+    display: none;
+    .fr();
+    padding: 0 20px;
+    cursor: pointer;
+    .iconfont {
+      display: block;
+      line-height: 50px;
+      color: @whiteColor;
+      font-size: 24px;
+    }
+  }
+  .search-box {
+    .fr();
+    form {
+      .clearFix();
+      position: relative;
+      line-height: normal;
+      margin: 11px 0;
+    }
+    form input {
+      .fl();
+      height: 28px;
+      font-size: 12px;
+      border: 1px solid @borderColor;
+      background: @whiteColor;
+      outline: none;
+      &[type="text"] {
+        width: 200px;
+        padding: 0 10px;
+        color: @baseColor;
+        border-right: none;
+        #border-radius(5px 0 0 5px);
+      }
+      &[type="submit"] {
+        padding: 0 10px;
+        color: @whiteColor;
+        background: @baseColor;
+        border-left: none;
+        #border-radius(0 5px 5px 0);
+
+      }
+    }
+  }*/
 }
 .g-nav .container {
   position: relative;
@@ -300,92 +344,122 @@ body {
   color: #333;
   background: #fff;
 }
-.g-nav .search-bar {
-  display: none;
+.g-nav .function-box {
   float: right;
-  padding: 0 20px;
+}
+.g-nav .function-box .iconfont {
+  display: block;
+  height: 50px;
+  font-size: 26px;
+}
+.g-nav .function-box .iconfont:hover {
   cursor: pointer;
 }
-.g-nav .search-bar .iconfont {
-  display: block;
-  line-height: 50px;
+.g-nav .function-box .search-box {
+  float: left;
+  width: 50px;
+  text-align: center;
+}
+.g-nav .function-box .search-box .iconfont {
   color: #fff;
-  font-size: 24px;
 }
-.g-nav .search-box {
-  float: right;
+.g-nav .function-box .search-box .search-form {
+  display: none;
+  position: absolute;
+  z-index: 99999;
+  top: 0;
+  right: 120px;
+  height: 100%;
 }
-.g-nav .search-box form {
-  position: relative;
-  line-height: normal;
-  margin: 11px 0;
-}
-.g-nav .search-box formbefore,
-.g-nav .search-box form:after {
+.g-nav .function-box .search-box .search-formbefore,
+.g-nav .function-box .search-box .search-form:after {
   content: " ";
   display: table;
   zoom: 1;
 }
-.g-nav .search-box form:after {
+.g-nav .function-box .search-box .search-form:after {
   clear: both;
 }
-.g-nav .search-box form input {
+.g-nav .function-box .search-box .search-form form {
+  float: right;
+  margin: 11px 0;
+}
+.g-nav .function-box .search-box .search-form input {
   float: left;
   height: 28px;
+  line-height: 28px;
   font-size: 12px;
   border: 1px solid #eaeaea;
-  background: #fff;
-  outline: none;
 }
-.g-nav .search-box form input[type="text"] {
-  width: 200px;
-  padding: 0 10px;
-  color: #333;
+.g-nav .function-box .search-box .search-form input[type="text"] {
+  width: 300px;
+  padding: 0 5px;
+  background: #fff;
   border-right: none;
-  -webkit-border-radius: 5px 0 0 5px;
-  -moz-border-radius: 5px 0 0 5px;
   border-radius: 5px 0 0 5px;
 }
-.g-nav .search-box form input[type="submit"] {
-  padding: 0 10px;
-  color: #fff;
+.g-nav .function-box .search-box .search-form input[type="submit"] {
+  padding: 0 15px;
   background: #333;
-  border-left: none;
-  -webkit-border-radius: 0 5px 5px 0;
-  -moz-border-radius: 0 5px 5px 0;
+  color: #fff;
   border-radius: 0 5px 5px 0;
 }
+.g-nav .function-box .search-box .wavlink-bgPander {
+  display: none;
+  position: fixed;
+  width: 100%;
+  height: 100%;
+  top: 50px;
+  left: 0;
+  background: rgba(0, 0, 0, 0.6);
+  z-index: 999;
+}
+.g-nav .function-box .user-box {
+  float: left;
+  width: 50px;
+  text-align: center;
+}
+.g-nav .function-box .user-box .iconfont {
+  color: #f8b300;
+}
 @media screen and (min-width: 768px) and (max-width: 1199px) {
+  .g-nav {
+    /*.search-bar {
+      display: block;
+      padding-right: 20px;
+    }
+
+    .search-box {
+      display: none;
+      overflow: hidden;
+      position: absolute;
+      top: 50px;
+      left: 0;
+      z-index: 9999;
+      width: 100%;
+      line-height: normal;
+      text-align: center;
+      background: @whiteColor;
+      -webkit-box-shadow: 0 15px 20px @borderColor;
+      box-shadow: 0 15px 20px @borderColor;
+      form {
+        display: inline-block;
+      }
+    }*/
+  }
   .g-nav .logo {
     padding-left: 20px;
   }
   .g-nav .menu-container .menu {
     margin-left: 0;
+    padding: 0 10px;
   }
   .g-nav .menu-container .menu .menu-item a {
     padding: 0 10px;
     font-size: 12px;
   }
-  .g-nav .search-bar {
-    display: block;
+  .g-nav .function-box {
     padding-right: 20px;
-  }
-  .g-nav .search-box {
-    display: none;
-    overflow: hidden;
-    position: absolute;
-    top: 50px;
-    left: 0;
-    z-index: 9999;
-    width: 100%;
-    line-height: normal;
-    text-align: center;
-    background: #fff;
-    -webkit-box-shadow: 0 15px 20px #eaeaea;
-    box-shadow: 0 15px 20px #eaeaea;
-  }
-  .g-nav .search-box form {
-    display: inline-block;
   }
 }
 @media screen and (min-width: 1200px) and (max-width: 1300px) {

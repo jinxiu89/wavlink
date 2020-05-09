@@ -238,7 +238,8 @@ body {
     }
   }
 
-  .search-bar {
+  //2020.05.09 删除搜索
+  /*.search-bar {
     display: none;
     .fr();
     padding: 0 20px;
@@ -281,6 +282,80 @@ body {
 
       }
     }
+  }*/
+
+  //2020.05.09 添加登录入口 搜索改造
+  .function-box {
+    float: right;
+    .iconfont {
+      display: block;
+      height: 50px;
+      font-size: 26px;
+      &:hover {
+        cursor: pointer;
+      }
+    }
+
+    .search-box {
+      float: left;
+      width: 50px;
+      text-align: center;
+      .iconfont {
+        color: @whiteColor;
+      }
+      .search-form {
+        display: none;
+        .clearFix();
+        position: absolute;
+        z-index: 99999;
+        top: 0;
+        right: 120px;
+        height: 100%;
+      }
+      .search-form form {
+        float: right;
+        margin: 11px 0;
+      }
+      .search-form input {
+        float: left;
+        height: 28px;
+        line-height: 28px;
+        font-size: 12px;
+        border: 1px solid @borderColor;
+        &[type="text"] {
+          width: 300px;
+          padding: 0 5px;
+          background: #fff;
+          border-right: none;
+          border-radius: 5px 0 0 5px;
+        }
+        &[type="submit"] {
+          padding: 0 15px;
+          background: @baseColor;
+          color: @whiteColor;
+          border-radius: 0 5px 5px 0;
+        }
+      }
+      .wavlink-bgPander {
+        display: none;
+        position: fixed;
+        width: 100%;
+        height: 100%;
+        top: 50px;
+        left: 0;
+        background: rgba(0, 0, 0, .6);
+        z-index: 999;
+      }
+    }
+
+    .user-box {
+      float: left;
+      width: 50px;
+      text-align: center;
+      .iconfont {
+        color: @activeColor;
+      }
+    }
   }
 
   @media screen and (min-width: 768px) and (max-width: 1199px) {
@@ -291,6 +366,7 @@ body {
     .menu-container {
       .menu {
         margin-left: 0;
+        padding: 0 10px
       }
       .menu .menu-item a {
         padding: 0 10px;
@@ -298,7 +374,8 @@ body {
       }
     }
 
-    .search-bar {
+    //2020.05.09 删除搜索
+    /*.search-bar {
       display: block;
       padding-right: 20px;
     }
@@ -319,6 +396,11 @@ body {
       form {
         display: inline-block;
       }
+    }*/
+
+    //2020.05.09 添加登录入口 搜索改造
+    .function-box {
+      padding-right: 20px;
     }
   }
   @media screen and (min-width: 1200px) and (max-width: 1300px) {

@@ -33,26 +33,12 @@
   background: none;
 }
 .item .panel .panel-heading .title {
-  font-size: 24px;
-  font-weight: normal;
-  color: #f8b300;
+  font-size: 16px;
+  font-weight: 700;
   text-transform: uppercase;
 }
-.item .panel .panel-body .info {
-  margin-bottom: 10px;
-}
-.item .panel .panel-body .infobefore,
-.item .panel .panel-body .info:after {
-  content: " ";
-  display: table;
-  zoom: 1;
-}
-.item .panel .panel-body .info:after {
-  clear: both;
-}
 .item .panel .panel-body .info p {
-  float: left;
-  padding-right: 20px;
+  margin-bottom: 10px;
 }
 .item .panel .panel-body .info p span {
   display: inline-block;
@@ -90,7 +76,7 @@
   font-weight: 700;
 }
 .item .panel .panel-body .download .download-list {
-  font-size: 18px;
+  font-size: 14px;
   font-weight: 700;
 }
 .item .panel .panel-body .download a.btn {

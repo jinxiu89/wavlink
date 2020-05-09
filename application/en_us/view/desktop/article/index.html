@@ -44,9 +44,9 @@
                 <p>
                     <span>{:lang('Update Time')}: </span>
                     {if ($code == 'zh_cn')}
-                    <span>{$vo.update_time|strtotime|date="Y-m-d"}</span>
+                    <span>{$vo.update_time|date="Y-m-d"}</span>
                     {elseif ($code == 'en_us')}
-                    <span>{$vo.update_time|strtotime|date="d/m/Y"}</span>
+                    <span>{$vo.update_time|date="d/m/Y"}</span>
                     {/if}
                 </p>
             </div>

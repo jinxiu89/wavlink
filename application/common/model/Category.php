@@ -132,7 +132,7 @@ Class Category extends BaseModel
             'listorder' => 'desc',
             'id' => 'asc',
         ];
-        $model = 'Category';
+        $model = 'category';
 
         return Search($model, $data, $order);
     }

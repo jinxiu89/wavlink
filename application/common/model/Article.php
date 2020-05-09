@@ -39,7 +39,7 @@ Class Article extends BaseModel
             'listorder' => 'desc',
             'id' => 'desc'
         ];
-        return Search('Article', $data, $order);
+        return Search('article', $data, $order);
     }
 
     //前台获取数据开始，调用5篇排序最高的文章，

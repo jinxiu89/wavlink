@@ -1,6 +1,6 @@
 <?php
 
-use app\common\model\Featured;
+use app\common\model\Content\Featured;
 use app\common\model\Language;
 use app\common\model\Manual;
 use app\common\model\Product;

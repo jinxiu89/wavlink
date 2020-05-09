@@ -54,6 +54,7 @@ class Product extends Base
                     'link' => $link
                 ]);
             } else {
+                //todo::log
                 $this->redirect(url('404'),[],404);
             }
         }catch (Exception $exception){

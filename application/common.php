@@ -15,6 +15,7 @@ use PHPMailer\PHPMailer\PHPMailer;
 use PHPMailer\PHPMailer\Exception as emailException;
 use think\Collection;
 use think\facade\Config;
+use think\Db;
 
 function pagination($obj)
 {
@@ -52,7 +53,7 @@ function GetPassword($password)
 function Search($table, $map = [], $order, $field = '')
 {
     //公共查询函数
-    $query = model($table)->where($map);
+    $query = Db::table($table)->where($map);
     $data = $query->order($order)->field($field)->paginate('', true);
     $counts = $query->count();
     if ($data) {

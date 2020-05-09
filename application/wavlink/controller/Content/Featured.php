@@ -7,15 +7,24 @@
  * 推荐位管理
  */
 
-namespace app\wavlink\controller;
+namespace app\wavlink\controller\Content;
 
-use app\common\model\Featured as FeaturedModel;
+use app\wavlink\controller\BaseAdmin;
+use app\common\model\Content\Featured as FeaturedModel;
 use think\Facade\Request;
 use app\wavlink\validate\Featured as FeaturedValidate;
 
+/**
+ * Class Featured
+ * @package app\wavlink\controller\Content
+ */
 class Featured extends BaseAdmin
 {
-
+    /**
+     * @return mixed
+     * 后台推荐位置列表
+     * 人体长期处于坐立状态的话，会导致脊柱的反张力长期处于满载状态，
+     */
     public function index()
     {
         $result = (new FeaturedModel())->ByAll();

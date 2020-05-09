@@ -29,20 +29,20 @@ Route::group(Config::get('__BACKEND__'), function () {
     Route::get('/index', 'Index/index');
     Route::get('/content/index', 'Content/index');
     //推荐位
-    Route::get('/Featured/index', 'Featured/index');
-    Route::rule('/Featured/byStatus', 'Featured/byStatus','GET|POST');
-    Route::get('/Featured/add', 'Featured/add');
-    Route::get('/Featured/edit', 'Featured/edit', [], ['id' => '\d+']);
-    Route::post('/Featured/save', 'Featured/save');
+    Route::get('/Featured/index', 'Content.Featured/index')->name('featured_list');
+    Route::rule('/Featured/byStatus', 'Content.Featured/byStatus','GET|POST');
+    Route::get('/Featured/add', 'Content.Featured/add');
+    Route::get('/Featured/edit', 'Content.Featured/edit', [], ['id' => '\d+']);
+    Route::post('/Featured/save', 'Content.Featured/save');
     //首页推荐产品
-    Route::post('/images/save', 'Images/save');
-    Route::rule('/images/byStatus', 'Images/byStatus','GET|POST');
-    Route::get('/images/index', 'Images/index');
-    Route::get('/images/add', 'Images/add');
-    Route::get('/images/edit', 'Images/edit', [], ['id' => '\d+']);
-    Route::get('/images/images_recycle', 'Images/images_recycle');
-    Route::post('/Images/listorder', 'Images/listorder');
-    Route::post('/images/del', 'Images/del');
+    Route::post('/images/save', 'Content.Images/save');
+    Route::rule('/images/byStatus', 'Content.Images/byStatus','GET|POST');
+    Route::get('/images/index', 'Content.Images/index');
+    Route::get('/images/add', 'Content.Images/add');
+    Route::get('/images/edit', 'Content.Images/edit', [], ['id' => '\d+']);
+    Route::get('/images/images_recycle', 'Content.Images/images_recycle');
+    Route::post('/Images/listorder', 'Content.Images/listorder');
+    Route::post('/images/del', 'Content.Images/del');
 
     //产品分类路由
     Route::get('/category/index', 'Category/index');
@@ -263,7 +263,7 @@ Route::group(Config::get('__BACKEND__'), function () {
     /**
      * 资源管理
      */
-    Route::rule('/media/index','Media.Index/index')->name('media_index');
+    Route::rule('/media/index','Media@Index/index')->name('media_index');
     //图片
     Route::rule('/media/image/lists','Media.Image/lists')->name('image_lists');
     Route::rule('/media/image/create/folder','Media.Image/createFolder')->name('create_image_folder');

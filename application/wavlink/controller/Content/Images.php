@@ -6,10 +6,11 @@
  * Time: 10:46
  */
 
-namespace app\wavlink\controller;
+namespace app\wavlink\controller\Content;
 
-use app\common\model\Images as ImagesModel;
-use app\common\model\Featured as FeaturedModel;
+use app\wavlink\controller\BaseAdmin;
+use app\common\model\Content\Images as ImagesModel;
+use app\common\model\Content\Featured as FeaturedModel;
 use app\wavlink\validate\Images as ImagesValidate;
 use think\Exception;
 use think\Facade\Request;

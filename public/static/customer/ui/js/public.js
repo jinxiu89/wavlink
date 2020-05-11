@@ -48,9 +48,9 @@ function layer_close() {
 }
 
 function Account() {
-    var Dom = $('#account')
+    var Dom = $('#account');
     Dom.hover(function () {
-        $(this).find('#user-menu-wrapper').stop(false, true).slideToggle(300)
+        $(this).find('#user-menu-wrapper').stop(false, true).slideToggle(50)
     })
 }
 
@@ -60,7 +60,7 @@ function PersonImg() {
         PersonBox = $('#person-box');
     PersonBox.hover(function () {
         $(this).find('#img-edit').stop(false, true).fadeToggle(300)
-    })
+    });
     uploadBtn.on('click', function () {
         uploadInput.click() //点击按钮触发input
     })
@@ -86,18 +86,18 @@ function InfoChange(url, form) {
 }
 
 function handleFootHover () {
-    var footItem = $('.g-footer .foot-container dl dd a')
+    var footItem = $('.g-footer .foot-container dl dd a');
     footItem.hover(function () {
         if ($(this).siblings('img').length > 0) {
-            $(this).parent('dd').siblings('dd').children('img').css({'display': 'none'})
+            $(this).parent('dd').siblings('dd').children('img').css({'display': 'none'});
             $(this).siblings('img').css({'display': 'block'})
         }
     })
 }
 
 $(document).ready(function () {
-    loginRegisterBox()
-    Account()
-    PersonImg()
-    handleFootHover()
-})
+    loginRegisterBox();
+    Account();
+    PersonImg();
+    handleFootHover();
+});

@@ -85,6 +85,7 @@ return [
     'confirm' => 'Confirm Password',
     'captcha' => 'Verification Code',
     'The captcha is invalid' => 'The Verification Code is invalid',
+    'The verification code is invalid' => 'The verification code is invalid',
     'Disclaimer' => 'Disclaimer',
     'Terms Of Use Notice' => 'Terms Of Use Notice',
     'GO' => 'Go',

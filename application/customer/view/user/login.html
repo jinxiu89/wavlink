@@ -46,6 +46,16 @@
             },
             captcha: 'required'
         },
+        messages: {
+            email: '{:lang(\'Please input the correct phone number or e-mail address\')}',
+            phone: '{:lang(\'Please input the correct phone number or e-mail address\')}',
+            password: {
+                required: '{:lang(\'Password verification\')}',
+                minlength: '{:lang(\'Password verification\')}',
+                maxlength: '{:lang(\'Password verification\')}'
+            },
+            captcha: '{:lang(\'Please enter the correct captcha\')}'
+        },
         submitHandler: function (form) {
             InfoChange('{:url(\'customer_login\')}', form)
         }

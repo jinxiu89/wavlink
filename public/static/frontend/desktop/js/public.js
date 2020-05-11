@@ -5,13 +5,13 @@ $(document).ready(function () {
 
     wavlinkAds();
 
-    handleSearchBarClickNew();
+    handleSearchBarClick();
 
     if ($(document).outerWidth() >= 768) {
         handleMenuBarHover()
     }
 
-    if ($(document).outerWidth() <= 1199) {
+/*    if ($(document).outerWidth() <= 1199) {
         handleSearchBarClick()
     }
 
@@ -30,7 +30,7 @@ $(document).ready(function () {
         $(document).click(function () {
             $(box).slideUp(300);
         });
-    }
+    }*/
 
     function handleMenuBarHover () {
         // header 头部导航 划过显示效果;
@@ -93,7 +93,7 @@ $(document).ready(function () {
     }
 
     //2020.05.09 添加搜索交互
-    function handleSearchBarClickNew() {
+    function handleSearchBarClick() {
         var bar = $('#search-bar'),
             searchBox = $('#search-form'),
             bgPander = $('.wavlink-bgPander'),

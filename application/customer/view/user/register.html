@@ -67,7 +67,7 @@
                     success: function (result) {
                         var json=JSON.parse(result);
                         if(json.status === 1){
-                            countDown($(_this), 20, btnText);
+                            countDown($(_this), 120, btnText);
                         }else{
                             console.log(0);
                         }
@@ -119,23 +119,24 @@
                 // agree: 'required'
             },
             messages: {
-                username: '{:lang(\'user name is required\')}',
+                username: '{:lang(\'username is required\')}',
                 password: {
-                    required: '{:lang(\'password is required\')}',
-                    minlength: '{:lang(\'password is required\')}',
-                    maxlength: '{:lang(\'password is required\')}'
+                    required: '{:lang(\'Password verification\')}',
+                    minlength: '{:lang(\'Password verification\')}',
+                    maxlength: '{:lang(\'Password verification\')}'
                 },
                 confirm: {
                     required: '{:lang(\'Input password again\')}',
-                    minlength: '{:lang(\'password is required\')}',
-                    maxlength: '{:lang(\'password is required\')}',
+                    minlength: '{:lang(\'Password verification\')}',
+                    maxlength: '{:lang(\'Password verification\')}',
                     equalTo: '{:lang(\'The password is different twice\')}'
                 },
-                email: '{:lang(\'Please enter a correct email\')}',
+                email: '{:lang(\'Please input the correct phone number or e-mail address\')}',
+                phone: '{:lang(\'Please input the correct phone number or e-mail address\')}',
                 // agree: '请接受我们的隐私政策声明'
                 captcha: '{:lang(\'The verification code is invalid\')}',
             }
-        })
+        });
         //自定义正则表达示验证方法
         $.validator.addMethod("password",function(value,element,params){
             var rel = /^(?![0-9]+$)(?![a-z]+$)(?![A-Z]+$)(?!([^(0-9a-zA-Z)])+$).{6,20}$/;

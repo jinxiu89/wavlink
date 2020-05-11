@@ -89,6 +89,12 @@
             platform: 'required',
             create_time: 'required'
         },
+        messages: {
+            model: '',
+            country: '',
+            platform: '',
+            create_time: '',
+        },
         submitHandler:function (form) {
             $.ajax({
                 url:"{:url('customer_product_register')}",

@@ -13,7 +13,7 @@
             <form class="personal-email" id="personal-email" action="">
                 <div class="info">
                     <label for="email">{:lang('Email')}: </label>
-                    <input class="code" id="email" name="email" type="text" value="{$email}">
+                    <input class="code" id="email" name="email" type="text" value="{if($email != 1)}{$email}{/if}">
                     <button id="send_code" type="button"><span id="send_code_text">{:lang('send')}</span><span id="send_code_unit"></span></button>
                 </div>
                 <div class="info">

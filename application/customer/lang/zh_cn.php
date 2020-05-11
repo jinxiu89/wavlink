@@ -8,7 +8,7 @@
 return [
     //user.php 验证文案翻译
     'ID illegal' => '非法ID',
-    'username is required' => '用户名为必填项',
+    'username is required' => '用户名只允许字母数字或者英文下划线形式',
     'This username has been used' => '用户名已存在',
     'email is required' => '请填写您的邮箱地址',
     'email format Error' => '请填写正确的邮箱地址',

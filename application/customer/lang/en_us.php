@@ -8,7 +8,7 @@
 return [
     //user.php 验证文案翻译
     'ID illegal' => 'ID Illegal',
-    'username is required' => 'User Name Is Required',
+    'username is required' => 'The new username can only contain letters, numbers or an underline "_"',
     'This username has been used' => 'This User Name Has Been Used',
     'email is required' => 'E-mail Is Required',
     'email format Error' => 'E-mail Format Error',
@@ -167,4 +167,8 @@ return [
     'Male'=>'Male',
     'Secret'=>'Secret',
     'Your verification code is' => 'Your verification code is',
+
+    //国家翻译
+    'Taiwan' => 'Taiwan, China',
+    'Hong Kong' => 'Hong Kong, China',
 ];

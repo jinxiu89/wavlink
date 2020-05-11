@@ -71,8 +71,7 @@
                     success: function (result) {
                         var json=JSON.parse(result);
                         if(json.status === 1){
-                            // countDown($(_this));
-                            countDown($(_this), 20, btnText);
+                            countDown($(_this), 120, btnText);
                         }else{
                             console.log(0);
                         }

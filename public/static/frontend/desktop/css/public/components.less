@@ -238,52 +238,6 @@ body {
     }
   }
 
-  //2020.05.09 删除搜索
-  /*.search-bar {
-    display: none;
-    .fr();
-    padding: 0 20px;
-    cursor: pointer;
-    .iconfont {
-      display: block;
-      line-height: 50px;
-      color: @whiteColor;
-      font-size: 24px;
-    }
-  }
-  .search-box {
-    .fr();
-    form {
-      .clearFix();
-      position: relative;
-      line-height: normal;
-      margin: 11px 0;
-    }
-    form input {
-      .fl();
-      height: 28px;
-      font-size: 12px;
-      border: 1px solid @borderColor;
-      background: @whiteColor;
-      outline: none;
-      &[type="text"] {
-        width: 200px;
-        padding: 0 10px;
-        color: @baseColor;
-        border-right: none;
-        #border-radius(5px 0 0 5px);
-      }
-      &[type="submit"] {
-        padding: 0 10px;
-        color: @whiteColor;
-        background: @baseColor;
-        border-left: none;
-        #border-radius(0 5px 5px 0);
-
-      }
-    }
-  }*/
-
   //2020.05.09 添加登录入口 搜索改造
   .function-box {
     float: right;
@@ -295,7 +249,6 @@ body {
         cursor: pointer;
       }
     }
-
     .search-box {
       float: left;
       width: 50px;
@@ -347,14 +300,24 @@ body {
         z-index: 999;
       }
     }
-
     .user-box {
       float: left;
       width: 50px;
       text-align: center;
-      .iconfont {
-        color: @activeColor;
+      color: @whiteColor;
+      a.login {
+        font-size: 14px;
+        color: @whiteColor;
+        &:hover {
+          color: @activeColor;
+        }
       }
+    }
+
+    @media screen and (max-width: 1300px) {
+      .user-box a.login {
+          font-size: 12px;
+        }
     }
   }
 
@@ -373,30 +336,6 @@ body {
         font-size: 12px;
       }
     }
-
-    //2020.05.09 删除搜索
-    /*.search-bar {
-      display: block;
-      padding-right: 20px;
-    }
-
-    .search-box {
-      display: none;
-      overflow: hidden;
-      position: absolute;
-      top: 50px;
-      left: 0;
-      z-index: 9999;
-      width: 100%;
-      line-height: normal;
-      text-align: center;
-      background: @whiteColor;
-      -webkit-box-shadow: 0 15px 20px @borderColor;
-      box-shadow: 0 15px 20px @borderColor;
-      form {
-        display: inline-block;
-      }
-    }*/
 
     //2020.05.09 添加登录入口 搜索改造
     .function-box {

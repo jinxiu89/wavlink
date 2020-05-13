@@ -1,0 +1,53 @@
+{include file="public/headers" /}
+<div class="page-container">
+    <form class="form form-horizontal" id="form-article-add" enctype="multipart/form-data">
+        <div class="row cl">
+            <label class="form-label col-sm-2">目录:</label>
+            <div class="formControls col-sm-4">
+                <input class="input-text" value="" placeholder="" name="folder">
+            </div>
+            <div class="formControls col-sm-7">
+                <ol type="I" style="font-size: 12px;margin-top: 10px">
+                    <li>1. 不允许使用表情符，请使用符合要求的 UTF-8 字符；</li>
+                    <li>2. "/" 用于分割路径，可快速创建子目录，但不要以 "/" 或 "\" 开头，不要出现连续的 "/"；</li>
+                    <li>3. 不允许出现名为 ".." 的子目录；</li>
+                    <li>4. 总长度控制在 1-254 个字符。</li>
+                </ol>
+            </div>
+        </div>
+        <div class="row cl">
+            <div class="col-xs-8 col-sm-9 col-xs-offset-4 col-sm-offset-3">
+                <button type="button" id="button" class="btn btn-primary radius">创建</button>
+            </div>
+        </div>
+    </form>
+</div>
+<!--包含头部文件-->
+{include file="public/footer" /}
+<!--请在下方写此页面业务相关的脚本-->
+<script type="text/javascript">
+    $("#button").click(function () {
+        var postData = {};
+        var data = $("form").serializeArray();
+        $.each(data, function () {
+            postData[this.name] = this.value
+        });
+        $.ajax({
+            url: "{:url('create_videos_folder',['path'=>$path])}",
+            type: "post",
+            data: postData,
+            "success": function (result) {
+                var msgData = JSON.parse(result);
+                if (msgData.status === true) {
+                    layer.msg(msgData.message, {icon: 1, time: 1000}, function () {
+                        window.parent.location.href = msgData.url
+                    })
+                } else {
+                    layer.msg(msgData.message, {icon: 5, time: 2000})
+                }
+            }
+        }, JSON);
+    });
+</script>
+</body>
+</html>

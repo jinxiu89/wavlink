@@ -18,7 +18,7 @@ use think\Facade\Request;
 use app\wavlink\validate\Product as ProductValidate;
 use app\wavlink\validate\ShopUrl as ShopUrlValidate;
 use think\paginator\driver\Bootstrap;
-
+use app\wavlink\controller\BaseAdmin;
 /***
  * Class Product
  * @package app\wavlink\controller

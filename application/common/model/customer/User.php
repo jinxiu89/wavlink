@@ -26,8 +26,13 @@ Class User extends BaseModel
      * 用户信息表关联模型
      */
     public function info(){
-        return $this->hasOne(UserInfo::class);
+        return $this->hasOne(UserInfo::class)->bind('first_name,last_name,title,level');
     }
+
+    public function searchPhoneAttr($query,$value,$data){
+        $query->where('name',$value.'%');
+    }
+
     /**
      * @param $id
      */

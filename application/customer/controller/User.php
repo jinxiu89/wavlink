@@ -227,7 +227,7 @@ class User extends Base
                 if ($code != $data['captcha']) {
                     return show(0, lang('Captcha Error'), '', '', '', lang('Captcha Error'));
                 }
-                if(!$this->validate->scene('registerEmail')->check($data)){
+                if (!$this->validate->scene('registerEmail')->check($data)) {
                     return show(0, $this->validate->getError(), '', '', '', $this->validate->getError());
                 }
             }
@@ -236,7 +236,7 @@ class User extends Base
                 if ($code != $data['captcha']) {
                     return show(0, lang('The verification code is invalid'), '', '', '', lang('The verification code is invalid'));
                 }
-                if(!$this->validate->scene('registerPhone')->check($data)){
+                if (!$this->validate->scene('registerPhone')->check($data)) {
                     return show(0, $this->validate->getError(), '', '', '', $this->validate->getError());
                 }
             }
@@ -578,8 +578,10 @@ class User extends Base
         if ($this->request->isGet()) {
             $email = input('get.email', '', 'htmlspecialchars,trim');
             $phone = input('get.phone', '', 'htmlspecialchars,trim');
+            $id = input('get.id', '', 'htmlspecialchars,intval');
             if (isset($email) && !empty($email)) $this->assign('email', $email);
-            if (isset($phone) && !empty($phone)) $this->assign('phone', input('get.phone', '', 'htmlspecialchars,trim'));
+            if (isset($phone) && !empty($phone)) $this->assign('phone', $phone);
+            if (isset($id) && !empty($id)) $this->assign('id',$id);
             return $this->fetch('');
         }
         if ($this->request->isPost()) {

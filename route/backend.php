@@ -90,14 +90,18 @@ Route::group(Config::get('__BACKEND__'), function () {
     Route::post('/About/byStatus', 'About/byStatus');
 
 
+    /**
+     * 营销管理
+     */
+    Route::rule('/marketing/customer/index$','Marketing.Customer/index')->name('marketing_customer_index');
     //营销管理
-    Route::get('/marketing/index', 'Marketing/index');
-    Route::get('/marketing/add', 'Marketing/add');
-    Route::get('/marketing/edit', 'Marketing/edit', [], ['id' => '\d+']);
+    Route::get('/marketing/index$', 'Marketing/index');
+    Route::get('/marketing/add$', 'Marketing/add');
+    Route::get('/marketing/edit$', 'Marketing/edit', [], ['id' => '\d+']);
     //营销管理POST路由
-    Route::post('/marketing/save', 'Marketing/save');
-    Route::post('/marketing/byStatus', 'Marketing/byStatus');
-    Route::post('/marketing/del', 'Marketing/del');
+    Route::post('/marketing/save$', 'Marketing/save');
+    Route::post('/marketing/byStatus$', 'Marketing/byStatus');
+    Route::post('/marketing/del$', 'Marketing/del');
 
 
     /***
@@ -263,17 +267,24 @@ Route::group(Config::get('__BACKEND__'), function () {
     /**
      * 资源管理
      */
-    Route::rule('/media/index','Media@Index/index')->name('media_index');
+    Route::rule('/media/index','Media.Index/index')->name('media_index');
     //图片
     Route::rule('/media/image/lists','Media.Image/lists')->name('image_lists');
     Route::rule('/media/image/create/folder','Media.Image/createFolder')->name('create_image_folder');
     Route::rule('/media/image/upload','Media.Image/upload')->name('image_upload');
     Route::rule('/media/image/del','Media.Image/delImage')->name('del_image');
     //驱动
-    Route::rule('media/driver/lists','Media.Driver/lists')->name('driver_lists');
-    Route::rule('media/driver/upload','Media.Driver/upload')->name('upload_driver');
+    Route::rule('/media/driver/lists','Media.Driver/lists')->name('driver_lists');
+    Route::rule('/media/driver/upload','Media.Driver/upload')->name('upload_driver');
     Route::rule('/media/driver/create/folder','Media.Driver/createFolder')->name('create_driver_folder');
     Route::rule('/media/driver/del','Media.Driver/del')->name('del_driver');
+
+    Route::rule('/media/videos/lists','Media.Videos/lists')->name('videos_lists');
+    Route::rule('/media/videos/upload','Media.Videos/upload')->name('upload_videos');
+    Route::rule('/media/videos/create/folder','Media.Videos/createFolder')->name('create_videos_folder');
+    Route::rule('/media/videos/del','Media.Videos/del')->name('del_video');
+
+
     //搜索索引管理
     Route::get('/search/index', 'Search/index');
     Route::get('/search/createProduct', 'Search/createProduct');

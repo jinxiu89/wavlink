@@ -21,13 +21,14 @@ use think\db\exception\ModelNotFoundException;
 use think\exception\DbException;
 use think\facade\Cache;
 use think\model\relation\HasMany;
+use app\common\model\BaseModel;
 
 /**
  * Class Product
  * @package app\common\model
  *
  */
-Class Product extends BaseModel
+class Product extends BaseModel
 {
     protected $table = 'product';
 
@@ -41,8 +42,9 @@ Class Product extends BaseModel
      * @return HasMany
      * 产品销售连接：一个产品可以有多个连接
      */
-    public function links(){
-        return $this->hasMany('ShopLink','product_id','id')->field('id,name,url,price');
+    public function links()
+    {
+        return $this->hasMany('ShopLink', 'product_id', 'id')->field('id,name,url,price');
     }
 
     //获取中间表数据,得到产品所属分类id
@@ -138,7 +140,7 @@ Class Product extends BaseModel
      * @throws DbException
      * @throws ModelNotFoundException
      */
-    public function getDataByCategory($category_id,$language_id)
+    public function getDataByCategory($category_id, $language_id)
     {
         //1、如果这个分类有子分类，查出所有的子分类ID
         //2、通过分类ID查出所有的产品ID
@@ -151,12 +153,12 @@ Class Product extends BaseModel
             }
             $child_id[] = $category['id'];
             return Db::table('product_category')->alias('category')->whereOr('category.category_id', 'in', $child_id)
-                ->join('product', ['product.id=category.product_id', 'product.status=1', 'product.language_id='.$language_id])
+                ->join('product', ['product.id=category.product_id', 'product.status=1', 'product.language_id=' . $language_id])
                 ->field('id,image_litpic_url,name,model,listorder,create_time,language_id')->select();
         } else {
             //todo::其他的操作
             return Db::table('product_category')->alias('category')->whereOr('category.category_id', '=', $category_id)
-                ->join('product', ['product.id=category.product_id', 'product.status=1','product.language_id='.$language_id])
+                ->join('product', ['product.id=category.product_id', 'product.status=1', 'product.language_id=' . $language_id])
                 ->field('id,image_litpic_url,name,model,listorder,create_time,language_id')
                 ->select();
         }
@@ -167,14 +169,15 @@ Class Product extends BaseModel
      * @param $language_id
      * @return mixed
      */
-    public function getDataByName($name='',$language_id){
+    public function getDataByName($name = '', $language_id)
+    {
         $map['name|model|url_title|seo_title|keywords'] = ['like', '%' . $name . '%'];
         $map['status'] = 1;
         $map['language_id'] = $language_id;
-        $order=['listorder'=>'desc','id'=>'desc'];
+        $order = ['listorder' => 'desc', 'id' => 'desc'];
         try {
-            $query = self::where('name|model|url_title|seo_title|keywords','like','%'.$name.'%')
-                ->where(['status'=>1,'language_id'=>$language_id])
+            $query = self::where('name|model|url_title|seo_title|keywords', 'like', '%' . $name . '%')
+                ->where(['status' => 1, 'language_id' => $language_id])
                 ->field('id,image_litpic_url,name,model,listorder,create_time,language_id');
             $result['data'] = $query->order($order)->paginate();
             $result['count'] = $query->count();
@@ -188,7 +191,8 @@ Class Product extends BaseModel
      * @param $language_id
      * @return array|string
      */
-    public function getSelectProduct($name, $language_id) {
+    public function getSelectProduct($name, $language_id)
+    {
         //多条件模糊查询
         $map['status'] = 1;
         $map['name|model|url_title|seo_title|keywords'] = ['like', '%' . $name . '%'];

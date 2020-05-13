@@ -1,0 +1,103 @@
+{include file="public/marketing_header" /}
+<style>
+    .item-list {
+
+    }
+    .item-list:hover {
+        background: #e5f3ff
+    }
+    .item-list:hover .item-link-box{
+        display: block;
+    }
+    .item-link-box {
+        display: none;
+    }
+</style>
+<section class="Hui-article-box">
+    <nav class="breadcrumb"><i class="Hui-iconfont"></i> <a href="/" class="maincolor">首页</a> <span class="c-999 en">&gt;</span>
+        <span class="c-666">营销管理</span>
+        <span class="c-999 en">&gt;</span>
+        <span class="c-666">会员列表</span>
+    </nav>
+    <div class="Hui-article">
+        <article class="cl pd-20" style="min-height: 50em">
+            <div class="text-l">
+                <!--<span><a href="javascript:;" class="btn btn-primary" style="width: 90px"
+                         onclick="add('上传文件','',800,600)"><i
+                        class="Hui-iconfont">&#xe642;</i>上传</a></span>
+                <span><a href="javascript:;" class="btn btn-secondary" style="width: 90px"
+                         onclick="add('创建目录','',480,320)">创建目录
+                </a>
+                </span>-->
+
+            </div>
+            <div class="cl pd-5 bg-1 bk-gray mt-20" style="line-height: 31px;">
+               <!-- <span class="l"><a class="btn btn-primary radius" onclick="index_add('添加产品','{:url(\'product/add\')}')"
+                                   href="javascript:;"><i class="Hui-iconfont">&#xe600;</i> 添加产品</a></span>-->
+                <span class="r">共有数据：<strong>{$count}</strong> 条</span>
+            </div>
+            <div class="mt-20">
+                <table class="table table-border table-bordered table-bg table-hover table-sort">
+                    <thead>
+                    <tr>
+                        <th scope="col" colspan="9">用户表</th>
+                    </tr>
+                    <tr class="text-c">
+                        <th width="5%">ID</th>
+                        <th width="8%">用户名</th>
+                        <th width="15%">邮箱</th>
+                        <th width="15%">手机</th>
+                        <th width="10%">姓名/first name</th>
+                        <th width="10%">last name</th>
+                        <th width="5%">订阅</th>
+                        <th width="5%">等级</th>
+                        <th width="">登录时间</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    {notempty name="data"}
+                    {volist name="data" id="vo"}
+                    <tr class="text-l">
+                        <td>{$vo.id}</td>
+                        <td width="">{notempty name="$vo.username"}{$vo.username}{else /}{/notempty}</td>
+                        <td>{$vo.email|getEmail}</td>
+                        <td>{notempty name="$vo.phone"}{$vo.phone|getPhone}{else /}{/notempty}</td>
+                        <td>{notempty name="$vo.first_name"}{$vo.first_name}{else /}{/notempty}</td>
+                        <td>{notempty name="$vo.last_name"}{$vo.last_name}{/notempty}</td>
+                        <td class="text-c">{$vo.is_subscribe|isSubscribe}</td>
+                        <td class="text-c">{$vo.level}</td>
+                        <td>{$vo.last_login_time}</td>
+                    </tr>
+                    {/volist}
+                    {/notempty}
+                    </tbody>
+                </table>
+            </div>
+            <div class="cl pd-5 bg-1 bk-gray mt-20 tp5-winstar">{$page|raw}</div>
+        </article>
+        <footer class="footer">
+            <p>
+                本系统由winstars系统管理组设计制作，采用先进的bootstrap框架为基础，使用h-ui框架作为后台框架<br>
+                Copyright &copy;2015 win-star All Rights Reserved.
+                <br> 本后台系统由<a href="http://www.win-star.com/" target="_blank" title="得星科技">webmaster GROUP</a>提供技术支持
+            </p>.
+        </footer>
+    </div>
+</section>
+
+<!--包含footer文件-->
+{include file="public/footer" /}
+<script>
+    $(document).ready(function () {
+        $("#marketing").addClass("current");
+        $("#menu-marketing dt").addClass("selected");
+        $("#menu-marketing dd").css("display", "block");
+        $("#marketing_customer").addClass("current");
+        $('.btnCopy').click(function () {
+            console.log($(this).siblings('.ByCopy'));
+            $(this).siblings('.ByCopy').select()
+            document.execCommand("Copy"); //执行浏览器复制命令
+            layer.msg('复制成功',{icon: 1, time: 1000});
+        })
+    });
+</script>

@@ -1,0 +1,97 @@
+{include file="public/media_header" /}
+<style>
+    .item-list {
+
+    }
+    .item-list:hover {
+        background: #e5f3ff
+    }
+    .item-list:hover .item-link-box{
+        display: block;
+    }
+    .item-link-box {
+        display: none;
+    }
+</style>
+<section class="Hui-article-box">
+    <nav class="breadcrumb"><i class="Hui-iconfont"></i> <a href="/" class="maincolor">首页</a> <span class="c-999 en">&gt;</span>
+        <span class="c-666">媒体资源</span>
+        <span class="c-999 en">&gt;</span>
+        <span class="c-666">图片资源</span>
+    </nav>
+    <div class="Hui-article">
+        <article class="cl pd-20" style="min-height: 50em">
+            <div class="text-l">
+                <span><a href="javascript:;" class="btn btn-primary" style="width: 90px"
+                         onclick="add('上传文件','{:url(\'upload_driver\',[\'path\'=>$path])}',800,600)"><i
+                        class="Hui-iconfont">&#xe642;</i>上传</a></span>
+                <span><a href="javascript:;" class="btn btn-secondary" style="width: 90px"
+                         onclick="add('创建目录','{:url(\'create_driver_folder\',[\'path\'=>$path])}',480,320)">创建目录
+                </a>
+                </span>
+
+            </div>
+            <div class="panel panel-default mt-20">
+                <div class="panel-header">
+                    文件列表
+                </div>
+                <div class="panel-body pd-20">
+                    {volist name="items" id="item"}
+                    {if(isset($item['dir']) && $item['dir'] == true)}
+                    <div style="width: 140px; height: 180px;display: inline-block;padding: 10px;text-align: center">
+                        <a href="{:url('videos_lists',['path'=>$item['key']])}">
+                            <i class="wav-confont" style="display: inline-block;font-size: 100px;color: #ffdc69">&#xe611;</i>
+                        </a>
+                        <p><a href="{:url('videos_lists',['path'=>$item])}">{$item['name']}</a></p>
+                    </div>
+                    {else /}
+                    <div style="position: relative; width: 140px; height: 150px;display: inline-block;padding: 10px;text-align: center" class="item-list">
+                        <a href="{$baseUrl}/{$item.key}" style="text-align: center">
+                            <i class="wav-confont" style="display: inline-block;font-size: 100px;color: #ffdc69">&#xe66c;</i>
+                        </a>
+                        <p><a href="#">{$item['name']}</a></p>
+                        <div class="item-link-box" style="position: absolute; top: 5px; left: 5px;z-index: 999">
+                            <span class="dropDown dropDown_hover">
+                                <a href="javascript:;" class="dropDown_A" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+                                    <i class="Hui-iconfont" style="font-size: 16px; color: #00a9ff">&#xe698;</i>
+                                </a>
+                                <ul class="dropDown-menu menu radius box-shadow">
+                                    <input class="ByCopy" type="text" value="{$baseUrl}/{$item.key}" style="position: absolute;top: 0;left: 0;z-index: -99;width: 1px;height: 1px;border: none;background: transparent">
+                                    <li class="btnCopy"><a href="#" class="Hui-iconfont" title="复制url链接" style="font-size: 16px">&#xe6ea;</a></li>
+                                    <li><a href="javascript:;" onclick="del('{:url(\'del_driver\',[\'key\'=>$item.key])}')" class="Hui-iconfont" title="删除" style="font-size: 16px">&#xe6e2;</a></li>
+                                </ul>
+                            </span>
+                        </div>
+                    </div>
+                    {/if}
+                    {/volist}
+                </div>
+            </div>
+
+        </article>
+        <footer class="footer">
+            <p>
+                本系统由winstars系统管理组设计制作，采用先进的bootstrap框架为基础，使用h-ui框架作为后台框架<br>
+                Copyright &copy;2015 win-star All Rights Reserved.
+                <br> 本后台系统由<a href="http://www.win-star.com/" target="_blank" title="得星科技">webmaster GROUP</a>提供技术支持
+            </p>.
+        </footer>
+    </div>
+</section>
+
+<!--包含footer文件-->
+{include file="public/footer" /}
+<script>
+    $(document).ready(function () {
+        $("#media").addClass("current");
+        $("#menu-media dt").addClass("selected");
+        $("#menu-media dd").css("display", "block");
+        $("#media_drivers").addClass("current");
+        $('.btnCopy').click(function () {
+            console.log($(this).siblings('.ByCopy'));
+            $(this).siblings('.ByCopy').select()
+            document.execCommand("Copy"); //执行浏览器复制命令
+            layer.msg('复制成功',{icon: 1, time: 1000});
+        })
+    });
+</script>

@@ -60,21 +60,6 @@
                     </ul>
                 </div>
 
-                <!-- 2020.05.09 删除搜索 -->
-                <!--<div class="search-bar" id="search-bar">
-                    <span class="iconfont">&#xe68d;</span>
-                </div>-->
-                <!--<div class="search-box" id="search-box">
-                    <form action="{:url('/'.$code.'/search')}" method="get">
-                        {empty name="search"}
-                        <input class="text" type="text" name="key" placeholder="{:lang('search tips')}">
-                        {else /}
-                        <input class="text" type="text" name="key" value="{$search}">
-                        {/empty}
-                        <input type="submit" value="{:lang('go')}">
-                    </form>
-                </div>-->
-
                 <!-- 2020.05.09 添加登录入口，搜索改造-->
                 <div class="function-box">
 
@@ -96,21 +81,10 @@
                     </div>
 
                     <div class="user-box">
-                        <a href="{:url('customer_login')}">
-                            <span class="iconfont iconuser"></span>
+                        <a class="login" href="{:url('customer_login')}">
+<!--                            <span class="iconfont iconuser"></span>-->
+                            {:lang('Login')}
                         </a>
-                        <!--<ul class="menu wavlink-menu">
-                            <li class="menu-item dropdown">
-                                <a href="javascript:void(0)" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true"
-                                   aria-expanded="false">
-                                    <span class="iconfont iconuser"></span>
-                                </a>
-                                <ul class="dropdown-menu">
-                                    <li><a href="#">Login/Register</a></li>
-                                    <li><a href="#">Member Center</a></li>
-                                </ul>
-                            </li>
-                        </ul>-->
                     </div>
                 </div>
             </div>

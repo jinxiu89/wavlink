@@ -216,50 +216,6 @@ body {
   height: 50px;
   line-height: 50px;
   background: #333;
-  /*.search-bar {
-    display: none;
-    .fr();
-    padding: 0 20px;
-    cursor: pointer;
-    .iconfont {
-      display: block;
-      line-height: 50px;
-      color: @whiteColor;
-      font-size: 24px;
-    }
-  }
-  .search-box {
-    .fr();
-    form {
-      .clearFix();
-      position: relative;
-      line-height: normal;
-      margin: 11px 0;
-    }
-    form input {
-      .fl();
-      height: 28px;
-      font-size: 12px;
-      border: 1px solid @borderColor;
-      background: @whiteColor;
-      outline: none;
-      &[type="text"] {
-        width: 200px;
-        padding: 0 10px;
-        color: @baseColor;
-        border-right: none;
-        #border-radius(5px 0 0 5px);
-      }
-      &[type="submit"] {
-        padding: 0 10px;
-        color: @whiteColor;
-        background: @baseColor;
-        border-left: none;
-        #border-radius(0 5px 5px 0);
-
-      }
-    }
-  }*/
 }
 .g-nav .container {
   position: relative;
@@ -418,35 +374,21 @@ body {
   float: left;
   width: 50px;
   text-align: center;
+  color: #fff;
 }
-.g-nav .function-box .user-box .iconfont {
+.g-nav .function-box .user-box a.login {
+  font-size: 14px;
+  color: #fff;
+}
+.g-nav .function-box .user-box a.login:hover {
   color: #f8b300;
 }
-@media screen and (min-width: 768px) and (max-width: 1199px) {
-  .g-nav {
-    /*.search-bar {
-      display: block;
-      padding-right: 20px;
-    }
-
-    .search-box {
-      display: none;
-      overflow: hidden;
-      position: absolute;
-      top: 50px;
-      left: 0;
-      z-index: 9999;
-      width: 100%;
-      line-height: normal;
-      text-align: center;
-      background: @whiteColor;
-      -webkit-box-shadow: 0 15px 20px @borderColor;
-      box-shadow: 0 15px 20px @borderColor;
-      form {
-        display: inline-block;
-      }
-    }*/
+@media screen and (max-width: 1300px) {
+  .g-nav .function-box .user-box a.login {
+    font-size: 12px;
   }
+}
+@media screen and (min-width: 768px) and (max-width: 1199px) {
   .g-nav .logo {
     padding-left: 20px;
   }

@@ -6,24 +6,17 @@
         <div class="nav-box">
             <div class="account" id="account">
                 <span class="ico-box">
-                    <i class="iconfont iconuser"></i>
                     <i class="iconfont iconarrow-down"></i>
+                    <span>{$username}</span>
                 </span>
                 <div class="user-menu-wrapper" id="user-menu-wrapper">
                     <ul>
-                        <li class="user-menu-item"><span class="userName">{$username}</span></li>
-<!--                        <li class="user-menu-item"><a href="#">{:lang('Member Center')}</a></li>-->
                         <li class="user-menu-item"><a href="{:url('customer_info')}">{:lang('My Account')}</a></li>
 <!--                        <li class="user-menu-item"><a href="#">{:lang('My Product')}</a></li>-->
                         <li class="user-menu-item"><a href="{:url('customer_logout')}">{:lang('logout')}</a></li>
                     </ul>
                 </div>
             </div>
-
-            <!--<div class="exit">
-                <span><i class="iconfont iconexit"></i></span>
-                <span>Exit</span>
-            </div>-->
         </div>
     </div>
 </header>

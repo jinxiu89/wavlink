@@ -69,7 +69,8 @@
                         <div class="search-form wavlink-search" id="search-form">
                             <form action="{:url('/'.$code.'/search')}" method="get">
                                 {empty name="search"}
-                                <input class="text wavlink-input" type="text" name="key" placeholder="{:lang('search tips')}">
+                                <input class="text wavlink-input" type="text" name="key"
+                                       placeholder="{:lang('search tips')}">
                                 {else /}
                                 <input class="text" type="text" name="key" value="{$search}">
                                 {/empty}
@@ -81,10 +82,24 @@
                     </div>
 
                     <div class="user-box">
+                        {notempty name="id"}
+                        <div class="account" id="account">
+                            <span class="ico-box">
+                                <i class="iconfont iconarrow-down"></i>
+                                <span>{$username}</span>
+                            </span>
+                            <div class="user-menu-wrapper" id="user-menu-wrapper">
+                                <ul>
+                                    <li class="user-menu-item"><a href="{:url('customer_info')}">{:lang('My Account')}</a></li>
+                                    <li class="user-menu-item"><a href="{:url('customer_logout')}">{:lang('logout')}</a></li>
+                                </ul>
+                            </div>
+                        </div>
+                        {else /}
                         <a class="login" href="{:url('customer_login')}">
-<!--                            <span class="iconfont iconuser"></span>-->
                             {:lang('Login')}
                         </a>
+                        {/notempty}
                     </div>
                 </div>
             </div>

@@ -43,6 +43,8 @@ class Base extends Controller
     /**
      * @var $language_id
      */
+    protected $username;
+    protected $uid;
     protected $language_id; //全局的语言ID
     protected $language; //语言
     protected $category; // 产品分类列表
@@ -92,6 +94,13 @@ class Base extends Controller
         $url = Request::controller();
         $this->assign('url', $url);
         $this->assign('code', $this->code);
+        $user = session('CustomerInfo', '', 'Customer');
+        if (isset($user) and !empty($user)){
+            $this->uid = $user['id'];
+            $this->username = $user['username'];
+            $this->assign('id', $this->uid);
+            $this->assign('username', $this->username);
+        }
     }
 
 

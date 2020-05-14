@@ -29,7 +29,7 @@ return [
     'Verification Code is require' => 'Verification Code Is Required',
     'Why do I need to fill in this blank?' => 'Why Do I Need To Fill In This Blank?',
 
-    'logout' => 'Sign Out',
+    'logout' => 'Logout',
     'This e-mail already existed' => 'This e-mail already existed',
     'This phone number already existed' => 'This phone number already existed',
     //注册登录用到的词汇

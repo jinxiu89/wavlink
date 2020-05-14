@@ -58,7 +58,6 @@
 }
 .item .panel .panel-body .mode p {
   border-left: 1px solid #eaeaea;
-  border-top: 1px solid #eaeaea;
 }
 .item .panel .panel-body .mode pbefore,
 .item .panel .panel-body .mode p:after {
@@ -77,10 +76,26 @@
   float: left;
   width: 16.6667%;
   padding: 0 5px;
-  line-height: 36px;
+  line-height: 30px;
   color: #888;
   border-right: 1px solid #eaeaea;
   border-bottom: 1px solid #eaeaea;
+}
+.item .panel .panel-body .mode span:nth-of-type(1),
+.item .panel .panel-body .mode span:nth-of-type(2),
+.item .panel .panel-body .mode span:nth-of-type(3),
+.item .panel .panel-body .mode span:nth-of-type(4),
+.item .panel .panel-body .mode span:nth-of-type(5),
+.item .panel .panel-body .mode span:nth-of-type(6) {
+  border-top: 1px solid #eaeaea;
+}
+@media screen and (max-width: 1200px) {
+  .item .panel .panel-body .mode span {
+    width: 20%;
+  }
+  .item .panel .panel-body .mode span:nth-of-type(6) {
+    border-top: none;
+  }
 }
 .item .panel .panel-body .download .download-list {
   font-size: 14px;

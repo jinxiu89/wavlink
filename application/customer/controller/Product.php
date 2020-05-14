@@ -39,6 +39,14 @@ class Product extends Base
     ];
 
     /**
+     * @return mixed
+     */
+    public function lists(){
+        if($this->request->isGet()){
+            return $this->fetch();
+        }
+    }
+    /**
      * register 在用户注册时 的第二步注册产品 不需要验证是否登录
      * @return mixed|void
      */
@@ -62,6 +70,15 @@ class Product extends Base
             } else {
                 return show(0, lang('Error'), '', '', '', lang('Failed!'));
             }
+        }
+    }
+
+    /**
+     * @return mixed
+     */
+    public function addProduct(){
+        if($this->request->isGet()){
+            return $this->fetch();
         }
     }
 }

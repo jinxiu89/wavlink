@@ -49,20 +49,25 @@
     }
     .mode {
       margin-bottom: 10px;
+      div {
+        margin-bottom: 5px;
+        font-weight: 700;
+      }
       p {
         .clearFix();
+        border-left: 1px solid @borderColor;
+        border-top: 1px solid @borderColor;
       }
       span {
         display: block;
         .text-overflow();
         .fl();
         width: 16.6667%;
+        padding: 0 5px;
+        line-height: 36px;
         color: @whiteSmoke;
-        &:nth-of-type(1) {
-          float: none;
-          color: @baseColor;
-          font-weight: 700;
-        }
+        border-right: 1px solid @borderColor;
+        border-bottom: 1px solid @borderColor;
       }
     }
     .download {

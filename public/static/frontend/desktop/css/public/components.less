@@ -301,8 +301,8 @@ body {
       }
     }
     .user-box {
+      position: relative;
       float: left;
-      width: 50px;
       text-align: center;
       color: @whiteColor;
       a.login {
@@ -310,6 +310,62 @@ body {
         color: @whiteColor;
         &:hover {
           color: @activeColor;
+        }
+      }
+      .account .ico-box {
+        .clearFix();
+        display: block;
+        height: 50px;
+        line-height: 50px;
+        padding: 0 20px;
+        cursor: pointer;
+        span {
+          .fl();
+          display: block;
+          .text-overflow();
+          max-width: 200px;
+          height: 50px;
+          line-height: 50px;
+          color: @whiteColor;
+        }
+        .iconfont {
+          .fl();
+          font-size: 24px;
+          color: @whiteColor;
+        }
+      }
+      .account .user-menu-wrapper {
+        display: none;
+        position: absolute;
+        top: 50px;
+        left: 0;
+        background: @baseColor;
+
+        .user-menu-item {
+          width: 140px;
+          height: 50px;
+          line-height: 50px;
+          border-bottom: 1px solid @whiteColor;
+          &:nth-last-of-type(1) {
+            border-bottom: none;
+          }
+        }
+        .user-menu-item .userName {
+          display: block;
+          padding: 0 10px;
+          text-align: center;
+          color: @whiteColor;
+          .text-overflow()
+        }
+        .user-menu-item a {
+          display: block;
+          padding: 0 10px;
+          text-align: center;
+          color: @whiteColor;
+          &:hover {
+            color: @activeColor;
+            text-decoration: underline;
+          }
         }
       }
     }

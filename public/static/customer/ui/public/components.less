@@ -125,18 +125,24 @@ header {
         position: relative;
     }
     .nav-box .account .ico-box {
+        .clearFix();
         display: block;
         height: 50px;
         line-height: 50px;
         padding: 0 20px;
         cursor: pointer;
+        span {
+            .fl();
+            display: block;
+            .text-overflow();
+            max-width: 200px;
+            height: 50px;
+            line-height: 50px;
+            color: @whiteColor;
+        }
         .iconfont {
+            .fl();
             font-size: 24px;
-        }
-        .iconfont:nth-of-type(1) {
-            color: @activeColor;
-        }
-        .iconfont:nth-of-type(2) {
             color: @whiteColor;
         }
     }
@@ -172,24 +178,6 @@ header {
                 color: @activeColor;
                 text-decoration: underline;
             }
-        }
-    }
-    .nav-box .exit {
-        .fl();
-        height: 50px;
-        line-height: 50px;
-        margin-left: 50px;
-        color: @whiteColor;
-        span {
-            .fl();
-            height: 50px;
-            line-height: 50px;
-            &:nth-last-of-type(1) {
-                margin-left: 5px;
-            }
-        }
-        .iconfont {
-            font-size: 24px;
         }
     }
     @media screen and (max-width: 1199px) {

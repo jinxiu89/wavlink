@@ -581,7 +581,7 @@ class User extends Base
             $id = input('get.id', '', 'htmlspecialchars,intval');
             if (isset($email) && !empty($email)) $this->assign('email', $email);
             if (isset($phone) && !empty($phone)) $this->assign('phone', $phone);
-            if (isset($id) && !empty($id)) $this->assign('id',$id);
+            if (isset($id) && !empty($id)) $this->assign('id', $id);
             return $this->fetch('');
         }
         if ($this->request->isPost()) {
@@ -608,6 +608,7 @@ class User extends Base
 
     /**
      * editPassword 登录用户，修改密码
+     *
      */
     public function resetPassword()
     {

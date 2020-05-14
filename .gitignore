@@ -13,6 +13,7 @@ ueditor/
 .vscode
 config.php
 database.php
+*.map
 
 
 

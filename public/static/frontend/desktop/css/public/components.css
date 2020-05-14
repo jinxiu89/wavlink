@@ -313,6 +313,7 @@ body {
 }
 .g-nav .function-box .search-box {
   float: left;
+  position: relative;
   width: 50px;
   text-align: center;
 }
@@ -324,21 +325,21 @@ body {
   position: absolute;
   z-index: 99999;
   top: 0;
-  right: 120px;
+  right: 60px;
   height: 100%;
 }
-.g-nav .function-box .search-box .search-formbefore,
-.g-nav .function-box .search-box .search-form:after {
+.g-nav .function-box .search-box .search-form form {
+  width: 350px;
+  margin: 11px 0;
+}
+.g-nav .function-box .search-box .search-form formbefore,
+.g-nav .function-box .search-box .search-form form:after {
   content: " ";
   display: table;
   zoom: 1;
 }
-.g-nav .function-box .search-box .search-form:after {
+.g-nav .function-box .search-box .search-form form:after {
   clear: both;
-}
-.g-nav .function-box .search-box .search-form form {
-  float: right;
-  margin: 11px 0;
 }
 .g-nav .function-box .search-box .search-form input {
   float: left;
@@ -355,7 +356,7 @@ body {
   border-radius: 5px 0 0 5px;
 }
 .g-nav .function-box .search-box .search-form input[type="submit"] {
-  padding: 0 15px;
+  width: 50px;
   background: #333;
   color: #fff;
   border-radius: 0 5px 5px 0;

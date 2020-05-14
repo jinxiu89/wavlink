@@ -22,6 +22,7 @@ return [
     'Community' => '关注我们',
     //导航部分的翻译
     'Login' => '登录',
+    'logout' => '退出登录',
     'home' => '首页',
     'All CATEGORIES' => '菜单',
     'close' => '关闭',

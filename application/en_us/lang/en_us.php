@@ -22,6 +22,7 @@ return [
     'Community' => 'COMMUNITY',
     //导航部分的翻译
     'Login' => 'LOGIN',
+    'logout' => 'Logout',
     'home' => 'HOME',
     'All CATEGORIES' => 'All CATEGORIES',
     'close' => 'CLOSE',

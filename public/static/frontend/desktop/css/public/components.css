@@ -388,7 +388,6 @@ body {
   display: block;
   height: 50px;
   line-height: 50px;
-  padding: 0 20px;
   cursor: pointer;
 }
 .g-nav .function-box .user-box .account .ico-boxbefore,
@@ -406,10 +405,15 @@ body {
   text-overflow: ellipsis;
   white-space: nowrap;
   overflow: hidden;
-  max-width: 200px;
+  max-width: 150px;
   height: 50px;
   line-height: 50px;
   color: #fff;
+}
+@media screen and (max-width: 991px) {
+  .g-nav .function-box .user-box .account .ico-box span {
+    max-width: 50px;
+  }
 }
 .g-nav .function-box .user-box .account .ico-box .iconfont {
   float: left;

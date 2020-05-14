@@ -23,6 +23,7 @@ return [
     //导航部分的翻译
     'Login' => '登录',
     'logout' => '退出登录',
+    'My Account' => '我的账户',
     'home' => '首页',
     'All CATEGORIES' => '菜单',
     'close' => '关闭',

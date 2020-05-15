@@ -11,29 +11,14 @@
 .banner {
     background: @whiteColor;
     .des {
-        padding: 10px 10px 5px;
-        text-align: center;
-        dt {
-            font-size: 14px;
-            margin-bottom: 5px;
-            .text-overflow();
-        }
-        dd {
-            font-size: 12px;
-            .text-overflow();
-        }
+        display: none;
     }
     .img-box a {
-        #img-optimize(101.33%, @bodyBgColor);
+        #img-optimize(71.875%, @bodyBgColor);
         img {
             .img-responsive();
             .center-block();
         }
-    }
-    .swiper-pagination {
-        position: static;
-        background: @whiteColor;
-        padding: 0 10px 5px;
     }
     .swiper-pagination-bullet-active {
         background: @activeColor;

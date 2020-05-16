@@ -3,8 +3,8 @@
 namespace app\en_us\controller;
 
 use app\common\helper\Category;
-use app\common\model\Category as CategoryModel;
-use app\common\model\Product as ProductModel;
+use app\common\model\Content\Category as CategoryModel;
+use app\common\model\Content\Product as ProductModel;
 use think\Exception;
 use think\facade\Log;
 

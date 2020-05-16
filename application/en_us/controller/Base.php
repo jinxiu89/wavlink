@@ -2,14 +2,14 @@
 
 namespace app\en_us\controller;
 
-use app\common\model\About as AboutModel;
-use app\common\model\Article as ArticleModel;
-use app\common\model\Category as CategoryModel;
+use app\common\model\Content\About as AboutModel;
+use app\common\model\Content\Article as ArticleModel;
+use app\common\model\Content\Category as CategoryModel;
 use app\common\model\Document as DocumentModel;
 use app\common\model\Language as LanguageModel;
 use app\common\model\Product as ProductModel;
 use app\common\model\Setting as SettingModel;
-use app\common\service\en_us\About as aboutService;
+//use app\common\service\en_us\About as aboutService;
 use think\App;
 use think\Collection;
 use think\Controller;

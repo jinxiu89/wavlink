@@ -144,7 +144,7 @@ Class BaseModel extends Model
             'language_id' => $language_id,
             'url_title' => $urlTitle
         ];
-        return model($model)->where($map)->find();
+        return model('Content.'.$model)->where($map)->find();
     }
 
     /**

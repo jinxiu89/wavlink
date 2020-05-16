@@ -7,8 +7,8 @@
  */
 
 namespace app\common\model\Content;
+
 use app\common\model\Language as LanguageModel;
-use PDOStatement;
 use think\Collection;
 use think\db\exception\DataNotFoundException;
 use think\db\exception\ModelNotFoundException;
@@ -16,7 +16,7 @@ use think\Exception;
 use think\exception\DbException;
 use app\common\model\BaseModel;
 
-Class Article extends BaseModel
+class Article extends BaseModel
 {
     protected $table = "article";//使用article表
 
@@ -78,7 +78,7 @@ Class Article extends BaseModel
     public function getLastNew($code)
     {
         $language_id = LanguageModel::getLanguageCodeOrID($code);
-        $result = $this->where(['status' => 1, 'language_id' => $language_id])->order(['update_time'=>'desc'])->limit(2)->field('id,title,url_title,logo,seo_description,update_time')->select();
+        $result = $this->where(['status' => 1, 'language_id' => $language_id])->order(['update_time' => 'desc'])->limit(2)->field('id,title,url_title,logo,seo_description,update_time')->select();
         return Collection::make($result);
     }
 }

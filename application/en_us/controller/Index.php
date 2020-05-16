@@ -3,14 +3,13 @@
 namespace app\en_us\controller;
 
 use app\common\helper\CheckIP;
-use app\common\model\Article;
+use app\common\model\Content\Article;
 use app\common\model\Content\Images as ImagesModel;
 use think\App;
 use think\db\exception\DataNotFoundException;
 use think\db\exception\ModelNotFoundException;
 use think\Exception;
 use think\exception\DbException;
-use think\Collection;
 
 /**
  * Class Index

@@ -2,7 +2,7 @@
 namespace app\en_us\controller;
 
 use app\common\helper\Category as CategoryHelp;
-use app\common\model\Category as CategoryModel;
+use app\common\model\Content\Category as CategoryModel;
 use think\db\exception\DataNotFoundException;
 use think\db\exception\ModelNotFoundException;
 use think\exception\DbException;

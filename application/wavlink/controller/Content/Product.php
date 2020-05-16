@@ -7,11 +7,12 @@ namespace app\wavlink\controller\Content;
  * User: guo
  * Date: 2017/8/23
  * Time: 10:37
+ * 功能归类
  */
 
 use app\common\model\Content\Product as ProductModel;
-use app\common\model\Category as CategoryModel;
-use app\common\model\ShopLink;
+use app\common\model\Content\Category as CategoryModel;
+use app\common\model\Content\ShopLink;
 use app\wavlink\validate\ListorderValidate;
 use think\Exception;
 use think\Facade\Request;

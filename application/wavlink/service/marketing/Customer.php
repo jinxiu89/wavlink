@@ -12,7 +12,7 @@
 namespace app\wavlink\service\marketing;
 
 use app\wavlink\service\Base;
-use app\common\model\customer\User;
+use app\common\model\Customer\User;
 use think\paginator\driver\Bootstrap;
 
 /**

@@ -10,9 +10,11 @@
  **/
 
 namespace app\common\service\customer;
+
 use app\common\model\Country;
-use app\common\model\customer\Product as Model;
+use app\common\model\Customer\Product as Model;
 use app\common\model\Category;
+
 /**
  * Class product
  * @package app\common\service\customer
@@ -21,7 +23,7 @@ class Product extends BaseService
 {
     public function __construct()
     {
-        $this->model=new Model();
+        $this->model = new Model();
     }
 
     /**
@@ -31,10 +33,20 @@ class Product extends BaseService
      * 对于多年加班且容易累的人，可以使用这个小方调理，使用方法是，自己去要点按剂量抓取，上述是一天的剂量，泡茶喝，每喝15天歇几天再喝
      *
      */
-    public function getCategory($code){
-        try{
+    public function getCategory($code)
+    {
+        try {
             return (new Category())->getAllCategory($code);
-        }catch (\Exception $exception){
+        } catch (\Exception $exception) {
+            return [];
+        }
+    }
+
+    public function getProductByUid($id)
+    {
+        try {
+            return $this->model::getProductByUid($id);
+        } catch (\Exception $exception) {
             return [];
         }
     }

@@ -27,7 +27,7 @@ Route::group(Config::get('__BACKEND__'), function () {
      */
     //几个首页
     Route::get('/index', 'Index/index');
-    Route::get('/content/index', 'Content/index');
+    Route::get('/content/index', 'Content.Content/index');
     //推荐位
     Route::get('/Featured/index', 'Content.Featured/index')->name('featured_list');
     Route::rule('/Featured/byStatus', 'Content.Featured/byStatus','GET|POST');
@@ -45,49 +45,49 @@ Route::group(Config::get('__BACKEND__'), function () {
     Route::post('/images/del', 'Content.Images/del');
 
     //产品分类路由
-    Route::get('/category/index', 'Category/index');
-    Route::get('/category/add', 'Category/add');
-    Route::get('/Category/byStatus', 'wavlink/Category/byStatus');
-    Route::get('/Category/edit', 'Category/edit', [], ['id' => '\d+']);
+    Route::get('/category/index', 'Content.Category/index');
+    Route::get('/category/add', 'Content.Category/add');
+    Route::get('/Category/byStatus', 'Content.Category/byStatus');
+    Route::get('/Category/edit', 'Content.Category/edit', [], ['id' => '\d+']);
     //产品分类post路由
-    Route::post('/category/save', 'Category/save');
-    Route::post('/Category/byStatus', 'Category/byStatus');
-    Route::post('/Category/sort', 'Category/sort');
-    Route::post('/Category/del', 'Category/del');
+    Route::post('/category/save', 'Content.Category/save');
+    Route::post('/Category/byStatus', 'Content.Category/byStatus');
+    Route::post('/Category/sort', 'Content.Category/sort');
+    Route::post('/Category/del', 'Content.Category/del');
 
     //产品管理
-    Route::get('/product/index', 'Product/index');
-    Route::get('/product/add', 'Product/add');
-    Route::get('/product/product_edit', 'Product/product_edit', [], ['id' => '\d+']);
-    Route::get('/product/product_recycle', 'Product/product_recycle');
+    Route::get('/product/index', 'Content.Product/index');
+    Route::get('/product/add', 'Content.Product/add');
+    Route::get('/product/product_edit', 'Content.Product/product_edit', [], ['id' => '\d+']);
+    Route::get('/product/product_recycle', 'Content.Product/product_recycle');
     //产品post路由
-    Route::post('/product/save', 'Product/save');
-    Route::post('/product/byStatus', 'Product/byStatus');
-    Route::post('/product/listorder', 'Product/listorder');
-    Route::post('/product/sort', 'Product/sort');
-    Route::post('/product/mark', 'Product/mark');
+    Route::post('/product/save', 'Content.Product/save');
+    Route::post('/product/byStatus', 'Content.Product/byStatus');
+    Route::post('/product/listorder', 'Content.Product/listorder');
+    Route::post('/product/sort', 'Content.Product/sort');
+    Route::post('/product/mark', 'Content.Product/mark');
 
     //产品的购买链接
-    Route::get('/product/shop_link/add', 'Product/add_shop_url', [], ['product_id' => '\d+']);
-    Route::get('/product/shop_link/edit', 'Product/edit_shop_url', [], ['id' => '\d+']);
-    Route::post('/product/shop_link/del', 'Product/del_shop_url', [], ['id' => '\d+']);
-    Route::post('/product/shop_link/save', 'Product/save_shop_url');
-    Route::get('/product/shop_link', 'Product/shop_link', [], ['product_id' => '\d+']);
+    Route::get('/product/shop_link/add', 'Content.Product/add_shop_url', [], ['product_id' => '\d+']);
+    Route::get('/product/shop_link/edit', 'Content.Product/edit_shop_url', [], ['id' => '\d+']);
+    Route::post('/product/shop_link/del', 'Content.Product/del_shop_url', [], ['id' => '\d+']);
+    Route::post('/product/shop_link/save', 'Content.Product/save_shop_url');
+    Route::get('/product/shop_link', 'Content.Product/shop_link', [], ['product_id' => '\d+']);
 
     //文章管理
-    Route::get('/article/index', 'Article/index');
-    Route::get('/article/add', 'Article/add');
-    Route::get('/article/edit', 'Article/edit', [], ['id' => '\d+']);
-    Route::get('/article/article_recycle', 'Article/article_recycle');
-    Route::post('/article/save', 'Article/save');
-    Route::post('article/byStatus', 'Article/byStatus');
-    Route::post('article/listorder', 'Article/listorder');
+    Route::get('/article/index', 'Content.Article/index');
+    Route::get('/article/add', 'Content.Article/add');
+    Route::get('/article/edit', 'Content.Article/edit', [], ['id' => '\d+']);
+    Route::get('/article/article_recycle', 'Content.Article/article_recycle');
+    Route::post('/article/save', 'Content.Article/save');
+    Route::post('article/byStatus', 'Content.Article/byStatus');
+    Route::post('article/listorder', 'Content.Article/listorder');
     //关于我们
-    Route::get('/About/index', 'About/index');
-    Route::get('/About/add', 'About/add');
-    Route::get('/About/edit', 'About/edit', [], ['id' => '\d+']);
-    Route::post('/About/save', 'About/save');
-    Route::post('/About/byStatus', 'About/byStatus');
+    Route::get('/About/index', 'Content.About/index');
+    Route::get('/About/add', 'Content.About/add');
+    Route::get('/About/edit', 'Content.About/edit', [], ['id' => '\d+']);
+    Route::post('/About/save', 'Content.About/save');
+    Route::post('/About/byStatus', 'Content.About/byStatus');
 
 
     /**
@@ -95,13 +95,13 @@ Route::group(Config::get('__BACKEND__'), function () {
      */
     Route::rule('/marketing/customer/index$','Marketing.Customer/index')->name('marketing_customer_index');
     //营销管理
-    Route::get('/marketing/index$', 'Marketing/index');
-    Route::get('/marketing/add$', 'Marketing/add');
-    Route::get('/marketing/edit$', 'Marketing/edit', [], ['id' => '\d+']);
+    Route::get('/marketing/index$', 'Marketing.OnePage/index');
+    Route::get('/marketing/add$', 'Marketing.OnePage/add');
+    Route::get('/marketing/edit$', 'Marketing.OnePage/edit', [], ['id' => '\d+']);
     //营销管理POST路由
-    Route::post('/marketing/save$', 'Marketing/save');
-    Route::post('/marketing/byStatus$', 'Marketing/byStatus');
-    Route::post('/marketing/del$', 'Marketing/del');
+    Route::post('/marketing/save$', 'Marketing.OnePage/save');
+    Route::post('/marketing/byStatus$', 'Marketing.OnePage/byStatus');
+    Route::post('/marketing/del$', 'Marketing.OnePage/del');
 
 
     /***

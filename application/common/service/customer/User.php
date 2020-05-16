@@ -11,7 +11,7 @@
 
 namespace app\common\service\customer;
 
-use app\common\model\customer\User as UserModel;
+use app\common\model\Customer\User as UserModel;
 use think\db\Query;
 use think\Exception;
 use think\facade\Session;

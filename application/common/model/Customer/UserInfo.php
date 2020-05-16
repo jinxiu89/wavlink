@@ -9,7 +9,7 @@
  * @格言： 我的内心因看见大海而波涛汹涌
  **/
 
-namespace app\common\model\customer;
+namespace app\common\model\Customer;
 
 
 use app\common\model\BaseModel;

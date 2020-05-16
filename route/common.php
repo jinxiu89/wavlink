@@ -24,6 +24,8 @@ Route::get('/en_us/terms$', 'en_us/Common/terms')->name('terms'); //
 Route::get('/en_us/privacy$', 'en_us/Common/privacy')->name('privacy');
 //说明书下载永久短网址
 Route::get('/manual$', 'en_us/Common/manual')->name('manual');
+//说明书短网址
+Route::get('/QSG$', 'en_us/Common/manual')->name('qsg');
 //语言切换功能更
 Route::get('/language/:code', 'en_us/Language/setLanguage', [], ['code' => '[\w-]+']);
 //手动错误

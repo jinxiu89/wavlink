@@ -6,12 +6,13 @@
  * Time: 15:00
  */
 
-namespace app\common\model\customer;
+namespace app\common\model\Customer;
 
 use think\Exception;
 use think\facade\Session;
 use app\common\model\BaseModel;
 use think\model\relation\HasOne;
+
 /**
  * Class Customer
  * @package app\common\model\customer

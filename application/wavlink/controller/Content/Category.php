@@ -6,16 +6,16 @@
  * Time: 10:37
  */
 
-namespace app\wavlink\controller;
-
-use app\common\model\Category as CategoryModel;
+namespace app\wavlink\controller\Content;
+use app\common\model\Content\Category as CategoryModel;
 use app\wavlink\validate\Category as CategoryValidate;
 use think\App;
 use think\facade\Request;
-
+use app\wavlink\controller\BaseAdmin;
 /***
  * Class Category
  * @package app\wavlink\controller
+ * 产品分类功归类 时间：2020.05.16
  */
 Class Category extends BaseAdmin
 {

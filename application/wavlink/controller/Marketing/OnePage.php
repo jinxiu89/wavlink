@@ -1,20 +1,28 @@
 <?php
 /**
- * Created by PhpStorm.
- * User: guo
- * Date: 2017/8/23
- * Time: 10:37
- * 营销管理单页面管理
- */
+ * @Create by PhpStorm
+ * @author:jinxiu89@163.com
+ * @Create Date:2020/5/16 10:49
+ * @User: admin
+ * @Current File : OnePage.php
+ * @格言：溪涧岂能留得住，终归大海做波涛 --李忱
+ * @格言： 我的内心因看见大海而波涛汹涌
+ **/
 
 namespace app\wavlink\controller\Marketing;
 
-use think\Facade\Request;
+
 use app\common\model\Language as LanguageModel;
 use app\common\model\Marketing as MarketingModel;
-use app\wavlink\validate\Marketing as MarketingValidate;
 use app\wavlink\controller\BaseAdmin;
-Class Marketing extends BaseAdmin
+use app\wavlink\validate\Marketing as MarketingValidate;
+use think\facade\Request;
+
+/**
+ * Class OnePage
+ * @package app\wavlink\controller\Marketing
+ */
+class OnePage extends BaseAdmin
 {
     public function index()
     {

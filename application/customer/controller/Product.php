@@ -43,6 +43,12 @@ class Product extends Base
      */
     public function lists(){
         if($this->request->isGet()){
+            $data=$this->service->getProductByUid($this->uid);
+            if (!$data->isEmpty()){
+                $this->assign('page', $data->render());
+                $this->assign('data', $data);
+                $this->assign('count', $data->count());
+            }
             return $this->fetch();
         }
     }
@@ -74,11 +80,28 @@ class Product extends Base
     }
 
     /**
+     * addProduct
      * @return mixed
      */
     public function addProduct(){
         if($this->request->isGet()){
-            return $this->fetch();
+            $country = $this->service->getCountry();
+            $code=Cookie::get('lang_var')?Cookie::get('lang_var'):'en_us';
+            $category = $this->service->getCategory($code);
+            return $this->fetch('',['user_id'=>$this->uid,'country'=>$country,'category'=>$category]);
+        }
+        if($this->request->isPost()){
+            $data = input('post.',[],'htmlspecialchars,trim');
+            $data['create_time']=strtotime($data['create_time']);
+            if(!$this->validate->scene('add')->check($data)){
+                return show(0, '', '', '', '', $this->validate->getError());
+            }
+            $instance = $this->service->create($data); //instance 是实例的意思
+            if ($instance->id) {
+                return show(1, lang('Success'), '', '', url(''), lang('Successfully!'));
+            } else {
+                return show(0, lang('Error'), '', '', '', lang('Failed!'));
+            }
         }
     }
 }

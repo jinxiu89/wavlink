@@ -6,8 +6,8 @@
  * Time: 16:40
  */
 
-namespace app\common\model\customer;
-
+namespace app\common\model\Customer;
+use app\common\model\BaseModel;
 
 
 

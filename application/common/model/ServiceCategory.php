@@ -30,7 +30,7 @@ Class ServiceCategory extends BaseModel
      */
     public function getServiceCategory($parentId = 0, $language_id = '')
     {
-        $model = 'ServiceCategory';
+        $model = 'service_category';
         $data = [
             'parent_id' => $parentId,
             'language_id' => $language_id

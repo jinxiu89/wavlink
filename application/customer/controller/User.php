@@ -262,14 +262,15 @@ class User extends Base
             $customer = $this->service->getDataByIdWithInfo($this->uid)->toArray();
             $country = (new Country())->field('country_id,name')->select();
             unset($customer['password'], $customer['referee_code'], $customer['create_time'], $customer['update_time'], $customer['is_subscribe'], $customer['disclaimer']);
-            if (isMobile()) {
+            return $this->fetch('', [
+                'country' => $country->toArray(),
+                'result' => $customer
+            ]);
+            /*if (isMobile()) {
                 return "hello world";
             } else {
-                return $this->fetch('', [
-                    'country' => $country->toArray(),
-                    'result' => $customer
-                ]);
-            }
+
+            }*/
         }
 
     }

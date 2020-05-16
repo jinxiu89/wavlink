@@ -6,8 +6,10 @@
  * Time: 17:07
  */
 
-namespace app\common\model;
+namespace app\common\model\Service;
 
+
+use app\common\model\BaseModel;
 
 /**
  * Class Manual

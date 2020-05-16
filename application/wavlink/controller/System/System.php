@@ -5,10 +5,11 @@
  * Date: 2017/8/23
  * Time: 10:46
  */
-namespace app\wavlink\controller;
+namespace app\wavlink\controller\System;
 use app\wavlink\validate\System as SystemValidate;
 use app\common\model\System as SystemModel;
 use think\Facade\Cookie;
+use app\wavlink\controller\BaseAdmin;
 
 Class System extends BaseAdmin
 {

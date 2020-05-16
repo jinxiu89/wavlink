@@ -108,61 +108,61 @@ Route::group(Config::get('__BACKEND__'), function () {
      * 系统管理模块路由
      *
      */
-    Route::get('/system/index', 'System/index');
+    Route::get('/system/index', 'System.System/index');
     //语言
     /**
     * 语言切换
     */
-    Route::get('/language/index', 'Language/index');
-    Route::get('/language/add', 'Language/add');
-    Route::get('/language/edit', 'Language/edit', [], ['id' => '\d+']);
-    Route::get('/language/language_stop', 'Language/language_stop');
+    Route::get('/language/index', 'System.Language/index');
+    Route::get('/language/add', 'System.Language/add');
+    Route::get('/language/edit', 'System.Language/edit', [], ['id' => '\d+']);
+    Route::get('/language/language_stop', 'System.Language/language_stop');
     Route::get('/language/:code', 'BaseAdmin/ChangeLanguage')->pattern(['code' => '[\w-]+']);
-    Route::post('/language/save', 'Language/save');
-    Route::post('/language/byStatus', 'Language/byStatus');
+    Route::post('/language/save', 'System.Language/save');
+    Route::post('/language/byStatus', 'System.Language/byStatus');
 
     //站点配置
-    Route::get('/setting/index', 'Setting/index');
-    Route::post('/Setting/save', 'Setting/save');
+    Route::get('/setting/index', 'System.Setting/index');
+    Route::post('/Setting/save', 'System.Setting/save');
 
     //管理员列表
-    Route::get('/manger/index', 'Manger/index');
-    Route::get('/manger/add', 'Manger/add');
-    Route::post('/manger/add_manager','Manger/addManger')->name('add_manger');
-    Route::get('/manger/edit', 'Manger/edit', [], ['id' => '\d+']);
-    Route::get('/manger/password', 'Manger/password', [], ['id' => '\d+']);
+    Route::get('/manger/index', 'System.Manger/index');
+    Route::get('/manger/add', 'System.Manger/add');
+    Route::post('/manger/add_manager','System.Manger/addManger')->name('add_manger');
+    Route::get('/manger/edit', 'System.Manger/edit', [], ['id' => '\d+']);
+    Route::get('/manger/password', 'System.Manger/password', [], ['id' => '\d+']);
     //禁用的管理员
-    Route::get('/manger/manger_stop', 'Manger/manger_stop');
+    Route::get('/manger/manger_stop', 'System.Manger/manger_stop');
 
-    Route::post('/manger/save', 'Manger/saveEdit');
-    Route::post('/manger/password', 'Manger/password');
-    Route::post('/manger/byStatus', 'Manger/byStatus');
+    Route::post('/manger/save', 'System.Manger/saveEdit');
+    Route::post('/manger/password', 'System.Manger/password');
+    Route::post('/manger/byStatus', 'System.Manger/byStatus');
 
     //权限组
-    Route::get('/auth_group/index', 'AuthGroup/index');
-    Route::get('/auth_group/add', 'AuthGroup/add');
-    Route::get('/auth_group/edit', 'AuthGroup/edit', [], ['id' => '\d+']);
-    Route::post('/auth_group/save', 'AuthGroup/save');
-    Route::post('/auth_group/byStatus', 'AuthGroup/byStatus');
+    Route::get('/auth_group/index', 'System.AuthGroup/index');
+    Route::get('/auth_group/add', 'System.AuthGroup/add');
+    Route::get('/auth_group/edit', 'System.AuthGroup/edit', [], ['id' => '\d+']);
+    Route::post('/auth_group/save', 'System.AuthGroup/save');
+    Route::post('/auth_group/byStatus', 'System.AuthGroup/byStatus');
     //权限
-    Route::get('/auth_rule/index', 'AuthRule/index');
-    Route::get('/auth_rule/add', 'AuthRule/add');
-    Route::get('/auth_rule/edit', 'AuthRule/edit', [], ['id' => '\d+']);
-    Route::post('/auth_rule/save', 'AuthRule/save');
-    Route::post('/auth_rule/byStatus', 'AuthRule/byStatus');
+    Route::get('/auth_rule/index', 'System.AuthRule/index');
+    Route::get('/auth_rule/add', 'System.AuthRule/add');
+    Route::get('/auth_rule/edit', 'System.AuthRule/edit', [], ['id' => '\d+']);
+    Route::post('/auth_rule/save', 'System.AuthRule/save');
+    Route::post('/auth_rule/byStatus', 'System.AuthRule/byStatus');
 
     /**
      * service_category/index
      * 服务模块
      */
     //服务分类
-    Route::get('/service/index', 'Service/index');
-    Route::get('/service_category/index', 'ServiceCategory/index');
-    Route::get('/service_category/add', 'ServiceCategory/add');
-    Route::get('/service_category/edit', 'ServiceCategory/edit', [], ['id' => '\d+']);
-    Route::post('/service_category/save', 'ServiceCategory/save');
-    Route::post('/service_category/byStatus', 'ServiceCategory/byStatus');
-    Route::post('/service_category/listorder', 'ServiceCategory/listorder');
+    Route::get('/service/index', 'Service.Service/index');
+    Route::get('/service_category/index', 'Service.ServiceCategory/index');
+    Route::get('/service_category/add', 'Service.ServiceCategory/add');
+    Route::get('/service_category/edit', 'Service.ServiceCategory/edit', [], ['id' => '\d+']);
+    Route::post('/service_category/save', 'Service.ServiceCategory/save');
+    Route::post('/service_category/byStatus', 'Service.ServiceCategory/byStatus');
+    Route::post('/service_category/listorder', 'Service.ServiceCategory/listorder');
     //文档管理
     Route::get('/document/index', 'Document/index');
     Route::get('/document/doc_recycle', 'Document/doc_recycle');
@@ -173,96 +173,96 @@ Route::group(Config::get('__BACKEND__'), function () {
     Route::post('/Document/listorder', 'Document/listorder');
 
     //驱动管理
-    Route::get('/drivers/index', 'Drivers/index');
-    Route::post('/drivers/index', 'Drivers/index');
-    Route::get('/drivers/recycle', 'Drivers/recycle');
-    Route::get('/drivers/add', 'Drivers/add');
-    Route::get('/drivers/edit', 'Drivers/edit', [], ['id' => '\d+']);
-    Route::post('/drivers/save', 'Drivers/save');
-    Route::post('/drivers/byStatus', 'Drivers/byStatus');
-    Route::post('/Drivers/listorder', 'Drivers/listorder');
-    Route::post('/Drivers/sort', 'Drivers/sort');
+    Route::get('/drivers/index', 'Service.Drivers/index');
+    Route::post('/drivers/index', 'Service.Drivers/index');
+    Route::get('/drivers/recycle', 'Service.Drivers/recycle');
+    Route::get('/drivers/add', 'Service.Drivers/add');
+    Route::get('/drivers/edit', 'Service.Drivers/edit', [], ['id' => '\d+']);
+    Route::post('/drivers/save', 'Service.Drivers/save');
+    Route::post('/drivers/byStatus', 'Service.Drivers/byStatus');
+    Route::post('/Drivers/listorder', 'Service.Drivers/listorder');
+    Route::post('/Drivers/sort', 'Service.Drivers/sort');
 
     //固件管理
-    Route::get('/firmware/index', 'wavlink/firmware/index');
-    Route::get('/firmware/add', 'wavlink/firmware/add');
-    Route::get('/firmware/edit', 'wavlink/firmware/edit', [], ['id' => '\d+']);
-    Route::get('/firmware/recycle', 'wavlink/firmware/recycle');
+    Route::get('/firmware/index', 'Service.Firmware/index');
+    Route::get('/firmware/add', 'Service.Firmware/add');
+    Route::get('/firmware/edit', 'Service.Firmware/edit', [], ['id' => '\d+']);
+    Route::get('/firmware/recycle', 'Service.Firmware/recycle');
     //固件模块add保存
-    Route::post('/firmware/add', 'Firmware/add');
-    Route::post('/firmware/edit', 'Firmware/edit', [], ['id' => '\d+']);
-    Route::post('/firmware/byStatus', 'Firmware/byStatus');
-    Route::post('/firmware/del', 'Firmware/del');
+    Route::post('/firmware/add', 'Service.Firmware/add');
+    Route::post('/firmware/edit', 'Service.Firmware/edit', [], ['id' => '\d+']);
+    Route::post('/firmware/byStatus', 'Service.Firmware/byStatus');
+    Route::post('/firmware/del', 'Service.Firmware/del');
     //说明书和文件
-    Route::get('/manual/index', 'Manual/index');
-    Route::get('/manual/add', 'Manual/add');
-    Route::get('/manual/edit', 'Manual/edit', [], ['id' => '\d+']);
-    Route::get('/manual/add_download', 'Manual/add_download', [], ['id' => '\d+']);
-    Route::get('/manual/edit_download', 'Manual/edit_download', [], ['id' => '\d+', 'manual_id' => '\d+']);
-    Route::get('/manual/del_download', 'Manual/del_download', [], ['id' => '\d+']);
-    Route::post('/Manual/save', 'Manual/save');
-    Route::post('/Manual/byStatus', 'Manual/byStatus');
-    Route::post('/Manual/save_download', 'Manual/save_download');
-    Route::post('/Manual/del_download', 'Manual/del_download');
+    Route::get('/manual/index', 'Service.Manual/index');
+    Route::get('/manual/add', 'Service.Manual/add');
+    Route::get('/manual/edit', 'Service.Manual/edit', [], ['id' => '\d+']);
+    Route::get('/manual/add_download', 'Service.Manual/add_download', [], ['id' => '\d+']);
+    Route::get('/manual/edit_download', 'Service.Manual/edit_download', [], ['id' => '\d+', 'manual_id' => '\d+']);
+    Route::get('/manual/del_download', 'Service.Manual/del_download', [], ['id' => '\d+']);
+    Route::post('/Manual/save', 'Service.Manual/save');
+    Route::post('/Manual/byStatus', 'Service.Manual/byStatus');
+    Route::post('/Manual/save_download', 'Service.Manual/save_download');
+    Route::post('/Manual/del_download', 'Service.Manual/del_download');
     //视频'
-    Route::get('/video/index', 'Video/index');
-    Route::get('/video/video_recycle', 'Video/video_recycle');
-    Route::get('/video/add', 'Video/add');
-    Route::get('/video/edit', 'Video/edit', [], ['id' => '\d+']);
-    Route::post('/Video/save', 'Video/save');
-    Route::post('/video/byStatus', 'Video/byStatus');
-    Route::post('/Video/listorder', 'Video/listorder');
+    Route::get('/video/index', 'Service.Video/index');
+    Route::get('/video/video_recycle', 'Service.Video/video_recycle');
+    Route::get('/video/add', 'Service.Video/add');
+    Route::get('/video/edit', 'Service.Video/edit', [], ['id' => '\d+']);
+    Route::post('/Video/save', 'Service.Video/save');
+    Route::post('/video/byStatus', 'Service.Video/byStatus');
+    Route::post('/Video/listorder', 'Service.Video/listorder');
     //留言管理
-    Route::get('/guest_book/index', 'GuestBook/index');
-    Route::get('/guest_book/export', 'GuestBook/export');
-    Route::get('/guest_book/index_off', 'GuestBook/index_off');
-    Route::get('/guest_book/look', 'GuestBook/look');
-    Route::get('/guest_book/reply', 'GuestBook/reply');
-    Route::get('/guest_book/send', 'GuestBook/send');
-    Route::get('/guest_book/reply_look', 'GuestBook/reply_look');
-    Route::post('/guest_book/send', 'GuestBook/send');
+    Route::get('/guest_book/index', 'Service.GuestBook/index');
+    Route::get('/guest_book/export', 'Service.GuestBook/export');
+    Route::get('/guest_book/index_off', 'Service.GuestBook/index_off');
+    Route::get('/guest_book/look', 'Service.GuestBook/look');
+    Route::get('/guest_book/reply', 'Service.GuestBook/reply');
+    Route::get('/guest_book/send', 'Service.GuestBook/send');
+    Route::get('/guest_book/reply_look', 'Service.GuestBook/reply_look');
+    Route::post('/guest_book/send', 'Service.GuestBook/send');
     //FAQ管理
-    Route::get('/Faq/index', 'Faq/index');
-    Route::get('/Faq/faq_recycle', 'Faq/faq_recycle');
-    Route::get('/Faq/add', 'Faq/add');
-    Route::get('/Faq/edit', 'Faq/edit', [], ['id' => '\d+']);
-    Route::post('/Faq/save', 'Faq/save');
-    Route::post('/faq/byStatus', 'Faq/byStatus');
-    Route::post('/faq/listorder', 'Faq/listorder');
+    Route::get('/Faq/index', 'Service.Faq/index');
+    Route::get('/Faq/faq_recycle', 'Service.Faq/faq_recycle');
+    Route::get('/Faq/add', 'Service.Faq/add');
+    Route::get('/Faq/edit', 'Service.Faq/edit', [], ['id' => '\d+']);
+    Route::post('/Faq/save', 'Service.Faq/save');
+    Route::post('/faq/byStatus', 'Service.Faq/byStatus');
+    Route::post('/faq/listorder', 'Service.Faq/listorder');
 
     //SN管理
-    Route::get('/soft/index', 'Soft/index');
-    Route::get('/soft/add', 'Soft/add');
-    Route::get('/soft/edit', 'Soft/edit', [], ['id' => '\d+']);
-    Route::get('/Soft/add_model', 'Soft/add_model');
-    Route::get('/soft/saveID', 'Soft/saveID');
-    Route::get('/soft/edit_model', 'Soft/edit_model', [], ['id' => '\d+']);
-    Route::post('soft/edit', 'Soft/edit', [], ['id' => '\d+']);
-    Route::post('Soft/byStatus', 'Soft/byStatus');
+    Route::get('/soft/index', 'Service.Soft/index');
+    Route::get('/soft/add', 'Service.Soft/add');
+    Route::get('/soft/edit', 'Service.Soft/edit', [], ['id' => '\d+']);
+    Route::get('/Soft/add_model', 'Service.Soft/add_model');
+    Route::get('/soft/saveID', 'Service.Soft/saveID');
+    Route::get('/soft/edit_model', 'Service.Soft/edit_model', [], ['id' => '\d+']);
+    Route::post('soft/edit', 'Service.Soft/edit', [], ['id' => '\d+']);
+    Route::post('Soft/byStatus', 'Service.Soft/byStatus');
     //SN分类管理
-    Route::get('/cate/index', 'Cate/index');
-    Route::get('/cate/add', 'Cate/add');
-    Route::post('/cate/index', 'Cate/index');
-    Route::post('/cate/byStatus', 'Cate/byStatus');
+    Route::get('/cate/index', 'Service.Cate/index');
+    Route::get('/cate/add', 'Service.Cate/add');
+    Route::post('/cate/index', 'Service.Cate/index');
+    Route::post('/cate/byStatus', 'Service.Cate/byStatus');
 
-    Route::get('/model/index', 'Model/index');
-    Route::get('/model/add', 'Model/add');
-    Route::get('/model/edit', 'Model/edit');
-    Route::get('/model/add_soft', 'Model/add_soft');
-    Route::get('/Model/saveID', 'Model/saveID');
-    Route::get('/Model/edit_soft', 'Model/edit_soft', [], ['id' => '\d+']);
-    Route::post('/Model/saveID', 'Model/saveID');
-    Route::post('/model/edit', 'Model/edit');
-    Route::post('/model/byStatus', 'Model/byStatus');
+    Route::get('/model/index', 'Service.Model/index');
+    Route::get('/model/add', 'Service.Model/add');
+    Route::get('/model/edit', 'Service.Model/edit');
+    Route::get('/model/add_soft', 'Service.Model/add_soft');
+    Route::get('/Model/saveID', 'Service.Model/saveID');
+    Route::get('/Model/edit_soft', 'Service.Model/edit_soft', [], ['id' => '\d+']);
+    Route::post('/Model/saveID', 'Service.Model/saveID');
+    Route::post('/model/edit', 'Service.Model/edit');
+    Route::post('/model/byStatus', 'Service.Model/byStatus');
 
-    Route::get('/sn/index', 'Sn/index');
-    Route::get('/sn/add', 'Sn/add');
-    Route::get('/sn/edit', 'Sn/edit', [], ['id' => '\d+']);
-    Route::get('/old_sn/index', 'OldSn/index');
-    Route::get('/old_sn/add', 'OldSn/add');
-    Route::post('/old_sn/index', 'OldSn/index');
-    Route::post('/sn/index', 'Sn/index');
-    Route::post('/sn/byStatus', 'Sn/byStatus');
+    Route::get('/sn/index', 'Service.Sn/index');
+    Route::get('/sn/add', 'Service.Sn/add');
+    Route::get('/sn/edit', 'Service.Sn/edit', [], ['id' => '\d+']);
+    Route::get('/old_sn/index', 'Service.OldSn/index');
+    Route::get('/old_sn/add', 'Service.OldSn/add');
+    Route::post('/old_sn/index', 'Service.OldSn/index');
+    Route::post('/sn/index', 'Service.Sn/index');
+    Route::post('/sn/byStatus', 'Service.Sn/byStatus');
 
     /**
      * 资源管理

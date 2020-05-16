@@ -18,6 +18,7 @@ use think\facade\Config;
 use think\facade\Request;
 use think\facade\Session;
 use think\response\Redirect;
+use app\wavlink\controller\System\Auth;
 
 class BaseAdmin extends Controller
 {

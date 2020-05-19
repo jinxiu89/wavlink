@@ -10,7 +10,7 @@ namespace app\common\model\Service;
 
 use app\common\model\BaseModel;
 use app\common\model\Language as LanguageModel;
-use app\common\model\ServiceCategory as ServiceCategoryModel;
+use app\common\model\Service\ServiceCategory as ServiceCategoryModel;
 
 /**
  * Class Faq

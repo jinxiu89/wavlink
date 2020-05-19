@@ -34,7 +34,7 @@ class Customer extends Base
     public function getData()
     {
         try {
-            $response = $this->model->with('info');
+            $response = $this->model->order('id desc')->with('info');
             $result['count']=$response->count();
             $result['data'] =$response->paginate(25);
             return $result;

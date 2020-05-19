@@ -8,8 +8,8 @@
 
 namespace app\wavlink\controller\Service;
 
-use app\common\model\Faq as FaqModel;
-use app\common\model\ServiceCategory as ServiceCategoryModel;
+use app\common\model\Service\Faq as FaqModel;
+use app\common\model\Service\ServiceCategory as ServiceCategoryModel;
 use app\wavlink\controller\BaseAdmin;
 use app\wavlink\validate\Faq as FaqValidate;
 

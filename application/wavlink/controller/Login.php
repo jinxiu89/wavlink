@@ -59,21 +59,18 @@ class Login extends Controller
                 }
             }
             $this->model->updateById(['last_login_time' => time(), 'ip' => request()->ip()], $ret->id);
+            $cookie['id']=$ret->id;
+            $cookie['username']=$ret->username;
+            $cookie['name']=$ret->name;
             //保存登陆信息,session 助手函数,第一个参数是变量，给它取变量名'userName'。第二个参数是值，获取到的$ret的值。第三个是作用域，admin模块下登陆信息。
-            session('userName', $ret, 'admin');
+            session('userName', $cookie, 'admin');
             session('current_language', (new Language())->getLanguageByLanguageId($data['language_id'])[0], 'admin');
-            $uid = session('userName', '', 'admin')->id;
-            if ($uid != 1) {
-                return show(1, 'success', '', '', $this->next, '登录成功，请稍后');
-            } else {
-                //超级用户登录
-                return show(1, '', '', '', $this->next, '登录成功，请稍后');
-            }
-
+            return show(1, 'success', '', '', $this->next, '登录成功，请稍后');
+//
         } else {
             $language = Collection::make(Language::all())->toArray();
-            $users = session('userName', '', 'admin');
-            if ($users && $users->id) {
+            $user = session('userName', '', 'admin');
+            if ($user && !empty($user) && is_array($user)) {
                 $this->redirect($this->next);
             }
             return $this->fetch('', ['language' => $language, 'next' => $this->next]);

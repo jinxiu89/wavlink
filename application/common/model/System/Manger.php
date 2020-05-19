@@ -9,7 +9,6 @@
 namespace app\common\model\System;
 
 use app\common\model\BaseModel;
-use PDOStatement;
 use think\Collection;
 use think\Db;
 use think\db\exception\DataNotFoundException;

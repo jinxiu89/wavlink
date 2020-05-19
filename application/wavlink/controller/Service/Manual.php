@@ -8,9 +8,9 @@
 
 namespace app\wavlink\controller\Service;
 
-use app\common\model\Manual as ManualModel;
-use app\common\model\ManualDownload;
-use app\common\model\ServiceCategory as ServiceCategoryModel;
+use app\common\model\Service\Manual as ManualModel;
+use app\common\model\Service\ManualDownload;
+use app\common\model\Service\ServiceCategory as ServiceCategoryModel;
 use app\wavlink\controller\BaseAdmin;
 use app\wavlink\validate\Manual as ManualValidate;
 use think\App;

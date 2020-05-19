@@ -10,7 +10,7 @@
 namespace app\wavlink\controller\Service;
 
 
-use app\common\model\Firmware as model;
+use app\common\model\Service\Firmware as model;
 use app\wavlink\controller\BaseAdmin;
 use app\wavlink\validate\Firmware as validate;
 use think\App;

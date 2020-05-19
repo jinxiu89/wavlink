@@ -2,9 +2,9 @@
 
 use app\common\model\Content\Featured;
 use app\common\model\Language;
-use app\common\model\Manual;
-use app\common\model\Product;
-use app\common\model\ServiceCategory;
+use app\common\model\Service\Manual;
+use app\common\model\Content\Product;
+use app\common\model\Service\ServiceCategory;
 use think\Collection;
 use think\db\exception\DataNotFoundException;
 use think\db\exception\ModelNotFoundException;

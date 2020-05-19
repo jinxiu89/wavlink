@@ -56,8 +56,8 @@ class BaseAdmin extends Controller
         if (Session::has('userName', 'admin')) {
             $userSession = session('userName', '', 'admin');
             $this->currentLanguage = session('current_language', '', 'admin');
-            $mangerName = $userSession->name;
-            $username = $userSession->username;
+            $mangerName = $userSession['name'];
+            $username = $userSession['username'];
             $this->assign('mangerName', $mangerName);
             $this->assign('username', $username);
             $this->currentUser = $userSession;
@@ -71,8 +71,8 @@ class BaseAdmin extends Controller
     public function Auth()
     {
         $userSession = session('userName', '', 'admin');
-        $mangerName = $userSession->name;
-        $username = $userSession->username;
+        $mangerName = $userSession['name'];
+        $username = $userSession['username'];
         $this->assign('mangerName', $mangerName);
         $this->assign('username', $username);
         $auth = new Auth();
@@ -80,7 +80,7 @@ class BaseAdmin extends Controller
         $con = $request->controller();
         $action = $request->action();
         $name = $con . '/' . $action;
-        $uid = $userSession->id;
+        $uid = $userSession['id'];
         $notCheck = ['Index/index', 'Content/index', 'Service/index', 'System/index'];//对一些（控制器/方法）不需要验证
         //权限部分
         //获取全部语言

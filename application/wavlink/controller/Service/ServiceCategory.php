@@ -41,7 +41,6 @@ class ServiceCategory extends BaseAdmin
     public function index()
     {
         $parentId = input('get.parent_id', 0, 'intval');
-        print_r("hello world");
         $category = (new ServiceCategoryModel())->getServiceCategory($parentId, $this->currentLanguage['id']);
         return $this->fetch('', [
             'category' => $category['data'],

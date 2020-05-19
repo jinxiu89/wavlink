@@ -115,7 +115,7 @@ function getServiceCategory($id)
     if ($map == 0) {
         return "<span style='color: blue'>这是一级分类</span>";
     }
-    $data = \app\common\model\ServiceCategory::get($map);
+    $data = \app\common\model\Service\ServiceCategory::get($map);
     return $data['name'];
 }
 

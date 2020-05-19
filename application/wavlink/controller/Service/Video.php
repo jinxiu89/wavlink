@@ -7,8 +7,8 @@
  * 下载中心
  */
 namespace app\wavlink\controller\Service;
-use app\common\model\ServiceCategory as ServiceCategoryModel;
-use app\common\model\Video as VideoModel;
+use app\common\model\Service\ServiceCategory as ServiceCategoryModel;
+use app\common\model\Service\Video as VideoModel;
 use app\wavlink\controller\BaseAdmin;
 use app\wavlink\validate\Video as VideoValidate;
 use think\App;

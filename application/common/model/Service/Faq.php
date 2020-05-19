@@ -58,4 +58,19 @@ Class Faq extends BaseModel
         ];
         return Search($model, $map, $order);
     }
+
+    /**
+     * @param $title
+     * @return array|\PDOStatement|string|\think\Model|null
+     * @throws \think\db\exception\DataNotFoundException
+     * @throws \think\db\exception\ModelNotFoundException
+     * @throws \think\exception\DbException
+     */
+    public static function getDataByTitle($title){
+        try{
+            return self::where(['url_title'=>$title])->find();
+        }catch (\Exception $exception){
+            print_r('hello world');
+        }
+    }
 }

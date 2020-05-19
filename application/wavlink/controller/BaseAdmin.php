@@ -83,12 +83,17 @@ class BaseAdmin extends Controller
         $uid = $userSession->id;
         $notCheck = ['Index/index', 'Content/index', 'Service/index', 'System/index'];//对一些（控制器/方法）不需要验证
         //权限部分
-        if ($uid != 1) {
+        //获取全部语言
+        $languages = LanguageModel::all(['status' => 1]);//待清理
+        $rules = $auth->getAllAuth();
+        $this->assign('access', $rules);
+        /*if ($uid != 1) {
             $_access = $auth->getAuthById($uid);
             $this->assign('access', $_access);
             if (!in_array($name, $notCheck)) {
                 if (!$auth->check($name, $uid)) {
-                    return show(0, 'Sorry!没权限操作', '', '', $_SERVER['HTTP_REFERER'], '');
+
+                    return show(0, 'Sorry!没权限操作', '', '', $this->request->header('http-referer'), '');
 //                    $this->error('Sorry,没有权限.', url('index/index'));
                 }
             }
@@ -99,7 +104,7 @@ class BaseAdmin extends Controller
             $languages = LanguageModel::all(['status' => 1]);//待清理
             $rules = $auth->getAllAuth();
             $this->assign('access', $rules);
-        }
+        }*/
         $this->assign('uid', $uid);
         $this->assign('languages', $languages);//这个是后台切换语言时的数组
     }

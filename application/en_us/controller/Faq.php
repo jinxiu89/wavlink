@@ -8,8 +8,8 @@
 
 namespace app\en_us\controller;
 
-use app\common\model\Faq as FaqModel;
-use app\common\model\ServiceCategory;
+use app\common\model\Service\Faq as FaqModel;
+use app\common\model\Service\ServiceCategory;
 use think\App;
 use think\db\exception\DataNotFoundException;
 use think\db\exception\ModelNotFoundException;
@@ -87,7 +87,7 @@ class Faq extends Base
             abort(404);
         }
         //该问题详情页
-        $result = FaqModel::getDetailsByUrlTitle($url_title, $this->code);
+        $result = FaqModel::getDataByTitle($url_title);
         //该问题的分类
         $faqCate = ServiceCategory::get(['id' => $result['category_id']]);
         if (!empty($result)) {

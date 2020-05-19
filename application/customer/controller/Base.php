@@ -8,7 +8,7 @@
 
 namespace app\customer\controller;
 
-use app\common\model\About as AboutModel;
+use app\common\model\Content\About as AboutModel;
 use app\lib\utils\email;
 use app\lib\utils\sms;
 use app\lib\utils\tools;
@@ -69,11 +69,20 @@ class Base extends Controller
         $this->assign('lang', $lang);
     }
 
-
+    /**
+     * @throws \think\db\exception\DataNotFoundException
+     * @throws \think\db\exception\ModelNotFoundException
+     * @throws \think\exception\DbException
+     *
+     */
     public function about()
     {
-        $about = (new AboutModel())->getAbouts($this->code);
-        $this->assign("about", $about['data']);
+        try{
+            $about = (new AboutModel())->getAbouts($this->code);
+            if ($about) $this->assign("about", $about['data']);
+        }catch (Exception $exception){
+            $this->assign('about',[]);
+        }
     }
 
 

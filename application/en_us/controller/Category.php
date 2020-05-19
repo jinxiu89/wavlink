@@ -31,7 +31,6 @@ class  Category extends Base
         $categoryModel = new CategoryModel();
         //获取当前的传入的url_title,获取分类id，得到分类的信息。
         $parent = CategoryModel::getDetailsByUrlTitle($category, $this->code);
-
         if (empty($parent)) {
             abort(404);
         }

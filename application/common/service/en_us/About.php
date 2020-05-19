@@ -12,7 +12,7 @@
 namespace app\common\service\en_us;
 
 
-use app\common\model\About as model;
+use app\common\model\Content\About as model;
 
 class About extends BaseService
 {
@@ -27,7 +27,6 @@ class About extends BaseService
      * @return string
      */
     public function getArticle($url_title,$code){
-
         try{
             return $this->model->getArticleByUrlTitle($url_title,$code);
         }catch (\Exception $exception){

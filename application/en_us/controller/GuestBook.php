@@ -8,11 +8,9 @@
 
 namespace app\en_us\controller;
 
-use app\common\model\GuestBook as GuestBookModel;
-use app\common\validate\OtherInformation as OtherInformationValidate;
-use app\common\validate\ProductInformation as ProductInformationValidate;
-//use app\common\validate\UserInformation as UserInformationValidate;
+use app\common\model\Service\GuestBook as GuestBookModel;
 use app\en_us\validate\Ticket;
+
 
 class GuestBook extends Base
 {

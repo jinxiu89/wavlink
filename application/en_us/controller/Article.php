@@ -9,8 +9,8 @@
 
 namespace app\en_us\controller;
 
-use app\common\model\Article as ArticleModel;
-use app\common\model\ServiceCategory as ServiceCategoryModel;
+use app\common\model\Content\Article as ArticleModel;
+use app\common\model\Service\ServiceCategory as ServiceCategoryModel;
 
 class Article extends Base
 {

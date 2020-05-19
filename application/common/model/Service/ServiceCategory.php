@@ -6,11 +6,11 @@
  * Time: 15:00
  */
 
-namespace app\common\model;
+namespace app\common\model\Service;
 
-use app\common\model\Language as LanguageModel;
 use app\common\helper\Category as Helper;
-use think\Collection;
+use app\common\model\BaseModel;
+use app\common\model\Language as LanguageModel;
 
 /***
  * Class ServiceCategory
@@ -40,7 +40,12 @@ Class ServiceCategory extends BaseModel
             'listorder' => 'desc',
             'id' => 'desc',
         ];
-        return Search($model, $data, $order);
+//        print_r("hello world");exit;
+        try{
+            return Search($model, $data, $order);
+        }catch (\Exception $exception){
+
+        }
     }
 
     /**

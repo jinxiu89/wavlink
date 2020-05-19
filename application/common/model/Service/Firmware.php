@@ -1,8 +1,9 @@
 <?php
 
 
-namespace app\common\model;
+namespace app\common\model\Service;
 
+use app\common\model\BaseModel;
 use think\exception\DbException;
 
 /**
@@ -37,6 +38,11 @@ class Firmware extends BaseModel
      */
     public function getDataByTitle($title)
     {
+        try{
+            return $this->where(['title'=>$title])->find();
+        }catch (\Exception $exception){
+
+        }
         return $data = $this->where(['title' => $title])->find();
     }
 }

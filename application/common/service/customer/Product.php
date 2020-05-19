@@ -13,7 +13,7 @@ namespace app\common\service\customer;
 
 use app\common\model\Country;
 use app\common\model\Customer\Product as Model;
-use app\common\model\Category;
+use app\common\model\Content\Category;
 
 /**
  * Class product

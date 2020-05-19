@@ -6,8 +6,10 @@
  * Time: 9:52
  */
 
-namespace app\common\model;
+namespace app\common\model\Service;
 
+
+use app\common\model\BaseModel;
 
 class Soft extends BaseModel
 {

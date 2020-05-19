@@ -81,4 +81,22 @@ class Article extends BaseModel
         $result = $this->where(['status' => 1, 'language_id' => $language_id])->order(['update_time' => 'desc'])->limit(2)->field('id,title,url_title,logo,seo_description,update_time')->select();
         return Collection::make($result);
     }
+
+    /**
+     * @param $url_title
+     * @param $code
+     * @return array|PDOStatement|string|\think\Model|null
+     * @throws DataNotFoundException
+     * @throws DbException
+     * @throws ModelNotFoundException
+     */
+    public static function getDetailsByUrlTitle($url_title,$code){
+        $language_id = LanguageModel::getLanguageCodeOrID($code);
+        $map = [
+            'status' => 1,
+//            'language_id' => $language_id,
+            'url_title' => $url_title
+        ];
+        return self::where($map)->find();
+    }
 }

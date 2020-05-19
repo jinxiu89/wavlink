@@ -9,11 +9,10 @@
 namespace app\common\model\Content;
 
 use app\common\helper\Algorithm as AlgorithmHelp;
-use app\common\model\Category as CategoryModel;
+use app\common\model\Content\Category as CategoryModel;
 use app\common\model\Language as LanguageModel;
-use \app\common\model\Drivers as DriversModel;
+use \app\common\model\Service\Drivers as DriversModel;
 use Exception;
-use PDOStatement;
 use think\Collection;
 use think\Db;
 use think\db\exception\DataNotFoundException;

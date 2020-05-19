@@ -8,8 +8,8 @@
 
 namespace app\en_us\controller;
 
-use app\common\model\Manual as ManualModel;
-use app\common\model\ServiceCategory;
+use app\common\model\Service\Manual as ManualModel;
+use app\common\model\Service\ServiceCategory;
 use think\App;
 use think\db\exception\DataNotFoundException;
 use think\db\exception\ModelNotFoundException;

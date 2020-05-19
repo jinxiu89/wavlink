@@ -16,6 +16,10 @@ use think\facade\Cookie;
 use think\db\exception\ModelNotFoundException;
 use think\Model;
 
+/**
+ * Class BaseModel
+ * @package app\common\model
+ */
 Class BaseModel extends Model
 {
     //php think optimize:schema  在命令行里输入这个，生成数据库缓存字段
@@ -134,8 +138,9 @@ Class BaseModel extends Model
      * @throws \think\db\exception\DataNotFoundException
      * @throws ModelNotFoundException
      * @throws \think\exception\DbException
+     * 准备废弃的函数
      */
-    public static function getDetailsByUrlTitle($urlTitle, $code)
+   /* public static function getDetailsByUrlTitle($urlTitle, $code)
     {
         $model = request()->controller();
         $language_id = LanguageModel::getLanguageCodeOrID($code);
@@ -144,8 +149,26 @@ Class BaseModel extends Model
             'language_id' => $language_id,
             'url_title' => $urlTitle
         ];
-        return model('Content.'.$model)->where($map)->find();
-    }
+        return model($model)->where($map)->find();
+    }*/
+
+    /**
+     * @param $title
+     * @param $code
+     * @return array|\PDOStatement|string|Model|null
+     * @throws ModelNotFoundException
+     * @throws \think\db\exception\DataNotFoundException
+     * @throws \think\exception\DbException
+     */
+   /* public static function getDetailsByTitle($title,$code='en_us'){
+        $language_id = LanguageModel::getLanguageCodeOrID($code);
+        $map = [
+            'status' => 1,
+            'language_id' => $language_id,
+            'url_title' => $title
+        ];
+        return self::where($map)->find();
+    }*/
 
     /**
      * 置顶,上移，下移，置底功能

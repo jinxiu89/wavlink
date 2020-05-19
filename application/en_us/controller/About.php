@@ -6,7 +6,7 @@
  * Time: 10:15
  */
 namespace app\en_us\controller;
-use app\common\model\About as AboutModel;
+use app\common\model\Content\About as AboutModel;
 class About extends Base{
     /***
      * 前端关于我们的数据输出，美化URL，将原来的ID转换为title，
@@ -24,7 +24,7 @@ class About extends Base{
             abort(404);
         }
         //todo::不传参数时的问题还没有处理
-        $result = AboutModel::getDetailsByUrlTitle($about,$this->code);
+        $result = AboutModel::getArticleByUrlTitle($about,$this->code);
         if(!$result||empty($result)){
             abort(404);
         }

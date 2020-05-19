@@ -9,7 +9,8 @@
  * 函数 驼峰命名  如getInfo
  */
 
-namespace app\common\model;
+namespace app\common\model\Service;
+use app\common\model\BaseModel;
 use app\common\model\Model as prdModel;
 
 class Sn extends BaseModel

@@ -5,7 +5,7 @@
  * Date: 2017/8/25
  * Time: 17:40
  */
-namespace app\common\model;
+namespace app\common\model\System;
 
 use app\common\model\BaseModel;
 use think\Cookie;

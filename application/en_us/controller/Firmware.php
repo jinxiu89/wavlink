@@ -8,9 +8,9 @@
 namespace app\en_us\controller;
 
 
-use app\common\model\ServiceCategory;
+use app\common\model\Service\ServiceCategory;
 use think\App;
-use app\common\model\Firmware as model;
+use app\common\model\Service\Firmware as model;
 use app\en_us\validate\Firmware as validate;
 use think\db\exception\DataNotFoundException;
 use think\db\exception\ModelNotFoundException;

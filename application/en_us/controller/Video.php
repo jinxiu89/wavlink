@@ -2,8 +2,8 @@
 
 namespace app\en_us\controller;
 
-use app\common\model\Video as VideoModel;
-use app\common\model\ServiceCategory as ServiceCategoryModel;
+use app\common\model\Service\Video as VideoModel;
+use app\common\model\Service\ServiceCategory as ServiceCategoryModel;
 use think\App;
 use think\db\exception\DataNotFoundException;
 use think\db\exception\ModelNotFoundException;

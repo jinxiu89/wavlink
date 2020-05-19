@@ -12,7 +12,7 @@ namespace app\wavlink\controller\Service;
 
 
 use app\common\helper\Excel;
-use app\common\model\GuestBook as GuestBookModel;
+use app\common\model\Service\GuestBook as GuestBookModel;
 use app\wavlink\controller\BaseAdmin;
 use PHPMailer\PHPMailer\Exception;
 use think\exception\PDOException;

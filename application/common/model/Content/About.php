@@ -7,13 +7,16 @@
  */
 namespace app\common\model\Content;
 use app\common\model\Language as LanguageModel;
-use PDOStatement;
 use think\Collection;
 use think\db\exception\DataNotFoundException;
 use think\db\exception\ModelNotFoundException;
 use think\exception\DbException;
 use app\common\model\BaseModel;
 
+/**
+ * Class About
+ * @package app\common\model\Content
+ */
 class About extends BaseModel
 {
     protected $table = "about";
@@ -42,7 +45,7 @@ class About extends BaseModel
      * @throws DbException
      * @throws ModelNotFoundException
      */
-    public function getArticleByUrlTitle($url_title,$code){
+    public static function getArticleByUrlTitle($url_title,$code){
         $language_id = LanguageModel::getLanguageCodeOrID($code);
         $map = [
             'status' => 1,

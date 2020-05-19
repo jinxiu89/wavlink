@@ -10,7 +10,7 @@
 // +----------------------------------------------------------------------
 // 应用公共文件
 //分类
-use app\common\model\Manual;
+use app\common\model\Service\Manual;
 use PHPMailer\PHPMailer\PHPMailer;
 use PHPMailer\PHPMailer\Exception as emailException;
 use think\Collection;
@@ -349,7 +349,7 @@ function getDownloadUrl($id)
  */
 function getProductImage($id)
 {
-    $data = \app\common\model\Product::get($id);
+    $data = \app\common\model\Content\Product::get($id);
     return $data['image_litpic_url'];
 }
 
@@ -469,7 +469,7 @@ function getTitleByCategoryID($category_id)
  */
 function getCategoryByPid($id)
 {
-    $categoryIds = \app\common\model\Product::getProductCategory($id);
+    $categoryIds = \app\common\model\Content\Product::getProductCategory($id);
     return $categoryIds[0];
 }
 
@@ -480,25 +480,25 @@ function getCategoryByPid($id)
  */
 function getCategoryByID($id)
 {
-    $categoryIds = \app\common\model\Product::getProductCategory($id);
+    $categoryIds = \app\common\model\Content\Product::getProductCategory($id);
     return $categoryIds[1];
 }
 
 function getCNameByCid($id)
 {
-    $data = \app\common\model\Category::get($id);
+    $data = \app\common\model\Content\Category::get($id);
     return $data['name'];
 }
 
 function getUrlTitleByCid($id)
 {
-    $data = \app\common\model\Category::get($id);
+    $data = \app\common\model\Content\Category::get($id);
     return $data['url_title'];
 }
 
 function getUrlByCategoryID($category_id)
 {
-    $data = \app\common\model\ServiceCategory::get($category_id);
+    $data = \app\common\model\Service\ServiceCategory::get($category_id);
     return $data['url_title'];
 }
 

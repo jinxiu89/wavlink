@@ -17,12 +17,13 @@ use think\db\exception\DataNotFoundException;
 use think\db\exception\ModelNotFoundException;
 use think\exception\DbException;
 use app\common\model\BaseModel;
+
 /**
  * Class Category
  * @package app\common\model
  *
  */
-Class Category extends BaseModel
+class Category extends BaseModel
 {
     protected $hidden = ['create_time', 'update_time'];
     protected $table = 'category';//使用category表
@@ -32,6 +33,31 @@ Class Category extends BaseModel
     public function products()
     {
         return $this->belongsToMany('Product', 'product_category', 'product_id', 'category_id');
+    }
+
+    /**
+     * @param $urlTitle
+     * @param $code
+     * @return array|\PDOStatement|string|\think\Model|null
+     * @throws DataNotFoundException
+     * @throws DbException
+     * @throws ModelNotFoundException
+     */
+    public static function getDetailsByUrlTitle($urlTitle, $code)
+    {
+        $model = request()->controller();
+        $language_id = LanguageModel::getLanguageCodeOrID($code);
+        $map = [
+            'status' => 1,
+            'language_id' => $language_id,
+            'url_title' => $urlTitle
+        ];
+        try{
+            return self::where($map)->find();
+
+        }catch (\Exception $exception){
+            return [];
+        }
     }
 
     //获取中间表数据,得到分类下的产品id

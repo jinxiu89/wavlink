@@ -60,7 +60,7 @@ class Common extends Controller
     public function terms()
     {
         $result = (new aboutService())->getArticle('terms_en', $this->code);
-        return $this->fetch('', ['result' => $result->toArray()]);
+        return $this->fetch('', ['result' => $result]);
     }
 
     /**

@@ -134,10 +134,11 @@
   color: #476fad;
 }
 .nav-table ul .active {
+  color: #fff;
   background: #3d65a3;
 }
 .nav-table ul .active:hover {
-  color: #333;
+  color: #fff;
 }
 @media screen and (min-width: 1200px) {
   .nav-table ul {

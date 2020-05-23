@@ -152,7 +152,7 @@ body {
   width: 100%;
   transition: all .3s;
   #text-vertical(50px);
-  background: @baseColor;
+  background: @activeColor;
   .container {
     position: relative;
   }
@@ -183,32 +183,28 @@ body {
       position: relative;
       &:hover a {
         color: @activeColor;
-        background: none;
+        background: @whiteColor;
       }
 
     }
     .menu .active {
       &:hover a {
-        color: @baseColor;
-        background: @activeColor;
+        background: @whiteColor;
+        color: @activeColor;
       }
     }
     .menu .menu-item a {
       display: block;
       padding: 0 20px;
       color: @whiteColor;
-      background: @baseColor;
+      background: @activeColor;
       #text-vertical(50px);
     }
     .menu .active {
-      background: @activeColor;
+      background: @whiteColor;
       a {
-        background: @activeColor;
-        color: @baseColor;
-        &:hover {
-          background: @activeColor;
-          color: @baseColor;
-        }
+        background: @whiteColor;
+        color: @activeColor;
       }
     }
     .menu .menu-item .dropdown-menu {
@@ -226,14 +222,14 @@ body {
     }
     .menu .menu-item .dropdown-menu li a {
       padding: 15px 30px;
-      color: @whiteColor;
-      background: @baseColor;
+      color: @activeColor;
+      background: @whiteColor;
       text-align: center;
       height: auto;
       line-height: normal;
       &:hover {
-        color: @baseColor;
-        background: @whiteColor;
+        background: #abcae9;
+        text-decoration: underline;
       }
     }
   }
@@ -285,7 +281,7 @@ body {
         }
         &[type="submit"] {
           width: 50px;
-          background: @baseColor;
+          background: @activeColor;
           color: @whiteColor;
           border-radius: 0 5px 5px 0;
         }
@@ -310,7 +306,7 @@ body {
         font-size: 14px;
         color: @whiteColor;
         &:hover {
-          color: @activeColor;
+          text-decoration: underline;
         }
       }
       .account .ico-box {
@@ -342,13 +338,13 @@ body {
         position: absolute;
         top: 50px;
         left: 0;
-        background: @baseColor;
+        background: @whiteColor;
 
         .user-menu-item {
           width: 140px;
           height: 50px;
           line-height: 50px;
-          border-bottom: 1px solid @whiteColor;
+          border-bottom: 1px solid @borderColor;
           &:nth-last-of-type(1) {
             border-bottom: none;
           }
@@ -357,16 +353,17 @@ body {
           display: block;
           padding: 0 10px;
           text-align: center;
-          color: @whiteColor;
+          color: @activeColor;
           .text-overflow()
         }
         .user-menu-item a {
           display: block;
           padding: 0 10px;
           text-align: center;
-          color: @whiteColor;
+          color: @activeColor;
           &:hover {
             color: @activeColor;
+            background: #abcae9;
             text-decoration: underline;
           }
         }
@@ -589,6 +586,7 @@ body {
     line-height: 50px;
     border-bottom: 1px solid @borderColor;
     background: @activeColor;
+    color: @whiteColor;
   }
   ul li a {
     display: block;

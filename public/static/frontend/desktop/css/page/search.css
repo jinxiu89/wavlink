@@ -29,7 +29,7 @@
 }
 .g-pagination .pagination > li > a:focus,
 .g-pagination .pagination > li > a:hover {
-  border-color: #f8b300;
+  border-color: #3d65a3;
 }
 .search-product .item {
   padding: 15px;
@@ -67,7 +67,7 @@
   width: 100%;
 }
 .search-product .item .img-box a:hover {
-  border: 1px solid #f8b300;
+  border: 1px solid #3d65a3;
 }
 .search-product .item .img-box a img {
   display: block;
@@ -93,7 +93,7 @@
   color: #777;
 }
 .search-product .item .des .breadcrumb a:hover {
-  color: #f8b300;
+  color: #3d65a3;
 }
 .search-product .item .des h2 {
   margin: 10px 0;
@@ -103,7 +103,7 @@
   color: #000;
 }
 .search-product .item .des h2 a:hover {
-  color: #f8b300;
+  color: #3d65a3;
 }
 .search-product .item .links {
   margin-top: 10px;
@@ -112,7 +112,7 @@
   color: #777;
 }
 .search-product .item .links a:hover {
-  color: #f8b300;
+  color: #3d65a3;
 }
 .search-driver {
   /**
@@ -229,13 +229,13 @@
   background: none;
 }
 .search-driver .item .panel .panel-body .download a.btn:hover .iconfont {
-  color: #f8b300;
+  color: #3d65a3;
 }
 .search-driver .item .panel .panel-body .download a .iconfont {
   font-size: 30px;
 }
 .search-driver .item .panel .panel-body .download a.all .iconfont {
-  color: #f8b300;
+  color: #3d65a3;
 }
 .search-driver .item .panel .panel-body .download a.windows .iconfont {
   color: #00ADEF;

@@ -40,8 +40,8 @@
   color: #333;
 }
 .feature-box .zoom-box .spec-scroll .next {
-  background: #f8b300;
-  border-color: #f8b300;
+  background: #3d65a3;
+  border-color: #3d65a3;
   color: #333;
 }
 .feature-box .des {
@@ -53,7 +53,7 @@
 .feature-box .des .mode {
   padding: 5px 0;
   font-size: 14px;
-  color: #f8b300;
+  color: #3d65a3;
   border-bottom: 1px solid #eaeaea;
 }
 .feature-box .des .feature {
@@ -92,7 +92,7 @@
   display: block;
   color: #333;
   text-align: center;
-  border: 1px solid #f8b300;
+  border: 1px solid #3d65a3;
 }
 .poster-box img {
   display: block;
@@ -125,16 +125,16 @@
   cursor: pointer;
 }
 .nav-table ul li a {
-  color: #f8b300;
+  color: #3d65a3;
 }
 .nav-table ul li:hover {
-  color: #ffbd0a;
+  color: #476fad;
 }
 .nav-table ul li:hover a {
-  color: #ffbd0a;
+  color: #476fad;
 }
 .nav-table ul .active {
-  background: #f8b300;
+  background: #3d65a3;
 }
 .nav-table ul .active:hover {
   color: #333;

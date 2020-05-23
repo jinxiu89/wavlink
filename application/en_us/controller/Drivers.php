@@ -8,6 +8,7 @@
 
 namespace app\en_us\controller;
 
+use app\common\helper\Category;
 use think\App;
 use think\db\exception\DataNotFoundException;
 use think\db\exception\ModelNotFoundException;
@@ -16,9 +17,11 @@ use think\exception\DbException;
 use think\exception\HttpException;
 use app\common\model\Service\Drivers as DriversModel;
 use app\common\model\Service\ServiceCategory as ServiceCategoryModel;
+use app\common\model\Service\DriversCategory;
+use app\wavlink\service\service\driversCategory as service;
 use think\Request;
 use think\response\View;
-use app\wavlink\validate\ListorderValidate;
+
 
 /***
  * Class Drivers
@@ -37,8 +40,9 @@ class Drivers extends Base
     {
         parent::__construct($app);
         try {
-            $cate = ServiceCategoryModel::getTree($this->code, 'Drivers');
-            $this->assign('cate', $cate);
+            $data = (new service())->getDataByLanguageId($status=1,$this->language_id);
+            $level = Category::toLevel($data['data']->toArray()['data'], '├─');
+            $this->assign('cate', $level);
         } catch (DataNotFoundException $e) {
         } catch (ModelNotFoundException $e) {
         } catch (DbException $e) {
@@ -93,17 +97,18 @@ class Drivers extends Base
             return redirect(url('/' . $this->code . '/drivers',['order'=>$order]), [], 200);
         }
         //获取选择的子分类信息
-        $parent = ServiceCategoryModel::getCategoryIdByName($this->code, $category);
+        $parent = (new service())->getCategoryID($category,$this->language_id);
         if (empty($parent)) {
-            throw new HttpException(404);
+            abort(404);
         } else {
             //获取选择的分类下的驱动列表
-            $result = (new DriversModel())->getDriversByCategoryId($this->code, $parent['id'], $order);
+            $result = (new DriversModel())->getDriversByCategoryIds($this->language_id,$parent['categoryID'], $order);
+//            print_r($result);exit;
             return view($this->template . '/drivers/index.html', [
-                'data' => $result['result'],
-                'parent' => $parent,
+                'data' => $result['data'],
+                'parent' => $parent['category'],
                 'count' => $result['count'],
-                'name' => $parent['name'],
+                'name' => $category,
                 'order' => $order
             ]);
         }

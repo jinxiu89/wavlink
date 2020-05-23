@@ -16,6 +16,7 @@ use PHPMailer\PHPMailer\Exception as emailException;
 use think\Collection;
 use think\facade\Config;
 use think\Db;
+use app\common\model\Service\DriversCategory;
 
 function pagination($obj)
 {
@@ -118,6 +119,21 @@ function getServiceCategory($id)
     $data = \app\common\model\Service\ServiceCategory::get($map);
     return $data['name'];
 }
+/**
+ * @param $parent_id
+ *
+ */
+/*function getDriverCate($parent_id){
+    if($parent_id == 0) return "根分类";
+    try{
+        $data=(new DriversCategory())->field('name')->get($parent_id);
+        return  $data->toArray()['name'];
+    }catch (Exception $exception){
+        return  "有错误";
+    }
+
+}*/
+
 
 /***
  * 返回错误信息

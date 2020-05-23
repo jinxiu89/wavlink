@@ -61,6 +61,26 @@ Class Drivers extends BaseModel
     }
 
     /**
+     * @param $language
+     * @param $category
+     * @param string $order
+     * @return array
+     * @throws DbException
+     */
+    public function getDriversByCategoryIds($language,$category,$order='desc'){
+        $order = [
+            'update_time' => $order,
+            'listorder' => 'desc',
+            'id' => 'desc',
+        ];
+        $response=self::where('category_id','in',$category)->where(['language_id'=>$language,'status'=>1]);
+        $count=$response->count();
+        $data=$response->order($order)->paginate(6,true);
+        $result=ModelsArr($data,'models','modelGroup');
+        return ['count'=>$count,'data'=>$result];
+    }
+
+    /**
      * @param $name
      * @param $code
      * @return array|string

@@ -11,7 +11,6 @@
 
 namespace app\wavlink\service;
 
-use AlibabaCloud\Emr\V20160408\ReleaseETLJob;
 
 
 /**
@@ -62,20 +61,6 @@ class Base
         }
     }
 
-    /**
-     * @param string $status
-     * @param $language_id
-     * @return array
-     */
-    public function getDataByLanguageId($status, $language_id)
-    {
-        try {
-            $response = $this->model->getDataByLanguageId($status,$language_id);
-            $result['count'] = $response->count();
-            $result['data'] = $response->paginate(25);
-            return $result;
-        } catch (\Exception $exception) {
-            return [];
-        }
-    }
+
+
 }

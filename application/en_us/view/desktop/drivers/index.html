@@ -1,5 +1,5 @@
 {extend name="desktop/common/base" /}
-{block name="title"}{$parent.seo_title} - {:lang('slogan')}{:lang('powered by')}{/block}
+{block name="title"}{$parent.title} - {:lang('slogan')}{:lang('powered by')}{/block}
 {block name="seo"}
 <meta name="description" content="{$parent.description}">
 <meta name="keywords" content="{$parent.keywords}">
@@ -38,9 +38,9 @@
                                 <option value="all">{:lang('All Category')}</option>
                                 {volist name="cate" id="vo"}
                                 {if($vo.level == 1)}
-                                <option value="{$vo.url_title}" style="display: none" {if condition='$name eq $vo.name' }selected{/if}>{$vo.delimiter|raw}{$vo.name}</option>
+                                <option value="{$vo.title}" {if condition='$name eq $vo.name' }selected{/if}>{$vo.delimiter|raw}{$vo.name}</option>
                                 {else /}
-                                <option value="{$vo.url_title}" {if condition='$name eq $vo.name' }selected{/if}>{$vo.delimiter|raw}{$vo.name}</option>
+                                <option value="{$vo.title}" {if condition='$name eq $vo.name' }selected{/if}>{$vo.delimiter|raw}{$vo.name}</option>
                                 {/if}
                                 {/volist}
                             </select>
@@ -81,7 +81,7 @@
                             <div class="mode">
                                 <div>{:lang('Available')} : </div>
                                 <p>
-                                    {volist name="$vo.modelsGroup" id="v"}
+                                    {volist name="$vo.modelGroup" id="v"}
                                     <!-- 2018-4-12 星期四 14:05 添加字体大小给td标签 -->
                                     <span>{$v}</span>
                                     {/volist}

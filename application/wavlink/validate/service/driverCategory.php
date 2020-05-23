@@ -22,7 +22,7 @@ class driverCategory extends BaseValidate
 {
     protected $rule = [
         'id' => 'integer',
-        'name' => 'require|alphaDash|unique:tb_drivers_category,name',
+        'name' => 'require|unique:tb_drivers_category,name',
         'url_title' => 'require|unique:tb_drivers_category,url_title',
         'status'=>'integer|in:-1,0,1',
 
@@ -30,7 +30,7 @@ class driverCategory extends BaseValidate
     protected $message = [
         'id' => 'ID不合法',
         'name.require' => '分类名必须填',
-        'name.alphaDash' => '分类名不能重复',
+        'name.unique' => '分类名不能重复',
         'status'=>'状态值不在合法范围内'
     ];
     protected $scene = [

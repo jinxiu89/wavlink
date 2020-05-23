@@ -31,11 +31,11 @@
                     <th scope="col" colspan="16">下载列表</th>
                 </tr>
                 <tr class="text-c">
-                    <th width="40">ID</th>
+                    <th width="80">分类层级</th>
                     <th width="220">分类名</th>
                     <th width="160">父分类</th>
                     <th width="40">目录</th>
-                    <th width="120">title</th>
+<!--                    <th width="120">title</th>-->
                     <th width="240">关键词</th>
                     <th>描述</th>
                     <th width="60">排序</th>
@@ -47,12 +47,12 @@
                 <tbody>
                 {notempty name="data"}
                 {volist name="data" id="vo"}
-                <tr class="text-l">
-                    <td>{$vo.id}</td>
+                <tr class="text-l" {if($vo.parent_id == 0)}style="background:#f2f2f2;"{/if}>
+                    <td>{$vo.path|getPath}{$vo.id}</td>
                     <td>{$vo.delimiter|raw}{$vo.name}</td>
                     <td>{$vo.parent_id|getDriverCate}</td>
                     <td class="text-c">{if($vo.is_parent == 0)}是{else /}否 {/if}</td>
-                    <td>{$vo.url_title}</td>
+<!--                    <td>{$vo.url_title}</td>-->
                     <td>{$vo.keywords}</td>
                     <td>{$vo.description}</td>
                     <td class="text-c">{$vo.listorder}</td>

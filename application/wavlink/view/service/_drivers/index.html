@@ -45,7 +45,7 @@
                 <tr class="text-l">
                     <td class="text-c">{$vo.id}</td>
                     <td>{$vo.name}</td>
-                    <td>{$vo.category_id|getServiceCategory|raw}</td>
+                    <td>{$vo.category_id|getDriverCate|raw}</td>
                     <td class="text-c">{$vo.language_id|getLanguage|raw}</td>
                     <td class="text-c listorder">
                         <input type="text" class="input-text input-sm" value="{$vo.listorder}" attr-id="{$vo.id}" name="listorder">

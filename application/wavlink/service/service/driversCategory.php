@@ -34,4 +34,27 @@ class driversCategory extends Base
             //todo:: 异常
         }
     }
+    public function getCategoryID($category,$language){
+        try{
+            return $this->model->getCategoryID($category,$language);
+        }catch (\Exception $exception){
+            return 'cuowu';
+        }
+    }
+    /**
+     * @param string $status
+     * @param $language_id
+     * @return array
+     */
+    public function getDataByLanguageId($status, $language_id)
+    {
+        try {
+            $response = $this->model->getDataByLanguageId($status, $language_id);
+            $result['count'] = $response->count();
+            $result['data'] = $response->paginate(25);
+            return $result;
+        } catch (\Exception $exception) {
+            return [];
+        }
+    }
 }

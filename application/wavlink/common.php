@@ -283,3 +283,18 @@ function getDriverCate($parent_id){
 
 }
 
+/**
+ * @param $path
+ * @return string
+ * 根据路径来重新组装分类层级
+ * 使用功能有 各种分类的层级操作
+ */
+function getPath($path){
+    $categorys=array_filter(explode('-',$path));
+    $str='';
+    foreach ($categorys as $v){
+       $str=$str.$v.'-';
+    }
+    return $str;
+}
+

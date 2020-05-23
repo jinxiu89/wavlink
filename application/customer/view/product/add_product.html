@@ -1,0 +1,190 @@
+{extend name="base/form"}
+{block name="title"}
+{:lang('Add product cases')}
+{/block}
+{block name="style"}
+<link rel="stylesheet" href="__USER__/ui/css/page/login_register.css">
+<style>
+    .proRegister-box {
+        background: #fff;
+    }
+    .proRegister-box .box {
+        margin: 0!important;
+    }
+    .proRegister-box .box .info-box .form-title {
+        margin: 20px;
+        text-align: center;
+    }
+    .proRegister-box .box .info-box .form-title .title {
+        font-size: 16px;
+    }
+    .proRegister-box .box .info-box .form-title .notice {
+        color: red;
+        font-size: 12px;
+    }
+    .proRegister-box .box .info-box .form-title .notice span {
+        color: red;
+    }
+    .proRegister-box .box .info-box .info label {
+        width: 130px;
+    }
+    .proRegister-box .box .info-box .info input, .proRegister-box .box .info-box .info select {
+        width: 240px;
+    }
+    .proRegister-box .box .info-box .info .info-time {
+        float: left;
+        width: 76px;
+    }
+    .proRegister-box .box .info-box .info .info-time:nth-of-type(2) {
+        margin: 0 6px;
+    }
+    .proRegister-box .box .info-box .info .info-time label {
+        width: 100%;
+        text-align: left;
+    }
+    .proRegister-box .box .info-box .info .info-time select {
+        width: 100%;
+    }
+</style>
+{/block}
+{block name="main"}
+<div class="form-box proRegister-box">
+    <!--表单容器容器-->
+    <!--业务处理区块-->
+    <div class="box" id="box">
+        <!--<div class="logo-box">
+            <h2><a href="https://www.wavlink.com"><img class="" src="https://cloud.wavlink.com/index.php?user/publicLink&fid=bb50yNmQ9Uq6Cd3K4xnP7f4s6XTIQRL4VC0zRTOCg6uD3u4sD4Fq1rba3mEGfQg2ZPfdpGI9jz0oV8fX-smuZ4C2yokEppUXskovnb1iUWYZDDl2W-lXqo_X6bFTJ5qnEbjrshyO_5eKfdm9a8V3x9BFL-Ms&file_name=/SeeTheWord_black.png" alt=""></a></h2>
+        </div>-->
+        <div class="info-box">
+            <div class="form-title">
+                <h3 class="title">{:lang('Add Products')}</h3>
+<!--                <p class="notice"><span>*</span> {:lang('Please note that the phone number cannot be changed after it is confirmed')}.</p>-->
+            </div>
+            <form action="" id="registerForm" method="post">
+                <div class="info">
+                    <label for="model">{:lang('Model')}<span> * </span></label>
+                    <input type="hidden" name="user_id" value="{$user_id}">
+                    <input id="model" name="model" type="text" placeholder="{:lang('Please enter your product model')}">
+                </div>
+                <div class="info">
+                    <label for="sn">{:lang('Sn')}</label>
+                    <input id="sn" name="sn" type="text" placeholder="{:lang('Please enter your sn code')}">
+                </div>
+                <div class="info">
+                    <label for="platform">{:lang('Purchase Platform')}<span> * </span></label>
+                    <input id="platform" name="platform" type="text" placeholder="{:lang('Where did you buy our products')}">
+                    <!--<select name="platform" id="platform">
+                        <option value="">{:lang('select')}</option>
+                        <option value="淘宝">淘宝</option>
+                        <option value="天猫">天猫</option>
+                        <option value="京东">京东</option>
+                        <option value="苏宁">苏宁</option>
+                        <option value="Amazon">Amazon</option>
+                        <option value="Newegg">Newegg</option>
+                    </select>-->
+                </div>
+                <div class="info">
+                    <label for="country">{:lang('Country')}<span> * </span></label>
+                    <select id="country" name="country">
+                        <option value="">{:lang('select')}</option>
+                        {volist name="country" id="vo"}
+                        <option value="{$vo.name}">{:lang($vo.name)}</option>
+                        {/volist}
+                    </select>
+                </div>
+                <div class="info">
+                    <label for="order_number">{:lang('Order Number')}</label>
+                    <input id="order_number" name="order_number" type="text" placeholder="{:lang('Please enter your order number')}" >
+                </div>
+                <div class="info">
+                    <label for="create_time">{:lang('Purchase Time')}<span> * </span></label>
+                    <input id="create_time" name="create_time" type="date" placeholder="">
+                    <!--<div class="info-time">
+&lt;!&ndash;                        <label for="year">{:lang('Year')}: </label>&ndash;&gt;
+                        <select id="year" class="sel_year" rel="&#45;&#45;"></select>
+                    </div>
+                    <div class="info-time">
+&lt;!&ndash;                        <label for="month">{:lang('Month')}: </label>&ndash;&gt;
+                        <select id="month" class="sel_month" rel="&#45;&#45;"></select>
+                    </div>
+                    <div class="info-time">
+&lt;!&ndash;                        <label for="day">{:lang('Day')}: </label>&ndash;&gt;
+                        <select id="day" class="sel_day" rel="&#45;&#45;"></select>
+                    </div>-->
+                </div>
+                <div class="info">
+                    <label for="category">{:lang('Category')}</label>
+                    <select name="category" id="category">
+                        <option value="">{:lang('select')}</option>
+                        {volist name="category" id="vo"}
+                        <option value="{$vo.name}" {if($vo.level == 1)}disabled{/if}>{$vo.delimiter|raw}{$vo.name}</option>
+                        {/volist}
+                    </select>
+                </div>
+
+                <div class="btn-box">
+                    <button class="btn-submit" id="submit" type="submit">{:lang('Submit')}</button>
+                    <!--<input class="btn-submit" type="submit" onclick="save('{:url(\'sn/index\')}')"  value="&nbsp;&nbsp;{:lang('ReWrite')}&nbsp;&nbsp;">-->
+                </div>
+            </form>
+        </div>
+        <div class="tips">
+            {:lang('Product reg tips')}
+        </div>
+    </div>
+    <!--业务处理区块-->
+</div>
+{/block}
+{block name="javascript"}
+<script type="text/javascript" src="__STATIC__/admin/lib/jquery.validation/1.14.0/jquery.validate.js"></script>
+<script type="text/javascript" src="__STATIC__/admin/lib/jquery.validation/1.14.0/validate-methods.js"></script>
+<script type="text/javascript" src="__STATIC__/admin/lib/layer/2.4/layer.js"></script>
+<script src="__USER__/ui/js/birthday.js"></script>
+{if condition="$lang == 'zh_cn'"}
+<script type="text/javascript" src="__STATIC__/admin/lib/jquery.validation/1.14.0/messages_zh.js"></script>
+{/if}
+<script src="__STATIC__/admin/lib/jquery.validation/1.14.0/validate-methods.js"></script>
+<script>
+    $(document).ready(function(){
+        $.ms_DatePicker({
+            YearSelector: ".sel_year",
+            MonthSelector: ".sel_month",
+            DaySelector: ".sel_day"
+        });
+    })
+    $('#registerForm').validate({
+        errorClass: 'infoError',
+        errorElement: "p",
+        rules:{
+            model: 'required',
+            country: 'required',
+            platform: 'required',
+            create_time: 'required'
+        },
+        messages: {
+            /*model: '',
+            country: '',
+            platform: '',
+            create_time: '',*/
+        },
+        submitHandler:function (form) {
+            $.ajax({
+                url:"{:url('customerAddProduct')}",
+                type:"post",
+                dataType:"json",
+                data:$(form).serialize(),
+                success: function (result) {
+                    if (result.status === 1) {
+                        //注册成功后要跳转到登录
+                        layer.msg(result.message, {icon: 1, time: 3000},function () {
+                            window.parent.location.replace(window.parent.location.href)
+                        });
+                    } else {
+                        layer.msg(result.message, {icon: 5, time: 1000});
+                    }
+                }
+            });
+        }
+    });
+</script>
+{/block}

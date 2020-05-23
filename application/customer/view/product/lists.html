@@ -1,0 +1,125 @@
+{extend name="base/main" /}
+{block name="title"}
+{:lang('Product List')}
+{/block}
+{block name="style"}
+<link rel="stylesheet" href="__USER__/ui/css/page/product.css">
+{/block}
+{block name="path"}
+<div class="common-width">
+    <div class="g-path">
+        <ol class="breadcrumb">
+            <li><a href="/{$lang}/index.html">{:lang('home')}</a></li>
+            <li><a href="{:url('customer_info')}">{:lang('Member Center')}</a></li>
+            <li class="active">{:lang('Personal Profile')}</li>
+        </ol>
+    </div>
+</div>
+{/block}
+{block name="main"}
+<div class="g-main">
+
+    <div class="Introduction">
+        <div class="person-des">
+            <h2 class="title">{:lang('Product List')}</h2>
+            <p>完成产品注册后您可以享受到WAVLINK会员专属服务（新产品测评资格、会员日抽奖活动、活动赠礼、产品延保服务）</p>
+        </div>
+
+        <div class="btn-box">
+            <button onclick="layer_open('{:lang(\'Add Products\')}','{:url(\'customerAddProduct\')}',533,600)">
+                {:lang('Add Products')}
+            </button>
+        </div>
+    </div>
+    {notempty name="data"}
+    {volist name="data" id="vo"}
+    <div class="Module">
+        <h3 class="title">
+            <span>{$vo.model}</span>
+            <a class="delete" href="#" title="delete"><span class="iconfont iconashbin"></span></a>
+        </h3>
+        <div class="Field">
+            <h4 class="Field-label">{:lang('Model')}</h4>
+            <div class="Field-content">
+                <div>
+                    <span class="Field-text">{$vo.model}</span>
+                </div>
+            </div>
+        </div>
+        <div class="Field">
+            <h4 class="Field-label">{:lang('SN')}</h4>
+            <div class="Field-content">
+                <div>
+                    <span class="Field-text">{$vo.sn}</span>
+                    <button class="Field-modify" type="button"><span class="iconfont iconedit"></span> Modify</button>
+                </div>
+            </div>
+        </div>
+        <div class="Field">
+            <h4 class="Field-label">{:lang('Purchase Platform')}</h4>
+            <div class="Field-content">
+                <div>
+                    <span class="Field-text">{$vo.platform}</span>
+                </div>
+            </div>
+        </div>
+        <div class="Field">
+            <h4 class="Field-label">{:lang('Country')}</h4>
+            <div class="Field-content">
+                <div>
+                    <span class="Field-text">{$vo.country}</span>
+                </div>
+            </div>
+        </div>
+        <div class="Field">
+            <h4 class="Field-label">{:lang('Order Number')}</h4>
+            <div class="Field-content">
+                <div>
+                    <span class="Field-text">{$vo.order_number}</span>
+                    <button class="Field-modify" type="button"><span class="iconfont iconedit"></span> Modify</button>
+                </div>
+            </div>
+        </div>
+        <div class="Field">
+            <h4 class="Field-label">{:lang('Purchase Time')}</h4>
+            <div class="Field-content">
+                <div>
+                    <span class="Field-text">{$vo.create_time|date="Y-m-d"}</span>
+                </div>
+            </div>
+        </div>
+        <div class="Field">
+            <h4 class="Field-label">{:lang('Category')}</h4>
+            <div class="Field-content">
+                <div>
+                    <span class="Field-text">{$vo.category}</span>
+                    <button class="Field-modify" type="button"><span class="iconfont iconedit"></span> Modify</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    {/volist}
+    {/notempty}
+
+    {notempty name="page"}
+    <div class="pagination-box">
+        {$page|raw}
+    </div>
+    {/notempty}
+</div>
+{/block}
+{block name="javascript"}
+<!--私有JS-->
+<script>
+    $('.Product').addClass('active');
+    $(document).ready(function () {
+        var FieldTextDom = $('.Field-text');
+        for (var i = 0; i < FieldTextDom.length; i++) {
+            var FieldText = $(FieldTextDom[i]).text();
+            if (FieldText !== '') {
+                $(FieldTextDom[i]).siblings('.Field-modify').remove()
+            }
+        }
+    })
+</script>
+{/block}

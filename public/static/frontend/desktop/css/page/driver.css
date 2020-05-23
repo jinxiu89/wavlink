@@ -111,13 +111,13 @@
   background: none;
 }
 .item .panel .panel-body .download a.btn:hover .iconfont {
-  color: #f8b300;
+  color: #3d65a3;
 }
 .item .panel .panel-body .download a .iconfont {
   font-size: 30px;
 }
 .item .panel .panel-body .download a.all .iconfont {
-  color: #f8b300;
+  color: #3d65a3;
 }
 .item .panel .panel-body .download a.windows .iconfont {
   color: #00ADEF;
@@ -132,3 +132,4 @@
     width: 20%;
   }
 }
+/*# sourceMappingURL=drivers.css.map */

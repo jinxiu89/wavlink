@@ -107,7 +107,7 @@ p.infoError {
 //header
 header {
     height: 50px;
-    background: @baseColor;
+    background: @activeColor;
     .logo {
         .fl();
         margin: 10px 0;
@@ -151,31 +151,24 @@ header {
         position: absolute;
         top: 50px;
         left: 0;
-        background: @baseColor;
+        background: @whiteColor;
 
         .user-menu-item {
             width: 140px;
             height: 50px;
             line-height: 50px;
-            border-bottom: 1px solid @whiteColor;
+            border-bottom: 1px solid @borderColor;
             &:nth-last-of-type(1) {
                 border-bottom: none;
             }
-        }
-        .user-menu-item .userName {
-            display: block;
-            padding: 0 10px;
-            text-align: center;
-            color: @whiteColor;
-            .text-overflow()
         }
         .user-menu-item a {
             display: block;
             padding: 0 10px;
             text-align: center;
-            color: @whiteColor;
+            color: @activeColor;
             &:hover {
-                color: @activeColor;
+                background: #abcae9;
                 text-decoration: underline;
             }
         }
@@ -336,10 +329,10 @@ header {
         border-bottom: none;
     }
     ul li .active {
-        color: @baseColor;
+        color: @whiteColor;
         background: @activeColor;
         &:hover {
-            color: @baseColor;
+            color: @whiteColor;
             text-decoration: underline;
         }
     }

@@ -44,8 +44,8 @@
   color: #333;
 }
 .feature-box .zoom-box .spec-scroll .next {
-  background: #f8b300;
-  border-color: #f8b300;
+  background: #3d65a3;
+  border-color: #3d65a3;
   color: #333;
 }
 .feature-box .des {
@@ -59,7 +59,7 @@
 .feature-box .des .mode {
   padding: 5px 0;
   font-size: 14px;
-  color: #f8b300;
+  color: #3d65a3;
   border-bottom: 1px solid #eaeaea;
 }
 .feature-box .des .feature {
@@ -79,14 +79,14 @@
   line-height: 36px;
   margin: 0 18px 18px 0;
   text-align: center;
-  border: 1px solid #f8b300;
+  border: 1px solid #3d65a3;
 }
 .feature-box .des .store span a {
   display: block;
   color: #333;
 }
 .feature-box .des .store span a:hover {
-  background: #f8b300;
+  background: #3d65a3;
   color: #fff;
 }
 .feature-box .container {
@@ -149,16 +149,16 @@
 .nav-table ul li a {
   display: block;
   padding: 10px 20px;
-  color: #f8b300;
+  color: #3d65a3;
 }
 .nav-table ul li:hover {
-  color: #f8b300;
+  color: #3d65a3;
 }
 .nav-table ul li:hover a {
-  color: #f8b300;
+  color: #3d65a3;
 }
 .nav-table ul .active {
-  background: #f8b300;
+  background: #3d65a3;
 }
 .nav-table ul .active:hover {
   color: #333;
@@ -273,7 +273,7 @@
   height: 35px;
   line-height: 35px;
   border-bottom: 1px solid #eaeaea;
-  background: #f8b300;
+  background: #3d65a3;
   cursor: pointer;
 }
 #go-top ul li {
@@ -287,10 +287,10 @@
   border-bottom: none;
 }
 #go-top ul li:hover {
-  color: #f8b300;
+  color: #3d65a3;
 }
 #go-top ul li:hover a {
-  color: #f8b300;
+  color: #3d65a3;
 }
 #go-top ul li a {
   display: block;

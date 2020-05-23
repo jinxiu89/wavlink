@@ -58,13 +58,13 @@
   background: #f5f5f5;
 }
 .category-list .category-item > div:hover .des a {
-  color: #f8b300;
+  color: #3d65a3;
 }
 .category-list .active > div {
   background: #f5f5f5;
 }
 .category-list .active > div .des a {
-  color: #f8b300;
+  color: #3d65a3;
 }
 @media screen and (min-width: 992px) and (max-width: 1700px) {
   .category-list .category-item {
@@ -95,7 +95,7 @@
 }
 .list-box .list-item .thumbnail:hover .caption .mode,
 .list-box .list-item .thumbnail:hover .caption .des {
-  color: #f8b300;
+  color: #3d65a3;
 }
 .list-box .list-item .thumbnail .img-box {
   display: block;

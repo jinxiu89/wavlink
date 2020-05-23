@@ -72,7 +72,7 @@ body {
 .login-box .box .logo-box h2,
 .forgot-box .box .logo-box h2,
 .change-box .box .logo-box h2 {
-  margin-bottom: 10px;
+  margin-bottom: 20px;
   text-align: center;
 }
 .register-box .box .logo-box h2 img,
@@ -80,7 +80,7 @@ body {
 .login-box .box .logo-box h2 img,
 .forgot-box .box .logo-box h2 img,
 .change-box .box .logo-box h2 img {
-  height: 70px;
+  height: 40px;
 }
 .register-box .box .info-box .info,
 .forgot-box .box .info-box .info,
@@ -209,7 +209,7 @@ body {
 }
 .login-box .box .info-box .tips a:hover {
   text-decoration: underline;
-  color: #f8b300;
+  color: #3d65a3;
 }
 .login-box .box .info-box .btn-box {
   float: left;
@@ -254,7 +254,7 @@ body {
   line-height: 15px;
 }
 .register-box .box .info-box .terms label a:hover {
-  color: #f8b300;
+  color: #3d65a3;
   text-decoration: underline;
 }
 .proRegister-box .box .info-box p.infoError {

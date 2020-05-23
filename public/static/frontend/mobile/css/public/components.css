@@ -159,7 +159,7 @@ html {
   -webkit-tap-highlight-color: transparent;
 }
 a {
-  color: #f8b300;
+  color: #3d65a3;
   text-decoration: none;
 }
 a:hover,
@@ -279,7 +279,7 @@ header .search-container form input {
   width: 100%;
   height: 30px;
   padding: 0 10px;
-  border: 1px solid #f8b300;
+  border: 1px solid #3d65a3;
   font-size: 12px;
 }
 header .search-container form input[type="text"] {
@@ -295,7 +295,7 @@ header .search-container form input[type="submit"] {
   z-index: 1;
   width: 50px;
   border-left: none;
-  background: #f8b300;
+  background: #3d65a3;
   color: #fff;
   -webkit-border-radius: 0 5px 5px 0;
   -moz-border-radius: 0 5px 5px 0;
@@ -313,7 +313,7 @@ header .search-container .search-mask-layer {
   cursor: pointer;
 }
 .hc-mobile-nav a:hover {
-  color: #f8b300;
+  color: #3d65a3;
 }
 .hc-mobile-nav .nav-back > a,
 .hc-mobile-nav .nav-close > a {
@@ -426,7 +426,7 @@ footer .copy-right p {
   overflow: hidden;
 }
 .g-path .breadcrumb a {
-  color: #f8b300;
+  color: #3d65a3;
   font-size: 12px;
 }
 .g-path .breadcrumb > li + li:before {
@@ -462,7 +462,7 @@ footer .copy-right p {
 }
 .g-pagination .pagination > li > a,
 .g-pagination .pagination > li > span {
-  color: #f8b300;
+  color: #3d65a3;
 }
 .g-pagination .pagination > .disabled > a,
 .g-pagination .pagination > .disabled > a:focus,
@@ -479,8 +479,8 @@ footer .copy-right p {
 .g-pagination .pagination > .active > span:focus,
 .g-pagination .pagination > .active > span:hover {
   color: #333;
-  background: #f8b300;
-  border-color: #f8b300;
+  background: #3d65a3;
+  border-color: #3d65a3;
 }
 .g-filter {
   padding: 10px;

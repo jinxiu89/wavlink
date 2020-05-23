@@ -248,8 +248,11 @@ return [
     'Male'=>'男',
     'Secret'=>'保密',
     'Please keep your password. After changing the password, you need to log in again.'=>'密码修改后，您需要重新登录，请牢记您的密码',
-
     'Your verification code is' => '您的验证码是',
+
+    //产品列表
+    'Product List' => '产品列表',
+    'Add Products' => '添加产品',
 
     //国家 名称翻译
     'china' => '中国',

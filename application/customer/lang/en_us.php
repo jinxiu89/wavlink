@@ -169,6 +169,9 @@ return [
     'Secret'=>'Secret',
     'Your verification code is' => 'Your verification code is',
 
+    //产品列表页
+
+
     //国家翻译
     'Taiwan' => 'Taiwan, China',
     'Hong Kong' => 'Hong Kong, China',

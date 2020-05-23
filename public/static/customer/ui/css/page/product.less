@@ -7,4 +7,104 @@
 @import "../../public/mixins";
 @import "../../public/variables";
 
+.Introduction {
+  .clearFix();
+  margin: 20px 13.5%;
+  .person-des {
+    .title {
+      font-size: 22px;
+    }
+    p {
+      margin-top: 10px;
+      color: @whiteSmoke;
+    }
+  }
+  .btn-box {
+    padding: 10px 0 0;
+    button {
+      height: 35px;
+      padding: 0 20px;
+      background: @whiteColor;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+      cursor: pointer;
+      &:hover {
+        box-shadow: 0 0 5px rgba(0, 0, 0, 0.2) inset;
+      }
+    }
+  }
+}
 
+.Module {
+  margin: 20px 13.5%;
+  padding: 20px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  .title {
+    margin-bottom: 20px;
+    font-size: 18px;
+    font-weight: 700;
+    color: @baseColor;
+    .delete {
+      float: right;
+    }
+    .delete .iconfont {
+      color: #888;
+      font-size: 24px;
+    }
+  }
+  .Field {
+    position: relative;
+    padding: 15px 0;
+    border-bottom: 1px solid #ccc;
+    &:nth-last-of-type(1) {
+      padding-bottom: 0;
+      border: none;
+    }
+  }
+  .Field-label {
+    position: absolute;
+    top: 15px;
+    left: 0;
+    color: @whiteSmoke;
+  }
+  .Field-content {
+    padding: 0 0 0 175px;
+    height: 20px;
+    line-height: 20px;
+  }
+  .Field-content .Field-modify {
+    margin-left: 5px;
+    background: none;
+    font-size: 12px;
+    color: #136ec2;
+    cursor: pointer;
+    &:hover {
+      color: #136ec2 + 10
+    }
+  }
+  .Field-content .download a {
+    display: inline-block;
+    color: #136ec2;
+  }
+}
+
+.pagination-box {
+  margin: 20px 13.5%;
+  text-align: center;
+  .pagination li {
+    display: inline-block;
+  }
+  .pagination li a,
+  .pagination li span {
+    display: block;
+    padding: 0 5px;
+  }
+  .pagination li a {
+    color: #136ec2;
+    &:hover {
+      text-decoration: underline;
+      color: #136ec2 + 20;
+    }
+  }
+}

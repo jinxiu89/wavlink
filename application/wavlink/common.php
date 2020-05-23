@@ -10,6 +10,7 @@ use think\db\exception\DataNotFoundException;
 use think\db\exception\ModelNotFoundException;
 use think\exception\DbException;
 use think\Model;
+use app\common\model\Service\DriversCategory;
 
 //分类所属分类
 function getCategory($id)
@@ -42,7 +43,7 @@ function getChild($id)
  * @return mixed
  */
 function GetNameByParentId($id){
-    $data=\app\common\model\Category::get($id);
+    $data=\app\common\model\Content\Category::get($id);
     return $data->name;
 }
 
@@ -241,6 +242,10 @@ function getManualName($id)
     return Manual::get(intval($id))['title'];
 }
 
+/**
+ * @param $category_id
+ * @return mixed
+ */
 function getUrlTitleByCategoryId($category_id)
 {
     $data = ServiceCategory::get($category_id);
@@ -261,6 +266,20 @@ function getUrlTitleByCategoryId($category_id)
  */
 function exportExcel($data = array(), $file_name = '', $sheet_name = 'sheet1')
 {
+
+}
+
+/**
+ * @param $parent_id
+ */
+function getDriverCate($parent_id){
+    if($parent_id == 0) return "根分类";
+    try{
+        $data=(new DriversCategory())->field('name')->get($parent_id);
+        return  $data->toArray()['name'];
+    }catch (Exception $exception){
+        return  "有错误";
+    }
 
 }
 

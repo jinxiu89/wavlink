@@ -12,7 +12,7 @@ namespace app\wavlink\validate;
 use think\db\exception\DataNotFoundException;
 use think\db\exception\ModelNotFoundException;
 use think\exception\DbException;
-
+use app\common\model\System\Setting as model;
 class Setting extends BaseValidate
 {
     /**验证规则**/
@@ -68,7 +68,7 @@ class Setting extends BaseValidate
                 ->field('language_id')
                 ->find();
         } else {
-            $result = model('Setting')->where('id', 'neq', $data['id'])
+            $result = (new model())->where('id', 'neq', $data['id'])
                 ->where($map)
                 ->field('language_id')
                 ->find();

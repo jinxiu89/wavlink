@@ -128,7 +128,7 @@ function getServiceCategory($id)
  * @param string $url 返回跳转url
  * @param array $data 数据
  */
-function show($status, $message = '', $title = '', $btn = '', $url = '', $data = array())
+function show($status, $message = '', $title = '', $btn = '', $url = '', $data = [])
 {
     $res = [
         'status' => $status,
@@ -138,7 +138,7 @@ function show($status, $message = '', $title = '', $btn = '', $url = '', $data =
         'title' => $title,
         'btn' => $btn
     ];
-    exit(json_encode($res));
+    return exit(json_encode($res));
 }
 
 /***
@@ -358,7 +358,7 @@ function getCategoryLevel($id)
     if ($id == '') {
         return intval(1);
     }
-    $data = \app\common\model\ServiceCategory::get($id);
+    $data = \app\common\model\Service\ServiceCategory::get($id);
     return intval($data['level']) + 1;
 
 }

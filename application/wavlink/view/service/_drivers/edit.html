@@ -39,7 +39,7 @@
 				<select name="category_id" class="select categoryId">
 					<option value="0">--请选择--</option>
 					{volist name="category" id="vo"}
-					<option value="{$vo.id}" {if condition="$drivers.category_id eq $vo.id" } selected="selected" {/if}>{$vo.name}</option>
+					<option value="{$vo.id}" {if condition="$drivers.category_id eq $vo.id" } selected="selected" {/if}>{$vo.delimiter|raw}{$vo.name}</option>
                     {/volist}
 				</select>
 				</span>

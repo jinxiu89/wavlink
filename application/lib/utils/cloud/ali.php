@@ -14,7 +14,6 @@ namespace app\lib\utils\cloud;
 use OSS\Model\ObjectListInfo;
 use OSS\OssClient;
 use OSS\Core\OssException;
-use OSS\Core\OssUtil;
 use think\facade\Config;
 
 /**
@@ -32,7 +31,7 @@ class ali
         $accessKeySecret = Config::get('alicloud.app.accessSecret');
         $endpoint = Config::get('alicloud.oss.endpoint');
         try {
-            return new OssClient($accessKeyID, $accessKeySecret, $endpoint);
+            return new OssClient($accessKeyID, $accessKeySecret, $endpoint,false);
         } catch (OssException $ossException) {
             //todo: 抛出异常
         }

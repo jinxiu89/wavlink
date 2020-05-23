@@ -30,12 +30,10 @@ class Image extends BaseAdmin
         if ($this->request->isGet()) {
             $path = input('get.path', 'images/', 'htmlspecialchars,trim');
             $items = ali::listObj('wavlink', $path);
-//            print_r($items);exit;
             $baseUrl=Config::get('alicloud.oss.baseUrl'); //传递到前端 防止换来换去，全部都要手撸
             $this->assign('baseUrl',$baseUrl);
             $this->assign('items', $items);
             $this->assign('path', $path);
-//            print_r($items);
             return $this->fetch();
         }
     }

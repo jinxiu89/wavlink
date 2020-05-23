@@ -133,7 +133,7 @@ class GuestBook extends BaseAdmin
             try {
                 $res = sendMail($to, $data['last_name'], $data['subject'], $data['content']);
                 if ($res) {
-                    model("GuestBook")->where('id', $data['id'])->update(['status' => 1, 'subject' => $data['subject'], 'content' => $data['content']]);
+                    (new GuestBookModel())->where('id', $data['id'])->update(['status' => 1, 'subject' => $data['subject'], 'content' => $data['content']]);
                     return show(1, 'success', '', '', '', '发送成功');
                 } else {
                     return show(0, 'error', '', '', '', $res);

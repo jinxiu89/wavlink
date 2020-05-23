@@ -8,7 +8,7 @@ use app\common\model\Content\Category as CategoryModel;
 use app\common\model\Content\Document as DocumentModel;
 use app\common\model\Language as LanguageModel;
 use app\common\model\Content\Product as ProductModel;
-use app\common\model\Setting as SettingModel;
+use app\common\model\System\Setting as SettingModel;
 use think\App;
 use think\Collection;
 use think\Controller;

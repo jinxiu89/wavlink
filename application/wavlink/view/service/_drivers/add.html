@@ -32,7 +32,7 @@
 				<select name="category_id" class="select categoryId">
 					<option value="0">--请选择--</option>
 					{volist name="category" id="vo"}
-					<option value="{$vo.id}">{$vo.name}</option>
+					<option value="{$vo.id}">{$vo.delimiter|raw}{$vo.name}</option>
 				    {/volist}
 				</select>
 				</span>
@@ -100,18 +100,6 @@
                 <textarea name="linux_link" cols="" rows="" class="textarea" placeholder="Linux驱动下载地址" dragonfly="true" ></textarea>
             </div>
         </div>
-        <!--<div class="row cl">-->
-            <!--<label class="form-label col-xs-4 col-sm-2">说明简介：</label>-->
-            <!--<div class="formControls col-xs-8 col-sm-9">-->
-                <!--<textarea id="editor1" type="text/plain" name="description"   style="width:100%;height:400px;"></textarea>-->
-            <!--</div>-->
-        <!--</div>-->
-        <!--<div class="row cl">-->
-            <!--<label class="form-label col-xs-4 col-sm-2">文件描述：</label>-->
-            <!--<div class="formControls col-xs-8 col-sm-9">-->
-                <!--<textarea id="editor" type="text/plain" name="content" style="width:100%;height:400px;"></textarea>-->
-            <!--</div>-->
-        <!--</div>-->
         <div class="row cl">
             <div class="col-xs-8 col-sm-9 col-xs-offset-4 col-sm-offset-2">
                 <button class="btn btn-primary radius" type="button" onclick="save('{:url(\'Drivers/save\')}')"><i

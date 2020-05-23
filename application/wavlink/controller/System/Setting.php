@@ -9,7 +9,7 @@
 namespace app\wavlink\controller\System;
 
 use app\common\model\Language as LanguageModel;
-use app\common\model\Setting as SettingModel;
+use app\common\model\System\Setting as SettingModel;
 use app\wavlink\controller\BaseAdmin;
 use app\wavlink\validate\Setting as SettingValidate;
 

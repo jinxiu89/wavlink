@@ -8,7 +8,7 @@
 
 namespace app\wavlink\controller\System;
 
-use \app\common\model\AuthRule as AuthRuleModel;
+use \app\common\model\System\AuthRule as AuthRuleModel;
 use app\wavlink\controller\BaseAdmin;
 use  \app\wavlink\validate\AuthRule as AuthRuleValidate;
 use think\App;
@@ -22,7 +22,7 @@ Class AuthRule extends BaseAdmin
     public function __construct(App $app = null)
     {
         parent::__construct($app);
-        $this->obj = model("AuthRule");
+        $this->obj = new AuthRuleModel();
         $this->validate=new AuthRuleValidate();
     }
 

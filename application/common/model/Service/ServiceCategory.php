@@ -147,11 +147,13 @@ Class ServiceCategory extends BaseModel
      */
     public static function getSecondCategory($value, $name = '')
     {
+
+        $controller=explode('.',request()->controller());
         $cate = empty($name) ? request()->controller() : $name;
         $parent = self::getTopCategory($value, $cate);
         $data = ['status' => 1, 'parent_id' => $parent['id']];
         $order = ['listorder' => 'desc', 'id' => 'desc'];
-        return (new ServiceCategory)->where($data)->order($order)
+        return self::where($data)->order($order)
             ->field('id,name,description,keywords,language_id,url_title,seo_title')->select();
     }
 

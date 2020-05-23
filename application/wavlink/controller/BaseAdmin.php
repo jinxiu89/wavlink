@@ -45,6 +45,16 @@ class BaseAdmin extends Controller
     {
         parent::_initialize();
     }
+    /**
+     * 清空缓存
+     */
+    public function clean()
+    {
+        echo "<span style='color: red;'>缓存清理中……</span> <br/><br/>";
+        $path = RUNTIME_PATH;
+        echo delcache($path);
+        echo "<br/><span style='color: red;'>缓存清理完毕。</span>";
+    }
 
     /***
      * //判定是否登录

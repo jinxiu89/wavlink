@@ -9,8 +9,10 @@
 
 namespace app\wavlink\controller\Service;
 
+use app\common\helper\Category;
 use app\common\model\Service\Drivers as DriversModel;
-use app\common\model\ServiceCategory as ServiceCategoryModel;
+use app\wavlink\service\service\driversCategory as DriverCategory;
+use app\common\model\Service\ServiceCategory as ServiceCategoryModel;
 use app\wavlink\controller\BaseAdmin;
 use app\wavlink\validate\Drivers as DriversValidate;
 use app\wavlink\validate\ListorderValidate;
@@ -24,7 +26,7 @@ use think\response\View;
  * Class Drivers
  * @package app\wavlink\controller
  */
-Class Drivers extends BaseAdmin
+class Drivers extends BaseAdmin
 {
     protected $model;
     protected $validate;
@@ -61,7 +63,7 @@ Class Drivers extends BaseAdmin
             }
 
         }
-        if($this->request->isGet()){
+        if ($this->request->isGet()) {
             try {
                 $result = DriversModel::getDataByStatus(1, $this->currentLanguage['id']);
                 return $this->fetch('', [
@@ -83,9 +85,10 @@ Class Drivers extends BaseAdmin
     public function add()
     {
         //获取驱动的分类
-        $category = ServiceCategoryModel::getSecondCategory($this->currentLanguage['id']);
+        $category = (new DriverCategory())->getDataByLanguageId($status = 1, $this->currentLanguage['id']);
+        $level = Category::toLevel($category['data']->toArray()['data'], '&nbsp;&nbsp;');
         return $this->fetch('', [
-            'category' => $category,
+            'category' => $level,
             'language_id' => $this->currentLanguage['id'],
         ]);
     }
@@ -136,12 +139,13 @@ Class Drivers extends BaseAdmin
     {
         $id = $this->MustBePositiveInteger($id);
         //获取驱动的二级分类
-        $category = ServiceCategoryModel::getSecondCategory($this->currentLanguage['id']);
+        $category = (new DriverCategory())->getDataByLanguageId($status = 1, $this->currentLanguage['id']);
+        $level = Category::toLevel($category['data']->toArray()['data'], '&nbsp;&nbsp;');
         $drivers = DriversModel::get($id);
         return $this->fetch('', [
             'language_id' => $this->currentLanguage['id'],
             'drivers' => $drivers,
-            'category' => $category,
+            'category' => $level,
         ]);
     }
 

@@ -8,7 +8,7 @@
 
 namespace app\wavlink\controller\System;
 
-use app\common\model\AuthGroup as AuthGroupModel;
+use app\common\model\System\AuthGroup as AuthGroupModel;
 use app\wavlink\controller\BaseAdmin;
 use app\wavlink\validate\AuthGroup as AuthGroupValidate;
 use think\App;

@@ -5,7 +5,8 @@
  * Date: 2017/9/8
  * Time: 15:00
  */
-namespace app\common\model;
+namespace app\common\model\System;
+use app\common\model\BaseModel;
 use app\common\model\Language as LanguageModel;
 
 /***

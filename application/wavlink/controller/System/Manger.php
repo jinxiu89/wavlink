@@ -9,9 +9,9 @@
 
 namespace app\wavlink\controller\System;
 
-use app\common\model\AuthGroup as AuthGroupModel;
+use app\common\model\System\AuthGroup as AuthGroupModel;
 use app\common\model\Language as LanguageModel;
-use app\common\model\Manger as MangerModel;
+use app\common\model\System\Manger as MangerModel;
 use app\wavlink\controller\BaseAdmin;
 use app\wavlink\validate\Manger as MangerValidate;
 use think\Db;

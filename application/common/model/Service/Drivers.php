@@ -23,7 +23,7 @@ use think\Paginator;
  */
 Class Drivers extends BaseModel
 {
-    protected $table = "drivers";
+    protected $table = "tb_drivers";
 
     // 前台 获取当前选择的子分类下的驱动列表，models产品型号字段处理
 

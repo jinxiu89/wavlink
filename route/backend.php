@@ -21,7 +21,7 @@ Route::group(Config::get('__BACKEND__'), function () {
     /**
      * 清理缓存
      */
-    Route::rule('/clean', 'Wavlink/Admin/clean','GET')->name('admin_clean');
+    Route::rule('/clean', 'BaseAdmin/clean','GET')->name('admin_clean');
     /***
      * 内容管理模块路由
      */
@@ -172,6 +172,11 @@ Route::group(Config::get('__BACKEND__'), function () {
     Route::post('/Document/byStatus', 'Document/byStatus');
     Route::post('/Document/listorder', 'Document/listorder');
 
+    //驱动分类
+    Route::get('/drivers/Category$','Service.DriversCategory/index')->name('driver_category_index');
+    Route::rule('/drivers/Category/add','Service.DriversCategory/add','GET|POST')->name('add_driver_category');
+    Route::rule('/drivers/Category/edit','Service.DriversCategory/edit','GET|POST')->name('edit_driver_category');
+    Route::rule('/drivers/Category/byStatus','Service.DriversCategory/ByStatus','GET|POST')->name('del_driver_category');
     //驱动管理
     Route::get('/drivers/index', 'Service.Drivers/index');
     Route::post('/drivers/index', 'Service.Drivers/index');

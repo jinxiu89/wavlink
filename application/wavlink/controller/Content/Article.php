@@ -10,7 +10,7 @@ namespace app\wavlink\controller\Content;
 use think\facade\Request;
 use app\common\model\Content\Article as ArticleModel;
 use app\wavlink\validate\Article as ArticleValidate;
-use app\common\model\ServiceCategory as ServiceCategoryModel;
+use app\common\model\Service\ServiceCategory as ServiceCategoryModel;
 use app\wavlink\controller\BaseAdmin;
 /***
  * Class Article
@@ -49,6 +49,7 @@ Class Article extends BaseAdmin
     public function add()
     {
         $categorys = ServiceCategoryModel::getSecondCategory($this->currentLanguage['id']);
+
         return $this->fetch('', [
             'categorys' => $categorys,
             'language_id' => $this->currentLanguage['id']

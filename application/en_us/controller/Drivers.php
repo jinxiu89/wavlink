@@ -41,7 +41,7 @@ class Drivers extends Base
         parent::__construct($app);
         try {
             $data = (new service())->getDataByLanguageId($status=1,$this->language_id);
-            $level = Category::toLevel($data['data']->toArray()['data'], '├─');
+            $level = Category::toLevel($data['data']->toArray()['data'], '&emsp;&emsp;');
             $this->assign('cate', $level);
         } catch (DataNotFoundException $e) {
         } catch (ModelNotFoundException $e) {
@@ -64,14 +64,14 @@ class Drivers extends Base
     public function index($order = 'desc')
     {
         //获取Drivers分类信息
-        $parent = ServiceCategoryModel::getTopCategory($this->code, 'Drivers');
+        $parent = ServiceCategoryModel::getTopCategory($this->language_id, 'Drivers');
         //获取所有驱动下载列表
-        $result = (new DriversModel())->getDriversByCategoryId($this->code, '', $order);
+        $result = (new DriversModel())->getDriversByLanguage($this->language_id, $order);
         return $this->fetch($this->template . '/drivers/index.html', [
-            'data' => $result['result'],
+            'data' => $result['data'],
             'parent' => $parent,
             'count' => $result['count'],
-            'name' => '',
+            'category_title' => '',
             'order' => $order
         ]);
     }
@@ -103,12 +103,11 @@ class Drivers extends Base
         } else {
             //获取选择的分类下的驱动列表
             $result = (new DriversModel())->getDriversByCategoryIds($this->language_id,$parent['categoryID'], $order);
-//            print_r($result);exit;
             return view($this->template . '/drivers/index.html', [
                 'data' => $result['data'],
                 'parent' => $parent['category'],
                 'count' => $result['count'],
-                'name' => $category,
+                'category_title' => $parent['category']['title'],
                 'order' => $order
             ]);
         }

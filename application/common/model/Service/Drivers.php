@@ -21,43 +21,27 @@ use think\Paginator;
  * Class Drivers
  * @package app\common\model
  */
-Class Drivers extends BaseModel
+class Drivers extends BaseModel
 {
     protected $table = "tb_drivers";
 
     // 前台 获取当前选择的子分类下的驱动列表，models产品型号字段处理
 
     /**
-     * @param $code
-     * @param $categoryId
+     * @param $language
      * @param string $order
      * @return mixed|Paginator
-     * @throws Exception
-     * @throws DataNotFoundException
-     * @throws ModelNotFoundException
      * @throws DbException
      */
-    public function getDriversByCategoryId($code, $categoryId, $order = "desc")
+    public function getDriversByLanguage($language, $order = "desc")
     {
-        $language_id = LanguageModel::getLanguageCodeOrID($code);
-        $data = [
-            'status' => 1,
-            'language_id' => $language_id,
-        ];
-        $order = [
-            'update_time' => $order,
-            'listorder' => 'desc',
-            'id' => 'desc',
-        ];
-        if (empty($categoryId)) {
-            $count = $this->where($data)->count();
-            $data = $this->where($data)->order($order)->paginate(6, true);
-        } else {
-            $count = $this->where($data)->where('category_id', '=', $categoryId)->count();
-            $data = $this->where($data)->where('category_id', '=', $categoryId)->order($order)->paginate(6, true);
-        }
-        $result = ModelsArr($data, 'models', 'modelsGroup');
-        return ['count' => $count, 'result' => $result];
+        $data = ['status' => 1, 'language_id' => $language,];
+        $order = ['update_time' => $order, 'listorder' => 'desc', 'id' => 'desc',];
+        $response=self::where($data);
+        $count = $response->count();
+        $data = $response->order($order)->paginate(6, true);
+        $result = ModelsArr($data, 'models', 'modelGroup');
+        return ['count' => $count, 'data' => $result];
     }
 
     /**
@@ -67,17 +51,18 @@ Class Drivers extends BaseModel
      * @return array
      * @throws DbException
      */
-    public function getDriversByCategoryIds($language,$category,$order='desc'){
+    public function getDriversByCategoryIds($language, $category, $order = 'desc')
+    {
         $order = [
             'update_time' => $order,
             'listorder' => 'desc',
             'id' => 'desc',
         ];
-        $response=self::where('category_id','in',$category)->where(['language_id'=>$language,'status'=>1]);
-        $count=$response->count();
-        $data=$response->order($order)->paginate(6,true);
-        $result=ModelsArr($data,'models','modelGroup');
-        return ['count'=>$count,'data'=>$result];
+        $response = self::where('category_id', 'in', $category)->where(['language_id' => $language, 'status' => 1]);
+        $count = $response->count();
+        $data = $response->order($order)->paginate(6, true);
+        $result = ModelsArr($data, 'models', 'modelGroup');
+        return ['count' => $count, 'data' => $result];
     }
 
     /**
@@ -111,7 +96,8 @@ Class Drivers extends BaseModel
      * @throws DbException
      * 创建索引
      */
-    public static function allData($language_id){
+    public static function allData($language_id)
+    {
         $data = self::where(['language_id' => $language_id, 'status' => 1])->field('id,name,url_title,models,seo_title,keywords,descrip,status,listorder')->select();
         return Collection::make($data)->toArray();
     }

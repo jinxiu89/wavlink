@@ -36,6 +36,7 @@
   font-size: 16px;
   font-weight: 700;
   text-transform: uppercase;
+  color: #3d65a3;
 }
 .item .panel .panel-body .info p {
   margin-bottom: 10px;
@@ -132,4 +133,3 @@
     width: 20%;
   }
 }
-/*# sourceMappingURL=drivers.css.map */

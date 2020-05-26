@@ -34,14 +34,13 @@ function gPath () {
 }
 
 function supportAside () {
-    var supportList = $('.wavlinkAside .supportItem'),
-        supportActive = $('.wavlinkAside .supportActive');
-    supportActive.find('h3').find('span').addClass("iconsami-select").removeClass("iconadd-select");
+    var supportList = $('.wavlinkAside .supportItem');
     supportList.find('h3').click(function () {
         $(this).find('span').toggleClass("iconsami-select").toggleClass("iconadd-select");
         $(this).parent('.supportItem').siblings('.supportItem').find('h3').find('span').addClass("iconadd-select").removeClass("iconsami-select");
         $(this).parent('.supportItem').siblings('.supportItem').find('dl').slideUp();
-        $(this).siblings('dl').stop(false, true).slideToggle();});
+        $(this).siblings('dl').stop(false, true).slideToggle();
+    });
 }
 
 function wavlinkAds() {
@@ -96,7 +95,7 @@ function Account() {
     })
 }
 
-$(document).ready(function () {
+$(function () {
     handleFootHover();
 
     gPath();

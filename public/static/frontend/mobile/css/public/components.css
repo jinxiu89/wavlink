@@ -227,7 +227,7 @@ header .nav-bar {
   z-index: 2999;
   width: 100%;
   height: 50px;
-  background: #fff;
+  background: #3d65a3;
   padding: 0 10px;
   border-bottom: 1px solid #eaeaea;
 }
@@ -236,6 +236,11 @@ header .nav-bar .menu-bar {
 }
 header .nav-bar .menu-bar span {
   left: 0;
+  background: #fff;
+}
+header .nav-bar .menu-bar span:before,
+header .nav-bar .menu-bar span:after {
+  background: #fff;
 }
 header .nav-bar .logo {
   position: absolute;
@@ -254,6 +259,7 @@ header .nav-bar .search-bar .iconfont {
   display: block;
   line-height: 50px;
   font-size: 24px;
+  color: #fff;
 }
 header .search-container form {
   display: none;
@@ -312,12 +318,19 @@ header .search-container .search-mask-layer {
   background: rgba(0, 0, 0, 0.5);
   cursor: pointer;
 }
+.hc-mobile-nav h2 {
+  padding: 0 20px;
+  line-height: 50px;
+  background: #3d65a3;
+  color: #fff;
+}
 .hc-mobile-nav a:hover {
   color: #3d65a3;
 }
 .hc-mobile-nav .nav-back > a,
 .hc-mobile-nav .nav-close > a {
   font-size: 12px!important;
+  font-weight: normal;
 }
 footer {
   margin-top: 60px;

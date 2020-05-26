@@ -25,10 +25,11 @@
         <div class="box">
             <div class="g-aside">
 
-                <!--<ul>
-                    <li><h3>{:lang('support')}</h3></li>
-                </ul>-->
-                {include file='desktop/common/support_aside'}
+                <ul>
+                    <!--<li><h3>{:lang('support')}</h3></li>-->
+                    {include file='desktop/common/support_aside'}
+                </ul>
+
             </div>
             <div class="g-main">
                 <div class="g-filter">
@@ -130,6 +131,8 @@
 <script>
     $(function () {
         $('#support').addClass('active');
+        $('.driver').addClass('supportActive');
+        $('.driver').find('h3').find('span').addClass("iconsami-select").removeClass("iconadd-select");
         var active_cls = 'd{$category_title}';
         $("." + active_cls).addClass('active');
         // 筛选变化时 过滤

@@ -11,10 +11,13 @@
 namespace app\wavlink\controller\Service;
 
 
+use app\common\helper\Category;
 use app\common\helper\Excel;
 use app\common\model\Service\GuestBook as GuestBookModel;
 use app\wavlink\controller\BaseAdmin;
+use app\wavlink\service\service\driversCategory as service;
 use PHPMailer\PHPMailer\Exception;
+use think\App;
 use think\exception\PDOException;
 
 
@@ -25,9 +28,17 @@ use think\exception\PDOException;
  */
 class GuestBook extends BaseAdmin
 {
+   public function __construct(App $app = null)
+   {
+       parent::__construct($app);
+   }
+
     //获取未处理的固件信息,status = -1
     public function index()
     {
+        $data = (new service())->getDataByLanguageId($status = 1, $this->language_id);
+        $level = Category::toLevel($data['data']->toArray()['data'], '&emsp;&emsp;');
+        $this->assign('cate', $level);
         $ticket = GuestBookModel::getDataByStatus(-1, $this->currentLanguage['id']);
         foreach ($ticket['data'] as $k => $v) {
             $v['desc'] = cut_str($v['description'], 20, 0);

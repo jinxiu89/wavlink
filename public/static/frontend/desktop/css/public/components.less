@@ -228,7 +228,7 @@ body {
       height: auto;
       line-height: normal;
       &:hover {
-        background: #abcae9;
+        background: @minActive;
         text-decoration: underline;
       }
     }
@@ -363,7 +363,7 @@ body {
           color: @activeColor;
           &:hover {
             color: @activeColor;
-            background: #abcae9;
+            background: @minActive;
             text-decoration: underline;
           }
         }
@@ -587,7 +587,6 @@ body {
     padding: 0 20px;
     font-size: 14px;
     line-height: 50px;
-    border-bottom: 1px solid @borderColor;
     background: @activeColor;
     color: @whiteColor;
   }

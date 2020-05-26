@@ -717,10 +717,12 @@ body {
   white-space: nowrap;
   overflow: hidden;
 }
-.g-aside .wavlinkAside .supportItem dd a:hover {
+.g-aside .wavlinkAside .supportItem dd a:hover,
+.g-aside .wavlinkAside .supportItem dd a.active {
   text-decoration: none;
 }
-.g-aside .wavlinkAside .supportItem dd a:hover .supportText {
+.g-aside .wavlinkAside .supportItem dd a:hover .supportText,
+.g-aside .wavlinkAside .supportItem dd a.active .supportText {
   text-decoration: underline;
 }
 @media screen and (min-width: 768px) and (max-width: 991px) {

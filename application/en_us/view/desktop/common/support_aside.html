@@ -1,9 +1,12 @@
-
+<!--
 <ul>
     <li><h3>{:lang('driver')}</h3></li>
     {notempty name="cate"}
     {volist name="cate" id="vo"}
-    <li style="border-bottom: 1px #f2f2f2 solid"><span>{$vo.delimiter|raw}</span><a href="/{$code}/drivers/{$vo.title}.html?order='desc'" class="{$vo.title}">{$vo.name}</a></li>
+    <li style="border-bottom: 1px #f2f2f2 solid">
+        <span>{$vo.delimiter|raw}</span>
+        <a href="/{$code}/drivers/{$vo.title}.html?order='desc'" class="{$vo.title}">{$vo.name}</a>
+    </li>
     {/volist}
     {/notempty}
 </ul>
@@ -13,4 +16,80 @@
     <li><a href="/{$code}/faq.html" class="faq">{:lang('faq')}</a></li>
     <li><a href="/{$code}/guest_book/" class="guest-book">{:lang('GuestBook')}</a></li>
     <li><a href="/{$code}/video.html" class="video">{:lang('video')}</a></li>
+</ul>-->
+
+<ul class="wavlinkAside">
+    <li class="supportItem driver supportActive">
+        <h3>{:lang('driver')} <span class="iconfont iconadd-select"></span></h3>
+        <dl>
+            {notempty name="cate"}
+            {volist name="cate" id="vo"}
+            <dd><a href="/{$code}/drivers/{$vo.title}.html?order='desc'" title="{$vo.name}"><span>{$vo.delimiter|raw}</span> <span class="supportText">{$vo.name}</span></a></dd>
+            {/volist}
+            {/notempty}
+        </dl>
+    </li>
+    <li class="supportItem firmware">
+        <h3>{:lang('firmware')} <span class="iconfont iconadd-select"></span></h3>
+        <dl>
+            <dd><a href="/{$code}/firmware.html" class="firmware">{:lang('firmware')}</a></dd>
+        </dl>
+    </li>
+    <li class="supportItem manual">
+        <h3>manual <span class="iconfont iconadd-select"></span></h3>
+        <dl>
+            <dt>Wireless</dt>
+            <dd><a href="#">USB Adapter</a></dd>
+            <dd><a href="#">1200M</a></dd>
+            <dd><a href="#">Mesh</a></dd>
+
+            <dt>PC Peripherals</dt>
+            <dd><a href="#">uga</a></dd>
+            <dd><a href="#">THUNDERBOLT™ 3</a></dd>
+            <dd><a href="#">USB DOCKING</a></dd>
+            <dd><a href="#">USB DISPLAY</a></dd>
+            <dd><a href="#">USB HUB</a></dd>
+            <dd><a href="#">NETWORK CARD</a></dd>
+            <dd><a href="#">STORAGE DOCK</a></dd>
+        </dl>
+    </li>
+    <li class="supportItem faq">
+        <h3>faq <span class="iconfont iconadd-select"></span></h3>
+        <dl>
+            <dt>Wireless</dt>
+            <dd><a href="#">USB Adapter</a></dd>
+            <dd><a href="#">1200M</a></dd>
+            <dd><a href="#">Mesh</a></dd>
+
+            <dt>PC Peripherals</dt>
+            <dd><a href="#">uga</a></dd>
+            <dd><a href="#">THUNDERBOLT™ 3</a></dd>
+            <dd><a href="#">USB DOCKING</a></dd>
+            <dd><a href="#">USB DISPLAY</a></dd>
+            <dd><a href="#">USB HUB</a></dd>
+            <dd><a href="#">NETWORK CARD</a></dd>
+            <dd><a href="#">STORAGE DOCK</a></dd>
+        </dl>
+    </li>
+    <li class="supportItem guest-book">
+        <h3><a href="#">guest-book</a></h3>
+    </li>
+    <li class="supportItem video">
+        <h3>video <span class="iconfont iconadd-select"></span></h3>
+        <dl>
+            <dt>Wireless</dt>
+            <dd><a href="#">USB Adapter</a></dd>
+            <dd><a href="#">1200M</a></dd>
+            <dd><a href="#">Mesh</a></dd>
+
+            <dt>PC Peripherals</dt>
+            <dd><a href="#">uga</a></dd>
+            <dd><a href="#">THUNDERBOLT™ 3</a></dd>
+            <dd><a href="#">USB DOCKING</a></dd>
+            <dd><a href="#">USB DISPLAY</a></dd>
+            <dd><a href="#">USB HUB</a></dd>
+            <dd><a href="#">NETWORK CARD</a></dd>
+            <dd><a href="#">STORAGE DOCK</a></dd>
+        </dl>
+    </li>
 </ul>

@@ -580,6 +580,9 @@ body {
   ul {
     background: @whiteColor;
   }
+  ul li {
+    border-bottom: 1px solid @borderColor;
+  }
   ul li h3 {
     padding: 0 20px;
     font-size: 14px;
@@ -593,18 +596,52 @@ body {
     padding: 0 20px;
     line-height: 50px;
     color: @baseColor;
-    border-bottom: 1px solid @borderColor;
     &:hover {
       color: @activeColor;
       text-decoration: underline;
     }
   }
-  ul li:nth-last-of-type(1) a {
-    border-bottom: none;
-  }
   ul li .active {
     color: @hoverColor;
     text-decoration: underline;
+  }
+
+  .wavlinkAside {
+    .supportItem h3 {
+      position: relative;
+      cursor: pointer;
+      .iconfont {
+        position: absolute;
+        top: 0;
+        right: 10px;
+        line-height: 50px;
+        font-size: 24px;
+        color: @whiteColor;
+      }
+      a {
+        padding: 0;
+        color: @whiteColor;
+        border-bottom: none;
+      }
+    }
+    .supportItem dl {
+      display: none;
+    }
+    .supportActive dl {
+      display: block;
+    }
+    .supportItem dd {
+      border-bottom: 1px solid @borderColor;
+      a {
+        .text-overflow();
+        &:hover {
+          text-decoration: none;
+          .supportText {
+            text-decoration: underline;
+          }
+        }
+      }
+    }
   }
 
   @media screen and (min-width: 768px) and (max-width: 991px) {

@@ -39,14 +39,9 @@ class Drivers extends Base
     public function __construct(App $app = null)
     {
         parent::__construct($app);
-        try {
-            $data = (new service())->getDataByLanguageId($status=1,$this->language_id);
-            $level = Category::toLevel($data['data']->toArray()['data'], '&emsp;&emsp;');
-            $this->assign('cate', $level);
-        } catch (DataNotFoundException $e) {
-        } catch (ModelNotFoundException $e) {
-        } catch (DbException $e) {
-        }
+        $data = (new service())->getDataByLanguageId($status = 1, $this->language_id);
+        $level = Category::toLevel($data['data']->toArray()['data'], '&emsp;&emsp;');
+        $this->assign('cate', $level);
     }
     /***
      * $this->code 为 当前的模块名，即在上面_initialize(初始化中)赋予的
@@ -94,15 +89,15 @@ class Drivers extends Base
             abort(404);
         }
         if ($category == 'all') {
-            return redirect(url('/' . $this->code . '/drivers',['order'=>$order]), [], 200);
+            return redirect(url('/' . $this->code . '/drivers', ['order' => $order]), [], 200);
         }
         //获取选择的子分类信息
-        $parent = (new service())->getCategoryID($category,$this->language_id);
+        $parent = (new service())->getCategoryID($category, $this->language_id);
         if (empty($parent)) {
             abort(404);
         } else {
             //获取选择的分类下的驱动列表
-            $result = (new DriversModel())->getDriversByCategoryIds($this->language_id,$parent['categoryID'], $order);
+            $result = (new DriversModel())->getDriversByCategoryIds($this->language_id, $parent['categoryID'], $order);
             return view($this->template . '/drivers/index.html', [
                 'data' => $result['data'],
                 'parent' => $parent['category'],

@@ -151,8 +151,7 @@ class User extends Base
             $noreplay = lang('noreplay');
             $sup = lang('Wavlink Support');
             if ($email == true) {
-                $content = "
-                    <div>
+                $content = "<div>
                     <p><strong>lang('Dear')</strong></p>
                     <p>lang('Welcome to wavlink')</p>
                     <p>$message</p>
@@ -164,8 +163,7 @@ class User extends Base
                     <p>$noreplay</p>
                     <b>$sup</b>
                     <p></p><img src=\"https://www.wavlink.com/static/frontend/zh-cn/img/wavlink-logo.png\" alt=\"https://www.wavlink.com\",height=\"80px\" width=\"360px\"/>
-                    </div>
-                    ";
+                    </div>";
                 $subject = lang('Retrieve your password');
                 $result = sendMail($data['email'], '', $subject, $content);
                 if ($result) {

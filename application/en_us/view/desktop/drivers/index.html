@@ -52,8 +52,10 @@
                         <span>{:lang('sort by')} : </span>
                         <div class="select">
                             <select class="order_by">
-                                <option value="asc" {if condition="$order eq 'asc'"}selected{/if}>{:lang('Date, old to new')}</option>
-                                <option value="desc" {if condition="$order eq 'desc'"}selected{/if}>{:lang('Date, new to old')}</option>
+                                <option value="asc" {if condition="$order eq 'asc'" }selected{
+                                /if}>{:lang('Date, old to new')}</option>
+                                <option value="desc" {if condition="$order eq 'desc'" }selected{
+                                /if}>{:lang('Date, new to old')}</option>
                             </select>
                         </div>
                     </div>
@@ -73,14 +75,16 @@
                                 <p><span>{:lang('File Size')} :</span> <span>{$vo.size}</span></p>
                                 <p><span>{:lang('Version')} :</span> <span>{$vo.version_number}</span></p>
                                 {if($code == 'en_us')}
-                                <p><span>{:lang('Post Date')} :</span> <span>{$vo.update_time|strtotime|date="d/m/Y"}</span></p>
+                                <p><span>{:lang('Post Date')} :</span>
+                                    <span>{$vo.update_time|strtotime|date="d/m/Y"}</span></p>
                                 {else /}
-                                <p><span>{:lang('Post Date')} :</span> <span>{$vo.update_time|strtotime|date="Y-m-d"}</span></p>
+                                <p><span>{:lang('Post Date')} :</span>
+                                    <span>{$vo.update_time|strtotime|date="Y-m-d"}</span></p>
                                 {/if}
                                 <p><span>{:lang('System Requirements')} :</span> <span>{$vo.running}</span></p>
                             </div>
                             <div class="mode">
-                                <div>{:lang('Available')} : </div>
+                                <div>{:lang('Available')} :</div>
                                 <p>
                                     {volist name="$vo.modelGroup" id="v"}
                                     <!-- 2018-4-12 星期四 14:05 添加字体大小给td标签 -->
@@ -91,16 +95,20 @@
                             <div class="download">
                                 <span class="download-list">{:lang('Download')} : </span>
                                 {notempty name="$vo.all_link"}
-                                <a class="btn btn-default all" href="{$vo.all_link}" title="{:lang('ALL')}"><span class="iconfont iconISO"></span></a>
+                                <a class="btn btn-default all" href="{$vo.all_link}" title="{:lang('ALL')}"><span
+                                        class="iconfont iconISO"></span></a>
                                 {/notempty}
                                 {notempty name="$vo.win_link"}
-                                <a class="btn btn-default windows" href="{$vo.win_link}" title="{:lang('WINDOWS')}"><span class="iconfont iconwindows"></span></a>
+                                <a class="btn btn-default windows" href="{$vo.win_link}"
+                                   title="{:lang('WINDOWS')}"><span class="iconfont iconwindows"></span></a>
                                 {/notempty}
                                 {notempty name="$vo.mac_link"}
-                                <a class="btn btn-default mac" href="{$vo.mac_link}" title="{:lang('MAC')}"><span class="iconfont iconmacos"></span></a>
+                                <a class="btn btn-default mac" href="{$vo.mac_link}" title="{:lang('MAC')}"><span
+                                        class="iconfont iconmacos"></span></a>
                                 {/notempty}
                                 {notempty name="$vo.linux_link"}
-                                <a class="btn btn-default linux" href="{$vo.linux_link}" title="{:lang('Linux')}"><span class="iconfont iconlinux"></span></a>
+                                <a class="btn btn-default linux" href="{$vo.linux_link}" title="{:lang('Linux')}"><span
+                                        class="iconfont iconlinux"></span></a>
                                 {/notempty}
                             </div>
                         </div>
@@ -122,7 +130,8 @@
 <script>
     $(function () {
         $('#support').addClass('active');
-        $('.driver').addClass('active');
+        var active_cls = 'd{$category_title}';
+        $("." + active_cls).addClass('active');
         // 筛选变化时 过滤
         $('.filter_by').change(function () {
             var filter_by = $(this).children('option:selected').val();

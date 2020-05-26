@@ -661,6 +661,9 @@ body {
 .g-aside ul {
   background: #fff;
 }
+.g-aside ul li {
+  border-bottom: 1px solid #eaeaea;
+}
 .g-aside ul li h3 {
   padding: 0 20px;
   font-size: 14px;
@@ -674,17 +677,50 @@ body {
   padding: 0 20px;
   line-height: 50px;
   color: #333;
-  border-bottom: 1px solid #eaeaea;
 }
 .g-aside ul li a:hover {
   color: #3d65a3;
   text-decoration: underline;
 }
-.g-aside ul li:nth-last-of-type(1) a {
-  border-bottom: none;
-}
 .g-aside ul li .active {
   color: #3d65a3;
+  text-decoration: underline;
+}
+.g-aside .wavlinkAside .supportItem h3 {
+  position: relative;
+  cursor: pointer;
+}
+.g-aside .wavlinkAside .supportItem h3 .iconfont {
+  position: absolute;
+  top: 0;
+  right: 10px;
+  line-height: 50px;
+  font-size: 24px;
+  color: #fff;
+}
+.g-aside .wavlinkAside .supportItem h3 a {
+  padding: 0;
+  color: #fff;
+  border-bottom: none;
+}
+.g-aside .wavlinkAside .supportItem dl {
+  display: none;
+}
+.g-aside .wavlinkAside .supportActive dl {
+  display: block;
+}
+.g-aside .wavlinkAside .supportItem dd {
+  border-bottom: 1px solid #eaeaea;
+}
+.g-aside .wavlinkAside .supportItem dd a {
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  overflow: hidden;
+}
+.g-aside .wavlinkAside .supportItem dd a:hover {
+  text-decoration: none;
+}
+.g-aside .wavlinkAside .supportItem dd a:hover .supportText {
   text-decoration: underline;
 }
 @media screen and (min-width: 768px) and (max-width: 991px) {

@@ -9,10 +9,10 @@ function handleMenuBarHover () {
 }
 
 function handleFootHover () {
-    var footItem = $('.g-footer .foot-container dl dd a')
+    var footItem = $('.g-footer .foot-container dl dd a');
     footItem.hover(function () {
         if ($(this).siblings('img').length > 0) {
-            $(this).parent('dd').siblings('dd').children('img').css({'display': 'none'})
+            $(this).parent('dd').siblings('dd').children('img').css({'display': 'none'});
             $(this).siblings('img').css({'display': 'block'})
         }
     })
@@ -33,15 +33,26 @@ function gPath () {
     }
 }
 
+function supportAside () {
+    var supportList = $('.wavlinkAside .supportItem'),
+        supportActive = $('.wavlinkAside .supportActive');
+    supportActive.find('h3').find('span').addClass("iconsami-select").removeClass("iconadd-select");
+    supportList.find('h3').click(function () {
+        $(this).find('span').toggleClass("iconsami-select").toggleClass("iconadd-select");
+        $(this).parent('.supportItem').siblings('.supportItem').find('h3').find('span').addClass("iconadd-select").removeClass("iconsami-select");
+        $(this).parent('.supportItem').siblings('.supportItem').find('dl').slideUp();
+        $(this).siblings('dl').stop(false, true).slideToggle();});
+}
+
 function wavlinkAds() {
-    var ads = $('.wavlink-ads')
-    var nav = $('.g-nav')
+    var ads = $('.wavlink-ads');
+    var nav = $('.g-nav');
 
     if (ads.length) {
         var adsH = ads.height();
         $('body').css({
             paddingTop: adsH + 50
-        })
+        });
         ads.slideDown(300);
         nav.css({
             top: adsH
@@ -50,7 +61,7 @@ function wavlinkAds() {
             ads.slideUp(300);
             $('body').css({
                 paddingTop: 50
-            })
+            });
             nav.css({
                 top: 0
             });
@@ -89,6 +100,8 @@ $(document).ready(function () {
     handleFootHover();
 
     gPath();
+
+    supportAside();
 
     wavlinkAds();
 

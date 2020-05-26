@@ -36,7 +36,7 @@
                         <div class="select">
                             <select name="category" class="filter_by">
                                 <option value="all">{:lang('All Category')}</option>
-                                {volist name="cate" id="vo"}
+                                {volist name="videos" id="vo"}
                                 {if($vo.level == 1)}
                                 <option value="{$vo.url_title}" style="display: none" {if condition='$name eq $vo.name' }selected{/if}>{$vo.delimiter|raw}{$vo.name}</option>
                                 {elseif($vo.level == 2)}

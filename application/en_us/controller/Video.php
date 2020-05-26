@@ -2,8 +2,10 @@
 
 namespace app\en_us\controller;
 
+use app\common\helper\Category;
 use app\common\model\Service\Video as VideoModel;
 use app\common\model\Service\ServiceCategory as ServiceCategoryModel;
+use app\wavlink\service\service\driversCategory as service;
 use think\App;
 use think\db\exception\DataNotFoundException;
 use think\db\exception\ModelNotFoundException;
@@ -27,11 +29,14 @@ class  Video extends Base
         $this->model = new VideoModel();
         try {
             $cate = ServiceCategoryModel::getTree($this->code, 'Videos');
-            $this->assign('cate', $cate);
+            $this->assign('videos', $cate);
         } catch (DataNotFoundException $e) {
         } catch (ModelNotFoundException $e) {
         } catch (DbException $e) {
         }
+        $data = (new service())->getDataByLanguageId($status = 1, $this->language_id);
+        $level = Category::toLevel($data['data']->toArray()['data'], '&emsp;&emsp;');
+        $this->assign('cate', $level);
     }
 
     /**

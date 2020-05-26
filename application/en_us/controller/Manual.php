@@ -8,8 +8,10 @@
 
 namespace app\en_us\controller;
 
+use app\common\helper\Category;
 use app\common\model\Service\Manual as ManualModel;
 use app\common\model\Service\ServiceCategory;
+use app\wavlink\service\service\driversCategory as service;
 use think\App;
 use think\db\exception\DataNotFoundException;
 use think\db\exception\ModelNotFoundException;
@@ -31,11 +33,14 @@ class Manual extends Base
         parent::__construct($app);
         try {
             $cate = ServiceCategory::getTree($this->code,'Manual');
-            $this->assign('cate', $cate);
+            $this->assign('manuals', $cate);
         } catch (DataNotFoundException $e) {
         } catch (ModelNotFoundException $e) {
         } catch (DbException $e) {
         }
+        $data = (new service())->getDataByLanguageId($status = 1, $this->language_id);
+        $level = Category::toLevel($data['data']->toArray()['data'], '&emsp;&emsp;');
+        $this->assign('cate', $level);
     }
 
     /**

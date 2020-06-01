@@ -48,7 +48,7 @@ function status($status)
  */
 function GetPassword($password)
 {
-    return md5(sha1($password) . Config::get('app.APP_TOKEN_MD5') );
+    return md5(sha1($password) . Config::get('app.APP_TOKEN_MD5'));
 }
 
 function Search($table, $map = [], $order, $field = '')
@@ -119,6 +119,7 @@ function getServiceCategory($id)
     $data = \app\common\model\Service\ServiceCategory::get($map);
     return $data['name'];
 }
+
 /**
  * @param $parent_id
  *
@@ -538,8 +539,8 @@ function get_lang($header)
         $lang_code = $header['accept-language'];
         $result = explode(',', $lang_code);
         $code = strtolower($result[0]);
-        $result=str_ireplace('-', '_', $code);
-        if(in_array($result,Config::get('language.allow_lang'))){
+        $result = str_ireplace('-', '_', $code);
+        if (in_array($result, Config::get('language.allow_lang'))) {
             return $result;
         }
         return 'en_us';
@@ -575,10 +576,11 @@ function GetFourStr($len)
  * @param $gender
  * @return string
  */
-function getGender($gender){
-    if($gender == 1){
+function getGender($gender)
+{
+    if ($gender == 1) {
         return lang('Male');
-    }elseif ($gender == 2){
+    } elseif ($gender == 2) {
         return lang('Female');
     }
     return lang('Secret');
@@ -589,8 +591,9 @@ function getGender($gender){
  * @return string
  * 如果前台（info）页邮箱没有填的话，默认给他N/A
  */
-function getEmail($email){
-    if($email == 1){
+function getEmail($email)
+{
+    if ($email == 1) {
         return '';
     }
     return $email;
@@ -600,8 +603,9 @@ function getEmail($email){
  * @param $phone
  * @return string
  */
-function getPhone($phone){
-    if($phone == 1){
+function getPhone($phone)
+{
+    if ($phone == 1) {
         return '';
     }
     return $phone;
@@ -612,11 +616,12 @@ function getPhone($phone){
  * @param $id
  * @return mixed
  */
-function getCountry($id){
-    try{
-        $country=(new app\common\model\Country())->field('country_id,name')->get(['country_id'=>$id]);
+function getCountry($id)
+{
+    try {
+        $country = (new app\common\model\Country())->field('country_id,name')->get(['country_id' => $id]);
         return $country['name'];
-    }catch (Exception $exception){
+    } catch (Exception $exception) {
         return 'N/A';
     }
 
@@ -626,7 +631,36 @@ function getCountry($id){
  * @param $int
  * @return string
  */
-function isSubscribe($int){
-    if(intval($int) == 1) return "已订阅";
-    if(intval($int) == 0) return "解除";
+function isSubscribe($int)
+{
+    if (intval($int) == 1) return "已订阅";
+    if (intval($int) == 0) return "解除";
+}
+
+//识别
+/**
+ * @param $http_accept
+ * @param string $defLang
+ * @return string
+ */
+function parseDefaultLanguage($http_accept, $defLang = "zh_cn")
+{
+    if (isset($http_accept) && strlen($http_accept) > 1) {
+        $accept = explode(",", $http_accept);
+        $lang = [];
+        foreach ($accept as $val) {
+            if (preg_match("/(.*);q=([0-1]{0,1}.\d{0,4})/i", $val, $matches))
+                $lang[$matches[1]] = (float)$matches[2];
+            else
+                $lang[$val] = 1.0;
+        }
+        $qVal = 0.0;
+        foreach ($lang as $key => $value) {
+            if ($value > $qVal) {
+                $qVal = (float)$value;
+                $defLang = $key;
+            }
+        }
+    }
+    return strtolower($defLang);
 }

@@ -36,7 +36,7 @@ class GuestBook extends BaseAdmin
     //获取未处理的固件信息,status = -1
     public function index()
     {
-        $data = (new service())->getDataByLanguageId($status = 1, $this->language_id);
+        $data = (new service())->getDataByLanguageId($status = 1, $this->currentLanguage['id']);
         $level = Category::toLevel($data['data']->toArray()['data'], '&emsp;&emsp;');
         $this->assign('cate', $level);
         $ticket = GuestBookModel::getDataByStatus(-1, $this->currentLanguage['id']);

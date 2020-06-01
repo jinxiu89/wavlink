@@ -28,7 +28,23 @@ class Base extends Controller
     protected $username;
     protected $code;
 
-    public $beforeActionList=['about'];
+    public $beforeActionList = ['about'];
+
+    /**
+     * 当 initialize 和_construct 同时存在时 先运行的是initialize
+     * 这与_initialize 不同，如果用带下划线的initialize 需要 在_construct里加$this->_initialize来执行官优先顺序
+     *
+     */
+    public function initialize()
+    {
+        $default = parseDefaultLanguage($this->request->header('accept-language'));
+        if (strpos($default, 'zh') !== false) {
+            Cookie::set('lang_var', 'zh_cn');
+        }
+        if (strpos($default, 'en') === false) {
+            Cookie::set('lar_var', 'en_us');
+        }
+    }
 
     /**
      * 构造函数，用来注册全局变量，供整个系统使用（这里指customer这个模块）,每个控制器都继承到base控制器
@@ -52,15 +68,11 @@ class Base extends Controller
     public function __construct(App $app = null)
     {
         parent::__construct($app);
-    }
-
-    public function initialize()
-    {
-        $lang = $lang = Cookie::get('lang_var') ? Cookie::get('lang_var') : 'en_us';
+        $lang = Cookie::get('lang_var') ? Cookie::get('lang_var') : 'en_us';
         Lang::load(APP_PATH . 'customer/lang/' . $lang . '.php'); //加载该语言下的模块语言包
-        $this->code=$lang;
+        $this->code = $lang;
         $user = session('CustomerInfo', '', 'Customer');
-        if (isset($user) and !empty($user)){
+        if (isset($user) and !empty($user)) {
             $this->uid = $user['id'];
             $this->username = $user['username'];
             $this->assign('id', $this->uid);
@@ -68,6 +80,7 @@ class Base extends Controller
         }
         $this->assign('lang', $lang);
     }
+
 
     /**
      * @throws \think\db\exception\DataNotFoundException
@@ -77,11 +90,11 @@ class Base extends Controller
      */
     public function about()
     {
-        try{
+        try {
             $about = (new AboutModel())->getAbouts($this->code);
             if ($about) $this->assign("about", $about['data']);
-        }catch (Exception $exception){
-            $this->assign('about',[]);
+        } catch (Exception $exception) {
+            $this->assign('about', []);
         }
     }
 

@@ -44,8 +44,8 @@
   color: #333;
 }
 .feature-box .zoom-box .spec-scroll .next {
-  background: #3d65a3;
-  border-color: #3d65a3;
+  background: #1D428A;
+  border-color: #1D428A;
   color: #333;
 }
 .feature-box .des {
@@ -59,7 +59,7 @@
 .feature-box .des .mode {
   padding: 5px 0;
   font-size: 14px;
-  color: #3d65a3;
+  color: #1D428A;
   border-bottom: 1px solid #eaeaea;
 }
 .feature-box .des .feature {
@@ -79,14 +79,14 @@
   line-height: 36px;
   margin: 0 18px 18px 0;
   text-align: center;
-  border: 1px solid #3d65a3;
+  border: 1px solid #1D428A;
 }
 .feature-box .des .store span a {
   display: block;
   color: #333;
 }
 .feature-box .des .store span a:hover {
-  background: #3d65a3;
+  background: #1D428A;
   color: #fff;
 }
 .feature-box .container {
@@ -149,17 +149,17 @@
 .nav-table ul li a {
   display: block;
   padding: 10px 20px;
-  color: #3d65a3;
+  color: #1D428A;
 }
 .nav-table ul li:hover {
-  color: #3d65a3;
+  color: #1D428A;
 }
 .nav-table ul li:hover a {
-  color: #3d65a3;
+  color: #1D428A;
 }
 .nav-table ul .active {
   color: #fff;
-  background: #3d65a3;
+  background: #1D428A;
 }
 .nav-table ul .active:hover {
   color: #fff;
@@ -275,7 +275,7 @@
   line-height: 35px;
   border-bottom: 1px solid #eaeaea;
   color: #fff;
-  background: #3d65a3;
+  background: #1D428A;
   cursor: pointer;
 }
 #go-top ul li {
@@ -289,10 +289,10 @@
   border-bottom: none;
 }
 #go-top ul li:hover {
-  color: #3d65a3;
+  color: #1D428A;
 }
 #go-top ul li:hover a {
-  color: #3d65a3;
+  color: #1D428A;
 }
 #go-top ul li a {
   display: block;

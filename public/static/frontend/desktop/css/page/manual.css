@@ -61,16 +61,16 @@
 .g-main .item .download_url {
   padding: 2px 12px;
   font-size: 12px;
-  border-color: #3d65a3;
+  border-color: #1D428A;
 }
 .g-main .item .download a {
   padding: 2px 12px;
   margin-right: 4px;
   font-size: 12px;
-  border-color: #3d65a3;
+  border-color: #1D428A;
 }
 .g-main .item .download a:hover {
-  background: #3d65a3;
+  background: #1D428A;
   color: #fff;
 }
 @media screen and (min-width: 768px) and (max-width: 991px) {

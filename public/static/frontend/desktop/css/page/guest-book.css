@@ -37,12 +37,12 @@
 }
 .panel .panel-body .form-group button:nth-of-type(1) {
   color: #fff;
-  background: #3d65a3;
-  border-color: #3d65a3;
+  background: #1D428A;
+  border-color: #1D428A;
 }
 .panel .panel-body .form-group button:nth-of-type(1):hover {
-  background: #335b99;
-  border-color: #335b99;
+  background: #133880;
+  border-color: #133880;
 }
 .panel .panel-body .form-group button:nth-last-of-type(1) {
   color: #333;
@@ -54,10 +54,10 @@
   border-color: #ebebeb;
 }
 .panel .panel-footer a {
-  color: #3d65a3;
+  color: #1D428A;
 }
 .panel .panel-footer a:hover {
-  color: #335b99;
+  color: #133880;
   text-decoration: underline;
 }
 /*# sourceMappingURL=guest-book.css.map */

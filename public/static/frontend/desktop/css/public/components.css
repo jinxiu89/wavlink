@@ -189,7 +189,7 @@ body {
 .wavlink-ads .ads-box a {
   display: block;
   padding: 10px 15px;
-  color: #3d65a3;
+  color: #1D428A;
 }
 .wavlink-ads .ads-box a:hover {
   text-decoration: none;
@@ -200,11 +200,11 @@ body {
   top: 0;
   right: 0;
   font-size: 14px;
-  color: #3d65a3;
+  color: #1D428A;
 }
 .wavlink-ads .ads-close:hover {
   cursor: pointer;
-  color: #476fad;
+  color: #274c94;
 }
 .g-nav {
   position: fixed;
@@ -215,7 +215,7 @@ body {
   transition: all 0.3s;
   height: 60px;
   line-height: 60px;
-  background: #3d65a3;
+  background: #1D428A;
 }
 .g-nav .container {
   position: relative;
@@ -249,18 +249,18 @@ body {
   position: relative;
 }
 .g-nav .menu-container .menu .menu-item:hover a {
-  color: #3d65a3;
+  color: #1D428A;
   background: #fff;
 }
 .g-nav .menu-container .menu .active:hover a {
   background: #fff;
-  color: #3d65a3;
+  color: #1D428A;
 }
 .g-nav .menu-container .menu .menu-item a {
   display: block;
   padding: 0 20px;
   color: #fff;
-  background: #3d65a3;
+  background: #1D428A;
   height: 60px;
   line-height: 60px;
 }
@@ -269,7 +269,7 @@ body {
 }
 .g-nav .menu-container .menu .active a {
   background: #fff;
-  color: #3d65a3;
+  color: #1D428A;
 }
 .g-nav .menu-container .menu .menu-item .dropdown-menu {
   position: absolute;
@@ -286,7 +286,7 @@ body {
 }
 .g-nav .menu-container .menu .menu-item .dropdown-menu li a {
   padding: 15px 30px;
-  color: #3d65a3;
+  color: #1D428A;
   background: #fff;
   text-align: center;
   height: auto;
@@ -353,7 +353,7 @@ body {
 }
 .g-nav .function-box .search-box .search-form input[type="submit"] {
   width: 50px;
-  background: #3d65a3;
+  background: #1D428A;
   color: #fff;
   border-radius: 0 5px 5px 0;
 }
@@ -436,7 +436,7 @@ body {
   display: block;
   padding: 0 10px;
   text-align: center;
-  color: #3d65a3;
+  color: #1D428A;
   text-overflow: ellipsis;
   white-space: nowrap;
   overflow: hidden;
@@ -445,10 +445,10 @@ body {
   display: block;
   padding: 0 10px;
   text-align: center;
-  color: #3d65a3;
+  color: #1D428A;
 }
 .g-nav .function-box .user-box .account .user-menu-wrapper .user-menu-item a:hover {
-  color: #3d65a3;
+  color: #1D428A;
   background: #abcae9;
   text-decoration: underline;
 }
@@ -529,7 +529,7 @@ body {
   line-height: 26px;
 }
 .g-footer .foot-container dl dd a:hover {
-  color: #3d65a3;
+  color: #1D428A;
 }
 .g-footer .foot-container dl dd a .iconfont {
   font-size: 30px;
@@ -579,7 +579,7 @@ body {
   overflow: hidden;
 }
 .g-path .breadcrumb a {
-  color: #3d65a3;
+  color: #1D428A;
 }
 .g-path .breadcrumb a:hover {
   text-decoration: underline;
@@ -616,8 +616,8 @@ body {
   margin: 0 10%;
 }
 .g-pagination li a {
-  color: #3d65a3;
-  border-color: #3d65a3;
+  color: #1D428A;
+  border-color: #1D428A;
 }
 .g-pagination .pagination {
   margin: 10px 0;
@@ -633,7 +633,7 @@ body {
 }
 .g-pagination .pagination > li > a,
 .g-pagination .pagination > li > span {
-  color: #3d65a3;
+  color: #1D428A;
 }
 .g-pagination .pagination > .disabled > a,
 .g-pagination .pagination > .disabled > a:focus,
@@ -650,8 +650,8 @@ body {
 .g-pagination .pagination > .active > span:focus,
 .g-pagination .pagination > .active > span:hover {
   color: #333;
-  background: #3d65a3;
-  border-color: #3d65a3;
+  background: #1D428A;
+  border-color: #1D428A;
 }
 .g-aside {
   float: left;
@@ -668,7 +668,7 @@ body {
   padding: 0 20px;
   font-size: 14px;
   line-height: 50px;
-  background: #3d65a3;
+  background: #1D428A;
   color: #fff;
 }
 .g-aside ul li a {
@@ -678,11 +678,11 @@ body {
   color: #333;
 }
 .g-aside ul li a:hover {
-  color: #3d65a3;
+  color: #1D428A;
   text-decoration: underline;
 }
 .g-aside ul li .active {
-  color: #3d65a3;
+  color: #1D428A;
   text-decoration: underline;
 }
 .g-aside .wavlinkAside .supportItem h3 {
@@ -763,7 +763,7 @@ body {
 }
 .g-filter .result {
   float: right;
-  color: #3d65a3;
+  color: #1D428A;
 }
 .g-filter span {
   display: inline-block;
@@ -778,7 +778,7 @@ body {
   width: 250px;
   height: 30px;
   padding: 0 5px;
-  border: 1px solid #3d65a3;
+  border: 1px solid #1D428A;
   -webkit-border-radius: 5px;
   -moz-border-radius: 5px;
   border-radius: 5px;

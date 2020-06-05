@@ -40,8 +40,8 @@
   color: #333;
 }
 .feature-box .zoom-box .spec-scroll .next {
-  background: #3d65a3;
-  border-color: #3d65a3;
+  background: #1D428A;
+  border-color: #1D428A;
   color: #333;
 }
 .feature-box .des {
@@ -53,7 +53,7 @@
 .feature-box .des .mode {
   padding: 5px 0;
   font-size: 14px;
-  color: #3d65a3;
+  color: #1D428A;
   border-bottom: 1px solid #eaeaea;
 }
 .feature-box .des .feature {
@@ -92,7 +92,7 @@
   display: block;
   color: #333;
   text-align: center;
-  border: 1px solid #3d65a3;
+  border: 1px solid #1D428A;
 }
 .poster-box img {
   display: block;
@@ -125,17 +125,17 @@
   cursor: pointer;
 }
 .nav-table ul li a {
-  color: #3d65a3;
+  color: #1D428A;
 }
 .nav-table ul li:hover {
-  color: #476fad;
+  color: #274c94;
 }
 .nav-table ul li:hover a {
-  color: #476fad;
+  color: #274c94;
 }
 .nav-table ul .active {
   color: #fff;
-  background: #3d65a3;
+  background: #1D428A;
 }
 .nav-table ul .active:hover {
   color: #fff;

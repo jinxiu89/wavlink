@@ -6,7 +6,7 @@
 */
 /* swiper */
 .banner .swiper-pagination-bullet-active {
-  background: #3d65a3;
+  background: #1D428A;
 }
 .banner .swiper-slide:nth-child(odd) .des {
   color: #fff;
@@ -43,8 +43,8 @@
   margin-bottom: 15px;
 }
 .banner .des dd a {
-  background: #3d65a3;
-  border-color: #3d65a3;
+  background: #1D428A;
+  border-color: #1D428A;
   color: #fff;
 }
 .banner .img-box a {
@@ -119,7 +119,7 @@
 .category-icon .item a .iconfont {
   font-size: 80px;
   line-height: normal;
-  color: #3d65a3;
+  color: #1D428A;
 }
 @media screen and (min-width: 1200px) {
   .category-icon .category-box {
@@ -160,7 +160,7 @@
   padding: 0 15px;
   font-size: 32px;
   background: #f5f5f5;
-  color: #3d65a3;
+  color: #1D428A;
   font-weight: normal;
   text-align: center;
 }
@@ -172,7 +172,7 @@
   width: 25%;
   height: 2px;
   margin-left: -12.5%;
-  background: #3d65a3;
+  background: #1D428A;
 }
 .recommend .common-box {
   float: left;
@@ -203,7 +203,7 @@
   color: #333;
 }
 .recommend .common-box .des h3 a:hover {
-  color: #3d65a3;
+  color: #1D428A;
   text-decoration: none;
 }
 .recommend .common-box .des span {
@@ -211,10 +211,10 @@
   font-size: 12px;
 }
 .recommend .common-box .des span a {
-  color: #3d65a3;
+  color: #1D428A;
 }
 .recommend .common-box .des span a:hover {
-  color: #3d65a3;
+  color: #1D428A;
   text-decoration: none;
 }
 .recommend .common-box .des span:nth-last-of-type(1) {
@@ -258,10 +258,10 @@
 .video-box h3 a {
   float: right;
   font-size: 14px;
-  color: #3d65a3;
+  color: #1D428A;
 }
 .video-box h3 a:hover {
-  color: #3d65a3;
+  color: #1D428A;
 }
 .video-box .videobefore,
 .video-box .video:after {
@@ -297,10 +297,10 @@
 .new-box h3 a {
   float: right;
   font-size: 14px;
-  color: #3d65a3;
+  color: #1D428A;
 }
 .new-box h3 a:hover {
-  color: #3d65a3;
+  color: #1D428A;
 }
 .new-box .item {
   padding: 20px 0;
@@ -356,7 +356,7 @@
   color: #333;
 }
 .new-box .item .des h4 a:hover {
-  color: #3d65a3;
+  color: #1D428A;
 }
 .new-box .item .des p {
   margin: 10px 0;
@@ -365,7 +365,7 @@
   margin: 0;
 }
 .new-box .item .des p span {
-  color: #3d65a3;
+  color: #1D428A;
 }
 @media screen and (min-width: 768px) and (max-width: 1199px) {
   .new-box .item:nth-of-type(2n + 1) .des {

@@ -34,7 +34,7 @@
   margin-right: auto;
 }
 .banner .swiper-pagination-bullet-active {
-  background: #3d65a3;
+  background: #1D428A;
 }
 /* swiper结束 */
 /* category-icon */
@@ -68,7 +68,7 @@
   border-bottom: none;
 }
 .category-icon .item .iconfont {
-  color: #3d65a3;
+  color: #1D428A;
   font-size: 50px;
 }
 .category-icon .item p {
@@ -149,7 +149,7 @@
   font-size: 12px;
 }
 .recommend .common-box .des span {
-  color: #3d65a3;
+  color: #1D428A;
   font-size: 12px;
 }
 .recommend .common-box .img-box {
@@ -247,7 +247,7 @@
   padding: 10px 0 0;
 }
 .video-box .swiper-pagination-bullet-active {
-  background: #3d65a3;
+  background: #1D428A;
 }
 /* video */
 /*# sourceMappingURL=home.css.map */

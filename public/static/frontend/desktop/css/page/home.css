@@ -8,6 +8,38 @@
 .banner .swiper-pagination-bullet-active {
   background: #1D428A;
 }
+.banner .swiper-button-prev {
+  background: none;
+  left: 40px;
+  box-sizing: content-box;
+  padding: 5px;
+  transition: all 0.2s;
+}
+.banner .swiper-button-prev span {
+  display: block;
+  width: 27px;
+  height: 44px;
+  background: url("../../img/left.png") center;
+  background-size: cover;
+}
+.banner .swiper-button-next {
+  background: none;
+  right: 40px;
+  box-sizing: content-box;
+  padding: 5px;
+  transition: all 0.5s;
+}
+.banner .swiper-button-next span {
+  display: block;
+  width: 27px;
+  height: 44px;
+  background: url("../../img/right.png") center;
+  background-size: cover;
+}
+.banner .swiper-button-prev:hover,
+.banner .swiper-button-next:hover {
+  background: rgba(171, 202, 233, 0.5);
+}
 .banner .swiper-slide:nth-child(odd) .des {
   color: #fff;
 }

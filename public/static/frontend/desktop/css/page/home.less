@@ -12,6 +12,38 @@
     .swiper-pagination-bullet-active {
         background: @activeColor;
     }
+    .swiper-button-prev {
+        background: none;
+        left: 40px;
+        box-sizing: content-box;
+        padding: 5px;
+        transition: all .2s;
+        span {
+            display: block;
+            width: 27px;
+            height: 44px;
+            background: url("../../img/left.png") center;
+            background-size: cover;
+        }
+    }
+    .swiper-button-next {
+        background: none;
+        right: 40px;
+        box-sizing: content-box;
+        padding: 5px;
+        transition: all .5s;
+        span {
+            display: block;
+            width: 27px;
+            height: 44px;
+            background: url("../../img/right.png") center;
+            background-size: cover;
+        }
+    }
+    .swiper-button-prev:hover,
+    .swiper-button-next:hover {
+        background: rgba(171, 202, 233, .5);
+    }
     .swiper-slide:nth-child(odd) .des {
         color: @whiteColor;
         dt a {

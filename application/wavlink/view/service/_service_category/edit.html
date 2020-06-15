@@ -3,8 +3,8 @@
 <div class="page-container">
     <form class="form form-horizontal form-o2o-add" id="form-o2o-add" method="post" action="">
         <div class="row cl">
-            <label class="form-label col-xs-4 col-sm-2"><span class="c-red">*</span>分类名称：</label>
-            <div class="formControls col-xs-8 col-sm-9">
+            <label class="form-label col-xs-2 col-sm-2"><span class="c-red">*</span>分类名称：</label>
+            <div class="formControls col-xs-5 col-sm-2">
                 <input type="text" class="input-text" value="{$serviceCategory.name}" placeholder="" id="name"
                        name="name">
                 {if condition="$serviceCategory.level eq 0"}
@@ -16,8 +16,8 @@
             </div>
         </div>
         <div class="row cl">
-            <label class="form-label col-xs-4 col-sm-2"><span class="c-red">*</span>URL标题：</label>
-            <div class="formControls col-xs-8 col-sm-9">
+            <label class="form-label col-xs-2 col-sm-2"><span class="c-red">*</span>URL标题：</label>
+            <div class="formControls col-xs-5 col-sm-5">
                 <input type="text" class="input-text" value="{$serviceCategory.url_title}" placeholder=""
                        id="url_title" name="url_title">
             </div>
@@ -26,16 +26,16 @@
         <input type="hidden" value="{$parent_id}" name="parent_id">
         {else /}
         <div class="row cl">
-            <label class="form-label col-xs-4 col-sm-2"><span class="c-red">*</span>分类栏目：</label>
-            <div class="formControls col-xs-8 col-sm-9">
+            <label class="form-label col-xs-2 col-sm-2"><span class="c-red">*</span>分类栏目：</label>
+            <div class="formControls col-xs-5 col-sm-5">
                 <input type="text" class="input-text" value="{$serviceCategory.parent_id|getServiceCategory}" disabled>
                 <input type="hidden" value="{$serviceCategory->parent_id}" name="parent_id">
             </div>
         </div>
         {/empty}
         <div class="row cl">
-            <label class="form-label col-xs-4 col-sm-2"><span>目录</span></label>
-            <div class="formControls col-xs=8 col-sm-9">
+            <label class="form-label col-xs-2 col-sm-2"><span>目录</span></label>
+            <div class="formControls col-xs=5 col-sm-5">
                 <span class="select-box">
                     <select name="has_child" class="select">
                         <option value="">--请选择--</option>
@@ -51,29 +51,29 @@
             </div>
         </div>
         <div class="row cl">
-            <label class="form-label col-xs-4 col-sm-2">所属语言：</label>
-            <div class="formControls col-xs-8 col-sm-3">
+            <label class="form-label col-xs-2 col-sm-2">所属语言：</label>
+            <div class="formControls col-xs-5 col-sm-2">
                 <input type="text" class="input-text" value="{$language_id|getLanguageOne}" disabled>
                 <input type="hidden" name="language_id" value="{$language_id}">
             </div>
         </div>
         <div class="row cl">
-            <label class="form-label col-xs-4 col-sm-2"><span class="c-red">*</span>SEO标题：</label>
-            <div class="formControls col-xs-8 col-sm-9">
+            <label class="form-label col-xs-2 col-sm-2"><span class="c-red">*</span>SEO标题：</label>
+            <div class="formControls col-xs-5 col-sm-5">
                 <input type="text" class="input-text" value="{$serviceCategory.seo_title}" placeholder=""
                        id="seo_title" name="seo_title">
             </div>
         </div>
         <div class="row cl">
-            <label class="form-label col-xs-4 col-sm-2"><span class="c-red">*</span>关键词：</label>
-            <div class="formControls col-xs-8 col-sm-9">
+            <label class="form-label col-xs-2 col-sm-2"><span class="c-red">*</span>关键词：</label>
+            <div class="formControls col-xs-5 col-sm-5">
                 <input type="text" class="input-text" value="{$serviceCategory.keywords}" placeholder="" id="keywords"
                        name="keywords">
             </div>
         </div>
         <div class="row cl">
-            <label class="form-label col-xs-4 col-sm-2"><span class="c-red">*</span>描述：</label>
-            <div class="formControls col-xs-8 col-sm-9">
+            <label class="form-label col-xs-2 col-sm-2"><span class="c-red">*</span>描述：</label>
+            <div class="formControls col-xs-5 col-sm-5">
                 <input type="text" class="input-text" value="{$serviceCategory.description}" placeholder=""
                        id="description" name="description">
             </div>

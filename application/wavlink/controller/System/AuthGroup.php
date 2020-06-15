@@ -11,6 +11,7 @@ namespace app\wavlink\controller\System;
 use app\common\model\System\AuthGroup as AuthGroupModel;
 use app\wavlink\controller\BaseAdmin;
 use app\wavlink\validate\AuthGroup as AuthGroupValidate;
+use app\common\model\System\AuthRule;
 use think\App;
 
 /***
@@ -52,9 +53,9 @@ class AuthGroup extends BaseAdmin
     public function add()
     {
         //验证权限
-        $authRule = model("AuthRule")->authRuleTree();
+        $authRule = (new AuthRule())->authRuleTree();
         //获取父级权限
-        $ParentAuthRule = model("AuthRule")->getAuthRuleByParentId(0);
+        $ParentAuthRule = (new AuthRule())->getAuthRuleByParentId(0);
         return $this->fetch('', [
             'authRule' => $authRule,
             'ParentAuthRule' => $ParentAuthRule
@@ -106,9 +107,9 @@ class AuthGroup extends BaseAdmin
         if (intval($id) < 0) {
             return show(0, 'error', 'ID不合法');
         }
-        $authRule = model("AuthRule")->authRuleTree();
+        $authRule = (new AuthRule())->authRuleTree();
         //获取父级权限
-        $ParentAuthRule = model("AuthRule")->getAuthRuleByParentId(0);
+        $ParentAuthRule = (new AuthRule())->getAuthRuleByParentId(0);
         $authGroup = $this->obj->find($id);
         $rules = explode(',', $authGroup['rules']);
         return $this->fetch('', [

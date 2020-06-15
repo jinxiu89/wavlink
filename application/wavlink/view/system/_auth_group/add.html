@@ -2,13 +2,13 @@
 <article class="cl pd-20">
     <form action="" method="post" class="form form-horizontal" id="form-admin-add">
         <div class="row cl">
-            <label class="form-label col-xs-3 col-sm-2"><span class="c-red">*</span>用户组名称:</label>
-            <div class="formControls col-xs-9 col-sm-10">
+            <label class="form-label col-xs-2 col-sm-2"><span class="c-red">*</span>名称:</label>
+            <div class="formControls col-xs-9 col-sm-5">
                 <input class="input-text" value="" placeholder="" id="title" name="title">
             </div>
         </div>
         <div class="row cl">
-            <label class="form-label col-xs-3 col-sm-2"><span class="c-red">*</span>用户组描述:</label>
+            <label class="form-label col-xs-2 col-sm-2"><span class="c-red">*</span>描述:</label>
             <div class="formControls col-xs-9 col-sm-10">
                 <textarea name="description" cols="" rows="" class="textarea" placeholder=""
                           dragonfly="true"></textarea>
@@ -16,8 +16,8 @@
         </div>
 
         <div class="row cl">
-            <label class="form-label col-xs-3 col-sm-2">配置规则：</label>
-            <div class="formControls col-xs-9 col-sm-10">
+            <label class="form-label col-xs-2 col-sm-2">配置规则:</label>
+            <div class="formControls col-xs-10 col-sm-10">
                 {volist name="ParentAuthRule" id="vo"}
                 <dl class="permission-list">
                     <dt>
@@ -27,12 +27,7 @@
                     </dt>
                     <dd>
                         <dl class="cl permission-list2">
-                            <!--<dt>-->
-                                <!--<label class="">-->
-                                    <!--<input type="checkbox" value="rules[]"  id="user-Character-1-0">-->
-                                    <!--{$vo.title}</label>-->
-                            <!--</dt>-->
-                            <dd>
+                            <dd style="margin-left: 0">
                                 {volist name="authRule" id="v"}
                                 {if condition="$v.parent_id eq $vo.id"}
                                 <label class="">

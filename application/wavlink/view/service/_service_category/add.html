@@ -5,10 +5,10 @@
         <input type="hidden" name="language_id" value="{$language_id}">
         <input type="hidden" name="parent_id" value="{$parent_id}">
         <div class="row cl">
-            <label class="form-label col-xs-4 col-sm-2"><span class="c-red">*</span>所属分类</label>
-            <div class="formControls col-xs-8 col-sm-9">
+            <label class="form-label col-xs-2 col-sm-2"><span class="c-red">*</span>所属分类</label>
+            <div class="formControls col-xs-2 col-sm-2">
                 {if condition="$parent_id eq 0"}
-                <input type="text" class="input-text" value="添加的这是一级分类" placeholder="" disabled>
+                <input type="text" class="input-text" value="顶级分类" placeholder="" disabled>
                 <input type="hidden" name="level" value="">
                 <input type="hidden" name="path" value="-">
                 {else /}
@@ -19,8 +19,8 @@
             </div>
         </div>
         <div class="row cl">
-            <label class="form-label col-xs-4 col-sm-2"><span>目录</span></label>
-            <div class="formControls col-xs=8 col-sm-9">
+            <label class="form-label col-xs-2 col-sm-2"><span>目录</span></label>
+            <div class="formControls col-xs=2 col-sm-2">
                 <span class="select-box">
                     <select name="has_child" class="select">
                     <option value="">--请选择--</option>
@@ -31,38 +31,38 @@
             </div>
         </div>
         <div class="row cl">
-            <label class="form-label col-xs-4 col-sm-2"><span class="c-red">*</span>分类名称：</label>
-            <div class="formControls col-xs-8 col-sm-9">
+            <label class="form-label col-xs-2 col-sm-2"><span class="c-red">*</span>分类名称：</label>
+            <div class="formControls col-xs-5 col-sm-5">
                 <input type="text" class="input-text" value="" placeholder="" id="name" name="name">
             </div>
         </div>
         <div class="row cl">
-            <label class="form-label col-xs-4 col-sm-2"><span class="c-red">*</span>所属语言：</label>
-            <div class="formControls col-xs-8 col-sm-9">
+            <label class="form-label col-xs-2 col-sm-2"><span class="c-red">*</span>所属语言：</label>
+            <div class="formControls col-xs-2 col-sm-2">
                 <input type="text" class="input-text" value="{$language_id|getLanguageOne}" disabled>
             </div>
         </div>
         <div class="row cl">
-            <label class="form-label col-xs-4 col-sm-2"><span class="c-red">*</span>URL标题：</label>
-            <div class="formControls col-xs-8 col-sm-9">
+            <label class="form-label col-xs-2 col-sm-2"><span class="c-red">*</span>URL标题：</label>
+            <div class="formControls col-xs-5 col-sm-5">
                 <input type="text" class="input-text" value="" placeholder="" id="url_title" name="url_title">
             </div>
         </div>
         <div class="row cl">
-            <label class="form-label col-xs-4 col-sm-2"><span class="c-red">*</span>SEO标题：</label>
-            <div class="formControls col-xs-8 col-sm-9">
+            <label class="form-label col-xs-2 col-sm-2"><span class="c-red">*</span>SEO标题：</label>
+            <div class="formControls col-xs-5 col-sm-2">
                 <input type="text" class="input-text" value="" placeholder="" id="seo_title" name="seo_title">
             </div>
         </div>
         <div class="row cl">
-            <label class="form-label col-xs-4 col-sm-2"><span class="c-red">*</span>关键词：</label>
-            <div class="formControls col-xs-8 col-sm-9">
+            <label class="form-label col-xs-2 col-sm-2"><span class="c-red">*</span>关键词：</label>
+            <div class="formControls col-xs-5 col-sm-5">
                 <input type="text" class="input-text" value="" placeholder="" id="keywords" name="keywords">
             </div>
         </div>
         <div class="row cl">
-            <label class="form-label col-xs-4 col-sm-2"><span class="c-red">*</span>描述：</label>
-            <div class="formControls col-xs-8 col-sm-9">
+            <label class="form-label col-xs-2 col-sm-2"><span class="c-red">*</span>描述：</label>
+            <div class="formControls col-xs-5 col-sm-5">
                 <input type="text" class="input-text" value="" placeholder="" id="description" name="description">
             </div>
         </div>

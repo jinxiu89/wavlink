@@ -17,7 +17,7 @@
                 </button>
             </div>-->
             <div class="cl pd-5 bg-1 bk-gray mt-20">
-                <span class="l"> <a href="javascript:;" onclick="add('添加管理员','{:url(\'Manger/add\')}','800','680')"
+                <span class="l"> <a href="javascript:;" onclick="add('添加管理员','{:url(\'Manger/add\')}','640','800')"
                                                                       class="btn btn-primary radius"><i
                         class="Hui-iconfont">&#xe600;</i> 添加管理员</a> </span>
                 <span class="r">共有数据：<strong>{$counts}</strong> 条</span>
@@ -52,8 +52,8 @@
                     <td class="td-status text-c"><span class="label label-success radius">已启用</span></td>
                     <td class="td-manage">
                         <a style="text-decoration:none" class="ml-5 btn btn-danger" onClick="stop('{:url(\'Manger/byStatus\',[\'id\'=>$vo.id,\'status\'=>-1])}')" href="javascript:;" title="停用"><i class="Hui-iconfont" style="font-size: 18px;color: #fff">&#xe631;</i></a>
-                        <a title="编辑" class="ml-5 btn btn-primary" href="javascript:;" onclick="edit('管理员编辑','{:url(\'Manger/edit\',[\'id\'=>$vo.id])}','800','500')"  style="text-decoration:none"><i class="Hui-iconfont" style="font-size: 18px;color: #fff">&#xe6df;</i></a>
-                        <a title="修改密码" class="ml-5 btn btn-secondary" href="javascript:;" onclick="edit('修改密码','{:url(\'Manger/password\',[\'id\'=>$vo.id])}','800','500')"  style="text-decoration:none"><i class="Hui-iconfont" style="font-size: 18px;color: #fff">&#xe63f;</i></a>
+                        <a title="编辑" class="ml-5 btn btn-primary" href="javascript:;" onclick="edit('管理员编辑','{:url(\'Manger/edit\',[\'id\'=>$vo.id])}','640','800')"  style="text-decoration:none"><i class="Hui-iconfont" style="font-size: 18px;color: #fff">&#xe6df;</i></a>
+                        <a title="修改密码" class="ml-5 btn btn-secondary" href="javascript:;" onclick="edit('修改密码','{:url(\'Manger/password\',[\'id\'=>$vo.id])}','600','320')"  style="text-decoration:none"><i class="Hui-iconfont" style="font-size: 18px;color: #fff">&#xe63f;</i></a>
                        </td>
                 </tr>
                 {/volist}

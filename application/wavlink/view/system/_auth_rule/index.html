@@ -20,7 +20,7 @@
             </form>
             <div class="cl pd-5 bg-1 bk-gray mt-20">
                 <span class="l">
-                    <a href="javascript:;" onclick="add('添加规则','{:url(\'auth_rule/add\')}','800','800')" class="btn btn-primary radius"><i class="Hui-iconfont">&#xe600;</i> 添加</a> </span>
+                    <a href="javascript:;" onclick="add('添加规则','{:url(\'auth_rule/add\')}','640','320')" class="btn btn-primary radius"><i class="Hui-iconfont">&#xe600;</i> 添加</a> </span>
                 <span class="r">共有数据：<strong></strong> 条</span>
             </div>
             <table class="table table-border table-bordered table-bg mt-20">
@@ -55,7 +55,7 @@
                         {else /}
                         <a style="text-decoration:none" class="ml-5 btn btn-success" onClick="start('{:url(\'auth_rule/byStatus\',[\'id\'=>$vo.id,\'status\'=>1])}')" href="javascript:;" title="恢复"><i class="Hui-iconfont" style="font-size: 20px;color: #fff">&#xe6dc;</i></a>
                         {/if}
-                        <a style="text-decoration:none" class="ml-5 btn btn-primary" onClick="edit('编辑权限','{:url(\'auth_rule/edit\',[\'id\'=>$vo.id])}','800','600')" href="javascript:void 0" title="编辑"><i class="Hui-iconfont" style="font-size: 20px;color: #fff">&#xe6df;</i></a>
+                        <a style="text-decoration:none" class="ml-5 btn btn-primary" onClick="edit('编辑权限','{:url(\'auth_rule/edit\',[\'id\'=>$vo.id])}','640','320')" href="javascript:void 0" title="编辑"><i class="Hui-iconfont" style="font-size: 20px;color: #fff">&#xe6df;</i></a>
                     </td>
                 </tr>
                 {/volist}

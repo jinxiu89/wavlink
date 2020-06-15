@@ -48,7 +48,7 @@ Class Article extends BaseAdmin
 
     public function add()
     {
-        $categorys = ServiceCategoryModel::getSecondCategory($this->currentLanguage['id']);
+        $categorys = ServiceCategoryModel::getSecondCategory($this->currentLanguage['id'],'Article');
 
         return $this->fetch('', [
             'categorys' => $categorys,
@@ -93,7 +93,7 @@ Class Article extends BaseAdmin
     public function edit($id = 0)
     {
         $id = $this->MustBePositiveInteger($id);
-        $categorys = ServiceCategoryModel::getSecondCategory($this->currentLanguage['id']);
+        $categorys = ServiceCategoryModel::getSecondCategory($this->currentLanguage['id'],'Article');
         $article = ArticleModel::get($id);
         return $this->fetch('', [
             'article' => $article,

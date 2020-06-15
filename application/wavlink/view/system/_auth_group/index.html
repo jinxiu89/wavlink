@@ -18,7 +18,7 @@
             </div>
             <div class="cl pd-5 bg-1 bk-gray mt-20">
                 <span class="l">
-                    <a href="javascript:;" onclick="add('添加用户组','{:url(\'AuthGroup/add\')}','800','800')" class="btn btn-primary radius"><i class="Hui-iconfont">&#xe600;</i> 添加用户组</a> </span>
+                    <a href="javascript:;" onclick="add('添加用户组','{:url(\'AuthGroup/add\')}','640','900')" class="btn btn-primary radius"><i class="Hui-iconfont">&#xe600;</i> 添加用户组</a> </span>
                 <span class="r">共有数据：<strong>{$count}</strong> 条</span>
             </div>
             <table class="table table-border table-bordered table-bg mt-20">
@@ -51,7 +51,7 @@
                         {else /}
                         <a style="text-decoration:none" class="ml-5 btn btn-success" onClick="start('{:url(\'auth_group/byStatus\',[\'id\'=>$vo.id,\'status\'=>1])}')" href="javascript:;" title="恢复"><i class="Hui-iconfont" style="font-size: 20px;color: #fff">&#xe6dc;</i></a>
                         {/if}
-                        <a style="text-decoration:none" class="ml-5 btn btn-primary" onClick="edit('编辑','{:url(\'auth_group/edit\',[\'id\'=>$vo.id])}','800','600')" href="javascript:void 0" title="编辑"><i class="Hui-iconfont" style="font-size: 20px;color: #fff">&#xe6df;</i></a>
+                        <a style="text-decoration:none" class="ml-5 btn btn-primary" onClick="edit('编辑','{:url(\'auth_group/edit\',[\'id\'=>$vo.id])}','640','840')" href="javascript:void 0" title="编辑"><i class="Hui-iconfont" style="font-size: 20px;color: #fff">&#xe6df;</i></a>
                     </td>
                 </tr>
                 {/volist}

@@ -6,6 +6,7 @@ use app\common\helper\Category;
 use app\common\model\Content\Category as CategoryModel;
 use app\common\model\Content\Product as ProductModel;
 use think\Exception;
+use think\facade\Config;
 use think\facade\Log;
 
 /**
@@ -22,9 +23,9 @@ class Product extends Base
 
     public function details($product = '')
     {
-        if (!isset($product) || empty($product)) {
+        /*if (!isset($product) || empty($product)) {
             abort(404);
-        }
+        }*/
         /*$system = config('system.system');
         if ($system['cache']) {
             $result = (new ProductModel())->binarySearchProduct($product, $this->code);
@@ -34,7 +35,7 @@ class Product extends Base
         try{
             $result = ProductModel::where(['url_title' => $product])->find();
             $link = $result->links;
-            if (!empty($result)) {
+            if (!$result->isEmpty()) {
                 if (!empty($result['album'])) {
                     //产品详情页放大镜的图
                     $albums = explode(',', $result['album']);
@@ -60,6 +61,9 @@ class Product extends Base
         }catch (Exception $exception){
             Log::error($exception->getMessage());
             Log::close();
+            if(Config::get('app_debug')){
+                print_r($exception->getMessage());
+            }
             $this->redirect(url('500'),[],500);
         }
     }

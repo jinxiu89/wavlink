@@ -77,7 +77,7 @@ class Drivers extends BaseModel
     public static function getSelectDrivers($name, $code)
     {
         $language_id = LanguageModel::getLanguageCodeOrID($code);
-        $model = 'drivers';
+        $model = 'tb_drivers';
         $map['status'] = '1';
         $map['name|url_title|keywords|description|models'] = ['like', '%' . $name . '%'];
         $map['language_id'] = $language_id;

@@ -23,15 +23,6 @@ class Product extends Base
 
     public function details($product = '')
     {
-        /*if (!isset($product) || empty($product)) {
-            abort(404);
-        }*/
-        /*$system = config('system.system');
-        if ($system['cache']) {
-            $result = (new ProductModel())->binarySearchProduct($product, $this->code);
-        } else {//产品详情页如果是搜索过来的数据 状态为禁用时也需要能展示
-
-        }*/
         try{
             $result = ProductModel::where(['url_title' => $product])->find();
             $link = $result->links;

@@ -54,13 +54,14 @@
         <div class="g-path">
             <ol class="breadcrumb">
                 <li><a href="/{$code}/index.html">{:lang('home')}</a></li>
-                {volist name="path" id="vo"}
+                {$path|getPath|raw}
+                <!--{volist name="path" id="vo"}
                 {if condition="$current eq $vo.url_title"}
                 <li class="active">{$vo.name}</li>
                 {else /}
                 <li><a href="{:url('/'.$code.'/category/'.$vo.url_title)}">{$vo.name}</a></li>
                 {/if}
-                {/volist}
+                {/volist}-->
             </ol>
         </div>
     </div>

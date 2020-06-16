@@ -134,6 +134,7 @@ class Product extends BaseModel
 
     /**
      * @param $category_id
+     * @param $language_id
      * @return array|PDOStatement|string|Collection
      * @throws DataNotFoundException
      * @throws DbException

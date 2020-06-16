@@ -53,11 +53,7 @@ class Drivers extends BaseModel
      */
     public function getDriversByCategoryIds($language, $category, $order = 'desc')
     {
-        $order = [
-            'update_time' => $order,
-            'listorder' => 'desc',
-            'id' => 'desc',
-        ];
+        $order = ['update_time' => $order, 'listorder' => 'desc', 'id' => 'desc'];
         $response = self::where('category_id', 'in', $category)->where(['language_id' => $language, 'status' => 1]);
         $count = $response->count();
         $data = $response->order($order)->paginate(6, true);

@@ -118,12 +118,10 @@ Class Category extends BaseAdmin
         $id = $this->MustBePositiveInteger($id);
         $category = $this->model->get($id);
         if ($category['parent_id'] > 0) {
-            $cate = $this->model->all([
-                'status' => 1,
-                'parent_id' => 0,
-                'language_id' => $this->currentLanguage['id'],
-            ]);
-            $this->assign('cate', $cate);
+            $cate = $this->model->where('level','<',2)
+                ->all(['status' => 1, 'language_id' => $this->currentLanguage['id']]);
+            $tree= \app\common\helper\Category::toLevel($cate->toArray(),'&nbsp;&nbsp;');
+            $this->assign('cate', $tree);
         } else {
             $this->assign('parent_id', 0);
         }

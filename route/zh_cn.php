@@ -10,7 +10,7 @@ use think\facade\Route;
 
 Route::group('zh_cn', function () {
     Route::get('/index', 'Index/index');
-    Route::get('/category/:category', 'Category/index')->pattern(['category' => '[\w-]+']);
+    Route::get('/category/:category', 'Category/category')->pattern(['category' => '[\w-]+']);
     Route::get('/product/:product', 'Product/details')->pattern(['product' => '[\w-]+']);
     Route::get('/about/:about','About/index')->pattern(['about' => '[\w-]+']);
     Route::get('/drivers/:category', 'Drivers/category')->pattern(['category' => '[\w-]+']);

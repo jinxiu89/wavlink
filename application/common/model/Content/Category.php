@@ -36,6 +36,32 @@ class Category extends BaseModel
     }
 
     /**
+     * @param $category
+     * @param $language
+     * @return array|void
+     * @throws DataNotFoundException
+     * @throws DbException
+     * @throws ModelNotFoundException
+     */
+    public static function getCategoryID($category, $language)
+    {
+        $category = self::where(['url_title' => $category, 'language_id' => $language])->find();
+        $categoryID[] = $category->id;
+        $map=[];
+        if($category['level'] == 0) $map=['language_id'=>$language,'status'=>1,'level'=>1];
+        if($category['level'] == 1) $map=['language_id'=>$language,'status'=>1,'level'=>2];
+        if ($category->is_parent == 1) { // 0 代表目录 1 代表子分类
+            $path = $category->path;
+            $categorys = self::where('path', 'like', $path . $category->id . '%')
+                ->where($map)
+                ->field('id,url_title,image,name')->select();
+            $categoryID = array_merge($categoryID, array_column($categorys->toArray(), 'id'));
+            return ['category' => $category, 'categoryID' => $categoryID, 'path' => $category->path . $category->id,'child'=>$categorys->toArray()];
+        }
+        return ;
+    }
+
+    /**
      * @param $urlTitle
      * @param $code
      * @return array|\PDOStatement|string|\think\Model|null
@@ -45,17 +71,12 @@ class Category extends BaseModel
      */
     public static function getDetailsByUrlTitle($urlTitle, $code)
     {
-        $model = request()->controller();
         $language_id = LanguageModel::getLanguageCodeOrID($code);
-        $map = [
-            'status' => 1,
-            'language_id' => $language_id,
-            'url_title' => $urlTitle
-        ];
-        try{
+        $map = ['status' => 1, 'language_id' => $language_id, 'url_title' => $urlTitle];
+        try {
             return self::where($map)->find();
 
-        }catch (\Exception $exception){
+        } catch (\Exception $exception) {
             return [];
         }
     }
@@ -114,15 +135,23 @@ class Category extends BaseModel
     public static function getCategoryWithProduct($id)
     {
         $ids = static::getProductCategory($id);
-        $order = [
-            'listorder' => 'desc',
-            'id' => 'desc'
-        ];
+        $order = ['listorder' => 'desc', 'id' => 'desc'];
         $product = (new ProductModel())->where('id', 'in', $ids)
             ->where('status', '=', 1)
             ->order($order)
             ->paginate('12', true);
         return $product;
+    }
+
+    /**
+     * @param $categoryID
+     */
+    public static function getProductWithCategoryIds($categoryID)
+    {
+        $order = ['listorder' => 'desc', 'id' => 'desc'];
+        return Db::table('product_category')->alias('category')->whereOr('category.category_id', 'in', $categoryID)
+            ->join('product', ['product.id=category.product_id', 'product.status=1'])->order($order)
+            ->field('id,image_litpic_url,name,model,listorder,create_time,language_id,url_title')->select();
     }
 
     //获取分类id 或者 子分类id
@@ -148,17 +177,9 @@ class Category extends BaseModel
     //后台获取栏目列表
     public function getCategory($parentId = 0, $language_id)
     {
-        $data = [
-            'parent_id' => $parentId,
-            'language_id' => $language_id
-        ];
-        $order = [
-            'status' => 'desc',
-            'listorder' => 'desc',
-            'id' => 'asc',
-        ];
+        $data = ['parent_id' => $parentId, 'language_id' => $language_id];
+        $order = ['status' => 'desc', 'listorder' => 'desc', 'id' => 'asc'];
         $model = 'category';
-
         return Search($model, $data, $order);
     }
 

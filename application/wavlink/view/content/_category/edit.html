@@ -30,7 +30,7 @@
 				<span class="select-box">
 				<select name="parent_id" class="select">
                     {volist name="cate" id="vo"}
-					<option value="{$vo.id}" {if condition="$category.parent_id eq $vo.id"} selected="selected" {/if}>{$vo.name}</option>
+					<option value="{$vo.id}" {if condition="$category.parent_id eq $vo.id"} selected="selected" {/if}>{$vo.delimiter|raw}{$vo.name}</option>
                     {/volist}
 				</select>
 				</span>

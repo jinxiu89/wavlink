@@ -24,6 +24,7 @@ class BaseAdmin extends Controller
 {
     protected $currentLanguage;
     protected $currentUser;
+    protected $version;
     protected $beforeActionList = [
         'isLogin', 'Auth'
     ];
@@ -37,6 +38,7 @@ class BaseAdmin extends Controller
     {
         parent::__construct($app);
         $this->assign('currentLanguage',$this->currentLanguage);
+        $this->assign('version',Config::get('app_version'));
     }
 
     /***

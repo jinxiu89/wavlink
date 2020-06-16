@@ -117,8 +117,9 @@
             return false
         }
         prev.css({
-            "background": "#f8b300",
-            "borderColor": "#f8b300"
+            "background": "#1D428A",
+            "borderColor": "#1D428A",
+            "color": "#fff"
         });
         $(".spec-scroll .items ul").css({
             "margin-left": -(i * li) + "px"
@@ -126,15 +127,17 @@
         if (i === li_length - 1) {
             $(this).css({
                 "background": "#eaeaea",
-                "borderColor": "#eaeaea"
+                "borderColor": "#eaeaea",
+                "color": "#333"
             })
         }
     });
     prev.click(function () {
         i--;
         next.css({
-            "background": "#f8b300",
-            "borderColor": "#f8b300"
+            "background": "#1D428A",
+            "borderColor": "#1D428A",
+            "color": "#fff"
         });
         if (i < 0) {
             i = 0;
@@ -146,7 +149,8 @@
         if (i === 0) {
             $(this).css({
                 "background": "#eaeaea",
-                "borderColor": "#eaeaea"
+                "borderColor": "#eaeaea",
+                "color": "#333"
             })
         }
     })

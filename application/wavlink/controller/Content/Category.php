@@ -7,17 +7,19 @@
  */
 
 namespace app\wavlink\controller\Content;
+
 use app\common\model\Content\Category as CategoryModel;
 use app\wavlink\validate\Category as CategoryValidate;
 use think\App;
 use think\facade\Request;
 use app\wavlink\controller\BaseAdmin;
+
 /***
  * Class Category
  * @package app\wavlink\controller
  * 产品分类功归类 时间：2020.05.16
  */
-Class Category extends BaseAdmin
+class Category extends BaseAdmin
 {
     protected $validate;
     protected $model;
@@ -53,7 +55,7 @@ Class Category extends BaseAdmin
     {
         if (input('get.parent_id')) {
             //如有存在parent_id ,就是添加子分类
-            $category_id = input('get.parent_id',1,'intval');
+            $category_id = input('get.parent_id', 1, 'intval');
 //            $category = CategoryModel::get(['status' => 1, 'id' => $category_id, 'language_id' => $language_id]);
             $this->assign('parent_id', $category_id);
         } else {
@@ -118,9 +120,9 @@ Class Category extends BaseAdmin
         $id = $this->MustBePositiveInteger($id);
         $category = $this->model->get($id);
         if ($category['parent_id'] > 0) {
-            $cate = $this->model->where('level','<',2)
+            $cate = $this->model->where('level', '<', 2)
                 ->all(['status' => 1, 'language_id' => $this->currentLanguage['id']]);
-            $tree= \app\common\helper\Category::toLevel($cate->toArray(),'&nbsp;&nbsp;');
+            $tree = \app\common\helper\Category::toLevel($cate->toArray(), '&nbsp;&nbsp;');
             $this->assign('cate', $tree);
         } else {
             $this->assign('parent_id', 0);
@@ -217,9 +219,7 @@ Class Category extends BaseAdmin
     public function del()
     {
         $id = input('get.id');
-        if (!$this->validate->scene('del')->check(['id' => $id])) {
-            return show(0, 'error', $this->validate->getError());
-        }
+        if (!$this->validate->scene('del')->check(['id' => $id])) return show(0, 'error', $this->validate->getError());
         //从Category找是否存在子分类
         $result = $this->model->checkData($id);
         if ($result === true) {

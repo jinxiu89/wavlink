@@ -204,7 +204,6 @@
     function videoPlay (windowH, videoOffset, videoH, docTop) {
         var m = (videoOffset - docTop) / windowH,
             n = docTop - videoOffset;
-        console.log(m);
         if (m>0&&m<1 || n>0&&n<videoH) {  //进入视窗，播放视频
             if ($("#hot-video video").attr("src") !== "http://china.wavlink.com/videos/wavlink.mp4") {
                 $("#hot-video video").attr("src", "http://china.wavlink.com/videos/wavlink.mp4");

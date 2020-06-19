@@ -47,7 +47,7 @@ Route::group(Config::get('__BACKEND__'), function () {
     //产品分类路由
     Route::get('/category/index', 'Content.Category/index');
     Route::get('/category/add', 'Content.Category/add');
-    Route::get('/Category/byStatus', 'Content.Category/byStatus');
+    Route::get('/Category/byStatus', 'Content.Category/byStatus')->name('changeCategoryStatus');
     Route::get('/Category/edit', 'Content.Category/edit', [], ['id' => '\d+']);
     //产品分类post路由
     Route::post('/category/save', 'Content.Category/save');

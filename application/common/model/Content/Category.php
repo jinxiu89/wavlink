@@ -53,7 +53,7 @@ class Category extends BaseModel
         if ($category->is_parent == 1) { // 0 代表目录 1 代表子分类
             $path = $category->path;
             $categorys = self::where('path', 'like', $path . $category->id . '%')
-                ->where($map)
+                ->where($map)->order(['listorder' => 'desc', 'id' => 'desc'])
                 ->field('id,url_title,image,name')->select();
             $categoryID = array_merge($categoryID, array_column($categorys->toArray(), 'id'));
             return ['category' => $category, 'categoryID' => $categoryID, 'path' => $category->path . $category->id,'child'=>$categorys->toArray()];

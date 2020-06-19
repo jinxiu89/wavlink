@@ -53,7 +53,7 @@
                     <td>{$vo.keywords}</td>
                     <td>{$vo.parent_id|getCategory|raw}</td>
                     <td class="text-c listorder"><input  class="input-text" attr-id="{$vo.id}" name="listorder" value="{$vo.listorder}"/></td>
-                    <td class="td-status text-c"><a href="javascript:;" onclick="start('{:url(\'Category/byStatus\',[\'id\'=>$vo.id,\'status\'=>$vo.status==1?-1:1])}')" title="点击修改状态">{$vo.status|status|raw}</a></td>
+                    <td class="td-status text-c"><a href="javascript:;" onclick="start('{:url(\'changeCategoryStatus\',[\'id\'=>$vo.id,\'status\'=>$vo.status==1?-1:1])}')" title="点击修改状态">{$vo.status|status|raw}</a></td>
                     <td class="td-manage">
                         {if($vo.level < 2)}
                         <a title="添加子分类" class="ml-5 btn btn-primary" href="javascript:;" onclick="add('添加产品二级分类','{:url(\'Category/add\',[\'parent_id\'=>$vo.id,\'path\'=>$vo.path])}','800','680')"><i class="Hui-iconfont" style="color: #fff">&#xe716</i></a>

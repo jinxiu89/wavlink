@@ -201,7 +201,7 @@ class Category extends BaseAdmin
         if ($this->validate->scene('changeStatus')->check($data)) {
             try {
                 $result = $this->model->checkData($data['id']);
-                if ($result) {
+                if (true != $result) {
                     return show(0, "failed", '', '', '', $result);
                 }
                 if ($this->model->allowField(true)->save($data, ['id' => $data['id']])) {
@@ -212,7 +212,7 @@ class Category extends BaseAdmin
                 return show(0, "failed", '', '', '', $exception->getMessage());
             }
         }
-        return show(0, "failed", '', '', '', $this->validate->getError());
+//        return show(0, "failed", '', '', '', $this->validate->getError());
     }
 
 

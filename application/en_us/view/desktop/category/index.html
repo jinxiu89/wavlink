@@ -12,6 +12,21 @@
 {block name="swiper"}
 <div class="container">
     <div class="row">
+        <div class="g-path">
+            <ol class="breadcrumb">
+                <li><a href="/{$code}/index.html">{:lang('home')}</a></li>
+                {$path|getPath|raw}
+                <!--{volist name="path" id="vo"}
+                {if condition="$current eq $vo.url_title"}
+                <li class="active">{$vo.name}</li>
+                {else /}
+                <li><a href="{:url('/'.$code.'/category/'.$vo.url_title)}">{$vo.name}</a></li>
+                {/if}
+                {/volist}-->
+            </ol>
+        </div>
+    </div>
+    <div class="row">
         <div class="category-list">
             {volist name="child" id="vo"}
             {if condition="$current eq $vo.url_title"}
@@ -48,21 +63,6 @@
             </div>
             {/if}
             {/volist}
-        </div>
-    </div>
-    <div class="row">
-        <div class="g-path">
-            <ol class="breadcrumb">
-                <li><a href="/{$code}/index.html">{:lang('home')}</a></li>
-                {$path|getPath|raw}
-                <!--{volist name="path" id="vo"}
-                {if condition="$current eq $vo.url_title"}
-                <li class="active">{$vo.name}</li>
-                {else /}
-                <li><a href="{:url('/'.$code.'/category/'.$vo.url_title)}">{$vo.name}</a></li>
-                {/if}
-                {/volist}-->
-            </ol>
         </div>
     </div>
 </div>

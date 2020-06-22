@@ -45,20 +45,31 @@ class Category extends BaseModel
      */
     public static function getCategoryID($category, $language)
     {
-        $category = self::where(['url_title' => $category, 'language_id' => $language])->find();
+        $category = self::where(['url_title' => $category, 'language_id' => $language])->find(); //这是查询的那一级分类
         $categoryID[] = $category->id;
-        $map=[];
-        if($category['level'] == 0) $map=['language_id'=>$language,'status'=>1,'level'=>1];
-        if($category['level'] == 1) $map=['language_id'=>$language,'status'=>1,'level'=>2];
-        if ($category->is_parent == 1) { // 0 代表目录 1 代表子分类
+        $map = [];
+        $data['category'] = $category;
+        if ($category['level'] == 0) $map = ['language_id' => $language, 'status' => 1, 'level' => 1];
+        if ($category['level'] == 1) $map = ['language_id' => $language, 'status' => 1, 'level' => 2];
+        if ($category->is_parent == 1) { // 1 代表目录 0 代表子分类 目录的查出他的子目录
             $path = $category->path;
             $categorys = self::where('path', 'like', $path . $category->id . '%')
                 ->where($map)->order(['listorder' => 'desc', 'id' => 'desc'])
                 ->field('id,url_title,image,name')->select();
             $categoryID = array_merge($categoryID, array_column($categorys->toArray(), 'id'));
-            return ['category' => $category, 'categoryID' => $categoryID, 'path' => $category->path . $category->id,'child'=>$categorys->toArray()];
+            $data['categoryID'] = $categoryID;
+            $data['path'] = $path . $category->id;
+            $data['child'] = $categorys->toArray();
+//            return ['category' => $category, 'categoryID' => $categoryID, 'path' => $category->path . $category->id, 'child' => $categorys->toArray()];
+        } else {//本身为子目录的查出他同一个父级的子分类
+            $categorys = self::where('path', 'like', $category->path)
+                ->where($map)->order(['listorder' => 'desc', 'id' => 'desc'])
+                ->field('id,url_title,image,name')->select();
+            $data['categoryID']=$categoryID;
+            $data['path']=$category->path;
+            $data['child']=$categorys->toArray();
         }
-        return ;
+        return $data;
     }
 
     /**

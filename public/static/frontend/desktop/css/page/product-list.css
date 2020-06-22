@@ -4,6 +4,29 @@
 * @author: Alan(alan_webdeveloper@163.com)
 * @update: 2019-09-16 10:30
 */
+.category-list {
+  margin: 10px 0;
+}
+.category-listbefore,
+.category-list:after {
+  content: " ";
+  display: table;
+  zoom: 1;
+}
+.category-list:after {
+  clear: both;
+}
+.category-item {
+  float: left;
+  width: 30%;
+}
+.category-item .img-box img {
+  margin-left: auto;
+  margin-right: auto;
+  display: block;
+  max-width: 100%;
+  height: auto;
+}
 .g-path {
   margin: 10px 0;
 }

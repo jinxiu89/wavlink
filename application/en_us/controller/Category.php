@@ -10,6 +10,8 @@ use think\db\exception\ModelNotFoundException;
 use think\Exception;
 use think\exception\DbException;
 use app\common\service\en_us\Category as service;
+use think\facade\Config;
+use think\facade\Log;
 use think\paginator\driver\Bootstrap;
 
 /**
@@ -89,7 +91,11 @@ class  Category extends Base
             $this->assign('child', $parent['child']);
             return $this->fetch($this->template . '/category/index.html');
         } catch (Exception $exception) {
-            print_r($exception->getMessage());
+            if(Config::get('app_debug','false')){
+                Log::error($exception->getMessage());
+                print_r($exception->getMessage());
+            }
+            abort(500);
         }
     }
 
@@ -108,7 +114,6 @@ class  Category extends Base
             //得到父分类
             $parents = $categoryModel->getCategoryById($this->code, $parent['parent_id']);
         }
-        print_r($products);
         exit;
         //获取子分类
         $child = $categoryModel->getNormalCategory($this->code, $parents['id']);

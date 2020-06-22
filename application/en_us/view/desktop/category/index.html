@@ -16,13 +16,6 @@
             <ol class="breadcrumb">
                 <li><a href="/{$code}/index.html">{:lang('home')}</a></li>
                 {$path|getPath|raw}
-                <!--{volist name="path" id="vo"}
-                {if condition="$current eq $vo.url_title"}
-                <li class="active">{$vo.name}</li>
-                {else /}
-                <li><a href="{:url('/'.$code.'/category/'.$vo.url_title)}">{$vo.name}</a></li>
-                {/if}
-                {/volist}-->
             </ol>
         </div>
     </div>
@@ -32,12 +25,14 @@
             {if condition="$current eq $vo.url_title"}
             <div class="category-item active">
                 <div>
+                    {if($vo.image != '')}
                     <div class="img-box">
                         <a href="{:url('/'.$code.'/category/'.$vo.url_title)}">
                             <img src="{$vo.image}"
                                  alt="{$vo.name}">
                         </a>
                     </div>
+                    {/if}
                     <div class="des">
                         <a href="{:url('/'.$code.'/category/'.$vo.url_title)}">
                             <span>{$vo.name}</span>
@@ -48,12 +43,14 @@
             {else /}
             <div class="category-item">
                 <div>
+                    {if($vo.image != '')}
                     <div class="img-box">
                         <a href="{:url('/'.$code.'/category/'.$vo.url_title)}">
                             <img src="{$vo.image}"
                                  alt="{$vo.name}">
                         </a>
                     </div>
+                    {/if}
                     <div class="des">
                         <a href="{:url('/'.$code.'/category/'.$vo.url_title)}">
                             <span>{$vo.name}</span>

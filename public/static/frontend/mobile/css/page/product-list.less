@@ -9,6 +9,40 @@
 .g-pagination {
     margin: 5px 0 0;
 }
+
+//列表分類佈局
+.category-list {
+    .clearFix();
+    margin: 0 0 10px;
+    background: @whiteColor;
+}
+.category-item {
+    .fl();
+    width: 33.333333%;
+    padding: 10px;
+    border-right: 1px solid @borderColor;
+    border-bottom: 1px solid @borderColor;
+    &:nth-of-type(3n) {
+        border-right: transparent;
+    }
+    .img-box {
+        img {
+            .center-block();
+            .img-responsive();
+            width: 80%;
+        }
+    }
+    .des {
+        text-align: center;
+        font-size: 12px;
+        .text-overflow();
+        a {
+            color: @baseColor;
+        }
+    }
+}
+//列表分類佈局結束
+
 //列表布局样式
 .list-box {
     .clearFix();

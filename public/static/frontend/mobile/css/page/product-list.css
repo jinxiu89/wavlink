@@ -45,6 +45,9 @@
 .category-item .des {
   text-align: center;
   font-size: 12px;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  overflow: hidden;
 }
 .category-item .des a {
   color: #333;

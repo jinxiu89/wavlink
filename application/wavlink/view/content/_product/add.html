@@ -85,12 +85,19 @@
                     <dt>
                         <label style="color: blue">
                             <input type="checkbox" value="{$vo.id}" name="cates[]"  id="user-Character-0">
-                            {$vo.name}</label>
+                            {$vo.name}
+                        </label>
                     </dt>
                     <dd>
+                        {volist name="$vo.child" id="o"}
                         <dl class="cl permission-list2">
-                            <dd>
-                                {volist name="$vo.child" id="v"}
+                            <dt  style="float: none">
+                                <label style="color: blue">
+                                    <input type="checkbox" value="{$vo.id}" name="cates[]"  id="1">
+                                    {$o.name}</label>
+                            </dt>
+                            <dd  style="margin: 10px 0 10px 20px">
+                                {volist name="$o.child" id="v"}
                                 <label class="">
                                     <input type="checkbox" value="{$v.id}" name="cates[]" id="user-Character-1-0-0">
                                     {$v.name}
@@ -98,12 +105,12 @@
                                 {/volist}
                             </dd>
                         </dl>
+                        {/volist}
                     </dd>
                 </dl>
                 {/volist}
             </div>
         </div>
-
         <div class="row cl">
             <label class="form-label col-xs-4 col-sm-1"><span class="c-red">*</span>所属语言：</label>
             <div class="formControls col-xs-8 col-sm-2">

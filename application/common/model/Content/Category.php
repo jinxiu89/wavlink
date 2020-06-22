@@ -49,6 +49,7 @@ class Category extends BaseModel
         $categoryID[] = $category->id;
         $map = [];
         $data['category'] = $category;
+        $data['path'] = $category->path . $category->id;
         if ($category['level'] == 0) $map = ['language_id' => $language, 'status' => 1, 'level' => 1];
         if ($category['level'] == 1) $map = ['language_id' => $language, 'status' => 1, 'level' => 2];
         if ($category->is_parent == 1) { // 1 代表目录 0 代表子分类 目录的查出他的子目录
@@ -58,16 +59,14 @@ class Category extends BaseModel
                 ->field('id,url_title,image,name')->select();
             $categoryID = array_merge($categoryID, array_column($categorys->toArray(), 'id'));
             $data['categoryID'] = $categoryID;
-            $data['path'] = $path . $category->id;
             $data['child'] = $categorys->toArray();
 //            return ['category' => $category, 'categoryID' => $categoryID, 'path' => $category->path . $category->id, 'child' => $categorys->toArray()];
         } else {//本身为子目录的查出他同一个父级的子分类
             $categorys = self::where('path', 'like', $category->path)
                 ->where($map)->order(['listorder' => 'desc', 'id' => 'desc'])
                 ->field('id,url_title,image,name')->select();
-            $data['categoryID']=$categoryID;
-            $data['path']=$category->path;
-            $data['child']=$categorys->toArray();
+            $data['categoryID'] = $categoryID;
+            $data['child'] = $categorys->toArray();
         }
         return $data;
     }
@@ -268,7 +267,7 @@ class Category extends BaseModel
             'status' => 1,
             'language_id' => $language_id
         ];
-        $cate = self::all($map);
+        $cate = self::field('id,parent_id,name')->all($map);
         return CategoryHelp::toLayer($cate, 'child');
     }
 }

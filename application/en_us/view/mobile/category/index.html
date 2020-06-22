@@ -13,22 +13,58 @@
         <div class="g-path">
             <ol class="breadcrumb">
                 <li><a href="/{$code}/index.html">{:lang('home')}</a></li>
-                {notempty name="path"}
-                {volist name="path" id="vo"}
-                {if condition="$current eq $vo.url_title"}
-                <li class="active">{$vo.name}</li>
-                {else /}
-                <li><a href="{:url('/'.$code.'/category/'.$vo.url_title)}">{$vo.name}</a></li>
-                {/if}
-                {/volist}
-                {/notempty}
+                {$path|getPath|raw}
             </ol>
+        </div>
+    </div>
+    <div class="row">
+        <div class="category-list">
+            {volist name="child" id="vo"}
+            {if condition="$current eq $vo.url_title"}
+            <div class="category-item active">
+                <div>
+                    {if($vo.image != '')}
+                    <div class="img-box">
+                        <a href="{:url('/'.$code.'/category/'.$vo.url_title)}">
+                            <img src="{$vo.image}"
+                                 alt="{$vo.name}">
+                        </a>
+                    </div>
+                    {/if}
+                    <div class="des">
+                        <a href="{:url('/'.$code.'/category/'.$vo.url_title)}">
+                            <span>{$vo.name}</span>
+                        </a>
+                    </div>
+                </div>
+            </div>
+            {else /}
+            <div class="category-item">
+                <div>
+                    {if($vo.image != '')}
+                    <div class="img-box">
+                        <a href="{:url('/'.$code.'/category/'.$vo.url_title)}">
+                            <img src="{$vo.image}"
+                                 alt="{$vo.name}">
+                        </a>
+                    </div>
+                    {/if}
+                    <div class="des">
+                        <a href="{:url('/'.$code.'/category/'.$vo.url_title)}">
+                            <span>{$vo.name}</span>
+                        </a>
+                    </div>
+                </div>
+            </div>
+            {/if}
+            {/volist}
         </div>
     </div>
 </div>
 {/block}
 {block name="body"}
 <div class="container">
+
     <div class="row">
         <div class="list-box">
             {notempty name="products"}

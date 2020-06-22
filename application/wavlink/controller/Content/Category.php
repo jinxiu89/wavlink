@@ -91,6 +91,7 @@ class Category extends BaseAdmin
                         return show(0, '', '不能编辑在自己名下');
                     } else {
                         $data['level'] = getProductCategoryLevel($data['parent_id']); //产品分类和服务分两类确实有所不同
+                        $data['path'] = $category->path . $data['parent_id'] . '-';
                         return $this->update($data);
                     }
                 }

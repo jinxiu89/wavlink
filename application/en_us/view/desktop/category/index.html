@@ -17,6 +17,7 @@
                 <li><a href="/{$code}/index.html">{:lang('home')}</a></li>
                 {$path|getPath|raw}
                 <!--{volist name="path" id="vo"}
+
                 {if condition="$current eq $vo.url_title"}
                 <li class="active">{$vo.name}</li>
                 {else /}

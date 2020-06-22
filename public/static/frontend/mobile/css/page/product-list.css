@@ -106,5 +106,8 @@
 .list-box .list-item .thumbnail .caption p {
   font-size: 10px;
   color: #1D428A;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  overflow: hidden;
 }
 /*# sourceMappingURL=product-list.css.map */

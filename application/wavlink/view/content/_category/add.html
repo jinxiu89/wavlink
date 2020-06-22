@@ -19,6 +19,19 @@
             </div>
         </div>
         <div class="row cl">
+            <label class="form-label col-xs-4 col-sm-2"><span class="c-red">*</span>目录：</label>
+            <div class="formControls col-xs-3 col-sm-5 check-box">
+                <div class="radio-box">
+                    <input type="radio" id="radio-1" value="1" name="is_parent" checked>
+                    <label for="radio-1">目录</label>
+                </div>
+                <div class="radio-box">
+                    <input type="radio" id="radio-2" name="is_parent" value="0">
+                    <label for="radio-2">子分类</label>
+                </div>
+            </div>
+        </div>
+        <div class="row cl">
             <label class="form-label col-xs-4 col-sm-2"><span class="c-red">*</span>URL标题：</label>
             <div class="formControls col-xs-3 col-sm-3">
                 <input type="text" class="input-text" value="" placeholder="" id="url_title" name="url_title">
@@ -41,6 +54,7 @@
         </div>
 
         <input type="hidden" name="parent_id" value="{$parent_id}">
+        <input type="hidden" name="level" value="{$parent_id|getProductCategoryLevel}">
         <div class="row cl">
             <label class="form-label col-xs-4 col-sm-2"><span class="c-red">*</span>SEO标题：</label>
             <div class="formControls col-xs-5 col-sm-5">
@@ -71,5 +85,13 @@
 </div>
 <!--包含头部文件-->
 {include file="public/footer" /}
+<script type="text/javascript">
+    $(function(){
+        $('.check-box input').iCheck({
+            checkboxClass: 'icheckbox-blue',
+            radioClass: 'iradio-blue',
+            increaseArea: '20%'
+        })});
+</script>
 </body>
 </html>

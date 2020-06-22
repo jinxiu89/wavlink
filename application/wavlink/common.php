@@ -37,6 +37,9 @@ function getChild($id)
     return $nameStr;
 }
 
+
+
+
 /**
  * GetNameByParentId 根据产品分类的ID来获得他的分类名称
  * @param $id

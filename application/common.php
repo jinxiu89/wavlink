@@ -373,11 +373,24 @@ function getProductImage($id)
 function getCategoryLevel($id)
 {
     if ($id == '') {
-        return intval(1);
+        return 0;
     }
     $data = \app\common\model\Service\ServiceCategory::get($id);
     return intval($data['level']) + 1;
 
+}
+
+/**
+ * @param $id
+ * @return int
+ */
+function getProductCategoryLevel($id)
+{
+    if ($id == '') {
+        return 0;
+    }
+    $data = app\common\model\Content\Category::get($id);
+    return intval($data['level']) + 1;
 }
 
 function toLevel($cate, $delimiter = '--', $parent_id = 1)

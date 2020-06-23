@@ -78,26 +78,17 @@ class Category extends BaseAdmin
             $category = CategoryModel::get($data['parent_id']);
             if (isset($data['id']) and !empty($data['id'])) {
                 if ($this->validate->scene('edit')->check($data)) {
-                    /*if ($data['parent_id'] == 0) {
-                        $data['path'] = '-';
-                        $data['level'] = '0';
-                        $data['is_parent'] = 1;
-                    } else {
-                        $data['path'] = $category['path'] . $category['id'] . '-';
-                        $data['level'] = $category['level'] + 1;
-                        $data['is_parent'] = 1;
-                    }*/
                     if ($data['id'] == $data['parent_id']) {
                         return show(0, '', '不能编辑在自己名下');
                     } else {
-                        $data['level'] = getProductCategoryLevel($data['parent_id']); //产品分类和服务分两类确实有所不同
-                        $data['path'] = $category->path . $data['parent_id'] . '-';
+                        if ($data['parent_id'] != 0) $data['level'] = getProductCategoryLevel($data['parent_id']); //产品分类和服务分两类确实有所不同
+                        if ($data['parent_id'] != 0) $data['path'] = $category->path . $data['parent_id'] . '-';
                         return $this->update($data);
                     }
                 }
             } else {
                 if ($this->validate->scene('add')->check($data)) {
-
+                    $data['path'] = $category->path . $data['parent_id'] . '-';
                     try {
                         $res = (new CategoryModel())->add($data);
                         if ($res) {

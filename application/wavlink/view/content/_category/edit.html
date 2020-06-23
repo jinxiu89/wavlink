@@ -34,28 +34,35 @@
                 <p class="textarea-numberbar"><em class="textarea-length">0</em>/100</p>
             </div>
         </div>
-        {empty name="$cate"}
-        <input type="hidden" name="parent_id" value="{$parent_id}">
-        {else /}
         <div class="row cl">
             <label class="form-label col-xs-4 col-sm-2"><span class="c-red">*</span>栏目：</label>
-            <div class="formControls col-xs-8 col-sm-9">
-				<span class="select-box">
+            <div class="formControls col-xs-8 col-sm-4">
+                {notempty name="$cate"}
+                <span class="select-box">
 				<select name="parent_id" class="select">
                     {volist name="cate" id="vo"}
 					<option value="{$vo.id}" {if condition="$category.parent_id eq $vo.id"} selected="selected" {/if}>{$vo.delimiter|raw}{$vo.name}</option>
                     {/volist}
 				</select>
 				</span>
+                {else /}
+                <span class="select-box">一级分类</span>
+                {/notempty}
             </div>
         </div>
-        {/empty}
 
         <div class="row cl">
             <label class="form-label col-xs-4 col-sm-2">所属语言：</label>
             <div class="formControls col-xs-8 col-sm-3">
                 <input type="text" class="input-text" value="{$language_id|getLanguageOne}" disabled>
                 <input type="hidden" name="language_id" value="{$language_id}">
+                {if($category->parent_id == 0)}
+                <input type="hidden" name="parent_id" value="0">
+                <input type="hidden" name="level" value="0">
+                {else /}
+                <input type="hidden" name="parent_id" value="{$category->parent_id}">
+                <input type="hidden" name="level" value="{$category->parent_id|getProductCategoryLevel}">
+                {/if}
             </div>
         </div>
         <div class="row cl">

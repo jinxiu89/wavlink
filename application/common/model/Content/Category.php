@@ -188,7 +188,7 @@ class Category extends BaseModel
     public function getCategory($parentId = 0, $language_id)
     {
         $data = ['parent_id' => $parentId, 'language_id' => $language_id];
-        $order = ['status' => 'desc', 'listorder' => 'desc', 'id' => 'asc'];
+        $order = ['listorder' => 'desc', 'id' => 'desc'];
         $model = 'category';
         return Search($model, $data, $order);
     }

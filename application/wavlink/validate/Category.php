@@ -20,6 +20,7 @@ class Category extends BaseValidate
         'id' => 'number',
         'name' => 'require|max:50',
         'seo_title' => 'require|max:128',
+        'url_title' => 'require|max:128|unique:category,url_title',
         'keywords' => 'require|max:128',
         'description' => 'require|max:128',
         'status' => 'integer|in:-1,0,1'
@@ -30,6 +31,9 @@ class Category extends BaseValidate
         'name.max' => '分类名不能超过50个字符',
         'seo_title.require' => 'seo标题不能为空',
         'seo_title.max' => 'seo标题不能超过128个字符',
+        'url_title.require' => 'url标题不能为空',
+        'url_title.max' => 'url标题不能超过字符长度约束范围（128个字符）',
+        'url_title.unique' => 'url标题不能重复',
         'keywords.require' => '关键词不能为空',
         'keywords.max' => '关键词不能超过128个字符',
         'description.require' => '描述不能为空',
@@ -38,8 +42,8 @@ class Category extends BaseValidate
     ];
     /**场景设置**/
     protected $scene = [
-        'add' => ['name', 'seo_title', 'keywords', 'description', 'status'],
-        'edit' => ['id', 'name', 'seo_title', 'keywords', 'description', 'status'],
+        'add' => ['name', 'seo_title', 'url_title','keywords', 'description', 'status'],
+        'edit' => ['id', 'name', 'seo_title', 'url_title','keywords', 'description', 'status'],
         'changeStatus'=>['id','status'],
         'listorder' => ['id', 'listorder'],
         'del'=>['id'],

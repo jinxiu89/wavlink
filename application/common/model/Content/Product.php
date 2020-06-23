@@ -154,13 +154,14 @@ class Product extends BaseModel
             $child_id[] = $category['id'];
             return Db::table('product_category')->alias('category')->whereOr('category.category_id', 'in', $child_id)
                 ->join('product', ['product.id=category.product_id', 'product.status=1', 'product.language_id=' . $language_id])
-                ->field('id,image_litpic_url,name,model,listorder,create_time,language_id')->select();
+                ->field('id,image_litpic_url,name,model,listorder,create_time,language_id')
+                ->order(['listorder' => 'desc', 'id' => 'desc'])->select();
         } else {
             //todo::其他的操作
             return Db::table('product_category')->alias('category')->whereOr('category.category_id', '=', $category_id)
                 ->join('product', ['product.id=category.product_id', 'product.status=1', 'product.language_id=' . $language_id])
                 ->field('id,image_litpic_url,name,model,listorder,create_time,language_id')
-                ->select();
+                ->order(['listorder' => 'desc', 'id' => 'desc'])->select();
         }
     }
 

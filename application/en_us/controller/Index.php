@@ -54,6 +54,7 @@ class Index extends Base
         $hot = $ImageModel->getImagesByFeatured($this->language_id, 2);//热卖推荐，首页第二屏
         $showcase = $ImageModel->getImagesByFeatured($this->language_id, 3);//主流产品推荐，首页第三屏
         $imagesNew = (new ImagesModel())->getImagesByFeatured($this->language_id, 4);//新品推荐位获取图片
+        unset($ImageModel);
         //新闻调用
         $News=(new Article())->getLastNew($this->language_id);
         $this->assign('Notice', $Notice['data']);

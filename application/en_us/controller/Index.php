@@ -39,26 +39,23 @@ class Index extends Base
     }
 
     /***
-     * @param string $type
      * @return mixed
      * @throws DataNotFoundException
      * @throws DbException
      * @throws ModelNotFoundException
      * @throws Exception
-     *
      */
-    public function index($type = "")
+    public function index()
     {
         $ImageModel = new ImagesModel();
-        $Notice = $ImageModel->getImagesByFeatured($this->code, 6);//公告栏推荐位，导航上面的
-        $layer = $ImageModel->getImagesByFeatured($this->code, 7);//首页强推层，一般用于用户触达，活动触达等
-        $swiper = $ImageModel->getImagesByFeatured($this->code, 1);//幻灯片，首页第一屏
-        $hot = $ImageModel->getImagesByFeatured($this->code, 2);//热卖推荐，首页第二屏
-        $showcase = $ImageModel->getImagesByFeatured($this->code, 3);//主流产品推荐，首页第三屏
+        $Notice = $ImageModel->getImagesByFeatured($this->language_id, 6);//公告栏推荐位，导航上面的
+        $layer = $ImageModel->getImagesByFeatured($this->language_id, 7);//首页强推层，一般用于用户触达，活动触达等
+        $swiper = $ImageModel->getImagesByFeatured($this->language_id, 1);//幻灯片，首页第一屏
+        $hot = $ImageModel->getImagesByFeatured($this->language_id, 2);//热卖推荐，首页第二屏
+        $showcase = $ImageModel->getImagesByFeatured($this->language_id, 3);//主流产品推荐，首页第三屏
+        $imagesNew = (new ImagesModel())->getImagesByFeatured($this->language_id, 4);//新品推荐位获取图片
         //新闻调用
-        $News=(new Article())->getLastNew($this->code);
-        $imagesNew = (new ImagesModel())->getImagesByFeatured($this->code, 4);//新品推荐位获取图片
-
+        $News=(new Article())->getLastNew($this->language_id);
         $this->assign('Notice', $Notice['data']);
         $this->assign('layer',$layer['data']);
         $this->assign('swiper', $swiper['data']);
@@ -71,7 +68,7 @@ class Index extends Base
 
     public function build_html()
     {
-        $this->index('index');
+        $this->index();
         return show(1, '', '', '', '', '更新首页缓存成功');
     }
 

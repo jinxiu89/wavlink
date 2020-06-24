@@ -64,16 +64,6 @@ class Base extends Controller
     /**
      * Base constructor.
      * @param App|null $app
-     * @throws DataNotFoundException
-     * @throws DbException
-     * @throws ModelNotFoundException
-     * parent::__construct($app)在后面继承 语言切换在URL上直接改就不会有bug
-     * 20200420 ：国内用户日益增多，把国内的网站导入到国内来，所以将默认跳英文网站的代码块去掉
-     * 20200422 : 解决url手动输入语言code初始化语言的bug
-     * if (!empty($path[0]) && in_array($path[0],Config::get('language.allow_lang'))) {
-    Cookie::set('lang_var', $path[0]);
-    }
-     * 除了这句其他的都按照前面的autoload方法来走
      */
     public function __construct(App $app = null)
     {
@@ -82,7 +72,6 @@ class Base extends Controller
             Cookie::set('lang_var', $path[0]);
         }
         parent::__construct($app);
-        $this->language_id = LanguageModel::getLanguageCodeOrID($this->code);
     }
 
     public function initialize()
@@ -189,7 +178,7 @@ class Base extends Controller
 
     /***
      * 根据语言来获取分类
-     *
+     * 此组件后期弃用
      *
      */
     public function getCategory()
@@ -199,15 +188,17 @@ class Base extends Controller
     }
 
     /**
-     * @throws DataNotFoundException
-     * @throws DbException
-     * @throws ModelNotFoundException
+     * 新导航产品分类组件全局获取
+     *
      */
     public function getTree()
     {
-        $data = (new CategoryModel())->getDataByLanguage(LanguageModel::getLanguageCodeOrID($this->code));
-        $arr = Collection::make($data)->toArray();
-        $tree = \app\common\helper\Category::toLayer($arr, $name = 'child', $parent_id = 0);
+        $data = (new CategoryModel())->getDataByLanguage($this->language_id);
+        $tree=[];
+        if(!is_array($data) and !empty($data)) {
+            $arr = Collection::make($data)->toArray();
+            $tree = \app\common\helper\Category::toLayer($arr, $name = 'child', $parent_id = 0);
+        }
         $this->assign('tree', $tree);
     }
 
@@ -238,6 +229,7 @@ class Base extends Controller
     public function loadLanguage()
     {
         $this->code = Cookie::get('lang_var') ? Cookie::get('lang_var') : get_lang(Request::instance()->header()); //code 不能重request里拿了，需要从cookie里拿
+        $this->language_id = LanguageModel::getLanguageCodeOrID($this->code);
         //加载当前模块语言包
         Lang::load(Env::get('app_path') . $this->module . '/lang/' . $this->code . '.php');
         $this->assign('code', $this->code);

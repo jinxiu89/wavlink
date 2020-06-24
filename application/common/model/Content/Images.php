@@ -10,7 +10,11 @@ namespace app\common\model\Content;
 
 use app\common\model\Language as LanguageModel;
 use app\common\model\BaseModel;
-Class Images extends BaseModel
+use think\Exception;
+use think\facade\Cache;
+use think\facade\Log;
+
+class Images extends BaseModel
 {
     protected $table = 'images';
 
@@ -26,26 +30,46 @@ Class Images extends BaseModel
             'listorder' => 'desc',
             'id' => 'desc'
         ];
-        $query=self::where($map)->order($order);
-        $result['data']=$query->paginate();
-        $result['count']=$query->count();
+        $query = self::where($map)->order($order);
+        $result['data'] = $query->paginate();
+        $result['count'] = $query->count();
         return $result;
     }
 
     //获取推荐位的产品图片
-    public function getImagesByFeatured($code = "en_us", $featured = 4)
+
+    /**
+     * @param int $language_id
+     * @param int $featured
+     * @param string $field
+     * @return array|mixed|void
+     */
+    public function getImagesByFeatured($language_id = 1, $featured = 4, $field = '')
     {
-        $language_id = LanguageModel::getLanguageCodeOrID($code);
-        $data = [
-            'status' => 1,
-            'featured_id' => $featured,
-            'language_id' => $language_id
-        ];
-        $order = [
-            'featured_id' => 'desc',
-            'listorder' => 'desc',
-            'id' => 'desc',
-        ];
-        return Search('images', $data, $order);
+        $map = ['status' => 1, 'featured_id' => $featured, 'language_id' => $language_id];
+        $order = ['featured_id' => 'desc', 'listorder' => 'desc', 'id' => 'desc',];
+        try {
+            if (false == $this->debug) {
+                $data = Cache::get($featured . __FUNCTION__);
+                if ($data) return $data;
+                $query = $this->where($map);
+                $obj = $query->order($order)->field($field)->paginate('', true);
+                $count = $query->count();
+                $result['data'] = $obj;
+                $result['count'] = $count;
+                Cache::set($featured . __FUNCTION__, $result);
+                return $result;
+            }
+            $query = $this->where($map);
+            $obj = $query->order($order)->field($field)->paginate('', true);
+            $count = $query->count();
+            $result['data'] = $obj;
+            $result['count'] = $count;
+            return $result;
+        } catch (Exception $exception) {
+            Log::error($exception->getMessage());
+            if ($this->debug == true) Log::error(__FUNCTION__ . ':' . $exception->getMessage());
+            return [];
+        }
     }
 }

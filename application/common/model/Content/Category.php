@@ -8,15 +8,18 @@
 
 namespace app\common\model\Content;
 
-use app\common\model\Language as LanguageModel;
 use app\common\helper\Category as CategoryHelp;
+use app\common\model\BaseModel;
 use app\common\model\Content\Product as ProductModel;
+use app\common\model\Language as LanguageModel;
 use think\Collection;
 use think\Db;
 use think\db\exception\DataNotFoundException;
 use think\db\exception\ModelNotFoundException;
 use think\exception\DbException;
-use app\common\model\BaseModel;
+use think\facade\Cache;
+use think\facade\Config;
+use think\facade\Log;
 
 /**
  * Class Category
@@ -146,11 +149,10 @@ class Category extends BaseModel
     {
         $ids = static::getProductCategory($id);
         $order = ['listorder' => 'desc', 'id' => 'desc'];
-        $product = (new ProductModel())->where('id', 'in', $ids)
+        return (new ProductModel())->where('id', 'in', $ids)
             ->where('status', '=', 1)
             ->order($order)
             ->paginate('12', true);
-        return $product;
     }
 
     /**
@@ -202,8 +204,7 @@ class Category extends BaseModel
             'id' => $id,
             'language_id' => $language_id
         ];
-        $category = $this->where($data)->find();
-        return $category;
+        return $this->where($data)->find();
     }
 
 
@@ -229,14 +230,29 @@ class Category extends BaseModel
     /**
      * @param $language_id
      * @return array|\PDOStatement|string|Collection
-     * @throws DataNotFoundException
-     * @throws ModelNotFoundException
-     * @throws DbException
-     * 前端导航的树形结构,先获取到本语言所有的分类
+     * 修改缓存时间：2020.0604
      */
     public function getDataByLanguage($language_id)
     {
-        return $this->where(['status' => 1, 'language_id' => $language_id])->field('name,url_title,id,parent_id,image')->select();
+        //所有的程序都在try里运行 便于捕捉到所有的错误
+        //如果开启debug的话就不走缓存取数据
+        try {
+            if (false == $this->debug) {
+                $category = Cache::get($language_id . 'category');
+                if ($category) return $category;
+                $obj = $this->where(['status' => 1, 'language_id' => $language_id])
+                    ->order(['listorder' => 'desc', 'id' => 'desc'])
+                    ->field('name,url_title,id,parent_id,image')->select();
+                Cache::set($language_id . 'category', $obj);
+                return $obj;
+            }
+            return $this->where(['status' => 1, 'language_id' => $language_id])
+                ->order(['listorder' => 'desc', 'id' => 'desc'])
+                ->field('name,url_title,id,parent_id,image')->select();
+        } catch (\Exception $exception) {
+            if (true == $this->debug) Log::warning($exception->getMessage());
+            return [];
+        }
     }
 
     //获取所有的分类，并且递归
@@ -255,18 +271,22 @@ class Category extends BaseModel
         } else {
             $category = Category::all($data_language);
         }
-        $categorys = CategoryHelp::toLevel($category, '&nbsp;&nbsp;', 0);
-        return $categorys;
+        return CategoryHelp::toLevel($category, '&nbsp;&nbsp;', 0);
     }
 
     //导航 直接循环出二级分类,对于二级分类
+
+    /**
+     * @param $code
+     * @return array
+     * @throws DataNotFoundException
+     * @throws DbException
+     * @throws ModelNotFoundException
+     */
     public function getChildsCategory($code)
     {
         $language_id = LanguageModel::getLanguageCodeOrID($code);
-        $map = [
-            'status' => 1,
-            'language_id' => $language_id
-        ];
+        $map = ['status' => 1, 'language_id' => $language_id];
         $cate = self::field('id,parent_id,name')->all($map);
         return CategoryHelp::toLayer($cate, 'child');
     }

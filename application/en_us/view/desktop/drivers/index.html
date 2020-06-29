@@ -1,8 +1,8 @@
 {extend name="desktop/common/base" /}
 {block name="title"}{notempty name="parent.url_title"}{$parent.url_title}{/notempty} - {:lang('slogan')}{:lang('powered by')}{/block}
 {block name="seo"}
-<meta name="description" content="{$parent.description}">
-<meta name="keywords" content="{$parent.keywords}">
+<meta name="description" content="{notempty name='parent'}{$parent.description}{/notempty}">
+<meta name="keywords" content="{notempty name='parent'}{$parent.keywords}{/notempty}">
 {/block}
 {block name="style"}
 <link rel="stylesheet" href="__DESKTOP__/css/page/driver.css">

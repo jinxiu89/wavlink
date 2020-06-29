@@ -36,7 +36,7 @@ class Drivers extends BaseModel
     public function getDriversByLanguage($language, $order = "desc")
     {
         $data = ['status' => 1, 'language_id' => $language,];
-        $order = ['update_time' => $order, 'listorder' => 'desc', 'id' => 'desc',];
+        $order = ['update_time' => $order, 'listorder' => $order, 'id' => $order];
         $response=self::where($data);
         $count = $response->count();
         $data = $response->order($order)->paginate(6, true);

@@ -12,7 +12,20 @@
 namespace app\common\service\en_us;
 
 
+use AlibabaCloud\Client\Config\Config;
+
+/**
+ * Class BaseService
+ * @package app\common\service\en_us
+ * 以后的缓存都在service层来做
+ */
 class BaseService
 {
     protected $model;
+    protected $debug;
+
+    public function __construct()
+    {
+        $this->debug = Config::get('app_debug');
+    }
 }

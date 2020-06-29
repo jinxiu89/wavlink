@@ -64,10 +64,9 @@ class  Category extends Base
 
     /**
      * @param string $category
-     * @param int $level
      * @return mixed
      */
-    public function category($category = "")
+    public function category(string $category = "")
     {
         /*
          * 1 获得该分类和所有的子分类IDs
@@ -76,7 +75,7 @@ class  Category extends Base
         try {
             $parent = $this->service->getCategoryIds($category, $this->language_id);
             if (empty($parent)) abort(404);
-            $data = array_unique($this->service->getProductWithCategoryIds($parent['categoryID']), SORT_REGULAR);
+            $data = array_unique($this->service->getProductWithCategoryIds($parent['categoryID'],$category), SORT_REGULAR);
             $count = count($data);
             $pages = input('page', 1);
             $size = 12;
@@ -91,7 +90,7 @@ class  Category extends Base
             $this->assign('child', $parent['child']);
             return $this->fetch($this->template . '/category/index.html');
         } catch (Exception $exception) {
-            if(Config::get('app_debug','false')){
+            if (Config::get('app_debug', 'false')) {
                 Log::error($exception->getMessage());
                 print_r($exception->getMessage());
             }

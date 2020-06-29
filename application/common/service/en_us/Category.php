@@ -13,7 +13,10 @@ namespace app\common\service\en_us;
 
 use app\common\model\Content\Category as model;
 use think\Exception;
+use think\facade\Cache;
 use think\facade\Config;
+use think\facade\Log;
+use function think\__include_file;
 
 /**
  * Class Category
@@ -23,6 +26,7 @@ class Category extends BaseService
 {
     public function __construct()
     {
+        parent::__construct();
         $this->model = new model();
     }
 
@@ -34,24 +38,40 @@ class Category extends BaseService
     public function getCategoryIds($category, $language)
     {
         try {
+            if (false == $this->debug) {
+                $data = Cache::get($language . $category . __FUNCTION__);
+                if ($data) return $data;
+                $obj = $this->model->getCategoryID($category, $language);
+                Cache::set($language . $category . __FUNCTION__, $obj);
+                return $obj;
+            }
             return $this->model->getCategoryID($category, $language);
         } catch (\Exception $exception) {
-            return 'cuowu';
+            if ($this->debug == true) Log::error(__FUNCTION__ . ':' . $exception->getMessage());
+            return [];
         }
     }
 
     /**
      * @param $categoryID
+     * @param $category
+     * @return array|mixed|\PDOStatement|string|\think\Collection|\think\model\Collection
      */
 
-    public function getProductWithCategoryIds($categoryID)
+    public function getProductWithCategoryIds($categoryID,$category)
     {
         try {
+            if (false == $this->debug) {
+                $data = Cache::get(__FUNCTION__ . $category);
+                if ($data) return $data;
+                $obj = $this->model->getProductWithCategoryIds($categoryID);
+                Cache::set(__FUNCTION__ . $category, $obj);
+                return $obj;
+            }
             return $this->model->getProductWithCategoryIds($categoryID);
         } catch (Exception $exception) {
-            if (Config::get('app_debug')) {
-                print_r($exception->getMessage());
-            }
+            if ($this->debug == true) Log::error(__FUNCTION__ . ':' . $exception->getMessage());
+            return $exception->getMessage();
         }
     }
 }

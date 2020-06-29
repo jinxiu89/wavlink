@@ -10,8 +10,10 @@
  **/
 
 namespace app\wavlink\service\service;
+
 use app\common\model\Service\DriversCategory as model;
 use app\wavlink\service\Base;
+use think\facade\Cache;
 
 /**
  * Class driversCategory
@@ -21,26 +23,42 @@ class driversCategory extends Base
 {
     public function __construct()
     {
+        parent::__construct();
         $this->model = new model();
     }
 
     /**
      * @param $parent_id
      */
-    public function getParent($parent_id){
-        try{
-            return $this->model->field('id,parent_id,level,path')->where(['id'=>$parent_id])->find();
-        }catch (\Exception $exception){
+    public function getParent($parent_id)
+    {
+        try {
+            return $this->model->field('id,parent_id,level,path')->where(['id' => $parent_id])->find();
+        } catch (\Exception $exception) {
             //todo:: 异常
         }
     }
-    public function getCategoryID($category,$language){
-        try{
-            return $this->model->getCategoryID($category,$language);
-        }catch (\Exception $exception){
-            return 'cuowu';
+
+    /**
+     * @param $category
+     * @param $language
+     * @return array|string
+     */
+    public function getCategoryID($category, $language)
+    {
+        try {
+            if (false == $this->debug) {
+                $data = Cache::get(__FUNCTION__ . $language . $category);
+                if ($data) return $data;
+                $obj = $this->model->getCategoryID($category, $language);
+                Cache::set(__FUNCTION__ . $language . $category, $obj);
+            }
+            return $this->model->getCategoryID($category, $language);
+        } catch (\Exception $exception) {
+            return [];
         }
     }
+
     /**
      * @param string $status
      * @param $language_id

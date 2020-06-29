@@ -50,14 +50,14 @@ class Images extends BaseModel
         $order = ['featured_id' => 'desc', 'listorder' => 'desc', 'id' => 'desc',];
         try {
             if (false == $this->debug) {
-                $data = Cache::get($featured . __FUNCTION__);
+                $data = Cache::get($language_id.$featured . __FUNCTION__);
                 if ($data) return $data;
                 $query = $this->where($map);
                 $obj = $query->order($order)->field($field)->paginate('', true);
                 $count = $query->count();
                 $result['data'] = $obj;
                 $result['count'] = $count;
-                Cache::set($featured . __FUNCTION__, $result);
+                Cache::set($language_id.$featured . __FUNCTION__, $result);
                 return $result;
             }
             $query = $this->where($map);

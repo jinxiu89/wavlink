@@ -12,6 +12,7 @@
 namespace app\wavlink\service;
 
 
+use think\facade\Config;
 
 /**
  * Class Base
@@ -21,6 +22,13 @@ class Base
 {
     protected $model;
     protected $bucket;
+    protected $debug;
+
+    public function __construct()
+    {
+        //初始化各种玩意（在base里不用写比较细的初始化，细化的在具体的类里处理）
+        $this->debug=Config::get('app_debug');
+    }
 
     /**
      * @param $data
@@ -60,7 +68,6 @@ class Base
             return $exception->getMessage();//异常管理后面优化
         }
     }
-
 
 
 }

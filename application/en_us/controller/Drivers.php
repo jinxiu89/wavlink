@@ -9,17 +9,16 @@
 namespace app\en_us\controller;
 
 use app\common\helper\Category;
+use app\common\model\Service\Drivers as DriversModel;
+use app\common\model\Service\ServiceCategory as ServiceCategoryModel;
+use app\wavlink\service\service\driversCategory as service;
+use app\common\service\en_us\Drivers as DriverService;
 use think\App;
 use think\db\exception\DataNotFoundException;
 use think\db\exception\ModelNotFoundException;
 use think\Exception;
 use think\exception\DbException;
-use think\exception\HttpException;
-use app\common\model\Service\Drivers as DriversModel;
-use app\common\model\Service\ServiceCategory as ServiceCategoryModel;
-use app\common\model\Service\DriversCategory;
-use app\wavlink\service\service\driversCategory as service;
-use think\Request;
+use think\response\Redirect;
 use think\response\View;
 
 
@@ -29,18 +28,17 @@ use think\response\View;
  */
 class Drivers extends Base
 {
+    public $service;
     /**
      * Drivers constructor.
      * @param App|null $app
-     * @throws DataNotFoundException
-     * @throws DbException
-     * @throws ModelNotFoundException
      */
     public function __construct(App $app = null)
     {
         parent::__construct($app);
         $data = (new service())->getDataByLanguageId($status = 1, $this->language_id);
         $level = Category::toLevel($data['data']->toArray()['data'], '&emsp;&emsp;');
+        $this->service=new DriverService();//驱动服务层
         $this->assign('cate', $level);
     }
     /***
@@ -51,20 +49,13 @@ class Drivers extends Base
     /***
      * @param string $order
      * @return mixed
-     * @throws DataNotFoundException
-     * @throws DbException
-     * @throws Exception
-     * @throws ModelNotFoundException
      */
     public function index($order = 'desc')
     {
-        //获取Drivers分类信息
-        $parent = ServiceCategoryModel::getTopCategory($this->language_id, 'Drivers');
         //获取所有驱动下载列表
-        $result = (new DriversModel())->getDriversByLanguage($this->language_id, $order);
+        $result = $this->service->getDriversByLanguage($this->language_id, $order);
         return $this->fetch($this->template . '/drivers/index.html', [
             'data' => $result['data'],
-            'parent' => $parent,
             'count' => $result['count'],
             'category_title' => '',
             'order' => $order
@@ -77,11 +68,7 @@ class Drivers extends Base
     /**
      * @param string $category
      * @param $order
-     * @return \think\response\Redirect|View
-     * @throws DataNotFoundException
-     * @throws DbException
-     * @throws ModelNotFoundException
-     * @throws Exception
+     * @return Redirect|View
      */
     public function category($category = "", $order)
     {
@@ -92,12 +79,12 @@ class Drivers extends Base
             return redirect(url('/' . $this->code . '/drivers', ['order' => $order]), [], 200);
         }
         //获取选择的子分类信息
-        $parent = (new service())->getCategoryID($category, $this->language_id);
+        $parent = $this->service->getCategoryID($category, $this->language_id);
         if (empty($parent)) {
             abort(404);
         } else {
             //获取选择的分类下的驱动列表
-            $result = (new DriversModel())->getDriversByCategoryIds($this->language_id, $parent['categoryID'], $order);
+            $result = $this->service->getDriversByCategoryIds($this->language_id, $parent['categoryID'], $order);
             return view($this->template . '/drivers/index.html', [
                 'data' => $result['data'],
                 'parent' => $parent['category'],

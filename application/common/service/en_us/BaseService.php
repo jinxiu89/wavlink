@@ -13,6 +13,9 @@ namespace app\common\service\en_us;
 
 
 use AlibabaCloud\Client\Config\Config;
+use app\common\model\Content\Category as ProductCategory;
+use think\facade\Cache;
+use think\facade\Log;
 
 /**
  * Class BaseService
@@ -27,5 +30,26 @@ class BaseService
     public function __construct()
     {
         $this->debug = Config::get('app_debug');
+    }
+
+    /**
+     * @param $language_id
+     * @param $category_id
+     * @return array|\PDOStatement|string|\think\Collection|\think\model\Collection
+     */
+    public function popularProduct($language_id, $category_id)
+    {
+        try {
+            if($this->debug ==false){
+                $data=Cache::get(__FUNCTION__.$language_id.$category_id);
+                if($data) return $data;
+                $obj=(new ProductCategory())->popularProduct($category_id);
+                Cache::set(__FUNCTION__.$language_id.$category_id,$obj);
+                return $obj;
+            }
+            return (new ProductCategory())->popularProduct($category_id);
+        } catch (\Exception $exception) {
+            if ($this->debug == true) Log::debug('controller' . __FUNCTION__ . ':' . $exception);
+        }
     }
 }

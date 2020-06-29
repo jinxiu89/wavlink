@@ -9,6 +9,7 @@ use app\common\model\Content\Document as DocumentModel;
 use app\common\model\Language as LanguageModel;
 use app\common\model\Content\Product as ProductModel;
 use app\common\model\System\Setting as SettingModel;
+use app\common\service\en_us\BaseService;
 use think\App;
 use think\Collection;
 use think\Controller;
@@ -262,6 +263,16 @@ class Base extends Controller
     public function IE()
     {
         return $this->fetch($this->template . '/common/ie.html');
+    }
+
+    /**
+     *
+     */
+    public function popularProduct(){
+        $category_id=input('get.category_id');
+        if(empty($category_id) and is_numeric($category_id)) return json(['status'=>0,'message'=>'category_id必须为数字','data'=>[]]);
+        $data=(new BaseService())->popularProduct($this->language_id,$category_id);
+        return json(['status'=>1,'message'=>'ok','data'=>$data]);
     }
 
 }

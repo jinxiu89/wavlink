@@ -43,3 +43,4 @@ Route::rule('/register$', 'customer/User/register', 'GET|POST');
 Route::rule('/verify/code$', 'en_us/Common/verify', 'GET')->name('gen_verify');
 Route::rule('/list/obj$', 'customer/Base/listObj', 'GET')->name('listObj');
 Route::get('/index$','en_us/Index/index');
+Route::get('/popularProduct$','en_us/Base/popularProduct',['category_id'=>'[\w-]+'])->name('getPopularProduct');

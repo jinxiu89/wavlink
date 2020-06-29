@@ -18,7 +18,6 @@ use think\db\exception\DataNotFoundException;
 use think\db\exception\ModelNotFoundException;
 use think\exception\DbException;
 use think\facade\Cache;
-use think\facade\Config;
 use think\facade\Log;
 
 /**
@@ -36,6 +35,21 @@ class Category extends BaseModel
     public function products()
     {
         return $this->belongsToMany('Product', 'product_category', 'product_id', 'category_id');
+    }
+
+    /**
+     * @param $category_id
+     * @return array|\PDOStatement|string|Collection|\think\model\Collection
+     * @throws DataNotFoundException
+     * @throws DbException
+     * @throws ModelNotFoundException
+     */
+    public static function popularProduct($category_id)
+    {
+        return Db::table('product_category')->alias('category')
+            ->where('category.category_id', '=', $category_id)
+            ->join('product', 'product.id=category.product_id')->field('name,url_title,image_litpic_url')
+            ->order(['listorder' => 'desc', 'id' => 'desc'])->limit(1)->find();
     }
 
     /**

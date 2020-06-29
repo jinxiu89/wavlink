@@ -55,17 +55,18 @@ class Category extends BaseService
     /**
      * @param $categoryID
      * @param $category
+     * @param $language_id
      * @return array|mixed|\PDOStatement|string|\think\Collection|\think\model\Collection
      */
 
-    public function getProductWithCategoryIds($categoryID,$category)
+    public function getProductWithCategoryIds($categoryID, $category, $language_id)
     {
         try {
             if (false == $this->debug) {
-                $data = Cache::get(__FUNCTION__ . $category);
+                $data = Cache::get(__FUNCTION__ . $language_id . $category);
                 if ($data) return $data;
                 $obj = $this->model->getProductWithCategoryIds($categoryID);
-                Cache::set(__FUNCTION__ . $category, $obj);
+                Cache::set(__FUNCTION__ . $language_id . $category, $obj);
                 return $obj;
             }
             return $this->model->getProductWithCategoryIds($categoryID);

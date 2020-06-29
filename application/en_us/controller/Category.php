@@ -75,7 +75,7 @@ class  Category extends Base
         try {
             $parent = $this->service->getCategoryIds($category, $this->language_id);
             if (empty($parent)) abort(404);
-            $data = array_unique($this->service->getProductWithCategoryIds($parent['categoryID'],$category), SORT_REGULAR);
+            $data = array_unique($this->service->getProductWithCategoryIds($parent['categoryID'],$category,$this->language_id), SORT_REGULAR);
             $count = count($data);
             $pages = input('page', 1);
             $size = 12;

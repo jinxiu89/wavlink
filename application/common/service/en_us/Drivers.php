@@ -68,6 +68,7 @@ class Drivers extends BaseService
             }
         } catch (\Exception $exception) {
             if ($this->debug == true) Log::error(__FUNCTION__ . ":" . $exception->getMessage());
+            return $exception->getMessage();
         }
     }
 

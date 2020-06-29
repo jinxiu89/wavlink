@@ -7,8 +7,114 @@
                         <img src="//china.wavlink.com/images/LOGO/WAVLINK_logo.png" alt="">
                     </a>
                 </div>
-
                 <div class="menu-container">
+                    <div class="nav" id="nav">
+                        <div class="first-menu">
+                            <ul>
+                                <li class="first-item"><a href="/{$code}/index.html">{:lang('home')}</a></li>
+                                <li class="first-item">
+                                    <a href="javascript:void(0)"><span>{:lang('product')}</span> <span
+                                            class="iconfont iconcaret-down"></span></a>
+                                    {notempty name="tree"}
+                                    <div class="second-menu">
+                                        <ul>
+                                            {volist name="tree" id="item"}
+                                            <li class="second-item">
+                                                <a href="{:url('/'.$code.'/category/'.$item.url_title)}"><span>{$item.name}</span>
+                                                    {if(!empty($item.child))}<i class="iconfont iconarrow-down"></i>{/if}</a>
+                                                {notempty name="item.child"}
+                                                <div class="third-menu">
+                                                    <ul>
+                                                        {volist name="item.child" id="vo"}
+                                                        <li class="third-item">
+                                                            <a href="{:url('/'.$code.'/category/'.$vo.url_title)}"
+                                                               attr-id="{$vo.id}"><span>{$vo.name}</span>
+                                                                {if(!empty($vo.child))}<i class="iconfont iconnext"></i>{/if}</a>
+                                                            <div class="item-product">
+                                                                <a href="#">
+                                                                    <img src="" alt="">
+                                                                    <p></p>
+                                                                </a>
+                                                            </div>
+                                                            {notempty name="vo.child"}
+                                                            <div class="fourth-menu">
+                                                                <ul>
+                                                                    {volist name="vo.child" id="o"}
+                                                                    <li class="fourth-item">
+                                                                        <a href="{:url('/'.$code.'/category/'.$o.url_title)}"
+                                                                           attr-id="{$o.id}">{$o.name}</a>
+                                                                        <div class="item-product">
+                                                                            <a href="#">
+                                                                                <img src="" alt="">
+                                                                                <p></p>
+                                                                            </a>
+                                                                        </div>
+                                                                    </li>
+                                                                    {/volist}
+                                                                </ul>
+                                                            </div>
+                                                            {/notempty}
+                                                        </li>
+                                                        {/volist}
+                                                    </ul>
+                                                </div>
+                                                {/notempty}
+                                            </li>
+                                            {/volist}
+                                        </ul>
+                                    </div>
+                                    {/notempty}
+                                </li>
+                                <li class="first-item">
+                                    <a href="javascript:void(0)">{:lang('support')} <span
+                                            class="iconfont iconcaret-down"></span></a>
+                                    <div class="second-menu">
+                                        <ul>
+                                            <li class="second-item"><a href="/{$code}/drivers.html"><span>{:lang('driver')}</span></a>
+                                            </li>
+                                            <li class="second-item"><a href="/{$code}/firmware.html"><span>{:lang('firmware')}</span></a>
+                                            </li>
+                                            <li class="second-item"><a href="/{$code}/manuals.html"><span>{:lang('manual')}</span></a>
+                                            </li>
+                                            <li class="second-item"><a
+                                                    href="/{$code}/faq.html"><span>{:lang('faq')}</span></a></li>
+                                            <li class="second-item"><a href="/{$code}/guest_book/"><span>{:lang('GuestBook')}</span></a>
+                                            </li>
+                                            <li class="second-item"><a
+                                                    href="/{$code}/video.html"><span>{:lang('video')}</span></a></li>
+                                        </ul>
+                                    </div>
+                                </li>
+                                <li class="first-item">
+                                    <a href="javascript:void(0)">{:lang('article')} <span
+                                            class="iconfont iconcaret-down"></span></a>
+                                    <div class="second-menu">
+                                        <ul>
+                                            <li class="second-item"><a href="http://blog.wavlink.com"
+                                                                       target="_blank"><span>{:lang('blog')}</span></a>
+                                            </li>
+                                            <li class="second-item"><a href="{:url('/'.$code.'/article')}"><span>{:lang('news')}</span></a>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                </li>
+                                <li class="first-item">
+                                    <a href="javascript:void(0)">{:lang('language')} <span
+                                            class="iconfont iconcaret-down"></span></a>
+                                    <div class="second-menu">
+                                        <ul>
+                                            {volist name="language" id="vo" }
+                                            <li class="second-item"><a href="{:url('/language/'.$vo.code)}"><span>{$vo.name}</span></a>
+                                            </li>
+                                            {/volist}
+                                        </ul>
+                                    </div>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                <!--<div class="menu-container">
                     <ul class="menu nav navbar-nav wavlink-menu" id="menu">
                         <li id="home" class="menu-item"><a href="/{$code}/index.html">{:lang('home')}</a></li>
                         <li id="product" class="menu-item dropdown">
@@ -58,7 +164,7 @@
                             </ul>
                         </li>
                     </ul>
-                </div>
+                </div>-->
 
                 <!-- 2020.05.09 添加登录入口，搜索改造-->
                 <div class="function-box">
@@ -90,8 +196,10 @@
                             </span>
                             <div class="user-menu-wrapper" id="user-menu-wrapper">
                                 <ul>
-                                    <li class="user-menu-item"><a href="{:url('customer_info')}">{:lang('My Account')}</a></li>
-                                    <li class="user-menu-item"><a href="{:url('customer_logout')}">{:lang('logout')}</a></li>
+                                    <li class="user-menu-item"><a href="{:url('customer_info')}">{:lang('My
+                                        Account')}</a></li>
+                                    <li class="user-menu-item"><a href="{:url('customer_logout')}">{:lang('logout')}</a>
+                                    </li>
                                 </ul>
                             </div>
                         </div>
@@ -106,3 +214,56 @@
         </div>
     </div>
 </header>
+
+<script>
+    $('.third-item > a').mouseenter(function () {
+        var _this = this;
+        var a = $(this).siblings('.fourth-menu').length;
+        var categoryId = $(this).attr('attr-id');
+        var url = "{:url('getPopularProduct')}" + "?category_id=" + categoryId;
+        if (!a) {
+            $.ajax({
+                type: 'get',
+                url: url,
+                success: function (result) {
+                    var data = result.data;
+                    if (data) {
+                        var imgSrc = data.image_litpic_url;
+                        var title = data.name;
+                        var urlTitle = "{:url('/'.$code.'/product/')}" + data.url_title;
+                        var proDom = $(_this).siblings('.item-product');
+                        proDom.find('a').attr('href', urlTitle);
+                        proDom.find('img').attr('src', imgSrc);
+                        proDom.find('p').text(title);
+                    }
+                }
+            });
+        }
+        $(_this).parents('.third-item').siblings('.third-item').find('.item-product').css('display', 'none');
+        $(_this).siblings('.item-product').css('display', 'block');
+    });
+
+    $('.fourth-item > a').mouseenter(function () {
+        var _this = this;
+        var categoryId = $(this).attr('attr-id');
+        var url = "{:url('getPopularProduct')}" + "?category_id=" + categoryId;
+        $.ajax({
+            type: 'get',
+            url: url,
+            success: function (result) {
+                var data = result.data;
+                if (data) {
+                    var imgSrc = data.image_litpic_url;
+                    var title = data.name;
+                    var urlTitle = "{:url('/'.$code.'/product/')}" + data.url_title;
+                    var proDom = $(_this).siblings('.item-product');
+                    proDom.find('a').attr('href', urlTitle);
+                    proDom.find('img').attr('src', imgSrc);
+                    proDom.find('p').text(title);
+                }
+            }
+        });
+        $(_this).parents('.fourth-item').siblings('.fourth-item').find('.item-product').css('display', 'none');
+        $(_this).siblings('.item-product').css('display', 'block');
+    })
+</script>

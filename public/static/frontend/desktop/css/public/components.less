@@ -172,6 +172,164 @@ body {
 
   .menu-container {
     flex: 1;
+
+    ul {
+      .clearFix();
+    }
+    .second-menu, .third-menu, .fourth-menu {
+      display: none;
+    }
+
+    .first-menu {
+      padding-left: 85px;
+    }
+    .first-menu .first-item {
+      .fl();
+    }
+    .first-menu .first-item:hover,
+    .first-menu .first-item.active {
+      background: @whiteColor;
+    }
+    .first-menu .first-item:hover > a,
+    .first-menu .first-item.active > a {
+      color: @activeColor;
+    }
+    .first-menu .first-item > a {
+      display: block;
+      height: 60px;
+      color: @whiteColor;
+      padding: 0 15px;
+    }
+
+    .second-menu {
+      position: fixed;
+      top: 60px;
+      left: 0;
+      width: 100%;
+      height: 80px;
+      line-height: 80px;
+      background: @whiteColor;
+      border-bottom: 1px solid @borderColor;
+    }
+    .second-menu > ul {
+      width: 83.333%;
+      margin: 0 auto;
+      padding-left: 310px;
+    }
+    .second-menu .second-item {
+      .fl();
+    }
+    .second-menu .second-item.active > a, .second-menu .second-item:hover > a {
+      color: @activeColor;
+    }
+    .second-menu .second-item > a {
+      display: block;
+      height: 60px;
+      line-height: 60px;
+      margin: 10px 0;
+      padding: 0 20px;
+      color: @baseColor;
+      span {
+        display: inline-block;
+      }
+    }
+    .second-menu .second-item:nth-of-type(1) > a {
+      padding-left: 0;
+    }
+
+    .third-menu {
+      position: absolute;
+      top: 80px;
+      left: 0;
+      width: 100%;
+      background: @whiteColor;
+      box-shadow: 0 5px 5px rgba(0, 0, 0, .1);
+    }
+    .third-menu > ul {
+      position: relative;
+      width: 83.333%;
+      margin: 0 auto;
+      padding: 20px 0;
+    }
+    .third-menu .third-item {
+      display: block;
+      width: 12%;
+      margin-left: 310px;
+      line-height: 30px;
+      border-right: 1px solid @borderColor;
+    }
+    .third-menu .third-item > a {
+      .text-overflow();
+      display: inline;
+      color: @baseColor;
+    }
+    .third-menu .active > a span, .third-menu .third-item > a:hover span {
+      color: @activeColor;
+    }
+    .third-menu .third-item > .item-product {
+      display: none;
+      position: absolute;
+      top: 20px;
+      left: 310px;
+      width: 300px;
+      margin-left: 15%;
+      a:hover p {
+        color: @activeColor;
+      }
+      img {
+        .img-responsive();
+        .center-block();
+      }
+      p {
+        margin-top: 5px;
+        font-size: 12px;
+        color: @baseColor;
+        line-height: normal;
+      }
+    }
+
+    .fourth-menu {
+      position: absolute;
+      top: 0;
+      left: 310px;
+      z-index: 99999;
+      height: 100%;
+      margin-left: 13%;
+      padding: 20px 0 0 20px;
+    }
+    .fourth-menu > ul {
+      position: relative;
+    }
+    .fourth-menu .fourth-item > a {
+      color: @baseColor;
+      &:hover {
+        color: @activeColor;
+      }
+    }
+    .fourth-menu .fourth-item > .item-product {
+      display: none;
+      position: absolute;
+      top: 0;
+      left: 100%;
+      width: 300px;
+      margin-left: 30px;
+      a:hover p {
+        color: @activeColor;
+      }
+      img {
+        .img-responsive();
+        .center-block();
+      }
+      p {
+        margin-top: 5px;
+        font-size: 12px;
+        color: @baseColor;
+        line-height: normal;
+      }
+    }
+  }
+  /*.menu-container {
+    flex: 1;
     text-align: center;
     .menu {
       .fl();
@@ -232,7 +390,7 @@ body {
         text-decoration: underline;
       }
     }
-  }
+  }*/
 
   //2020.05.09 添加登录入口 搜索改造
   .function-box {
@@ -377,19 +535,78 @@ body {
     }
   }
 
-  @media screen and (min-width: 768px) and (max-width: 1199px) {
+  @media screen and (min-width: 768px) and (max-width: 991px) {
     .logo {
       padding-left: 20px;
     }
 
     .menu-container {
-      .menu {
-        margin-left: 0;
-        padding: 0 10px
+      .first-menu {
+        padding-left: 0;
       }
-      .menu .menu-item a {
+      .first-menu .first-item > a {
         padding: 0 5px;
         font-size: 12px;
+      }
+      .second-menu > ul {
+        width: 100%;
+        padding-left: 220px;
+      }
+      .second-menu .second-item > a {
+        padding: 0 10px;
+      }
+      .third-menu > ul {
+        width: 100%;
+      }
+      .third-menu .third-item {
+        width: 20%;
+        margin-left: 220px;
+      }
+      .third-menu .third-item > .item-product {
+        width: 200px;
+      }
+      .fourth-menu {
+        left: 220px;
+        margin-left: 20%;
+      }
+      .fourth-menu .fourth-item > .item-product {
+        width: 200px;
+      }
+    }
+    //2020.05.09 添加登录入口 搜索改造
+    .function-box {
+      padding-right: 20px;
+    }
+  }
+  @media screen and (min-width: 992px) and (max-width: 1199px) {
+    .logo {
+      padding-left: 20px;
+    }
+
+    .menu-container {
+      .first-menu {
+        padding-left: 0;
+      }
+      .first-menu .first-item > a {
+        padding: 0 10px;
+      }
+      .second-menu > ul {
+        width: 100%;
+        padding-left: 220px;
+      }
+      .second-menu .second-item > a {
+        padding: 0 10px;
+      }
+      .third-menu > ul {
+        width: 100%;
+      }
+      .third-menu .third-item {
+        width: 20%;
+        margin-left: 220px;
+      }
+      .fourth-menu {
+        left: 220px;
+        margin-left: 20%;
       }
     }
 
@@ -398,14 +615,13 @@ body {
       padding-right: 20px;
     }
   }
-  @media screen and (min-width: 1200px) and (max-width: 1300px) {
+  @media screen and (min-width: 1200px) and (max-width: 1365px) {
     .menu-container {
-      .menu {
-        margin-left: 0;
+      .third-menu .third-item {
+        width: 20%;
       }
-      .menu .menu-item a {
-        padding: 0 10px;
-        font-size: 12px;
+      .fourth-menu {
+        margin-left: 20%;
       }
     }
   }

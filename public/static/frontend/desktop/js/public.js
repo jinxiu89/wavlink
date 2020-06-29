@@ -1,4 +1,38 @@
-function handleMenuBarHover () {
+function newMenu () {
+    var firstItem = $('#nav .first-item'),
+        secondItem = $('#nav .first-item .second-item'),
+        thirdItem = $('#nav .first-item .second-item .third-item > a'),
+        fourthMenu = $('#nav .first-item .second-item .third-item .fourth-menu');
+    firstItem.mouseenter(function () {
+        $(this).addClass('active');
+        $(this).siblings('.first-item').removeClass('active');
+        $('#nav').find('.third-item').removeClass('active');
+        $(this).siblings('.first-item').find('.second-menu').css('display', 'none');
+        $(this).find('.second-menu').stop(true, false).css('display', 'block');
+    });
+    secondItem.mouseenter(function () {
+        $('#nav').find('.third-item').removeClass('active');
+        $(this).siblings('.second-item').find('.third-menu').css('display', 'none');
+        $(this).find('.third-menu').stop(true, false).css('display', 'block');
+    });
+    thirdItem.mouseenter(function () {
+        $(this).parents('.third-item').addClass('active');
+        $(this).parents('.third-item').siblings('.third-item').removeClass('active');
+        $(this).parents('.third-item').siblings('.third-item').find('.fourth-menu').css('display', 'none');
+        $(this).siblings('.fourth-menu').stop(true, false).css('display', 'block');
+    });
+    $('#nav').mouseleave(function () {
+        $(this).find('.first-item').removeClass('active');
+        $(this).find('.third-item').removeClass('active');
+        $(this).find('.second-menu').stop(true, false).css('display', 'none');
+        $(this).find('.third-menu').stop(true, false).css('display', 'none');
+        $(this).find('.fourth-menu').stop(true, false).css('display', 'none');
+        $(this).find('.item-product').stop(true, false).css('display', 'none');
+        $(this).find('.item-product').stop(true, false).css('display', 'none');
+    })
+}
+
+/*function handleMenuBarHover () {
     // header 头部导航 划过显示效果;
     var menu = $(".wavlink-menu > .menu-item");
     menu.hover(function () {
@@ -6,7 +40,7 @@ function handleMenuBarHover () {
     }, function () {
         $(this).children("ul").stop(false, true).slideUp(50)
     });
-}
+}*/
 
 function handleFootHover () {
     var footItem = $('.g-footer .foot-container dl dd a');
@@ -96,6 +130,8 @@ function Account() {
 }
 
 $(function () {
+    newMenu();
+
     handleFootHover();
 
     gPath();
@@ -109,6 +145,6 @@ $(function () {
     Account();
 
     if ($(document).outerWidth() >= 768) {
-        handleMenuBarHover()
+        /*handleMenuBarHover()*/
     }
 });

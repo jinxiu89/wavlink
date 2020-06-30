@@ -216,36 +216,8 @@
 </header>
 
 <script>
-    $('.third-item > a').mouseenter(function () {
-        var _this = this;
-        var a = $(this).siblings('.fourth-menu').length;
-        var categoryId = $(this).attr('attr-id');
-        var url = "{:url('getPopularProduct')}" + "?category_id=" + categoryId;
-        if (!a) {
-            $.ajax({
-                type: 'get',
-                url: url,
-                success: function (result) {
-                    var data = result.data;
-                    if (data) {
-                        var imgSrc = data.image_litpic_url;
-                        var title = data.name;
-                        var urlTitle = "{:url('/'.$code.'/product/')}" + data.url_title;
-                        var proDom = $(_this).siblings('.item-product');
-                        proDom.find('a').attr('href', urlTitle);
-                        proDom.find('img').attr('src', imgSrc);
-                        proDom.find('p').text(title);
-                    }
-                }
-            });
-        }
-        $(_this).parents('.third-item').siblings('.third-item').find('.item-product').css('display', 'none');
-        $(_this).siblings('.item-product').css('display', 'block');
-    });
-
-    $('.fourth-item > a').mouseenter(function () {
-        var _this = this;
-        var categoryId = $(this).attr('attr-id');
+    function getProduct (_this) {
+        var categoryId = $(_this).attr('attr-id');
         var url = "{:url('getPopularProduct')}" + "?category_id=" + categoryId;
         $.ajax({
             type: 'get',
@@ -263,7 +235,21 @@
                 }
             }
         });
-        $(_this).parents('.fourth-item').siblings('.fourth-item').find('.item-product').css('display', 'none');
         $(_this).siblings('.item-product').css('display', 'block');
+    }
+
+    $('.third-item > a').mouseenter(function () {
+        var _this = this;
+        var a = $(this).siblings('.fourth-menu').length;
+        if (!a) {
+            getProduct(_this);
+        }
+        $(_this).parents('.third-item').siblings('.third-item').find('.item-product').css('display', 'none');
+    });
+
+    $('.fourth-item > a').mouseenter(function () {
+        var _this = this;
+        getProduct(_this);
+        $(_this).parents('.fourth-item').siblings('.fourth-item').find('.item-product').css('display', 'none');
     })
 </script>

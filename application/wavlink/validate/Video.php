@@ -15,7 +15,7 @@ class Video extends BaseValidate
     /**验证规则**/
     protected $rule = [
         'id' => 'number',
-        'name' => 'require|unique:video,name|max:128',
+        'name' => 'require|unique:tb_video,name|max:128',
         'category_id' => 'require|number|gt:0',
         'language_id' => 'require|number|gt:0',
     ];

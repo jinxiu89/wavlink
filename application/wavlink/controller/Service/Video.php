@@ -94,6 +94,7 @@ Class Video extends BaseAdmin
                 if($this->validate->scene('add')->check($data)){
                     try{
                         $res = (new VideoModel())->add($data);
+
                         if ($res) {
                             return show(1,'','','','', '添加成功');
                         } else {

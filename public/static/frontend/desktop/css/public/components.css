@@ -596,6 +596,8 @@ body {
   }
   .g-nav .menu-container .third-menu .third-item > .item-product {
     width: 200px;
+    left: 220px;
+    margin-left: 22%;
   }
   .g-nav .menu-container .fourth-menu {
     left: 220px;
@@ -632,9 +634,17 @@ body {
     width: 20%;
     margin-left: 220px;
   }
+  .g-nav .menu-container .third-menu .third-item > .item-product {
+    width: 200px;
+    left: 220px;
+    margin-left: 22%;
+  }
   .g-nav .menu-container .fourth-menu {
     left: 220px;
     margin-left: 20%;
+  }
+  .g-nav .menu-container .fourth-menu .fourth-item > .item-product {
+    width: 200px;
   }
   .g-nav .function-box {
     padding-right: 20px;
@@ -644,8 +654,15 @@ body {
   .g-nav .menu-container .third-menu .third-item {
     width: 20%;
   }
+  .g-nav .menu-container .third-menu .third-item > .item-product {
+    width: 250px;
+    margin-left: 22%;
+  }
   .g-nav .menu-container .fourth-menu {
     margin-left: 20%;
+  }
+  .g-nav .menu-container .fourth-menu .fourth-item > .item-product {
+    width: 250px;
   }
 }
 .g-footer {

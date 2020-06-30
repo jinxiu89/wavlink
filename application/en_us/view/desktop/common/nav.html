@@ -11,8 +11,8 @@
                     <div class="nav" id="nav">
                         <div class="first-menu">
                             <ul>
-                                <li class="first-item"><a href="/{$code}/index.html">{:lang('home')}</a></li>
-                                <li class="first-item">
+                                <li class="first-item" id="home"><a href="/{$code}/index.html">{:lang('home')}</a></li>
+                                <li class="first-item" id="product">
                                     <a href="javascript:void(0)"><span>{:lang('product')}</span> <span
                                             class="iconfont iconcaret-down"></span></a>
                                     {notempty name="tree"}
@@ -65,7 +65,7 @@
                                     </div>
                                     {/notempty}
                                 </li>
-                                <li class="first-item">
+                                <li class="first-item" id="support">
                                     <a href="javascript:void(0)">{:lang('support')} <span
                                             class="iconfont iconcaret-down"></span></a>
                                     <div class="second-menu">
@@ -85,7 +85,7 @@
                                         </ul>
                                     </div>
                                 </li>
-                                <li class="first-item">
+                                <li class="first-item" id="article">
                                     <a href="javascript:void(0)">{:lang('article')} <span
                                             class="iconfont iconcaret-down"></span></a>
                                     <div class="second-menu">

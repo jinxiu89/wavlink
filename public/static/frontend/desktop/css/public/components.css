@@ -216,69 +216,6 @@ body {
   height: 60px;
   line-height: 60px;
   background: #1D428A;
-  /*.menu-container {
-    flex: 1;
-    text-align: center;
-    .menu {
-      .fl();
-      margin-left: 6%;
-      padding: 0 15px;
-    }
-    .menu .menu-item {
-      .fl();
-      position: relative;
-      &:hover a {
-        color: @activeColor;
-        background: @whiteColor;
-      }
-
-    }
-    .menu .active {
-      &:hover a {
-        background: @whiteColor;
-        color: @activeColor;
-      }
-    }
-    .menu .menu-item a {
-      display: block;
-      padding: 0 20px;
-      color: @whiteColor;
-      background: @activeColor;
-      #text-vertical(60px);
-    }
-    .menu .active {
-      background: @whiteColor;
-      a {
-        background: @whiteColor;
-        color: @activeColor;
-      }
-    }
-    .menu .menu-item .dropdown-menu {
-      position: absolute;
-      top: 60px;
-      left: 0;
-      padding: 0;
-      border: none;
-    }
-    .menu .menu-item .dropdown-menu li {
-      border-bottom: 1px solid @borderColor;
-      &:nth-last-of-type(1) {
-        border-bottom: none;
-      }
-    }
-    .menu .menu-item .dropdown-menu li a {
-      padding: 15px 30px;
-      color: @activeColor;
-      background: @whiteColor;
-      text-align: center;
-      height: auto;
-      line-height: normal;
-      &:hover {
-        background: @minActive;
-        text-decoration: underline;
-      }
-    }
-  }*/
 }
 .g-nav .container {
   position: relative;
@@ -322,11 +259,13 @@ body {
   float: left;
 }
 .g-nav .menu-container .first-menu .first-item:hover,
-.g-nav .menu-container .first-menu .first-item.active {
+.g-nav .menu-container .first-menu .first-item.active,
+.g-nav .menu-container .first-menu .first-item.current {
   background: #fff;
 }
 .g-nav .menu-container .first-menu .first-item:hover > a,
-.g-nav .menu-container .first-menu .first-item.active > a {
+.g-nav .menu-container .first-menu .first-item.active > a,
+.g-nav .menu-container .first-menu .first-item.current > a {
   color: #1D428A;
 }
 .g-nav .menu-container .first-menu .first-item > a {

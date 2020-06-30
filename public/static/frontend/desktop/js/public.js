@@ -106,7 +106,7 @@ function handleSearchBarClick() {
     var bar = $('#search-bar'),
         searchBox = $('#search-form'),
         bgPander = $('.wavlink-bgPander'),
-        menu = $('#menu');
+        menu = $('#nav');
     bar.click(function () {
         $(this).stop(false, true).toggleClass('iconsearch').toggleClass('iconclose');
         bgPander.stop(false, true).fadeToggle(300);

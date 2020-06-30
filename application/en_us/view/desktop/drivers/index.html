@@ -50,10 +50,8 @@
                         <span>{:lang('sort by')} : </span>
                         <div class="select">
                             <select class="order_by">
-                                <option value="asc" {if condition="$order eq 'asc'" }selected{
-                                /if}>{:lang('Date, old to new')}</option>
-                                <option value="desc" {if condition="$order eq 'desc'" }selected{
-                                /if}>{:lang('Date, new to old')}</option>
+                                <option value="asc" {if condition="$order eq 'asc'" }selected{/if}>{:lang('Date, old to new')}</option>
+                                <option value="desc" {if condition="$order eq 'desc'" }selected{/if}>{:lang('Date, new to old')}</option>
                             </select>
                         </div>
                     </div>

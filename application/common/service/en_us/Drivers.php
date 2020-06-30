@@ -86,6 +86,7 @@ class Drivers extends BaseService
                 Cache::set(__FUNCTION__ . $language_id . $category, $obj);
                 return $obj;
             }
+            return (new Category())->getCategoryID($category, $language_id);
         } catch (\Exception $exception) {
             if ($this->debug == true) Log::error(__FUNCTION__ . ":" . $exception->getMessage());
         }
@@ -93,19 +94,22 @@ class Drivers extends BaseService
 
     /**
      * @param $language_id
+     * @param $category
      * @param $categoryID
      * @param $order
+     * @return array|mixed
      */
-    public function getDriversByCategoryIds($language_id, $categoryID, $order)
+    public function getDriversByCategoryIds($language_id, $category, $categoryID, $order)
     {
         try {
             if ($this->debug == false) {
-                $data = Cache::get(__FUNCTION__ . $language_id . $order);
+                $data = Cache::get(__FUNCTION__ . $category . $language_id . $order);
                 if ($data) return $data;
                 $obj = $this->model->getDriversByCategoryIds($language_id, $categoryID, $order);
-                Cache::set(__FUNCTION__ . $language_id . $order, $obj);
+                Cache::set(__FUNCTION__ . $category . $language_id . $order, $obj);
                 return $obj;
             }
+            return $this->model->getDriversByCategoryIds($language_id, $categoryID, $order);
         } catch (\Exception $exception) {
             if ($this->debug == true) Log::error(__FUNCTION__ . ":" . $exception->getMessage());
         }

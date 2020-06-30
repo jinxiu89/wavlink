@@ -84,7 +84,7 @@ class Drivers extends Base
             abort(404);
         } else {
             //获取选择的分类下的驱动列表
-            $result = $this->service->getDriversByCategoryIds($this->language_id, $parent['categoryID'], $order);
+            $result = $this->service->getDriversByCategoryIds($this->language_id, $category,$parent['categoryID'], $order);
             return view($this->template . '/drivers/index.html', [
                 'data' => $result['data'],
                 'parent' => $parent['category'],

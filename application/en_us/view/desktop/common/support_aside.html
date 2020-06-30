@@ -24,7 +24,7 @@
         <dl>
             {notempty name="cate"}
             {volist name="cate" id="vo"}
-            <dd><a href="/{$code}/drivers/{$vo.title}.html?order='desc'" title="{$vo.name}" class="d{$vo.title}"><span>{$vo.delimiter|raw}</span> <span class="supportText">{$vo.name}</span></a></dd>
+            <dd><a href="/{$code}/drivers/{$vo.title}.html?order=desc" title="{$vo.name}" class="d{$vo.title}"><span>{$vo.delimiter|raw}</span> <span class="supportText">{$vo.name}</span></a></dd>
             {/volist}
             {/notempty}
         </dl>

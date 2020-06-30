@@ -19,9 +19,6 @@ class  Video extends Base
     /**
      * Video constructor.
      * @param App|null $app
-     * @throws DataNotFoundException
-     * @throws DbException
-     * @throws ModelNotFoundException
      */
     public function __construct(App $app = null)
     {

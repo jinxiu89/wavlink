@@ -1,8 +1,8 @@
 {extend name="mobile/common/base"}
 {block name="seo"}
 <title>{notempty name="parent.url_title"}{$parent.url_title}{/notempty} - {:lang('slogan')}{:lang('powered by')}</title>
-<meta name="description" content="{$parent.description}">
-<meta name="keywords" content="{$parent.keywords}">
+<meta name="description" content="{notempty name='parent'}{$parent.description}{/notempty}">
+<meta name="keywords" content="{notempty name='parent'}{$parent.keywords}{/notempty}">
 {/block}
 {block name="style"}
 <link rel="stylesheet" href="__MOBILE__/css/page/driver.css">

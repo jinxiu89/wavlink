@@ -604,6 +604,7 @@ body {
     margin-left: 20%;
   }
   .g-nav .menu-container .fourth-menu .fourth-item > .item-product {
+    display: none!important;
     width: 200px;
   }
   .g-nav .function-box {

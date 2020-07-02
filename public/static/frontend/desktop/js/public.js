@@ -32,16 +32,6 @@ function newMenu () {
     })
 }
 
-/*function handleMenuBarHover () {
-    // header 头部导航 划过显示效果;
-    var menu = $(".wavlink-menu > .menu-item");
-    menu.hover(function () {
-        $(this).children("ul").stop(false, true).slideDown(50)
-    }, function () {
-        $(this).children("ul").stop(false, true).slideUp(50)
-    });
-}*/
-
 function handleFootHover () {
     var footItem = $('.g-footer .foot-container dl dd a');
     footItem.hover(function () {

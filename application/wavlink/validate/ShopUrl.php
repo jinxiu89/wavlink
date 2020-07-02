@@ -22,7 +22,7 @@ class ShopUrl extends BaseValidate
         'id' => 'number|integer',
         'product_id' => 'require|integer',
         'name' => 'require|max:255',
-        'url' => 'require|unique:product,model|max:128',
+        'url' => 'require|unique:product,model|max:255',
         'price' => 'require|max:16',
         'status' => 'integer|in:-1,0,1',
     ];

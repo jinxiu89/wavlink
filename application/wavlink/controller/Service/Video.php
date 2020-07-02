@@ -14,6 +14,7 @@ use app\common\model\Service\Video as VideoModel;
 use app\wavlink\controller\BaseAdmin;
 use app\wavlink\validate\Video as VideoValidate;
 use think\App;
+use think\Db;
 use think\db\exception\DataNotFoundException;
 use think\db\exception\ModelNotFoundException;
 use think\exception\DbException;
@@ -91,7 +92,7 @@ class Video extends BaseAdmin
             if (isset($data['id']) || !empty($data['id'])) {
                 if ($this->validate->scene('edit')->check($data)) {
                     try {
-                        $res = model('tb_video')->allowField(true)->save($data, ['id' => $data['id']]);
+                        $res = Db::table('tb_video')->field(true)->where('id',$data['id'])->data($data)->update();//在编辑保存时如果出现问题就是这一句的问题
                         if ($res) {
                             return show(1, "success", '', '', '', '操作成功');
                         } else {

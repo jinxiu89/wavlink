@@ -54,16 +54,17 @@ class Drivers extends BaseService
     /***
      * @param $language_id
      * @param $order
+     * @param $page
      * @return array|mixed|Paginator
      */
-    public function getDriversByLanguage($language_id, $order)
+    public function getDriversByLanguage($language_id, $order, $page)
     {
         try {
             if ($this->debug == false) {
-                $data = Cache::get(__FUNCTION__ . $language_id);
+                $data = Cache::get(__FUNCTION__ . $language_id . $page);
                 if ($data) return $data;
                 $obj = $this->model->getDriversByLanguage($language_id, $order);
-                Cache::set(__FUNCTION__ . $language_id, $obj);
+                Cache::set(__FUNCTION__ . $language_id . $page, $obj);
                 return $obj;
             }
         } catch (\Exception $exception) {
@@ -97,16 +98,17 @@ class Drivers extends BaseService
      * @param $category
      * @param $categoryID
      * @param $order
+     * @param $page
      * @return array|mixed
      */
-    public function getDriversByCategoryIds($language_id, $category, $categoryID, $order)
+    public function getDriversByCategoryIds($language_id, $category, $categoryID, $order, $page)
     {
         try {
             if ($this->debug == false) {
-                $data = Cache::get(__FUNCTION__ . $category . $language_id . $order);
+                $data = Cache::get(__FUNCTION__ . $category . $language_id . $order . $page);
                 if ($data) return $data;
                 $obj = $this->model->getDriversByCategoryIds($language_id, $categoryID, $order);
-                Cache::set(__FUNCTION__ . $category . $language_id . $order, $obj);
+                Cache::set(__FUNCTION__ . $category . $language_id . $order . $page, $obj);
                 return $obj;
             }
             return $this->model->getDriversByCategoryIds($language_id, $categoryID, $order);

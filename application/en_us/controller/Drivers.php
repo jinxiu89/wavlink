@@ -29,6 +29,7 @@ use think\response\View;
 class Drivers extends Base
 {
     public $service;
+
     /**
      * Drivers constructor.
      * @param App|null $app
@@ -38,7 +39,7 @@ class Drivers extends Base
         parent::__construct($app);
         $data = (new service())->getDataByLanguageId($status = 1, $this->language_id);
         $level = Category::toLevel($data['data']->toArray()['data'], '&emsp;&emsp;');
-        $this->service=new DriverService();//驱动服务层
+        $this->service = new DriverService();//驱动服务层
         $this->assign('cate', $level);
     }
     /***
@@ -48,12 +49,13 @@ class Drivers extends Base
     //驱动下载首页
     /***
      * @param string $order
+     * @param int $page
      * @return mixed
      */
-    public function index($order = 'desc')
+    public function index($order = 'desc', $page = 1)
     {
         //获取所有驱动下载列表
-        $result = $this->service->getDriversByLanguage($this->language_id, $order);
+        $result = $this->service->getDriversByLanguage($this->language_id, $order, $page);
         return $this->fetch($this->template . '/drivers/index.html', [
             'data' => $result['data'],
             'count' => $result['count'],
@@ -68,9 +70,10 @@ class Drivers extends Base
     /**
      * @param string $category
      * @param $order
+     * @param int $page
      * @return Redirect|View
      */
-    public function category($category = "", $order)
+    public function category($category = "", $order, $page = 1)
     {
         if (empty($category) || !isset($category)) {
             abort(404);
@@ -84,7 +87,7 @@ class Drivers extends Base
             abort(404);
         } else {
             //获取选择的分类下的驱动列表
-            $result = $this->service->getDriversByCategoryIds($this->language_id, $category,$parent['categoryID'], $order);
+            $result = $this->service->getDriversByCategoryIds($this->language_id, $category, $parent['categoryID'], $order,$page);
             return view($this->template . '/drivers/index.html', [
                 'data' => $result['data'],
                 'parent' => $parent['category'],

@@ -550,9 +550,14 @@ function get_lang($header)
         return 'en_us';
     } else {
         $lang_code = $header['accept-language'];
-        $result = explode(',', $lang_code);
-        $code = strtolower($result[0]);
-        $result = str_ireplace('-', '_', $code);
+        $result = array_slice(explode(',', $lang_code), 0, 2);
+        $code = '';
+        foreach ($result as $item) {
+            if (preg_match("/-/i", $item)) {
+                $code = explode(';', $item)[0];
+            }
+        }
+        $result = strtolower(str_ireplace('-', '_', $code));
         if (in_array($result, Config::get('language.allow_lang'))) {
             return $result;
         }

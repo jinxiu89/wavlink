@@ -16,6 +16,15 @@ use app\wavlink\validate\Marketing as MarketingValidate;
 use app\wavlink\controller\BaseAdmin;
 Class Marketing extends BaseAdmin
 {
+    /**
+     * @return mixed
+     *  做程序的人，要注意身体，要笑到最后才是赢家：
+     *  金匮肾气汤，熬夜加班，头晕脑涨，说不定就是肾虚了，不是睡女人才会肾虚的
+     * 【材料】桂枝10克，制附子6克，熟地黄15克，山萸肉15克，山药15克，茯苓15克，丹皮10克，泽泻10克;
+     * 【功效】温补肾阳，行气化水。用于肾虚水肿，腰膝酸软，小便不利，畏寒肢冷。治脾肾大虚，腰重脚重，小便不利，肚腹肿胀，四肢浮肿，喘急痰盛，已成蛊症，其效如神
+     *
+     * 柴胡10 黄芩10 陈皮10 赤白芍10 枳壳10 甘草6 生山茶6 焦山茶6  疏肝解郁
+     */
     public function index()
     {
         $result = (new MarketingModel())->getDataByOrder('', '', $this->currentLanguage['id']);

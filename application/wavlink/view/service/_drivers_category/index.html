@@ -63,10 +63,18 @@
                            onclick="add('更新','{:url(\'edit_driver_category\',[\'id\'=>$vo.id])}',800,600)"
                            class="ml-5 btn btn-primary" style="text-decoration:none"><i class="Hui-iconfont"
                                                                                         style="font-size: 18px;color: #fff">&#xe6df;</i></a>
+                        {if($vo.status == 1)}
                         <a title="禁用" href="javascript:;"
                            onclick="recycle('{:url(\'del_driver_category\',[\'id\'=>$vo.id,\'status\'=>-1])}')"
-                           class="ml-5 btn btn-danger" style="text-decoration:none"><i class="Hui-iconfont"
-                                                                                       style="font-size: 18px;color:#fff;">&#xe6e2;</i></a>
+                           class="ml-5 btn btn-danger" style="text-decoration:none">
+                           <i class="Hui-iconfont" style="font-size: 18px;color:#fff;">&#xe6e2;</i>
+                        </a>
+                        {else /}
+                        <a title="启用" href="javascript:;" onclick="recycle('{:url(\'del_driver_category\',[\'id\'=>$vo.id,\'status\'=>1])}')"
+                            class="ml-5 btn btn-success" style="text-decoration:none">
+                            <i class="Hui-iconfont" style="font-size: 18px;color:#fff;">&#xe601; </i>
+                        </a>
+                        {/if}
                     </td>
                 </tr>
                 {/volist}

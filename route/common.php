@@ -9,6 +9,8 @@
  * @格言： 我的内心因看见大海而波涛汹涌
  **/
 
+use think\facade\Cookie;
+use think\facade\Request;
 use think\facade\Route;
 
 
@@ -32,7 +34,10 @@ Route::get('/language/:code', 'en_us/Language/setLanguage', [], ['code' => '[\w-
 Route::get('/notfound', 'en_us/Base/notFound')->name('404');
 Route::get('/server_error', 'en_us/Base/serverError')->name('500');
 //自动跳转路由
-Route::get('/', 'en_us/Base/autoload');
+Route::get('/$', function (){
+    $code = Cookie::get('lang_var') ? Cookie::get('lang_var') : get_lang(Request::instance()->header()); //这个code需要把‘-’换成‘_’;
+    return redirect('/' . $code . '/index.html', [], 200);
+});
 //访问路由不存在时触发miss路由
 Route::miss('en_us/Common/miss');  //当所有的路由都匹配不到的时候 就会走到这个miss路由上来
 //原登录路由，

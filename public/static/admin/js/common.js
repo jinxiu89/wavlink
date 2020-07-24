@@ -145,7 +145,7 @@ function save(url) {
  *数据库里的字段status状态值为-1
  */
 function recycle(url) {
-    layer.confirm('确定要放进回收站吗？', function () {
+    layer.confirm('确定进行该操作吗？', function () {
         $.ajax({
             url: url,
             type: "post",

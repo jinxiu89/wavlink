@@ -546,22 +546,21 @@ function getDescriptionByCode($code)
 function get_lang($header)
 {
     //拿到浏览器的语言，初始化语言项
-    if (empty($header['accept-language'])) {
-        return 'en_us';
-    } else {
-        $lang_code = $header['accept-language'];
-        $result = array_slice(explode(',', $lang_code), 0, 2);
-        $code = '';
-        foreach ($result as $item) {
-            if (preg_match("/-/i", $item)) {
-                $code = explode(';', $item)[0];
-            }
+    $lang_code = $header['accept-language'];
+    $result = array_slice(explode(',', $lang_code), 0, 2);
+    $code = '';
+    foreach ($result as $item) {
+        if (preg_match("/-/i", $item)) {
+            $code = explode(';', $item)[0];
         }
-        $result = strtolower(str_ireplace('-', '_', $code));
-        if (in_array($result, Config::get('language.allow_lang'))) {
+    }
+    $result = strtolower(str_ireplace('-', '_', $code));
+    if (in_array($result, Config::get('language.allow_lang'))) {
+        if (strpbrk($result, 'hans')) {
+            return 'zh_cn';
+        }else{
             return $result;
         }
-        return 'en_us';
     }
 }
 

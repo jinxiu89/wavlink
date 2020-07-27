@@ -51,39 +51,43 @@ class Search extends Base
     {
         if (Request::isGet()) {
             $search = input('key', '', 'htmlspecialchars');
-            if(empty($search) && $search==0){
+            if (empty($search) && $search == 0) {
                 abort(404);
             }
             $keywords = array_filter(explode(' ', $search));
-            foreach ($keywords as &$keyword) {
-                $keyword = "%" . $keyword . "%";
+            $keyword='';
+            foreach ($keywords as $keyword) {
+                $keyword = $keyword;
             }
+            unset($keywords);
+//            print_r($keyword);
             $type = input('type', 'product', 'htmlspecialchars');
             $product_query = Db::table('product')
-                ->where('name|seo_title|keywords|description|features', 'like', $keywords)
-                ->where('language_id','=',$this->language_id)->where('status','=',1)
-                ->field('id,keywords,name,url_title,model,seo_title,description,features');
-            $driver_query=Db::table('drivers')
-                ->where('name|url_title|keywords|descrip','like',$keywords)
-                ->where('language_id','=',$this->language_id)->where('status','=',1)
-                ->field('name,url_title,keywords,descrip,models,size,version_number,update_time,running,all_link,win_link,mac_link,linux_link');
-            $product_total=$product_query->count(); //产品计数
-            $driver_total=$driver_query->count();
+                ->where('name|seo_title|keywords|description|features', 'like', '%'.$keyword.'%')
+                ->where('language_id', '=', $this->language_id)->where('status', '=', 1);
+            $driver_query = Db::table('tb_drivers')
+                ->where('language_id', '=', $this->language_id)
+                ->where('status', '=', 1)
+                ->where('name|url_title|keywords|descrip|models', 'like', $keyword);
+            $product_total = $product_query->count(); //产品计数
+            $driver_total = $driver_query->count();
             $page_options = ['var_page' => 'page', 'path' => '/' . $this->code . '/search', 'query' => ['key' => $search, 'type' => $type]];
             if ($type == 'product') {
-                $products = $product_query->order(['listorder'=>'desc','id'=>'desc'])->paginate(10,'',$page_options);
-                $this->assign('product_page',$products->render());
+                $products = $product_query->field('id,keywords,name,url_title,model,seo_title,description,features')
+                    ->order(['listorder' => 'desc', 'id' => 'desc'])->paginate(10, '', $page_options);
+                $this->assign('product_page', $products->render());
                 $this->assign('products', $products);
             }
             if ($type == 'driver') {
-                $items=$driver_query->paginate(10,'',$page_options);
+                $items = $driver_query->field('name,url_title,keywords,descrip,models,size,version_number,update_time,running,all_link,win_link,mac_link,linux_link')
+                    ->paginate(10, '', $page_options);
                 $data = [];
                 foreach ($items as $item) {
                     $item['modelsGroup'] = explode(',', $item['models']);
                     $data[] = $item;
                 }
                 $this->assign('drivers', $data);
-                $this->assign('driver_page',$items->render());
+                $this->assign('driver_page', $items->render());
             }
 
             $this->assign('type', $type);

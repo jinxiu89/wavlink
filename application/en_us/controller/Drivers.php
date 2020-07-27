@@ -88,6 +88,7 @@ class Drivers extends Base
         } else {
             //获取选择的分类下的驱动列表
             $result = $this->service->getDriversByCategoryIds($this->language_id, $category, $parent['categoryID'], $order,$page);
+//            print_r($result);exit;
             return view($this->template . '/drivers/index.html', [
                 'data' => $result['data'],
                 'parent' => $parent['category'],

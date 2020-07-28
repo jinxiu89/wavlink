@@ -562,6 +562,7 @@ function get_lang($header)
             return $result;
         }
     }
+    return 'en_us';
 }
 
 /**

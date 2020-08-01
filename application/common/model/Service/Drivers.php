@@ -13,7 +13,6 @@ use app\common\model\Language as LanguageModel;
 use think\Collection;
 use think\db\exception\DataNotFoundException;
 use think\db\exception\ModelNotFoundException;
-use think\Exception;
 use think\exception\DbException;
 use think\Paginator;
 
@@ -37,7 +36,7 @@ class Drivers extends BaseModel
     {
         $data = ['status' => 1, 'language_id' => $language,];
         $order = ['update_time' => $order, 'listorder' => $order, 'id' => $order];
-        $response=self::where($data);
+        $response = self::where($data);
         $count = $response->count();
         $data = $response->order($order)->paginate(6, true);
         $result = ModelsArr($data, 'models', 'modelGroup');
@@ -46,17 +45,20 @@ class Drivers extends BaseModel
 
     /**
      * @param $language
+     * @param $code
      * @param $category
+     * @param $categoryID
      * @param string $order
      * @return array
      * @throws DbException
      */
-    public function getDriversByCategoryIds($language, $category, $order = 'desc')
+    public function getDriversByCategoryIds($language, $code, $category, $categoryID, $order = 'desc')
     {
         $order = ['update_time' => $order, 'listorder' => 'desc', 'id' => 'desc'];
-        $response = self::where('category_id', 'in', $category)->where(['language_id' => $language, 'status' => 1]);
+        $response = self::where('category_id', 'in', $categoryID)->where(['language_id' => $language, 'status' => 1]);
         $count = $response->count();
-        $data = $response->order($order)->paginate(6, true);
+        $option = ['path' => '/' . $code . '/drivers/' . $category];
+        $data = $response->order($order)->paginate(6, true, $option);
         $result = ModelsArr($data, 'models', 'modelGroup');
         return ['count' => $count, 'data' => $result];
     }

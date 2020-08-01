@@ -13,6 +13,11 @@ namespace app\common\model\Service;
 
 
 use app\common\model\BaseModel;
+use Exception;
+use think\db\exception\DataNotFoundException;
+use think\db\exception\ModelNotFoundException;
+use think\exception\DbException;
+use think\Paginator;
 
 /**
  * Class DriversCategory
@@ -25,7 +30,7 @@ class DriversCategory extends BaseModel
     /**
      * @param string $status
      * @param string|null $language_id
-     * @return mixed|\think\Paginator
+     * @return mixed|Paginator
      */
     public function getDataByLanguageId($status, $language_id)
     {
@@ -42,7 +47,7 @@ class DriversCategory extends BaseModel
     {
         try {
             return self::allowField(true)->save($data, ['id' => $data['id']]);
-        } catch (\Exception $exception) {
+        } catch (Exception $exception) {
             return false;
         }
     }
@@ -51,9 +56,9 @@ class DriversCategory extends BaseModel
      * @param $category
      * @param $language_id
      * @return array
-     * @throws \think\db\exception\DataNotFoundException
-     * @throws \think\db\exception\ModelNotFoundException
-     * @throws \think\exception\DbException
+     * @throws DataNotFoundException
+     * @throws ModelNotFoundException
+     * @throws DbException
      * 根据分类title 找到他自己和下一级分类ID的集合
      *
      */

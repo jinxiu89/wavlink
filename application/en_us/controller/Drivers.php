@@ -10,13 +10,11 @@ namespace app\en_us\controller;
 
 use app\common\helper\Category;
 use app\common\model\Service\Drivers as DriversModel;
-use app\common\model\Service\ServiceCategory as ServiceCategoryModel;
-use app\wavlink\service\service\driversCategory as service;
 use app\common\service\en_us\Drivers as DriverService;
+use app\wavlink\service\service\driversCategory;
 use think\App;
 use think\db\exception\DataNotFoundException;
 use think\db\exception\ModelNotFoundException;
-use think\Exception;
 use think\exception\DbException;
 use think\response\Redirect;
 use think\response\View;
@@ -29,6 +27,11 @@ use think\response\View;
 class Drivers extends Base
 {
     public $service;
+    public $cat;
+    public function initialize()
+    {
+        parent::initialize();
+    }
 
     /**
      * Drivers constructor.
@@ -37,10 +40,11 @@ class Drivers extends Base
     public function __construct(App $app = null)
     {
         parent::__construct($app);
-        $data = (new service())->getDataByLanguageId($status = 1, $this->language_id);
-        $level = Category::toLevel($data['data']->toArray()['data'], '&emsp;&emsp;');
         $this->service = new DriverService();//驱动服务层
+        $data = (new driversCategory())->getCategoryByLanguage($status = 1, $this->language_id);
+        $level = Category::toLevel($data->toArray(), '&emsp;&emsp;');
         $this->assign('cate', $level);
+        unset($data);
     }
     /***
      * $this->code 为 当前的模块名，即在上面_initialize(初始化中)赋予的
@@ -87,7 +91,7 @@ class Drivers extends Base
             abort(404);
         } else {
             //获取选择的分类下的驱动列表
-            $result = $this->service->getDriversByCategoryIds($this->language_id, $category, $parent['categoryID'], $order,$page);
+            $result = $this->service->getDriversByCategoryIds($this->language_id,$this->code,$category, $parent['categoryID'], $order,$page);
             return view($this->template . '/drivers/index.html', [
                 'data' => $result['data'],
                 'parent' => $parent['category'],

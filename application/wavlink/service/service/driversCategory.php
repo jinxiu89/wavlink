@@ -72,7 +72,21 @@ class driversCategory extends Base
             $result['data'] = $response->paginate(25);
             return $result;
         } catch (\Exception $exception) {
+            return $exception->getMessage();
             return [];
+        }
+    }
+
+    /**
+     * @param $status
+     * @param $language_id
+     */
+    public function getCategoryByLanguage($status,$language_id){
+        try {
+            $response = $this->model->getDataByLanguageId($status, $language_id);
+            return $response->select();
+        } catch (\Exception $exception) {
+            return $exception->getMessage();
         }
     }
 }

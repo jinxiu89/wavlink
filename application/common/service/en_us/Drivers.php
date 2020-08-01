@@ -12,8 +12,8 @@
 namespace app\common\service\en_us;
 
 use app\common\model\Service\Drivers as model;
-use app\wavlink\service\service\driversCategory as Category;
 use app\common\model\Service\ServiceCategory;
+use app\wavlink\service\service\driversCategory as Category;
 use think\facade\Cache;
 use think\facade\Log;
 use think\Paginator;
@@ -63,10 +63,10 @@ class Drivers extends BaseService
             if ($this->debug == false) {
                 $data = Cache::get(__FUNCTION__ . $language_id . $page);
                 if ($data) return $data;
-                $obj = $this->model->getDriversByLanguage($language_id, $order);
-                Cache::set(__FUNCTION__ . $language_id . $page, $obj);
-                return $obj;
             }
+            $obj = $this->model->getDriversByLanguage($language_id, $order);
+            Cache::set(__FUNCTION__ . $language_id . $page, $obj);
+            return $obj;
         } catch (\Exception $exception) {
             if ($this->debug == true) Log::error(__FUNCTION__ . ":" . $exception->getMessage());
             return $exception->getMessage();
@@ -95,23 +95,23 @@ class Drivers extends BaseService
 
     /**
      * @param $language_id
+     * @param $code
      * @param $category
      * @param $categoryID
      * @param $order
      * @param $page
      * @return array|mixed
      */
-    public function getDriversByCategoryIds($language_id, $category, $categoryID, $order, $page)
+    public function getDriversByCategoryIds($language_id, $code, $category, $categoryID, $order, $page)
     {
         try {
             if ($this->debug == false) {
                 $data = Cache::get(__FUNCTION__ . $category . $language_id . $order . $page);
                 if ($data) return $data;
-                $obj = $this->model->getDriversByCategoryIds($language_id, $categoryID, $order);
-                Cache::set(__FUNCTION__ . $category . $language_id . $order . $page, $obj);
-                return $obj;
             }
-            return $this->model->getDriversByCategoryIds($language_id, $categoryID, $order);
+            $obj = $this->model->getDriversByCategoryIds($language_id, $code,$category, $categoryID, $order);
+            Cache::set(__FUNCTION__ . $category . $language_id . $order . $page, $obj);
+            return $obj;
         } catch (\Exception $exception) {
             if ($this->debug == true) Log::error(__FUNCTION__ . ":" . $exception->getMessage());
         }

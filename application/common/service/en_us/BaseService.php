@@ -12,9 +12,9 @@
 namespace app\common\service\en_us;
 
 
-use AlibabaCloud\Client\Config\Config;
 use app\common\model\Content\Category as ProductCategory;
 use think\facade\Cache;
+use think\facade\Config;
 use think\facade\Log;
 
 /**

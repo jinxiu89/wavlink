@@ -40,10 +40,6 @@ class Index extends Base
 
     /***
      * @return mixed
-     * @throws DataNotFoundException
-     * @throws DbException
-     * @throws ModelNotFoundException
-     * @throws Exception
      */
     public function index()
     {

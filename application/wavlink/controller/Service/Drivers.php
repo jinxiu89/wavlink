@@ -124,7 +124,7 @@ class Drivers extends BaseAdmin
                     return show(0, '', '', '', '', '添加失败');
                 }
             } catch (\Exception $exception) {
-                return show(0, '', '', '', '', $exception->getMessage());
+                return show(0, '', '', '', '', 'hello');
             }
         }
     }

@@ -1,5 +1,6 @@
 <!--包含头部文件-->
 {include file="public/headers" /}
+<link rel="stylesheet" type="text/css" href="__STATIC__/lib/color_picker/jquery.minicolors.css"/>
 <div class="page-container">
     <form class="form form-horizontal" id="form-article-add" method="post" action="">
         <div class="row cl">
@@ -15,21 +16,31 @@
             </div>
         </div>
         <div class="row cl">
+            <label class="form-label col-xs-4 col-sm-2"><span class="c-red">*</span>文本颜色：</label>
+            <div class="formControls col-xs-3 col-sm-3" style="line-height: 30px">
+                <input type="text" class="input-text color" value="#fff" placeholder="" id="position-bottom-left"
+                       name="color" data-position="bottom left">
+            </div>
+        </div>
+        <div class="row cl">
             <label class="form-label col-xs-4 col-sm-2"><span class="c-red">*</span>按钮标识：</label>
             <div class="formControls col-xs-3 col-sm-3">
-                <input type="text" class="input-text" value="" placeholder="点击按钮（没有填型号就显示learn more）" id="model" name="model">
+                <input type="text" class="input-text" value="" placeholder="点击按钮（没有填型号就显示learn more）" id="model"
+                       name="model">
             </div>
         </div>
         <div class="row cl">
             <label class="form-label col-xs-4 col-sm-2">PC端图片地址：</label>
             <div class="formControls col-xs-8 col-sm-9">
-                <textarea name="image_pc_url" cols="100" rows="10" class="textarea" placeholder="500个字符以内,是一个地址" dragonfly="true" ></textarea>
+                <textarea name="image_pc_url" cols="100" rows="10" class="textarea" placeholder="500个字符以内,是一个地址"
+                          dragonfly="true"></textarea>
             </div>
         </div>
         <div class="row cl">
             <label class="form-label col-xs-4 col-sm-2">移动端图片地址：</label>
             <div class="formControls col-xs-8 col-sm-9">
-                <textarea name="image_mobile_url" cols="" rows="" class="textarea"  placeholder="500个字符以内, 是一个地址" dragonfly="true" ></textarea>
+                <textarea name="image_mobile_url" cols="" rows="" class="textarea" placeholder="500个字符以内, 是一个地址"
+                          dragonfly="true"></textarea>
             </div>
         </div>
 
@@ -61,11 +72,13 @@
 
         <div class="row cl">
             <div class="col-xs-8 col-sm-9 col-xs-offset-4 col-sm-offset-2">
-                <button onclick="save('{:url(\'images/save\')}')" class="btn btn-primary radius" type="button"><i class="Hui-iconfont">&#xe632;</i> 保存
+                <button onclick="save('{:url(\'images/save\')}')" class="btn btn-primary radius" type="button"><i
+                        class="Hui-iconfont">&#xe632;</i> 保存
                 </button>
 
                 <button onClick="layer_close();" class="btn btn-default radius" type="button">
-                    &nbsp;&nbsp;取消&nbsp;&nbsp;</button>
+                    &nbsp;&nbsp;取消&nbsp;&nbsp;
+                </button>
             </div>
         </div>
     </form>
@@ -76,10 +89,33 @@
 <script type="text/javascript" src="__STATIC__/admin/uploadify/jquery.uploadify.min.js"></script>
 <script type="text/javascript" src="__STATIC__/admin/js/common.js"></script>
 <script type="text/javascript" src="__STATIC__/admin/h-ui.admin/js/image.js"></script>
+<script type="text/javascript" src="__STATIC__/lib/color_picker/jquery.minicolors.js"></script>
 <script type="text/javascript">
     var SCOPE = {
-           'uploadify_swf':'__STATIC__/admin/uploadify/uploadify.swf',
-           'image_upload':"{:url('api/image/upload')}"};
+        'uploadify_swf': '__STATIC__/admin/uploadify/uploadify.swf',
+        'image_upload': "{:url('api/image/upload')}"
+    };
+    $(document).ready(function () {
+        $('.color').minicolors({
+            control: $(this).attr('data-control') || 'hue',
+            defaultValue: $(this).attr('data-defaultValue') || '',
+            inline: $(this).attr('data-inline') === 'true',
+            letterCase: $(this).attr('data-letterCase') || 'lowercase',
+            opacity: $(this).attr('data-opacity'),
+            position: $(this).attr('data-position') || 'bottom left',
+            change: function (hex, opacity) {
+                var log;
+                try {
+                    log = hex ? hex : 'transparent';
+                    if (opacity) log += ', ' + opacity;
+                    // console.log(log);
+                    $('.color').attr('value',log);
+                } catch (e) {
+                }
+            },
+            theme: 'default'
+        })
+    });
 </script>
 </body>
 </html>

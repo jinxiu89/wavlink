@@ -28,7 +28,7 @@ return [
     'close' => 'CLOSE',
     'back' => 'BACK',
     'product' => 'PRODUCTS',
-    'support' => 'SUPPORTS',
+    'support' => 'SUPPORT',
     'article' => 'NEWS/BLOG',
     'blog' => 'BLOG',
     'news' => 'NEWS',

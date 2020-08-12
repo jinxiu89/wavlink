@@ -116,6 +116,14 @@
             transform: @name;
 }
 
+#transition(@name) {
+    -webkit-transition: @name;
+    -moz-transition: @name;
+    -ms-transform: @name;
+    -o-transition: @name;
+    transition: @name;
+}
+
 #animation(@name) {
     -webkit-animation: @name;
        -moz-animation: @name;

@@ -1,0 +1,233 @@
+/**
+* @name: driver.less
+* @description: 驅動列表页样式
+* @author: Alan(alan_webdeveloper@163.com)
+* @update: 2019-09-16 10:30
+*/
+@import "../public/mixins";
+@import "../public/variables";
+
+.support-aside {
+  .fl();
+  width: 22%;
+  padding-right: 10px;
+  ul {
+    background: @whiteColor;
+  }
+  ul li {
+    height: 60px;
+    line-height: 60px;
+    padding: 0 10px;
+    border-bottom: 1px solid @borderColor;
+  }
+  ul li a {
+    .clearFix();
+    display: block;
+    font-size: 14px;
+    color: @baseColor;
+    &:hover span{
+      color: @activeColor;
+      text-decoration: underline;
+    }
+  }
+  ul li.active span {
+    color: @activeColor;
+    text-decoration: underline;
+  }
+  ul li a .iconfont {
+    .fl();
+    display: block;
+    height: 60px;
+    line-height: 60px;
+    font-size: 35px;
+    color: #375D9D;
+  }
+  ul li a span {
+    .fl();
+    padding-left: 20px;
+  }
+  @media screen and (min-width: 768px) and (max-width: 991px) {
+    width: 30%;
+  }
+  @media screen and (min-width: 992px) and (max-width: 1199px) {
+    width: 25%;
+  }
+}
+
+.g-main {
+  .fl();
+  width: 78%;
+  background: none;
+  @media screen and (min-width: 768px) and (max-width: 991px) {
+    width: 70%;
+  }
+  @media screen and (min-width: 992px) and (max-width: 1199px) {
+    width: 75%;
+  }
+}
+
+//驱动
+.filter-box {
+  margin-bottom: 5px;
+  padding: 20px 10px;
+  background: @whiteColor;
+  .type {
+    position: relative;
+    margin-bottom: 20px;
+    h3 {
+      position: absolute;
+      top: 0;
+      left: 0;
+      z-index: 1;
+      font-size: 14px;
+      color: @whiteSmoke;
+    }
+    .type-category {
+      padding-left: 35px;
+    }
+    .type-category ul {
+      .clearFix();
+      margin-bottom: 20px;
+      &:nth-last-of-type(1) {
+        margin-bottom: 0;
+      }
+    }
+    .type-category ul li {
+      .fl();
+    }
+    .type-category ul li a {
+      display: block;
+      padding: 3px 12px;
+      margin: 0 12px;
+      color: @baseColor;
+      #transition(all .2s linear);
+    }
+    .type-category ul li a:hover,
+    .type-category ul li.active a {
+      color: @whiteColor;
+      background: @activeColor;
+    }
+  }
+  .search {
+    .clearFix();
+    h3 {
+      .fl();
+      height: 35px;
+      line-height: 35px;
+      font-size: 14px;
+      color: @whiteSmoke;
+    }
+    form {
+      .fl();
+      margin-left: 10px;
+    }
+    form input {
+      .fl();
+      width: 440px;
+      height: 35px;
+      padding: 0 10px;
+      border: 1px solid @borderColor;
+      border-radius: 5px 0 0 5px;
+    }
+    form button {
+      .fl();
+      height: 35px;
+      padding: 0 8px;
+      border: 1px solid @borderColor;
+      border-left: transparent;
+      border-radius: 0 5px 5px 0;
+      &:hover {
+        color: @activeColor;
+      }
+    }
+  }
+  @media screen and (min-width: 768px) and (max-width: 991px) {
+    .type .type-category ul li a {
+      margin: 0 6px;
+    }
+    .search form input {
+      width: 300px;
+    }
+  }
+}
+
+.Driver-box {
+  .item {
+    margin-bottom: 5px;
+    padding: 0 10px;
+    background: @whiteColor;
+  }
+  .item h3 {
+    width: 80%;
+    height: 42px;
+    line-height: 42px;
+    font-size: 22px;
+    border-bottom: 1px solid @borderColor;
+    span {
+      color: @activeColor;
+      &:after {
+        content: ">";
+        padding: 0 5px;
+      }
+      &:nth-last-of-type(1):after {
+        content: "";
+        padding: 0;
+      }
+    }
+  }
+  .item .mode {
+    .clearFix();
+    width: 80%;
+    padding: 20px 0;
+    p {
+      .fl();
+      display: block;
+      width: 16.666666%;
+      padding: 5px 0;
+      a {
+        color: @baseColor;
+        #transition(all .2s linear);
+      }
+      a:hover {
+        color: @activeColor;
+        text-decoration: underline;
+      }
+    }
+  }
+  @media screen and (min-width: 768px) and (max-width: 991px) {
+    .item h3 {
+      width: 100%;
+      font-size: 16px;
+    }
+    .item .mode {
+      width: 100%;
+      p {
+        width: 33%;
+      }
+    }
+  }
+  @media screen and (min-width: 992px) and (max-width: 1365px) {
+    .item h3 {
+      width: 100%;
+      font-size: 18px;
+    }
+    .item .mode {
+      width: 100%;
+      p {
+        width: 25%;
+      }
+    }
+  }
+  @media screen and (min-width: 1366px) and (max-width: 1800px) {
+    .item h3 {
+      width: 90%;
+      font-size: 20px;
+    }
+    .item .mode {
+      width: 90%;
+      p {
+        width: 20%;
+      }
+    }
+  }
+}

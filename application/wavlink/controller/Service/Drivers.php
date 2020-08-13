@@ -114,6 +114,7 @@ class Drivers extends BaseAdmin
                 }
             }
             try {
+                $data['url_title']=substr(md5(uniqid()), 3, 12);
                 if (!$this->validate->scene('add')->check($data)) {
                     return show(0, '', '', '', '', $this->validate->getError());
                 }

@@ -5,7 +5,7 @@
 <meta name="keywords" content="{notempty name='parent'}{$parent.keywords}{/notempty}">
 {/block}
 {block name="style"}
-<link rel="stylesheet" href="__DESKTOP__/css/page/driver.css">
+<link rel="stylesheet" href="__DESKTOP__/css/page/driver-index.css">
 {/block}
 {block name="swiper"}
 <div class="container-fluid">
@@ -23,98 +23,379 @@
 <div class="container">
     <div class="row">
         <div class="box">
-            <div class="g-aside">
+            <div class="support-aside">
                 <ul>
-                    {include file='desktop/common/support_aside'}
+                    <li class="active"><a href="#"><i class="iconfont iconDriver"></i> <span>Driver</span></a></li>
+                    <li><a href="#"><i class="iconfont iconFirmware"></i> <span>Firmware</span></a></li>
+                    <li><a href="#"><i class="iconfont iconManual"></i> <span>Manual</span></a></li>
+                    <li><a href="#"><i class="iconfont iconQA"></i> <span>Q&A</span></a></li>
+                    <li><a href="#"><i class="iconfont iconGuestBook"></i> <span>Guest Book</span></a></li>
+                    <li><a href="#"><i class="iconfont iconSetupVideo"></i> <span>Setup Video</span></a></li>
                 </ul>
             </div>
             <div class="g-main">
-                <div class="g-filter">
-                    <div class="filter">
-                        <span>{:lang('filter by')} : </span>
-                        <div class="select">
-                            <select name="category" class="filter_by">
-                                <option value="all">{:lang('All Category')}</option>
-                                {volist name="cate" id="vo"}
-                                {if($vo.level == 1)}
-                                <option value="{$vo.title}" {if condition='$category_title eq $vo.title' }selected{/if}>{$vo.delimiter|raw}{$vo.name}</option>
-                                {else /}
-                                <option value="{$vo.title}" {if condition='$category_title eq $vo.title' }selected{/if}>{$vo.delimiter|raw}{$vo.name}</option>
-                                {/if}
-                                {/volist}
-                            </select>
+                <div class="filter-box">
+                    <div class="type">
+                        <h3>Type: </h3>
+                        <div class="type-category">
+                            <ul>
+                                <li><a href="#">Router</a></li>
+                                <li class="active"><a href="#">Mesh</a></li>
+                                <li><a href="#">Repeater</a></li>
+                                <li><a href="#">4G LTE</a></li>
+                                <li><a href="#">Adapter</a></li>
+                            </ul>
+                            <ul>
+                                <li><a href="#">Thunderbolt™ 3</a></li>
+                                <li><a href="#">USB Docking</a></li>
+                                <li><a href="#">Storage</a></li>
+                                <li><a href="#">USB Display</a></li>
+                                <li><a href="#">USB Charge</a></li>
+                                <li><a href="#">Network Card</a></li>
+                                <li><a href="#">Network Card</a></li>
+                            </ul>
                         </div>
                     </div>
-
-                    <div class="sort">
-                        <span>{:lang('sort by')} : </span>
-                        <div class="select">
-                            <select class="order_by">
-                                <option value="asc" {if condition="$order eq 'asc'" }selected{/if}>{:lang('Date, old to new')}</option>
-                                <option value="desc" {if condition="$order eq 'desc'" }selected{/if}>{:lang('Date, new to old')}</option>
-                            </select>
-                        </div>
-                    </div>
-
-                    <div class="result">
-                        <span>{:lang('result')} {$count}</span>
-                    </div>
-                </div>
-                {volist name="data" id="vo"}
-                <div class="item">
-                    <div class="panel panel-default">
-                        <div class="panel-heading">
-                            <h3 class="title">{$vo.name}</h3>
-                        </div>
-                        <div class="panel-body">
-                            <div class="info">
-                                <p><span>{:lang('File Size')} :</span> <span>{$vo.size}</span></p>
-                                <p><span>{:lang('Version')} :</span> <span>{$vo.version_number}</span></p>
-                                {if($code == 'en_us')}
-                                <p><span>{:lang('Post Date')} :</span>
-                                    <span>{$vo.update_time|strtotime|date="d/m/Y"}</span></p>
-                                {else /}
-                                <p><span>{:lang('Post Date')} :</span>
-                                    <span>{$vo.update_time|strtotime|date="Y-m-d"}</span></p>
-                                {/if}
-                                <p><span>{:lang('System Requirements')} :</span> <span>{$vo.running}</span></p>
-                            </div>
-                            <div class="mode">
-                                <div>{:lang('Available')} :</div>
-                                <p>
-                                    {volist name="$vo.modelGroup" id="v"}
-                                    <!-- 2018-4-12 星期四 14:05 添加字体大小给td标签 -->
-                                    <span>{$v}</span>
-                                    {/volist}
-                                </p>
-                            </div>
-                            <div class="download">
-                                <span class="download-list">{:lang('Download')} : </span>
-                                {notempty name="$vo.all_link"}
-                                <a class="btn btn-default all" href="{$vo.all_link}" title="{:lang('ALL')}"><span
-                                        class="iconfont iconISO"></span></a>
-                                {/notempty}
-                                {notempty name="$vo.win_link"}
-                                <a class="btn btn-default windows" href="{$vo.win_link}"
-                                   title="{:lang('WINDOWS')}"><span class="iconfont iconwindows"></span></a>
-                                {/notempty}
-                                {notempty name="$vo.mac_link"}
-                                <a class="btn btn-default mac" href="{$vo.mac_link}" title="{:lang('MAC')}"><span
-                                        class="iconfont iconmacos"></span></a>
-                                {/notempty}
-                                {notempty name="$vo.linux_link"}
-                                <a class="btn btn-default linux" href="{$vo.linux_link}" title="{:lang('Linux')}"><span
-                                        class="iconfont iconlinux"></span></a>
-                                {/notempty}
-                            </div>
-                        </div>
+                    <div class="search">
+                        <h3>Model Number: </h3>
+                        <form action="">
+                            <input type="text" placeholder="请输入产品型号进行搜索">
+                            <button>Search</button>
+                        </form>
                     </div>
                 </div>
-                {/volist}
-                <div class="g-pagination clearfix">
-                    <nav>
-                        {:pagination($data)}
-                    </nav>
+
+                <div class="Driver-box">
+                    <div class="item">
+                        <h3>
+                            <span>Home</span>
+                            <span>Wireless</span>
+                            <span>USB Adapter</span>
+                        </h3>
+                        <div class="mode">
+                            <p><a href="#">WL-681A1F</a></p>
+                            <p><a href="#">WL-681A1F</a></p>
+                            <p><a href="#">WL-681A1F</a></p>
+                            <p><a href="#">WL-681A1F</a></p>
+                            <p><a href="#">WL-681A1F</a></p>
+                            <p><a href="#">WL-681A1F</a></p>
+                            <p><a href="#">WL-681A1F</a></p>
+                            <p><a href="#">WL-681A1F</a></p>
+                            <p><a href="#">WL-681A1F</a></p>
+                            <p><a href="#">WL-681A1F</a></p>
+                            <p><a href="#">WL-681A1F</a></p>
+                            <p><a href="#">WL-681A1F</a></p>
+                            <p><a href="#">WL-681A1F</a></p>
+                            <p><a href="#">WL-681A1F</a></p>
+                            <p><a href="#">WL-681A1F</a></p>
+                            <p><a href="#">WL-681A1F</a></p>
+                            <p><a href="#">WL-681A1F</a></p>
+                            <p><a href="#">WL-681A1F</a></p>
+                            <p><a href="#">WL-681A1F</a></p>
+                            <p><a href="#">WL-681A1F</a></p>
+                            <p><a href="#">WL-681A1F</a></p>
+                            <p><a href="#">WL-681A1F</a></p>
+                            <p><a href="#">WL-681A1F</a></p>
+                            <p><a href="#">WL-681A1F</a></p>
+                        </div>
+                    </div>
+                    <div class="item">
+                        <h3>
+                            <span>Home</span>
+                            <span>Wireless</span>
+                            <span>USB Adapter</span>
+                        </h3>
+                        <div class="mode">
+                            <p><a href="#">WL-681A1F</a></p>
+                            <p><a href="#">WL-681A1F</a></p>
+                            <p><a href="#">WL-681A1F</a></p>
+                            <p><a href="#">WL-681A1F</a></p>
+                            <p><a href="#">WL-681A1F</a></p>
+                            <p><a href="#">WL-681A1F</a></p>
+                            <p><a href="#">WL-681A1F</a></p>
+                            <p><a href="#">WL-681A1F</a></p>
+                            <p><a href="#">WL-681A1F</a></p>
+                            <p><a href="#">WL-681A1F</a></p>
+                            <p><a href="#">WL-681A1F</a></p>
+                            <p><a href="#">WL-681A1F</a></p>
+                            <p><a href="#">WL-681A1F</a></p>
+                            <p><a href="#">WL-681A1F</a></p>
+                            <p><a href="#">WL-681A1F</a></p>
+                            <p><a href="#">WL-681A1F</a></p>
+                            <p><a href="#">WL-681A1F</a></p>
+                            <p><a href="#">WL-681A1F</a></p>
+                            <p><a href="#">WL-681A1F</a></p>
+                            <p><a href="#">WL-681A1F</a></p>
+                            <p><a href="#">WL-681A1F</a></p>
+                            <p><a href="#">WL-681A1F</a></p>
+                            <p><a href="#">WL-681A1F</a></p>
+                            <p><a href="#">WL-681A1F</a></p>
+                        </div>
+                    </div>
+                    <div class="item">
+                        <h3>
+                            <span>Home</span>
+                            <span>Wireless</span>
+                            <span>USB Adapter</span>
+                        </h3>
+                        <div class="mode">
+                            <p><a href="#">WL-681A1F</a></p>
+                            <p><a href="#">WL-681A1F</a></p>
+                            <p><a href="#">WL-681A1F</a></p>
+                            <p><a href="#">WL-681A1F</a></p>
+                            <p><a href="#">WL-681A1F</a></p>
+                            <p><a href="#">WL-681A1F</a></p>
+                            <p><a href="#">WL-681A1F</a></p>
+                            <p><a href="#">WL-681A1F</a></p>
+                            <p><a href="#">WL-681A1F</a></p>
+                            <p><a href="#">WL-681A1F</a></p>
+                            <p><a href="#">WL-681A1F</a></p>
+                            <p><a href="#">WL-681A1F</a></p>
+                            <p><a href="#">WL-681A1F</a></p>
+                            <p><a href="#">WL-681A1F</a></p>
+                            <p><a href="#">WL-681A1F</a></p>
+                            <p><a href="#">WL-681A1F</a></p>
+                            <p><a href="#">WL-681A1F</a></p>
+                            <p><a href="#">WL-681A1F</a></p>
+                            <p><a href="#">WL-681A1F</a></p>
+                            <p><a href="#">WL-681A1F</a></p>
+                            <p><a href="#">WL-681A1F</a></p>
+                            <p><a href="#">WL-681A1F</a></p>
+                            <p><a href="#">WL-681A1F</a></p>
+                            <p><a href="#">WL-681A1F</a></p>
+                        </div>
+                    </div>
+                    <div class="item">
+                        <h3>
+                            <span>Home</span>
+                            <span>Wireless</span>
+                            <span>USB Adapter</span>
+                        </h3>
+                        <div class="mode">
+                            <p><a href="#">WL-681A1F</a></p>
+                            <p><a href="#">WL-681A1F</a></p>
+                            <p><a href="#">WL-681A1F</a></p>
+                            <p><a href="#">WL-681A1F</a></p>
+                            <p><a href="#">WL-681A1F</a></p>
+                            <p><a href="#">WL-681A1F</a></p>
+                            <p><a href="#">WL-681A1F</a></p>
+                            <p><a href="#">WL-681A1F</a></p>
+                            <p><a href="#">WL-681A1F</a></p>
+                            <p><a href="#">WL-681A1F</a></p>
+                            <p><a href="#">WL-681A1F</a></p>
+                            <p><a href="#">WL-681A1F</a></p>
+                            <p><a href="#">WL-681A1F</a></p>
+                            <p><a href="#">WL-681A1F</a></p>
+                            <p><a href="#">WL-681A1F</a></p>
+                            <p><a href="#">WL-681A1F</a></p>
+                            <p><a href="#">WL-681A1F</a></p>
+                            <p><a href="#">WL-681A1F</a></p>
+                            <p><a href="#">WL-681A1F</a></p>
+                            <p><a href="#">WL-681A1F</a></p>
+                            <p><a href="#">WL-681A1F</a></p>
+                            <p><a href="#">WL-681A1F</a></p>
+                            <p><a href="#">WL-681A1F</a></p>
+                            <p><a href="#">WL-681A1F</a></p>
+                        </div>
+                    </div>
+                    <div class="item">
+                        <h3>
+                            <span>Home</span>
+                            <span>Wireless</span>
+                            <span>USB Adapter</span>
+                        </h3>
+                        <div class="mode">
+                            <p><a href="#">WL-681A1F</a></p>
+                            <p><a href="#">WL-681A1F</a></p>
+                            <p><a href="#">WL-681A1F</a></p>
+                            <p><a href="#">WL-681A1F</a></p>
+                            <p><a href="#">WL-681A1F</a></p>
+                            <p><a href="#">WL-681A1F</a></p>
+                            <p><a href="#">WL-681A1F</a></p>
+                            <p><a href="#">WL-681A1F</a></p>
+                            <p><a href="#">WL-681A1F</a></p>
+                            <p><a href="#">WL-681A1F</a></p>
+                            <p><a href="#">WL-681A1F</a></p>
+                            <p><a href="#">WL-681A1F</a></p>
+                            <p><a href="#">WL-681A1F</a></p>
+                            <p><a href="#">WL-681A1F</a></p>
+                            <p><a href="#">WL-681A1F</a></p>
+                            <p><a href="#">WL-681A1F</a></p>
+                            <p><a href="#">WL-681A1F</a></p>
+                            <p><a href="#">WL-681A1F</a></p>
+                            <p><a href="#">WL-681A1F</a></p>
+                            <p><a href="#">WL-681A1F</a></p>
+                            <p><a href="#">WL-681A1F</a></p>
+                            <p><a href="#">WL-681A1F</a></p>
+                            <p><a href="#">WL-681A1F</a></p>
+                            <p><a href="#">WL-681A1F</a></p>
+                        </div>
+                    </div>
+                    <div class="item">
+                        <h3>
+                            <span>Home</span>
+                            <span>Wireless</span>
+                            <span>USB Adapter</span>
+                        </h3>
+                        <div class="mode">
+                            <p><a href="#">WL-681A1F</a></p>
+                            <p><a href="#">WL-681A1F</a></p>
+                            <p><a href="#">WL-681A1F</a></p>
+                            <p><a href="#">WL-681A1F</a></p>
+                            <p><a href="#">WL-681A1F</a></p>
+                            <p><a href="#">WL-681A1F</a></p>
+                            <p><a href="#">WL-681A1F</a></p>
+                            <p><a href="#">WL-681A1F</a></p>
+                            <p><a href="#">WL-681A1F</a></p>
+                            <p><a href="#">WL-681A1F</a></p>
+                            <p><a href="#">WL-681A1F</a></p>
+                            <p><a href="#">WL-681A1F</a></p>
+                            <p><a href="#">WL-681A1F</a></p>
+                            <p><a href="#">WL-681A1F</a></p>
+                            <p><a href="#">WL-681A1F</a></p>
+                            <p><a href="#">WL-681A1F</a></p>
+                            <p><a href="#">WL-681A1F</a></p>
+                            <p><a href="#">WL-681A1F</a></p>
+                            <p><a href="#">WL-681A1F</a></p>
+                            <p><a href="#">WL-681A1F</a></p>
+                            <p><a href="#">WL-681A1F</a></p>
+                            <p><a href="#">WL-681A1F</a></p>
+                            <p><a href="#">WL-681A1F</a></p>
+                            <p><a href="#">WL-681A1F</a></p>
+                        </div>
+                    </div>
+                    <div class="item">
+                        <h3>
+                            <span>Home</span>
+                            <span>Wireless</span>
+                            <span>USB Adapter</span>
+                        </h3>
+                        <div class="mode">
+                            <p><a href="#">WL-681A1F</a></p>
+                            <p><a href="#">WL-681A1F</a></p>
+                            <p><a href="#">WL-681A1F</a></p>
+                            <p><a href="#">WL-681A1F</a></p>
+                            <p><a href="#">WL-681A1F</a></p>
+                            <p><a href="#">WL-681A1F</a></p>
+                            <p><a href="#">WL-681A1F</a></p>
+                            <p><a href="#">WL-681A1F</a></p>
+                            <p><a href="#">WL-681A1F</a></p>
+                            <p><a href="#">WL-681A1F</a></p>
+                            <p><a href="#">WL-681A1F</a></p>
+                            <p><a href="#">WL-681A1F</a></p>
+                            <p><a href="#">WL-681A1F</a></p>
+                            <p><a href="#">WL-681A1F</a></p>
+                            <p><a href="#">WL-681A1F</a></p>
+                            <p><a href="#">WL-681A1F</a></p>
+                            <p><a href="#">WL-681A1F</a></p>
+                            <p><a href="#">WL-681A1F</a></p>
+                            <p><a href="#">WL-681A1F</a></p>
+                            <p><a href="#">WL-681A1F</a></p>
+                            <p><a href="#">WL-681A1F</a></p>
+                            <p><a href="#">WL-681A1F</a></p>
+                            <p><a href="#">WL-681A1F</a></p>
+                            <p><a href="#">WL-681A1F</a></p>
+                        </div>
+                    </div>
+                    <div class="item">
+                        <h3>
+                            <span>Home</span>
+                            <span>Wireless</span>
+                            <span>USB Adapter</span>
+                        </h3>
+                        <div class="mode">
+                            <p><a href="#">WL-681A1F</a></p>
+                            <p><a href="#">WL-681A1F</a></p>
+                            <p><a href="#">WL-681A1F</a></p>
+                            <p><a href="#">WL-681A1F</a></p>
+                            <p><a href="#">WL-681A1F</a></p>
+                            <p><a href="#">WL-681A1F</a></p>
+                            <p><a href="#">WL-681A1F</a></p>
+                            <p><a href="#">WL-681A1F</a></p>
+                            <p><a href="#">WL-681A1F</a></p>
+                            <p><a href="#">WL-681A1F</a></p>
+                            <p><a href="#">WL-681A1F</a></p>
+                            <p><a href="#">WL-681A1F</a></p>
+                            <p><a href="#">WL-681A1F</a></p>
+                            <p><a href="#">WL-681A1F</a></p>
+                            <p><a href="#">WL-681A1F</a></p>
+                            <p><a href="#">WL-681A1F</a></p>
+                            <p><a href="#">WL-681A1F</a></p>
+                            <p><a href="#">WL-681A1F</a></p>
+                            <p><a href="#">WL-681A1F</a></p>
+                            <p><a href="#">WL-681A1F</a></p>
+                            <p><a href="#">WL-681A1F</a></p>
+                            <p><a href="#">WL-681A1F</a></p>
+                            <p><a href="#">WL-681A1F</a></p>
+                            <p><a href="#">WL-681A1F</a></p>
+                        </div>
+                    </div>
+                    <div class="item">
+                        <h3>
+                            <span>Home</span>
+                            <span>Wireless</span>
+                            <span>USB Adapter</span>
+                        </h3>
+                        <div class="mode">
+                            <p><a href="#">WL-681A1F</a></p>
+                            <p><a href="#">WL-681A1F</a></p>
+                            <p><a href="#">WL-681A1F</a></p>
+                            <p><a href="#">WL-681A1F</a></p>
+                            <p><a href="#">WL-681A1F</a></p>
+                            <p><a href="#">WL-681A1F</a></p>
+                            <p><a href="#">WL-681A1F</a></p>
+                            <p><a href="#">WL-681A1F</a></p>
+                            <p><a href="#">WL-681A1F</a></p>
+                            <p><a href="#">WL-681A1F</a></p>
+                            <p><a href="#">WL-681A1F</a></p>
+                            <p><a href="#">WL-681A1F</a></p>
+                            <p><a href="#">WL-681A1F</a></p>
+                            <p><a href="#">WL-681A1F</a></p>
+                            <p><a href="#">WL-681A1F</a></p>
+                            <p><a href="#">WL-681A1F</a></p>
+                            <p><a href="#">WL-681A1F</a></p>
+                            <p><a href="#">WL-681A1F</a></p>
+                            <p><a href="#">WL-681A1F</a></p>
+                            <p><a href="#">WL-681A1F</a></p>
+                            <p><a href="#">WL-681A1F</a></p>
+                            <p><a href="#">WL-681A1F</a></p>
+                            <p><a href="#">WL-681A1F</a></p>
+                            <p><a href="#">WL-681A1F</a></p>
+                        </div>
+                    </div>
+                    <div class="item">
+                        <h3>
+                            <span>Home</span>
+                            <span>Wireless</span>
+                            <span>USB Adapter</span>
+                        </h3>
+                        <div class="mode">
+                            <p><a href="#">WL-681A1F</a></p>
+                            <p><a href="#">WL-681A1F</a></p>
+                            <p><a href="#">WL-681A1F</a></p>
+                            <p><a href="#">WL-681A1F</a></p>
+                            <p><a href="#">WL-681A1F</a></p>
+                            <p><a href="#">WL-681A1F</a></p>
+                            <p><a href="#">WL-681A1F</a></p>
+                            <p><a href="#">WL-681A1F</a></p>
+                            <p><a href="#">WL-681A1F</a></p>
+                            <p><a href="#">WL-681A1F</a></p>
+                            <p><a href="#">WL-681A1F</a></p>
+                            <p><a href="#">WL-681A1F</a></p>
+                            <p><a href="#">WL-681A1F</a></p>
+                            <p><a href="#">WL-681A1F</a></p>
+                            <p><a href="#">WL-681A1F</a></p>
+                            <p><a href="#">WL-681A1F</a></p>
+                            <p><a href="#">WL-681A1F</a></p>
+                            <p><a href="#">WL-681A1F</a></p>
+                            <p><a href="#">WL-681A1F</a></p>
+                            <p><a href="#">WL-681A1F</a></p>
+                            <p><a href="#">WL-681A1F</a></p>
+                            <p><a href="#">WL-681A1F</a></p>
+                            <p><a href="#">WL-681A1F</a></p>
+                            <p><a href="#">WL-681A1F</a></p>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>

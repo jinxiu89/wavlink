@@ -1,0 +1,146 @@
+{extend name="desktop/common/base" /}
+{block name="title"}{notempty name="parent.url_title"}{$parent.url_title}{/notempty} - {:lang('slogan')}{:lang('powered by')}{/block}
+{block name="seo"}
+<meta name="description" content="{notempty name='parent'}{$parent.description}{/notempty}">
+<meta name="keywords" content="{notempty name='parent'}{$parent.keywords}{/notempty}">
+{/block}
+{block name="style"}
+<link rel="stylesheet" href="__DESKTOP__/css/page/driver.css">
+{/block}
+{block name="swiper"}
+<div class="container-fluid">
+    <div class="row">
+        <div class="g-path">
+            <ol class="breadcrumb">
+                <li><a href="{:url('/'.$code.'/index')}">{:lang('home')}</a></li>
+                <li class="active">{:lang('driver')}</li>
+            </ol>
+        </div>
+    </div>
+</div>
+{/block}
+{block name="body"}
+<div class="container">
+    <div class="row">
+        <div class="box">
+            <div class="g-aside">
+                <ul>
+                    {include file='desktop/common/support_aside'}
+                </ul>
+            </div>
+            <div class="g-main">
+                <div class="g-filter">
+                    <div class="filter">
+                        <span>{:lang('filter by')} : </span>
+                        <div class="select">
+                            <select name="category" class="filter_by">
+                                <option value="all">{:lang('All Category')}</option>
+                                {volist name="cate" id="vo"}
+                                {if($vo.level == 1)}
+                                <option value="{$vo.title}" {if condition='$category_title eq $vo.title' }selected{/if}>{$vo.delimiter|raw}{$vo.name}</option>
+                                {else /}
+                                <option value="{$vo.title}" {if condition='$category_title eq $vo.title' }selected{/if}>{$vo.delimiter|raw}{$vo.name}</option>
+                                {/if}
+                                {/volist}
+                            </select>
+                        </div>
+                    </div>
+
+                    <div class="sort">
+                        <span>{:lang('sort by')} : </span>
+                        <div class="select">
+                            <select class="order_by">
+                                <option value="asc" {if condition="$order eq 'asc'" }selected{/if}>{:lang('Date, old to new')}</option>
+                                <option value="desc" {if condition="$order eq 'desc'" }selected{/if}>{:lang('Date, new to old')}</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <div class="result">
+                        <span>{:lang('result')} {$count}</span>
+                    </div>
+                </div>
+                {volist name="data" id="vo"}
+                <div class="item">
+                    <div class="panel panel-default">
+                        <div class="panel-heading">
+                            <h3 class="title">{$vo.name}</h3>
+                        </div>
+                        <div class="panel-body">
+                            <div class="info">
+                                <p><span>{:lang('File Size')} :</span> <span>{$vo.size}</span></p>
+                                <p><span>{:lang('Version')} :</span> <span>{$vo.version_number}</span></p>
+                                {if($code == 'en_us')}
+                                <p><span>{:lang('Post Date')} :</span>
+                                    <span>{$vo.update_time|strtotime|date="d/m/Y"}</span></p>
+                                {else /}
+                                <p><span>{:lang('Post Date')} :</span>
+                                    <span>{$vo.update_time|strtotime|date="Y-m-d"}</span></p>
+                                {/if}
+                                <p><span>{:lang('System Requirements')} :</span> <span>{$vo.running}</span></p>
+                            </div>
+                            <div class="mode">
+                                <div>{:lang('Available')} :</div>
+                                <p>
+                                    {volist name="$vo.modelGroup" id="v"}
+                                    <!-- 2018-4-12 星期四 14:05 添加字体大小给td标签 -->
+                                    <span>{$v}</span>
+                                    {/volist}
+                                </p>
+                            </div>
+                            <div class="download">
+                                <span class="download-list">{:lang('Download')} : </span>
+                                {notempty name="$vo.all_link"}
+                                <a class="btn btn-default all" href="{$vo.all_link}" title="{:lang('ALL')}"><span
+                                        class="iconfont iconISO"></span></a>
+                                {/notempty}
+                                {notempty name="$vo.win_link"}
+                                <a class="btn btn-default windows" href="{$vo.win_link}"
+                                   title="{:lang('WINDOWS')}"><span class="iconfont iconwindows"></span></a>
+                                {/notempty}
+                                {notempty name="$vo.mac_link"}
+                                <a class="btn btn-default mac" href="{$vo.mac_link}" title="{:lang('MAC')}"><span
+                                        class="iconfont iconmacos"></span></a>
+                                {/notempty}
+                                {notempty name="$vo.linux_link"}
+                                <a class="btn btn-default linux" href="{$vo.linux_link}" title="{:lang('Linux')}"><span
+                                        class="iconfont iconlinux"></span></a>
+                                {/notempty}
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                {/volist}
+                <div class="g-pagination clearfix">
+                    <nav>
+                        {:pagination($data)}
+                    </nav>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{/block}
+{block name="javascript"}
+<!--私有JS-->
+<script>
+    $(function () {
+        $('#support').addClass('current');
+        $('.driver').addClass('supportActive');
+        $('.driver').find('h3').find('span').addClass("iconsami-select").removeClass("iconadd-select");
+        var active_cls = 'd{$category_title}';
+        $("." + active_cls).addClass('active');
+        // 筛选变化时 过滤
+        $('.filter_by').change(function () {
+            var filter_by = $(this).children('option:selected').val();
+            var order_by = $('.order_by').children('option:selected').val();
+            window.location.href = '/{$code}/drivers/' + filter_by + '.html?order=' + order_by
+        });
+        $('.order_by').change(function () {
+            var filter_by = $('.filter_by').children('option:selected').val();
+            var order_by = $(this).children('option:selected').val();
+            window.location.href = '/{$code}/drivers/' + filter_by + '.html?order=' + order_by
+        });
+    });
+</script>
+{/block}

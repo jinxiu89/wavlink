@@ -55,7 +55,6 @@
                         </form>
                     </div>
                 </div>
-
                 <div class="Driver-box">
                     {notempty name="data"}
                     {volist name="data" id="vo"}
@@ -98,22 +97,6 @@
                 content: url,
             })
         });
-       /* $('#support').addClass('current');
-        $('.driver').addClass('supportActive');
-        $('.driver').find('h3').find('span').addClass("iconsami-select").removeClass("iconadd-select");
-        var active_cls = 'd{$category_title}';
-        $("." + active_cls).addClass('active');*/
-        /*// 筛选变化时 过滤
-        $('.filter_by').change(function () {
-            var filter_by = $(this).children('option:selected').val();
-            var order_by = $('.order_by').children('option:selected').val();
-            window.location.href = '/{$code}/drivers/' + filter_by + '.html?order=' + order_by
-        });
-        $('.order_by').change(function () {
-            var filter_by = $('.filter_by').children('option:selected').val();
-            var order_by = $(this).children('option:selected').val();
-            window.location.href = '/{$code}/drivers/' + filter_by + '.html?order=' + order_by
-        });*/
     });
 </script>
 {/block}

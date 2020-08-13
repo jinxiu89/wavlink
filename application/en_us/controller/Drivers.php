@@ -28,6 +28,7 @@ class Drivers extends Base
 {
     public $service;
     public $cat;
+
     public function initialize()
     {
         parent::initialize();
@@ -42,7 +43,7 @@ class Drivers extends Base
         parent::__construct($app);
         $this->service = new DriverService();//驱动服务层
         $data = (new driversCategory())->getCategoryByLanguage($status = 1, $this->language_id);
-        $level = Category::toLevel($data->toArray(), '&emsp;&emsp;');
+        $level = Category::toLayer($data->toArray(), 'child');
         $this->assign('cate', $level);
         unset($data);
     }
@@ -56,16 +57,12 @@ class Drivers extends Base
      * @param int $page
      * @return mixed
      */
-    public function index($order = 'desc', $page = 1)
+    public function index($order = 'desc')
     {
         //获取所有驱动下载列表
-        $result = $this->service->getDriversByLanguage($this->language_id, $order, $page);
-        return $this->fetch($this->template . '/drivers/index.html', [
-            'data' => $result['data'],
-            'count' => $result['count'],
-            'category_title' => '',
-            'order' => $order
-        ]);
+        $result = $this->service->getDataByCategory($this->language_id, $order, $category = '');
+        $data = Category::toLayer($result, 'child');
+        return $this->fetch($this->template . '/drivers/index.html', ['category_title' => '','data' => $data]);
     }
 
 
@@ -91,7 +88,7 @@ class Drivers extends Base
             abort(404);
         } else {
             //获取选择的分类下的驱动列表
-            $result = $this->service->getDriversByCategoryIds($this->language_id,$this->code,$category, $parent['categoryID'], $order,$page);
+            $result = $this->service->getDriversByCategoryIds($this->language_id, $this->code, $category, $parent['categoryID'], $order, $page);
             return view($this->template . '/drivers/index.html', [
                 'data' => $result['data'],
                 'parent' => $parent['category'],

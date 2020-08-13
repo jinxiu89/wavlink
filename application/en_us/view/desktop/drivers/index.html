@@ -35,6 +35,7 @@
             </div>
             <div class="g-main">
                 <div class="filter-box">
+<<<<<<< HEAD
                     <div class="type">
                         <h3>Type: </h3>
                         <div class="type-category">
@@ -56,12 +57,27 @@
                             </ul>
                         </div>
                     </div>
+=======
+                    {volist name="cate" id="vo"}
+                    <div class="type">
+                        <h3>{$vo.name}: </h3>
+                        <div class="type-category">
+                            <ul>
+                                {volist name="vo.child" id="item"}
+                                <li><a href="javascript:;" onclick="" >{$item.name}</a></li>
+                                {/volist}
+                            </ul>
+                        </div>
+                    </div>
+                    {/volist}
+>>>>>>> upstream/master
                     <div class="search">
                         <h3>Model Number: </h3>
                         <form action="">
                             <input type="text" placeholder="请输入产品型号进行搜索">
                             <button>Search</button>
                         </form>
+<<<<<<< HEAD
                     </div>
                 </div>
 
@@ -394,8 +410,33 @@
                             <p><a href="#">WL-681A1F</a></p>
                             <p><a href="#">WL-681A1F</a></p>
                             <p><a href="#">WL-681A1F</a></p>
-                        </div>
+=======
                     </div>
+                </div>
+
+                <div class="Driver-box">
+                    {notempty name="data"}
+                    {volist name="data" id="vo"}
+                    <div class="item">
+                        {volist name="vo.child" id="op"}
+                        <h3>
+                            <span>{:lang('home')}</span>
+                            <span>{$vo.name}</span>
+                            <span>{$op.name}</span>
+                        </h3>
+                        <div class="mode">
+                            {volist name="op.drivers" id="item"}
+                            <p><a href="#">{$item.name}</a></p>
+                            {/volist}
+>>>>>>> upstream/master
+                        </div>
+                        {/volist}
+                    </div>
+<<<<<<< HEAD
+=======
+                    {/volist}
+                    {/notempty}
+>>>>>>> upstream/master
                 </div>
             </div>
         </div>
@@ -404,14 +445,27 @@
 {/block}
 {block name="javascript"}
 <!--私有JS-->
+<script type="text/javascript" src="__STATIC__/admin/lib/layer/2.4/layer.js"></script>
 <script>
     $(function () {
-        $('#support').addClass('current');
+        $('.play').click(function () {
+            var url = $(this).attr('data-url');
+            var title = $(this).attr('data-title');
+            layer.open({
+                type: 2,
+                title: title,
+                maxmin: true,
+                shadeClose: true,
+                area: ['800px', '600px'],
+                content: url,
+            })
+        });
+       /* $('#support').addClass('current');
         $('.driver').addClass('supportActive');
         $('.driver').find('h3').find('span').addClass("iconsami-select").removeClass("iconadd-select");
         var active_cls = 'd{$category_title}';
-        $("." + active_cls).addClass('active');
-        // 筛选变化时 过滤
+        $("." + active_cls).addClass('active');*/
+        /*// 筛选变化时 过滤
         $('.filter_by').change(function () {
             var filter_by = $(this).children('option:selected').val();
             var order_by = $('.order_by').children('option:selected').val();
@@ -421,7 +475,7 @@
             var filter_by = $('.filter_by').children('option:selected').val();
             var order_by = $(this).children('option:selected').val();
             window.location.href = '/{$code}/drivers/' + filter_by + '.html?order=' + order_by
-        });
+        });*/
     });
 </script>
 {/block}

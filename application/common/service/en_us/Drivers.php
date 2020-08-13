@@ -12,7 +12,7 @@
 namespace app\common\service\en_us;
 
 use app\common\model\Service\Drivers as model;
-use app\common\model\Service\ServiceCategory;
+use app\common\model\Service\DriversCategory;
 use app\wavlink\service\service\driversCategory as Category;
 use think\facade\Cache;
 use think\facade\Log;
@@ -49,6 +49,15 @@ class Drivers extends BaseService
             if ($this->debug == true) Log::error(__FUNCTION__ . ':' . $exception->getMessage());
             return [];
         }
+    }
+
+    /**
+     * @param $language_id
+     * @param $order
+     * @param string $category
+     */
+    public function getDataByCategory($language_id,$order,$category=''){
+        return (new DriversCategory())->getDataByCategory($language_id)->toArray();
     }
 
     /***

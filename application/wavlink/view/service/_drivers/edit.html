@@ -4,21 +4,14 @@
     <form class="form form-horizontal" id="form-product-add" method="post" action="">
         <div class="row cl">
             <label class="form-label col-xs-2 col-sm-2"><span class="c-red">*</span>驱动下载名称：</label>
-            <div class="formControls col-xs-5 col-sm-5">
+            <div class="formControls col-xs-2 col-sm-2">
                 <input type="text" class="input-text" value="{$drivers->name}" placeholder="" id="name" name="name">
             </div>
         </div>
         <div class="row cl">
-            <label class="form-label col-xs-2 col-sm-2"><span class="c-red">*</span>url标题：</label>
-            <div class="formControls col-xs-5 col-sm-5">
-                <input type="text" class="input-text" value="{$drivers->url_title}" placeholder="url标题是唯一的,且用英文加下划线" id="url_title" name="url_title">
-            </div>
-        </div>
-        <div class="row cl">
-            <label class="form-label col-xs-2 col-sm-2"><span class="c-red">*</span>文件大小：</label>
-            <div class="formControls col-xs-1 col-sm-1">
-                <input type="text" class="input-text" value="{$drivers->size}" placeholder="" id="size"
-                       name="size">
+            <label class="form-label col-xs-2 col-sm-2">型号:</label>
+            <div class="formControls col-xs-2 col-sm-2">
+                <input type="text" class="input-text" value="{$drivers->model}" placeholder="" id="model" name="model">
             </div>
         </div>
         <div class="row cl">
@@ -48,12 +41,6 @@
             </div>
         </div>
         <div class="row cl">
-            <label class="form-label col-xs-2 col-sm-2"><span class="c-red">*</span>提供商：</label>
-            <div class="formControls col-xs-2 col-sm-2">
-                <input type="text" class="input-text" value="{$drivers->provider}" placeholder="" id="provider" name="provider">
-            </div>
-        </div>
-        <div class="row cl">
             <label class="form-label col-xs-2 col-sm-2"><span class="c-red">*</span>seo标题：</label>
             <div class="formControls col-xs-5 col-sm-5">
                 <input type="text" class="input-text" value="{$drivers->seo_title}" placeholder="" id="seo_title" name="seo_title">
@@ -71,13 +58,6 @@
                 <textarea name="descrip" id="descrip" class="textarea" cols="100" rows="10">{$drivers->descrip}</textarea>
             </div>
         </div>
-        <div class="row cl">
-            <label class="form-label col-xs-2 col-sm-2">驱动支持的产品型号:</label>
-            <div class="formControls col-xs-8 col-sm-9">
-                <textarea name="models" cols="" rows="" class="textarea" placeholder="以英文逗号隔开" dragonfly="true" >{$drivers->models}</textarea>
-            </div>
-        </div>
-
         <div class="row cl">
             <label class="form-label col-xs-4 col-sm-2">All下载地址:</label>
             <div class="formControls col-xs-8 col-sm-9">

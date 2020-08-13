@@ -20,7 +20,6 @@ class Drivers extends BaseValidate
         'id'=>'number',
         'name'=>'require|unique:tb_drivers|max:128',
         'image_litpic_url'=>'max:500',
-        'size'=>'max:32',
         'version_number'=>'max:32',
         'category_id'=>'require|number',
         'language_id'=>'require|number',

@@ -17,7 +17,9 @@ use Exception;
 use think\db\exception\DataNotFoundException;
 use think\db\exception\ModelNotFoundException;
 use think\exception\DbException;
+use think\model\relation\HasMany;
 use think\Paginator;
+//use app\common\model\Service\Drivers;
 
 /**
  * Class DriversCategory
@@ -28,6 +30,13 @@ class DriversCategory extends BaseModel
     protected $table = 'tb_drivers_category';
 
     /**
+     * @return HasMany
+     */
+    public function drivers(){
+        return $this->hasMany(Drivers::class,'category_id')
+            ->field('id,name,category_id');
+    }
+    /**
      * @param string $status
      * @param string|null $language_id
      * @return mixed|Paginator
@@ -36,6 +45,15 @@ class DriversCategory extends BaseModel
     {
         if (empty($status)) return self::where(['language_id' => $language_id])->order(['level', 'id']);
         return self::where(['status' => 1, 'language_id' => $language_id])->order(['level', 'id']);
+    }
+
+    /**
+     * @param $language_id
+     */
+    public function getDataByCategory($language_id){
+        return self::with('drivers')->where(['status'=>1,'language_id'=>$language_id])
+            ->field('id,parent_id,is_parent,level,path,name,title,url_title,listorder')
+            ->order(['level'=>'desc','id'=>'asc','listorder'=>'desc'])->select();
     }
 
 

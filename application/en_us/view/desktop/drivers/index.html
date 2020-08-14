@@ -6,6 +6,11 @@
 {/block}
 {block name="style"}
 <link rel="stylesheet" href="__DESKTOP__/css/page/driver-index.css">
+<style>
+    .layui-layer-setwin {
+        display: none;
+    }
+</style>
 {/block}
 {block name="swiper"}
 <div class="container-fluid">
@@ -56,10 +61,10 @@
                     </div>
                 </div>
                 <div class="Driver-box">
-                    {notempty name="data"}
                     {volist name="data" id="vo"}
+                    {volist name="vo.child" id="op"}
+                    {notempty name="op.drivers"}
                     <div class="item">
-                        {volist name="vo.child" id="op"}
                         <h3>
                             <span>{:lang('home')}</span>
                             <span>{$vo.name}</span>
@@ -70,10 +75,10 @@
                             <p><a href="javascript:;" data-url="{:url('/'.$code.'/drivers/download/'.$item.url_title)}" data-title="{$item.name}" class="lay_driver">{$item.name}</a></p>
                             {/volist}
                         </div>
-                        {/volist}
                     </div>
-                    {/volist}
                     {/notempty}
+                    {/volist}
+                    {/volist}
                 </div>
             </div>
         </div>
@@ -90,7 +95,7 @@
             var title = $(this).attr('data-title');
             layer.open({
                 type: 2,
-                title: title,
+                title: null,
                 maxmin: true,
                 shadeClose: true,
                 area: ['800px', '600px'],

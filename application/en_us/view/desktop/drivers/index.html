@@ -41,7 +41,7 @@
                         <div class="type-category">
                             <ul>
                                 {volist name="vo.child" id="item"}
-                                <li><a href="javascript:;" onclick="" >{$item.name}</a></li>
+                                <li><a href="javascript:;" >{$item.name}</a></li>
                                 {/volist}
                             </ul>
                         </div>
@@ -67,7 +67,7 @@
                         </h3>
                         <div class="mode">
                             {volist name="op.drivers" id="item"}
-                            <p><a href="#">{$item.name}</a></p>
+                            <p><a href="javascript:;" data-url="{:url('/'.$code.'/drivers/download/'.$item.url_title)}" data-title="{$item.name}" class="lay_driver">{$item.name}</a></p>
                             {/volist}
                         </div>
                         {/volist}
@@ -85,7 +85,7 @@
 <script type="text/javascript" src="__STATIC__/admin/lib/layer/2.4/layer.js"></script>
 <script>
     $(function () {
-        $('.play').click(function () {
+        $('.lay_driver').click(function () {
             var url = $(this).attr('data-url');
             var title = $(this).attr('data-title');
             layer.open({

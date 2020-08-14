@@ -34,7 +34,7 @@ class DriversCategory extends BaseModel
      */
     public function drivers(){
         return $this->hasMany(Drivers::class,'category_id')
-            ->field('id,name,category_id');
+            ->field('id,name,category_id,url_title');
     }
     /**
      * @param string $status

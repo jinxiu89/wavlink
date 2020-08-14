@@ -62,7 +62,7 @@ class Drivers extends Base
         //获取所有驱动下载列表
         $result = $this->service->getDataByCategory($this->language_id, $order, $category = '');
         $data = Category::toLayer($result, 'child');
-        return $this->fetch($this->template . '/drivers/index.html', ['category_title' => '','data' => $data]);
+        return $this->fetch($this->template . '/drivers/index.html', ['category_title' => '', 'data' => $data]);
     }
 
 
@@ -100,32 +100,15 @@ class Drivers extends Base
     }
 
     /**
-     * @param string $drivers
+     * @param $detail
      * @return mixed
      */
-    public function details($drivers = "")
+    public function detail($detail)
     {
-        if (!isset($drivers) || empty($drivers)) {
-            abort(404);
+        if ($this->request->isGet()) {
+            $data=$this->service->getDataByUrlTitle($detail);
+            return $this->fetch($this->template.'/drivers/download.html',['data'=>$data]);
         }
-        try {
-            $result = DriversModel::getDetailsByUrlTitle($this->code, $drivers);
-            $result_models = $result["models"];
-            $models = explode(",", $result_models);
-            if (!empty($result)) {
-                return $this->fetch($this->template . '/drivers/details.html', [
-                    'result' => $result,
-                    'models' => $models
-                ]);
-            } else {
-                abort(404);
-            }
-        } catch (DataNotFoundException $e) {
-            $this->error($e->getMessage());
-        } catch (ModelNotFoundException $e) {
-            $this->error($e->getMessage());
-        } catch (DbException $e) {
-            $this->error($e->getMessage());
-        }
+        exit;
     }
 }

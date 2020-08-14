@@ -14,6 +14,7 @@ namespace app\common\service\en_us;
 use app\common\model\Service\Drivers as model;
 use app\common\model\Service\DriversCategory;
 use app\wavlink\service\service\driversCategory as Category;
+use think\Exception;
 use think\facade\Cache;
 use think\facade\Log;
 use think\Paginator;
@@ -56,7 +57,8 @@ class Drivers extends BaseService
      * @param $order
      * @param string $category
      */
-    public function getDataByCategory($language_id,$order,$category=''){
+    public function getDataByCategory($language_id, $order, $category = '')
+    {
         return (new DriversCategory())->getDataByCategory($language_id)->toArray();
     }
 
@@ -118,11 +120,26 @@ class Drivers extends BaseService
                 $data = Cache::get(__FUNCTION__ . $category . $language_id . $order . $page);
                 if ($data) return $data;
             }
-            $obj = $this->model->getDriversByCategoryIds($language_id, $code,$category, $categoryID, $order);
+            $obj = $this->model->getDriversByCategoryIds($language_id, $code, $category, $categoryID, $order);
             Cache::set(__FUNCTION__ . $category . $language_id . $order . $page, $obj);
             return $obj;
         } catch (\Exception $exception) {
             if ($this->debug == true) Log::error(__FUNCTION__ . ":" . $exception->getMessage());
+        }
+    }
+
+    public function getDataByUrlTitle($url_title)
+    {
+        try {
+            if ($this->debug == false) {
+                $data = Cache::get(__FUNCTION__ . $url_title);
+                if ($data) return $data;
+            }
+            $obj = $this->model->getDataByUrlTitle($url_title);
+            Cache::set(__FUNCTION__ . $url_title, $obj);
+            return $obj;
+        } catch (Exception $exception) {
+
         }
     }
 }

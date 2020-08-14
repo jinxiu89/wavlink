@@ -64,6 +64,13 @@ class Drivers extends BaseModel
     }
 
     /**
+     * @param $url_title
+     */
+    public function getDataByUrlTitle($url_title){
+        return self::where(['status'=> 1,'url_title'=>$url_title])->findOrEmpty();
+    }
+
+    /**
      * @param $name
      * @param $code
      * @return array|string

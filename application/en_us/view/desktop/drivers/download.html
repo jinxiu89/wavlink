@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, minimum-scale=1, user-scalable=no">
+    <link rel="stylesheet" href="__LIB__/Bootstrap/bootstrap-3.3.7.min.css">
+    <link rel="stylesheet" href="__LIB__/iconfont/iconfont.css">
+    <link rel="stylesheet" href="__DESKTOP__/css/public/components.css">
+    <script src="__LIB__/JQuery/JQuery-3.4.0.js"></script>
+    <link rel="stylesheet" href="__DESKTOP__/css/page/driver-detail.css">
+    <style>
+        body {
+            padding-top: 0;
+        }
+        .detail-box h2 {
+            padding: 0 15px;
+            font-size: 18px;
+            line-height: 50px;
+            background: #1D428A;
+            color: #fff;
+        }
+        .detail-box .detail {
+            padding: 30px 15px;
+        }
+        .detail-box .detail dl {
+            margin-bottom: 20px;
+        }
+        .detail-box .detail dl:nth-last-of-type(1) {
+            margin-bottom: 0;
+        }
+        .detail-box .detail dl dt {
+            display: inline-block;
+            margin-right: 20px;
+            color: #333;
+        }
+        .detail-box .detail dl dd {
+            display: inline-block;
+            color: #888;
+        }
+        .detail-box .detail dl dd a {
+            display: block;
+            margin: 0 5px;
+            padding: 3px 10px;
+            background: #1D428A;
+            color: #fff;
+            border-radius: 5px;
+        }
+    </style>
+</head>
+<body>
+<div class="detail-box">
+    <h2><span>{$data.name}</span> Driver</h2>
+    <div class="detail">
+        <dl>
+            <dt>Version: </dt> <dd>{$data.version_number}</dd>
+        </dl>
+        <dl>
+            <dt>Post Date:</dt> <dd>{$data.update_time}</dd>
+        </dl>
+        <dl>
+            <dt>System Requirements: </dt> <dd>{$data.running}</dd>
+        </dl>
+        <dl>
+            <dt>Download: </dt>
+            {notempty name="data.all_link"}
+            <dd><a href="{$data.all_link}">All</a></dd>
+            {/notempty}
+            {notempty name="data.win_link"}
+            <dd><a href="{$data.win_link}">Windows</a></dd>
+            {/notempty}
+            {notempty name="data.mac_link"}
+            <dd><a href="{$data.mac_link}">MAC</a></dd>
+            {/notempty}
+            {notempty name="data.linux_link"}
+            <dd><a href="{$data.linux_link}">Linux</a></dd>
+            {/notempty}
+        </dl>
+    </div>
+</div>
+</body>
+</html>

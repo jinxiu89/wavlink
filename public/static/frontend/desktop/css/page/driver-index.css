@@ -20,7 +20,7 @@
 }
 .support-aside ul li a {
   display: block;
-  font-size: 14px;
+  font-size: 16px;
   color: #333;
 }
 .support-aside ul li abefore,
@@ -45,7 +45,7 @@
   display: block;
   height: 60px;
   line-height: 60px;
-  font-size: 35px;
+  font-size: 40px;
   color: #375D9D;
 }
 .support-aside ul li a span {

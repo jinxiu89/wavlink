@@ -9,30 +9,27 @@
     <link rel="stylesheet" href="__DESKTOP__/css/public/components.css">
     <script src="__LIB__/JQuery/JQuery-3.4.0.js"></script>
     <style>
+        html, body, .detail-box {
+            width: 100%;
+            height: 100%;
+        }
         body {
             padding-top: 0;
         }
-        .detail-box h2 {
+        .detail-box {
             position: relative;
-            padding: 0 50px 0 15px;
-            font-size: 18px;
-            line-height: 50px;
-            background: #1D428A;
-            color: #fff;
+            background: url("//china.wavlink.com/images/driverDetailBackground.png") center;
         }
-        .detail-box h2 .detail-close {
-            display: block;
+        .detail-box .detail {
             position: absolute;
             top: 0;
             right: 0;
-            width: 50px;
-            height: 50px;
-            line-height: 50px;
-            text-align: center;
-            cursor: pointer;
+            width: 60%;
+            padding: 80px 20px 20px 40px;
         }
-        .detail-box .detail {
-            padding: 30px 15px;
+        .detail-box .detail h2 {
+            margin-bottom: 20px;
+            font-size: 24px;
         }
         .detail-box .detail dl {
             margin-bottom: 20px;
@@ -42,7 +39,7 @@
         }
         .detail-box .detail dl dt {
             display: inline-block;
-            margin-right: 20px;
+            margin-right: 10px;
             color: #333;
         }
         .detail-box .detail dl dd {
@@ -61,8 +58,8 @@
 </head>
 <body>
 <div class="detail-box">
-    <h2><span>{$data.name}</span> Driver <i class="detail-close" title="CLOSE">X</i></h2>
     <div class="detail">
+        <h2><span>{$data.name}</span> Driver</h2>
         <dl>
             <dt>Version: </dt> <dd>{$data.version_number}</dd>
         </dl>
@@ -89,7 +86,7 @@
         </dl>
     </div>
 </div>
-<script type="text/javascript" src="__STATIC__/admin/lib/layer/2.4/layer.js"></script>
+<!--<script type="text/javascript" src="__STATIC__/admin/lib/layer/2.4/layer.js"></script>
 <script>
     $(function () {
         var close = $('.detail-close');
@@ -98,6 +95,6 @@
             parent.layer.close(index);
         })
     })
-</script>
+</script>-->
 </body>
 </html>

@@ -8,7 +8,30 @@
 <link rel="stylesheet" href="__DESKTOP__/css/page/driver-index.css">
 <style>
     .layui-layer-setwin {
-        display: none;
+        top: 0!important;
+        right: 0!important;
+    }
+    .layui-layer-setwin .layui-layer-min {
+        display: none!important;
+    }
+    .layui-layer-setwin .layui-layer-max {
+        display: none!important;
+    }
+    .layui-layer-setwin .layui-layer-close1 {
+        top: -12px!important;
+        right: -12px!important;
+        width: 30px!important;
+        height: 30px!important;
+        background: #4A4A4A!important;
+        border-radius: 50%!important;
+    }
+    .layui-layer-setwin .layui-layer-close1:after {
+        content: 'X';
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        color: #fff;
     }
 </style>
 {/block}
@@ -95,10 +118,10 @@
             var title = $(this).attr('data-title');
             layer.open({
                 type: 2,
-                title: null,
+                title: ['', 'background: #5190DF; height: 15px'],
                 maxmin: true,
                 shadeClose: true,
-                area: ['800px', '600px'],
+                area: ['640px', '415px'],
                 content: url,
             })
         });

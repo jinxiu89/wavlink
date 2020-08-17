@@ -19,6 +19,7 @@ use think\db\exception\ModelNotFoundException;
 use think\exception\DbException;
 use think\model\relation\HasMany;
 use think\Paginator;
+
 //use app\common\model\Service\Drivers;
 
 /**
@@ -32,10 +33,12 @@ class DriversCategory extends BaseModel
     /**
      * @return HasMany
      */
-    public function drivers(){
-        return $this->hasMany(Drivers::class,'category_id')
+    public function drivers()
+    {
+        return $this->hasMany(Drivers::class, 'category_id')
             ->field('id,name,category_id,url_title');
     }
+
     /**
      * @param string $status
      * @param string|null $language_id
@@ -49,11 +52,35 @@ class DriversCategory extends BaseModel
 
     /**
      * @param $language_id
+     * @param $order
+     * @param $category
+     * @return array|\PDOStatement|string|\think\Collection|\think\model\Collection
+     * @throws DataNotFoundException
+     * @throws DbException
+     * @throws ModelNotFoundException
      */
-    public function getDataByCategory($language_id){
-        return self::with('drivers')->where(['status'=>1,'language_id'=>$language_id])
+    public function getDataByCategory($language_id, $order, $category)
+    {
+        return self::with('drivers')
+            ->where(['status' => 1, 'language_id' => $language_id, 'title' => $category])
             ->field('id,parent_id,is_parent,level,path,name,title,url_title,listorder')
-            ->order(['level'=>'desc','id'=>'asc','listorder'=>'desc'])->select();
+            ->order(['level' => 'desc', 'id' => 'asc', 'listorder' => $order])->select();
+    }
+
+    /**
+     * @param $language_id
+     * @param $order
+     * @return array|\PDOStatement|string|\think\Collection|\think\model\Collection
+     * @throws DataNotFoundException
+     * @throws DbException
+     * @throws ModelNotFoundException
+     */
+    public function getDataAll($language_id, $order)
+    {
+        return self::with('drivers')
+            ->where(['status' => 1, 'language_id' => $language_id])
+            ->field('id,parent_id,is_parent,level,path,name,title,url_title,listorder')
+            ->order(['level' => 'desc', 'id' => 'asc', 'listorder' => $order])->select();
     }
 
 
@@ -89,6 +116,6 @@ class DriversCategory extends BaseModel
             $categorys = self::where('path', 'like', $path . $category->id . '%')->select();
             $categoryID = array_merge($categoryID, array_column($categorys->toArray(), 'id'));
         }
-        return ['category'=>$category,'categoryID'=>$categoryID];
+        return ['category' => $category, 'categoryID' => $categoryID];
     }
 }

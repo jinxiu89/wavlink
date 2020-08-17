@@ -74,8 +74,12 @@ class Drivers extends Base
      * @param int $page
      * @return Redirect|View
      */
-    public function category($category = "", $order, $page = 1)
+    public function category($category = "", $order = 'desc', $page = 1)
     {
+        $result = $this->service->getDataByCategory($this->language_id, $order, $category);
+        return $this->fetch($this->template . '/drivers/category.html', [
+            'category_title' => $result[0]['url_title'],
+            'data' => $result]);
         if (empty($category) || !isset($category)) {
             abort(404);
         }
@@ -106,8 +110,8 @@ class Drivers extends Base
     public function detail($detail)
     {
         if ($this->request->isGet()) {
-            $data=$this->service->getDataByUrlTitle($detail);
-            return $this->fetch($this->template.'/drivers/download.html',['data'=>$data]);
+            $data = $this->service->getDataByUrlTitle($detail);
+            return $this->fetch($this->template . '/drivers/download.html', ['data' => $data]);
         }
         exit;
     }

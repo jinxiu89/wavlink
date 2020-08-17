@@ -1,0 +1,126 @@
+{extend name="desktop/common/base" /}
+{block name="title"}{notempty name="parent.url_title"}{$parent.url_title}{/notempty} - {:lang('slogan')}{:lang('powered by')}{/block}
+{block name="seo"}
+<meta name="description" content="{notempty name='parent'}{$parent.description}{/notempty}">
+<meta name="keywords" content="{notempty name='parent'}{$parent.keywords}{/notempty}">
+{/block}
+{block name="style"}
+<link rel="stylesheet" href="__DESKTOP__/css/page/driver-index.css">
+<style>
+    .layui-layer-setwin {
+        top: 0!important;
+        right: 0!important;
+    }
+    .layui-layer-setwin .layui-layer-min {
+        display: none!important;
+    }
+    .layui-layer-setwin .layui-layer-max {
+        display: none!important;
+    }
+    .layui-layer-setwin .layui-layer-close1 {
+        top: -12px!important;
+        right: -12px!important;
+        width: 30px!important;
+        height: 30px!important;
+        background: #4A4A4A!important;
+        border-radius: 50%!important;
+    }
+    .layui-layer-setwin .layui-layer-close1:after {
+        content: 'X';
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        color: #fff;
+    }
+</style>
+{/block}
+{block name="swiper"}
+<div class="container-fluid">
+    <div class="row">
+        <div class="g-path">
+            <ol class="breadcrumb">
+                <li><a href="{:url('/'.$code.'/index')}">{:lang('home')}</a></li>
+                <li class="active">{:lang('driver')}</li>
+            </ol>
+        </div>
+    </div>
+</div>
+{/block}
+{block name="body"}
+<div class="container">
+    <div class="row">
+        <div class="box">
+            <div class="support-aside">
+                <ul>
+                    <li class="active"><a href="#"><i class="iconfont iconDriver"></i> <span>Driver</span></a></li>
+                    <li><a href="#"><i class="iconfont iconFirmware"></i> <span>Firmware</span></a></li>
+                    <li><a href="#"><i class="iconfont iconManual"></i> <span>Manual</span></a></li>
+                    <li><a href="#"><i class="iconfont iconQA"></i> <span>Q&A</span></a></li>
+                    <li><a href="#"><i class="iconfont iconGuestBook"></i> <span>Guest Book</span></a></li>
+                    <li><a href="#"><i class="iconfont iconSetupVideo"></i> <span>Setup Video</span></a></li>
+                </ul>
+            </div>
+            <div class="g-main">
+                <div class="filter-box">
+                    {volist name="cate" id="vo"}
+                    <div class="type">
+                        <h3>{$vo.name}: </h3>
+                        <div class="type-category">
+                            <ul>
+                                {volist name="vo.child" id="item"}
+                                <li><a href="javascript:;" >{$item.name}</a></li>
+                                {/volist}
+                            </ul>
+                        </div>
+                    </div>
+                    {/volist}
+                    <div class="search">
+                        <h3>Model Number: </h3>
+                        <form action="">
+                            <input type="text" placeholder="请输入产品型号进行搜索">
+                            <button>Search</button>
+                        </form>
+                    </div>
+                </div>
+                <div class="Driver-box">
+                    {volist name="data" id="vo"}
+                    <div class="item">
+                        <h3>
+                            <span>{:lang('home')}</span>
+                            <span>{$vo.parent_id}</span>
+                            <span>{$vo.name}</span>
+                        </h3>
+                        <div class="mode">
+                            {volist name="vo.drivers" id="item"}
+                            <p><a href="javascript:;" data-url="{:url('/'.$code.'/drivers/download/'.$item.url_title)}" data-title="{$item.name}" class="lay_driver">{$item.name}</a></p>
+                            {/volist}
+                        </div>
+                    </div>
+                    {/volist}
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{/block}
+{block name="javascript"}
+<!--私有JS-->
+<script type="text/javascript" src="__STATIC__/admin/lib/layer/2.4/layer.js"></script>
+<script>
+    $(function () {
+        $('.lay_driver').click(function () {
+            var url = $(this).attr('data-url');
+            var title = $(this).attr('data-title');
+            layer.open({
+                type: 2,
+                title: ['', 'background: #5190DF; height: 15px'],
+                maxmin: true,
+                shadeClose: true,
+                area: ['640px', '415px'],
+                content: url,
+            })
+        });
+    });
+</script>
+{/block}

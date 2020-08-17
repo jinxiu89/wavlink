@@ -59,7 +59,35 @@ class Drivers extends BaseService
      */
     public function getDataByCategory($language_id, $order, $category = '')
     {
-        return (new DriversCategory())->getDataByCategory($language_id)->toArray();
+        $model = new DriversCategory();
+        if (empty($category)) {
+            try {
+                if ($this->debug == false) {
+                    $data = Cache::get(__FUNCTION__ . $language_id . $category);
+                    if ($data) return $data;
+                    $obj=$model->getDataAll($language_id, $order)->toArray();
+                    Cache::set(__FUNCTION__ . $language_id . $category, $obj);
+                    return $obj;
+                }
+                return $model->getDataAll($language_id, $order)->toArray();
+            } catch (\Exception $exception) {
+                return [];
+            }
+        } else {
+            try {
+                if($this->debug == false){
+                    $data=Cache::get(__FUNCTION__.$language_id);
+                    if($data) return $data;
+                    $obj=$model->getDataByCategory($language_id, $order, $category)->toArray();
+                    Cache::set(__FUNCTION__.$language_id,$obj);
+                    return $obj;
+                }
+                return $model->getDataByCategory($language_id, $order, $category)->toArray();
+            } catch (Exception $exception) {
+                return [];
+            }
+        }
+
     }
 
     /***

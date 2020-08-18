@@ -34,4 +34,14 @@ function getPath($path)
     return $html;
 }
 
+function getCategoryNameByID($id)
+{
+    try {
+        return (new app\common\model\service\DriversCategory())->getCategoryNameByID($id);
+    } catch (Exception $exception) {
+        return '';
+    }
+
+}
+
 

@@ -118,4 +118,18 @@ class DriversCategory extends BaseModel
         }
         return ['category' => $category, 'categoryID' => $categoryID];
     }
+
+    /**
+     * @param $id
+     * @return false|string
+     * @throws DataNotFoundException
+     * @throws DbException
+     * @throws ModelNotFoundException
+     */
+    public function getCategoryNameByID($id)
+    {
+        $obj = self::where(['id' => $id])->find();
+        if (!$obj->isEmpty()) return $obj->url_title;
+        return '';
+    }
 }

@@ -69,7 +69,7 @@
                         <div class="type-category">
                             <ul>
                                 {volist name="vo.child" id="item"}
-                                <li><a href="javascript:;" >{$item.name}</a></li>
+                                <li><a href="{:url($code.'/drivers/'.$item.title)}" >{$item.name}</a></li>
                                 {/volist}
                             </ul>
                         </div>
@@ -88,7 +88,7 @@
                     <div class="item">
                         <h3>
                             <span>{:lang('home')}</span>
-                            <span>{$vo.parent_id}</span>
+                            <span>{$vo.parent_id|getCategoryNameByID}</span>
                             <span>{$vo.name}</span>
                         </h3>
                         <div class="mode">

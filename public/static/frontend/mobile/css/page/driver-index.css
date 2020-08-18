@@ -1,0 +1,22 @@
+/**
+* @name: driver.less
+* @description: 驅動頁面css - mobile
+* @author: Alan(alan_webdeveloper@163.com)
+* @update: 2019-09-11 15:00
+*/
+.center-block {
+  margin-left: auto;
+  margin-right: auto;
+}
+.tips {
+  margin: 5px 0;
+  padding: 20px 10px;
+  background: #fff;
+}
+.tips p {
+  margin-bottom: 5px;
+}
+.tips b {
+  font-weight: bold;
+}
+/*# sourceMappingURL=driver-index.css.map */

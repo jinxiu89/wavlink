@@ -93,6 +93,7 @@
   height: 40px;
   line-height: 40px;
   font-size: 16px;
+  color: #1D428A;
   border-bottom: 1px solid #eaeaea;
 }
 .Driver-box .item h3 span:after {
@@ -116,9 +117,21 @@
   clear: both;
 }
 .Driver-box .item .mode p {
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  overflow: hidden;
   float: left;
   width: 50%;
-  padding-right: 10px;
+  padding: 8px 5px;
+  border-right: 1px solid #eaeaea;
+  border-bottom: 1px solid #eaeaea;
+}
+.Driver-box .item .mode p:nth-of-type(1),
+.Driver-box .item .mode p:nth-of-type(2) {
+  border-top: 1px solid #eaeaea;
+}
+.Driver-box .item .mode p:nth-of-type(2n + 1) {
+  border-left: 1px solid #eaeaea;
 }
 .Driver-box .item .mode p a {
   color: #333;

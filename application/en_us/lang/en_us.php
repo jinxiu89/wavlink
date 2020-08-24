@@ -63,6 +63,13 @@ return [
     'WINDOWS' => 'WINDOWS',
     'MAC' => 'MAC',
     'Description' => 'Description',
+    //驱动页面
+    'Driver Update Frequency Description' => 'Our WAVLINK product drivers are updated on a monthly basis to ensure that the drivers you download from our official website are the latest drivers.',
+    'Driver Filter Description' => 'For the driver download, please select the corresponding product model through the search engine or product classification filter.',
+    'Driver Filter Notice' => 'Please note:',
+    'Driver Filter Notice Description' => 'When using a search engine, only the product model is supported for searching. If you do not know your product model, please click <a href="/en_us/faq/details/how_to_view_wavlink_product_model.html">here</a>.',
+    'Contact US For Driver' => 'If you cannot find your product driver on WAVLINK\'s official website, please contact us: <a href="mailto:contact@wavlink.com">contact@wavlink.com</a>.',
+    'Model Number' => 'Model Number: ',
     //产品详情页翻译
     'Overview' => 'Overview',
     'Specifications' => 'Specifications',

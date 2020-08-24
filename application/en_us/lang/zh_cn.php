@@ -66,6 +66,13 @@ return [
     'WINDOWS' => 'Window系统',
     'MAC' => 'MAC',
     'Description' => '描述',
+    //驱动页面
+    'Driver Update Frequency Description' => '我们的WAVLINK产品驱动程序每月更新一次，以确保您随时能从我们的官方网站上下载最新的驱动程序。',
+    'Driver Filter Description' => '要快速找到您的驱动，请通过搜索引擎或产品分类选择相应的产品型号。',
+    'Driver Filter Notice' => '请注意：',
+    'Driver Filter Notice Description' => '使用搜索引擎时，仅支持产品型号进行搜索。 如果您不知道您的产品型号，请<a href="/zh_cn/faq/details/how_to_check_the_product_model.html">单击此处</a>。',
+    'Contact US For Driver' => '如果在WAVLINK的官方网站上找不到产品驱动程序，请联系我们：<a href="mailto:contact@wavlink.com">contact@wavlink.com</a>',
+    'Model Number' => '产品型号：',
     //产品详情页翻译
     'Overview' => '产品详情',
     'Specifications' => '产品参数',

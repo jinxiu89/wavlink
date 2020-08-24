@@ -42,7 +42,7 @@ class Drivers extends Base
     {
         parent::__construct($app);
         $this->service = new DriverService();//驱动服务层
-        $data = (new driversCategory())->getCategoryByLanguage($status = 1, $this->language_id);
+        $data = (new driversCategory())->getCategoryByLanguage($status = 1,2);
         $level = Category::toLayer($data->toArray(), 'child');
         $this->assign('cate', $level);
         unset($data);
@@ -60,7 +60,7 @@ class Drivers extends Base
     public function index($order = 'desc')
     {
         //获取所有驱动下载列表
-        $result = $this->service->getDataByCategory($this->language_id, $order, $category = '');
+        $result = $this->service->getDataByCategory(2, $order, $category = '');
         $data = Category::toLayer($result, 'child');
         return $this->fetch($this->template . '/drivers/index.html', ['category_title' => '', 'data' => $data]);
     }
@@ -70,37 +70,16 @@ class Drivers extends Base
 
     /**
      * @param string $category
-     * @param $order
-     * @param int $page
+     * @param string $order
      * @return Redirect|View
      */
-    public function category($category = "", $order = 'desc', $page = 1)
+    public function category($category = "", $order = 'desc')
     {
-        $result = $this->service->getDataByCategory($this->language_id, $order, $category);
+        $result = $this->service->getDataByCategory(2, $order, $category);
         return $this->fetch($this->template . '/drivers/category.html', [
             'category_title' => $result[0]['url_title'],
             'data' => $result]);
-        if (empty($category) || !isset($category)) {
-            abort(404);
-        }
-        if ($category == 'all') {
-            return redirect(url('/' . $this->code . '/drivers', ['order' => $order]), [], 200);
-        }
-        //获取选择的子分类信息
-        $parent = $this->service->getCategoryID($category, $this->language_id);
-        if (empty($parent)) {
-            abort(404);
-        } else {
-            //获取选择的分类下的驱动列表
-            $result = $this->service->getDriversByCategoryIds($this->language_id, $this->code, $category, $parent['categoryID'], $order, $page);
-            return view($this->template . '/drivers/index.html', [
-                'data' => $result['data'],
-                'parent' => $parent['category'],
-                'count' => $result['count'],
-                'category_title' => $parent['category']['title'],
-                'order' => $order
-            ]);
-        }
+        
     }
 
     /**

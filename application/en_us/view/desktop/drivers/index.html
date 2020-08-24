@@ -51,15 +51,8 @@
 <div class="container">
     <div class="row">
         <div class="box">
-            <div class="support-aside">
-                <ul>
-                    <li class="active"><a href="#"><i class="iconfont iconDriver"></i> <span>Driver</span></a></li>
-                    <li><a href="#"><i class="iconfont iconFirmware"></i> <span>Firmware</span></a></li>
-                    <li><a href="#"><i class="iconfont iconManual"></i> <span>Manual</span></a></li>
-                    <li><a href="#"><i class="iconfont iconQA"></i> <span>Q&A</span></a></li>
-                    <li><a href="#"><i class="iconfont iconGuestBook"></i> <span>Guest Book</span></a></li>
-                    <li><a href="#"><i class="iconfont iconSetupVideo"></i> <span>Setup Video</span></a></li>
-                </ul>
+            <div class="g-aside">
+                {include file='desktop/common/support_aside'}
             </div>
             <div class="g-main">
                 <div class="tips">
@@ -118,6 +111,7 @@
 <!--私有JS-->
 <script type="text/javascript" src="__STATIC__/admin/lib/layer/2.4/layer.js"></script>
 <script>
+    $('.drivers').addClass('active');
     $(function () {
         $('.lay_driver').click(function () {
             var url = $(this).attr('data-url');

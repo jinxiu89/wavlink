@@ -71,14 +71,7 @@
 <!--私有JS-->
 <script>
     $(function () {
-        $('#support').addClass('current');
         $('.firmware').addClass('active');
-        // 筛选变化时 过滤
-/*        $('.filter_by').change(function () {
-            var filter_by = $(this).children('option:selected').val();
-            var order_by = $('.order_by').children('option:selected').val();
-            window.location.href = '/{$code}/manuals/' + filter_by + '.html?order=' + order_by
-        });*/
         $('.order_by').change(function () {
             var filter_by = $('.filter_by').children('option:selected').val();
             var order_by = $(this).children('option:selected').val();

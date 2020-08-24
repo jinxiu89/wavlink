@@ -763,7 +763,65 @@ body {
 //分页
 
 //側邊導航aside
-.g-aside {
+.support-aside {
+  .fl();
+  width: 22%;
+  padding-right: 10px;
+  ul {
+    background: @whiteColor;
+  }
+  ul li {
+    height: 60px;
+    line-height: 60px;
+    padding: 0 10px;
+    border-bottom: 1px solid @borderColor;
+  }
+  ul li a {
+    .clearFix();
+    display: block;
+    font-size: 16px;
+    color: @baseColor;
+    &:hover span{
+      color: @activeColor;
+      text-decoration: underline;
+    }
+  }
+  ul li.active span {
+    color: @activeColor;
+    text-decoration: underline;
+  }
+  ul li a .iconfont {
+    .fl();
+    display: block;
+    height: 60px;
+    line-height: 60px;
+    font-size: 40px;
+    color: #375D9D;
+  }
+  ul li a span {
+    .fl();
+    padding-left: 20px;
+  }
+  @media screen and (min-width: 768px) and (max-width: 991px) {
+    width: 30%;
+  }
+  @media screen and (min-width: 992px) and (max-width: 1199px) {
+    width: 25%;
+  }
+}
+
+.g-main {
+  .fl();
+  width: 78%;
+  background: none;
+  @media screen and (min-width: 768px) and (max-width: 991px) {
+    width: 70%;
+  }
+  @media screen and (min-width: 992px) and (max-width: 1199px) {
+    width: 75%;
+  }
+}
+/*.g-aside {
   .fl();
   width: 20%;
   padding-right: 10px;
@@ -845,7 +903,7 @@ body {
   @media screen and (min-width: 768px) and (max-width: 991px) {
     width: 75%;
   }
-}
+}*/
 //側邊導航aside結束
 
 //分类筛选

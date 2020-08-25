@@ -55,6 +55,12 @@
                 {include file='desktop/common/support_aside'}
             </div>
             <div class="g-main">
+                <div class="tips">
+                    <p>{:lang('Driver Update Frequency Description')}</p>
+                    <p>{:lang('Driver Filter Description')}</p>
+                    <p><b>{:lang('Driver Filter Notice')}</b> {:lang('Driver Filter Notice Description')}</p>
+                    <p>{:lang('Contact US For Driver')}</p>
+                </div>
                 <div class="filter-box">
                     {volist name="cate" id="vo"}
                     <div class="type">
@@ -62,7 +68,7 @@
                         <div class="type-category">
                             <ul>
                                 {volist name="vo.child" id="item"}
-                                <li><a href="{:url($code.'/drivers/'.$item.title)}" >{$item.name}</a></li>
+                                <li class="a{$item.title}"><a href="{:url($code.'/drivers/'.$item.title)}" >{$item.name}</a></li>
                                 {/volist}
                             </ul>
                         </div>
@@ -102,6 +108,9 @@
 <script type="text/javascript" src="__STATIC__/admin/lib/layer/2.4/layer.js"></script>
 <script>
     $(function () {
+        $('.drivers').addClass('active');
+        $(".drivers").addClass('active');
+        $('.' + 'a{$title}').addClass('active');
         $('.lay_driver').click(function () {
             var url = $(this).attr('data-url');
             var title = $(this).attr('data-title');

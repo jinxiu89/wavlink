@@ -4,6 +4,9 @@
 * @author: Alan(alan_webdeveloper@163.com)
 * @update: 2019-09-25 17:30
 */
+.g-main {
+  background: #fff;
+}
 .faq-box {
   padding: 60px 40px;
 }

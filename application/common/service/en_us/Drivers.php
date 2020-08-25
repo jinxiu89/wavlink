@@ -60,16 +60,16 @@ class Drivers extends BaseService
     public function getDataByCategory($language_id, $order, $category = '')
     {
         $model = new DriversCategory();
-        if (empty($category)) {
+        if (!empty($category)) {//是空的的时候
             try {
                 if ($this->debug == false) {
                     $data = Cache::get(__FUNCTION__ . $language_id . $category);
                     if ($data) return $data;
-                    $obj=$model->getDataAll($language_id, $order)->toArray();
+                    $obj=$model->getDataByCategory($language_id, $order, $category)->toArray();
                     Cache::set(__FUNCTION__ . $language_id . $category, $obj);
                     return $obj;
                 }
-                return $model->getDataAll($language_id, $order)->toArray();
+                return $model->getDataByCategory($language_id, $order, $category)->toArray();
             } catch (\Exception $exception) {
                 return [];
             }
@@ -78,11 +78,11 @@ class Drivers extends BaseService
                 if($this->debug == false){
                     $data=Cache::get(__FUNCTION__.$language_id);
                     if($data) return $data;
-                    $obj=$model->getDataByCategory($language_id, $order, $category)->toArray();
+                    $obj=$model->getDataAll($language_id, $order)->toArray();
                     Cache::set(__FUNCTION__.$language_id,$obj);
                     return $obj;
                 }
-                return $model->getDataByCategory($language_id, $order, $category)->toArray();
+                return $model->getDataAll($language_id, $order)->toArray();
             } catch (Exception $exception) {
                 return [];
             }

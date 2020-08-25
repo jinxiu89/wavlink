@@ -21,6 +21,10 @@ class Product extends Base
         abort(404);
     }
 
+    /**
+     * @param string $product
+     * @return mixed
+     */
     public function details($product = '')
     {
         try{
@@ -50,6 +54,7 @@ class Product extends Base
                 $this->redirect(url('404'),[],404);
             }
         }catch (Exception $exception){
+            print_r($exception->getMessage());exit;
             Log::error($exception->getMessage());
             Log::close();
             if(Config::get('app_debug')){

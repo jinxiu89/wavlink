@@ -84,7 +84,7 @@ class Drivers extends BaseModel
         $language_id = LanguageModel::getLanguageCodeOrID($code);
         $model = 'tb_drivers';
         $map['status'] = '1';
-        $map['name|url_title|keywords|description|models'] = ['like', '%' . $name . '%'];
+        $map['name|url_title|keywords'] = ['like', '%' . $name . '%'];
         $map['language_id'] = $language_id;
         $order = ['id' => 'desc'];
 //        return self::where($map)->order($order)->paginate('',true);

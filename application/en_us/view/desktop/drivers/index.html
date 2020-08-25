@@ -51,22 +51,15 @@
 <div class="container">
     <div class="row">
         <div class="box">
-            <div class="support-aside">
-                <ul>
-                    <li class="active"><a href="#"><i class="iconfont iconDriver"></i> <span>Driver</span></a></li>
-                    <li><a href="#"><i class="iconfont iconFirmware"></i> <span>Firmware</span></a></li>
-                    <li><a href="#"><i class="iconfont iconManual"></i> <span>Manual</span></a></li>
-                    <li><a href="#"><i class="iconfont iconQA"></i> <span>Q&A</span></a></li>
-                    <li><a href="#"><i class="iconfont iconGuestBook"></i> <span>Guest Book</span></a></li>
-                    <li><a href="#"><i class="iconfont iconSetupVideo"></i> <span>Setup Video</span></a></li>
-                </ul>
+            <div class="g-aside">
+                {include file='desktop/common/support_aside'}
             </div>
             <div class="g-main">
                 <div class="tips">
-                    <p>Our WAVLINK product drivers are updated on a monthly basis to ensure that the drivers you download from our official website are the latest drivers.</p>
-                    <p>For the driver download, please select the corresponding product model through the search engine or product classification filter. </p>
-                    <p><b>Please note:</b> When using a search engine, only the product model is supported for searching. If you do not know your product model, please click <a href="https://www.wavlink.com/en_us/faq/details/how_to_view_wavlink_product_model.html">here</a>.</p>
-                    <p>If you cannot find your product driver on WAVLINK's official website, please contact us: <a href="mailto:contact@wavlink.com">contact@wavlink.com</a></p>
+                    <p>{:lang('Driver Update Frequency Description')}</p>
+                    <p>{:lang('Driver Filter Description')}</p>
+                    <p><b>{:lang('Driver Filter Notice')}</b> {:lang('Driver Filter Notice Description')}</p>
+                    <p>{:lang('Contact US For Driver')}</p>
                 </div>
                 <div class="filter-box">
                     {volist name="cate" id="vo"}
@@ -81,13 +74,13 @@
                         </div>
                     </div>
                     {/volist}
-                    <div class="search">
-                        <h3>Model Number: </h3>
+                    <!--<div class="search">
+                        <h3>{:lang('Model Number')}</h3>
                         <form action="">
                             <input type="text" placeholder="请输入产品型号进行搜索">
                             <button>Search</button>
                         </form>
-                    </div>
+                    </div>-->
                 </div>
                 <div class="Driver-box">
                     {volist name="data" id="vo"}
@@ -118,6 +111,7 @@
 <!--私有JS-->
 <script type="text/javascript" src="__STATIC__/admin/lib/layer/2.4/layer.js"></script>
 <script>
+    $('.drivers').addClass('active');
     $(function () {
         $('.lay_driver').click(function () {
             var url = $(this).attr('data-url');

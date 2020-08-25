@@ -24,10 +24,7 @@
     <div class="row">
         <div class="box clearfix">
             <div class="g-aside">
-                <ul>
-                    <li><h3>{:lang('About')}</h3></li>
-                    {include file="desktop/common/about_aside"}
-                </ul>
+                {include file='desktop/common/about_aside'}
             </div>
             <div class="g-main">
                 {$result.content|raw}

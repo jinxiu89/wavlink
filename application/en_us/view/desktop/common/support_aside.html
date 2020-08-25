@@ -1,47 +1,10 @@
-<!--
-<ul>
-    <li><h3>{:lang('driver')}</h3></li>
-    {notempty name="cate"}
-    {volist name="cate" id="vo"}
-    <li style="border-bottom: 1px #f2f2f2 solid">
-        <span>{$vo.delimiter|raw}</span>
-        <a href="/{$code}/drivers/{$vo.title}.html?order='desc'" class="{$vo.title}">{$vo.name}</a>
-    </li>
-    {/volist}
-    {/notempty}
-</ul>
-<ul>
-    <li><a href="/{$code}/firmware.html" class="firmware">{:lang('firmware')}</a></li>
-    <li><a href="/{$code}/manuals.html" class="manual">{:lang('manual')}</a></li>
-    <li><a href="/{$code}/faq.html" class="faq">{:lang('faq')}</a></li>
-    <li><a href="/{$code}/guest_book/" class="guest-book">{:lang('GuestBook')}</a></li>
-    <li><a href="/{$code}/video.html" class="video">{:lang('video')}</a></li>
-</ul>-->
-
-<ul class="wavlinkAside">
-    <li class="supportItem driver">
-        <h3>{:lang('driver')} <span class="iconfont iconadd-select"></span></h3>
-        <dl>
-            {notempty name="cate"}
-            {volist name="cate" id="vo"}
-            <dd><a href="/{$code}/drivers/{$vo.title}.html?order=desc" title="{$vo.name}" class="d{$vo.title}"><span>{$vo.delimiter|raw}</span> <span class="supportText">{$vo.name}</span></a></dd>
-            {/volist}
-            {/notempty}
-        </dl>
-    </li>
-    <li class="supportItem firmware">
-        <h3><a href="/{$code}/firmware.html" class="firmware">{:lang('firmware')}</a> </h3>
-    </li>
-    <li class="supportItem manual">
-        <h3><a href="/{$code}/manuals.html" class="manual">{:lang('manual')}</a> </h3>
-    </li>
-    <li class="supportItem faq">
-        <h3><a href="/{$code}/faq.html" class="faq">{:lang('faq')}</a> </h3>
-    </li>
-    <li class="supportItem guest-book">
-        <h3><a href="/{$code}/guest_book/" class="guest-book">{:lang('GuestBook')}</a></h3>
-    </li>
-    <li class="supportItem video">
-        <h3><a href="/{$code}/video.html" class="video">{:lang('video')}</a> </h3>
-    </li>
-</ul>
+<div class="support-aside">
+    <ul>
+        <li class="drivers"><a href="/{$code}/drivers.html"><i class="iconfont iconDriver"></i> <span>{:lang('driver')}</span></a></li>
+        <li class="firmware"><a href="/{$code}/firmware.html"><i class="iconfont iconFirmware"></i> <span>{:lang('firmware')}</span></a></li>
+        <li class="manual"><a href="/{$code}/manuals.html"><i class="iconfont iconManual"></i> <span>{:lang('manual')}</span></a></li>
+        <li class="faq"><a href="/{$code}/faq.html"><i class="iconfont iconQA"></i> <span>{:lang('faq')}</span></a></li>
+        <li class="guest-book"><a href="/{$code}/guest_book/"><i class="iconfont iconGuestBook"></i> <span>{:lang('GuestBook')}</span></a></li>
+        <li class="video"><a href="/{$code}/video.html"><i class="iconfont iconSetupVideo"></i> <span>{:lang('video')}</span></a></li>
+    </ul>
+</div>

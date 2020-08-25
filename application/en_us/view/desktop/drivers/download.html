@@ -62,18 +62,18 @@
 <body>
 <div class="detail-box">
     <div class="detail">
-        <h2><span>{$data.name}</span> Driver</h2>
+        <h2><span>{$data.name}</span></h2>
         <dl>
-            <dt>Version: </dt> <dd>{$data.version_number}</dd>
+            <dt>{:lang('Version')}: </dt> <dd>{$data.version_number}</dd>
         </dl>
         <dl>
-            <dt>Post Date:</dt> <dd>{$data.update_time}</dd>
+            <dt>{:lang('Post Date')}: </dt> <dd>{$data.update_time}</dd>
         </dl>
         <dl>
-            <dt>System Requirements: </dt> <dd>{$data.running}</dd>
+            <dt>{:lang('System Requirements')}: </dt> <dd>{$data.running}</dd>
         </dl>
         <dl>
-            <dt>Download: </dt>
+            <dt>{:lang('Download')}: </dt>
             {notempty name="data.all_link"}
             <dd><a href="{$data.all_link}">All</a></dd>
             {/notempty}

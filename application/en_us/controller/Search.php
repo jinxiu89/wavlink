@@ -68,7 +68,7 @@ class Search extends Base
             $driver_query = Db::table('tb_drivers')
                 ->where('language_id', '=', $this->language_id)
                 ->where('status', '=', 1)
-                ->where('name|seo_title|keywords|models', 'like', '%'.$keyword.'%');
+                ->where('name|seo_title|keywords', 'like', '%'.$keyword.'%');
             $product_total = $product_query->count(); //产品计数
             $driver_total = $driver_query->count();
             $page_options = ['var_page' => 'page', 'path' => '/' . $this->code . '/search', 'query' => ['key' => $search, 'type' => $type]];

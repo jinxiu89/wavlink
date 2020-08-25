@@ -66,9 +66,9 @@ class Search extends Base
                 ->where('name|seo_title|keywords|description|features', 'like', '%'.$keyword.'%')
                 ->where('language_id', '=', $this->language_id)->where('status', '=', 1);
             $driver_query = Db::table('tb_drivers')
-                ->where('language_id', '=', $this->language_id)
+//                ->where('language_id', '=', $this->language_id)
                 ->where('status', '=', 1)
-                ->where('name|seo_title|keywords', 'like', '%'.$keyword.'%');
+                ->where('name|seo_title|keywords|model', 'like', '%'.$keyword.'%');
             $product_total = $product_query->count(); //产品计数
             $driver_total = $driver_query->count();
             $page_options = ['var_page' => 'page', 'path' => '/' . $this->code . '/search', 'query' => ['key' => $search, 'type' => $type]];
@@ -79,15 +79,15 @@ class Search extends Base
                 $this->assign('products', $products);
             }
             if ($type == 'driver') {
-                $items = $driver_query->field('name,url_title,keywords,descrip,models,size,version_number,update_time,running,all_link,win_link,mac_link,linux_link')
+                $items = $driver_query->field('name,url_title,keywords,descrip,version_number,update_time,running,all_link,win_link,mac_link,linux_link')
                     ->paginate(10, '', $page_options);
-                $data = [];
+                /*$data = [];
                 foreach ($items as $item) {
                     $item['modelsGroup'] = explode(',', $item['models']);
                     $data[] = $item;
-                }
-                $this->assign('drivers', $data);
-                $this->assign('driver_page', $items->render());
+                }*/
+                $this->assign('drivers', $items);
+//                $this->assign('driver_page', $items->render());
             }
 
             $this->assign('type', $type);

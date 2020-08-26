@@ -78,17 +78,7 @@
                                 <h3 class="title">{$vo.name}</h3>
                             </div>
                             <div class="panel-body">
-                                <div class="mode">
-                                    <p>
-                                        <span>{:lang('Available')} : </span>
-                                        {volist name="$vo.modelsGroup" id="v"}
-                                        <!-- 2018-4-12 星期四 14:05 添加字体大小给td标签 -->
-                                        <span>{$v}</span>
-                                        {/volist}
-                                    </p>
-                                </div>
                                 <div class="info">
-                                    <p><span>{:lang('File Size')} :</span> <span>{$vo.size}</span></p>
                                     <p><span>{:lang('Version')} :</span> <span>{$vo.version_number}</span></p>
                                     <p><span>{:lang('Post Date')} :</span> <span>{$vo.update_time|date="d/m/Y"}</span>
                                     </p>

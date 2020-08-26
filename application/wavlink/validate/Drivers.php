@@ -18,7 +18,7 @@ class Drivers extends BaseValidate
     /**验证规则**/
     protected $rule = [
         'id'=>'number',
-        'name'=>'require|unique:tb_drivers|max:128',
+        'name'=>'require|max:128',
         'image_litpic_url'=>'max:500',
         'version_number'=>'max:32',
         'category_id'=>'require|number',

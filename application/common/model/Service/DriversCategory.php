@@ -47,7 +47,7 @@ class DriversCategory extends BaseModel
     public function getDataByLanguageId($status, $language_id)
     {
         if (empty($status)) return self::where(['language_id' => $language_id])->order(['level', 'id']);
-        return self::where(['status' => 1, 'language_id' => $language_id])->order(['level', 'id']);
+        return self::where(['status' => $status, 'language_id' => $language_id])->order(['level', 'id']);
     }
 
     /**
@@ -129,7 +129,7 @@ class DriversCategory extends BaseModel
     public function getCategoryNameByID($id)
     {
         $obj = self::where(['id' => $id])->find();
-        if (!$obj->isEmpty()) return $obj->url_title;
+        if (!$obj->isEmpty()) return $obj['name'];
         return '';
     }
 }

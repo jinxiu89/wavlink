@@ -13,7 +13,7 @@ use think\facade\Route;
 
 Route::group('en_us', function () {
     Route::get('/index$', 'Index/index');
-    Route::get('/category/:category$', 'Category/category')->pattern(['category' => '[\w-]+']);
+    Route::get('/category/:category', 'Category/category')->pattern(['category' => '[\w-]+']);
     Route::get('/product/:product$', 'Product/details')->pattern(['product' => '[\w-]+']);
     Route::get('/about/:about$', 'About/index')->pattern(['about' => '[\w-]+']);
     Route::get('/drivers/download/:detail$', 'Drivers/detail')->pattern(['detail' => '[\w-]+']);

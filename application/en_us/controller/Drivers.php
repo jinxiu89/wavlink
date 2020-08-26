@@ -42,7 +42,7 @@ class Drivers extends Base
     {
         parent::__construct($app);
         $this->service = new DriverService();//驱动服务层
-        $data = (new driversCategory())->getCategoryByLanguage($status = 1,2);
+        $data = (new driversCategory())->getCategoryByLanguage($status = 1,$this->language_id);
         $level = Category::toLayer($data->toArray(), 'child');
         $this->assign('cate', $level);
         unset($data);
@@ -60,7 +60,7 @@ class Drivers extends Base
     public function index($order = 'desc')
     {
         //获取所有驱动下载列表
-        $result = $this->service->getDataByCategory(2, $order, $category = '');
+        $result = $this->service->getDataByCategory($this->language_id, $order, $category = '');
         $data = Category::toLayer($result, 'child');
         return $this->fetch($this->template . '/drivers/index.html', ['category_title' => '', 'data' => $data]);
     }
@@ -75,7 +75,7 @@ class Drivers extends Base
      */
     public function category($category = "", $order = 'desc')
     {
-        $result = $this->service->getDataByCategory(2, $order, $category);
+        $result = $this->service->getDataByCategory($this->language_id, $order, $category);
         return $this->fetch($this->template . '/drivers/category.html', [
             'category_title' => $result[0]['url_title'], 'title'=>$result[0]['title'],'data' => $result]);
         

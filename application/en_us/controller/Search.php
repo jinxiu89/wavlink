@@ -60,13 +60,12 @@ class Search extends Base
                 $keyword .= $item;
             }
             unset($keywords);
-//            print_r($keyword);
             $type = input('type', 'product', 'htmlspecialchars');
             $product_query = Db::table('product')
                 ->where('name|seo_title|keywords|description|features', 'like', '%'.$keyword.'%')
                 ->where('language_id', '=', $this->language_id)->where('status', '=', 1);
             $driver_query = Db::table('tb_drivers')
-//                ->where('language_id', '=', $this->language_id)
+                ->where('language_id', '=', $this->language_id)
                 ->where('status', '=', 1)
                 ->where('name|seo_title|keywords|model', 'like', '%'.$keyword.'%');
             $product_total = $product_query->count(); //产品计数
@@ -87,7 +86,7 @@ class Search extends Base
                     $data[] = $item;
                 }*/
                 $this->assign('drivers', $items);
-//                $this->assign('driver_page', $items->render());
+                $this->assign('driver_page', $items->render());
             }
 
             $this->assign('type', $type);

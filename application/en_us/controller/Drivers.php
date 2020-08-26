@@ -77,7 +77,7 @@ class Drivers extends Base
     {
         $result = $this->service->getDataByCategory(2, $order, $category);
         return $this->fetch($this->template . '/drivers/category.html', [
-            'category_title' => $result[0]['url_title'], 'data' => $result]);
+            'category_title' => $result[0]['url_title'], 'title'=>$result[0]['title'],'data' => $result]);
         
     }
 

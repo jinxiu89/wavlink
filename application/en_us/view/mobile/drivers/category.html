@@ -1,11 +1,11 @@
-{extend name="desktop/common/base" /}
-{block name="title"}{notempty name="parent.url_title"}{$parent.url_title}{/notempty} - {:lang('slogan')}{:lang('powered by')}{/block}
+{extend name="mobile/common/base"}
 {block name="seo"}
+<title>{notempty name="parent.url_title"}{$parent.url_title}{/notempty} - {:lang('slogan')}{:lang('powered by')}</title>
 <meta name="description" content="{notempty name='parent'}{$parent.description}{/notempty}">
 <meta name="keywords" content="{notempty name='parent'}{$parent.keywords}{/notempty}">
 {/block}
 {block name="style"}
-<link rel="stylesheet" href="__DESKTOP__/css/page/driver-index.css">
+<link rel="stylesheet" href="__MOBILE__/css/page/driver-index.css">
 <style>
     .layui-layer-setwin {
         top: 0!important;
@@ -51,9 +51,6 @@
 <div class="container">
     <div class="row">
         <div class="box">
-            <div class="g-aside">
-                {include file='desktop/common/support_aside'}
-            </div>
             <div class="g-main">
                 <div class="tips">
                     <p>{:lang('Driver Update Frequency Description')}</p>
@@ -108,7 +105,6 @@
 <script type="text/javascript" src="__STATIC__/admin/lib/layer/2.4/layer.js"></script>
 <script>
     $(function () {
-        $('.drivers').addClass('active');
         $('.' + 'a{$title}').addClass('active');
         $('.lay_driver').click(function () {
             var url = $(this).attr('data-url');
@@ -118,7 +114,7 @@
                 title: ['', 'background: #5190DF; height: 15px'],
                 maxmin: true,
                 shadeClose: true,
-                area: ['640px', '415px'],
+                area: ['96%', '300px'],
                 content: url,
             })
         });

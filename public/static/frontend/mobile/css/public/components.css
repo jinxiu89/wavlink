@@ -494,7 +494,7 @@ footer .copy-right p {
 .g-pagination .pagination > .active > span,
 .g-pagination .pagination > .active > span:focus,
 .g-pagination .pagination > .active > span:hover {
-  color: #333;
+  color: #fff;
   background: #1D428A;
   border-color: #1D428A;
 }

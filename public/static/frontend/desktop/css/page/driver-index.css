@@ -36,6 +36,7 @@
 }
 .filter-box .type .type-category {
   padding-left: 100px;
+  margin-left: 15px;
 }
 .filter-box .type .type-category ul {
   margin-bottom: 20px;
@@ -54,6 +55,9 @@
 }
 .filter-box .type .type-category ul li {
   float: left;
+}
+.filter-box .type .type-category ul li:nth-of-type(1) a {
+  margin-left: 0;
 }
 .filter-box .type .type-category ul li a {
   display: block;

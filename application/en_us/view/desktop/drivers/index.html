@@ -125,6 +125,15 @@
                 content: url,
             })
         });
+        //2020.08.27 添加js获取分类筛选大分类长度
+        var filterW = $('.filter-box .type h3');
+        var max = 0;
+        filterW.each(function (index, element) {
+            max = max < $(this).outerWidth(true) ? $(this).outerWidth(true) : max;
+        });
+        $('.filter-box .type .type-category').css({
+            paddingLeft: max
+        })
     });
 </script>
 {/block}

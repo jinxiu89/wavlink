@@ -413,7 +413,7 @@ body {
     }
     .user-box {
       position: relative;
-      .fl();
+      .fr();
       text-align: center;
       color: @whiteColor;
       a.login {
@@ -481,6 +481,22 @@ body {
             text-decoration: underline;
           }
         }
+      }
+    }
+
+    @media screen and (min-width: 1600px) {
+      .search-box .iconfont {
+        display: none;
+      }
+      .search-box .search-form {
+        display: block;
+        right: 20px;
+      }
+      .search-box .search-form form {
+        width: 300px;
+      }
+      .search-box .search-form input[type="text"] {
+        width: 250px;
       }
     }
 

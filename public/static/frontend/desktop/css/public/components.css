@@ -498,7 +498,7 @@ body {
 }
 .g-nav .function-box .user-box {
   position: relative;
-  float: left;
+  float: right;
   text-align: center;
   color: #fff;
 }
@@ -580,6 +580,21 @@ body {
   color: #1D428A;
   background: #abcae9;
   text-decoration: underline;
+}
+@media screen and (min-width: 1600px) {
+  .g-nav .function-box .search-box .iconfont {
+    display: none;
+  }
+  .g-nav .function-box .search-box .search-form {
+    display: block;
+    right: 20px;
+  }
+  .g-nav .function-box .search-box .search-form form {
+    width: 300px;
+  }
+  .g-nav .function-box .search-box .search-form input[type="text"] {
+    width: 250px;
+  }
 }
 @media screen and (max-width: 1300px) {
   .g-nav .function-box .user-box a.login {

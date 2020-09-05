@@ -69,30 +69,34 @@
   }
   .search {
     .clearFix();
+    position: relative;
     h3 {
-      .fl();
+      position: absolute;
+      top: 0;
+      left: 0;
       height: 35px;
       line-height: 35px;
       font-size: 14px;
       color: @whiteSmoke;
     }
     form {
-      .fl();
-      margin-left: 10px;
+      .clearFix();
+      padding-left: 100px;
+      margin-left: 27px;
     }
     form input {
       .fl();
       width: 440px;
       height: 35px;
       padding: 0 10px;
-      border: 1px solid @borderColor;
+      border: 1px solid @activeColor;
       border-radius: 5px 0 0 5px;
     }
     form button {
       .fl();
       height: 35px;
       padding: 0 8px;
-      border: 1px solid @borderColor;
+      border: 1px solid @activeColor;
       border-left: transparent;
       border-radius: 0 5px 5px 0;
       &:hover {

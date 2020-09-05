@@ -103,7 +103,7 @@ return [
     'Ean'=>'产品Ean:',
     'Order Number' => '订单编号：',
     'Order tips' =>
-        '订单编号一般为您购买平台的订单流水编号，如果您有非常高着急的事情，可以通过在线客服平台来与我们联系。我们的工作时间是... ',
+        '订单编号一般为您购买平台的订单流水编号，如果您有非常高着急的事情，可以通过在线客服平台来与我们联系。',
     'Submit' => '提交',
     'Reset' => '重设',
     'Guest Notice' => '如果您找不到产品型号，请访问<a href="/zh_cn/faq/details/how_to_check_the_product_model.html">如何查看睿因产品型号？

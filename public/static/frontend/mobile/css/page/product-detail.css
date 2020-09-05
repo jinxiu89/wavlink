@@ -189,83 +189,29 @@
   display: inline-block;
   margin-top: 0.5em;
 }
-@media screen and (max-width: 767px) and (min-width: 318px) {
-  #detail div#Detail_page_all > div.container-fluid > div.row div.detail_page_text_cont {
-    padding-top: 4em !important;
-    padding-bottom: 2em !important;
-    text-align: left;
-  }
-  #detail div#Detail_page_all > div.container-fluid > div.row h2 {
-    font-size: 18px !important;
-  }
-  #detail div#Detail_page_all > div.container-fluid > div.row p {
-    font-size: 14px !important;
-  }
-  #detail div#Detail_page_all > div.container-fluid > div.row h3 {
-    font-size: 1em;
-    color: #888 !important;
-  }
+#detail div#Detail_page_all > div.container-fluid > div.row div.detail_page_text_cont {
+  padding-top: 4em !important;
+  padding-bottom: 2em !important;
+  text-align: left;
 }
-@media screen and (width: 768px) {
-  #detail div#Detail_page_all > div.container-fluid > div.row h2 {
-    font-size: 1.2em !important;
-  }
-  #detail div#Detail_page_all > div.container-fluid > div.row h3 {
-    font-size: 1em;
-  }
+#detail div#Detail_page_all > div.container-fluid > div.row h2 {
+  font-size: 18px;
 }
-@media screen and (max-width: 1366px) and (min-width: 1024px) {
-  #detail {
-    /*ul > li { margin-bottom:2em }*/
-  }
-  #detail div#Detail_page_all > div.container-fluid > div.row h2 {
-    font-size: 1.5em !important;
-  }
-  #detail div#Detail_page_all > div.container-fluid > div.row h3 {
-    font-size: 1em;
-  }
+#detail div#Detail_page_all > div.container-fluid > div.row p {
+  font-size: 14px;
 }
-@media screen and (width: 1366px) {
-  #detail div#Detail_page_all > div.container-fluid > div.row h2 {
-    font-size: 2em !important ;
-    font-weight: bold;
-  }
-  #detail div#Detail_page_all > div.container-fluid > div.row h3 {
-    font-size: 1.25em;
-  }
+#detail div#Detail_page_all > div.container-fluid > div.row h3 {
+  font-size: 1em;
+  color: #888;
 }
-@media screen and (min-width: 1367px) {
-  #detail div#Detail_page_all > div.container-fluid > div.row h2 {
-    font-size: 2.5em !important;
-    font-weight: bold;
-  }
-  #detail div#Detail_page_all > div.container-fluid > div.row h3 {
-    font-size: 1.5em;
-  }
+#detail div[class^="detail_page"] strong {
+  display: block;
+  font-size: 28px;
+  margin-bottom: 10px;
 }
-@media screen and (min-width: 768px) {
-  #detail {
-    /*只给上面加边距*/
-    /* 全部加边距*/
-    /*上，左右加边距*/
-    /*左右加边距*/
-    /*下,左右加边距*/
-  }
-  #detail .page_padding_top {
-    padding: 20px 0 0 0 !important;
-  }
-  #detail .page_padding_all {
-    padding: 20px !important;
-  }
-  #detail .page_padding_off_bottom {
-    padding: 20px 20px 0 20px !important;
-  }
-  #detail .page_padding_left_right {
-    padding: 0 20px 0 20px !important;
-  }
-  #detail .page_padding_down_bottom {
-    padding: 0 20px 20px 20px !important;
-  }
+#detail div[class^="detail_page"] p {
+  font-size: 16px;
+  color: #888;
 }
 #specification {
   background: #fff;

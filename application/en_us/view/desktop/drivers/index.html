@@ -126,12 +126,12 @@
             })
         });
         //2020.08.27 添加js获取分类筛选大分类长度
-        var filterW = $('.filter-box .type h3');
+        var filterW = $('.filter-box .type h3').add('.filter-box .search h3');
         var max = 0;
-        filterW.each(function (index, element) {
+        filterW.each(function () {
             max = max < $(this).outerWidth(true) ? $(this).outerWidth(true) : max;
         });
-        $('.filter-box .type .type-category').css({
+        $('.filter-box .type .type-category').add('.filter-box .search form').css({
             paddingLeft: max
         })
     });

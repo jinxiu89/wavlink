@@ -75,6 +75,9 @@
   color: #fff;
   background: #1D428A;
 }
+.filter-box .search {
+  position: relative;
+}
 .filter-box .searchbefore,
 .filter-box .search:after {
   content: " ";
@@ -85,29 +88,40 @@
   clear: both;
 }
 .filter-box .search h3 {
-  float: left;
+  position: absolute;
+  top: 0;
+  left: 0;
   height: 35px;
   line-height: 35px;
   font-size: 14px;
   color: #888;
 }
 .filter-box .search form {
-  float: left;
-  margin-left: 10px;
+  padding-left: 100px;
+  margin-left: 27px;
+}
+.filter-box .search formbefore,
+.filter-box .search form:after {
+  content: " ";
+  display: table;
+  zoom: 1;
+}
+.filter-box .search form:after {
+  clear: both;
 }
 .filter-box .search form input {
   float: left;
   width: 440px;
   height: 35px;
   padding: 0 10px;
-  border: 1px solid #eaeaea;
+  border: 1px solid #1D428A;
   border-radius: 5px 0 0 5px;
 }
 .filter-box .search form button {
   float: left;
   height: 35px;
   padding: 0 8px;
-  border: 1px solid #eaeaea;
+  border: 1px solid #1D428A;
   border-left: transparent;
   border-radius: 0 5px 5px 0;
 }

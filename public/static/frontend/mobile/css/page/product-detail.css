@@ -153,7 +153,6 @@
 #detail {
   background: #fff;
   /* 详情页描述 公共样式 */
-  /*2017.12.28修改i标签去除字体加粗*/
 }
 #detail div#Detail_page_all > div.container-fluid > div.row ul li {
   margin: 0;
@@ -206,11 +205,11 @@
 }
 #detail div[class^="detail_page"] strong {
   display: block;
-  font-size: 28px;
+  font-size: 18px;
   margin-bottom: 10px;
 }
 #detail div[class^="detail_page"] p {
-  font-size: 16px;
+  font-size: 14px;
   color: #888;
 }
 #specification {

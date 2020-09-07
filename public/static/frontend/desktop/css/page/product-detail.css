@@ -184,43 +184,43 @@
   clear: both;
 }
 @media screen and (min-width: 768px) and (max-width: 991px) {
-  #detail-des div[class^="detail_page"] strong {
+  #detail div[class^="detail_page"] strong {
     font-size: 18px;
     margin-bottom: 5px;
   }
-  #detail-des div[class^="detail_page"] p {
+  #detail div[class^="detail_page"] p {
     font-size: 13px;
   }
 }
-@media screen and (min-width: 992px) and (min-width: 1199px) {
-  #detail-des div[class^="detail_page"] strong {
+@media screen and (min-width: 992px) and (max-width: 1199px) {
+  #detail div[class^="detail_page"] strong {
     font-size: 22px;
     margin-bottom: 10px;
   }
-  #detail-des div[class^="detail_page"] p {
+  #detail div[class^="detail_page"] p {
     font-size: 16px;
   }
 }
 @media screen and (min-width: 1200px) and (max-width: 1366px) {
-  #detail-des div[class^="detail_page"] strong {
+  #detail div[class^="detail_page"] strong {
     font-size: 28px;
     margin-bottom: 15px;
   }
-  #detail-des div[class^="detail_page"] p {
+  #detail div[class^="detail_page"] p {
     font-size: 16px;
   }
 }
 @media screen and (min-width: 1367px) {
-  #detail-des div[class^="detail_page"] strong {
+  #detail div[class^="detail_page"] strong {
     font-size: 35px;
     margin-bottom: 15px;
     font-weight: bold;
   }
-  #detail-des div[class^="detail_page"] p {
+  #detail div[class^="detail_page"] p {
     font-size: 20px;
   }
 }
-#detail-des div[class^="detail_page"] strong {
+#detail div[class^="detail_page"] strong {
   display: inline-block;
 }
 #specification {

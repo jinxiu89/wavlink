@@ -114,31 +114,14 @@
 .search-product .item .links a:hover {
   color: #1D428A;
 }
-.search-driver {
-  /**
-* @name: driver.less
-* @description: 驅動列表页样式
-* @author: Alan(alan_webdeveloper@163.com)
-* @update: 2019-09-16 10:30
-*/
-}
-.search-driver .boxbefore,
-.search-driver .box:after {
-  content: " ";
-  display: table;
-  zoom: 1;
-}
-.search-driver .box:after {
-  clear: both;
-}
-.search-driver .g-main {
-  background: none;
-}
 .search-driver .item {
-  padding: 20px 0 0;
+  margin: 10px 0 0;
   -webkit-border-radius: 5px;
   -moz-border-radius: 5px;
   border-radius: 5px;
+}
+.search-driver .item:nth-of-type(1) {
+  margin-top: 0;
 }
 .search-driver .item .panel {
   margin-bottom: 0;
@@ -168,54 +151,6 @@
   color: #333;
   font-weight: 700;
 }
-.search-driver .item .panel .panel-body .mode {
-  margin-bottom: 10px;
-}
-.search-driver .item .panel .panel-body .mode div {
-  margin-bottom: 5px;
-  font-weight: 700;
-}
-.search-driver .item .panel .panel-body .mode p {
-  border-left: 1px solid #eaeaea;
-}
-.search-driver .item .panel .panel-body .mode pbefore,
-.search-driver .item .panel .panel-body .mode p:after {
-  content: " ";
-  display: table;
-  zoom: 1;
-}
-.search-driver .item .panel .panel-body .mode p:after {
-  clear: both;
-}
-.search-driver .item .panel .panel-body .mode span {
-  display: block;
-  text-overflow: ellipsis;
-  white-space: nowrap;
-  overflow: hidden;
-  float: left;
-  width: 16.6667%;
-  padding: 0 5px;
-  line-height: 30px;
-  color: #888;
-  border-right: 1px solid #eaeaea;
-  border-bottom: 1px solid #eaeaea;
-}
-.search-driver .item .panel .panel-body .mode span:nth-of-type(1),
-.search-driver .item .panel .panel-body .mode span:nth-of-type(2),
-.search-driver .item .panel .panel-body .mode span:nth-of-type(3),
-.search-driver .item .panel .panel-body .mode span:nth-of-type(4),
-.search-driver .item .panel .panel-body .mode span:nth-of-type(5),
-.search-driver .item .panel .panel-body .mode span:nth-of-type(6) {
-  border-top: 1px solid #eaeaea;
-}
-@media screen and (max-width: 1200px) {
-  .search-driver .item .panel .panel-body .mode span {
-    width: 20%;
-  }
-  .search-driver .item .panel .panel-body .mode span:nth-of-type(6) {
-    border-top: none;
-  }
-}
 .search-driver .item .panel .panel-body .download .download-list {
   font-size: 14px;
   font-weight: 700;
@@ -240,18 +175,5 @@
 }
 .search-driver .item .panel .panel-body .download a.windows .iconfont {
   color: #00ADEF;
-}
-@media screen and (min-width: 768px) and (max-width: 991px) {
-  .search-driver .item .mode span {
-    width: 25%;
-  }
-}
-@media screen and (min-width: 992px) and (max-width: 1199px) {
-  .search-driver .item .mode span {
-    width: 20%;
-  }
-}
-.search-driver .item:nth-of-type(1) {
-  padding: 0;
 }
 /*# sourceMappingURL=search.css.map */

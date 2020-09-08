@@ -125,14 +125,6 @@
 .search-product .item .links a:hover {
   color: #1D428A;
 }
-.search-driver {
-  /**
-* @name: driver.less
-* @description: 驅動頁面css - mobile
-* @author: Alan(alan_webdeveloper@163.com)
-* @update: 2019-09-11 15:00
-*/
-}
 .search-driver .item {
   margin-bottom: 10px;
   background: #fff;
@@ -156,29 +148,6 @@
 .search-driver .item h3 {
   font-size: 14px;
   line-height: 22px;
-}
-.search-driver .item .mode {
-  font-size: 12px;
-}
-.search-driver .item .mode pbefore,
-.search-driver .item .mode p:after {
-  content: " ";
-  display: table;
-  zoom: 1;
-}
-.search-driver .item .mode p:after {
-  clear: both;
-}
-.search-driver .item .mode span {
-  float: left;
-  display: block;
-  width: 33.33%;
-  text-overflow: ellipsis;
-  white-space: nowrap;
-  overflow: hidden;
-}
-.search-driver .item .mode p:nth-last-of-type(1) span {
-  font-size: 12px;
 }
 .search-driver .item .info {
   font-size: 12px;

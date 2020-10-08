@@ -71,6 +71,8 @@ return [
     'Driver Filter Description' => '要快速找到您的驱动，请通过搜索或产品分类选择相应的产品型号。',
     'Driver Filter Notice' => '请注意：',
     'Driver Filter Notice Description' => '使用搜索时，仅支持产品型号进行搜索。 如果您不知道您的产品型号，请<a href="/zh_cn/faq/details/how_to_check_the_product_model.html">单击此处</a>。',
+    'Attention of Thunderbolt 3 product users' => '雷电三产品用户请注意：',
+    'Description of Thunderbolt 3 product users' => '由于雷电三的产品是针对不同的电脑型号，他们的驱动是不同的；且我们无法获知您使用的电脑品牌，因此雷电三产品的驱动需要您自己到您电脑对应的品牌官网去下载雷电的驱动。给您带来的不便我们深感抱歉！这里我们整理了一些主要的电脑品牌对应的官网下载渠道<a href="//files2.wavlink.com/drivers/PC-peripherals/Thunderbolt3_Driver_description.zip" title="">点击下载</a>，希望对您有所帮助。目前我们WAVLINK官网上提供的雷电驱动仅为雷电网口的驱动。',
     'Contact US For Driver' => '如果在WAVLINK的官方网站上找不到产品驱动程序，请联系我们：<a href="mailto:contact@wavlink.com">contact@wavlink.com</a>',
     'Model Number' => '产品型号：',
     //产品详情页翻译

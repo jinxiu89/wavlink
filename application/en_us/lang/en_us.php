@@ -68,6 +68,8 @@ return [
     'Driver Filter Description' => 'For the driver download, please select the corresponding product model through the search box or product classification filter.',
     'Driver Filter Notice' => 'Please note:',
     'Driver Filter Notice Description' => 'When using a search box, only the product model is supported for searching. If you do not know your product model, please click <a href="/en_us/faq/details/how_to_view_wavlink_product_model.html">here</a>.',
+    'Attention of Thunderbolt 3 product users' => 'Attention of Thunderbolt™ 3 product users: ',
+    'Description of Thunderbolt 3 product users' => 'Because Thunderbolt™ 3\'s product is aimed at different computer model, their drive is different; And we cannot know the computer brand you use, so the driver of Thunderbolt™ 3 products need you to go to your computer corresponding brand official website to download the driver of Thunderbolt™ 3. We are deeply sorry for the inconvenience brought to you. Here we have sorted out some of the major computer brands corresponding official website download channels <a href="//files2.wavlink.com/drivers/PC-peripherals/Thunderbolt3_Driver_description.zip" title="">Download</a>, I hope it will be helpful to you. The current lightning drive provided on our WAVLINK official website is only for the lightning port.',
     'Contact US For Driver' => 'If you cannot find your product driver on WAVLINK\'s official website, please contact us: <a href="mailto:contact@wavlink.com">contact@wavlink.com</a>.',
     'Model Number' => 'Model Number: ',
     //产品详情页翻译

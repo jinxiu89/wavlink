@@ -178,7 +178,6 @@ Class ServiceCategory extends BaseModel
     }
 
     /**
-     * @param $language
      * @param $path
      * @param $parent_id
      * @return array

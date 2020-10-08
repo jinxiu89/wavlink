@@ -17,13 +17,13 @@ use app\common\model\ServiceCategory as ServiceCategoryModel;
 use app\common\helper\Search as elSearch;
 use think\App;
 use think\Db;
-use think\db\exception\DataNotFoundException;
-use think\db\exception\ModelNotFoundException;
 use think\exception\DbException;
 use think\facade\Request;
-use think\paginator\driver\Bootstrap;
-use think\Paginator;
 
+/**
+ * Class Search
+ * @package app\en_us\controller
+ */
 class Search extends Base
 {
     protected $elSearch;

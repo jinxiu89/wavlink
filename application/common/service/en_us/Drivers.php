@@ -66,7 +66,7 @@ class Drivers extends BaseService
                     $data = Cache::get(__FUNCTION__ . $language_id . $category);
                     if ($data) return $data;
                     $obj=$model->getDataByCategory($language_id, $order, $category)->toArray();
-                    Cache::set(__FUNCTION__ . $language_id . $category, $obj);
+                    Cache::set(__FUNCTION__ . $language_id . $category, $obj, 3600);
                     return $obj;
                 }
                 return $model->getDataByCategory($language_id, $order, $category)->toArray();
@@ -79,7 +79,7 @@ class Drivers extends BaseService
                     $data=Cache::get(__FUNCTION__.$language_id);
                     if($data) return $data;
                     $obj=$model->getDataAll($language_id, $order)->toArray();
-                    Cache::set(__FUNCTION__.$language_id,$obj);
+                    Cache::set(__FUNCTION__.$language_id,$obj,3600);
                     return $obj;
                 }
                 return $model->getDataAll($language_id, $order)->toArray();

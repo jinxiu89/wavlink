@@ -14,6 +14,7 @@ use Exception;
 use think\App;
 use think\captcha\Captcha;
 use think\Controller;
+use think\facade\Cache;
 use think\facade\Config;
 use think\facade\Request;
 use think\facade\Session;
@@ -56,6 +57,9 @@ class BaseAdmin extends Controller
         $path = RUNTIME_PATH;
         echo delcache($path);
         echo "<br/><span style='color: red;'>缓存清理完毕。</span>";
+        if(Cache::clear()){
+            echo "<br/><span style='color: red;'>Redis清理完毕。</span>";
+        }
     }
 
     /***

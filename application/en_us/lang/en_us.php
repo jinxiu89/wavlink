@@ -43,6 +43,7 @@ return [
     'list of article' => 'List of Article',
     'list or video' => 'LIST OF VIDEO',
     'Update Time' => 'Update Time',
+    'Email Support' => 'Email Support',
     'video' => 'Video',
     'Details' => 'Details',
     'Notices' => 'Notices',

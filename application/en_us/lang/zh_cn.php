@@ -46,6 +46,7 @@ return [
     'list of article' => '新闻列表',
     'list or video'=>'视频列表',
     'Update Time'=>'更新时间',
+    'Email Support' => '邮件支持',
     'video'=>'视频',
     'Details' => '详细信息',
     'Notices' => '注意',

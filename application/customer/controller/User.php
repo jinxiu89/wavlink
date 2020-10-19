@@ -64,9 +64,17 @@ class User extends Base
             }
             $login_url = url('customer_login');
             $index = url('customer_info');
-            $scene = empty($data['email']) ? 'phone' : 'email';
-            if (!$this->validate->scene($scene)->check($data)) {
-                return show(0, $this->validate->getError(), '', '', $login_url, '');
+//            $scene = empty($data['email']) ? 'phone' : 'email';
+            if($data['email']){
+                if (!$this->validate->scene('email')->check($data)) {
+                    return show(0, $this->validate->getError(), '', '', $login_url, '');
+                }
+            } elseif($data['phone']){
+                if (!$this->validate->scene('phone')->check($data)) {
+                    return show(0, $this->validate->getError(), '', '', $login_url, '');
+                }
+            }else{
+                return show(0, lang('User does not exist'), '', '', $login_url, '');
             }
             $result = $this->service->login($data);
             if (!empty($index)) {

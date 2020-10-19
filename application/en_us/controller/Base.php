@@ -70,7 +70,8 @@ class Base extends Controller
     {
         $path = explode('/', Request::path());
         if (!empty($path[0]) && in_array($path[0],Config::get('language.allow_lang'))) {
-            Cookie::set('lang_var', $path[0]);
+            Cookie::set('lang_var', $path[0],['expire'=>3600]);
+            Cookie::set('customer_lang', $path[0],['expire'=>3600]); //lang_var是tp自带的变量 ，跨控制器之后就失效了， 所以这里加一个供会员系统的变量
         }
         parent::__construct($app);
     }

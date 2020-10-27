@@ -41,32 +41,10 @@ b,
 strong {
   font-weight: normal;
 }
-address,
-cite,
-dfn,
-em,
-i,
-optgroup,
-var {
-  font-style: normal;
-}
-table {
-  border-collapse: collapse;
-  border-spacing: 0;
-  text-align: left;
-}
-caption,
-th {
-  text-align: inherit;
-}
 ul,
-ol,
-menu {
+li,
+ol {
   list-style: none;
-}
-fieldset,
-img {
-  border: 0;
 }
 input,
 button {
@@ -74,85 +52,6 @@ button {
   outline: none;
   border: none;
   background: none;
-}
-img,
-object,
-input,
-textarea,
-button,
-select {
-  vertical-align: middle;
-}
-article,
-aside,
-footer,
-header,
-section,
-nav,
-figure,
-figcaption,
-hgroup,
-details,
-menu {
-  display: block;
-}
-audio,
-canvas,
-video {
-  display: inline-block;
-  *display: inline;
-  *zoom: 1;
-}
-blockquote:before,
-blockquote:after,
-q:before,
-q:after {
-  content: "\0020";
-}
-textarea {
-  overflow: auto;
-  resize: vertical;
-}
-input,
-textarea,
-button,
-select,
-a {
-  outline: 0 none;
-  border: none;
-}
-button::-moz-focus-inner,
-input::-moz-focus-inner {
-  padding: 0;
-  border: 0;
-}
-mark {
-  background-color: transparent;
-}
-a,
-ins,
-s,
-u,
-del {
-  text-decoration: none;
-}
-sup,
-sub {
-  vertical-align: baseline;
-}
-html {
-  overflow-x: hidden;
-  height: 100%;
-  -webkit-tap-highlight-color: transparent;
-}
-a {
-  color: #25a4bb;
-}
-a:hover,
-a:active,
-a:focus,
-a:visited {
-  text-decoration: none;
 }
 input::-webkit-input-placeholder {
   /* WebKit browsers */
@@ -170,9 +69,20 @@ input:-ms-input-placeholder {
   /* Internet Explorer 10+ */
   color: #ccc;
 }
+a {
+  color: #25a4bb;
+}
+a:hover {
+  text-decoration: none;
+}
 @font-face {
   font-family: Neo_Sans;
   src: url("../../../../lib/font/Neo_Sans.ttf");
+}
+html {
+  overflow-x: hidden;
+  height: 100%;
+  -webkit-tap-highlight-color: transparent;
 }
 body {
   font-family: Neo_Sans, "Microsoft YaHei", Helvetica, "Meiryo UI", "Malgun Gothic", "Segoe UI", "Trebuchet MS", "Monaco", monospace, Tahoma, STXihei, "华文细黑", STHeiti, "Helvetica Neue", "Droid Sans", "wenquanyi micro hei", FreeSans, Arimo, Arial, SimSun, "宋体", Heiti, "黑体", sans-serif;

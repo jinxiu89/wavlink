@@ -8,50 +8,62 @@
 @import "../public/variables";
 
 .panel {
-    margin-bottom: 0;
-    border: none;
-    .panel-heading,
-    .panel-footer{
-        padding: 10px;
-        border-color: @borderColor;
-        background: @whiteColor;
+  margin-bottom: 0;
+  border: none;
+
+  .panel-heading,
+  .panel-footer {
+    padding: 10px;
+    border-color: @borderColor;
+    background: @whiteColor;
+  }
+
+  .panel-heading h3 {
+    font-size: 14px;
+  }
+
+  .panel-body {
+    padding: 10px;
+    font-size: 12px;
+
+    input, textarea {
+      box-shadow: none;
+      border-color: @borderColor;
     }
-    .panel-heading h3 {
-        font-size: 14px;
+  }
+
+  .panel-body .form-group {
+    margin-bottom: 10px;
+
+    label {
+      font-weight: normal;
     }
-    .panel-body {
-        padding: 10px;
-        font-size: 12px;
-        input,textarea {
-            box-shadow: none;
-            border-color: @borderColor;
-        }
+
+    label span {
+      color: red;
     }
-    .panel-body .form-group {
-        margin-bottom: 10px;
-        label {
-            font-weight: normal;
-        }
-        label span {
-            color: red;
-        }
-        p {
-            margin: 5px 0 0;
-            color: @whiteSmoke;
-            font-size: 12px;
-        }
-        button {
-            font-size: 12px;
-        }
-        &:nth-last-of-type(1) {
-            margin-bottom: 0;
-        }
+
+    p {
+      margin: 5px 0 0;
+      color: @whiteSmoke;
+      font-size: 12px;
     }
-    .panel-footer {
-        font-size: 12px;
-        word-break: break-word;
-        a {
-            color: @activeColor;
-        }
+
+    button {
+      font-size: 12px;
     }
+
+    &:nth-last-of-type(1) {
+      margin-bottom: 0;
+    }
+  }
+
+  .panel-footer {
+    font-size: 12px;
+    word-break: break-word;
+
+    a {
+      color: @activeColor;
+    }
+  }
 }

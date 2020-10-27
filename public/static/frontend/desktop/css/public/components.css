@@ -199,6 +199,7 @@ body {
   height: 60px;
   color: #fff;
   padding: 0 15px;
+  text-transform: uppercase;
 }
 .g-nav .menu-container .second-menu {
   position: fixed;
@@ -218,6 +219,7 @@ body {
 }
 .g-nav .menu-container .second-menu .second-item {
   float: left;
+  text-transform: capitalize;
 }
 .g-nav .menu-container .second-menu .second-item.active > a,
 .g-nav .menu-container .second-menu .second-item:hover > a {
@@ -630,6 +632,7 @@ body {
 .g-footer .foot-container dl dt {
   color: #fff;
   line-height: 26px;
+  text-transform: uppercase;
 }
 .g-footer .foot-container dl dd {
   text-overflow: ellipsis;
@@ -653,6 +656,7 @@ body {
   display: inline-block;
   color: #888;
   line-height: 26px;
+  text-transform: capitalize;
 }
 .g-footer .foot-container dl dd a:hover {
   color: #6196ff;
@@ -680,6 +684,7 @@ body {
 .g-path {
   margin: 0 0 10px;
   background: #fff;
+  text-transform: capitalize;
 }
 .g-path .breadcrumb {
   padding: 0 20px;
@@ -796,15 +801,17 @@ body {
 .support-aside ul li h3 {
   margin: 0 -10px;
   padding: 0 20px;
-  font-size: 14px;
+  font-size: 16px;
   line-height: 60px;
   background: #1D428A;
   color: #fff;
+  text-transform: capitalize;
 }
 .support-aside ul li a {
   display: block;
   font-size: 16px;
   color: #333;
+  text-transform: capitalize;
 }
 .support-aside ul li abefore,
 .support-aside ul li a:after {

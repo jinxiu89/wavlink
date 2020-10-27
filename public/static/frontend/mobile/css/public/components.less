@@ -286,10 +286,15 @@ header {
     line-height: 50px;
     background: @activeColor;
     color: @whiteColor;
+    text-transform: uppercase;
   }
 
-  a:hover {
-    color: @activeColor;
+  > .nav-container > .nav-wrapper > ul > li {
+    text-transform: uppercase;
+  }
+  > .nav-container > .nav-wrapper > ul > li > a,
+  > .nav-container > .nav-wrapper > ul > li > .nav-wrapper {
+    text-transform: capitalize;
   }
 
   .nav-back > a,
@@ -320,6 +325,7 @@ footer {
       line-height: 40px;
       color: #888;
       font-size: 12px;
+      text-transform: uppercase;
     }
 
     .about-item h3 span {
@@ -338,6 +344,7 @@ footer {
       line-height: 40px;
       color: #888;
       font-size: 12px;
+      text-transform: capitalize;
     }
 
     .about-item ul a .iconfont {
@@ -398,6 +405,7 @@ footer {
     background: @whiteColor;
     line-height: 50px;
     font-size: 12px;
+    text-transform: capitalize;
 
     li {
       .fl();

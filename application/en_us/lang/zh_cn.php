@@ -29,6 +29,7 @@ return [
     'close' => '关闭',
     'back' => '返回',
     'product' => '产品中心',
+    'products' => '产品中心',
     'support' => '服务与支持',
     'article'=>'新闻/博客',
     'blog' => '博客',

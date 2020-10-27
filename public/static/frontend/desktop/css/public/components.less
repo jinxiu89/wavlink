@@ -165,6 +165,7 @@ body {
       height: 60px;
       color: @whiteColor;
       padding: 0 15px;
+      text-transform: uppercase;
     }
 
     .second-menu {
@@ -185,6 +186,7 @@ body {
     }
     .second-menu .second-item {
       .fl();
+      text-transform: capitalize;
     }
     .second-menu .second-item.active > a, .second-menu .second-item:hover > a {
       color: @activeColor;
@@ -588,6 +590,7 @@ body {
     dl dt {
       color: @whiteColor;
       line-height: 26px;
+      text-transform: uppercase;
     }
     dl dd {
       .text-overflow();
@@ -606,6 +609,7 @@ body {
       display: inline-block;
       color: @whiteSmoke;
       line-height: 26px;
+      text-transform: capitalize;
       &:hover {
         color: @footHover;
       }
@@ -645,6 +649,7 @@ body {
 .g-path {
   margin: 0 0 10px;
   background: @whiteColor;
+  text-transform: capitalize;
   .breadcrumb {
     .clearFix();
     padding: 0 20px;
@@ -743,16 +748,18 @@ body {
   ul li h3 {
     margin: 0 -10px;
     padding: 0 20px;
-    font-size: 14px;
+    font-size: 16px;
     line-height: 60px;
     background: #1D428A;
     color: #fff;
+    text-transform: capitalize;
   }
   ul li a {
     .clearFix();
     display: block;
     font-size: 16px;
     color: @baseColor;
+    text-transform: capitalize;
     &:hover span{
       color: @activeColor;
       text-decoration: underline;

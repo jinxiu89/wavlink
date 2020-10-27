@@ -8,200 +8,269 @@
 @import "../public/variables";
 
 .g-path {
-    margin: 0 auto;
-    border-bottom: 1px solid @borderColor;
+  margin: 0 auto;
+  border-bottom: 1px solid @borderColor;
 }
 
 //放大鏡 + 特色描述
 .feature-box {
+  .clearFix();
+  padding: 0 15px;
+  background: @whiteColor;
+
+  .zoom-box {
     .clearFix();
-    padding: 0 15px;
-    background: @whiteColor;
-    .zoom-box {
-        .clearFix();
-        .spec-scroll .prev {
-            background: @borderColor;
-            border-color: @borderColor;
-            color: @baseColor;
-        }
-        .spec-scroll .next {
-            background: @activeColor;
-            border-color: @activeColor;
-            color: @whiteColor;
-        }
+
+    .spec-scroll .prev {
+      background: @borderColor;
+      border-color: @borderColor;
+      color: @baseColor;
     }
-    .des {
-        margin: 20px 0;
-        .title {
-            font-size: 18px;
-        }
-        .mode {
-            padding: 5px 0;
-            font-size: 14px;
-            color: @activeColor;
-            border-bottom: 1px solid @borderColor;
-        }
-        .feature {
-            margin: 20px 0 0 20px;
-        }
-        .feature li {
-            list-style-type: circle;
-            padding: 2px 0;
-        }
-        .store {
-            .clearFix();
-            margin: 20px 0 -10px;
-        }
-        .store span {
-            .fl();
-            width: 50%;
-            height: 36px;
-            line-height: 36px;
-            margin: 0 0 10px 0;
-        }
-        .store span:nth-of-type(2n + 1) {
-            padding-right: 5px;
-        }
-        .store span:nth-of-type(2n + 2) {
-            padding-left: 5px;
-        }
-        .store span a {
-            display: block;
-            color: @baseColor;
-            text-align: center;
-            border: 1px solid @activeColor;
-        }
+
+    .spec-scroll .next {
+      background: @activeColor;
+      border-color: @activeColor;
+      color: @whiteColor;
     }
+  }
+
+  .des {
+    margin: 20px 0;
+
+    .title {
+      font-size: 18px;
+    }
+
+    .mode {
+      padding: 5px 0;
+      font-size: 14px;
+      color: @activeColor;
+      border-bottom: 1px solid @borderColor;
+    }
+
+    .feature {
+      margin: 20px 0 0 20px;
+    }
+
+    .feature li {
+      list-style-type: circle;
+      padding: 2px 0;
+    }
+
+    .store {
+      .clearFix();
+      margin: 20px 0 -10px;
+    }
+
+    .store span {
+      .fl();
+      width: 50%;
+      height: 36px;
+      line-height: 36px;
+      margin: 0 0 10px 0;
+    }
+
+    .store span:nth-of-type(2n + 1) {
+      padding-right: 5px;
+    }
+
+    .store span:nth-of-type(2n + 2) {
+      padding-left: 5px;
+    }
+
+    .store span a {
+      display: block;
+      color: @baseColor;
+      text-align: center;
+      border: 1px solid @activeColor;
+    }
+  }
 }
+
 .poster-box {
-    img {
-        .img-responsive();
-        .center-block();
-    }
+  img {
+    .img-responsive();
+    .center-block();
+  }
 }
 
 //模塊切換導航條
 .nav-table {
-    background: #fff;
-    border-top: 1px solid @borderColor;
-    border-bottom: 1px solid @borderColor;
-    ul {
-        .clearFix();
-        margin: 0 auto;
-        padding: 5px 10px;
-        li {
-            .fl();
-            padding: 5px 10px;
-            cursor: pointer;
-            a {
-                color: @activeColor;
-            }
-            &:hover {
-                color: @hoverColor;
-                a {
-                    color: @hoverColor;
-                }
-            }
+  background: #fff;
+  border-top: 1px solid @borderColor;
+  border-bottom: 1px solid @borderColor;
+
+  ul {
+    .clearFix();
+    margin: 0 auto;
+    padding: 5px 10px;
+
+    li {
+      .fl();
+      padding: 5px 10px;
+      cursor: pointer;
+
+      a {
+        color: @activeColor;
+      }
+
+      &:hover {
+        color: @hoverColor;
+
+        a {
+          color: @hoverColor;
         }
-        .active {
-            color: @whiteColor;
-            background: @activeColor;
-            &:hover {
-                color: @whiteColor;
-            }
-        }
+      }
     }
 
-    @media screen and (min-width: 1200px) {
-        ul {
-            width: 83.333%;
-        }
+    .active {
+      color: @whiteColor;
+      background: @activeColor;
+
+      &:hover {
+        color: @whiteColor;
+      }
     }
-    @media screen and (max-width: 1199px) {
-        ul {
-            width: 100%;
-        }
+  }
+
+  @media screen and (min-width: 1200px) {
+    ul {
+      width: 83.333%;
     }
+  }
+  @media screen and (max-width: 1199px) {
+    ul {
+      width: 100%;
+    }
+  }
 }
 
 //詳情描述
 #detail {
-    background: @whiteColor;
-    /* 详情页描述 公共样式 */
-    div#Detail_page_all > div.container-fluid > div.row ul li {
-        margin:0;
-        list-style:none
-    }
-    div#Detail_page_all > div.container-fluid > div.row h2 {
-        display:inline-block;
-        font-size:1.5em;
-        font-weight:normal;
-        margin-bottom:10px
-    }
-    div#Detail_page_all > div.container-fluid > div.row h3 {
-        font-size:1.2em;
-        color:#888;
-    }
-    div#Detail_page_all > div.container-fluid > div.row ul.btn_list {
-        bottom:0 !important;
-    }
-    div#Detail_page_all > div.container-fluid > div.row ul.btn_list > li {
-        width:2em;
-        padding:0.4em 0;
-        float:left;
-        bottom:0 !important;
-        border:1px solid #888
-    }
-    div.container-fluid > div.row > section > div.detail_page_one > div.detail_page_text_cont > i,
-    div.container-fluid > div.row > section > div.detail_page_one > div.detail_page_text_cont > strong >  i { font-weight:normal;font-style: normal;font-size: 0.6em }
-    div.container-fluid > div.row > section > div.detail_page_one > div.detail_page_text_cont > i{ display: inline-block;margin-top: 0.5em }
-    div#Detail_page_all > div.container-fluid > div.row div.detail_page_text_cont { padding-top:4em !important; padding-bottom:2em !important; text-align:left }
-    div#Detail_page_all > div.container-fluid > div.row h2 { font-size:18px }
-    div#Detail_page_all > div.container-fluid > div.row p { font-size:14px }
-    div#Detail_page_all > div.container-fluid > div.row h3 { font-size:1em; color:#888 }
-    div[class^="detail_page"] strong { display: block; font-size: 18px; margin-bottom: 10px; }
-    div[class^="detail_page"] p { font-size: 14px; color: #888;}
+  background: @whiteColor;
+  /* 详情页描述 公共样式 */
+
+  div#Detail_page_all > div.container-fluid > div.row ul li {
+    margin: 0;
+    list-style: none
+  }
+
+  div#Detail_page_all > div.container-fluid > div.row h2 {
+    display: inline-block;
+    font-size: 1.5em;
+    font-weight: normal;
+    margin-bottom: 10px
+  }
+
+  div#Detail_page_all > div.container-fluid > div.row h3 {
+    font-size: 1.2em;
+    color: #888;
+  }
+
+  div#Detail_page_all > div.container-fluid > div.row ul.btn_list {
+    bottom: 0 !important;
+  }
+
+  div#Detail_page_all > div.container-fluid > div.row ul.btn_list > li {
+    width: 2em;
+    padding: 0.4em 0;
+    float: left;
+    bottom: 0 !important;
+    border: 1px solid #888
+  }
+
+  div.container-fluid > div.row > section > div.detail_page_one > div.detail_page_text_cont > i,
+  div.container-fluid > div.row > section > div.detail_page_one > div.detail_page_text_cont > strong > i {
+    font-weight: normal;
+    font-style: normal;
+    font-size: 0.6em
+  }
+
+  div.container-fluid > div.row > section > div.detail_page_one > div.detail_page_text_cont > i {
+    display: inline-block;
+    margin-top: 0.5em
+  }
+
+  div#Detail_page_all > div.container-fluid > div.row div.detail_page_text_cont {
+    padding-top: 4em !important;
+    padding-bottom: 2em !important;
+    text-align: left
+  }
+
+  div#Detail_page_all > div.container-fluid > div.row h2 {
+    font-size: 18px
+  }
+
+  div#Detail_page_all > div.container-fluid > div.row p {
+    font-size: 14px
+  }
+
+  div#Detail_page_all > div.container-fluid > div.row h3 {
+    font-size: 1em;
+    color: #888
+  }
+
+  div[class^="detail_page"] strong {
+    display: block;
+    font-size: 18px;
+    margin-bottom: 10px;
+  }
+
+  div[class^="detail_page"] p {
+    font-size: 14px;
+    color: #888;
+  }
 }
 
 //參數
 #specification {
-    background: @whiteColor;
-    .container-fluid {
+  background: @whiteColor;
+
+  .container-fluid {
+    padding: 0;
+
+    .row {
+      margin: 0;
+
+      ul {
         padding: 0;
-        .row {
-            margin: 0;
-            ul {
-                padding: 0;
-            }
-        }
+      }
     }
-    ul > li {
-        border-bottom: 1px solid @borderColor;
+  }
+
+  ul > li {
+    border-bottom: 1px solid @borderColor;
+  }
+
+  ul > li.li_title > strong {
+    display: block;
+    color: @baseColor;
+    line-height: 18px;
+    padding: 10px 0;
+    vertical-align: middle;
+  }
+
+  ul > li:first-child > strong {
+    font-size: 15px;
+  }
+
+  ul > li > strong {
+    line-height: 18px;
+    padding: 10px !important;
+    color: #666;
+  }
+
+  ul > li > div > p {
+    line-height: 24px;
+    color: #666;
+    font-size: 12px;
+
+    &:nth-last-of-type(1) {
+      padding-bottom: 10px !important;
     }
-    ul > li.li_title > strong {
-        display: block;
-        color: @baseColor;
-        line-height: 18px;
-        padding: 10px 0;
-        vertical-align: middle;
-    }
-    ul > li:first-child > strong {
-        font-size: 15px;
-    }
-    ul > li > strong {
-        line-height: 18px;
-        padding: 10px!important;
-        color: #666;
-    }
-    ul > li > div > p {
-        line-height: 24px;
-        color: #666;
-        font-size: 12px;
-        &:nth-last-of-type(1) {
-            padding-bottom: 10px!important;
-        }
-    }
-    ul > li > div {
-        padding: 0 10px !important;
-    }
+  }
+
+  ul > li > div {
+    padding: 0 10px !important;
+  }
 }

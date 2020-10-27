@@ -239,7 +239,7 @@
 }
 #specification ul > li > strong {
   line-height: 18px;
-  padding: 10px!important;
+  padding: 10px !important;
   color: #666;
 }
 #specification ul > li > div > p {
@@ -248,7 +248,7 @@
   font-size: 12px;
 }
 #specification ul > li > div > p:nth-last-of-type(1) {
-  padding-bottom: 10px!important;
+  padding-bottom: 10px !important;
 }
 #specification ul > li > div {
   padding: 0 10px !important;

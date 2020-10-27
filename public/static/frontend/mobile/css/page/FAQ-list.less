@@ -8,32 +8,37 @@
 @import "../public/variables";
 
 .banner {
-    background: #42A4FF;
-    img {
-        .img-responsive();
-        .center-block();
-        width: 800px;
-        @media screen and (max-width: 800px) {
-            width: 100%;
-        }
+  background: #42A4FF;
+
+  img {
+    .img-responsive();
+    .center-block();
+    width: 800px;
+    @media screen and (max-width: 800px) {
+      width: 100%;
     }
+  }
 }
+
 .main {
-    background: @whiteColor;
+  background: @whiteColor;
 }
 
 .item {
-    padding: 10px;
-    border-bottom: 1px solid @borderColor;
-    h3 {
-        margin-bottom: 10px;
-        line-height: 18px;
-    }
-    h3 a {
-        color: @baseColor;
-        font-size: 14px;
-    }
-    p span {
-        font-size: 12px;
-    }
+  padding: 10px;
+  border-bottom: 1px solid @borderColor;
+
+  h3 {
+    margin-bottom: 10px;
+    line-height: 18px;
+  }
+
+  h3 a {
+    color: @baseColor;
+    font-size: 14px;
+  }
+
+  p span {
+    font-size: 12px;
+  }
 }

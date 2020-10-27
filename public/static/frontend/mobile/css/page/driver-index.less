@@ -10,9 +10,11 @@
 .tips {
   padding: 20px 10px;
   background: @whiteColor;
+
   p {
     margin-bottom: 5px;
   }
+
   b {
     font-weight: bold;
   }
@@ -22,17 +24,21 @@
   margin: 10px 0;
   padding: 20px 10px;
   background: @whiteColor;
+
   .type {
     margin-bottom: 20px;
+
     h3 {
       margin-bottom: 5px;
       font-size: 14px;
       color: @whiteSmoke;
     }
+
     .type-category ul {
       .clearFix();
       border-left: 1px solid @borderColor;
     }
+
     .type-category ul li {
       .fl();
       .text-overflow();
@@ -42,26 +48,32 @@
       line-height: 35px;
       border-right: 1px solid @borderColor;
       border-bottom: 1px solid @borderColor;
+
       &:nth-of-type(1),
       &:nth-of-type(2) {
         border-top: 1px solid @borderColor;
       }
     }
+
     .type-category ul li.active {
       background: @activeColor;
+
       a {
         color: @whiteColor;
       }
     }
+
     .type-category ul li a {
       color: @baseColor;
     }
   }
+
   .search {
     form {
       display: flex;
       width: 100%;
     }
+
     form input {
       flex: 1;
       height: 35px;
@@ -69,6 +81,7 @@
       border: 1px solid @borderColor;
       border-radius: 5px 0 0 5px;
     }
+
     form button {
       .fl();
       height: 35px;
@@ -84,6 +97,7 @@
   .item {
     margin-bottom: 5px;
     background: @whiteColor;
+
     h3 {
       .text-overflow();
       padding: 0 10px;
@@ -92,18 +106,23 @@
       font-size: 16px;
       color: @activeColor;
       border-bottom: 1px solid @borderColor;
+      text-transform: capitalize;
+
       span:after {
         content: '>';
         padding: 0 5px;
       }
+
       span:nth-last-of-type(1):after {
         content: "";
         padding: 0;
       }
     }
+
     .mode {
       .clearFix();
       padding: 20px 10px;
+
       p {
         .text-overflow();
         .fl();
@@ -111,14 +130,17 @@
         padding: 8px 5px;
         border-right: 1px solid @borderColor;
         border-bottom: 1px solid @borderColor;
+
         &:nth-of-type(1),
         &:nth-of-type(2) {
           border-top: 1px solid @borderColor;
         }
+
         &:nth-of-type(2n + 1) {
           border-left: 1px solid @borderColor;
         }
       }
+
       p a {
         color: @baseColor;
       }

@@ -127,7 +127,7 @@ a {
 }
 input,
 textarea {
-  box-shadow: none!important;
+  box-shadow: none !important;
   outline: none;
   -webkit-appearance: none;
   /*去除系统默认的样式*/
@@ -326,13 +326,18 @@ header .search-container .search-mask-layer {
   line-height: 50px;
   background: #1D428A;
   color: #fff;
+  text-transform: uppercase;
 }
-.hc-mobile-nav a:hover {
-  color: #1D428A;
+.hc-mobile-nav > .nav-container > .nav-wrapper > ul > li {
+  text-transform: uppercase;
+}
+.hc-mobile-nav > .nav-container > .nav-wrapper > ul > li > a,
+.hc-mobile-nav > .nav-container > .nav-wrapper > ul > li > .nav-wrapper {
+  text-transform: capitalize;
 }
 .hc-mobile-nav .nav-back > a,
 .hc-mobile-nav .nav-close > a {
-  font-size: 12px!important;
+  font-size: 12px !important;
   font-weight: normal;
 }
 footer {
@@ -352,6 +357,7 @@ footer .about .about-item h3 {
   line-height: 40px;
   color: #888;
   font-size: 12px;
+  text-transform: uppercase;
 }
 footer .about .about-item h3 span {
   position: absolute;
@@ -367,6 +373,7 @@ footer .about .about-item ul a {
   line-height: 40px;
   color: #888;
   font-size: 12px;
+  text-transform: capitalize;
 }
 footer .about .about-item ul a .iconfont {
   padding: 0 10px;
@@ -423,6 +430,7 @@ footer .copy-right p {
   background: #fff;
   line-height: 50px;
   font-size: 12px;
+  text-transform: capitalize;
 }
 .g-path .breadcrumbbefore,
 .g-path .breadcrumb:after {

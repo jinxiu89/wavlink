@@ -9,46 +9,57 @@
 
 .breadcrumb {
   white-space: nowrap;
-  overflow-x:scroll;
+  overflow-x: scroll;
+
   li + li:before {
     padding: 0;
   }
 }
+
 //搜索結果分類
 .search-category {
   background: @whiteColor;
   border-bottom: 1px solid @borderColor;
+
   ul {
     padding: 15px 0 15px 10px;
     font-size: 12px;
     white-space: nowrap;
-    overflow-x:scroll;
+    overflow-x: scroll;
+
     &::-webkit-scrollbar {
       display: none;
     }
   }
+
   li {
     display: inline-block;
     padding: 0 10px;
+
     a {
       color: @baseColor;
+
       &.active {
         color: @activeColor;
       }
     }
-    &:nth-of-type(1){
+
+    &:nth-of-type(1) {
       padding-left: 0;
     }
+
     &:nth-last-of-type(1) {
       padding-right: 0;
     }
   }
+
   @media screen and (min-width: 321px) and (max-width: 375px) {
     li {
       padding: 0 12px;
     }
   }
 }
+
 //搜索結果分類結束
 
 //搜索結果 - 產品
@@ -57,58 +68,73 @@
   padding: 10px;
   background: @whiteColor;
   border-bottom: 1px solid @borderColor;
+
   &:nth-last-of-type(1) {
     border-bottom: none;
   }
+
   .img-box {
     display: block;
     .fl();
     width: 30%;
   }
+
   .img-box a {
     #img-optimize(56.25%, @bodyBgColor);
+
     img {
       .img-responsive();
       .center-block();
     }
   }
+
   .des {
     .fl();
     width: 70%;
     padding-left: 10px;
     font-size: 12px;
   }
+
   .des .breadcrumb {
     padding: 0;
     margin: 0;
     background: @whiteColor;
+
     a {
       color: @lightGrey;
+
       &:hover {
         color: @activeColor;
       }
     }
   }
+
   .des h2 {
     margin: 8px 0;
     font-size: 12px;
+
     a {
       color: @blackColor;
+
       &:hover {
         color: @activeColor;
       }
     }
   }
+
   .links {
     margin-top: 8px;
+
     a {
       color: @lightGrey;
+
       &:hover {
         color: @activeColor;
       }
     }
   }
 }
+
 //搜索結果 - 產品結束
 
 //搜索結果 - 驅動
@@ -116,35 +142,44 @@
   .item {
     margin-bottom: 10px;
     background: @whiteColor;
+
     &:nth-last-of-type(1) {
       margin-bottom: 0;
     }
+
     .panel {
       margin-bottom: 0;
       border-radius: 0;
       border: none;
     }
+
     .panel-heading {
       background: @whiteColor;
       padding: 10px;
       border-color: @borderColor;
     }
+
     .panel-body {
       padding: 10px;
     }
+
     h3 {
       font-size: 14px;
       line-height: 22px;
     }
+
     .info {
       font-size: 12px;
       margin: 10px 0;
+
       p {
         margin-bottom: 5px;
       }
     }
+
     .download {
       font-size: 12px;
+
       a {
         padding: 2px 12px;
         font-size: 12px;
@@ -153,4 +188,5 @@
     }
   }
 }
+
 //搜索結果 - 驅動結束

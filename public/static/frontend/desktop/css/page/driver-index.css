@@ -147,6 +147,7 @@
   line-height: 42px;
   font-size: 22px;
   border-bottom: 1px solid #eaeaea;
+  text-transform: capitalize;
 }
 .Driver-box .item h3 span {
   color: #1D428A;

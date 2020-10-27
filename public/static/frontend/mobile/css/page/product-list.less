@@ -6,77 +6,93 @@
 */
 @import "../public/mixins";
 @import "../public/variables";
+
 .g-pagination {
-    margin: 5px 0 0;
+  margin: 5px 0 0;
 }
 
 //列表分類佈局
 .category-list {
-    .clearFix();
-    margin: 0 0 10px;
-    background: @whiteColor;
+  .clearFix();
+  margin: 0 0 10px;
+  background: @whiteColor;
 }
+
 .category-item {
-    .fl();
-    width: 33.333333%;
-    padding: 10px;
-    border-right: 1px solid @borderColor;
-    border-bottom: 1px solid @borderColor;
-    &:nth-of-type(3n) {
-        border-right: transparent;
+  .fl();
+  width: 33.333333%;
+  padding: 10px;
+  border-right: 1px solid @borderColor;
+  border-bottom: 1px solid @borderColor;
+
+  &:nth-of-type(3n) {
+    border-right: transparent;
+  }
+
+  .img-box {
+    img {
+      .center-block();
+      .img-responsive();
+      width: 80%;
     }
-    .img-box {
-        img {
-            .center-block();
-            .img-responsive();
-            width: 80%;
-        }
+  }
+
+  .des {
+    text-align: center;
+    font-size: 12px;
+    .text-overflow();
+
+    a {
+      color: @baseColor;
     }
-    .des {
-        text-align: center;
-        font-size: 12px;
-        .text-overflow();
-        a {
-            color: @baseColor;
-        }
-    }
+  }
 }
+
 //列表分類佈局結束
 
 //列表布局样式
 .list-box {
-    .clearFix();
-    .list-item {
-        .fl();
-        width: 50%;
-        margin: 0 0 5px;
-        &:nth-of-type(2n + 1) {
-            padding-right: 2.5px;
-        }
-        &:nth-of-type(2n + 2) {
-            padding-left: 2.5px;
-        }
+  .clearFix();
+
+  .list-item {
+    .fl();
+    width: 50%;
+    margin: 0 0 5px;
+
+    &:nth-of-type(2n + 1) {
+      padding-right: 2.5px;
     }
-    .list-item .thumbnail {
-        margin: 0;
-        border: none;
-        border-radius: 0;
+
+    &:nth-of-type(2n + 2) {
+      padding-left: 2.5px;
     }
-    .list-item .thumbnail .img-box {
-        #img-optimize(56.25%, @bodyBgColor);
+  }
+
+  .list-item .thumbnail {
+    margin: 0;
+    border: none;
+    border-radius: 0;
+  }
+
+  .list-item .thumbnail .img-box {
+    #img-optimize(56.25%, @bodyBgColor);
+  }
+
+  .list-item .thumbnail .caption {
+    padding: 15px 6px;
+
+    .title {
+      .text-overflow-many(100%, 2, 20px);
+      margin-bottom: 5px;
+      font-size: 12px;
     }
-    .list-item .thumbnail .caption {
-        padding: 15px 6px;
-        .title {
-            .text-overflow-many(100%, 2, 20px);
-            margin-bottom: 5px;
-            font-size: 12px;
-        }
-        p {
-            font-size: 10px;
-            color: @activeColor;
-            .text-overflow();
-        }
+
+    p {
+      font-size: 10px;
+      color: @activeColor;
+      .text-overflow();
     }
+  }
 }
+
 //列表布局样式

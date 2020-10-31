@@ -1,136 +1,159 @@
-/**
-* @name: product-list.less
-* @description: 產品列表樣式
-* @author: Alan(alan_webdeveloper@163.com)
-* @update: 2019-09-16 10:30
-*/
+//@name: product-list.less
+//@description: 產品列表樣式
+//@author: Alan(alan_webdeveloper@163.com)
+//@update: 2019-09-16 10:30
 @import "../public/mixins";
 @import "../public/variables";
 //列表布局样式
 .g-path {
-    margin: 10px 0;
-    .breadcrumb {
-        width: 100%;
-    }
+  margin: 10px 0;
+
+  .breadcrumb {
+    width: 100%;
+  }
 }
+
 .g-pagination {
-    margin: 7.5px 0 10px;
+  margin: 7.5px 0 10px;
 }
+
 .category-list {
-    .clearFix();
-    margin: 0 0 7.5px;
-    padding: 20px;
-    background: @whiteColor;
-    .category-item {
-        .fl();
-        width: 10%;
-        padding: 0 5px;
-        .des a {
-            display: block;
-            text-align: center;
-            color: @baseColor;
-            font-size: 12px;
-        }
-        img {
-            width: 80px;
-            .img-responsive();
-            .center-block();
-        }
-        &:nth-of-type(1) {
-            padding-left: 0;
-        }
-        &:nth-last-of-type(1) {
-            padding-right: 0;
-        }
-    }
-    .category-item > div {
-        padding: 8px 0;
-        &:hover {
-            background: @bodyBgColor;
-            .des a {
-                color: @activeColor;
-            }
-        }
-    }
-    .active > div {
-        background: @bodyBgColor;
-        .des a {
-            color: @activeColor;
-        }
+  .clearFix();
+  margin: 0 0 7.5px;
+  padding: 20px;
+  background: @whiteColor;
+
+  .category-item {
+    .fl();
+    width: 10%;
+    padding: 0 5px;
+
+    .des a {
+      display: block;
+      text-align: center;
+      color: @baseColor;
+      font-size: 12px;
     }
 
-    @media screen and (min-width: 992px) and (max-width: 1700px) {
-        .category-item {
-            width: 12%;
-        }
+    img {
+      width: 80px;
+      .img-responsive();
+      .center-block();
     }
-    @media screen and (min-width: 768px) and (max-width: 991px) {
-        .category-item {
-            width: 16%;
-        }
+
+    &:nth-of-type(1) {
+      padding-left: 0;
     }
+
+    &:nth-last-of-type(1) {
+      padding-right: 0;
+    }
+  }
+
+  .category-item > div {
+    padding: 8px 0;
+
+    &:hover {
+      background: @bodyBgColor;
+
+      .des a {
+        color: @activeColor;
+      }
+    }
+  }
+
+  .active > div {
+    background: @bodyBgColor;
+
+    .des a {
+      color: @activeColor;
+    }
+  }
+
+  @media screen and (min-width: 992px) and (max-width: 1700px) {
+    .category-item {
+      width: 12%;
+    }
+  }
+  @media screen and (min-width: 768px) and (max-width: 991px) {
+    .category-item {
+      width: 16%;
+    }
+  }
 }
 
 .list-box {
-    .clearFix();
-    .list-item {
-        padding: 2.5px;
+  .clearFix();
+
+  .list-item {
+    padding: 2.5px;
+  }
+
+  .list-item .thumbnail {
+    margin: 0;
+    border: none;
+    border-radius: 0;
+
+    &:hover .caption .mode,
+    &:hover .caption .des {
+      color: @activeColor;
     }
-    .list-item .thumbnail {
-        margin: 0;
-        border: none;
-        border-radius: 0;
-        &:hover .caption .mode,
-        &:hover .caption .des {
-            color: @activeColor;
-        }
-    }
-    .list-item .thumbnail .img-box {
-        #img-optimize(56.25%, @bodyBgColor);
-    }
-    .list-item .thumbnail .caption {
-        padding: 15px 50px;
-        .mode {
-            padding-bottom: 15px;
-            font-size: 14px;
-            font-weight: bold;
-            text-align: center;
-            color: @baseColor;
-        }
-        .des {
-            .text-overflow-many(100%, 2, 22px);
-            text-align: center;
-            font-size: 14px;
-            color: @baseColor;
-        }
+  }
+
+  .list-item .thumbnail .img-box {
+    #img-optimize(56.25%, @bodyBgColor);
+  }
+
+  .list-item .thumbnail .caption {
+    padding: 15px 50px;
+
+    .mode {
+      padding-bottom: 15px;
+      font-size: 14px;
+      font-weight: bold;
+      text-align: center;
+      color: @baseColor;
     }
 
-    @media screen and (min-width: 992px) {
-        .list-item:nth-of-type(3n + 1) {
-            padding-left: 0;
-        }
-        .list-item:nth-of-type(3n + 3) {
-            padding-right: 0;
-        }
+    .des {
+      .text-overflow-many(100%, 2, 22px);
+      text-align: center;
+      font-size: 14px;
+      color: @baseColor;
     }
-    @media screen and (min-width: 768px) and (max-width: 991px) {
-        .list-item:nth-of-type(2n + 1) {
-            padding-left: 0;
-        }
-        .list-item:nth-of-type(2n + 2) {
-            padding-right: 0;
-        }
+  }
+
+  @media screen and (min-width: 992px) {
+    .list-item:nth-of-type(3n + 1) {
+      padding-left: 0;
     }
-    @media screen and (max-width: 1600px) {
-        .list-item .thumbnail .caption {
-            padding: 15px 8px;
-        }
-        .list-item .thumbnail .caption .mode {
-            font-size: 14px;
-        }
-        .list-item .thumbnail .caption .des {
-            font-size: 14px;
-        }
+
+    .list-item:nth-of-type(3n + 3) {
+      padding-right: 0;
     }
+  }
+  @media screen and (min-width: 768px) and (max-width: 991px) {
+    .list-item:nth-of-type(2n + 1) {
+      padding-left: 0;
+    }
+
+    .list-item:nth-of-type(2n + 2) {
+      padding-right: 0;
+    }
+  }
+  @media screen and (max-width: 1600px) {
+    .list-item .thumbnail .caption {
+      padding: 15px 8px;
+    }
+
+    .list-item .thumbnail .caption .mode {
+      font-size: 14px;
+    }
+
+    .list-item .thumbnail .caption .des {
+      font-size: 14px;
+    }
+  }
 }
+
 //列表布局样式結束

@@ -1,22 +1,23 @@
-/**
-* @name: product-detail.less
-* @description: 產品詳情樣式
-* @author: Alan(alan_webdeveloper@163.com)
-* @update: 2019-09-23 15:10
-*/
+//@name: product-detail.less
+//@description: 產品詳情樣式
+//@author: Alan(alan_webdeveloper@163.com)
+//@update: 2019-09-23 15:10
 @import "../public/mixins";
 @import "../public/variables";
 
 .relative {
   position: relative;
 }
+
 .absolute {
   position: absolute;
   z-index: 10;
 }
+
 .text-center {
   text-align: center;
 }
+
 .color-white {
   color: #fff;
 }
@@ -31,43 +32,53 @@
   .clearFix();
   padding: 40px 0;
   background: @whiteColor;
+
   .zoom-box {
     .fl();
     width: 40%;
+
     .spec-scroll .prev {
       background: @borderColor;
       border-color: @borderColor;
       color: @baseColor;
     }
+
     .spec-scroll .next {
       background: @activeColor;
       border-color: @activeColor;
       color: @whiteColor;
     }
   }
+
   .des {
     .fl();
     width: 60%;
     padding-left: 40px;
+
     .title {
       font-size: 18px;
     }
+
     .mode {
       padding: 5px 0;
       font-size: 14px;
       color: @activeColor;
       border-bottom: 1px solid @borderColor;
     }
+
     .feature {
       margin: 20px 0 0 20px;
     }
+
     .feature li {
       list-style-type: circle;
       padding: 2px 0;
     }
+
     .store {
       margin: 20px 0;
     }
+
     .store span {
       display: inline-block;
       width: 220px;
@@ -77,15 +88,18 @@
       text-align: center;
       border: 1px solid @activeColor;
     }
+
     .store span a {
       display: block;
       color: @baseColor;
+
       &:hover {
         background: @activeColor;
         color: @whiteColor;
       }
     }
   }
+
   .container {
     width: 70%;
     @media screen and (min-width: 768px) and (max-width: 991px) {
@@ -95,6 +109,7 @@
       width: 80%;
     }
   }
+
   @media screen and (min-width: 768px) and (max-width: 991px) {
     .zoom-box {
       width: 80%;
@@ -108,6 +123,7 @@
     }
   }
 }
+
 .poster-box {
   img {
     .img-responsive();
@@ -120,32 +136,40 @@
   background: #fff;
   border-top: 1px solid @borderColor;
   border-bottom: 1px solid @borderColor;
+
   ul {
     .clearFix();
     margin: 0 auto;
     padding: 5px 20px;
+
     li {
       .fl();
       cursor: pointer;
+
       &:nth-of-type(1),
       &:nth-of-type(2) {
         padding: 10px 20px;
       }
+
       a {
         display: block;
         padding: 10px 20px;
         color: @activeColor;
       }
+
       &:hover {
         color: @activeColor;
+
         a {
           color: @activeColor;
         }
       }
     }
+
     .active {
       color: @whiteColor;
       background: @activeColor;
+
       &:hover {
         color: @whiteColor;
       }
@@ -168,26 +192,53 @@
 #detail .offset-box {
   .clearFix();
 }
+
 #detail {
   //字體大小
-  @media screen and (min-width:768px) and (max-width: 991px) {
-    div[class^="detail_page"] strong{ font-size: 18px; margin-bottom: 5px; }
-    div[class^="detail_page"] p{ font-size: 13px  }
+  @media screen and (min-width: 768px) and (max-width: 991px) {
+    div[class^="detail_page"] strong {
+      font-size: 18px;
+      margin-bottom: 5px;
+    }
+
+    div[class^="detail_page"] p {
+      font-size: 13px
+    }
   }
-  @media screen and (min-width: 992px) and (max-width: 1199px){
-    div[class^="detail_page"] strong { font-size: 22px; margin-bottom: 10px; }
-    div[class^="detail_page"] p { font-size: 16px;}
+  @media screen and (min-width: 992px) and (max-width: 1199px) {
+    div[class^="detail_page"] strong {
+      font-size: 22px;
+      margin-bottom: 10px;
+    }
+
+    div[class^="detail_page"] p {
+      font-size: 16px;
+    }
   }
   @media screen and (min-width: 1200px) and (max-width: 1366px) {
-    div[class^="detail_page"] strong { font-size: 28px; margin-bottom: 15px; }
-    div[class^="detail_page"] p { font-size: 16px;}
+    div[class^="detail_page"] strong {
+      font-size: 28px;
+      margin-bottom: 15px;
+    }
+
+    div[class^="detail_page"] p {
+      font-size: 16px;
+    }
   }
-  @media screen and (min-width:1367px){
-    div[class^="detail_page"] strong { font-size: 35px; margin-bottom: 15px; font-weight: bold; }
-    div[class^="detail_page"] p { font-size: 20px;}
+  @media screen and (min-width: 1367px) {
+    div[class^="detail_page"] strong {
+      font-size: 35px;
+      margin-bottom: 15px;
+      font-weight: bold;
+    }
+
+    div[class^="detail_page"] p {
+      font-size: 20px;
+    }
   }
-  div[class^="detail_page"] strong{
-    display:inline-block;
+
+  div[class^="detail_page"] strong {
+    display: inline-block;
   }
 }
 
@@ -195,28 +246,34 @@
 #specification {
   padding: 4% 0;
   background: @whiteColor;
+
   ul > li {
     .min-height(50px);
     line-height: 50px;
     border-bottom: 1px solid @borderColor;
   }
+
   ul > li.li_title > strong {
     color: @baseColor;
     line-height: 20px;
     vertical-align: middle;
   }
+
   ul > li:first-child > strong {
     font-size: 15px;
   }
+
   ul > li > strong {
     padding: 0 15px !important;
     color: #666;
   }
+
   ul > li > div > p {
     line-height: 24px;
     color: #666;
     font-size: 12px;
   }
+
   ul > li > div {
     padding: 15px !important;
     border-left: 1px solid @borderColor;
@@ -238,6 +295,7 @@
   box-shadow: 0 0 20px rgba(0, 0, 0, .1);
   background: @whiteColor;
   #border-radius(5px);
+
   p {
     #text-vertical(35px);
     border-bottom: 1px solid @borderColor;
@@ -245,20 +303,25 @@
     background: @activeColor;
     cursor: pointer;
   }
+
   ul li {
     width: 110px;
     #text-vertical(35px);
     border-bottom: 1px solid @borderColor;
     cursor: pointer;
+
     &:nth-last-of-type(1) {
       border-bottom: none;
     }
+
     &:hover {
       color: @activeColor;
+
       a {
         color: @activeColor;
       }
     }
+
     a {
       display: block;
       color: @baseColor;

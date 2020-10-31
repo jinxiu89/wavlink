@@ -1,28 +1,30 @@
-/**
-* @name: article.less
-* @description: article列表樣式
-* @author: Alan(alan_webdeveloper@163.com)
-* @update: 2019-11-25 10:00
-*/
+//@name: article.less
+//@description: article列表樣式
+//@author: Alan(alan_webdeveloper@163.com)
+//@update: 2019-11-25 10:00
 @import "../public/mixins";
 @import "../public/variables";
 
 .g-main {
   background: none;
 }
+
 .g-pagination {
   margin: 10px 0;
+
   .pagination {
     .clearFix();
     margin: 15px 0;
+
     li {
       display: block;
       .fl();
       margin: 0;
     }
   }
-  .pagination>li>a:focus,
-  .pagination>li>a:hover {
+
+  .pagination > li > a:focus,
+  .pagination > li > a:hover {
     border-color: @activeColor
   }
 }
@@ -32,58 +34,74 @@
   padding: 15px;
   background: @whiteColor;
   border-bottom: 1px solid @borderColor;
+
   &:nth-last-of-type(1) {
     border-bottom: none;
   }
+
   .img-box {
     display: block;
     .fl();
     width: 20%;
   }
+
   .img-box a {
     #img-optimize(56.25%, @bodyBgColor);
     border: 1px solid transparent;
+
     &:hover {
       border: 1px solid @activeColor;
     }
+
     img {
       .img-responsive();
       .center-block();
     }
   }
+
   .des {
     .fl();
     width: 80%;
     padding-left: 15px;
   }
+
   .des .breadcrumb {
     padding: 0;
     margin: 0;
     background: @whiteColor;
-    li+li:before {
+
+    li + li:before {
       padding: 0;
     }
+
     a {
       color: @lightGrey;
+
       &:hover {
         color: @activeColor;
       }
     }
   }
+
   .des h2 {
     margin: 10px 0;
     font-size: 16px;
+
     a {
       color: @blackColor;
+
       &:hover {
         color: @activeColor;
       }
     }
   }
+
   .links {
     margin-top: 10px;
+
     a {
       color: @lightGrey;
+
       &:hover {
         color: @activeColor;
       }
@@ -95,18 +113,22 @@
   .item {
     margin: 10px 0 0;
     #border-radius(5px);
+
     &:nth-of-type(1) {
       margin-top: 0;
     }
+
     .panel {
       margin-bottom: 0;
       border: none;
       border-radius: 0;
       box-shadow: none;
     }
+
     .panel .panel-heading {
       border-color: @borderColor;
       background: none;
+
       .title {
         font-size: 16px;
         font-weight: 700;
@@ -114,44 +136,54 @@
         color: @activeColor;
       }
     }
+
     .panel .panel-body {
       .info {
         p {
           margin-bottom: 10px;
         }
+
         p span {
           display: inline-block;
           line-height: 20px;
           color: @whiteSmoke;
+
           &:nth-of-type(1) {
             color: @baseColor;
             font-weight: 700;
           }
         }
       }
+
       .download {
         .download-list {
           font-size: 14px;
           font-weight: 700;
         }
+
         a.btn {
           padding: 2px 12px;
           margin-right: 4px;
           font-size: 12px;
           border: none;
+
           &:hover {
             background: none;
+
             .iconfont {
               color: @activeColor;
             }
           }
         }
+
         a .iconfont {
           font-size: 30px;
         }
+
         a.all .iconfont {
           color: @activeColor;
         }
+
         a.windows .iconfont {
           color: #00ADEF;
         }

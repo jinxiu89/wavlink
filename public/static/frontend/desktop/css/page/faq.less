@@ -1,35 +1,41 @@
-/**
-* @name: FAQ.less
-* @description: FAQ列表樣式
-* @author: Alan(alan_webdeveloper@163.com)
-* @update: 2019-09-19 11:00
-*/
+//@name: FAQ.less
+//@description: FAQ列表樣式
+//@author: Alan(alan_webdeveloper@163.com)
+//@update: 2019-09-19 11:00
 @import "../public/mixins";
 @import "../public/variables";
+
 .g-filter {
-    margin-bottom: 10px;
+  margin-bottom: 10px;
 }
+
 .g-main {
-    background: none;
+  background: none;
 }
+
 .g-main .item {
-    padding: 15px;
-    background-color: #fff;
-    border-bottom: 1px solid @borderColor;
-    &:nth-last-of-type(2) {
-        border-bottom: none;
+  padding: 15px;
+  background-color: #fff;
+  border-bottom: 1px solid @borderColor;
+
+  &:nth-last-of-type(2) {
+    border-bottom: none;
+  }
+
+  a {
+    font-size: 16px;
+    color: @baseColor;
+
+    &:hover {
+      color: @activeColor;
     }
-    a {
-        font-size: 16px;
-        color: @baseColor;
-        &:hover {
-            color: @activeColor;
-        }
-    }
-    span {
-        font-size: 12px;
-        display: inline-block;
-        margin-top: 10px;
-    }
+  }
+
+  span {
+    font-size: 12px;
+    display: inline-block;
+    margin-top: 10px;
+  }
 }
+
 //FAQ列表樣式結束

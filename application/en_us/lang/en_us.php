@@ -102,7 +102,7 @@ return [
     'Last Name' => 'Last Name: ',
     'Email' => 'Email: ',
     'Model' => 'Model: ',
-    'Ean' => 'Ean/UPC:',
+    'Ean' => 'EAN:',
     'Order Number' => 'Order Number: ',
     'Order tips' =>
         'The order number is always given when you purchase items on Amazon, eBay, or other platforms. 

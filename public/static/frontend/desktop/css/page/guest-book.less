@@ -1,65 +1,76 @@
-/**
-* @name: guest-book.less
-* @description: 留言榜层叠样式
-* @author: Alan(alan_webdeveloper@163.com)
-* @update: 2019-09-16 10:30
-*/
+//@name: guest-book.less
+//@description: 留言榜层叠样式
+//@author: Alan(alan_webdeveloper@163.com)
+//@update: 2019-09-16 10:30
 @import "../public/mixins";
 @import "../public/variables";
 
 .panel {
   margin-bottom: 0;
   border-color: @borderColor;
+
   .panel-heading,
-  .panel-footer{
+  .panel-footer {
     border-color: @borderColor;
     background: @whiteColor;
   }
+
   .panel-heading h3 {
     font-size: 14px;
   }
+
   .panel-body {
-    input,textarea {
+    input, textarea {
       box-shadow: none;
       border-color: @borderColor;
     }
   }
+
   .panel-body .form-group {
     label {
       font-weight: normal;
     }
+
     label span {
       color: red;
     }
+
     p {
       margin: 5px 0 0;
       color: @whiteSmoke;
       font-size: 12px;
     }
+
     button {
       font-size: 12px;
     }
+
     button:nth-of-type(1) {
       color: @whiteColor;
       background: @activeColor;
       border-color: @activeColor;
+
       &:hover {
         background: @activeColor - 10;
         border-color: @activeColor - 10;
       }
     }
+
     button:nth-last-of-type(1) {
       color: @baseColor;
       background: @bodyBgColor;
       border-color: @bodyBgColor;
+
       &:hover {
         background: @bodyBgColor - 10;
         border-color: @bodyBgColor - 10;
       }
     }
   }
+
   .panel-footer a {
     color: @activeColor;
+
     &:hover {
       color: @activeColor - 10;
       text-decoration: underline;

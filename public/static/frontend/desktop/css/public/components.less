@@ -1,9 +1,7 @@
-/**
-* @name: components.less
-* @description: 公共模块css
-* @author: Alan(alan_webdeveloper@163.com)
-* @update: 2019-09-10 16:30
-*/
+//@name: components.less
+//@description: 公共模块css
+//@author: Alan(alan_webdeveloper@163.com)
+//@update: 2019-09-10 16:30
 @import "mixins";
 @import "variables";
 
@@ -12,49 +10,61 @@ body, ul, ol, dl, dd, h1, h2, h3, h4, h5, h6, figure, form, fieldset, legend, in
   margin: 0;
   padding: 0
 }
+
 h1, h2, h3, h4, h5, h6, b, strong {
   font-weight: normal
 }
+
 ul, li, ol {
   list-style: none;
 }
+
 input, button {
   -webkit-appearance: none;
   outline: none;
   border: none;
   background: none;
 }
+
 input::-webkit-input-placeholder {
-  /* WebKit browsers */
+  //WebKit browsers
   color: #ccc;
 }
+
 input:-moz-placeholder {
-  /* Mozilla Firefox 4 to 18 */
+  //Mozilla Firefox 4 to 18
   color: #ccc;
 }
+
 input::-moz-placeholder {
-  /* Mozilla Firefox 19+ */
+  //Mozilla Firefox 19+
   color: #ccc;
 }
+
 input:-ms-input-placeholder {
-  /* Internet Explorer 10+ */
+  //Internet Explorer 10+
   color: #ccc;
 }
+
 a {
   color: #25a4bb;
+
   &:hover {
     text-decoration: none;
   }
 }
+
 @font-face {
   font-family: Neo_Sans;
   src: url("../../../../lib/font/Neo_Sans.ttf");
 }
+
 html {
   overflow-x: hidden;
   height: 100%;
   -webkit-tap-highlight-color: transparent;
 }
+
 body {
   font-family: Neo_Sans, "Microsoft YaHei", Helvetica, "Meiryo UI", "Malgun Gothic", "Segoe UI", "Trebuchet MS", "Monaco", monospace, Tahoma, STXihei, "华文细黑", STHeiti, "Helvetica Neue", "Droid Sans", "wenquanyi micro hei", FreeSans, Arimo, Arial, SimSun, "宋体", Heiti, "黑体", sans-serif;;
   padding-top: 60px;
@@ -81,17 +91,21 @@ body {
   z-index: 9999;
   width: 100%;
   font-size: 14px;
+
   .ads-box {
     text-align: center;
+
     a {
       display: block;
       padding: 10px 15px;
       color: @activeColor;
+
       &:hover {
         text-decoration: none;
       }
     }
   }
+
   .ads-close {
     padding: 10px 15px;
     position: absolute;
@@ -99,12 +113,14 @@ body {
     right: 0;
     font-size: 14px;
     color: @activeColor;
+
     &:hover {
       cursor: pointer;
       color: @activeColor + 10;
     }
   }
 }
+
 //ads广告结束
 
 //header
@@ -117,15 +133,18 @@ body {
   transition: all .3s;
   #text-vertical(60px);
   background: @activeColor;
+
   .container {
     position: relative;
   }
+
   .nav-container {
     display: flex;
   }
 
   .logo {
     .fl();
+
     img {
       .img-responsive();
       .center-block();
@@ -140,6 +159,7 @@ body {
     ul {
       .clearFix();
     }
+
     .second-menu, .third-menu, .fourth-menu {
       display: none;
     }
@@ -147,19 +167,23 @@ body {
     .first-menu {
       padding-left: 85px;
     }
+
     .first-menu .first-item {
       .fl();
     }
+
     .first-menu .first-item:hover,
     .first-menu .first-item.active,
     .first-menu .first-item.current {
       background: @whiteColor;
     }
+
     .first-menu .first-item:hover > a,
     .first-menu .first-item.active > a,
     .first-menu .first-item.current > a {
       color: @activeColor;
     }
+
     .first-menu .first-item > a {
       display: block;
       height: 60px;
@@ -179,18 +203,22 @@ body {
       border-bottom: 1px solid @borderColor;
       box-shadow: 0 5px 5px rgba(0, 0, 0, .1);
     }
+
     .second-menu > ul {
       width: 83.333%;
       margin: 0 auto;
       padding-left: 310px;
     }
+
     .second-menu .second-item {
       .fl();
       text-transform: capitalize;
     }
+
     .second-menu .second-item.active > a, .second-menu .second-item:hover > a {
       color: @activeColor;
     }
+
     .second-menu .second-item > a {
       display: block;
       height: 60px;
@@ -198,10 +226,12 @@ body {
       margin: 10px 0;
       padding: 0 20px;
       color: @baseColor;
+
       span {
         display: inline-block;
       }
     }
+
     .second-menu .second-item:nth-of-type(1) > a {
       padding-left: 0;
     }
@@ -214,12 +244,14 @@ body {
       background: @whiteColor;
       box-shadow: 0 5px 5px rgba(0, 0, 0, .1);
     }
+
     .third-menu > ul {
       position: relative;
       width: 83.333%;
       margin: 0 auto;
       padding: 20px 0;
     }
+
     .third-menu .third-item {
       display: block;
       width: 12%;
@@ -227,14 +259,17 @@ body {
       line-height: 30px;
       border-right: 1px solid @borderColor;
     }
+
     .third-menu .third-item > a {
       .text-overflow();
       display: inline;
       color: @baseColor;
     }
+
     .third-menu .active > a span, .third-menu .third-item > a:hover span {
       color: @activeColor;
     }
+
     .third-menu .third-item > .item-product {
       display: none;
       position: absolute;
@@ -242,13 +277,16 @@ body {
       left: 310px;
       width: 300px;
       margin-left: 15%;
+
       a:hover p {
         color: @activeColor;
       }
+
       img {
         .img-responsive();
         .center-block();
       }
+
       p {
         margin-top: 5px;
         font-size: 12px;
@@ -266,15 +304,19 @@ body {
       margin-left: 13%;
       padding: 20px 0 0 20px;
     }
+
     .fourth-menu > ul {
       position: relative;
     }
+
     .fourth-menu .fourth-item > a {
       color: @baseColor;
+
       &:hover {
         color: @activeColor;
       }
     }
+
     .fourth-menu .fourth-item > .item-product {
       display: none;
       position: absolute;
@@ -282,13 +324,16 @@ body {
       left: 100%;
       width: 300px;
       margin-left: 30px;
+
       a:hover p {
         color: @activeColor;
       }
+
       img {
         .img-responsive();
         .center-block();
       }
+
       p {
         margin-top: 5px;
         font-size: 12px;
@@ -301,22 +346,27 @@ body {
   //2020.05.09 添加登录入口 搜索改造
   .function-box {
     .fr();
+
     .iconfont {
       display: block;
       height: 60px;
       font-size: 26px;
+
       &:hover {
         cursor: pointer;
       }
     }
+
     .search-box {
       .fl();
       position: relative;
       width: 50px;
       text-align: center;
+
       .iconfont {
         color: @whiteColor;
       }
+
       .search-form {
         display: none;
         position: absolute;
@@ -325,17 +375,20 @@ body {
         right: 60px;
         height: 100%;
       }
+
       .search-form form {
         .clearFix();
         width: 350px;
         margin: 16px 0;
       }
+
       .search-form input {
         float: left;
         height: 28px;
         line-height: 28px;
         font-size: 12px;
         border: 1px solid @borderColor;
+
         &[type="text"] {
           width: 300px;
           padding: 0 5px;
@@ -343,6 +396,7 @@ body {
           border-right: none;
           border-radius: 5px 0 0 5px;
         }
+
         &[type="submit"] {
           width: 50px;
           background: @activeColor;
@@ -350,6 +404,7 @@ body {
           border-radius: 0 5px 5px 0;
         }
       }
+
       .wavlink-bgPander {
         display: none;
         position: fixed;
@@ -361,24 +416,29 @@ body {
         z-index: 999;
       }
     }
+
     .user-box {
       position: relative;
       .fr();
       text-align: center;
       color: @whiteColor;
+
       a.login {
         font-size: 14px;
         color: @whiteColor;
+
         &:hover {
           text-decoration: underline;
         }
       }
+
       .account .ico-box {
         .clearFix();
         display: block;
         height: 50px;
         line-height: 50px;
         cursor: pointer;
+
         span {
           .fl();
           display: block;
@@ -391,12 +451,14 @@ body {
             max-width: 50px;
           }
         }
+
         .iconfont {
           .fl();
           font-size: 24px;
           color: @whiteColor;
         }
       }
+
       .account .user-menu-wrapper {
         display: none;
         position: absolute;
@@ -409,10 +471,12 @@ body {
           height: 50px;
           line-height: 50px;
           border-bottom: 1px solid @borderColor;
+
           &:nth-last-of-type(1) {
             border-bottom: none;
           }
         }
+
         .user-menu-item .userName {
           display: block;
           padding: 0 10px;
@@ -420,11 +484,13 @@ body {
           color: @activeColor;
           .text-overflow()
         }
+
         .user-menu-item a {
           display: block;
           padding: 0 10px;
           text-align: center;
           color: @activeColor;
+
           &:hover {
             color: @activeColor;
             background: @minActive;
@@ -438,13 +504,16 @@ body {
       .search-box .iconfont {
         display: none;
       }
+
       .search-box .search-form {
         display: block;
         right: 20px;
       }
+
       .search-box .search-form form {
         width: 300px;
       }
+
       .search-box .search-form input[type="text"] {
         width: 250px;
       }
@@ -452,8 +521,8 @@ body {
 
     @media screen and (max-width: 1300px) {
       .user-box a.login {
-          font-size: 12px;
-        }
+        font-size: 12px;
+      }
     }
   }
 
@@ -466,38 +535,47 @@ body {
       .first-menu {
         padding-left: 0;
       }
+
       .first-menu .first-item > a {
         padding: 0 5px;
         font-size: 12px;
       }
+
       .second-menu > ul {
         width: 100%;
         padding-left: 220px;
       }
+
       .second-menu .second-item > a {
         padding: 0 10px;
       }
+
       .third-menu > ul {
         width: 100%;
       }
+
       .third-menu .third-item {
         width: 20%;
         margin-left: 220px;
       }
+
       .third-menu .third-item > .item-product {
         width: 200px;
         left: 220px;
         margin-left: 22%;
       }
+
       .fourth-menu {
         left: 220px;
         margin-left: 20%;
       }
+
       .fourth-menu .fourth-item > .item-product {
-        display: none!important;
+        display: none !important;
         width: 200px;
       }
     }
+
     //2020.05.09 添加登录入口 搜索改造
     .function-box {
       padding-right: 20px;
@@ -512,32 +590,40 @@ body {
       .first-menu {
         padding-left: 0;
       }
+
       .first-menu .first-item > a {
         padding: 0 10px;
       }
+
       .second-menu > ul {
         width: 100%;
         padding-left: 220px;
       }
+
       .second-menu .second-item > a {
         padding: 0 10px;
       }
+
       .third-menu > ul {
         width: 100%;
       }
+
       .third-menu .third-item {
         width: 20%;
         margin-left: 220px;
       }
+
       .third-menu .third-item > .item-product {
         width: 200px;
         left: 220px;
         margin-left: 22%;
       }
+
       .fourth-menu {
         left: 220px;
         margin-left: 20%;
       }
+
       .fourth-menu .fourth-item > .item-product {
         width: 200px;
       }
@@ -553,19 +639,23 @@ body {
       .third-menu .third-item {
         width: 20%;
       }
+
       .third-menu .third-item > .item-product {
         width: 250px;
         margin-left: 22%;
       }
+
       .fourth-menu {
         margin-left: 20%;
       }
+
       .fourth-menu .fourth-item > .item-product {
         width: 250px;
       }
     }
   }
 }
+
 //header结束
 
 //footer
@@ -575,45 +665,55 @@ body {
 
   .foot-container {
     padding: 20px 0;
+
     dl {
       .fl();
       padding: 20px;
       margin-bottom: 0;
+
       &:nth-of-type(1) {
         padding-left: 0;
         margin-left: 16.6%;
       }
+
       &:nth-last-of-type(1) {
         padding-right: 0;
       }
     }
+
     dl dt {
       color: @whiteColor;
       line-height: 26px;
       text-transform: uppercase;
     }
+
     dl dd {
       .text-overflow();
       color: @whiteSmoke;
+
       &:nth-last-of-type(1) img {
         display: block;
       }
     }
+
     dl dd img {
       .img-responsive();
       .center-block();
       display: none;
       margin: 0;
     }
+
     dl dd a {
       display: inline-block;
       color: @whiteSmoke;
       line-height: 26px;
       text-transform: capitalize;
+
       &:hover {
         color: @footHover;
       }
     }
+
     dl dd a .iconfont {
       font-size: 30px;
     }
@@ -643,6 +743,7 @@ body {
     }
   }
 }
+
 //footer结束
 
 //面包屑导航
@@ -650,24 +751,30 @@ body {
   margin: 0 0 10px;
   background: @whiteColor;
   text-transform: capitalize;
+
   .breadcrumb {
     .clearFix();
     padding: 0 20px;
     margin: 0 auto;
     background: @whiteColor;
     line-height: 50px;
+
     li {
       .fl();
     }
+
     .active {
       .text-overflow();
     }
+
     a {
       color: @activeColor;
+
       &:hover {
         text-decoration: underline;
       }
     }
+
     @media screen and (min-width: 1200px) {
       width: 83.333%;
     }
@@ -675,17 +782,20 @@ body {
       width: 100%;
     }
   }
-  .breadcrumb>li+li:before {
+
+  .breadcrumb > li + li:before {
     padding: 0 5px;
     color: #ccc;
     content: "/";
   }
+
   @media screen and (min-width: 768px) and (max-width: 1199px) {
     .breadcrumb li {
       font-size: 12px;
     }
   }
 }
+
 //面包屑导航结束
 
 //分页
@@ -693,23 +803,29 @@ body {
   margin: 10px 0;
   padding: 0 15px;
   background: @whiteColor;
+
   .pager {
     margin: 15px 0;
   }
+
   li {
     margin: 0 10%;
+
     a {
       color: @activeColor;
       border-color: @activeColor;
     }
   }
+
   .pagination {
     .clearFix();
     margin: 10px 0;
   }
+
   .pagination > li > a, .pagination > li > span {
     color: @activeColor;
   }
+
   .pagination > .disabled > a,
   .pagination > .disabled > a:focus,
   .pagination > .disabled > a:hover,
@@ -718,6 +834,7 @@ body {
   .pagination > .disabled > span:hover {
     color: #777;
   }
+
   .pagination > .active > a,
   .pagination > .active > a:focus,
   .pagination > .active > a:hover,
@@ -729,6 +846,7 @@ body {
     border-color: @activeColor;
   }
 }
+
 //分页
 
 //側邊導航aside
@@ -736,15 +854,18 @@ body {
   .fl();
   width: 22%;
   padding-right: 10px;
+
   ul {
     background: @whiteColor;
   }
+
   ul li {
     height: 60px;
     line-height: 60px;
     padding: 0 10px;
     border-bottom: 1px solid @borderColor;
   }
+
   ul li h3 {
     margin: 0 -10px;
     padding: 0 20px;
@@ -754,21 +875,25 @@ body {
     color: #fff;
     text-transform: capitalize;
   }
+
   ul li a {
     .clearFix();
     display: block;
     font-size: 16px;
     color: @baseColor;
     text-transform: capitalize;
-    &:hover span{
+
+    &:hover span {
       color: @activeColor;
       text-decoration: underline;
     }
   }
+
   ul li.active span {
     color: @activeColor;
     text-decoration: underline;
   }
+
   ul li a .iconfont {
     .fl();
     display: block;
@@ -777,10 +902,12 @@ body {
     font-size: 40px;
     color: #375D9D;
   }
+
   ul li a span {
     .fl();
     padding-left: 20px;
   }
+
   @media screen and (min-width: 768px) and (max-width: 991px) {
     width: 30%;
   }
@@ -800,6 +927,7 @@ body {
     width: 75%;
   }
 }
+
 //側邊導航aside結束
 
 //分类筛选
@@ -809,25 +937,31 @@ body {
   background: @whiteColor;
   border-bottom: 1px solid @borderColor;
   line-height: 30px;
+
   .filter {
     .fl();
     margin-right: 20px;
   }
+
   .sort {
     .fl();
   }
+
   .result {
     .fr();
     color: @activeColor;
   }
+
   span {
     display: inline-block;
     padding-right: 5px;
     font-size: 14px;
   }
+
   .select {
     position: relative;
     display: inline-block;
+
     select {
       width: 250px;
       height: 30px;
@@ -837,9 +971,11 @@ body {
       font-size: 14px;
       background: @whiteColor;
     }
+
     select option {
       padding: 10px 0;
     }
   }
 }
+
 //分类筛选结束

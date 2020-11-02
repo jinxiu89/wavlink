@@ -1,19 +1,19 @@
-/**
-* @name: driver.less
-* @description: 驅動列表页样式
-* @author: Alan(alan_webdeveloper@163.com)
-* @update: 2019-09-16 10:30
-*/
+// @name: driver.less
+// @description: 驅動列表页样式
+// @author: Alan(alan_webdeveloper@163.com)
+// @update: 2019-09-16 10:30
 @import "../public/mixins";
 @import "../public/variables";
 
-//驱动
+// 驱动
 .tips {
   padding: 20px 10px;
   margin-bottom: 5px;
   background: @whiteColor;
+
   p {
     margin-bottom: 10px;
+
     b {
       font-weight: bold;
     }
@@ -24,9 +24,11 @@
   margin-bottom: 5px;
   padding: 20px 10px;
   background: @whiteColor;
+
   .type {
     position: relative;
     margin-bottom: 20px;
+
     h3 {
       position: absolute;
       top: 0;
@@ -37,23 +39,29 @@
       padding: 3px 0;
       color: @whiteSmoke;
     }
+
     .type-category {
       padding-left: 100px;
       margin-left: 15px;
     }
+
     .type-category ul {
       .clearFix();
       margin-bottom: 20px;
+
       &:nth-last-of-type(1) {
         margin-bottom: 0;
       }
     }
+
     .type-category ul li {
       .fl();
+
       &:nth-of-type(1) a {
         margin-left: 0;
       }
     }
+
     .type-category ul li a {
       display: block;
       padding: 3px 12px;
@@ -61,15 +69,18 @@
       color: @baseColor;
       #transition(all .2s linear);
     }
+
     .type-category ul li a:hover,
     .type-category ul li.active a {
       color: @whiteColor;
       background: @activeColor;
     }
   }
+
   .search {
     .clearFix();
     position: relative;
+
     h3 {
       position: absolute;
       top: 0;
@@ -79,11 +90,13 @@
       font-size: 14px;
       color: @whiteSmoke;
     }
+
     form {
       .clearFix();
       padding-left: 100px;
       margin-left: 27px;
     }
+
     form input {
       .fl();
       width: 440px;
@@ -92,6 +105,7 @@
       border: 1px solid @activeColor;
       border-radius: 5px 0 0 5px;
     }
+
     form button {
       .fl();
       height: 35px;
@@ -99,15 +113,18 @@
       border: 1px solid @activeColor;
       border-left: transparent;
       border-radius: 0 5px 5px 0;
+
       &:hover {
         color: @activeColor;
       }
     }
   }
+
   @media screen and (min-width: 768px) and (max-width: 991px) {
     .type .type-category ul li a {
       margin: 0 6px;
     }
+
     .search form input {
       width: 300px;
     }
@@ -120,6 +137,7 @@
     padding: 0 10px;
     background: @whiteColor;
   }
+
   .item h3 {
     width: 80%;
     height: 42px;
@@ -127,44 +145,54 @@
     font-size: 22px;
     border-bottom: 1px solid @borderColor;
     text-transform: capitalize;
+
     span {
       color: @activeColor;
+
       &:after {
         content: ">";
         padding: 0 5px;
       }
+
       &:nth-last-of-type(1):after {
         content: "";
         padding: 0;
       }
     }
   }
+
   .item .mode {
     .clearFix();
     width: 80%;
     padding: 20px 0;
+
     p {
       .fl();
       display: block;
       width: 16.666666%;
       padding: 5px 0;
+
       a {
         color: @baseColor;
         #transition(all .2s linear);
       }
+
       a:hover {
         color: @activeColor;
         text-decoration: underline;
       }
     }
   }
+
   @media screen and (min-width: 768px) and (max-width: 991px) {
     .item h3 {
       width: 100%;
       font-size: 16px;
     }
+
     .item .mode {
       width: 100%;
+
       p {
         width: 33%;
       }
@@ -175,8 +203,10 @@
       width: 100%;
       font-size: 18px;
     }
+
     .item .mode {
       width: 100%;
+
       p {
         width: 25%;
       }
@@ -187,8 +217,10 @@
       width: 90%;
       font-size: 20px;
     }
+
     .item .mode {
       width: 90%;
+
       p {
         width: 20%;
       }

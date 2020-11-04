@@ -11,56 +11,38 @@
     background: @activeColor;
   }
 
-  .swiper-button-prev {
+  .swiper-button-prev,
+  .swiper-button-next {
     background: none;
-    left: 40px;
     box-sizing: content-box;
     padding: 5px;
-    transition: all .2s;
+    #transition(all .2s linear);
+
+    &:hover {
+      background: rgba(171, 202, 233, .5);
+    }
 
     span {
       display: block;
       width: 27px;
       height: 44px;
-      background: url("../../img/left.png") center;
       background-size: cover;
+    }
+  }
+
+  .swiper-button-prev {
+    left: 40px;
+
+    span {
+      background: url("../../img/left.png") center;
     }
   }
 
   .swiper-button-next {
-    background: none;
     right: 40px;
-    box-sizing: content-box;
-    padding: 5px;
-    transition: all .5s;
 
     span {
-      display: block;
-      width: 27px;
-      height: 44px;
       background: url("../../img/right.png") center;
-      background-size: cover;
-    }
-  }
-
-  .swiper-button-prev:hover,
-  .swiper-button-next:hover {
-    background: rgba(171, 202, 233, .5);
-  }
-
-  .swiper-slide:nth-child(odd) .des {
-    color: @whiteColor;
-
-    dt a {
-      color: @whiteColor;
-    }
-  }
-
-  .swiper-slide:nth-child(even) .des {
-    color: @baseColor;
-
-    dt a {
-      color: @baseColor;
     }
   }
 
@@ -107,25 +89,21 @@
   }
 
   @media screen and (min-width: 768px) and (max-width: 991px) {
-    .des {
-      dt {
-        font-size: 22px;
-      }
+    .des dt {
+      font-size: 22px;
+    }
 
-      dd {
-        font-size: 16px;
-      }
+    .des dd {
+      font-size: 16px;
     }
   }
   @media screen and (min-width: 992px) and (max-width: 1199px) {
-    .des {
-      dt {
-        font-size: 28px;
-      }
+    .des dt {
+      font-size: 28px;
+    }
 
-      dd {
-        font-size: 18px;
-      }
+    .des dd {
+      font-size: 18px;
     }
   }
 }
@@ -274,49 +252,6 @@
 }
 
 //recommend结束
-
-//video
-.video-box {
-  margin: 40px 0 60px;
-  padding: 20px 5%;
-  background: @whiteColor;
-
-  h3 {
-    margin-bottom: 20px;
-    padding-bottom: 5px;
-    border-bottom: 1px solid @borderColor;
-    font-size: 18px;
-
-    a {
-      .fr();
-      font-size: 14px;
-      color: @activeColor;
-
-      &:hover {
-        color: @activeColor;
-      }
-    }
-  }
-
-  .video {
-    .clearFix();
-
-    video {
-      .fl();
-      padding: 0 10px;
-      width: 33.33%;
-
-      &:hover,
-      &:active,
-      &:focus,
-      &:visited {
-        outline: none;
-      }
-    }
-  }
-}
-
-//video结束
 
 //news
 .new-box {

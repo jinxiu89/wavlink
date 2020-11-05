@@ -47,25 +47,15 @@
 
     .type-category ul {
       .clearFix();
-      margin-bottom: 20px;
-
-      &:nth-last-of-type(1) {
-        margin-bottom: 0;
-      }
     }
 
     .type-category ul li {
       .fl();
-
-      &:nth-of-type(1) a {
-        margin-left: 0;
-      }
     }
 
     .type-category ul li a {
       display: block;
       padding: 3px 12px;
-      margin: 0 12px;
       color: @baseColor;
       #transition(all .2s linear);
     }
@@ -77,56 +67,9 @@
     }
   }
 
-  .search {
-    .clearFix();
-    position: relative;
-
-    h3 {
-      position: absolute;
-      top: 0;
-      left: 0;
-      height: 35px;
-      line-height: 35px;
-      font-size: 14px;
-      color: @whiteSmoke;
-    }
-
-    form {
-      .clearFix();
-      padding-left: 100px;
-      margin-left: 27px;
-    }
-
-    form input {
-      .fl();
-      width: 440px;
-      height: 35px;
-      padding: 0 10px;
-      border: 1px solid @activeColor;
-      border-radius: 5px 0 0 5px;
-    }
-
-    form button {
-      .fl();
-      height: 35px;
-      padding: 0 8px;
-      border: 1px solid @activeColor;
-      border-left: transparent;
-      border-radius: 0 5px 5px 0;
-
-      &:hover {
-        color: @activeColor;
-      }
-    }
-  }
-
   @media screen and (min-width: 768px) and (max-width: 991px) {
     .type .type-category ul li a {
       margin: 0 6px;
-    }
-
-    .search form input {
-      width: 300px;
     }
   }
 }
@@ -143,21 +86,18 @@
     height: 42px;
     line-height: 42px;
     font-size: 22px;
+    color: @activeColor;
     border-bottom: 1px solid @borderColor;
     text-transform: capitalize;
 
-    span {
-      color: @activeColor;
+    span:after {
+      content: ">";
+      padding: 0 5px;
+    }
 
-      &:after {
-        content: ">";
-        padding: 0 5px;
-      }
-
-      &:nth-last-of-type(1):after {
-        content: "";
-        padding: 0;
-      }
+    span:nth-last-of-type(1):after {
+      content: "";
+      padding: 0;
     }
   }
 
@@ -168,7 +108,6 @@
 
     p {
       .fl();
-      display: block;
       width: 16.666666%;
       padding: 5px 0;
 

@@ -13,20 +13,6 @@
 {/block}
 {block name="body"}
 <!--主体内容-->
-{notempty name="Notice"}
-<div class="wavlink-ads" style="background: #f8b300;">
-    <div class="ads-box">
-        {volist name="Notice" id="vo"}
-        {if (empty($vo.image_pc_url))}
-        <a href="{$vo.url}">{$vo.title}</a>
-        {else /}
-        <a href="{$vo.url}"><img class="img-responsive center-block" src="{$vo.image_pc_url}" alt="{$vo.title}"></a>
-        {/if}
-        {/volist}
-    </div>
-    <span class="ads-close"> X </span>
-</div>
-{/notempty}
 <div class="container-fluid">
     {notempty name="showcase"}
     <div class="row">

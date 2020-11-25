@@ -66,8 +66,7 @@ html {
 }
 
 body {
-  font-family: Neo_Sans, "Microsoft YaHei", Helvetica, "Meiryo UI", "Malgun Gothic", "Segoe UI", "Trebuchet MS", "Monaco", monospace, Tahoma, STXihei, "华文细黑", STHeiti, "Helvetica Neue", "Droid Sans", "wenquanyi micro hei", FreeSans, Arimo, Arial, SimSun, "宋体", Heiti, "黑体", sans-serif;;
-  padding-top: 60px;
+  font-family: Neo_Sans, "Microsoft YaHei", Helvetica, "Meiryo UI", "Malgun Gothic", "Segoe UI", "Trebuchet MS", "Monaco", monospace, Tahoma, STXihei, "华文细黑", STHeiti, "Helvetica Neue", "Droid Sans", "wenquanyi micro hei", FreeSans, Arimo, Arial, SimSun, "宋体", Heiti, "黑体", sans-serif;
   background: @bodyBgColor;
   transition: all .3S;
 }
@@ -83,40 +82,29 @@ body {
 }
 
 //ads广告
-.wavlink-ads {
-  display: none;
-  position: fixed;
-  top: 0;
-  left: 0;
-  z-index: 9999;
-  width: 100%;
+.g-ads {
   font-size: 14px;
 
   .ads-box {
+    padding: 10px 15px;
     text-align: center;
 
     a {
-      display: block;
-      padding: 10px 15px;
       color: @activeColor;
 
       &:hover {
-        text-decoration: none;
+        text-decoration: underline;
       }
     }
   }
 
   .ads-close {
-    padding: 10px 15px;
-    position: absolute;
-    top: 0;
-    right: 0;
-    font-size: 14px;
-    color: @activeColor;
-
+    display: inline-block;
+    margin-left: 20px;
+    padding: 0 10px;
     &:hover {
+      color: @activeColor;
       cursor: pointer;
-      color: @activeColor + 10;
     }
   }
 }
@@ -124,19 +112,19 @@ body {
 //ads广告结束
 
 //header
-.g-nav {
-  position: fixed;
+.g-hd-fixed {
+  position: fixed!important;
   top: 0;
   left: 0;
+  z-index: 9999;
+}
+.g-nav {
+  position: relative;
   z-index: 9999;
   width: 100%;
   transition: all .3s;
   #text-vertical(60px);
   background: @activeColor;
-
-  .container {
-    position: relative;
-  }
 
   .nav-container {
     display: flex;
@@ -193,7 +181,7 @@ body {
     }
 
     .second-menu {
-      position: fixed;
+      position: absolute;
       top: 60px;
       left: 0;
       width: 100%;

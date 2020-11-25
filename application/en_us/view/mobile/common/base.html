@@ -22,10 +22,25 @@
     {/block}
 </head>
 <body>
+{notempty name="Notice"}
+<div class="g-ads" id="g-ads">
+    <div class="ads-box">
+        {volist name="Notice" id="vo"}
+        {if (empty($vo.image_pc_url))}
+        <a href="{$vo.url}">{$vo.title}</a>
+        {else /}
+        <a href="{$vo.url}"><img class="img-responsive center-block" src="{$vo.image_pc_url}" alt="{$vo.title}"></a>
+        {/if}
+        {/volist}
+        <span class="ads-close"> X </span>
+    </div>
+</div>
+{/notempty}
+
 <header>
     {include file="mobile/common/nav" /}
 </header>
-<section>
+<section class="g-section">
     {block name="swiper"}
     <!--幻灯片以及banner部分-->
     {/block}

@@ -134,26 +134,18 @@ html {
 body {
   font-family: Neo_Sans, "Microsoft YaHei", Helvetica, "Meiryo UI", "Malgun Gothic", "Segoe UI", "Trebuchet MS", "Monaco", monospace, Tahoma, STXihei, "华文细黑", STHeiti, "Helvetica Neue", "Droid Sans", "wenquanyi micro hei", FreeSans, Arimo, Arial, SimSun, "宋体", Heiti, "黑体", sans-serif;;
   background: @bodyBgColor;
-  padding-top: 60px;
 }
 
 //ads广告
-.wavlink-ads {
-  display: none;
-  position: fixed;
-  top: 0;
-  left: 0;
-  z-index: 9999;
-  width: 100%;
+.g-ads {
   font-size: 14px;
 
   .ads-box {
+    padding: 10px;
     text-align: center;
 
     a {
-      display: block;
-      padding: 10px 15px;
-      color: @whiteColor;
+      color: @activeColor;
     }
 
     a:hover {
@@ -162,29 +154,29 @@ body {
   }
 
   .ads-close {
-    position: absolute;
-    top: 50%;
-    right: 15px;
-    margin-top: -14px;
-    font-size: 20px;
-    color: @baseColor;
+    display: inline-block;
+    margin-left: 5px;
   }
 }
 
 //ads广告结束
 
 //header
-header {
+.g-hd-fixed {
+  position: fixed!important;
+  top: 0;
+  left: 0;
+  z-index: 99999;
+}
+.g-nav {
+  position: relative;
+  width: 100%;
   .nav-bar {
-    position: fixed;
-    top: 0;
-    left: 0;
-    z-index: 2999;
+    position: relative;
     width: 100%;
     height: 60px;
     background: @activeColor;
     padding: 0 10px;
-    border-bottom: 1px solid @borderColor;
   }
 
   .nav-bar .menu-bar {
@@ -218,7 +210,6 @@ header {
 
   .nav-bar .search-bar {
     .fr();
-
     .iconfont {
       display: block;
       line-height: 60px;
@@ -230,10 +221,10 @@ header {
   .search-container form {
     .clearFix();
     display: none;
-    position: fixed;
+    position: absolute;
     top: 60px;
     left: 0;
-    z-index: 2999;
+    z-index: 999;
     width: 100%;
     padding: 15px 60px 15px 10px;
     background: @whiteColor;
@@ -267,12 +258,12 @@ header {
 
   .search-container .search-mask-layer {
     display: none;
-    position: fixed;
-    top: 50px;
+    position: absolute;
+    top: 60px;
     left: 0;
-    z-index: 1999;
+    z-index: 990;
     width: 100%;
-    height: 100%;
+    height: 100vh;
     background: rgba(0, 0, 0, .5);
     cursor: pointer;
   }

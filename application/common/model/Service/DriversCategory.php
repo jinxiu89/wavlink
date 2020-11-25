@@ -36,7 +36,7 @@ class DriversCategory extends BaseModel
     public function drivers()
     {
         return $this->hasMany(Drivers::class, 'category_id')
-            ->field('id,name,category_id,url_title');
+            ->field('id,name,category_id,url_title')->where(['status'=>1]);
     }
 
     /**
@@ -78,7 +78,7 @@ class DriversCategory extends BaseModel
     public function getDataAll($language_id, $order)
     {
         return self::with('drivers')
-            ->where(['status' => 1, 'language_id' => $language_id])
+            ->where(['status'=>1, 'language_id' => $language_id])
             ->field('id,parent_id,is_parent,level,path,name,title,url_title,listorder')
             ->order(['level' => 'desc', 'id' => 'asc', 'listorder' => $order])->select();
     }

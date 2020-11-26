@@ -7,17 +7,19 @@
  */
 
 namespace app\wavlink\controller\Content;
+
 use think\facade\Request;
 use app\common\model\Content\Article as ArticleModel;
 use app\wavlink\validate\Article as ArticleValidate;
 use app\common\model\Service\ServiceCategory as ServiceCategoryModel;
 use app\wavlink\controller\BaseAdmin;
+
 /***
  * Class Article
  * @package app\wavlink\controller
  *
  */
-Class Article extends BaseAdmin
+class Article extends BaseAdmin
 {
 
     //正常文章列表，status=1
@@ -48,7 +50,7 @@ Class Article extends BaseAdmin
 
     public function add()
     {
-        $categorys = ServiceCategoryModel::getSecondCategory($this->currentLanguage['id'],'Article');
+        $categorys = ServiceCategoryModel::getSecondCategory($this->currentLanguage['id'], 'Article');
 
         return $this->fetch('', [
             'categorys' => $categorys,
@@ -65,24 +67,24 @@ Class Article extends BaseAdmin
     {
         if (request()->isAjax()) {
             $data = input('post.');
-            $validate=new ArticleValidate();
-            if(isset($data['id']) || !empty($data['id'])){
+            $validate = new ArticleValidate();
+            if (isset($data['id']) || !empty($data['id'])) {
                 //更新
-                if($validate->scene('edit')->check($data)){
+                if ($validate->scene('edit')->check($data)) {
                     return $this->update($data);
-                }else{
+                } else {
                     return show(1, '', '', '', '', $validate->getError());
                 }
-            }else{
+            } else {
                 //新增
-                if($validate->scene('add')->check($data)){
+                if ($validate->scene('add')->check($data)) {
                     $res = (new ArticleModel())->add($data);
                     if ($res) {
                         return show(1, '', '', '', '', '添加成功');
                     } else {
                         return show(1, '', '', '', '', '添加失败');
                     }
-                }else{
+                } else {
                     return show(1, '', '', '', '', $validate->getError());
                 }
             }
@@ -93,13 +95,34 @@ Class Article extends BaseAdmin
     public function edit($id = 0)
     {
         $id = $this->MustBePositiveInteger($id);
-        $categorys = ServiceCategoryModel::getSecondCategory($this->currentLanguage['id'],'Article');
+        $categorys = ServiceCategoryModel::getSecondCategory($this->currentLanguage['id'], 'Article');
         $article = ArticleModel::get($id);
         return $this->fetch('', [
             'article' => $article,
             'categorys' => $categorys,
             'language_id' => $this->currentLanguage['id']
         ]);
+    }
+
+    /**
+     * 改变状态，当该分类存在产品或者有子分类时不能
+     */
+    public function byStatus()
+    {
+        $data = input('get.');
+        $validate = new ArticleValidate();
+        $model = new ArticleModel();
+        if (!$validate->scene('changeStatus')->check($data)) {
+            return show(0, "failed", '', '', '', $validate->getError());
+        }
+        try {
+            if ($model->allowField(true)->save($data, ['id' => $data['id']])) {
+                return show(1, "success", '', '', '', '操作成功');
+            }
+            return show(0, "success", '', '', '', '操作失败！未知原因');
+        } catch (\Exception $exception) {
+            return show(0, "failed", '', '', '', $exception->getMessage());
+        }
     }
 
     /**
@@ -131,10 +154,10 @@ Class Article extends BaseAdmin
     {
         if (request()->isAjax()) {
             $data = input('post.'); //id ,type ,language_id
-           $validate=new ArticleValidate();
-           if(!$validate->scene('listorder')->check($data)){
-               return show(0, '排序失败', 'error', 'error', '', $validate->getError());
-           }
+            $validate = new ArticleValidate();
+            if (!$validate->scene('listorder')->check($data)) {
+                return show(0, '排序失败', 'error', 'error', '', $validate->getError());
+            }
             try {
                 if ((new ArticleModel())->allowField(true)->save($data, ['id' => $data['id']])) {
                     return show(1, '排序成功', 'error', 'error', '', "排序成功");

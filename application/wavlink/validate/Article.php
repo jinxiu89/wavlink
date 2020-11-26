@@ -21,7 +21,7 @@ class Article extends BaseValidate
         'seo_keys'=>'require|max:128',
         'seo_description'=>'require|max:128',
         'author'=>'max:64',
-        'status'=>'number|in:-1,0,1',
+        'status'=>'integer|in:-1,0,1',
     ];
     protected $message=[
         'id.number'=>'ID不合法！',
@@ -47,5 +47,6 @@ class Article extends BaseValidate
         'add'=>['title','category_id','language_id','seo_title','seo_keys','seo_description','author','status'],
         'edit'=>['id','title','category_id','language_id','seo_title','seo_keys','seo_description','author','status'],
         'listorder'=>['id','listorder'],
+        'changeStatus'=>['id','status'],
     ];
 }

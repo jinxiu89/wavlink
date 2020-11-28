@@ -1,5 +1,17 @@
 <?php
-
+/**
+ * Elasticsearch PHP client
+ *
+ * @link      https://github.com/elastic/elasticsearch-php/
+ * @copyright Copyright (c) Elasticsearch B.V (https://www.elastic.co)
+ * @license   http://www.apache.org/licenses/LICENSE-2.0 Apache License, Version 2.0
+ * @license   https://www.gnu.org/licenses/lgpl-2.1.html GNU Lesser General Public License, Version 2.1 
+ * 
+ * Licensed to Elasticsearch B.V under one or more agreements.
+ * Elasticsearch B.V licenses this file to you under the Apache 2.0 License or
+ * the GNU Lesser General Public License, Version 2.1, at your option.
+ * See the LICENSE file in the project root for more information.
+ */
 declare(strict_types = 1);
 
 namespace Elasticsearch\Endpoints\Cat;
@@ -8,27 +20,12 @@ use Elasticsearch\Endpoints\AbstractEndpoint;
 
 /**
  * Class Fielddata
- *
- * @category Elasticsearch
- * @package  Elasticsearch\Endpoints\Cat
- * @author   Zachary Tong <zach@elastic.co>
- * @license  http://www.apache.org/licenses/LICENSE-2.0 Apache2
- * @link     http://elastic.co
+ * Elasticsearch API name cat.fielddata
+ * Generated running $ php util/GenerateEndpoints.php 7.9
  */
 class Fielddata extends AbstractEndpoint
 {
-    private $fields;
-
-    public function setFields(?string $fields): Fielddata
-    {
-        if (isset($fields) !== true) {
-            return $this;
-        }
-
-        $this->fields = $fields;
-
-        return $this;
-    }
+    protected $fields;
 
     public function getURI(): string
     {
@@ -37,7 +34,6 @@ class Fielddata extends AbstractEndpoint
         if (isset($fields)) {
             return "/_cat/fielddata/$fields";
         }
-
         return "/_cat/fielddata";
     }
 
@@ -46,8 +42,6 @@ class Fielddata extends AbstractEndpoint
         return [
             'format',
             'bytes',
-            'local',
-            'master_timeout',
             'h',
             'help',
             's',
@@ -59,5 +53,18 @@ class Fielddata extends AbstractEndpoint
     public function getMethod(): string
     {
         return 'GET';
+    }
+
+    public function setFields($fields): Fielddata
+    {
+        if (isset($fields) !== true) {
+            return $this;
+        }
+        if (is_array($fields) === true) {
+            $fields = implode(",", $fields);
+        }
+        $this->fields = $fields;
+
+        return $this;
     }
 }

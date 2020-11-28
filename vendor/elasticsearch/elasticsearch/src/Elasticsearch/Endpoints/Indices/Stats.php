@@ -1,5 +1,17 @@
 <?php
-
+/**
+ * Elasticsearch PHP client
+ *
+ * @link      https://github.com/elastic/elasticsearch-php/
+ * @copyright Copyright (c) Elasticsearch B.V (https://www.elastic.co)
+ * @license   http://www.apache.org/licenses/LICENSE-2.0 Apache License, Version 2.0
+ * @license   https://www.gnu.org/licenses/lgpl-2.1.html GNU Lesser General Public License, Version 2.1 
+ * 
+ * Licensed to Elasticsearch B.V under one or more agreements.
+ * Elasticsearch B.V licenses this file to you under the Apache 2.0 License or
+ * the GNU Lesser General Public License, Version 2.1, at your option.
+ * See the LICENSE file in the project root for more information.
+ */
 declare(strict_types = 1);
 
 namespace Elasticsearch\Endpoints\Indices;
@@ -8,53 +20,26 @@ use Elasticsearch\Endpoints\AbstractEndpoint;
 
 /**
  * Class Stats
- *
- * @category Elasticsearch
- * @package  Elasticsearch\Endpoints\Indices
- * @author   Zachary Tong <zach@elastic.co>
- * @license  http://www.apache.org/licenses/LICENSE-2.0 Apache2
- * @link     http://elastic.co
+ * Elasticsearch API name indices.stats
+ * Generated running $ php util/GenerateEndpoints.php 7.9
  */
 class Stats extends AbstractEndpoint
 {
-    /**
-     * Limit the information returned the specific metrics.
-     *
-     * @var string
-     */
-    private $metric;
-
-    /**
-     * @param string|string[] $metric
-     */
-    public function setMetric($metric): Stats
-    {
-        if (isset($metric) !== true) {
-            return $this;
-        }
-
-        if (is_array($metric)) {
-            $metric = implode(",", $metric);
-        }
-
-        $this->metric = $metric;
-
-        return $this;
-    }
+    protected $metric;
 
     public function getURI(): string
     {
-        $index = $this->index ?? null;
         $metric = $this->metric ?? null;
+        $index = $this->index ?? null;
 
         if (isset($index) && isset($metric)) {
             return "/$index/_stats/$metric";
         }
-        if (isset($index)) {
-            return "/$index/_stats";
-        }
         if (isset($metric)) {
             return "/_stats/$metric";
+        }
+        if (isset($index)) {
+            return "/$index/_stats";
         }
         return "/_stats";
     }
@@ -78,5 +63,18 @@ class Stats extends AbstractEndpoint
     public function getMethod(): string
     {
         return 'GET';
+    }
+
+    public function setMetric($metric): Stats
+    {
+        if (isset($metric) !== true) {
+            return $this;
+        }
+        if (is_array($metric) === true) {
+            $metric = implode(",", $metric);
+        }
+        $this->metric = $metric;
+
+        return $this;
     }
 }

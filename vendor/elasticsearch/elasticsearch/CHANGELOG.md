@@ -1,3 +1,112 @@
+## Release 7.9.1
+
+- Fixed using object instead of array in onFailure transport event
+  [#1066](https://github.com/elastic/elasticsearch-php/pull/1066)
+- Fixed reset custom header after endpoint call
+  [#1065](https://github.com/elastic/elasticsearch-php/pull/1065)
+- Show generic error messages when server returns no response
+  [#1056](https://github.com/elastic/elasticsearch-php/pull/1056)
+
+## Release 7.9.0
+
+- Updated endpoints and namespaces for Elasticsearch 7.9
+  [28bf0ed](https://github.com/elastic/elasticsearch-php/commit/28bf0ed6df6bc95f83f369509431d97907bfdeb0)
+- Moved `scroll_id` into `body` for search operations in the documentation
+  [#1052](https://github.com/elastic/elasticsearch-php/pull/1052)
+- Fixed PHP 7.4 preloading feature for autoload.php
+  [#1051](https://github.com/elastic/elasticsearch-php/pull/1051)
+- Improved message of JSON errors using `json_last_error_msg()`
+  [#1045](https://github.com/elastic/elasticsearch-php/pull/1045)
+
+## Release 7.8.0
+
+- Updated endpoints and namespaces for Elasticsearch 7.8
+  [f2a0828](https://github.com/elastic/elasticsearch-php/commit/f2a0828d5ee9d126ad63e2a1d43f70b4013845e2)
+- Improved documentation
+  [#1038](https://github.com/elastic/elasticsearch-php/pull/1038)
+  [#1027](https://github.com/elastic/elasticsearch-php/pull/1027)
+  [#1025](https://github.com/elastic/elasticsearch-php/pull/1025)
+
+## Release 7.7.0
+
+- Removed setId() into endpoints, fixed `util/GenerateEndpoints.php`
+  [#1026](https://github.com/elastic/elasticsearch-php/pull/1026)
+- Fixes JsonErrorException with code instead of message
+  [#1022](https://github.com/elastic/elasticsearch-php/pull/1022)
+- Better exception message for Could not parse URI
+  [#1016](https://github.com/elastic/elasticsearch-php/pull/1016)
+- Added JUnit log for PHPUnit
+  [88b7e1c](https://github.com/elastic/elasticsearch-php/commit/88b7e1ce80a5a52c1d64d00c55fef77097bbd8a9)
+- Added the XPack endpoints
+  [763d91a](https://github.com/elastic/elasticsearch-php/commit/763d91a3d506075316b84a38b2bed7a098da5028)
+
+## Release 7.6.1
+
+- Fixed issue with `guzzlehttp/ringphp` and `guzzle/streams`
+  using forks `ezimuel/ringphp` and `ezimuel/guzzlestreams`
+  [92a6a4a](https://github.com/elastic/elasticsearch-php/commit/92a6a4adda5eafd1823c7c9c386e2c7e5e75cd08)
+
+## Release 7.6.0
+
+- Generated the new endpoints for Elasticsearch 7.6.0
+  [be31f31](https://github.com/elastic/elasticsearch-php/commit/be31f317af704f333b43bbcc7c01ddc7c91ec6f8)
+
+## Release 7.5.1
+
+- Fixes port missing in log [#925](https://github.com/elastic/elasticsearch-php/issues/925)
+  [75e0888](https://github.com/elastic/elasticsearch-php/commit/125594b40d167ef1509b3ee49a3f93426390c426)
+- Added `ClientBuilder::includePortInHostHeader()` to add the
+  `port` in the `Host` header. This fixes [#993](https://github.com/elastic/elasticsearch-php/issues/993).
+  By default the `port` is not included in the `Host` header.
+  [#997](https://github.com/elastic/elasticsearch-php/pull/997)
+- Replace abandoned packages: ringphp, streams and phpstan-shim 
+  [#996](https://github.com/elastic/elasticsearch-php/pull/996)
+- Fixed gzip compression when setting Cloud Id
+  [#986](https://github.com/elastic/elasticsearch-php/pull/986)
+
+## Release 7.5.0
+
+- Fixed `Client::extractArgument` iterable casting to array;
+  this allows passing a `Traversable` body for some endpoints
+  (e.g. Bulk, Msearch, MsearchTemplate)
+  [#983](https://github.com/elastic/elasticsearch-php/pull/983)
+- Fixed the Response Exception if the `reason` field is null
+  [#980](https://github.com/elastic/elasticsearch-php/pull/980)
+- Added support for PHP 7.4
+  [#976](https://github.com/elastic/elasticsearch-php/pull/976)
+
+## Release 7.4.1
+
+- We added the suppress operator `@` for the deprecation messages `@trigger_error()`.
+  With this approach we don't break existing application that convert PHP errors in Exception
+  (e.g. using Laravel with issue https://github.com/babenkoivan/scout-elasticsearch-driver/issues/297)
+  Using the `@` operator is still possible to intercept the deprecation message using
+  a custom error handler.
+  [#973](https://github.com/elastic/elasticsearch-php/pull/973)
+- Add missing leading slash in the URL of put mapping endpoint
+  [#970](https://github.com/elastic/elasticsearch-php/pull/970)
+- Fix pre 7.2 endpoint class name with aliases + reapply fix #947.
+  This PR solved the unexpected BC break introduce in 7.4.0 with the code
+  generation tool
+  [#968](https://github.com/elastic/elasticsearch-php/pull/968)
+
+## Release 7.4.0
+
+- Added the code generation for endpoints and namespaces based on
+  the [REST API specification](https://github.com/elastic/elasticsearch/tree/v7.4.2/rest-api-spec/src/main/resources/rest-api-spec/api)
+  of Elasticsearch. This tool is available in `util/GenerateEndpoints.php`.
+  [#966](https://github.com/elastic/elasticsearch-php/pull/966)
+- Fixed the asciidoc [endpoints documentation](https://www.elastic.co/guide/en/elasticsearch/client/php-api/current/ElasticsearchPHP_Endpoints.html) based on the code generation 
+  using [Sami](https://github.com/FriendsOfPHP/Sami) project
+  [#966](https://github.com/elastic/elasticsearch-php/pull/966)
+- All the `experimental` and `beta` APIs are now signed with
+  a `@note` tag in the phpdoc section (e.g. [$client->rankEval()](https://github.com/elastic/elasticsearch-php/blob/master/src/Elasticsearch/Client.php)). For more information read the [experimental and beta APIs](docs/experimental-beta-apis.asciidoc)
+  section in the documentation.
+  [#966](https://github.com/elastic/elasticsearch-php/pull/966)
+- Removed `AlreadyExpiredException` since it has been removed
+  from Elasticsearch with https://github.com/elastic/elasticsearch/pull/24857
+  [#954](https://github.com/elastic/elasticsearch-php/pull/954)
+
 ## Release 7.3.0
 
 - Added support for simplified access to the `X-Opaque-Id` header

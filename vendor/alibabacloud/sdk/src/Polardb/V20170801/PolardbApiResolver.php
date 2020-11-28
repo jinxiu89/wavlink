@@ -28,13 +28,18 @@ use AlibabaCloud\Client\Resolver\ApiResolver;
  * @method DescribeDatabases describeDatabases(array $options = [])
  * @method DescribeDBClusterAccessWhitelist describeDBClusterAccessWhitelist(array $options = [])
  * @method DescribeDBClusterAttribute describeDBClusterAttribute(array $options = [])
+ * @method DescribeDBClusterAvailableResources describeDBClusterAvailableResources(array $options = [])
  * @method DescribeDBClusterEndpoints describeDBClusterEndpoints(array $options = [])
  * @method DescribeDBClusterMigration describeDBClusterMigration(array $options = [])
+ * @method DescribeDBClusterMonitor describeDBClusterMonitor(array $options = [])
  * @method DescribeDBClusterParameters describeDBClusterParameters(array $options = [])
  * @method DescribeDBClusterPerformance describeDBClusterPerformance(array $options = [])
  * @method DescribeDBClusters describeDBClusters(array $options = [])
  * @method DescribeDBClusterSSL describeDBClusterSSL(array $options = [])
+ * @method DescribeDBClustersWithBackups describeDBClustersWithBackups(array $options = [])
  * @method DescribeDBNodePerformance describeDBNodePerformance(array $options = [])
+ * @method DescribeDetachedBackups describeDetachedBackups(array $options = [])
+ * @method DescribeLogBackupPolicy describeLogBackupPolicy(array $options = [])
  * @method DescribeRegions describeRegions(array $options = [])
  * @method DescribeSlowLogRecords describeSlowLogRecords(array $options = [])
  * @method DescribeSlowLogs describeSlowLogs(array $options = [])
@@ -50,11 +55,13 @@ use AlibabaCloud\Client\Resolver\ApiResolver;
  * @method ModifyDBClusterEndpoint modifyDBClusterEndpoint(array $options = [])
  * @method ModifyDBClusterMaintainTime modifyDBClusterMaintainTime(array $options = [])
  * @method ModifyDBClusterMigration modifyDBClusterMigration(array $options = [])
+ * @method ModifyDBClusterMonitor modifyDBClusterMonitor(array $options = [])
  * @method ModifyDBClusterParameters modifyDBClusterParameters(array $options = [])
  * @method ModifyDBClusterSSL modifyDBClusterSSL(array $options = [])
  * @method ModifyDBDescription modifyDBDescription(array $options = [])
  * @method ModifyDBEndpointAddress modifyDBEndpointAddress(array $options = [])
  * @method ModifyDBNodeClass modifyDBNodeClass(array $options = [])
+ * @method ModifyLogBackupPolicy modifyLogBackupPolicy(array $options = [])
  * @method ResetAccount resetAccount(array $options = [])
  * @method RestartDBNode restartDBNode(array $options = [])
  * @method RevokeAccountPrivilege revokeAccountPrivilege(array $options = [])
@@ -179,6 +186,8 @@ class CreateDatabase extends Rpc
  * @method $this withDBClusterDescription($value)
  * @method string getClientToken()
  * @method $this withClientToken($value)
+ * @method string getCreationCategory()
+ * @method $this withCreationCategory($value)
  * @method string getClusterNetworkType()
  * @method $this withClusterNetworkType($value)
  * @method string getResourceGroupId()
@@ -187,6 +196,8 @@ class CreateDatabase extends Rpc
  * @method $this withDBNodeClass($value)
  * @method string getEngine()
  * @method $this withEngine($value)
+ * @method string getGDNId()
+ * @method $this withGDNId($value)
  * @method string getCreationOption()
  * @method $this withCreationOption($value)
  * @method string getSourceResourceId()
@@ -217,6 +228,8 @@ class CreateDatabase extends Rpc
  * @method $this withDBVersion($value)
  * @method string getCloneDataPoint()
  * @method $this withCloneDataPoint($value)
+ * @method string getTDEStatus()
+ * @method $this withTDEStatus($value)
  * @method string getPayType()
  * @method $this withPayType($value)
  */
@@ -301,8 +314,12 @@ class CreateDBNodes extends Rpc
 	{
 	    $this->data['DBNode'] = $dBNode;
 		foreach ($dBNode as $depth1 => $depth1Value) {
-			$this->options['query']['DBNode.' . ($depth1 + 1) . '.TargetClass'] = $depth1Value['TargetClass'];
-			$this->options['query']['DBNode.' . ($depth1 + 1) . '.ZoneId'] = $depth1Value['ZoneId'];
+			if(isset($depth1Value['TargetClass'])){
+				$this->options['query']['DBNode.' . ($depth1 + 1) . '.TargetClass'] = $depth1Value['TargetClass'];
+			}
+			if(isset($depth1Value['ZoneId'])){
+				$this->options['query']['DBNode.' . ($depth1 + 1) . '.ZoneId'] = $depth1Value['ZoneId'];
+			}
 		}
 
 		return $this;
@@ -366,6 +383,8 @@ class DeleteDatabase extends Rpc
 /**
  * @method string getResourceOwnerId()
  * @method $this withResourceOwnerId($value)
+ * @method string getBackupRetentionPolicyOnClusterDeletion()
+ * @method $this withBackupRetentionPolicyOnClusterDeletion($value)
  * @method string getResourceOwnerAccount()
  * @method $this withResourceOwnerAccount($value)
  * @method string getDBClusterId()
@@ -474,6 +493,8 @@ class DescribeAccounts extends Rpc
  * @method $this withResourceOwnerId($value)
  * @method string getPageNumber()
  * @method $this withPageNumber($value)
+ * @method string getResourceGroupId()
+ * @method $this withResourceGroupId($value)
  * @method string getPageSize()
  * @method $this withPageSize($value)
  * @method string getResourceOwnerAccount()
@@ -612,6 +633,30 @@ class DescribeDBClusterAttribute extends Rpc
 /**
  * @method string getResourceOwnerId()
  * @method $this withResourceOwnerId($value)
+ * @method string getDBNodeClass()
+ * @method $this withDBNodeClass($value)
+ * @method string getResourceOwnerAccount()
+ * @method $this withResourceOwnerAccount($value)
+ * @method string getOwnerAccount()
+ * @method $this withOwnerAccount($value)
+ * @method string getOwnerId()
+ * @method $this withOwnerId($value)
+ * @method string getDBType()
+ * @method $this withDBType($value)
+ * @method string getDBVersion()
+ * @method $this withDBVersion($value)
+ * @method string getZoneId()
+ * @method $this withZoneId($value)
+ * @method string getPayType()
+ * @method $this withPayType($value)
+ */
+class DescribeDBClusterAvailableResources extends Rpc
+{
+}
+
+/**
+ * @method string getResourceOwnerId()
+ * @method $this withResourceOwnerId($value)
  * @method string getDBEndpointId()
  * @method $this withDBEndpointId($value)
  * @method string getResourceOwnerAccount()
@@ -640,6 +685,22 @@ class DescribeDBClusterEndpoints extends Rpc
  * @method $this withOwnerId($value)
  */
 class DescribeDBClusterMigration extends Rpc
+{
+}
+
+/**
+ * @method string getResourceOwnerId()
+ * @method $this withResourceOwnerId($value)
+ * @method string getResourceOwnerAccount()
+ * @method $this withResourceOwnerAccount($value)
+ * @method string getDBClusterId()
+ * @method $this withDBClusterId($value)
+ * @method string getOwnerAccount()
+ * @method $this withOwnerAccount($value)
+ * @method string getOwnerId()
+ * @method $this withOwnerId($value)
+ */
+class DescribeDBClusterMonitor extends Rpc
 {
 }
 
@@ -720,8 +781,12 @@ class DescribeDBClusters extends Rpc
 	{
 	    $this->data['Tag'] = $tag;
 		foreach ($tag as $depth1 => $depth1Value) {
-			$this->options['query']['Tag.' . ($depth1 + 1) . '.Value'] = $depth1Value['Value'];
-			$this->options['query']['Tag.' . ($depth1 + 1) . '.Key'] = $depth1Value['Key'];
+			if(isset($depth1Value['Value'])){
+				$this->options['query']['Tag.' . ($depth1 + 1) . '.Value'] = $depth1Value['Value'];
+			}
+			if(isset($depth1Value['Key'])){
+				$this->options['query']['Tag.' . ($depth1 + 1) . '.Key'] = $depth1Value['Key'];
+			}
 		}
 
 		return $this;
@@ -747,6 +812,34 @@ class DescribeDBClusterSSL extends Rpc
 /**
  * @method string getResourceOwnerId()
  * @method $this withResourceOwnerId($value)
+ * @method string getDBClusterDescription()
+ * @method $this withDBClusterDescription($value)
+ * @method string getIsDeleted()
+ * @method $this withIsDeleted($value)
+ * @method string getPageNumber()
+ * @method $this withPageNumber($value)
+ * @method string getPageSize()
+ * @method $this withPageSize($value)
+ * @method string getResourceOwnerAccount()
+ * @method $this withResourceOwnerAccount($value)
+ * @method string getOwnerAccount()
+ * @method $this withOwnerAccount($value)
+ * @method string getOwnerId()
+ * @method $this withOwnerId($value)
+ * @method string getDBType()
+ * @method $this withDBType($value)
+ * @method string getDBVersion()
+ * @method $this withDBVersion($value)
+ * @method string getDBClusterIds()
+ * @method $this withDBClusterIds($value)
+ */
+class DescribeDBClustersWithBackups extends Rpc
+{
+}
+
+/**
+ * @method string getResourceOwnerId()
+ * @method $this withResourceOwnerId($value)
  * @method string getDBNodeId()
  * @method $this withDBNodeId($value)
  * @method string getStartTime()
@@ -755,6 +848,8 @@ class DescribeDBClusterSSL extends Rpc
  * @method $this withKey($value)
  * @method string getResourceOwnerAccount()
  * @method $this withResourceOwnerAccount($value)
+ * @method string getDBClusterId()
+ * @method $this withDBClusterId($value)
  * @method string getOwnerAccount()
  * @method $this withOwnerAccount($value)
  * @method string getEndTime()
@@ -765,6 +860,52 @@ class DescribeDBClusterSSL extends Rpc
  * @method $this withMetric($value)
  */
 class DescribeDBNodePerformance extends Rpc
+{
+}
+
+/**
+ * @method string getResourceOwnerId()
+ * @method $this withResourceOwnerId($value)
+ * @method string getStartTime()
+ * @method $this withStartTime($value)
+ * @method string getPageNumber()
+ * @method $this withPageNumber($value)
+ * @method string getPageSize()
+ * @method $this withPageSize($value)
+ * @method string getResourceOwnerAccount()
+ * @method $this withResourceOwnerAccount($value)
+ * @method string getDBClusterId()
+ * @method $this withDBClusterId($value)
+ * @method string getOwnerAccount()
+ * @method $this withOwnerAccount($value)
+ * @method string getBackupId()
+ * @method $this withBackupId($value)
+ * @method string getEndTime()
+ * @method $this withEndTime($value)
+ * @method string getOwnerId()
+ * @method $this withOwnerId($value)
+ * @method string getBackupStatus()
+ * @method $this withBackupStatus($value)
+ * @method string getBackupMode()
+ * @method $this withBackupMode($value)
+ */
+class DescribeDetachedBackups extends Rpc
+{
+}
+
+/**
+ * @method string getResourceOwnerId()
+ * @method $this withResourceOwnerId($value)
+ * @method string getResourceOwnerAccount()
+ * @method $this withResourceOwnerAccount($value)
+ * @method string getDBClusterId()
+ * @method $this withDBClusterId($value)
+ * @method string getOwnerAccount()
+ * @method $this withOwnerAccount($value)
+ * @method string getOwnerId()
+ * @method $this withOwnerId($value)
+ */
+class DescribeLogBackupPolicy extends Rpc
 {
 }
 
@@ -906,8 +1047,12 @@ class ListTagResources extends Rpc
 	{
 	    $this->data['Tag'] = $tag;
 		foreach ($tag as $depth1 => $depth1Value) {
-			$this->options['query']['Tag.' . ($depth1 + 1) . '.Value'] = $depth1Value['Value'];
-			$this->options['query']['Tag.' . ($depth1 + 1) . '.Key'] = $depth1Value['Key'];
+			if(isset($depth1Value['Value'])){
+				$this->options['query']['Tag.' . ($depth1 + 1) . '.Value'] = $depth1Value['Value'];
+			}
+			if(isset($depth1Value['Key'])){
+				$this->options['query']['Tag.' . ($depth1 + 1) . '.Key'] = $depth1Value['Key'];
+			}
 		}
 
 		return $this;
@@ -974,6 +1119,8 @@ class ModifyAccountPassword extends Rpc
  * @method $this withResourceOwnerId($value)
  * @method string getDuration()
  * @method $this withDuration($value)
+ * @method string getResourceGroupId()
+ * @method $this withResourceGroupId($value)
  * @method string getRenewalStatus()
  * @method $this withRenewalStatus($value)
  * @method string getResourceOwnerAccount()
@@ -994,8 +1141,14 @@ class ModifyAutoRenewAttribute extends Rpc
 /**
  * @method string getResourceOwnerId()
  * @method $this withResourceOwnerId($value)
+ * @method string getDataLevel2BackupRetentionPeriod()
+ * @method $this withDataLevel2BackupRetentionPeriod($value)
  * @method string getPreferredBackupPeriod()
  * @method $this withPreferredBackupPeriod($value)
+ * @method string getDataLevel1BackupRetentionPeriod()
+ * @method $this withDataLevel1BackupRetentionPeriod($value)
+ * @method string getBackupRetentionPolicyOnClusterDeletion()
+ * @method $this withBackupRetentionPolicyOnClusterDeletion($value)
  * @method string getResourceOwnerAccount()
  * @method $this withResourceOwnerAccount($value)
  * @method string getDBClusterId()
@@ -1128,6 +1281,24 @@ class ModifyDBClusterMigration extends Rpc
 /**
  * @method string getResourceOwnerId()
  * @method $this withResourceOwnerId($value)
+ * @method string getPeriod()
+ * @method $this withPeriod($value)
+ * @method string getResourceOwnerAccount()
+ * @method $this withResourceOwnerAccount($value)
+ * @method string getDBClusterId()
+ * @method $this withDBClusterId($value)
+ * @method string getOwnerAccount()
+ * @method $this withOwnerAccount($value)
+ * @method string getOwnerId()
+ * @method $this withOwnerId($value)
+ */
+class ModifyDBClusterMonitor extends Rpc
+{
+}
+
+/**
+ * @method string getResourceOwnerId()
+ * @method $this withResourceOwnerId($value)
  * @method string getEffectiveTime()
  * @method $this withEffectiveTime($value)
  * @method string getResourceOwnerAccount()
@@ -1194,6 +1365,10 @@ class ModifyDBDescription extends Rpc
  * @method $this withConnectionStringPrefix($value)
  * @method string getDBEndpointId()
  * @method $this withDBEndpointId($value)
+ * @method string getPrivateZoneName()
+ * @method $this withPrivateZoneName($value)
+ * @method string getPrivateZoneAddressPrefix()
+ * @method $this withPrivateZoneAddressPrefix($value)
  * @method string getResourceOwnerAccount()
  * @method $this withResourceOwnerAccount($value)
  * @method string getDBClusterId()
@@ -1228,6 +1403,24 @@ class ModifyDBEndpointAddress extends Rpc
  * @method $this withModifyType($value)
  */
 class ModifyDBNodeClass extends Rpc
+{
+}
+
+/**
+ * @method string getResourceOwnerId()
+ * @method $this withResourceOwnerId($value)
+ * @method string getResourceOwnerAccount()
+ * @method $this withResourceOwnerAccount($value)
+ * @method string getDBClusterId()
+ * @method $this withDBClusterId($value)
+ * @method string getOwnerAccount()
+ * @method $this withOwnerAccount($value)
+ * @method string getOwnerId()
+ * @method $this withOwnerId($value)
+ * @method string getLogBackupRetentionPeriod()
+ * @method $this withLogBackupRetentionPeriod($value)
+ */
+class ModifyLogBackupPolicy extends Rpc
 {
 }
 
@@ -1313,8 +1506,12 @@ class TagResources extends Rpc
 	{
 	    $this->data['Tag'] = $tag;
 		foreach ($tag as $depth1 => $depth1Value) {
-			$this->options['query']['Tag.' . ($depth1 + 1) . '.Value'] = $depth1Value['Value'];
-			$this->options['query']['Tag.' . ($depth1 + 1) . '.Key'] = $depth1Value['Key'];
+			if(isset($depth1Value['Value'])){
+				$this->options['query']['Tag.' . ($depth1 + 1) . '.Value'] = $depth1Value['Value'];
+			}
+			if(isset($depth1Value['Key'])){
+				$this->options['query']['Tag.' . ($depth1 + 1) . '.Key'] = $depth1Value['Key'];
+			}
 		}
 
 		return $this;

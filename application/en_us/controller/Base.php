@@ -23,7 +23,6 @@ use think\facade\Request;
 use think\facade\Env;
 use think\Response;
 use think\response\Redirect;
-
 /***
  * Class Base
  * @package app\en_us\controller

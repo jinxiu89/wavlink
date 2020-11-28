@@ -21,9 +21,6 @@ class Index extends Base
     /**
      * Index constructor.
      * @param App|null $app
-     * @throws DataNotFoundException
-     * @throws ModelNotFoundException
-     * @throws DbException
      */
     public function __construct(App $app = null)
     {

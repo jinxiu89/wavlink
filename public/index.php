@@ -18,6 +18,7 @@ require __DIR__ . '/../thinkphp/base.php';
 define('VENDOR_PATH', __DIR__ . '/../vendor');
 // 定义应用目录
 define('APP_PATH', __DIR__ . '/../application/');
+define('PUBLIC_PATH',__DIR__);
 // 定义
 define('RUNTIME_PATH',__DIR__.'/../runtime/');
 //定义日志目录

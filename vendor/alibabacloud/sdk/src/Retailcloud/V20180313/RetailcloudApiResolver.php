@@ -6,9 +6,11 @@ use AlibabaCloud\Client\Resolver\ApiResolver;
 
 /**
  * @method AddClusterNode addClusterNode(array $options = [])
+ * @method AllocatePodConfig allocatePodConfig(array $options = [])
  * @method BatchAddServers batchAddServers(array $options = [])
  * @method BindNodeLabel bindNodeLabel(array $options = [])
  * @method CloseDeployOrder closeDeployOrder(array $options = [])
+ * @method CreateAccount createAccount(array $options = [])
  * @method CreateApp createApp(array $options = [])
  * @method CreateAppResourceAlloc createAppResourceAlloc(array $options = [])
  * @method CreateCluster createCluster(array $options = [])
@@ -38,6 +40,7 @@ use AlibabaCloud\Client\Resolver\ApiResolver;
  * @method DescribeAppResourceAlloc describeAppResourceAlloc(array $options = [])
  * @method DescribeDatabases describeDatabases(array $options = [])
  * @method DescribeDeployOrderDetail describeDeployOrderDetail(array $options = [])
+ * @method DescribeJobLog describeJobLog(array $options = [])
  * @method DescribePodEvents describePodEvents(array $options = [])
  * @method DescribePodLog describePodLog(array $options = [])
  * @method DescribeRdsAccounts describeRdsAccounts(array $options = [])
@@ -47,6 +50,7 @@ use AlibabaCloud\Client\Resolver\ApiResolver;
  * @method GetRdsBackUp getRdsBackUp(array $options = [])
  * @method GrantDbToAccount grantDbToAccount(array $options = [])
  * @method ListApp listApp(array $options = [])
+ * @method ListAppCmsGroups listAppCmsGroups(array $options = [])
  * @method ListAppEnvironment listAppEnvironment(array $options = [])
  * @method ListAppInstance listAppInstance(array $options = [])
  * @method ListAppResourceAllocs listAppResourceAllocs(array $options = [])
@@ -55,6 +59,7 @@ use AlibabaCloud\Client\Resolver\ApiResolver;
  * @method ListClusterNode listClusterNode(array $options = [])
  * @method ListDeployConfig listDeployConfig(array $options = [])
  * @method ListDeployOrders listDeployOrders(array $options = [])
+ * @method ListJobHistories listJobHistories(array $options = [])
  * @method ListNodeLabelBindings listNodeLabelBindings(array $options = [])
  * @method ListNodeLabels listNodeLabels(array $options = [])
  * @method ListPersistentVolume listPersistentVolume(array $options = [])
@@ -66,11 +71,14 @@ use AlibabaCloud\Client\Resolver\ApiResolver;
  * @method ModifyService modifyService(array $options = [])
  * @method ModifySlbAP modifySlbAP(array $options = [])
  * @method QueryClusterDetail queryClusterDetail(array $options = [])
+ * @method RebuildAppInstance rebuildAppInstance(array $options = [])
  * @method RemoveClusterNode removeClusterNode(array $options = [])
+ * @method ResetAccountPassword resetAccountPassword(array $options = [])
  * @method ResourceStatusNotify resourceStatusNotify(array $options = [])
  * @method ResumeDeploy resumeDeploy(array $options = [])
  * @method ScaleApp scaleApp(array $options = [])
  * @method SetDeployPauseType setDeployPauseType(array $options = [])
+ * @method SyncPodInfo syncPodInfo(array $options = [])
  * @method UnbindNodeLabel unbindNodeLabel(array $options = [])
  * @method UpdateApp updateApp(array $options = [])
  * @method UpdateDeployConfig updateDeployConfig(array $options = [])
@@ -90,9 +98,6 @@ class Rpc extends \AlibabaCloud\Client\Resolver\Rpc
 
     /** @var string */
     public $method = 'POST';
-
-    /** @var string */
-    public $serviceCode = 'retailcloud';
 }
 
 /**
@@ -117,6 +122,18 @@ class AddClusterNode extends Rpc
 
 		return $this;
     }
+}
+
+/**
+ * @method string getRequestId()
+ * @method $this withRequestId($value)
+ * @method string getAppId()
+ * @method $this withAppId($value)
+ * @method string getEnvId()
+ * @method $this withEnvId($value)
+ */
+class AllocatePodConfig extends Rpc
+{
 }
 
 /**
@@ -154,16 +171,79 @@ class CloseDeployOrder extends Rpc
 }
 
 /**
+ * @method string getAccountPassword()
+ * @method string getAccountName()
+ * @method string getAccountType()
+ * @method string getDbInstanceId()
+ */
+class CreateAccount extends Rpc
+{
+
+    /**
+     * @param string $value
+     *
+     * @return $this
+     */
+    public function withAccountPassword($value)
+    {
+        $this->data['AccountPassword'] = $value;
+        $this->options['form_params']['AccountPassword'] = $value;
+
+        return $this;
+    }
+
+    /**
+     * @param string $value
+     *
+     * @return $this
+     */
+    public function withAccountName($value)
+    {
+        $this->data['AccountName'] = $value;
+        $this->options['form_params']['AccountName'] = $value;
+
+        return $this;
+    }
+
+    /**
+     * @param string $value
+     *
+     * @return $this
+     */
+    public function withAccountType($value)
+    {
+        $this->data['AccountType'] = $value;
+        $this->options['form_params']['AccountType'] = $value;
+
+        return $this;
+    }
+
+    /**
+     * @param string $value
+     *
+     * @return $this
+     */
+    public function withDbInstanceId($value)
+    {
+        $this->data['DbInstanceId'] = $value;
+        $this->options['form_params']['DbInstanceId'] = $value;
+
+        return $this;
+    }
+}
+
+/**
  * @method string getBizTitle()
+ * @method string getOperatingSystem()
+ * @method string getDescription()
+ * @method string getLanguage()
+ * @method string getTitle()
+ * @method array getMiddleWareIdList()
  * @method string getStateType()
  * @method string getServiceType()
  * @method array getUserRoles()
  * @method string getBizCode()
- * @method string getOperatingSystem()
  * @method string getNamespace()
- * @method string getDescription()
- * @method string getLanguage()
- * @method string getTitle()
  */
 class CreateApp extends Rpc
 {
@@ -186,79 +266,10 @@ class CreateApp extends Rpc
      *
      * @return $this
      */
-    public function withStateType($value)
-    {
-        $this->data['StateType'] = $value;
-        $this->options['form_params']['StateType'] = $value;
-
-        return $this;
-    }
-
-    /**
-     * @param string $value
-     *
-     * @return $this
-     */
-    public function withServiceType($value)
-    {
-        $this->data['ServiceType'] = $value;
-        $this->options['form_params']['ServiceType'] = $value;
-
-        return $this;
-    }
-
-    /**
-     * @param array $userRoles
-     *
-     * @return $this
-     */
-	public function withUserRoles(array $userRoles)
-	{
-	    $this->data['UserRoles'] = $userRoles;
-		foreach ($userRoles as $depth1 => $depth1Value) {
-			$this->options['form_params']['UserRoles.' . ($depth1 + 1) . '.RoleName'] = $depth1Value['RoleName'];
-			$this->options['form_params']['UserRoles.' . ($depth1 + 1) . '.UserType'] = $depth1Value['UserType'];
-			$this->options['form_params']['UserRoles.' . ($depth1 + 1) . '.UserId'] = $depth1Value['UserId'];
-		}
-
-		return $this;
-    }
-
-    /**
-     * @param string $value
-     *
-     * @return $this
-     */
-    public function withBizCode($value)
-    {
-        $this->data['BizCode'] = $value;
-        $this->options['form_params']['BizCode'] = $value;
-
-        return $this;
-    }
-
-    /**
-     * @param string $value
-     *
-     * @return $this
-     */
     public function withOperatingSystem($value)
     {
         $this->data['OperatingSystem'] = $value;
         $this->options['form_params']['OperatingSystem'] = $value;
-
-        return $this;
-    }
-
-    /**
-     * @param string $value
-     *
-     * @return $this
-     */
-    public function withNamespace($value)
-    {
-        $this->data['Namespace'] = $value;
-        $this->options['form_params']['Namespace'] = $value;
 
         return $this;
     }
@@ -298,6 +309,96 @@ class CreateApp extends Rpc
     {
         $this->data['Title'] = $value;
         $this->options['form_params']['Title'] = $value;
+
+        return $this;
+    }
+
+    /**
+     * @param array $middleWareIdList
+     *
+     * @return $this
+     */
+	public function withMiddleWareIdList(array $middleWareIdList)
+	{
+	    $this->data['MiddleWareIdList'] = $middleWareIdList;
+		foreach ($middleWareIdList as $i => $iValue) {
+			$this->options['form_params']['MiddleWareIdList.' . ($i + 1)] = $iValue;
+		}
+
+		return $this;
+    }
+
+    /**
+     * @param string $value
+     *
+     * @return $this
+     */
+    public function withStateType($value)
+    {
+        $this->data['StateType'] = $value;
+        $this->options['form_params']['StateType'] = $value;
+
+        return $this;
+    }
+
+    /**
+     * @param string $value
+     *
+     * @return $this
+     */
+    public function withServiceType($value)
+    {
+        $this->data['ServiceType'] = $value;
+        $this->options['form_params']['ServiceType'] = $value;
+
+        return $this;
+    }
+
+    /**
+     * @param array $userRoles
+     *
+     * @return $this
+     */
+	public function withUserRoles(array $userRoles)
+	{
+	    $this->data['UserRoles'] = $userRoles;
+		foreach ($userRoles as $depth1 => $depth1Value) {
+			if(isset($depth1Value['RoleName'])){
+				$this->options['form_params']['UserRoles.' . ($depth1 + 1) . '.RoleName'] = $depth1Value['RoleName'];
+			}
+			if(isset($depth1Value['UserType'])){
+				$this->options['form_params']['UserRoles.' . ($depth1 + 1) . '.UserType'] = $depth1Value['UserType'];
+			}
+			if(isset($depth1Value['UserId'])){
+				$this->options['form_params']['UserRoles.' . ($depth1 + 1) . '.UserId'] = $depth1Value['UserId'];
+			}
+		}
+
+		return $this;
+    }
+
+    /**
+     * @param string $value
+     *
+     * @return $this
+     */
+    public function withBizCode($value)
+    {
+        $this->data['BizCode'] = $value;
+        $this->options['form_params']['BizCode'] = $value;
+
+        return $this;
+    }
+
+    /**
+     * @param string $value
+     *
+     * @return $this
+     */
+    public function withNamespace($value)
+    {
+        $this->data['Namespace'] = $value;
+        $this->options['form_params']['Namespace'] = $value;
 
         return $this;
     }
@@ -449,6 +550,9 @@ class CreateDb extends Rpc
  * @method $this withEnvType($value)
  * @method string getName()
  * @method $this withName($value)
+ * @method array getSecretList()
+ * @method string getCronJob()
+ * @method $this withCronJob($value)
  * @method string getDeployment()
  * @method $this withDeployment($value)
  */
@@ -465,6 +569,21 @@ class CreateDeployConfig extends Rpc
 	    $this->data['ConfigMapList'] = $configMapList;
 		foreach ($configMapList as $i => $iValue) {
 			$this->options['query']['ConfigMapList.' . ($i + 1)] = $iValue;
+		}
+
+		return $this;
+    }
+
+    /**
+     * @param array $secretList
+     *
+     * @return $this
+     */
+	public function withSecretList(array $secretList)
+	{
+	    $this->data['SecretList'] = $secretList;
+		foreach ($secretList as $i => $iValue) {
+			$this->options['query']['SecretList.' . ($i + 1)] = $iValue;
 		}
 
 		return $this;
@@ -676,11 +795,21 @@ class CreateService extends Rpc
 	{
 	    $this->data['PortMappings'] = $portMappings;
 		foreach ($portMappings as $depth1 => $depth1Value) {
-			$this->options['form_params']['PortMappings.' . ($depth1 + 1) . '.Protocol'] = $depth1Value['Protocol'];
-			$this->options['form_params']['PortMappings.' . ($depth1 + 1) . '.Port'] = $depth1Value['Port'];
-			$this->options['form_params']['PortMappings.' . ($depth1 + 1) . '.Name'] = $depth1Value['Name'];
-			$this->options['form_params']['PortMappings.' . ($depth1 + 1) . '.NodePort'] = $depth1Value['NodePort'];
-			$this->options['form_params']['PortMappings.' . ($depth1 + 1) . '.TargetPort'] = $depth1Value['TargetPort'];
+			if(isset($depth1Value['Protocol'])){
+				$this->options['form_params']['PortMappings.' . ($depth1 + 1) . '.Protocol'] = $depth1Value['Protocol'];
+			}
+			if(isset($depth1Value['Port'])){
+				$this->options['form_params']['PortMappings.' . ($depth1 + 1) . '.Port'] = $depth1Value['Port'];
+			}
+			if(isset($depth1Value['Name'])){
+				$this->options['form_params']['PortMappings.' . ($depth1 + 1) . '.Name'] = $depth1Value['Name'];
+			}
+			if(isset($depth1Value['NodePort'])){
+				$this->options['form_params']['PortMappings.' . ($depth1 + 1) . '.NodePort'] = $depth1Value['NodePort'];
+			}
+			if(isset($depth1Value['TargetPort'])){
+				$this->options['form_params']['PortMappings.' . ($depth1 + 1) . '.TargetPort'] = $depth1Value['TargetPort'];
+			}
 		}
 
 		return $this;
@@ -919,6 +1048,8 @@ class DeleteSlbAP extends Rpc
  * @method $this withDescription($value)
  * @method string getEnvId()
  * @method $this withEnvId($value)
+ * @method string getUpdateStrategyType()
+ * @method $this withUpdateStrategyType($value)
  * @method string getPauseType()
  * @method $this withPauseType($value)
  * @method string getArmsFlag()
@@ -977,6 +1108,21 @@ class DescribeDatabases extends Rpc
  */
 class DescribeDeployOrderDetail extends Rpc
 {
+}
+
+/**
+ * @method string getAppId()
+ * @method $this withAppId($value)
+ * @method string getPodName()
+ * @method $this withPodName($value)
+ * @method string getEnvId()
+ * @method $this withEnvId($value)
+ */
+class DescribeJobLog extends Rpc
+{
+
+    /** @var string */
+    public $method = 'GET';
 }
 
 /**
@@ -1252,6 +1398,23 @@ class ListApp extends Rpc
 }
 
 /**
+ * @method string getAppId()
+ * @method $this withAppId($value)
+ * @method string getPageSize()
+ * @method $this withPageSize($value)
+ * @method string getEnvId()
+ * @method $this withEnvId($value)
+ * @method string getPageNumber()
+ * @method $this withPageNumber($value)
+ */
+class ListAppCmsGroups extends Rpc
+{
+
+    /** @var string */
+    public $method = 'GET';
+}
+
+/**
  * @method string getEnvName()
  * @method $this withEnvName($value)
  * @method string getAppId()
@@ -1487,6 +1650,25 @@ class ListDeployOrders extends Rpc
 }
 
 /**
+ * @method string getAppId()
+ * @method $this withAppId($value)
+ * @method string getPageSize()
+ * @method $this withPageSize($value)
+ * @method string getEnvId()
+ * @method $this withEnvId($value)
+ * @method string getPageNumber()
+ * @method $this withPageNumber($value)
+ * @method string getStatus()
+ * @method $this withStatus($value)
+ */
+class ListJobHistories extends Rpc
+{
+
+    /** @var string */
+    public $method = 'GET';
+}
+
+/**
  * @method string getInstanceId()
  * @method $this withInstanceId($value)
  * @method string getLabelKey()
@@ -1713,11 +1895,21 @@ class ModifyService extends Rpc
 	{
 	    $this->data['PortMappings'] = $portMappings;
 		foreach ($portMappings as $depth1 => $depth1Value) {
-			$this->options['form_params']['PortMappings.' . ($depth1 + 1) . '.Protocol'] = $depth1Value['Protocol'];
-			$this->options['form_params']['PortMappings.' . ($depth1 + 1) . '.Port'] = $depth1Value['Port'];
-			$this->options['form_params']['PortMappings.' . ($depth1 + 1) . '.Name'] = $depth1Value['Name'];
-			$this->options['form_params']['PortMappings.' . ($depth1 + 1) . '.NodePort'] = $depth1Value['NodePort'];
-			$this->options['form_params']['PortMappings.' . ($depth1 + 1) . '.TargetPort'] = $depth1Value['TargetPort'];
+			if(isset($depth1Value['Protocol'])){
+				$this->options['form_params']['PortMappings.' . ($depth1 + 1) . '.Protocol'] = $depth1Value['Protocol'];
+			}
+			if(isset($depth1Value['Port'])){
+				$this->options['form_params']['PortMappings.' . ($depth1 + 1) . '.Port'] = $depth1Value['Port'];
+			}
+			if(isset($depth1Value['Name'])){
+				$this->options['form_params']['PortMappings.' . ($depth1 + 1) . '.Name'] = $depth1Value['Name'];
+			}
+			if(isset($depth1Value['NodePort'])){
+				$this->options['form_params']['PortMappings.' . ($depth1 + 1) . '.NodePort'] = $depth1Value['NodePort'];
+			}
+			if(isset($depth1Value['TargetPort'])){
+				$this->options['form_params']['PortMappings.' . ($depth1 + 1) . '.TargetPort'] = $depth1Value['TargetPort'];
+			}
 		}
 
 		return $this;
@@ -1756,6 +1948,18 @@ class QueryClusterDetail extends Rpc
 }
 
 /**
+ * @method string getAppId()
+ * @method $this withAppId($value)
+ * @method string getEnvId()
+ * @method $this withEnvId($value)
+ * @method string getAppInstanceId()
+ * @method $this withAppInstanceId($value)
+ */
+class RebuildAppInstance extends Rpc
+{
+}
+
+/**
  * @method array getEcsInstanceIdList()
  * @method string getClusterInstanceId()
  * @method $this withClusterInstanceId($value)
@@ -1776,6 +1980,54 @@ class RemoveClusterNode extends Rpc
 		}
 
 		return $this;
+    }
+}
+
+/**
+ * @method string getAccountPassword()
+ * @method string getAccountName()
+ * @method string getDbInstanceId()
+ */
+class ResetAccountPassword extends Rpc
+{
+
+    /**
+     * @param string $value
+     *
+     * @return $this
+     */
+    public function withAccountPassword($value)
+    {
+        $this->data['AccountPassword'] = $value;
+        $this->options['form_params']['AccountPassword'] = $value;
+
+        return $this;
+    }
+
+    /**
+     * @param string $value
+     *
+     * @return $this
+     */
+    public function withAccountName($value)
+    {
+        $this->data['AccountName'] = $value;
+        $this->options['form_params']['AccountName'] = $value;
+
+        return $this;
+    }
+
+    /**
+     * @param string $value
+     *
+     * @return $this
+     */
+    public function withDbInstanceId($value)
+    {
+        $this->data['DbInstanceId'] = $value;
+        $this->options['form_params']['DbInstanceId'] = $value;
+
+        return $this;
     }
 }
 
@@ -1828,6 +2080,24 @@ class SetDeployPauseType extends Rpc
 }
 
 /**
+ * @method string getReason()
+ * @method $this withReason($value)
+ * @method string getRequestId()
+ * @method $this withRequestId($value)
+ * @method string getPodName()
+ * @method $this withPodName($value)
+ * @method string getSideCarType()
+ * @method $this withSideCarType($value)
+ * @method string getTaskId()
+ * @method $this withTaskId($value)
+ * @method string getStatus()
+ * @method $this withStatus($value)
+ */
+class SyncPodInfo extends Rpc
+{
+}
+
+/**
  * @method string getInstanceId()
  * @method $this withInstanceId($value)
  * @method string getLabelKey()
@@ -1849,6 +2119,7 @@ class UnbindNodeLabel extends Rpc
  * @method string getOperatingSystem()
  * @method string getDescription()
  * @method string getLanguage()
+ * @method array getMiddleWareIdList()
  */
 class UpdateApp extends Rpc
 {
@@ -1888,9 +2159,15 @@ class UpdateApp extends Rpc
 	{
 	    $this->data['UserRoles'] = $userRoles;
 		foreach ($userRoles as $depth1 => $depth1Value) {
-			$this->options['form_params']['UserRoles.' . ($depth1 + 1) . '.RoleName'] = $depth1Value['RoleName'];
-			$this->options['form_params']['UserRoles.' . ($depth1 + 1) . '.UserType'] = $depth1Value['UserType'];
-			$this->options['form_params']['UserRoles.' . ($depth1 + 1) . '.UserId'] = $depth1Value['UserId'];
+			if(isset($depth1Value['RoleName'])){
+				$this->options['form_params']['UserRoles.' . ($depth1 + 1) . '.RoleName'] = $depth1Value['RoleName'];
+			}
+			if(isset($depth1Value['UserType'])){
+				$this->options['form_params']['UserRoles.' . ($depth1 + 1) . '.UserType'] = $depth1Value['UserType'];
+			}
+			if(isset($depth1Value['UserId'])){
+				$this->options['form_params']['UserRoles.' . ($depth1 + 1) . '.UserId'] = $depth1Value['UserId'];
+			}
 		}
 
 		return $this;
@@ -1947,6 +2224,21 @@ class UpdateApp extends Rpc
 
         return $this;
     }
+
+    /**
+     * @param array $middleWareIdList
+     *
+     * @return $this
+     */
+	public function withMiddleWareIdList(array $middleWareIdList)
+	{
+	    $this->data['MiddleWareIdList'] = $middleWareIdList;
+		foreach ($middleWareIdList as $i => $iValue) {
+			$this->options['form_params']['MiddleWareIdList.' . ($i + 1)] = $iValue;
+		}
+
+		return $this;
+    }
 }
 
 /**
@@ -1959,8 +2251,11 @@ class UpdateApp extends Rpc
  * @method $this withStatefulSet($value)
  * @method string getAppId()
  * @method $this withAppId($value)
+ * @method array getSecretList()
  * @method string getId()
  * @method $this withId($value)
+ * @method string getCronJob()
+ * @method $this withCronJob($value)
  * @method string getDeployment()
  * @method $this withDeployment($value)
  */
@@ -1977,6 +2272,21 @@ class UpdateDeployConfig extends Rpc
 	    $this->data['ConfigMapList'] = $configMapList;
 		foreach ($configMapList as $i => $iValue) {
 			$this->options['query']['ConfigMapList.' . ($i + 1)] = $iValue;
+		}
+
+		return $this;
+    }
+
+    /**
+     * @param array $secretList
+     *
+     * @return $this
+     */
+	public function withSecretList(array $secretList)
+	{
+	    $this->data['SecretList'] = $secretList;
+		foreach ($secretList as $i => $iValue) {
+			$this->options['query']['SecretList.' . ($i + 1)] = $iValue;
 		}
 
 		return $this;

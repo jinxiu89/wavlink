@@ -41,7 +41,8 @@ Route::group('en_us', function () {
     Route::get('/tuya/Appdownload$','Tuya/index');
     //因系统升级导致一些遗留的URL需要转发的情况 alex 的斐讯QUANTUM_DAX固件上传时还没有firmware功能，所以做到了说明书这个模块里了，现在转发这个路由到正确的位置
     Route::get('/manual/details/QUANTUM_DAX_Firmware',function (){
-        return redirect('/en_us/firmware/details/a04826a130.html');
+        return redirect('/en_us/firmware/details/ff7995ec6a.html');//这个地址 是由于老系统升级时留下的一个坑，但用户又一直在用，所以就遗留在这里了
+
     });
     Route::get('/', 'Index/index');
 })->prefix('en_us/');

@@ -1,20 +1,36 @@
 <?php
-
+/**
+ * Elasticsearch PHP client
+ *
+ * @link      https://github.com/elastic/elasticsearch-php/
+ * @copyright Copyright (c) Elasticsearch B.V (https://www.elastic.co)
+ * @license   http://www.apache.org/licenses/LICENSE-2.0 Apache License, Version 2.0
+ * @license   https://www.gnu.org/licenses/lgpl-2.1.html GNU Lesser General Public License, Version 2.1 
+ * 
+ * Licensed to Elasticsearch B.V under one or more agreements.
+ * Elasticsearch B.V licenses this file to you under the Apache 2.0 License or
+ * the GNU Lesser General Public License, Version 2.1, at your option.
+ * See the LICENSE file in the project root for more information.
+ */
 declare(strict_types = 1);
 
 namespace Elasticsearch\Endpoints;
 
+use Elasticsearch\Endpoints\AbstractEndpoint;
+
 /**
  * Class Reindex
- *
- * @category Elasticsearch
- * @package  Elasticsearch\Endpoints\Indices
- * @author   Augustin Husson <husson.augustin@gmail.com>
- * @license  http://www.apache.org/licenses/LICENSE-2.0 Apache2
- * @link     http://elastic.co
+ * Elasticsearch API name reindex
+ * Generated running $ php util/GenerateEndpoints.php 7.9
  */
 class Reindex extends AbstractEndpoint
 {
+
+    public function getURI(): string
+    {
+
+        return "/_reindex";
+    }
 
     public function getParamWhitelist(): array
     {
@@ -25,13 +41,9 @@ class Reindex extends AbstractEndpoint
             'wait_for_completion',
             'requests_per_second',
             'scroll',
-            'slices'
+            'slices',
+            'max_docs'
         ];
-    }
-
-    public function getURI(): string
-    {
-        return '/_reindex';
     }
 
     public function getMethod(): string
@@ -44,7 +56,6 @@ class Reindex extends AbstractEndpoint
         if (isset($body) !== true) {
             return $this;
         }
-
         $this->body = $body;
 
         return $this;

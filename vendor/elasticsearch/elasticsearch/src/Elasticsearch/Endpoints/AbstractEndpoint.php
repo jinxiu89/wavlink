@@ -1,4 +1,18 @@
 <?php
+/**
+ * Elasticsearch PHP client
+ *
+ * @link      https://github.com/elastic/elasticsearch-php/
+ * @copyright Copyright (c) Elasticsearch B.V (https://www.elastic.co)
+ * @license   http://www.apache.org/licenses/LICENSE-2.0 Apache License, Version 2.0
+ * @license   https://www.gnu.org/licenses/lgpl-2.1.html GNU Lesser General Public License, Version 2.1
+ *
+ * Licensed to Elasticsearch B.V under one or more agreements.
+ * Elasticsearch B.V licenses this file to you under the Apache 2.0 License or
+ * the GNU Lesser General Public License, Version 2.1, at your option.
+ * See the LICENSE file in the project root for more information.
+ */
+
 
 declare(strict_types = 1);
 
@@ -10,15 +24,6 @@ use Elasticsearch\Transport;
 use Exception;
 use GuzzleHttp\Ring\Future\FutureArrayInterface;
 
-/**
- * Class AbstractEndpoint
- *
- * @category Elasticsearch
- * @package  Elasticsearch\Endpoints
- * @author   Zachary Tong <zach@elastic.co>
- * @license  http://www.apache.org/licenses/LICENSE-2.0 Apache2
- * @link     http://elastic.co
- */
 abstract class AbstractEndpoint
 {
     /**
@@ -160,7 +165,7 @@ abstract class AbstractEndpoint
      *
      * @return $this
      */
-    public function setID($docID)
+    public function setId($docID)
     {
         if ($docID === null) {
             return $this;
@@ -169,7 +174,7 @@ abstract class AbstractEndpoint
         if (is_int($docID)) {
             $docID = (string) $docID;
         }
-
+        
         $this->id = urlencode($docID);
 
         return $this;
@@ -219,7 +224,7 @@ abstract class AbstractEndpoint
      */
     private function checkUserParams(array $params)
     {
-        if (isset($params) !== true) {
+        if (empty($params)) {
             return; //no params, just return.
         }
 

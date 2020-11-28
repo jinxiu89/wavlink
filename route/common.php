@@ -35,8 +35,12 @@ Route::get('/notfound', 'en_us/Base/notFound')->name('404');
 Route::get('/server_error', 'en_us/Base/serverError')->name('500');
 //自动跳转路由
 Route::get('/$', function (){
-    $code = Cookie::get('lang_var') ? Cookie::get('lang_var') : get_lang(Request::instance()->header()); //这个code需要把‘-’换成‘_’;
-    return redirect('/' . $code . '/index.html', [], 200);
+    if(Cookie::get('lang_var')) return redirect('/' . Cookie::get('lang_var') . '/index.html', [], 200);
+    $ip=get_client_ip();
+    $isoCode=(new app\common\helper\GeoIp())->getCode($ip);
+//    print_r($isoCode);exit;
+    if($isoCode == 'CN' or $isoCode == 'HK') return redirect('/' . 'zh_cn' . '/index.html', [], 200);
+    return redirect('/' . 'en_us' . '/index.html', [], 200);
 });
 //访问路由不存在时触发miss路由
 Route::miss('en_us/Common/miss');  //当所有的路由都匹配不到的时候 就会走到这个miss路由上来

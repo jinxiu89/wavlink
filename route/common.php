@@ -38,7 +38,6 @@ Route::get('/$', function (){
     if(Cookie::get('lang_var')) return redirect('/' . Cookie::get('lang_var') . '/index.html', [], 200);
     $ip=get_client_ip();
     $isoCode=(new app\common\helper\GeoIp())->getCode($ip);
-//    print_r($isoCode);exit;
     if($isoCode == 'CN' or $isoCode == 'HK') return redirect('/' . 'zh_cn' . '/index.html', [], 200);
     return redirect('/' . 'en_us' . '/index.html', [], 200);
 });

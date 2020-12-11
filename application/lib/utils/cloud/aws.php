@@ -16,7 +16,6 @@ use Aws\Exception\MultipartUploadException;
 use Aws\S3\S3Client;
 use Aws\S3\MultipartUploader;
 use think\facade\Config;
-
 /**
  * Class aws
  * @package app\lib\utils\cloud

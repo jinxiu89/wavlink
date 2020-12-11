@@ -44,8 +44,8 @@
                                 <dd>{$result.update_time|strtotime|date="d/m/Y"}</dd>
                                 <dt>{:lang('Available')}</dt>
                                 <dd>{$result.model}</dd>
-                                <dt>{:lang('Description')}</dt>
-                                <dd>{$result.description}</dd>
+<!--                                <dt>{:lang('Description')}</dt>-->
+<!--                                <dd>{$result.description}</dd>-->
                                 <dt>{:lang('Download')}</dt>
                                 <dd><a href="{$result.url}" class="download_url btn btn-default"><i class="iconfont">&#xe64f;</i></a></dd>
                             </dl>
@@ -56,6 +56,7 @@
                         </div>
                     </div>
                     <div class="item-notices">
+                        {$result.description}
                         {$result.notices|raw}
                     </div>
                 </div>

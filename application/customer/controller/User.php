@@ -21,6 +21,7 @@ use think\exception\DbException;
 use think\facade\Cache;
 use app\customer\middleware\Auth;
 use think\facade\Config;
+use app\lib\utils\cloud\awsSes;
 
 /**
  * Class User
@@ -42,8 +43,12 @@ class User extends Base
     }
 
     protected $middleware = [
-        Auth::class => ['except' => ['login', 'register', 'forgotPassword', 'changePassword']]
+        Auth::class => ['except' => ['login','testEmail', 'register', 'forgotPassword', 'changePassword']]
     ];
+    public function testEmail(){
+//        print_r("hello world");
+        (new awsSes())->SendCustomVerificationEmail();
+    }
 
     /**
      * login

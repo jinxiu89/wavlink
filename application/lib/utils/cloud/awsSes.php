@@ -10,10 +10,10 @@
  **/
 
 namespace app\lib\utils\cloud;
-use Aws\Ses\SesClient;
+
 use Aws\Ses\Exception;
+use Aws\Ses\SesClient;
 use think\facade\Config;
-use think\response\Json;
 
 /**
  * Class awsSes
@@ -22,57 +22,69 @@ use think\response\Json;
 class awsSes
 {
     protected $client;
+
     public function __construct()
     {//todo::初始化参数
         $conf = Config::get('awsCloud.Ses');
-        $options=[
-            'version'=>$conf['version'],
-            'region'=>$conf['region'],
-            'credentials'=>[
-                'key'=>$conf['accessKeyId'],
-                'secret'=>$conf['secretAccessKey'],
+        $options = [
+            'version' => $conf['version'],
+            'region' => $conf['region'],
+            'credentials' => [
+                'key' => $conf['accessKeyId'],
+                'secret' => $conf['secretAccessKey'],
             ],
-            'debug'=>false,
+            'debug' => false,
         ];
-        $this->client= new SesClient($options);
+        $this->client = new SesClient($options);
         unset($options);
     }
 
     /**
-     * @param $template_data
-     * @param $template
-     * @param $receiver
+     * @param array $template_data 传递过来的数据
+     * @param string $template 是用英文模板还是中文模板
+     * @param string $receiver 发送到谁哪里去
      */
-    public function sendTemplateEmail($template_data,$template='verificationCode_cn',$receiver="jinxiu89@163.com"){
+    public function sendTemplateEmail(array $template_data, $template = 'verificationCode_cn', $receiver = "jinxiu89@163.com")
+    {
+        $conf = Config::get('awsCloud.smtp');
         //
-        $sendParams=[
-            'Source'=>"Do Not Reply<noreply@wavlink.com>",
-            'Template'=>$template,
-            "Destination"=>[
-                "ToAddresses"=> [$receiver],
+        $sendParams = [
+            'Source' => "Do Not Reply<" . $conf['sender'] . ">", //从哪里发
+            'Template' => $template, //模板
+            "Destination" => [
+                "ToAddresses" => [$receiver],//发送到哪里
             ],
-//            "TemplateData"=>\json($template_data),
-            "TemplateData"=>json_encode($template_data),
+            "TemplateData" => json_encode($template_data),//json 数据传给模板发送API
         ];
-        try{
-            $result=$this->client->sendTemplatedEmail($sendParams);
+        try {
+            $result = $this->client->sendTemplatedEmail($sendParams);
             print_r($result);
 
-        }catch (Exception\SesException $exception){
+        } catch (Exception\SesException $exception) {
             print_r($exception->getMessage());
         }
     }
 
-    public function SendCustomVerificationEmail(){
+    /**
+     * @param string $code
+     * @param string $type
+     * @param string $language
+     * @param string $email
+     */
+    public function SendCustomVerificationEmail($code = '', $type = 'signup', $language='cn',$email = 'jinxiu89@163.com')
+    {
         //todo::发送验证码邮件
-        $template_data=[
-            'service_name'=>"WAVLINK",
-            'email'=>'jinxiu89@163.com',
-            'type'=>'signup',
-            'verification_code'=>'1382',
-            'expired_time'=>"10"
+
+        $template_data = [
+            'service_name' => "WAVLINK",
+            'email' => $email,
+            'type' => $type, //是注册还是
+            'verification_code' => $code,
+            'expired_time' => "10"
         ];
-        $this->sendTemplateEmail($template_data);
+        $template='verificationCode_'.$language;
+
+        $this->sendTemplateEmail($template_data,$template,$receiver = $email);
 
         /*ry{
             $this->client->sendCustomVerificationEmail([
@@ -83,7 +95,9 @@ class awsSes
 
         }*/
     }
-    public function sendUrVerificationEmail(){
+
+    public function sendUrVerificationEmail()
+    {
         //todo::发送激活链接邮件
     }
 

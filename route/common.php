@@ -52,3 +52,5 @@ Route::rule('/verify/code$', 'en_us/Common/verify', 'GET')->name('gen_verify');
 Route::rule('/list/obj$', 'customer/Base/listObj', 'GET')->name('listObj');
 Route::get('/index$','en_us/Index/index');
 Route::get('/popularProduct$','en_us/Base/popularProduct',['category_id'=>'[\w-]+'])->name('getPopularProduct');
+//谷歌机器人验证组件
+Route::get('/robot','en_us/Common/robot')->name('robot');

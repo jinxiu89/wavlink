@@ -158,6 +158,10 @@ class Base extends Controller
         }
     }
 
+    public function sendCode(){
+
+    }
+
     public function listObj()
     {
         $prefix = !empty(input('get.prefix', '', 'htmlspecialchars,trim')) ? input('get.prefix', '', 'htmlspecialchars,trim') . '/' : 'videos/';

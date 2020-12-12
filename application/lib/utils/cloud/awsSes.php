@@ -70,8 +70,9 @@ class awsSes
      * @param string $type
      * @param string $language
      * @param string $email
+     * @param string $expired
      */
-    public function SendCustomVerificationEmail($code = '', $type = 'signup', $language='cn',$email = 'jinxiu89@163.com')
+    public function SendCustomVerificationEmail($code = '', $type = 'signup', $language = 'cn', $email = 'jinxiu89@163.com', $expired = "10")
     {
         //todo::发送验证码邮件
 
@@ -80,20 +81,10 @@ class awsSes
             'email' => $email,
             'type' => $type, //是注册还是
             'verification_code' => $code,
-            'expired_time' => "10"
+            'expired_time' => $expired
         ];
-        $template='verificationCode_'.$language;
-
-        $this->sendTemplateEmail($template_data,$template,$receiver = $email);
-
-        /*ry{
-            $this->client->sendCustomVerificationEmail([
-                'EmailAddress'=>'jinxiu89@163.com',
-                'TemplateName'=>'verificationCode_cn'
-            ]);
-        }catch (Exception\SesException $exception){
-
-        }*/
+        $template = 'verificationCode_' . $language;
+        $this->sendTemplateEmail($template_data, $template, $receiver = $email);
     }
 
     public function sendUrVerificationEmail()

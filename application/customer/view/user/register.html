@@ -27,11 +27,7 @@
             <h2><a href="https://www.wavlink.com"><img class="" src="//china.wavlink.com/images/LOGO/WAVLINK-logo.png" alt=""></a></h2>
         </div>
         <div class="info-box">
-            {if($lang == 'en_us')}
             {include file="base/user/email"}
-            {else /}
-            {include file="base/user/phone"}
-            {/if}
         </div>
         <div class="link-box">
             <div class="login">
@@ -86,20 +82,26 @@
                         var robotCode = window.sessionStorage.getItem('robot');
                         console.log(robotCode);
                         if (robotCode === 'true') {
+                            console.log(1);
                             $.ajax({
                                 url: '{:url(\'send_code\')}',
                                 type: 'post',
                                 data: {
                                     email: value,
-                                    type: 'register',
+                                    type: 'Register',
                                     language: '{$lang}'
                                 },
                                 success: function (result) {
+                                    console.log(2);
                                     var json=JSON.parse(result);
                                     if(json.status === 1){
+                                        console.log(3);
                                         countDown($(_this), 120, btnText);
                                     }else{
-                                        console.log(0);
+                                        layer.msg("{:lang('Failed to send verification code')}", {
+                                            icon: 5,
+                                            time: 3000
+                                        })
                                     }
                                 }
                             });

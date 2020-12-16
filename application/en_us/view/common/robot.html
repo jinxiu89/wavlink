@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link rel="stylesheet" href="__USER__/ui/public/components.css">
+    <style>
+        body {
+            position: relative;
+            background: none;
+            height: 100%;
+            padding: 20px;
+        }
+        #robot {
+            /*position: absolute;*/
+            /*top: 30%;*/
+            /*left: 50%;*/
+            /*margin-top: 0;*/
+            /*margin-left: -25%;*/
+        }
+    </style>
+</head>
+<body>
+
+<div id="robot"></div>
+<p style="margin-top: 20px">完成人机验证后，我们会给您发送一封包含验证码的邮件，此验证码将用于我们WAVLINK用户中心的注册。
+    如果您未收到邮件，请仔细检查您填写的邮箱是否正确，部分地区由于网络波动，收到邮件可能会比较慢，请耐心等候。
+    如果两分钟后您任未收到邮件，请重新发送验证码试下，或者联系我们
+    <a href="mailto:Gavinz@wavlink.com">Gavinz@wavlink.com</a>
+</p>
+
+<script src="https://www.google.com/recaptcha/api.js?onload=onloadCallback&render=explicit&hl=zh" async defer></script>
+
+<script type="text/javascript">
+    window.sessionStorage.setItem('robot', 'false');
+    var verifyCallback = function(response) {
+        console.log(response);
+        console.log('验证成功');
+        window.sessionStorage.setItem('robot', 'true');
+        var index = parent.layer.getFrameIndex(window.name);
+        parent.layer.close(index);
+    };
+    var expiredCallback = function (response) {
+        console.log(response);
+        console.log('验证过期');
+        window.sessionStorage.setItem('robot', 'false');
+    };
+    var errorCallback = function (response) {
+        console.log(response);
+        console.log('验证失败');
+        window.sessionStorage.setItem('robot', 'false');
+    };
+    var widgetId;
+    var onloadCallback = function() {
+        widgetId = grecaptcha.render('robot', {
+            'sitekey' : '6Ld9AgMaAAAAAMfgMc7bJvGHB7CyYUSKRQTNBs1V',
+            'theme' : 'light',
+            'size': 'normal',
+            'callback' : verifyCallback,
+            'expired-callback': expiredCallback,
+            'error-callback': errorCallback
+        });
+    };
+    function getResponseFromRecaptcha() {
+        var responseToken = grecaptcha.getResponse(widgetId);
+        if (responseToken.length === 0) {
+            alert("验证失败");
+        } else {
+            alert("验证通过");
+        }
+    }
+</script>
+</body>
+</html>

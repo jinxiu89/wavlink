@@ -60,6 +60,12 @@ return [
     'Please enter your e-mail captcha' => 'Please enter the correct verification code',
     'Please click \"Send\" to receive the verification code.' => 'Please click "Send" to receive the verification code.',
     '' => '',
+    'tips' => 'Tips',
+    'sure' => 'Sure',
+    'man-machine' => 'Man-Machine',
+    'Drag the slider to verify' => 'Drag the slider to verify',
+    'success' => 'Success',
+    'machine code tips' => 'Please complete the above man-machine verification first, then you can send the verification code to your mailbox after passing',
     /*注册验证文案*/
     'user name is required'=>'First Name Is Required',
     'password is required'=>'password is required',
@@ -162,8 +168,8 @@ return [
     'Do not select a date before 1940.' => 'Do not select a date before 1940.',
     'Please keep your password. After changing the password, you need to log in again.' => 'Please keep your password. After changing the password, you need to log in again.',
 
-    'Submit' => 'SUBMIT',
-    'Cancel' => 'CANCEL',
+    'Submit' => 'Submit',
+    'Cancel' => 'Cancel',
     'Female'=>'Female',
     'Male'=>'Male',
     'Secret'=>'Secret',

@@ -3,7 +3,20 @@
 {:lang('Register')}
 {/block}
 {block name="style"}
+<link rel="stylesheet" href="__STATIC__/lib/jquerySlider/css/jquerySlider.css">
 <link rel="stylesheet" href="__USER__/ui/css/page/login_register.css">
+<style>
+    .layui-layer-close {
+        display: none!important;
+    }
+    .machine-code-box {
+        float: left;
+        border: 1px dashed #fff;
+        border-radius: 4px;
+        box-sizing: border-box;
+        position: relative;
+    }
+</style>
 {/block}
 {block name="main"}
 <div class="form-box register-box">
@@ -31,6 +44,7 @@
 {/block}
 
 {block name="javascript"}
+<script src="__STATIC__/lib/jquerySlider/js/jquerySlider.min.js"></script>
 <script type="text/javascript" src="__STATIC__/admin/lib/jquery.validation/1.14.0/jquery.validate.js"></script>
 <script type="text/javascript" src="__STATIC__/admin/lib/jquery.validation/1.14.0/validate-methods.js"></script>
 <script src="__USER__/ui/js/countDown.js"></script>
@@ -38,13 +52,11 @@
 <script type="text/javascript" src="__STATIC__/admin/lib/jquery.validation/1.14.0/messages_zh.js"></script>
 {/if}
 <script>
-    // 初始化
-    $(function () {
+    function sendCode() {
         var btn = document.getElementById("send_code");
         var btnText = "{:lang('send')}";
         monitor($(btn), btnText);
         btn.onclick = function () {
-            //倒计时效果 getCode回调函数 获取验证码api
             var _this = this;
             var value = $(".code").val();
             var attr = $(".code").attr('id');
@@ -61,21 +73,38 @@
                     time: 3000
                 })
             } else {
-                $.ajax({
-                    url: '{:url(\'verification\')}' + '?' + attr + '=' + value,
-                    type: 'get',
-                    success: function (result) {
-                        var json=JSON.parse(result);
-                        if(json.status === 1){
-                            countDown($(_this), 120, btnText);
-                        }else{
-                            console.log(0);
+                var url = "{:url('robot')}";
+                layer.open({
+                    type: 2,
+                    title: '',
+                    shadeClose: true,
+                    scrollbar: false,
+                    shade: 0.7,
+                    area: ['600px', '420px'],
+                    content: url,
+                    end: function () {
+                        var robotCode = window.sessionStorage.getItem('robot');
+                        console.log(robotCode);
+                        if (robotCode === 'true') {
+                            $.ajax({
+                                url: '{:url(\'verification\')}' + '?' + attr + '=' + value,
+                                type: 'get',
+                                success: function (result) {
+                                    var json=JSON.parse(result);
+                                    if(json.status === 1){
+                                        countDown($(_this), 120, btnText);
+                                    }else{
+                                        console.log(0);
+                                    }
+                                }
+                            });
                         }
                     }
                 });
             }
         };
-    });
+    }
+    sendCode();
 </script>
 <!--JS业务处理区块-->
 <script>
@@ -143,6 +172,25 @@
             return this.optional(element)||(rel.test(value));
         }, '{:lang(\'Password verification\')}');
     })
+</script>
+<script>
+    $("#machineCode").slider({
+        width: 210, // width
+        height: 30, // height
+        sliderBg: "#D3D3D3", // 滑块背景颜色
+        color: "#333", // 文字颜色
+        fontSize: 12, // 文字大小
+        bgColor: "#33CC00", // 背景颜色
+        // textMsg: "{:lang(\'Drag the slider to verify\')}", // 提示文字
+        textMsg: "请按住滑块，拖到最右边", // 提示文字
+        // successMsg: "{:lang(\'success\')}", // 验证成功提示文字
+        successMsg: "验证成功", // 验证成功提示文字
+        successColor: "#fff", // 滑块验证成功提示文字颜色
+        time: 400, // 返回时间
+        callback: function(result) { // 回调函数，true(成功),false(失败)
+            window.sessionStorage.setItem('machineCode', result)
+        }
+    });
 </script>
 <!--JS业务处理区块-->
 {/block}

@@ -11,7 +11,6 @@
 
 namespace app\en_us\controller;
 
-
 use app\common\service\en_us\About as aboutService;
 use think\App;
 use think\captcha\Captcha;
@@ -33,7 +32,7 @@ class Common extends Controller
     public function __construct(App $app = null)
     {
         parent::__construct($app);
-        $this->code = Cookie::get('lang_var') ? Cookie::get('lang_var') : 'en_us';
+        $this->code = Cookie::get('customer_lang') ? Cookie::get('customer_lang') : 'en_us';
     }
 
     /**
@@ -69,6 +68,7 @@ class Common extends Controller
     public function privacy()
     {
         $result = (new aboutService())->getArticle('Privacy', $this->code);
+//        print_r($this->code);exit;
         return $this->fetch('', ['result' => $result->toArray()]);
     }
 

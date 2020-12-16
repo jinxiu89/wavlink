@@ -152,6 +152,7 @@ class User extends Base
             if (!captcha_check($data['captcha'])) {
                 return show(0, lang('Verification Error'), '', '', '', '验证码错误');
             }
+
             $email = (new Customer())->CheckEmail($data['email']);
             $url = request()->domain() . "/customer/reset/" . $data['email'];
             $dear = lang('Dear');

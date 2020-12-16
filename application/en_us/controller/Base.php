@@ -23,6 +23,7 @@ use think\facade\Request;
 use think\facade\Env;
 use think\Response;
 use think\response\Redirect;
+
 /***
  * Class Base
  * @package app\en_us\controller
@@ -68,28 +69,34 @@ class Base extends Controller
     public function __construct(App $app = null)
     {
         $path = explode('/', Request::path());
-        if (!empty($path[0]) && in_array($path[0],Config::get('language.allow_lang'))) {
-            Cookie::set('lang_var', $path[0],['expire'=>3600]);
-            Cookie::set('customer_lang', $path[0],['expire'=>3600]); //lang_var是tp自带的变量 ，跨控制器之后就失效了， 所以这里加一个供会员系统的变量
+        if (!empty($path[0]) && in_array($path[0], Config::get('language.allow_lang'))) {
+            Cookie::set('lang_var', $path[0], ['expire' => 3600]);
+            Cookie::set('customer_lang', $path[0], ['expire' => 3600]); //lang_var是tp自带的变量 ，跨控制器之后就失效了， 所以这里加一个供会员系统的变量
         }
+        //init 之前运行
+//        print_r("construct parent之前运行 1"."<br />");
         parent::__construct($app);
+        //init 之后运行
+
     }
 
     public function initialize()
     {
         parent::initialize();
         //当前模块
+        $this->code = Cookie::get('lang_var') ? Cookie::get('lang_var') : get_lang(Request::instance()->header());
         $this->module = Request::module();//模块名
         $url = Request::controller();
         $this->assign('url', $url);
         $this->assign('code', $this->code);
         $user = session('CustomerInfo', '', 'Customer');
-        if (isset($user) and !empty($user)){
+        if (isset($user) and !empty($user)) {
             $this->uid = $user['id'];
             $this->username = $user['username'];
             $this->assign('id', $this->uid);
             $this->assign('username', $this->username);
         }
+        print_r($this->code);
     }
 
 
@@ -195,8 +202,8 @@ class Base extends Controller
     public function getTree()
     {
         $data = (new CategoryModel())->getDataByLanguage($this->language_id);
-        $tree=[];
-        if(!is_array($data) and !empty($data)) {
+        $tree = [];
+        if (!is_array($data) and !empty($data)) {
             $arr = Collection::make($data)->toArray();
             $tree = \app\common\helper\Category::toLayer($arr, $name = 'child', $parent_id = 0);
         }
@@ -234,7 +241,7 @@ class Base extends Controller
         //加载当前模块语言包
         Lang::load(Env::get('app_path') . $this->module . '/lang/' . $this->code . '.php');
         $this->assign('code', $this->code);
-        return \redirect('/'.$this->code.'/index.html',[],200);
+        return \redirect('/' . $this->code . '/index.html', [], 200);
     }
 
     /**
@@ -268,11 +275,12 @@ class Base extends Controller
     /**
      *
      */
-    public function popularProduct(){
-        $category_id=input('get.category_id');
-        if(empty($category_id) and is_numeric($category_id)) return json(['status'=>0,'message'=>'category_id必须为数字','data'=>[]]);
-        $data=(new BaseService())->popularProduct($this->language_id,$category_id);
-        return json(['status'=>1,'message'=>'ok','data'=>$data]);
+    public function popularProduct()
+    {
+        $category_id = input('get.category_id');
+        if (empty($category_id) and is_numeric($category_id)) return json(['status' => 0, 'message' => 'category_id必须为数字', 'data' => []]);
+        $data = (new BaseService())->popularProduct($this->language_id, $category_id);
+        return json(['status' => 1, 'message' => 'ok', 'data' => $data]);
     }
 
 }

@@ -7,6 +7,7 @@ Route::group('customer', function () {
     Route::rule('/verification$', 'Base/sendVerification','GET')
         ->parent(['email'=>'[\w!#$%&\'*+/=?^_`{|}~-]+(?:\.[\w!#$%&\'*+/=?^_`{|}~-]+)*@(?:[\w](?:[\w-]*[\w])?\.)+[\w](?:[\w-]*[\w])?','phone'=>'\d+'])
         ->name('verification');
+    Route::post('/send_code','Base/sendCode')->name('send_code');
     //登入登出
     Route::rule('/login$', 'User/login','GET|POST')->name('customer_login')->parent(['next'=>'[\w-]+']);
     Route::get('/logout$', 'User/logout')->name('customer_logout');
@@ -42,6 +43,7 @@ Route::group('customer', function () {
     Route::rule('/product/register$','Product/register','GET|POST')->parent(['user_id'=>'[\d+]'])->name('customer_product_register');
     Route::rule('/product/add$','Product/addProduct','GET|POST')->name('customerAddProduct');
     Route::get('/product/lists$','Product/lists')->name('customer_product_list');
+    Route::get('/testEmail','User/testEmail');
 
     Route::rule('/index$','Index/index','GET')->name('customer_index');
 })->prefix('customer/');

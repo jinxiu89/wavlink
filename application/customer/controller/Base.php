@@ -19,6 +19,7 @@ use think\facade\Cache;
 use think\facade\Cookie;
 use think\facade\Lang;
 use app\lib\utils\cloud\ali;
+use app\lib\utils\cloud\awsSes;
 
 class Base extends Controller
 {
@@ -156,6 +157,42 @@ class Base extends Controller
                 return show(0, lang('Send Error'), '', '', '', lang('Message Send Failed!'));
             }
         }
+    }
+
+    public function sendCode()
+    {
+        $str = tools::GetIntStr(6);
+        $data = input('post.');
+        $language = $data['language'] == 'zh_cn' ? 'cn' : 'en';
+        try {
+            $Cache = Cache::store('redis')->get($data['email']);
+            if (empty($Cache)) {
+                Cache::store('redis')->set($data['email'], $str, 600);
+            }
+        } catch (Exception $exception) {//这里等一下改
+            $default = Cache::store('default')->get($data['email']);
+            if (empty($default)) Cache::store('default')->set($data['email'], $str, 300);
+        }
+        unset($str);
+        //先只考虑邮箱发送
+        $result = (new awsSes())
+            ->SendCustomVerificationEmail(
+                $code = Cache::store('redis')->get($data['email']),
+                $type = $data['type'],
+                $language,
+                $email = $data['email'],
+                $expired = "5");
+        if (is_object($result)) {
+            $arr = $result->toArray();
+            if ($arr['@metadata']['statusCode'] == '200') {
+                return show(1, lang('Send Mail is Success'), '', '', '', lang('Message Send Successfully!'));
+            }
+            return show(0, lang('Send Error'), '', '', '', lang('Message Send Failed!'));
+        } else {
+            return show(0, lang('Send Error'), '', '', '', lang('Message Send Failed!'));
+        }
+
+        //后期升级考虑手机短信发送
     }
 
     public function listObj()

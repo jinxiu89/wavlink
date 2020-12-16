@@ -87,8 +87,13 @@
                         console.log(robotCode);
                         if (robotCode === 'true') {
                             $.ajax({
-                                url: '{:url(\'verification\')}' + '?' + attr + '=' + value,
-                                type: 'get',
+                                url: '{:url(\'send_code\')}',
+                                type: 'post',
+                                data: {
+                                    email: value,
+                                    type: 'register',
+                                    language: '{$lang}'
+                                },
                                 success: function (result) {
                                     var json=JSON.parse(result);
                                     if(json.status === 1){

@@ -89,4 +89,13 @@ class Common extends Controller
     {
         return view(Env::get('APP_PATH') . '/en_us/view/error/404.html', [], $code = 404);
     }
+
+    /**
+     * @return mixed
+     */
+    public function robot(){
+        if($this->request->isGet()){
+            return $this->fetch();
+        }
+    }
 }

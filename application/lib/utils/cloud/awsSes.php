@@ -46,8 +46,7 @@ class awsSes
      */
     public function sendTemplateEmail(array $template_data, $template = 'verificationCode_cn', $receiver = "jinxiu89@163.com")
     {
-        $conf = Config::get('awsCloud.smtp');
-        //
+        $conf = Config::get('awsCloud.Smtp');
         $sendParams = [
             'Source' => "Do Not Reply<" . $conf['sender'] . ">", //从哪里发
             'Template' => $template, //模板
@@ -57,25 +56,23 @@ class awsSes
             "TemplateData" => json_encode($template_data),//json 数据传给模板发送API
         ];
         try {
-            $result = $this->client->sendTemplatedEmail($sendParams);
-            print_r($result);
+            return $this->client->sendTemplatedEmail($sendParams);
 
         } catch (Exception\SesException $exception) {
-            print_r($exception->getMessage());
+            return $exception->getMessage();
         }
     }
 
     /**
-     * @param string $code
-     * @param string $type
-     * @param string $language
-     * @param string $email
-     * @param string $expired
+     * 前端调用此方法发送验证码邮件
+     * @param string $code 验证码
+     * @param string $type 注册还是其他操作
+     * @param string $language 操作模板
+     * @param string $email 发送到哪个邮箱
+     * @param string $expired 验证码超时时间
      */
     public function SendCustomVerificationEmail($code = '', $type = 'signup', $language = 'cn', $email = 'jinxiu89@163.com', $expired = "10")
     {
-        //todo::发送验证码邮件
-
         $template_data = [
             'service_name' => "WAVLINK",
             'email' => $email,
@@ -84,7 +81,7 @@ class awsSes
             'expired_time' => $expired
         ];
         $template = 'verificationCode_' . $language;
-        $this->sendTemplateEmail($template_data, $template, $receiver = $email);
+        return $this->sendTemplateEmail($template_data, $template, $receiver = $email);
     }
 
     public function sendUrVerificationEmail()

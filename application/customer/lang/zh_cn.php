@@ -49,7 +49,7 @@ return [
     'Welcome to wavlink' => '欢迎使用Wavlink 公司出品的电子产品',
     'notice for login' => '<p>欢迎登陆注册WAVLINK用户中心；注册登陆后您将享受以下服务</p><p>1、产品保修服务</p><p>2、优惠福利活动抢先看</p><p>3、新品上市通知dffd</p><p>4、半价测试</p><p>这段文案还需要市场部核对后发布</p>',
     'Email' => 'E-mail',
-    'username'=>'姓名',
+    'username'=>'用户名',
     'phone'=>'手机',
     'send'=>'发送',
     'Change Email address' => '修改邮箱',

@@ -96,7 +96,6 @@ class Base extends Controller
             $this->assign('id', $this->uid);
             $this->assign('username', $this->username);
         }
-        print_r($this->code);
     }
 
 

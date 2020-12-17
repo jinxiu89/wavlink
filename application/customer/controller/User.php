@@ -144,6 +144,7 @@ class User extends Base
 
     /**
      * 会员找回密码控制器
+     * 发送邮件控制器，后期废弃了
      */
     public function forgotten()
     {
@@ -608,9 +609,6 @@ class User extends Base
             }
             if ($data['type'] == 2) {
                 $code = Cache::store('redis')->get($data['phone'], '') ? Cache::store('redis')->get($data['phone'], '') : Cache::store('default')->get($data['phone'], '');
-            }
-            if ($code != ($data['captcha'])) {
-                return show(0, lang('The verification code is invalid'), '', '', '', lang('The verification code is invalid'));
             }
             $data['password'] = GetPassword($data['password']);
             if ($this->service->updateData($data)) {

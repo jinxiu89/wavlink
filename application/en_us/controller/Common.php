@@ -18,6 +18,7 @@ use think\Controller;
 use think\facade\Config;
 use think\facade\Cookie;
 use think\facade\Env;
+use think\facade\Lang;
 use think\Response;
 use think\response\Redirect;
 
@@ -33,6 +34,7 @@ class Common extends Controller
     {
         parent::__construct($app);
         $this->code = Cookie::get('customer_lang') ? Cookie::get('customer_lang') : 'en_us';
+        Lang::load(APP_PATH . 'customer/lang/' . $this->code . '.php'); //加载该语言下的模块语言包
     }
 
     /**
@@ -68,7 +70,6 @@ class Common extends Controller
     public function privacy()
     {
         $result = (new aboutService())->getArticle('Privacy', $this->code);
-//        print_r($this->code);exit;
         return $this->fetch('', ['result' => $result->toArray()]);
     }
 
@@ -93,8 +94,10 @@ class Common extends Controller
     /**
      * @return mixed
      */
-    public function robot(){
-        if($this->request->isGet()){
+    public function robot()
+    {
+        if ($this->request->isGet()) {
+            $this->assign('lang', $this->code);
             return $this->fetch();
         }
     }

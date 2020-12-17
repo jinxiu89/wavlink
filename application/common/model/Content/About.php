@@ -31,7 +31,7 @@ class About extends BaseModel
     public static function getAbouts($code = "en_us")
     {
         $language_id = LanguageModel::getLanguageCodeOrID($code);
-        $query=self::where(['language_id' => $language_id]);
+        $query=self::where(['language_id' => $language_id,'status'=>1]);
         $data['data']=$query->field('id,url_title,name,keywords,language_id,listorder,create_time,status')->paginate();
         $data['count']=$query->count();
         return $data;

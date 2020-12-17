@@ -144,7 +144,7 @@ class User extends Base
 
     /**
      * 会员找回密码控制器
-     * 发送邮件控制器，后期废弃了
+     * 发送邮件控制器，后期废弃了 废弃日志： 20201217
      */
     public function forgotten()
     {
@@ -279,11 +279,6 @@ class User extends Base
                 'country' => $country->toArray(),
                 'result' => $customer
             ]);
-            /*if (isMobile()) {
-                return "hello world";
-            } else {
-
-            }*/
         }
 
     }

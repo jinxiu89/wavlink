@@ -33,6 +33,7 @@ return [
     'This e-mail already existed' => 'This e-mail already existed',
     'This phone number already existed' => 'This phone number already existed',
     //注册登录用到的词汇
+    'Sign up' => 'Sign up',
     'Already have an account?' => 'Already have an account?',
     'Sign in' => 'Sign in',
     'Experience Center' => 'Experience Center',

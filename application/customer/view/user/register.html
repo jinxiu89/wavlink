@@ -69,6 +69,15 @@
                     time: 3000
                 })
             } else {
+                /*
+                * todo: 发送验证码流程bug
+                * 流程描述：1.点击发送验证码按钮 => 2.弹出人机验证layer弹层 => 3.人机验证通过后关闭layer弹层 => 4.执行ajax请求发送验证码 =>
+                *    5.ajax请求成功，执行倒计时。
+                * 存在问题描述：由于存在ajax响应或者网络波动问题，有时候会出现layer弹层已经关闭，但ajax仍然处于响应中，那么倒计时则无法执行，
+                *    用户任然可以继续点击发送验证码的按钮。
+                * 解决方案：1.点击发送验证码按钮 => 2.弹出人机验证layer弹层 => 3.人机验证通过后执行ajax请求发送验证码 =>
+                *    4.ajax请求成功，关闭layer弹层。 => 5.执行倒计时。
+                * */
                 var url = "{:url('robot')}";
                 layer.open({
                     type: 2,
@@ -76,11 +85,10 @@
                     shadeClose: true,
                     scrollbar: false,
                     shade: 0.7,
-                    area: ['600px', '420px'],
+                    area: ['600px', '600px'],
                     content: url,
                     end: function () {
                         var robotCode = window.sessionStorage.getItem('robot');
-                        console.log(robotCode);
                         if (robotCode === 'true') {
                             $.ajax({
                                 url: '{:url(\'send_code\')}',

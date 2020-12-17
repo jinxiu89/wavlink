@@ -83,6 +83,7 @@ return [
     'Subscribe me'=>'Subscribe me for early-bird notice and more news.',
     'Agree is required' => 'Please read and accept our Terms Of Use Notice and Privacy Policy',
     'Captcha Error' => 'Captcha Error',
+    'robot code tips' => 'After the confirmation is done, we will send you a mail with the Captcha code for registration or password resetting. If you can’t receive the mail, please re-check your e-mail address carefully; besides, our mail might reach you a bit slow due to your local Internet condition. If you still don’t get the mail after two minutes, please choose to re-send the captcha code or contact us for help',
     /*注册验证文案结束*/
     'Input your first name'=>'Input your first name',
     'Input your E-mail' => 'Input your E-mail',

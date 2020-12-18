@@ -26,12 +26,8 @@
 <p style="margin-top: 20px">{:lang('robot code tips')}
     <a href="mailto:Gavinz@wavlink.com">Contact@wavlink.com</a>
 </p>
-
-{if($lang == 'zh_cn')}
-<script src="https://www.recaptcha.net/recaptcha/api.js?onload=onloadCallback&render=explicit&hl=zh" async defer></script>
-{else /}
-<script src="https://www.google.com/recaptcha/api.js?onload=onloadCallback&render=explicit&hl=en" async defer></script>
-{/if}
+<script src="https://www.google.com/recaptcha/api.js?onload=onloadCallback&render=explicit" async defer></script>
+<script src="https://www.recaptcha.net/recaptcha/api.js?onload=onloadCallback&render=explicit" async defer></script>
 <script type="text/javascript">
     window.sessionStorage.setItem('robot', 'false');
     var verifyCallback = function(response) {

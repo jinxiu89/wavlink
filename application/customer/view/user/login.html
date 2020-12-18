@@ -33,8 +33,13 @@
         errorClass: 'infoError',
         errorElement: "p",
         rules: {
-            email: 'required',
-            phone: 'required',
+            email: {
+                required: true,
+                email: true
+            },
+            phone: {
+                required: true,
+            },
             password: {
                 required: true,
                 minlength: 5,

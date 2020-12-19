@@ -226,7 +226,7 @@ header {
             color: @whiteSmoke;
             line-height: 26px;
             &:hover {
-                color: @activeColor;
+                color: #6196ff;
             }
         }
         dl dd a .iconfont {
@@ -281,7 +281,7 @@ header {
             .text-overflow();
         }
         a {
-            color: #136ec2;
+            color: @activeColor;
             &:hover {
                 text-decoration: underline;
             }
@@ -309,17 +309,19 @@ header {
         background: @whiteColor;
     }
     ul li h3 {
-        padding: 0 20px;
+        padding: 0 15px;
         font-size: 16px;
         line-height: 50px;
+        color: @baseColor;
+        font-weight: 700;
         border-bottom: 1px solid @borderColor;
         text-transform: uppercase;
     }
     ul li a {
         display: block;
-        padding: 0 20px;
+        padding: 0 15px;
         line-height: 50px;
-        color: @whiteSmoke;
+        color: @baseColor;
         border-bottom: 1px solid @borderColor;
         &:hover {
             color: @activeColor;
@@ -330,12 +332,8 @@ header {
         border-bottom: none;
     }
     ul li .active {
-        color: @whiteColor;
-        background: @activeColor;
-        &:hover {
-            color: @whiteColor;
-            text-decoration: underline;
-        }
+        color: @activeColor;
+        text-decoration: underline;
     }
 
     @media screen and (min-width: 768px) and (max-width: 991px) {

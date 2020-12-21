@@ -255,6 +255,8 @@ return [
     //产品列表
     'Product List' => '产品列表',
     'Add Products' => '添加产品',
+    'delete product confirm' => '您确定删除该产品吗？',
+    'delete product' => '删除产品',
 
     //国家 名称翻译
     'china' => '中国',

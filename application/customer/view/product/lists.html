@@ -36,7 +36,8 @@
     <div class="Module">
         <h3 class="title">
             <span>{$vo.model}</span>
-            <a class="delete" href="#" title="delete"><span class="iconfont iconashbin"></span></a>
+            <span class="product-id" data-id="{$vo.id}"></span>
+            <a class="delete product-delete" href="javascript:void(0)" title="delete"><span class="iconfont iconashbin"></span></a>
         </h3>
         <div class="Field">
             <h4 class="Field-label">{:lang('Model')}</h4>
@@ -51,7 +52,7 @@
             <div class="Field-content">
                 <div>
                     <span class="Field-text">{$vo.sn}</span>
-                    <button class="Field-modify" type="button"><span class="iconfont iconedit"></span> Modify</button>
+<!--                    <button class="Field-modify" type="button"><span class="iconfont iconedit"></span> Modify</button>-->
                 </div>
             </div>
         </div>
@@ -76,7 +77,6 @@
             <div class="Field-content">
                 <div>
                     <span class="Field-text">{$vo.order_number}</span>
-                    <button class="Field-modify" type="button"><span class="iconfont iconedit"></span> Modify</button>
                 </div>
             </div>
         </div>
@@ -93,7 +93,6 @@
             <div class="Field-content">
                 <div>
                     <span class="Field-text">{$vo.category}</span>
-                    <button class="Field-modify" type="button"><span class="iconfont iconedit"></span> Modify</button>
                 </div>
             </div>
         </div>
@@ -113,13 +112,34 @@
 <script>
     $('.Product').addClass('active');
     $(document).ready(function () {
-        var FieldTextDom = $('.Field-text');
-        for (var i = 0; i < FieldTextDom.length; i++) {
-            var FieldText = $(FieldTextDom[i]).text();
-            if (FieldText !== '') {
-                $(FieldTextDom[i]).siblings('.Field-modify').remove()
-            }
-        }
-    })
+        $('.product-delete').click(function () {
+            var product_id = $(this).siblings('.product-id').text();
+            layer.confirm("{:lang('delete product confirm')}", {
+                title: "{:lang('delete product')}",
+                btn: ['Yes', 'No']
+            }, function(){
+                productDelete(product_id)
+            });
+        })
+    });
+    function productDelete(product_id) {
+        $.ajax({
+            url: "{:url('customer_del_product')}",
+            type: "post",
+            data: {
+                user_id: "",
+                id: product_id
+            },
+            success: function (result) {
+                console.log(result);
+                layer.msg("{:lang('success')}", {
+                    icon: 1,
+                    time: 1000
+                }, function () {
+                    location.reload();
+                });
+            },
+        })
+    }
 </script>
 {/block}

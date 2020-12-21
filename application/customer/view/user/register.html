@@ -40,7 +40,7 @@
 {/block}
 
 {block name="javascript"}
-<script src="__STATIC__/lib/jquerySlider/js/jquerySlider.min.js"></script>
+<!--<script src="__STATIC__/lib/jquerySlider/js/jquerySlider.min.js"></script>-->
 <script type="text/javascript" src="__STATIC__/admin/lib/jquery.validation/1.14.0/jquery.validate.js"></script>
 <script type="text/javascript" src="__STATIC__/admin/lib/jquery.validation/1.14.0/validate-methods.js"></script>
 <script src="__USER__/ui/js/countDown.js"></script>
@@ -84,7 +84,7 @@
                     title: '',
                     shadeClose: true,
                     scrollbar: false,
-                    shade: 0.7,
+                    shade: 0.4,
                     area: ['600px', '600px'],
                     content: url,
                     end: function () {
@@ -185,7 +185,7 @@
         }, '{:lang(\'Password verification\')}');
     })
 </script>
-<script>
+<!--<script>
     $("#machineCode").slider({
         width: 210, // width
         height: 30, // height
@@ -203,6 +203,6 @@
             window.sessionStorage.setItem('machineCode', result)
         }
     });
-</script>
+</script>-->
 <!--JS业务处理区块-->
 {/block}

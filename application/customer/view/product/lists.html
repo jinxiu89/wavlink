@@ -113,7 +113,7 @@
     $('.Product').addClass('active');
     $(document).ready(function () {
         $('.product-delete').click(function () {
-            var product_id = $(this).siblings('.product-id').text();
+            var product_id = $(this).siblings('.product-id').attr('data-id');
             layer.confirm("{:lang('delete product confirm')}", {
                 title: "{:lang('delete product')}",
                 btn: ['Yes', 'No']
@@ -127,7 +127,7 @@
             url: "{:url('customer_del_product')}",
             type: "post",
             data: {
-                user_id: "",
+                user_id: "{$id}",
                 id: product_id
             },
             success: function (result) {

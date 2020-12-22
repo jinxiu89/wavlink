@@ -45,6 +45,9 @@
     font-size: 18px;
     font-weight: 700;
     color: @baseColor;
+    .product-id {
+      display: none;
+    }
     .delete {
       float: right;
     }
@@ -91,20 +94,75 @@
 
 .pagination-box {
   margin: 20px 13.5%;
-  text-align: center;
-  .pagination li {
-    display: inline-block;
+  .pagination {
+    .clearFix();
+    margin: 10px 0;
   }
-  .pagination li a,
-  .pagination li span {
-    display: block;
-    padding: 0 5px;
+
+  .pagination > li > a,
+  .pagination > li > span {
+    position: relative;
+    float: left;
+    padding: 6px 12px;
+    margin-left: -1px;
+    line-height: 1.42857143;
+    color: @activeColor;
+    text-decoration: none;
+    background-color: #fff;
+    border: 1px solid #ddd;
   }
-  .pagination li a {
-    color: #136ec2;
-    &:hover {
-      text-decoration: underline;
-      color: #136ec2 + 20;
-    }
+
+  .pagination > li > a:focus,
+  .pagination > li > a:hover,
+  .pagination > li > span:focus,
+  .pagination > li > span:hover {
+    //z-index: 2;
+    color: #23527c;
+    background-color: #eee;
+    border-color: #ddd;
+  }
+
+  .pagination > .disabled > a,
+  .pagination > .disabled > a:focus,
+  .pagination > .disabled > a:hover,
+  .pagination > .disabled > span,
+  .pagination > .disabled > span:focus,
+  .pagination > .disabled > span:hover {
+    color: #777;
+  }
+
+  .pagination > .active > a,
+  .pagination > .active > a:focus,
+  .pagination > .active > a:hover,
+  .pagination > .active > span,
+  .pagination > .active > span:focus,
+  .pagination > .active > span:hover {
+    color: @whiteColor;
+    background: @activeColor;
+    border-color: @activeColor;
+  }
+}
+
+@media screen and (min-width: 768px) and (max-width: 991px) {
+  .Introduction,
+  .Module,
+  .pagination-box {
+    margin: 20px;
+  }
+}
+
+@media screen and (min-width: 992px) and (max-width: 1199px) {
+  .Introduction,
+  .Module,
+  .pagination-box {
+    margin: 20px 40px;
+  }
+}
+
+@media screen and (min-width: 1200px) and (max-width: 1400px) {
+  .Introduction,
+  .Module,
+  .pagination-box {
+    margin: 20px 60px;
   }
 }

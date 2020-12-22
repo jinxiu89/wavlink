@@ -178,7 +178,8 @@ return [
     'Your verification code is' => 'Your verification code is',
 
     //产品列表页
-
+    'delete product confirm' => 'Are you sure to delete this product?',
+    'delete product' => 'Delete Product',
 
     //国家翻译
     'Taiwan' => 'Taiwan, China',

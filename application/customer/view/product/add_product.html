@@ -52,13 +52,9 @@
     <!--表单容器容器-->
     <!--业务处理区块-->
     <div class="box" id="box">
-        <!--<div class="logo-box">
-            <h2><a href="https://www.wavlink.com"><img class="" src="https://cloud.wavlink.com/index.php?user/publicLink&fid=bb50yNmQ9Uq6Cd3K4xnP7f4s6XTIQRL4VC0zRTOCg6uD3u4sD4Fq1rba3mEGfQg2ZPfdpGI9jz0oV8fX-smuZ4C2yokEppUXskovnb1iUWYZDDl2W-lXqo_X6bFTJ5qnEbjrshyO_5eKfdm9a8V3x9BFL-Ms&file_name=/SeeTheWord_black.png" alt=""></a></h2>
-        </div>-->
         <div class="info-box">
             <div class="form-title">
                 <h3 class="title">{:lang('Add Products')}</h3>
-<!--                <p class="notice"><span>*</span> {:lang('Please note that the phone number cannot be changed after it is confirmed')}.</p>-->
             </div>
             <form action="" id="registerForm" method="post">
                 <div class="info">
@@ -67,7 +63,7 @@
                     <input id="model" name="model" type="text" placeholder="{:lang('Please enter your product model')}">
                 </div>
                 <div class="info">
-                    <label for="sn">{:lang('Sn')}</label>
+                    <label for="sn">{:lang('Sn')}<span> * </span></label>
                     <input id="sn" name="sn" type="text" placeholder="{:lang('Please enter your sn code')}">
                 </div>
                 <div class="info">
@@ -93,7 +89,7 @@
                     </select>
                 </div>
                 <div class="info">
-                    <label for="order_number">{:lang('Order Number')}</label>
+                    <label for="order_number">{:lang('Order Number')}<span> * </span></label>
                     <input id="order_number" name="order_number" type="text" placeholder="{:lang('Please enter your order number')}" >
                 </div>
                 <div class="info">
@@ -113,7 +109,7 @@
                     </div>-->
                 </div>
                 <div class="info">
-                    <label for="category">{:lang('Category')}</label>
+                    <label for="category">{:lang('Category')}<span> * </span></label>
                     <select name="category" id="category">
                         <option value="">{:lang('select')}</option>
                         {volist name="category" id="vo"}
@@ -157,9 +153,12 @@
         errorElement: "p",
         rules:{
             model: 'required',
-            country: 'required',
+            sn: 'required',
             platform: 'required',
-            create_time: 'required'
+            country: 'required',
+            order_number: 'required',
+            create_time: 'required',
+            category: 'required'
         },
         messages: {
             /*model: '',
@@ -175,8 +174,7 @@
                 data:$(form).serialize(),
                 success: function (result) {
                     if (result.status === 1) {
-                        //注册成功后要跳转到登录
-                        layer.msg(result.message, {icon: 1, time: 3000},function () {
+                        layer.msg(result.message, {icon: 1, time: 1000},function () {
                             window.parent.location.replace(window.parent.location.href)
                         });
                     } else {

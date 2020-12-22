@@ -43,6 +43,7 @@ Route::group('customer', function () {
     Route::rule('/product/register$','Product/register','GET|POST')->parent(['user_id'=>'[\d+]'])->name('customer_product_register');
     Route::rule('/product/add$','Product/addProduct','GET|POST')->name('customerAddProduct');
     Route::get('/product/lists$','Product/lists')->name('customer_product_list');
+    Route::post('/product/del','Product/delete')->name('customer_del_product');
     Route::get('/testEmail','User/testEmail');
 
     Route::rule('/index$','Index/index','GET')->name('customer_index');

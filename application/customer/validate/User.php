@@ -22,7 +22,7 @@ class User extends Validate
 {
     protected $rule = [
         'id' => 'integer',
-        'username' => 'require|alphaDash|unique:tb_user,username',
+        'username' => 'require|alphaDash',
         'email' => 'require|email|unique:tb_user,email',
         'first_name' => 'require|max:20',
         'gender' => 'require|in:1,2,3',
@@ -39,7 +39,7 @@ class User extends Validate
         'id' => 'ID illegal',
         'username.require' => '{%username is required}',
         'username.alphaDash' => '{%username is required}',
-        'username.unique' => '{%This username has been used}',
+//        'username.unique' => '{%This username has been used}',
         'email.require' => '{%email is required}',
         'email.email' => '{%email format Error}',
         'email.unique' => '{%This e-mail has been used}',

@@ -14,6 +14,7 @@ namespace app\common\service\customer;
 use app\common\model\Country;
 use app\common\model\Customer\Product as Model;
 use app\common\model\Content\Category;
+use think\Exception;
 
 /**
  * Class product
@@ -33,7 +34,7 @@ class Product extends BaseService
      * 对于多年加班且容易累的人，可以使用这个小方调理，使用方法是，自己去要点按剂量抓取，上述是一天的剂量，泡茶喝，每喝15天歇几天再喝
      *
      */
-    public function getCategory($code)
+    public function getCategory($code): array
     {
         try {
             return (new Category())->getAllCategory($code);
@@ -48,6 +49,20 @@ class Product extends BaseService
             return $this->model::getProductByUid($id);
         } catch (\Exception $exception) {
             return [];
+        }
+    }
+
+    /**
+     * @param $id
+     * @return bool
+     */
+    public function del($id): bool
+    {
+        try {
+            $data = $this->model::get($id);
+            return $data->delete();
+        } catch (Exception $exception) {
+            return false;
         }
     }
 

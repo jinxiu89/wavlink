@@ -14,9 +14,14 @@ namespace app\customer\validate;
 
 use think\Validate;
 
+/**
+ * Class Product
+ * @package app\customer\validate
+ */
 class Product extends Validate
 {
     protected $rule=[
+        'id'=>'require',
         'model'=>'require',
         'platform'=>'require',
         'country'=>'require',
@@ -31,6 +36,7 @@ class Product extends Validate
     protected $scene=[
         'add'=>['model','platform','country','create_time'],
         'phone'=>['phone'],
-        'register'=>['email']
+        'register'=>['email'],
+        'delete'=>['id']
     ];
 }

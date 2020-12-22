@@ -270,7 +270,15 @@ class Category extends BaseModel
     }
 
     //获取所有的分类，并且递归
-    public function getAllCategory($value)
+
+    /**
+     * @param $value
+     * @return array
+     * @throws DataNotFoundException
+     * @throws DbException
+     * @throws ModelNotFoundException
+     */
+    public function getAllCategory($value): array
     {
         $language_id = LanguageModel::getLanguageCodeOrID($value);
         $data_language = [

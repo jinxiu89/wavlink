@@ -172,6 +172,14 @@
                 type:"post",
                 dataType:"json",
                 data:$(form).serialize(),
+                beforeSend: function () {
+                    $('#submit').attr("disabled", true);
+                    $('#submit').css({
+                        'background': '#d6d6d6',
+                        'borderRadius': '20px',
+                        'cursor': 'no-drop'
+                    })
+                },
                 success: function (result) {
                     if (result.status === 1) {
                         layer.msg(result.message, {icon: 1, time: 1000},function () {

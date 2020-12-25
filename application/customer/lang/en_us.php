@@ -28,6 +28,12 @@ return [
     'delivery address too long' => 'Delivery Address Too Long. Do not exceed 255 characters.',
     'Verification Code is require' => 'Verification Code Is Required',
     'Why do I need to fill in this blank?' => 'Why Do I Need To Fill In This Blank?',
+    'model:model is required' => 'model:model is required',
+    'model:The maximum length is limited to 20 characters' => 'model:The maximum length is limited to 20 characters',
+    'sn:sn is required' => 'sn:sn is required',
+    'sn:The maximum length is limited to 20 characters' => 'sn:The maximum length is limited to 20 characters',
+    'platform:platform is required' => 'platform:platform is required',
+    'platform:The maximum length is limited to 20 characters' => 'platform:The maximum length is limited to 20 characters',
 
     'logout' => 'Logout',
     'This e-mail already existed' => 'This e-mail already existed',
@@ -180,6 +186,7 @@ return [
     //产品列表页
     'delete product confirm' => 'Are you sure to delete this product?',
     'delete product' => 'Delete Product',
+    'The maximum length is limited to 20 characters' => 'The maximum length is limited to 20 characters',
 
     //国家翻译
     'Taiwan' => 'Taiwan, China',

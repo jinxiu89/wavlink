@@ -152,19 +152,38 @@
         errorClass: 'infoError',
         errorElement: "p",
         rules:{
-            model: 'required',
-            sn: 'required',
-            platform: 'required',
+            model: {
+                required: true,
+                minlength: 1,
+                maxlength: 20
+            },
+            sn: {
+                required: true,
+                minlength: 1,
+                maxlength: 20
+            },
+            platform: {
+                required: true,
+                minlength: 1,
+                maxlength: 20
+            },
             country: 'required',
             order_number: 'required',
             create_time: 'required',
-            category: 'required'
         },
         messages: {
-            /*model: '',
-            country: '',
-            platform: '',
-            create_time: '',*/
+            model: {
+                minlength: '{:lang(\'The maximum length is limited to 20 characters\')}',
+                maxlength: '{:lang(\'The maximum length is limited to 20 characters\')}'
+            },
+            sn: {
+                minlength: '{:lang(\'The maximum length is limited to 20 characters\')}',
+                maxlength: '{:lang(\'The maximum length is limited to 20 characters\')}'
+            },
+            platform: {
+                minlength: '{:lang(\'The maximum length is limited to 20 characters\')}',
+                maxlength: '{:lang(\'The maximum length is limited to 20 characters\')}'
+            },
         },
         submitHandler:function (form) {
             $.ajax({
@@ -172,16 +191,14 @@
                 type:"post",
                 dataType:"json",
                 data:$(form).serialize(),
-                beforeSend: function () {
-                    $('#submit').attr("disabled", true);
-                    $('#submit').css({
-                        'background': '#d6d6d6',
-                        'borderRadius': '20px',
-                        'cursor': 'no-drop'
-                    })
-                },
                 success: function (result) {
                     if (result.status === 1) {
+                        $('#submit').attr("disabled", true);
+                        $('#submit').css({
+                            'background': '#d6d6d6',
+                            'borderRadius': '20px',
+                            'cursor': 'no-drop'
+                        });
                         layer.msg(result.message, {icon: 1, time: 1000},function () {
                             window.parent.location.replace(window.parent.location.href)
                         });

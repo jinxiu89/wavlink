@@ -94,6 +94,7 @@ Route::group(Config::get('__BACKEND__'), function () {
      * 营销管理
      */
     Route::rule('/marketing/customer/index$','Marketing.Customer/index')->name('marketing_customer_index');
+    Route::get('/email/template/index$','Marketing.Email/index')->name('email_template');
     //营销管理
     Route::get('/marketing/index$', 'Marketing.OnePage/index');
     Route::get('/marketing/add$', 'Marketing.OnePage/add');

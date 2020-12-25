@@ -22,14 +22,19 @@ class Product extends Validate
 {
     protected $rule=[
         'id'=>'require',
-        'model'=>'require',
-        'platform'=>'require',
+        'model'=>'require|max:20',
+        'sn'=>'require|max:20',
+        'platform'=>'require|max:20',
         'country'=>'require',
         'create_time'=>'require',
     ];
     protected $message=[
         'model.require'=>'{%model is required}',
+        'model.max'=>'{%model:The maximum length is limited to 20 characters}',
+        'sn.require'=>'{%sn:sn is required}',
+        'sn.max'=>'{%sn:The maximum length is limited to 20 characters}',
         'platform.require'=>'{%platform  is required}',
+        'platform.max'=>'{%platform:The maximum length is limited to 20 characters}',
         'country'=>'{%country is require}',
         'create_time'=>'{%create time is require}',
     ];

@@ -7,7 +7,8 @@ Route::group('customer', function () {
     Route::rule('/verification$', 'Base/sendVerification','GET')
         ->parent(['email'=>'[\w!#$%&\'*+/=?^_`{|}~-]+(?:\.[\w!#$%&\'*+/=?^_`{|}~-]+)*@(?:[\w](?:[\w-]*[\w])?\.)+[\w](?:[\w-]*[\w])?','phone'=>'\d+'])
         ->name('verification');
-    Route::post('/send_code','Base/sendCode')->name('send_code');
+    Route::post('/send_code$','Base/sendCode')->name('send_code');
+    Route::post('/forgot/send_code','Base/sendCodeByUser')->name('send_user_code');
     //登入登出
     Route::rule('/login$', 'User/login','GET|POST')->name('customer_login')->parent(['next'=>'[\w-]+']);
     Route::get('/logout$', 'User/logout')->name('customer_logout');

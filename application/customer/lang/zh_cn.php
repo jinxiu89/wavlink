@@ -112,6 +112,7 @@ return [
     'Your phone  Already existed' => '该手机号已经被注册了，请返回登录窗口',
     'Ok' => '确定',
     'User does not exist' => '用户不存在',
+    'This Email address is not registered'=>'您输入的邮箱还没有在我们的系统注册',
     'Password Error' => '密码错误！',
     'Old Password input Error' => '旧密码输入错误',
     'Success' => '成功',

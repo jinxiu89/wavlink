@@ -109,6 +109,7 @@ return [
     'Your phone  Already existed' => 'Your phone  Already existed',
     'Ok' => 'Ok',
     'User does not exist' => 'User does not exist',
+    'This Email address is not registered'=>'This Email address is not registered',
     'Password Error' => 'Password Error',
     'Success' => 'Success',
     //登录页面用到的

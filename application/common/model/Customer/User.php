@@ -70,7 +70,7 @@ Class User extends BaseModel
      * @param $email
      * @return bool
      */
-    public function CheckEmail($email)
+    public function CheckEmail($email): bool
     {
         $result = $this::get(['email' => $email]);
         if (!$result) {

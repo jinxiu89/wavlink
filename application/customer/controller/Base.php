@@ -164,13 +164,17 @@ class Base extends Controller
      */
     public function sendCode()
     {
-        $str = tools::GetIntStr(6);
         $data = input('post.');
+        $email=$data['email'];
+        if((new User())->CheckEmail($email)){//true 表示该邮箱存在时，无法进行下一步操作
+            return show(0, lang('Send Error'), '', '', '', lang('Your Email address Already existed'));
+        }
+        $str = tools::GetIntStr(6);
         $language = $data['language'] == 'zh_cn' ? 'cn' : 'en';
         try {
             $Cache = Cache::store('redis')->get($data['email']);
             if (empty($Cache)) {
-                Cache::store('redis')->set($data['email'], $str, 600);
+                Cache::store('redis')->set($data['email'], $str, 300);
             }
         } catch (Exception $exception) {//这里等一下改
             $default = Cache::store('default')->get($data['email']);

@@ -103,7 +103,7 @@
                                     if(json.status === 1){
                                         countDown($(_this), 120, btnText);
                                     }else{
-                                        layer.msg("{:lang('Failed to send verification code')}", {
+                                        layer.msg(json.data, {
                                             icon: 5,
                                             time: 3000
                                         })

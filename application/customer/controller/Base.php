@@ -174,11 +174,11 @@ class Base extends Controller
         try {
             $Cache = Cache::store('redis')->get($data['email']);
             if (empty($Cache)) {
-                Cache::store('redis')->set($data['email'], $str, 300);
+                Cache::store('redis')->set($data['email'], $str, 1800);
             }
         } catch (Exception $exception) {//这里等一下改
             $default = Cache::store('default')->get($data['email']);
-            if (empty($default)) Cache::store('default')->set($data['email'], $str, 300);
+            if (empty($default)) Cache::store('default')->set($data['email'], $str, 1800);
         }
         unset($str);
         //先只考虑邮箱发送

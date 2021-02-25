@@ -146,6 +146,7 @@
 </script>
 {/notempty}
 <script>
+    // 首页轮播js
     var mySwiper = new Swiper('.swiper-container', {
         loop: true,
         autoplay: {    //可选选项，自动滑动
@@ -166,14 +167,8 @@
         grabCursor: true,//鼠标变手
         parallax: true,//dl过度效果
     });
-</script>
-<script>
     $(function () {
         $('#home').addClass('current');
-    });
-</script>
-<script>
-    $(function () {
         var $Dom = $("#hot-video"),
             windowH = $(window).height(),
             videoOffset = $Dom.offset().top,
@@ -186,7 +181,7 @@
             var docTop = $(document).scrollTop();
             videoPlay(windowH, videoOffset, videoH, docTop)
         })
-    })
+    });
     function videoPlay (windowH, videoOffset, videoH, docTop) {
         var m = (videoOffset - docTop) / windowH,
             n = docTop - videoOffset;

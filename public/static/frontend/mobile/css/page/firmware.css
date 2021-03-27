@@ -1,1 +1,67 @@
-.center-block{margin-left:auto;margin-right:auto}.banner{background:#42A4FF}.banner img{display:block;max-width:100%;height:auto;margin-left:auto;margin-right:auto;width:800px}@media screen and (max-width:800px){.banner img{width:100%}}.box:after,.boxbefore{content:" ";display:table;zoom:1}.box:after{clear:both}.box .main .item{margin-bottom:8px;border-bottom:1px solid #eaeaea;background:#fff;-webkit-border-radius:5px;-moz-border-radius:5px;border-radius:5px}.box .main .item .panel{margin-bottom:0;border-radius:0;border:none}.box .main .item .panel-heading{background:#fff;border-color:#eaeaea}.box .main .item .title{font-size:14px;line-height:22px}.box .main .item .info p{margin-bottom:5px;font-size:12px}.box .main .item .info p span{line-height:20px}.box .main .item .download{font-size:12px}.box .main .item .download a{padding:2px 12px;margin:0 2px 5px;font-size:12px;border-color:#eaeaea}/*# sourceMappingURL=firmware.css.map */
+.center-block {
+  margin-left: auto;
+  margin-right: auto;
+}
+.banner {
+  background: #42A4FF;
+}
+.banner img {
+  display: block;
+  max-width: 100%;
+  height: auto;
+  margin-left: auto;
+  margin-right: auto;
+  width: 800px;
+}
+@media screen and (max-width: 800px) {
+  .banner img {
+    width: 100%;
+  }
+}
+.boxbefore,
+.box:after {
+  content: " ";
+  display: table;
+  zoom: 1;
+}
+.box:after {
+  clear: both;
+}
+.box .main .item {
+  margin-bottom: 8px;
+  border-bottom: 1px solid #eaeaea;
+  background: #fff;
+  -webkit-border-radius: 5px;
+  -moz-border-radius: 5px;
+  border-radius: 5px;
+}
+.box .main .item .panel {
+  margin-bottom: 0;
+  border-radius: 0;
+  border: none;
+}
+.box .main .item .panel-heading {
+  background: #fff;
+  border-color: #eaeaea;
+}
+.box .main .item .title {
+  font-size: 14px;
+  line-height: 22px;
+}
+.box .main .item .info p {
+  margin-bottom: 5px;
+  font-size: 12px;
+}
+.box .main .item .info p span {
+  line-height: 20px;
+}
+.box .main .item .download {
+  font-size: 12px;
+}
+.box .main .item .download a {
+  padding: 2px 12px;
+  margin: 0 2px 5px;
+  font-size: 12px;
+  border-color: #eaeaea;
+}
+/*# sourceMappingURL=firmware.css.map */

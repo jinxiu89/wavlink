@@ -78,6 +78,13 @@
                 * 解决方案：1.点击发送验证码按钮 => 2.弹出人机验证layer弹层 => 3.人机验证通过后执行ajax请求发送验证码 =>
                 *    4.ajax请求成功，关闭layer弹层。 => 5.执行倒计时。
                 * */
+                var screenWidth = $(window).width();
+                var robotWidth = '600px';
+                var robotHeight = '600px';
+                if (screenWidth<768) {
+                    robotWidth = '98%';
+                    robotHeight = '400px'
+                }
                 var url = "{:url('robot')}";
                 layer.open({
                     type: 2,
@@ -85,7 +92,7 @@
                     shadeClose: true,
                     scrollbar: false,
                     shade: 0.4,
-                    area: ['600px', '600px'],
+                    area: [robotWidth, robotHeight],
                     content: url,
                     end: function () {
                         var robotCode = window.sessionStorage.getItem('robot');

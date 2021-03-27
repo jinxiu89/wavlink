@@ -131,9 +131,9 @@ body {
         .clearFix();
     }
     .info {
-        .fl();
+        overflow: hidden;
         width: 265px;
-        margin: 0 67.5px;
+        margin: 0 auto;
         &:nth-of-type(1),
         &:nth-of-type(2) {
             margin-bottom: 10px;
@@ -168,9 +168,9 @@ body {
         width: 145px;
     }
     .tips {
-        .fl();
+        overflow: hidden;
         width: 265px;
-        margin: 20px 67.5px;
+        margin: 20px auto;
         font-size: 12px;
         .to-register {
             .fl();
@@ -306,3 +306,37 @@ body {
     }
 }
 //重置密码结束
+
+// 2021.03.27 添加手机端适配
+@media screen and (max-width: 767px) {
+    // 公共css
+    .register-box .box,
+    .proRegister-box .box,
+    .forgot-box .box,
+    .change-box .box {
+        width: 98%;
+        padding: 40px 10px;
+        .info{
+            display: flex;
+            input {
+                flex: 1;
+            }
+        }
+    }
+
+    //登录
+    .login-box .box {
+        width: 98%;
+        padding: 40px 10px;
+        margin: 0 auto;
+        background: @whiteColor;
+        border-radius: 5px;
+    }
+
+
+    .register-box .box .info-box {
+        .terms {
+            margin: 10px auto 20px;
+        }
+    }
+}

@@ -478,3 +478,40 @@ header {
     }
 }
 //个人信息修改表单结束
+
+// 2021.03.27 添加手机端适配
+@media screen and (max-width: 767px) {
+    .g-path {
+        margin: 10px 0;
+    }
+    .g-aside {
+        display: none;
+    }
+    .g-main {
+        width: 100%;
+    }
+
+    .info-change-box {
+        .personal-name,
+        .personal-country,
+        .personal-billing,
+        .personal-delivery,
+        .personal-zipCode,
+        .personal-phone,
+        .personal-email {
+            .info {
+                overflow: hidden;
+                display: flex;
+                padding: 0 10px;
+            }
+            .info label {
+                width: auto;
+                margin: 0 5px 0 0;
+            }
+            .info input,
+            .info select {
+                flex: 1;
+            }
+        }
+    }
+}

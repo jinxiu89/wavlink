@@ -318,8 +318,20 @@ body {
         padding: 40px 10px;
         .info{
             display: flex;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            label {
+                order: 0;
+            }
             input {
                 flex: 1;
+                order: 1;
+            }
+            #send_code {
+                order: 2;
+            }
+            p.infoError {
+                order: 20;
             }
         }
     }

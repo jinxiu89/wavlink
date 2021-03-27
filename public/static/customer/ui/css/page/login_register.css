@@ -324,12 +324,33 @@ body {
   .forgot-box .box .info,
   .change-box .box .info {
     display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+  }
+  .register-box .box .info label,
+  .proRegister-box .box .info label,
+  .forgot-box .box .info label,
+  .change-box .box .info label {
+    order: 0;
   }
   .register-box .box .info input,
   .proRegister-box .box .info input,
   .forgot-box .box .info input,
   .change-box .box .info input {
     flex: 1;
+    order: 1;
+  }
+  .register-box .box .info #send_code,
+  .proRegister-box .box .info #send_code,
+  .forgot-box .box .info #send_code,
+  .change-box .box .info #send_code {
+    order: 2;
+  }
+  .register-box .box .info p.infoError,
+  .proRegister-box .box .info p.infoError,
+  .forgot-box .box .info p.infoError,
+  .change-box .box .info p.infoError {
+    order: 20;
   }
   .login-box .box {
     width: 98%;

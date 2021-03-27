@@ -11,6 +11,7 @@ function loginRegisterBox() {
 }
 
 function layer_open(title, url, w, h) {
+    var screenW = $(window).width();
     if (title == null || title === "") {
         title = false
     }
@@ -18,7 +19,9 @@ function layer_open(title, url, w, h) {
         url = "404.html"
     }
     if (w == null || w === "") {
-        w = 800
+        w = screenW < 800 ? 800 : screenW - 20
+    } else {
+        w = w < screenW ? w : screenW - 20
     }
     if (h == null || h === "") {
         h = ($(window).height() - 50)

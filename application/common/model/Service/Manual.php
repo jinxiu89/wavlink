@@ -142,14 +142,22 @@ class Manual extends BaseModel
         return Search($model, $map, $order);
     }
 
+    /**
+     * @param $code
+     * @param $url_title
+     * @return array|string
+     * @throws \think\db\exception\DataNotFoundException
+     * @throws \think\db\exception\ModelNotFoundException
+     * @throws \think\exception\DbException
+     */
     public function getDownloadByTitle($code, $url_title)
     {
         $language_id = LanguageModel::getLanguageCodeOrID($code);//$code 转成 language_id
         try {
-            $data = $this->where(array(
+            $data = $this->where([
                 'language_id' => $language_id,
                 'url_title' => $url_title
-            ))->find();
+            ])->find();
             if ($data) {
                 $result['manual'] = $data->toArray();
                 $result['downloads'] = TurnArray($data->downloads);
@@ -161,6 +169,10 @@ class Manual extends BaseModel
         }
     }
 
+    /**
+     * @param $category
+     * @return mixed
+     */
     public function getUrlTitle($category)
     {
         return getUrlByCategoryID($category);

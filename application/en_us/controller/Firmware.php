@@ -37,9 +37,7 @@ class Firmware extends Base
         try {
             $cate = ServiceCategory::getTree($this->code,'Firmware');
             $this->assign('fw', $cate);
-        } catch (DataNotFoundException $e) {
-        } catch (ModelNotFoundException $e) {
-        } catch (DbException $e) {
+        } catch (DataNotFoundException | ModelNotFoundException | DbException $e) {
         }
         $data = (new service())->getDataByLanguageId($status = 1, $this->language_id);
         $level = Category::toLevel($data['data']->toArray()['data'], '&emsp;&emsp;');

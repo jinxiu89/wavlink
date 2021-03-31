@@ -34,11 +34,11 @@ Route::get('/language/:code', 'en_us/Language/setLanguage', [], ['code' => '[\w-
 Route::get('/notfound', 'en_us/Base/notFound')->name('404');
 Route::get('/server_error', 'en_us/Base/serverError')->name('500');
 //自动跳转路由
-Route::get('/$', function (){
-    if(Cookie::get('lang_var')) return redirect('/' . Cookie::get('lang_var') . '/index.html', [], 200);
-    $ip=get_client_ip();
-    $isoCode=(new app\common\helper\GeoIp())->getCode($ip);
-    if($isoCode == 'CN' or $isoCode == 'HK') return redirect('/' . 'zh_cn' . '/index.html', [], 200);
+Route::get('/$', function () {
+    if (Cookie::get('lang_var')) return redirect('/' . Cookie::get('lang_var') . '/index.html', [], 200);
+    $ip = get_client_ip();
+    $isoCode = (new app\common\helper\GeoIp())->getCode($ip);
+    if ($isoCode == 'CN' or $isoCode == 'HK') return redirect('/' . 'zh_cn' . '/index.html', [], 200);
     return redirect('/' . 'en_us' . '/index.html', [], 200);
 });
 //访问路由不存在时触发miss路由
@@ -50,7 +50,7 @@ Route::rule('/register$', 'customer/User/register', 'GET|POST');
 //发送验证码连接，永久保留
 Route::rule('/verify/code$', 'en_us/Common/verify', 'GET')->name('gen_verify');
 Route::rule('/list/obj$', 'customer/Base/listObj', 'GET')->name('listObj');
-Route::get('/index$','en_us/Index/index');
-Route::get('/popularProduct$','en_us/Base/popularProduct',['category_id'=>'[\w-]+'])->name('getPopularProduct');
+Route::get('/index$', 'en_us/Index/index');
+Route::get('/popularProduct$', 'en_us/Base/popularProduct', ['category_id' => '[\w-]+'])->name('getPopularProduct');
 //谷歌机器人验证组件
-Route::get('/robot','en_us/Common/robot')->name('robot');
+Route::get('/robot', 'en_us/Common/robot')->name('robot');

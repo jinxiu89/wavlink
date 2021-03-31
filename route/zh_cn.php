@@ -31,6 +31,8 @@ Route::group('zh_cn', function () {
     Route::get('/video/:url_title', 'Video/details')->pattern(['url_title' => '[\w-]+']);
     Route::get('/video', 'Video/index');
     Route::get('/search','Search/results')->pattern(['key'=>'[\w-]+','type'=>'[\w-]+','page'=>'[\d]+']);
+    //包装印刷指定的url地址 model=>'该产品的标准型号'
+    Route::get('/:model$', 'Support/model', [], ['model' => '[\w-]+'])->name('support_bz');
     Route::get('/tuya/Appdownload','Tuya/index');
     //根路由在最下面
 })->prefix('en_us/');

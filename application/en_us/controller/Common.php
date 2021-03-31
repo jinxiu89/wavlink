@@ -37,6 +37,8 @@ class Common extends Controller
         Lang::load(APP_PATH . 'customer/lang/' . $this->code . '.php'); //加载该语言下的模块语言包
     }
 
+
+
     /**
      * @return mixed
      */

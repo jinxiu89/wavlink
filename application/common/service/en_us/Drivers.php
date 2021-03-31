@@ -35,7 +35,7 @@ class Drivers extends BaseService
      * @param $language_id
      * @param $category
      */
-    public function getTopCategory($language_id, $category)
+    public function getTopCategory($language_id, $category): array
     {
         try {
             if ($this->debug == false) {

@@ -32,6 +32,7 @@
                 <tr class="text-c">
                     <th width="40">ID</th>
                     <th>驱动文件名称</th>
+                    <th width="120">版本</th>
                     <th width="120">下载分类</th>
                     <th width="50">语言</th>
                     <th width="60">排序</th>
@@ -45,6 +46,7 @@
                 <tr class="text-l">
                     <td class="text-c">{$vo.id}</td>
                     <td>{$vo.name}</td>
+                    <td>{$vo.version_number}</td>
                     <td>{$vo.category_id|getDriverCate|raw}</td>
                     <td class="text-c">{$vo.language_id|getLanguage|raw}</td>
                     <td class="text-c listorder">

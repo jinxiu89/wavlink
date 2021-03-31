@@ -44,5 +44,7 @@ Route::group('en_us', function () {
         return redirect('/en_us/firmware/details/ff7995ec6a.html');//这个地址 是由于老系统升级时留下的一个坑，但用户又一直在用，所以就遗留在这里了
 
     });
+    //包装印刷指定的url地址 model=>'该产品的标准型号'
+    Route::get('/:model$', 'en_us/Support/model', [], ['model' => '[\w-]+'])->name('support_bz');
     Route::get('/', 'Index/index');
 })->prefix('en_us/');

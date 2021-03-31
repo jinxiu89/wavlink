@@ -1,1 +1,183 @@
-.Introduction{margin:20px 13.5%}.Introduction:after,.Introductionbefore{content:" ";display:table;zoom:1}.Introduction:after{clear:both}.Introduction .person-des .title{font-size:22px}.Introduction .person-des p{margin-top:10px;color:#888}.Introduction .btn-box{padding:10px 0 0}.Introduction .btn-box button{height:35px;padding:0 20px;background:#fff;border:1px solid #ccc;border-radius:5px;cursor:pointer}.Introduction .btn-box button:hover{box-shadow:0 0 5px rgba(0,0,0,.2) inset}.Module{margin:20px 13.5%;padding:20px;border:1px solid #ccc;border-radius:5px}.Module .title{margin-bottom:20px;font-size:18px;font-weight:700;color:#333}.Module .title .product-id{display:none}.Module .title .delete{float:right}.Module .title .delete .iconfont{color:#888;font-size:24px}.Module .Field{position:relative;padding:15px 0;border-bottom:1px solid #ccc}.Module .Field:nth-last-of-type(1){padding-bottom:0;border:none}.Module .Field-label{position:absolute;top:15px;left:0;color:#888}.Module .Field-content{padding:0 0 0 175px;height:20px;line-height:20px}.Module .Field-content .Field-text{text-overflow:ellipsis;white-space:nowrap;overflow:hidden;display:block}.Module .Field-content .Field-modify{margin-left:5px;background:0 0;font-size:12px;color:#136ec2;cursor:pointer}.Module .Field-content .Field-modify:hover{color:#1d78cc}.Module .Field-content .download a{display:inline-block;color:#136ec2}.pagination-box{margin:20px 13.5%}.pagination-box .pagination{margin:10px 0}.pagination-box .pagination:after,.pagination-box .paginationbefore{content:" ";display:table;zoom:1}.pagination-box .pagination:after{clear:both}.pagination-box .pagination>li>a,.pagination-box .pagination>li>span{position:relative;float:left;padding:6px 12px;margin-left:-1px;line-height:1.42857143;color:#1D428A;text-decoration:none;background-color:#fff;border:1px solid #ddd}.pagination-box .pagination>li>a:focus,.pagination-box .pagination>li>a:hover,.pagination-box .pagination>li>span:focus,.pagination-box .pagination>li>span:hover{color:#23527c;background-color:#eee;border-color:#ddd}.pagination-box .pagination>.disabled>a,.pagination-box .pagination>.disabled>a:focus,.pagination-box .pagination>.disabled>a:hover,.pagination-box .pagination>.disabled>span,.pagination-box .pagination>.disabled>span:focus,.pagination-box .pagination>.disabled>span:hover{color:#777}.pagination-box .pagination>.active>a,.pagination-box .pagination>.active>a:focus,.pagination-box .pagination>.active>a:hover,.pagination-box .pagination>.active>span,.pagination-box .pagination>.active>span:focus,.pagination-box .pagination>.active>span:hover{color:#fff;background:#1D428A;border-color:#1D428A}@media screen and (min-width:768px) and (max-width:991px){.Introduction,.Module,.pagination-box{margin:20px}}@media screen and (min-width:992px) and (max-width:1199px){.Introduction,.Module,.pagination-box{margin:20px 40px}}@media screen and (min-width:1200px) and (max-width:1400px){.Introduction,.Module,.pagination-box{margin:20px 60px}}
+/**
+* @name: product.less
+* @description: 產品列表样式
+* @author: Alan(alan_webdeveloper@163.com)
+* @update: 2020-05-14 15:00
+*/
+.Introduction {
+  margin: 20px 13.5%;
+}
+.Introductionbefore,
+.Introduction:after {
+  content: " ";
+  display: table;
+  zoom: 1;
+}
+.Introduction:after {
+  clear: both;
+}
+.Introduction .person-des .title {
+  font-size: 22px;
+}
+.Introduction .person-des p {
+  margin-top: 10px;
+  color: #888;
+}
+.Introduction .btn-box {
+  padding: 10px 0 0;
+}
+.Introduction .btn-box button {
+  height: 35px;
+  padding: 0 20px;
+  background: #fff;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  cursor: pointer;
+}
+.Introduction .btn-box button:hover {
+  box-shadow: 0 0 5px rgba(0, 0, 0, 0.2) inset;
+}
+.Module {
+  margin: 20px 13.5%;
+  padding: 20px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+}
+.Module .title {
+  margin-bottom: 20px;
+  font-size: 18px;
+  font-weight: 700;
+  color: #333;
+}
+.Module .title .product-id {
+  display: none;
+}
+.Module .title .delete {
+  float: right;
+}
+.Module .title .delete .iconfont {
+  color: #888;
+  font-size: 24px;
+}
+.Module .Field {
+  position: relative;
+  padding: 15px 0;
+  border-bottom: 1px solid #ccc;
+}
+.Module .Field:nth-last-of-type(1) {
+  padding-bottom: 0;
+  border: none;
+}
+.Module .Field-label {
+  position: absolute;
+  top: 15px;
+  left: 0;
+  color: #888;
+}
+.Module .Field-content {
+  padding: 0 0 0 175px;
+  height: 20px;
+  line-height: 20px;
+}
+.Module .Field-content .Field-text {
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  overflow: hidden;
+  display: block;
+}
+.Module .Field-content .Field-modify {
+  margin-left: 5px;
+  background: none;
+  font-size: 12px;
+  color: #136ec2;
+  cursor: pointer;
+}
+.Module .Field-content .Field-modify:hover {
+  color: #1d78cc;
+}
+.Module .Field-content .download a {
+  display: inline-block;
+  color: #136ec2;
+}
+.pagination-box {
+  margin: 20px 13.5%;
+}
+.pagination-box .pagination {
+  margin: 10px 0;
+}
+.pagination-box .paginationbefore,
+.pagination-box .pagination:after {
+  content: " ";
+  display: table;
+  zoom: 1;
+}
+.pagination-box .pagination:after {
+  clear: both;
+}
+.pagination-box .pagination > li > a,
+.pagination-box .pagination > li > span {
+  position: relative;
+  float: left;
+  padding: 6px 12px;
+  margin-left: -1px;
+  line-height: 1.42857143;
+  color: #1D428A;
+  text-decoration: none;
+  background-color: #fff;
+  border: 1px solid #ddd;
+}
+.pagination-box .pagination > li > a:focus,
+.pagination-box .pagination > li > a:hover,
+.pagination-box .pagination > li > span:focus,
+.pagination-box .pagination > li > span:hover {
+  color: #23527c;
+  background-color: #eee;
+  border-color: #ddd;
+}
+.pagination-box .pagination > .disabled > a,
+.pagination-box .pagination > .disabled > a:focus,
+.pagination-box .pagination > .disabled > a:hover,
+.pagination-box .pagination > .disabled > span,
+.pagination-box .pagination > .disabled > span:focus,
+.pagination-box .pagination > .disabled > span:hover {
+  color: #777;
+}
+.pagination-box .pagination > .active > a,
+.pagination-box .pagination > .active > a:focus,
+.pagination-box .pagination > .active > a:hover,
+.pagination-box .pagination > .active > span,
+.pagination-box .pagination > .active > span:focus,
+.pagination-box .pagination > .active > span:hover {
+  color: #fff;
+  background: #1D428A;
+  border-color: #1D428A;
+}
+@media screen and (max-width: 767px) {
+  .Introduction,
+  .Module,
+  .pagination-box {
+    margin: 10px;
+  }
+}
+@media screen and (min-width: 768px) and (max-width: 991px) {
+  .Introduction,
+  .Module,
+  .pagination-box {
+    margin: 20px;
+  }
+}
+@media screen and (min-width: 992px) and (max-width: 1199px) {
+  .Introduction,
+  .Module,
+  .pagination-box {
+    margin: 20px 40px;
+  }
+}
+@media screen and (min-width: 1200px) and (max-width: 1400px) {
+  .Introduction,
+  .Module,
+  .pagination-box {
+    margin: 20px 60px;
+  }
+}
+/*# sourceMappingURL=product.css.map */

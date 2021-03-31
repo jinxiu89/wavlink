@@ -659,7 +659,9 @@ header .nav-box .account .user-menu-wrapper .user-menu-item a:hover {
     margin: 10px 0;
   }
   .g-aside {
-    display: none;
+    width: 100%;
+    margin-bottom: 10px;
+    padding-right: 0;
   }
   .g-main {
     width: 100%;

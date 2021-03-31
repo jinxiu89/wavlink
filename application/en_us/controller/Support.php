@@ -79,6 +79,7 @@ class Support extends Base
             return $this->fetch($this->template . '/support/index.html',[
                 'manual'=>$manual,
                 'driver'=>$driver,
+                'firmware'=>[],
                 'result' =>$result
             ]);
         }

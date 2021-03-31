@@ -1,11 +1,11 @@
-{extend name="mobile/common/base" /}
+{extend name="desktop/common/base" /}
+{block name="title"}{$result.name} - {:lang('slogan')}{:lang('powered by')}{/block}
 {block name="seo"}
-<title>{$result.name}  - {:lang('slogan')}{:lang('powered by')}</title>
 <meta name="description" content="{$result.description}">
 <meta name="keywords" content="{$result.keywords}">
 {/block}
 {block name="style"}
-<link rel="stylesheet" href="__MOBILE__/css/page/firmware-detail.css">
+<link rel="stylesheet" href="__DESKTOP__/css/page/firmware.css">
 {/block}
 
 {block name="swiper"}
@@ -14,19 +14,21 @@
         <div class="g-path">
             <ol class="breadcrumb">
                 <li><a href="/{$code}/index.html">{:lang('home')}</a></li>
-                <li><a href="/{$code}/firmware.html">{:lang('firmware')}</a></li>
+                <li>{:lang('Firmware')}</li>
                 <li class="active">{$result.name}</li>
             </ol>
         </div>
     </div>
 </div>
 {/block}
-
 {block name="body"}
-<div class="container-fluid">
+<div class="container">
     <div class="row">
         <div class="box">
-            <div class="main">
+            <div class="g-aside">
+                {include file='desktop/common/support_aside'}
+            </div>
+            <div class="g-main">
                 <div class="panel panel-default">
                     <div class="panel-heading">
                         <h3 style="font-size: 18px">UMD01 Downloads</h3>
@@ -48,9 +50,9 @@
                             </div>
                             <div class="download">
                                 <span>Download: </span>
-                                <a href="#" class="download_url btn btn-default">Windows</a>
-                                <a href="#" class="download_url btn btn-default">Mac</a>
-                                <a href="#" class="download_url btn btn-default">Linux</a>
+                                <a href="#" class="download_url btn btn-default">Windows<i class="iconfont"></i></a>
+                                <a href="#" class="download_url btn btn-default">Mac<i class="iconfont"></i></a>
+                                <a href="#" class="download_url btn btn-default">Linux<i class="iconfont"></i></a>
                             </div>
                         </div>
                     </div>
@@ -111,68 +113,23 @@
     </div>
 </div>
 {/block}
-
-
-
-{extend name="mobile/common/base" /}
-{block name="seo"}
-<title>{$result.name}  - {:lang('slogan')}{:lang('powered by')}</title>
-<meta name="description" content="{$result.description}">
-<meta name="keywords" content="{$result.keywords}">
-{/block}
-{block name="style"}
-<link rel="stylesheet" href="__MOBILE__/css/page/firmware-detail.css">
-{/block}
-{block name="swiper"}
-<div class="container-fluid">
-    <div class="row">
-        <div class="g-path">
-            <ol class="breadcrumb">
-                <li><a href="/{$code}/index.html">{:lang('home')}</a></li>
-                <li><a href="/{$code}/firmware.html">{:lang('firmware')}</a></li>
-                <li class="active">{$result.name}</li>
-            </ol>
-        </div>
-    </div>
-</div>
-{/block}
-{block name="body"}
-<div class="container-fluid">
-    <div class="row">
-        <div class="box">
-            <div class="main">
-                <div class="item">
-                    <div class="panel panel-default">
-                        <div class="panel-heading">
-                            <h3 class="title">{:lang('Firmware Details and Download')}</h3>
-                        </div>
-                        <div class="panel-body">
-                            <div class="info">
-                                <p><span>{:lang('Firmware')}: </span> <span>{$result.name}</span></p>
-                                <p><span>{:lang('version')}: </span> <span>{$result.version}</span></p>
-                                <p><span>{:lang('Post Date')}: </span> <span>{$result.create_time|strtotime|date="d/m/Y"}</span></p>
-                                <p><span>{:lang('Available')}: </span> <span>{$result.model}</span></p>
-                                <p><span>{:lang('Description')}: </span> <span>{$result.description}</span></p>
-                            </div>
-                            <div class="download">
-                                <span>{:lang('Download')}: </span>
-                                <a href="{$result.url}" class="download_url btn btn-default"><i class="iconfont">&#xe64f;</i></a>
-                            </div>
-                        </div>
-                        <div class="panel-footer">
-                            <p>* Software update is usually for optimizing the product to support in special environments and applications. If your product works properly, it is not recommended to upgrade your product.</p>
-                            <p>* If you encounter any issues, please don’t hesitate to email contact@wavlink.com to provide feedbacks or contact online customer service, thank you!</p>
-                        </div>
-                    </div>
-                    <div class="item-notices">
-                        {$result.notices|raw}
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-</div>
-<div id="go-top">
-    <p><span class="iconfont">&#xe60b;</span></p>
-</div>
+{block name="javascript"}
+<!--私有JS-->
+<script>
+    $(function () {
+        $('#support').addClass('current');
+        $('.firmware').addClass('active');
+        // 筛选变化时 过滤
+        $('.filter_by').change(function () {
+            var filter_by = $(this).children('option:selected').val();
+            var order_by = $('.order_by').children('option:selected').val();
+            window.location.href = '/{$code}/manuals/' + filter_by + '.html?order=' + order_by
+        });
+        $('.order_by').change(function () {
+            var filter_by = $('.filter_by').children('option:selected').val();
+            var order_by = $(this).children('option:selected').val();
+            window.location.href = '/{$code}/manuals/' + filter_by + '.html?order=' + order_by
+        });
+    });
+</script>
 {/block}

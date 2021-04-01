@@ -19,13 +19,14 @@ function layer_open(title, url, w, h) {
         url = "404.html"
     }
     if (w == null || w === "") {
-        w = screenW < 800 ? 800 : screenW - 20
+        w = screenW < 800 ? screenW - 20 : 800
     } else {
         w = w < screenW ? w : screenW - 20
     }
     if (h == null || h === "") {
         h = ($(window).height() - 50)
     }
+    console.log(w);
     layer.open({
         skin: "wavlink-layer",
         type: 2,

@@ -14,7 +14,6 @@
         <div class="g-path">
             <ol class="breadcrumb">
                 <li><a href="/{$code}/index.html">{:lang('home')}</a></li>
-                <li><a href="/{$code}/firmware.html">{:lang('firmware')}</a></li>
                 <li class="active">{$result.name}</li>
             </ol>
         </div>
@@ -29,83 +28,94 @@
             <div class="main">
                 <div class="panel panel-default">
                     <div class="panel-heading">
-                        <h3 style="font-size: 18px">UMD01 Downloads</h3>
+                        <h3 style="font-size: 18px">{:lang('Download for')} <a href="#">{$result.name}</a></h3>
                     </div>
                 </div>
-
+                {notempty name="manual"}
                 <div class="item">
                     <div class="panel panel-default">
                         <div class="panel-heading">
-                            <h3 style="font-size: 16px">Driver</h3>
+                            <h3 style="font-size: 16px">{:lang('Manuals')}</h3>
                         </div>
+                        {volist name="manual" id="vo"}
                         <div class="panel-body">
                             <div class="info">
-                                <p><span>Description: </span> <span>UMD01 Driver Download</span></p>
-                                <p><span>Available: </span> <span>UMD01</span></p>
-                                <p><span>Version: </span> <span>RTL8153</span></p>
-                                <p><span>Post Date: </span> <span>2020-09-25</span></p>
-                                <p><span>System Requirements: </span> <span>Windows7/8/10/mac/Linux</span></p>
+                                <p><span>{:lang('Description')}: </span> <span>{$vo.description}</span></p>
+                                <p><span>{:lang('Available')}: </span> <span>{$vo.model}</span></p>
+                                <p><span>{:lang('Post Date')}: </span> <span>{$vo.update_time|strtotime|date="d/m/Y"}</span></p>
                             </div>
                             <div class="download">
-                                <span>Download: </span>
-                                <a href="#" class="download_url btn btn-default">Windows</a>
-                                <a href="#" class="download_url btn btn-default">Mac</a>
-                                <a href="#" class="download_url btn btn-default">Linux</a>
+                                <span>{:lang('Download')}: </span>
+                                {$vo.id|getDownloadUrl|raw}
                             </div>
                         </div>
+                        {/volist}
                     </div>
                 </div>
+                {/notempty}
+                {notempty name="driver"}
                 <div class="item">
                     <div class="panel panel-default">
                         <div class="panel-heading">
-                            <h3 style="font-size: 16px">Manuals</h3>
+                            <h3 style="font-size: 16px">{:lang('Driver')}</h3>
                         </div>
+                        {volist name="driver" id="vo"}
                         <div class="panel-body">
                             <div class="info">
-                                <p><span>Description: </span> <span>UMD01 Manuals Download</span></p>
-                                <p><span>Available: </span> <span>UMD01</span></p>
-                                <p><span>Version: </span> <span>v1.0</span></p>
-                                <p><span>Post Date: </span> <span>2021-03-27</span></p>
+                                <p><span>{:lang('Description')}: </span> <span>{$vo.descrip}</span></p>
+                                <p><span>{:lang('Available')}: </span> <span>{$vo.name}</span></p>
+                                <p><span>{:lang('Version')}: </span> <span>{$vo.version_number}</span></p>
+                                <p><span>{:lang('Post Date')}: </span> <span>{$vo.update_time|strtotime|date="d/m/Y"}</span></p>
+                                <p><span>{:lang('System Requirements')}: </span> <span>{$vo.running}</span></p>
                             </div>
                             <div class="download">
                                 <span>Download : </span>
-                                <a href="#" class="download_url btn btn-default">English<i class="iconfont"></i></a>
-                                <a href="#" class="download_url btn btn-default">Deutsch<i class="iconfont"></i></a>
-                                <a href="#" class="download_url btn btn-default">Español<i class="iconfont"></i></a>
-                                <a href="#" class="download_url btn btn-default">Italiano<i class="iconfont"></i></a>
-                                <a href="#" class="download_url btn btn-default">Français<i class="iconfont"></i></a>
-                                <a href="#" class="download_url btn btn-default">Japanese<i class="iconfont"></i></a>
-                                <a href="#" class="download_url btn btn-default">简体中文<i class="iconfont"></i></a>
+                                <span>{:lang('Download')}: </span>
+                                {notempty name="$vo.all_link"}
+                                <a class="download_url btn btn-default" href="{$vo.all_link}">All <i class="iconfont"></i></a>
+                                {/notempty}
+                                {notempty name="$vo.win_link"}
+                                <a class="download_url btn btn-default" href="{$vo.win_link}">Windows <i class="iconfont"></i></a>
+                                {/notempty}
+                                {notempty name="$vo.mac_link"}
+                                <a class="download_url btn btn-default" href="{$vo.mac_link}">MAC <i class="iconfont"></i></a>
+                                {/notempty}
+                                {notempty name="$vo.linux_link"}
+                                <a class="download_url btn btn-default" href="{$vo.linux_link}">Linux <i class="iconfont"></i></a>
+                                {/notempty}
                             </div>
                         </div>
+                        {/volist}
                     </div>
                 </div>
+                {/notempty}
+                {notempty name="firmware"}
                 <div class="item">
                     <div class="panel panel-default">
                         <div class="panel-heading">
-                            <h3 style="font-size: 16px">Firmware</h3>
+                            <h3 style="font-size: 16px">{:lang('Firmware')}</h3>
                         </div>
+                        {volist name="firmware" id="vo"}
                         <div class="panel-body">
                             <div class="info">
-                                <p><span>Description: </span> <span>UMD01 Firmware Download</span></p>
-                                <p><span>Available: </span> <span>UMD01</span></p>
-                                <p><span>Version: </span> <span>20210327</span></p>
-                                <p><span>Post Date: </span> <span>2021-03-27</span></p>
+                                <p><span>{:lang('Description')}: </span> <span>{$vo.description}</span></p>
+                                <p><span>{:lang('Available')}: </span> <span>{$vo.model}</span></p>
+                                <p><span>{:lang('Version')}: </span> <span>{$vo.version}</span></p>
+                                <p><span>{:lang('Post Date')}: </span> <span>{$vo.update_time|strtotime|date="d/m/Y"}</span></p>
                             </div>
                             <div class="download">
                                 <span>Download: </span>
-                                <a href="#" class="download_url btn btn-default"><i class="iconfont"></i></a>
+                                <a href="{$vo.url}" class="download_url btn btn-default"><i class="iconfont"></i></a>
                             </div>
                         </div>
+                        {/volist}
                         <div class="panel-footer">
                             * Software update is usually for optimizing the product to support in special environments and applications. If your product works properly, it is not recommended to upgrade your product.<br>
                             * If you encounter any issues, please don’t hesitate to email contact@wavlink.com to provide feedbacks or contact online customer service, thank you!
-                            <p>
-                                * Note:check your model number in the back of the product or packing box( model number AERIAL HD2 / WL-WN570HA1-A). If you download the incorrect firmware,it will damage your product AERIAL HD2 / WL-WN570HA1-A Upgrade firmware.
-                            </p>
                         </div>
                     </div>
                 </div>
+                {/notempty}
             </div>
         </div>
     </div>

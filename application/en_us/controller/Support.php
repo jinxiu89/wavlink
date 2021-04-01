@@ -68,8 +68,8 @@ class Support extends Base
             $manual=(new SupportService)->getManualByModel($this->language_id,$model);
             //todo:: 驱动
             $driver=(new SupportService())->getDriverByModel($this->language_id,$model);
-            print_r($manual);
-            print_r($driver);
+            //todo:: 固件
+            $firmware=(new SupportService())->getFirmwareByModel($this->language_id,$model);
             $result['name']=$model;
             $result['keywords']='';
             $result['description']='';
@@ -79,7 +79,7 @@ class Support extends Base
             return $this->fetch($this->template . '/support/index.html',[
                 'manual'=>$manual,
                 'driver'=>$driver,
-                'firmware'=>[],
+                'firmware'=>$firmware,
                 'result' =>$result
             ]);
         }

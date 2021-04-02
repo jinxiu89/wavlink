@@ -32,11 +32,10 @@
                         </div>
                         <div class="panel-body">
                             <div class="info">
-                                <p><span>{:lang('Firmware')}: </span> <span>{$result.name}</span></p>
+                                <p><span>{:lang('Description')}: </span> <span>{$result.description}</span></p>
+                                <p><span>{:lang('Available')}: </span> <span>{$result.model}</span></p>
                                 <p><span>{:lang('version')}: </span> <span>{$result.version}</span></p>
                                 <p><span>{:lang('Post Date')}: </span> <span>{$result.create_time|strtotime|date="d/m/Y"}</span></p>
-                                <p><span>{:lang('Available')}: </span> <span>{$result.model}</span></p>
-                                <p><span>{:lang('Description')}: </span> <span>{$result.description}</span></p>
                             </div>
                             <div class="download">
                                 <span>{:lang('Download')}: </span>

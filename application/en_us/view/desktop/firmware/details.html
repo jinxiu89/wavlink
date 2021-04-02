@@ -29,82 +29,26 @@
                 {include file='desktop/common/support_aside'}
             </div>
             <div class="g-main">
-                <div class="panel panel-default">
-                    <div class="panel-heading">
-                        <h3 style="font-size: 18px">UMD01 Downloads</h3>
-                    </div>
-                </div>
-
                 <div class="item">
                     <div class="panel panel-default">
                         <div class="panel-heading">
-                            <h3 style="font-size: 16px">Driver</h3>
+                            <h3 class="title">{:lang('Firmware Details and Download')}</h3>
                         </div>
                         <div class="panel-body">
                             <div class="info">
-                                <p><span>Description: </span> <span>UMD01 Driver Download</span></p>
-                                <p><span>Available: </span> <span>UMD01</span></p>
-                                <p><span>Version: </span> <span>RTL8153</span></p>
-                                <p><span>Post Date: </span> <span>2020-09-25</span></p>
-                                <p><span>System Requirements: </span> <span>Windows7/8/10/mac/Linux</span></p>
+                                <p><span>{:lang('Description')}: </span> <span>{$result.description}</span></p>
+                                <p><span>{:lang('Available')}: </span> <span>{$result.model}</span></p>
+                                <p><span>{:lang('version')}: </span> <span>{$result.version}</span></p>
+                                <p><span>{:lang('Post Date')}: </span> <span>{$result.create_time|strtotime|date="d/m/Y"}</span></p>
                             </div>
                             <div class="download">
-                                <span>Download: </span>
-                                <a href="#" class="download_url btn btn-default">Windows<i class="iconfont"></i></a>
-                                <a href="#" class="download_url btn btn-default">Mac<i class="iconfont"></i></a>
-                                <a href="#" class="download_url btn btn-default">Linux<i class="iconfont"></i></a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="item">
-                    <div class="panel panel-default">
-                        <div class="panel-heading">
-                            <h3 style="font-size: 16px">Manuals</h3>
-                        </div>
-                        <div class="panel-body">
-                            <div class="info">
-                                <p><span>Description: </span> <span>UMD01 Manuals Download</span></p>
-                                <p><span>Available: </span> <span>UMD01</span></p>
-                                <p><span>Version: </span> <span>v1.0</span></p>
-                                <p><span>Post Date: </span> <span>2021-03-27</span></p>
-                            </div>
-                            <div class="download">
-                                <span>Download : </span>
-                                <a href="#" class="download_url btn btn-default">English<i class="iconfont"></i></a>
-                                <a href="#" class="download_url btn btn-default">Deutsch<i class="iconfont"></i></a>
-                                <a href="#" class="download_url btn btn-default">Español<i class="iconfont"></i></a>
-                                <a href="#" class="download_url btn btn-default">Italiano<i class="iconfont"></i></a>
-                                <a href="#" class="download_url btn btn-default">Français<i class="iconfont"></i></a>
-                                <a href="#" class="download_url btn btn-default">Japanese<i class="iconfont"></i></a>
-                                <a href="#" class="download_url btn btn-default">简体中文<i class="iconfont"></i></a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="item">
-                    <div class="panel panel-default">
-                        <div class="panel-heading">
-                            <h3 style="font-size: 16px">Firmware</h3>
-                        </div>
-                        <div class="panel-body">
-                            <div class="info">
-                                <p><span>Description: </span> <span>UMD01 Firmware Download</span></p>
-                                <p><span>Available: </span> <span>UMD01</span></p>
-                                <p><span>Version: </span> <span>20210327</span></p>
-                                <p><span>Post Date: </span> <span>2021-03-27</span></p>
-                            </div>
-                            <div class="download">
-                                <span>Download: </span>
-                                <a href="#" class="download_url btn btn-default"><i class="iconfont"></i></a>
+                                <span>{:lang('Download')}: </span>
+                                <a href="{$result.url}" class="download_url btn btn-default"><i class="iconfont">&#xe64f;</i></a>
                             </div>
                         </div>
                         <div class="panel-footer">
-                            * Software update is usually for optimizing the product to support in special environments and applications. If your product works properly, it is not recommended to upgrade your product.<br>
-                            * If you encounter any issues, please don’t hesitate to email contact@wavlink.com to provide feedbacks or contact online customer service, thank you!
-                            <p>
-                                * Note:check your model number in the back of the product or packing box( model number AERIAL HD2 / WL-WN570HA1-A). If you download the incorrect firmware,it will damage your product AERIAL HD2 / WL-WN570HA1-A Upgrade firmware.
-                            </p>
+                            <p>* Software update is usually for optimizing the product to support in special environments and applications. If your product works properly, it is not recommended to upgrade your product.</p>
+                            <p>* If you encounter any issues, please don’t hesitate to email contact@wavlink.com to provide feedbacks or contact online customer service, thank you!</p>
                         </div>
                     </div>
                 </div>

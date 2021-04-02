@@ -34,24 +34,24 @@ class Support extends BaseService
      * 产品的标准型号
      * @return mixed
      */
-    public function getDriverByModel($language_id, $model)
+    public function getDriverByModel($language_id, $model): array
     {
         try {
             if ($this->debug == false) {
                 $data = Cache::get(__FUNCTION__ . $language_id . $model);
                 if ($data) return $data;
-                $obj = Drivers::where('name','like','%'.$model.'%')->where(['language_id'=>$language_id])->select();
-                if(!$obj->isEmpty()) {
-                    Cache::set(__FUNCTION__ . $language_id . $obj->toArray());
+                $obj = Drivers::where('name', 'like', '%' . $model . '%')->where(['language_id' => $language_id])->select();
+                if (!$obj->isEmpty()) {
+                    Cache::set(__FUNCTION__ . $language_id . $model, $obj->toArray());
                     return $obj->toArray();
                 }
                 return [];
             }
-            $obj=Drivers::where('name','like','%'.$model.'%')->where(['language_id'=>$language_id])->select();
-            if(!$obj->isEmpty()) return $obj->toArray();
+            $obj = Drivers::where('name', 'like', '%' . $model . '%')->where(['language_id' => $language_id])->select();
+            if (!$obj->isEmpty()) return $obj->toArray();
             return [];
         } catch (\Exception $exception) {
-            return $exception->getMessage();
+            return ['msg' => $exception->getMessage()];
         }
     }
 
@@ -66,15 +66,15 @@ class Support extends BaseService
             if ($this->debug == false) {
                 $data = Cache::get(__FUNCTION__ . $language_id . $model);
                 if ($data) return $data;
-                $obj = Manual::where('model','like','%'.$model.'%')->where(['language_id'=>$language_id])->with('downloads')->select();
-                if(!$obj->isEmpty()){
+                $obj = Manual::where('model', 'like', '%' . $model . '%')->where(['language_id' => $language_id])->with('downloads')->select();
+                if (!$obj->isEmpty()) {
                     Cache::set(__FUNCTION__ . $language_id . $model, $obj->toArray());
                     return $obj->toArray();
                 }
                 return [];
             }
-            $obj=Manual::where('model','like','%'.$model.'%')->where(['language_id'=>$language_id])->with('downloads')->select();
-            if(!$obj->isEmpty()) return $obj->toArray();
+            $obj = Manual::where('model', 'like', '%' . $model . '%')->where(['language_id' => $language_id])->with('downloads')->select();
+            if (!$obj->isEmpty()) return $obj->toArray();
             return [];
         } catch (\Exception $exception) {
             new throwException('服务器内部错误:' . $exception->getMessage());
@@ -86,22 +86,23 @@ class Support extends BaseService
      * @param $model
      * @return array
      */
-    public function getFirmwareByModel($language_id,$model):array{
-        try{
+    public function getFirmwareByModel($language_id, $model): array
+    {
+        try {
             if ($this->debug == false) {
                 $data = Cache::get(__FUNCTION__ . $language_id . $model);
                 if ($data) return $data;
-                $obj = Firmware::where('model','like','%'.$model.'%')->where(['language_id'=>$language_id])->select();
-                if(!$obj->isEmpty()){
+                $obj = Firmware::where('model', 'like', '%' . $model . '%')->where(['language_id' => $language_id])->select();
+                if (!$obj->isEmpty()) {
                     Cache::set(__FUNCTION__ . $language_id . $model, $obj->toArray());
                     return $obj->toArray();
                 }
                 return [];
             }
-            $obj=Firmware::where('model','like','%'.$model.'%')->where(['language_id'=>$language_id])->select();
-            if(!$obj->isEmpty()) return $obj->toArray();
+            $obj = Firmware::where('model', 'like', '%' . $model . '%')->where(['language_id' => $language_id])->select();
+            if (!$obj->isEmpty()) return $obj->toArray();
             return [];
-        }catch (Exception $exception){
+        } catch (Exception $exception) {
             return [];
         }
     }

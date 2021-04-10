@@ -111,6 +111,11 @@
 <!--私有JS-->
 <script>
     $('.Product').addClass('active');
+    // 判断是否有注册产品，若未曾注册产品，则自动弹出注册框
+    var productData = '{$open_add}';
+    if (productData === '0') {
+        layer_open('{:lang(\'Add Products\')}','{:url(\'customerAddProduct\')}',533,600)
+    }
     $(document).ready(function () {
         $('.product-delete').click(function () {
             var product_id = $(this).siblings('.product-id').attr('data-id');

@@ -186,24 +186,26 @@ class User extends BaseService
      * 当用户的基本信息被确认存在且一切正常之后，执行登录操作
      * @return array
      */
-    public function login($data)
+    public function login($data): array
     {
         $user = [];
         try {
-            if (isset($data['email']) || !empty($data['email'])) {
-                $user = $this->model->get(['email' => $data['email']]);
+            if (isset($data['id']) and is_numeric($data['id'])) {
+                $user = $this->model->get($data['id']);
+            } else {
+                if (isset($data['email']) || !empty($data['email'])) $user = $this->model->get(['email' => $data['email']]);
+                if (isset($data['phone']) || !empty($data['phone'])) $user = $this->model->get(['phone' => $data['phone']]);
+                if (!$user) {
+                    return ['status' => 0, 'message' => lang('User does not exist'), 'url' => url('customer_login')];
+                }
+                if ($user->password !== GetPassword($data['password'])) {
+                    return ['status' => 0, 'message' => lang('Password Error'), 'url' => url('customer_login')];
+                }
             }
-            if (isset($data['phone']) || !empty($data['phone'])) {
-                $user = $this->model->get(['phone' => $data['phone']]);
-            }
-            if (!$user) {
-                return ['status' => 0, 'message' => lang('User does not exist'), 'url' => url('customer_login')];
-            }
-            if ($user->password !== GetPassword($data['password'])) {
-                return ['status' => 0, 'message' => lang('Password Error'), 'url' => url('customer_login')];
-            }
+
         } catch (\Exception $exception) {
-            return ['status' => 0, 'message' => lang('Server Error'), 'url' => url('customer_login')];
+            return ['status' => 0, 'message' => $exception->getMessage(), 'url' => url('customer_login')];
+//            return ['status' => 0, 'message' => lang('Server Error'), 'url' => url('customer_login')];
         }
         try {
             $customerUpdateData = [
@@ -214,7 +216,7 @@ class User extends BaseService
                 $session['id'] = $user['id'];
                 $session['username'] = $user['username'];
                 Session::set('CustomerInfo', $session, 'Customer');
-                return ['status' => 1, 'message' => lang('Success'), 'url' => url('customer_info')];
+                return ['status' => 1, 'message' => lang('Success'), 'url' => url('customer_product_list')];
             }
             return ['status' => 0, 'message' => lang('未知错误'), 'url' => url('customer_login')];
         } catch (\Exception $exception) {

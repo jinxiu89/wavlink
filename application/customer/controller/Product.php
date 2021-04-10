@@ -50,6 +50,9 @@ class Product extends Base
                 $this->assign('page', $data->render());
                 $this->assign('data', $data);
                 $this->assign('count', $data->count());
+                $this->assign('open_add',1);//如果有数据，默认不弹出add product弹窗
+            }else{
+                $this->assign('open_add',0);//如果data为空，默认弹出add product弹窗
             }
             return $this->fetch();
         }

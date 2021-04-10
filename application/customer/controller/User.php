@@ -43,9 +43,11 @@ class User extends Base
     }
 
     protected $middleware = [
-        Auth::class => ['except' => ['login','testEmail', 'register', 'forgotPassword', 'changePassword']]
+        Auth::class => ['except' => ['login', 'testEmail', 'register', 'forgotPassword', 'changePassword']]
     ];
-    public function testEmail(){
+
+    public function testEmail()
+    {
 //        print_r("hello world");
         (new awsSes())->SendCustomVerificationEmail();
     }
@@ -70,15 +72,15 @@ class User extends Base
             $login_url = url('customer_login');
             $index = url('customer_info');
 //            $scene = empty($data['email']) ? 'phone' : 'email';
-            if($data['email']){
+            if ($data['email']) {
                 if (!$this->validate->scene('email')->check($data)) {
                     return show(0, $this->validate->getError(), '', '', $login_url, '');
                 }
-            } elseif($data['phone']){
+            } elseif ($data['phone']) {
                 if (!$this->validate->scene('phone')->check($data)) {
                     return show(0, $this->validate->getError(), '', '', $login_url, '');
                 }
-            }else{
+            } else {
                 return show(0, lang('User does not exist'), '', '', $login_url, '');
             }
             $result = $this->service->login($data);
@@ -254,8 +256,9 @@ class User extends Base
                 }
             }
             $instance = $this->service->reg($data); //instance 是实例的意思
-            if ($instance->id) {//注册成功后，直接跳入登录
-                return show(1, lang('Success'), '', '', url('customer_login'), lang('Successfully!'));
+            if ($instance->id) {//注册成功后，直接完成登录
+                $login = $this->service->login(['id' => $instance->id]);
+                if ($login['status'] == 1) return show(1, lang('Success'), '', '', $login['url'], lang('Successfully!'));
             } else {
                 return show(0, lang('Error'), '', '', '', lang('Failed!'));
             }

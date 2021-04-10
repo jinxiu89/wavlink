@@ -336,7 +336,11 @@ body {
   .register-box .box .info input,
   .proRegister-box .box .info input,
   .forgot-box .box .info input,
-  .change-box .box .info input {
+  .change-box .box .info input,
+  .register-box .box .info select,
+  .proRegister-box .box .info select,
+  .forgot-box .box .info select,
+  .change-box .box .info select {
     flex: 1;
     order: 1;
   }

@@ -128,7 +128,7 @@ function save(url) {
             data: $("form").serialize(),//提交表单数据
             success: function (result) {
                 if (result.status === 1) {
-                    layer.msg(result.data, {icon: 1, time: 600}, function () {
+                    layer.msg(result.data, {icon: 1, time: 6000}, function () {
                         window.parent.location.reload();
                     });
                 } else {

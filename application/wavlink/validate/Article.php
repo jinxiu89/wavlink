@@ -19,7 +19,7 @@ class Article extends BaseValidate
         'language_id'=>'require|number',
         'seo_title'=>'require|max:128',
         'seo_keys'=>'require|max:128',
-        'seo_description'=>'require|max:128',
+        'seo_description'=>'require|max:512',
         'author'=>'max:64',
         'status'=>'integer|in:-1,0,1',
     ];
@@ -32,7 +32,7 @@ class Article extends BaseValidate
         'language_id.require'=>'语言ID不能为空！',
         'language_id.number'=>'语言ID不合法！',
         'seo_title.require'=>'SEO标题不能为空！',
-        'seo_title.max'=>'SEO标题不能太长，需控制在128个字符以内',
+        'seo_title.max'=>'SEO标题不能太长，需控制在120个字以内（一个汉字占用2个字符）',
         'seo_keys.require'=>'关键词不能为空！',
         'seo_keys.max'=>'关键词不能太长,需控制在128个字符以内',
         'seo_description.require'=>'描述不能为空！',

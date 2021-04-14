@@ -85,7 +85,7 @@ class Article extends BaseAdmin
                         return show(1, '', '', '', '', '添加失败');
                     }
                 } else {
-                    return show(1, '', '', '', '', $validate->getError());
+                    return show(0, '', '', '', '', $validate->getError());
                 }
             }
         }

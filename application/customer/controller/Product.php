@@ -15,7 +15,6 @@ namespace app\customer\controller;
 use app\common\service\customer\Product as Service;
 use app\customer\validate\Product as Validate;
 use think\App;
-use think\facade\Cookie;
 use app\customer\middleware\Auth;
 
 /**

@@ -63,6 +63,8 @@ return [
     'Retrieve your password' => '找回密码',
     'Reset your password' => '重置您的密码',
     'Please input the correct phone number or e-mail address' => '请输入正确的邮箱地址',
+    'Please input the correct e-mail address' => '请输入正确的邮箱地址',
+    'Please input the correct phone number' => '请输入正确的邮箱地址',
     'Or' => '或者',
     'Reset Password' => '重置密码',
     'Please enter your phone number or e-mail address' => '请输入您的邮箱',

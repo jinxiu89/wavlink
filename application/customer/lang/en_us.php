@@ -57,6 +57,8 @@ return [
     'No account yet' => 'No account yet?',
     'Retrieve your password' => 'Forgot Password',
     'Please input the correct phone number or e-mail address' => 'Please input the correct e-mail address',
+    'Please input the correct e-mail address' => 'Please input the correct e-mail address',
+    'Please input the correct phone number' => 'Please input the correct phone number',
     'Or' => 'Or',
     'Reset' => 'RESET',
     'Reset Password' => 'Reset Password',

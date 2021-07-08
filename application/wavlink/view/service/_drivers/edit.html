@@ -17,19 +17,21 @@
         <div class="row cl">
             <label class="form-label col-xs-2 col-sm-2"><span class="c-red">*</span>版本号：</label>
             <div class="formControls col-xs-1 col-sm-1">
-                <input type="text" class="input-text" value="{$drivers->version_number}" placeholder="" id="version_number" name="version_number">
+                <input type="text" class="input-text" value="{$drivers->version_number}" placeholder=""
+                    id="version_number" name="version_number">
             </div>
         </div>
         <div class="row cl">
             <label class="form-label col-xs-2 col-sm-2"><span class="c-red">*</span>所属分类：</label>
             <div class="formControls col-xs-2 col-sm-2"> <span class="select-box">
-				<select name="category_id" class="select categoryId">
-					<option value="0">--请选择--</option>
-					{volist name="category" id="vo"}
-					<option value="{$vo.id}" {if condition="$drivers.category_id eq $vo.id" } selected="selected" {/if}>{$vo.delimiter|raw}{$vo.name}</option>
-                    {/volist}
-				</select>
-				</span>
+                    <select name="category_id" class="select categoryId">
+                        <option value="0">--请选择--</option>
+                        {volist name="category" id="vo"}
+                        <option value="{$vo.id}" {if condition="$drivers.category_id eq $vo.id" } selected="selected"
+                            {/if}>{$vo.delimiter|raw}{$vo.name}</option>
+                        {/volist}
+                    </select>
+                </span>
             </div>
         </div>
         <input type="hidden" name="language_id" value="{$language_id}">
@@ -37,55 +39,70 @@
             <label class="form-label col-xs-2 col-sm-2"><span class="c-red">*</span>运行坏境：</label>
             <div class="formControls col-xs-5 col-sm-5">
                 <input type="text" class="input-text" value="{$drivers->running}" placeholder="" id="running"
-                       name="running">
+                    name="running">
             </div>
         </div>
         <div class="row cl">
             <label class="form-label col-xs-2 col-sm-2"><span class="c-red">*</span>seo标题：</label>
             <div class="formControls col-xs-5 col-sm-5">
-                <input type="text" class="input-text" value="{$drivers->seo_title}" placeholder="" id="seo_title" name="seo_title">
+                <input type="text" class="input-text" value="{$drivers->seo_title}" placeholder="" id="seo_title"
+                    name="seo_title">
             </div>
         </div>
         <div class="row cl">
             <label class="form-label col-xs-2 col-sm-2"><span class="c-red">*</span>关键词：</label>
             <div class="formControls col-xs-5 col-sm-5">
-                <input type="text" class="input-text" value="{$drivers->keywords}" placeholder="" id="keywords" name="keywords">
+                <input type="text" class="input-text" value="{$drivers->keywords}" placeholder="" id="keywords"
+                    name="keywords">
             </div>
         </div>
         <div class="row cl">
             <label class="form-label col-xs-2 col-sm-2"><span class="c-red">*</span>描述：</label>
             <div class="formControls col-xs-8 col-sm-9">
-                <textarea name="descrip" id="descrip" class="textarea" cols="100" rows="10">{$drivers->descrip}</textarea>
+                <textarea name="descrip" id="descrip" class="textarea" cols="100"
+                    rows="10">{$drivers->descrip}</textarea>
             </div>
         </div>
         <div class="row cl">
             <label class="form-label col-xs-4 col-sm-2">All下载地址:</label>
             <div class="formControls col-xs-8 col-sm-9">
-                <textarea name="all_link" cols="" rows="" class="textarea" placeholder="包含所有系统驱动的下载地址" dragonfly="true" >{$drivers->all_link}</textarea>
+                <textarea name="all_link" cols="" rows="" class="textarea" placeholder="包含所有系统驱动的下载地址"
+                    dragonfly="true">{$drivers->all_link}</textarea>
             </div>
         </div>
         <div class="row cl">
             <label class="form-label col-xs-4 col-sm-2">MAC驱动下载地址:</label>
             <div class="formControls col-xs-8 col-sm-9">
-                <textarea name="mac_link" cols="" rows="" class="textarea" placeholder="MAC苹果系统的驱动下载地址" dragonfly="true" >{$drivers->mac_link}</textarea>
+                <textarea name="mac_link" cols="" rows="" class="textarea" placeholder="MAC苹果系统的驱动下载地址"
+                    dragonfly="true">{$drivers->mac_link}</textarea>
             </div>
         </div>
         <div class="row cl">
             <label class="form-label col-xs-4 col-sm-2">Windows驱动下载地址:</label>
             <div class="formControls col-xs-8 col-sm-9">
-                <textarea name="win_link" cols="" rows="" class="textarea" placeholder="Windows版本的驱动下载地址" dragonfly="true" >{$drivers->win_link}</textarea>
+                <textarea name="win_link" cols="" rows="" class="textarea" placeholder="Windows版本的驱动下载地址"
+                    dragonfly="true">{$drivers->win_link}</textarea>
             </div>
         </div>
         <div class="row cl">
             <label class="form-label col-xs-4 col-sm-2">Linux驱动下载地址:</label>
             <div class="formControls col-xs-8 col-sm-9">
-                <textarea name="linux_link" cols="" rows="" class="textarea" placeholder="Linux驱动下载地址" dragonfly="true" >{$drivers->linux_link}</textarea>
+                <textarea name="linux_link" cols="" rows="" class="textarea" placeholder="Linux驱动下载地址"
+                    dragonfly="true">{$drivers->linux_link}</textarea>
+            </div>
+        </div>
+        <div class="row cl">
+            <label class="form-label col-xs-2 col-sm-2">安卓应用下载地址:</label>
+            <div class="formControls col-xs-8 col-sm-9">
+                <textarea name="android" cols="" rows="" class="textarea" placeholder="安卓应用下载地址"
+                    dragonfly="true">{$drivers->android}</textarea>
             </div>
         </div>
         <div class="row cl">
             <div class="col-xs-8 col-sm-9 col-xs-offset-4 col-sm-offset-2">
                 <input type="hidden" name="id" value="{$drivers->id}">
-                <button class="btn btn-primary radius" type="button" onclick="save('{:url(\'Drivers/save\')}')"><i class="Hui-iconfont">&#xe632;</i> 保存
+                <button class="btn btn-primary radius" type="button" onclick="save('{:url(\'Drivers/save\')}')"><i
+                        class="Hui-iconfont">&#xe632;</i> 保存
                 </button>
                 <button onClick="layer_close();" class="btn btn-default radius" type="button">
                     &nbsp;&nbsp;取消&nbsp;&nbsp;</button>
@@ -102,8 +119,9 @@
 <script type="text/javascript" src="__STATIC__/admin/lib/kindeditor/lang/zh_CN.js"></script>
 <script type="text/javascript">
     var SCOPE = {
-            'uploadify_swf': '__STATIC__/admin/uploadify/uploadify.swf',
-            'image_upload':"{:url('api/image/upload')}",};
+        'uploadify_swf': '__STATIC__/admin/uploadify/uploadify.swf',
+        'image_upload': "{:url('api/image/upload')}",
+    };
 </script>
 <!--分配编辑器-->
 <script>
@@ -129,4 +147,5 @@
 </script>
 
 </body>
+
 </html>

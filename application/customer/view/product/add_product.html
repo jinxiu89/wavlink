@@ -8,26 +8,33 @@
     .proRegister-box {
         background: #fff;
     }
+
     .proRegister-box .box {
-        margin: 0!important;
+        margin: 0 !important;
     }
+
     .proRegister-box .box .info-box .form-title {
         margin: 20px;
         text-align: center;
     }
+
     .proRegister-box .box .info-box .form-title .title {
         font-size: 16px;
     }
+
     .proRegister-box .box .info-box .form-title .notice {
         color: red;
         font-size: 12px;
     }
+
     .proRegister-box .box .info-box .form-title .notice span {
         color: red;
     }
+
     .proRegister-box .box .info-box .info label {
         width: 130px;
     }
+
     /*.proRegister-box .box .info-box .info input, .proRegister-box .box .info-box .info select {
         width: 240px;
     }*/
@@ -35,13 +42,16 @@
         float: left;
         width: 76px;
     }
+
     .proRegister-box .box .info-box .info .info-time:nth-of-type(2) {
         margin: 0 6px;
     }
+
     .proRegister-box .box .info-box .info .info-time label {
         width: 100%;
         text-align: left;
     }
+
     .proRegister-box .box .info-box .info .info-time select {
         width: 100%;
     }
@@ -63,12 +73,13 @@
                     <input id="model" name="model" type="text" placeholder="{:lang('Please enter your product model')}">
                 </div>
                 <div class="info">
-                    <label for="sn">{:lang('Sn')}<span> * </span></label>
+                    <label for="sn">{:lang('Sn')}</label>
                     <input id="sn" name="sn" type="text" placeholder="{:lang('Please enter your sn code')}">
                 </div>
                 <div class="info">
                     <label for="platform">{:lang('Purchase Platform')}<span> * </span></label>
-                    <input id="platform" name="platform" type="text" placeholder="{:lang('Where did you buy our products')}">
+                    <input id="platform" name="platform" type="text"
+                        placeholder="{:lang('Where did you buy our products')}">
                 </div>
                 <div class="info">
                     <label for="country">{:lang('Country')}<span> * </span></label>
@@ -81,7 +92,8 @@
                 </div>
                 <div class="info">
                     <label for="order_number">{:lang('Order Number')}<span> * </span></label>
-                    <input id="order_number" name="order_number" type="text" placeholder="{:lang('Please enter your order number')}" >
+                    <input id="order_number" name="order_number" type="text"
+                        placeholder="{:lang('Please enter your order number')}">
                 </div>
                 <div class="info">
                     <label for="create_time">{:lang('Purchase Time')}<span> * </span></label>
@@ -132,7 +144,7 @@
 {/if}
 <script src="__STATIC__/admin/lib/jquery.validation/1.14.0/validate-methods.js"></script>
 <script>
-    $(document).ready(function(){
+    $(document).ready(function () {
         $.ms_DatePicker({
             YearSelector: ".sel_year",
             MonthSelector: ".sel_month",
@@ -142,13 +154,8 @@
     $('#registerForm').validate({
         errorClass: 'infoError',
         errorElement: "p",
-        rules:{
+        rules: {
             model: {
-                required: true,
-                minlength: 1,
-                maxlength: 20
-            },
-            sn: {
                 required: true,
                 minlength: 1,
                 maxlength: 20
@@ -167,21 +174,17 @@
                 minlength: '{:lang(\'The maximum length is limited to 20 characters\')}',
                 maxlength: '{:lang(\'The maximum length is limited to 20 characters\')}'
             },
-            sn: {
-                minlength: '{:lang(\'The maximum length is limited to 20 characters\')}',
-                maxlength: '{:lang(\'The maximum length is limited to 20 characters\')}'
-            },
             platform: {
                 minlength: '{:lang(\'The maximum length is limited to 20 characters\')}',
                 maxlength: '{:lang(\'The maximum length is limited to 20 characters\')}'
             },
         },
-        submitHandler:function (form) {
+        submitHandler: function (form) {
             $.ajax({
-                url:"{:url('customerAddProduct')}",
-                type:"post",
-                dataType:"json",
-                data:$(form).serialize(),
+                url: "{:url('customerAddProduct')}",
+                type: "post",
+                dataType: "json",
+                data: $(form).serialize(),
                 success: function (result) {
                     if (result.status === 1) {
                         $('#submit').attr("disabled", true);
@@ -190,11 +193,11 @@
                             'borderRadius': '20px',
                             'cursor': 'no-drop'
                         });
-                        layer.msg(result.message, {icon: 1, time: 1000},function () {
+                        layer.msg(result.message, { icon: 1, time: 1000 }, function () {
                             window.parent.location.replace(window.parent.location.href)
                         });
                     } else {
-                        layer.msg(result.message, {icon: 5, time: 1000});
+                        layer.msg(result.message, { icon: 5, time: 1000 });
                     }
                 }
             });

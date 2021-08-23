@@ -11,7 +11,7 @@ declare(strict_types=1);
  * @格言： 我的内心因看见大海而波涛汹涌
  **/
 
-namespace app\wavlink\controller\Content;
+namespace app\wavlink\controller\Jobs;
 
 use app\wavlink\controller\BaseAdmin;
 
@@ -19,18 +19,20 @@ class Social extends BaseAdmin
 {
     public function index()
     {
+        return $this->fetch('');
         print_r("社招首页");
     }
     public function list()
     {
-        print_r("hello 列表");
+        return $this->fetch('');
     }
     public function add()
     {
-        print_r("添加职位");
+        return $this->fetch('');
     }
     public function edit()
     {
+        return $this->fetch('');
     }
     public function stop()
     {

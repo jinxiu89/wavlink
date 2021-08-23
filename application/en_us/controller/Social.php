@@ -7,21 +7,20 @@ class Social extends Base
 {
     public function index()
     {
-        print_r("hello man<br />");
-        print_r("社招首页<br />");
+        return $this->fetch($this->template . '/social/index.html');
     }
     public function list()
     {
         # code...
-        print_r("社招职位列表页");
+        return $this->fetch($this->template . '/social/list.html');
     }
     function details()
     {
         # code...
-        print_r("详情页");
+        return $this->fetch($this->template . '/social/details.html');
     }
     function gain()
     {
-        print_r("申请");
+        return $this->fetch($this->template . '/social/gain.html');
     }
 }

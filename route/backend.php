@@ -1,4 +1,5 @@
 <?php
+
 /**
  * Created by PhpStorm.
  * User: admin
@@ -15,13 +16,13 @@ use think\facade\Config;
 //get请求组
 Route::group(Config::get('__BACKEND__'), function () {
     //登录登出
-    Route::rule('/login/index$','wavlink/login/index','GET|POST')->name('admin_login');
-    Route::rule('/login/logout$', 'wavlink/login/logout','GET|POST')->name('admin_logout');
-    Route::rule('/login$', 'wavlink/login/index','GET|POST')->name('admin_login');
+    Route::rule('/login/index$', 'wavlink/login/index', 'GET|POST')->name('admin_login');
+    Route::rule('/login/logout$', 'wavlink/login/logout', 'GET|POST')->name('admin_logout');
+    Route::rule('/login$', 'wavlink/login/index', 'GET|POST')->name('admin_login');
     /**
      * 清理缓存
      */
-    Route::rule('/clean', 'BaseAdmin/clean','GET')->name('admin_clean');
+    Route::rule('/clean', 'BaseAdmin/clean', 'GET')->name('admin_clean');
     /***
      * 内容管理模块路由
      */
@@ -30,13 +31,13 @@ Route::group(Config::get('__BACKEND__'), function () {
     Route::get('/content/index', 'Content.Content/index');
     //推荐位
     Route::get('/Featured/index', 'Content.Featured/index')->name('featured_list');
-    Route::rule('/Featured/byStatus', 'Content.Featured/byStatus','GET|POST');
+    Route::rule('/Featured/byStatus', 'Content.Featured/byStatus', 'GET|POST');
     Route::get('/Featured/add', 'Content.Featured/add');
     Route::get('/Featured/edit', 'Content.Featured/edit', [], ['id' => '\d+']);
     Route::post('/Featured/save', 'Content.Featured/save');
     //首页推荐产品
     Route::post('/images/save', 'Content.Images/save');
-    Route::rule('/images/byStatus', 'Content.Images/byStatus','GET|POST');
+    Route::rule('/images/byStatus', 'Content.Images/byStatus', 'GET|POST');
     Route::get('/images/index', 'Content.Images/index');
     Route::get('/images/add', 'Content.Images/add');
     Route::get('/images/edit', 'Content.Images/edit', [], ['id' => '\d+']);
@@ -93,8 +94,8 @@ Route::group(Config::get('__BACKEND__'), function () {
     /**
      * 营销管理
      */
-    Route::rule('/marketing/customer/index$','Marketing.Customer/index')->name('marketing_customer_index');
-    Route::get('/email/template/index$','Marketing.Email/index')->name('email_template');
+    Route::rule('/marketing/customer/index$', 'Marketing.Customer/index')->name('marketing_customer_index');
+    Route::get('/email/template/index$', 'Marketing.Email/index')->name('email_template');
     //营销管理
     Route::get('/marketing/index$', 'Marketing.OnePage/index');
     Route::get('/marketing/add$', 'Marketing.OnePage/add');
@@ -112,8 +113,8 @@ Route::group(Config::get('__BACKEND__'), function () {
     Route::get('/system/index', 'System.System/index');
     //语言
     /**
-    * 语言切换
-    */
+     * 语言切换
+     */
     Route::get('/language/index', 'System.Language/index');
     Route::get('/language/add', 'System.Language/add');
     Route::get('/language/edit', 'System.Language/edit', [], ['id' => '\d+']);
@@ -129,7 +130,7 @@ Route::group(Config::get('__BACKEND__'), function () {
     //管理员列表
     Route::get('/manger/index', 'System.Manger/index');
     Route::get('/manger/add', 'System.Manger/add');
-    Route::post('/manger/add_manager','System.Manger/addManger')->name('add_manger');
+    Route::post('/manger/add_manager', 'System.Manger/addManger')->name('add_manger');
     Route::get('/manger/edit', 'System.Manger/edit', [], ['id' => '\d+']);
     Route::get('/manger/password', 'System.Manger/password', [], ['id' => '\d+']);
     //禁用的管理员
@@ -174,10 +175,10 @@ Route::group(Config::get('__BACKEND__'), function () {
     Route::post('/Document/listorder', 'Document/listorder');
 
     //驱动分类
-    Route::get('/drivers/Category$','Service.DriversCategory/index')->name('driver_category_index');
-    Route::rule('/drivers/Category/add','Service.DriversCategory/add','GET|POST')->name('add_driver_category');
-    Route::rule('/drivers/Category/edit','Service.DriversCategory/edit','GET|POST')->name('edit_driver_category');
-    Route::rule('/drivers/Category/byStatus','Service.DriversCategory/ByStatus','GET|POST')->name('del_driver_category');
+    Route::get('/drivers/Category$', 'Service.DriversCategory/index')->name('driver_category_index');
+    Route::rule('/drivers/Category/add', 'Service.DriversCategory/add', 'GET|POST')->name('add_driver_category');
+    Route::rule('/drivers/Category/edit', 'Service.DriversCategory/edit', 'GET|POST')->name('edit_driver_category');
+    Route::rule('/drivers/Category/byStatus', 'Service.DriversCategory/ByStatus', 'GET|POST')->name('del_driver_category');
     //驱动管理
     Route::get('/drivers/index', 'Service.Drivers/index');
     Route::post('/drivers/index', 'Service.Drivers/index');
@@ -273,22 +274,22 @@ Route::group(Config::get('__BACKEND__'), function () {
     /**
      * 资源管理
      */
-    Route::rule('/media/index','Media.Index/index')->name('media_index');
+    Route::rule('/media/index', 'Media.Index/index')->name('media_index');
     //图片
-    Route::rule('/media/image/lists','Media.Image/lists')->name('image_lists');
-    Route::rule('/media/image/create/folder','Media.Image/createFolder')->name('create_image_folder');
-    Route::rule('/media/image/upload','Media.Image/upload')->name('image_upload');
-    Route::rule('/media/image/del','Media.Image/delImage')->name('del_image');
+    Route::rule('/media/image/lists', 'Media.Image/lists')->name('image_lists');
+    Route::rule('/media/image/create/folder', 'Media.Image/createFolder')->name('create_image_folder');
+    Route::rule('/media/image/upload', 'Media.Image/upload')->name('image_upload');
+    Route::rule('/media/image/del', 'Media.Image/delImage')->name('del_image');
     //驱动
-    Route::rule('/media/driver/lists','Media.Driver/lists')->name('driver_lists');
-    Route::rule('/media/driver/upload','Media.Driver/upload')->name('upload_driver');
-    Route::rule('/media/driver/create/folder','Media.Driver/createFolder')->name('create_driver_folder');
-    Route::rule('/media/driver/del','Media.Driver/del')->name('del_driver');
+    Route::rule('/media/driver/lists', 'Media.Driver/lists')->name('driver_lists');
+    Route::rule('/media/driver/upload', 'Media.Driver/upload')->name('upload_driver');
+    Route::rule('/media/driver/create/folder', 'Media.Driver/createFolder')->name('create_driver_folder');
+    Route::rule('/media/driver/del', 'Media.Driver/del')->name('del_driver');
 
-    Route::rule('/media/videos/lists','Media.Videos/lists')->name('videos_lists');
-    Route::rule('/media/videos/upload','Media.Videos/upload')->name('upload_videos');
-    Route::rule('/media/videos/create/folder','Media.Videos/createFolder')->name('create_videos_folder');
-    Route::rule('/media/videos/del','Media.Videos/del')->name('del_video');
+    Route::rule('/media/videos/lists', 'Media.Videos/lists')->name('videos_lists');
+    Route::rule('/media/videos/upload', 'Media.Videos/upload')->name('upload_videos');
+    Route::rule('/media/videos/create/folder', 'Media.Videos/createFolder')->name('create_videos_folder');
+    Route::rule('/media/videos/del', 'Media.Videos/del')->name('del_video');
 
 
     //搜索索引管理
@@ -297,5 +298,8 @@ Route::group(Config::get('__BACKEND__'), function () {
     Route::get('/search/createDriver$', 'Search/createDriver');
     Route::get('/search/createIndex$', 'Search/createIndex');
     Route::get('/search/getProduct$', 'Search/searchProduct');
+    ## 招聘管理
+    Route::get('/jobs/social/Category$', 'Jobs.Social/index')->name('jobs_category');
+    Route::get('/jobs/social/Category/add$', 'Jobs.Social/add_category')->name('add_jobs_category');
     Route::get('/$', 'Index/index');
 })->prefix('wavlink/');

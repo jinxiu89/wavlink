@@ -9,8 +9,7 @@
             <dd>
                 <ul>
                     <li id="images_featured"><a href="{:url('featured/index')}" title="推荐位置">推荐位置</a></li>
-                    <li id="images_list"><a href="{:url('images/index')}"
-                                                     title="推荐内容">推荐内容</a></li>
+                    <li id="images_list"><a href="{:url('images/index')}" title="推荐内容">推荐内容</a></li>
                     <li id="images_recycle"><a href="{:url('images/images_recycle')}" title="禁用的内容">禁用的内容</a></li>
                 </ul>
             </dd>
@@ -27,7 +26,7 @@
                     <li id="product_product">
                         <a class="product_product" href="{:url('product/index')}" title="产品管理">产品管理</a>
                     </li>
-                        <!--<li id="product_off"><a href="{:url('product/product_off')}" title="已下架的产品">已下架的产品</a></li>-->
+                    <!--<li id="product_off"><a href="{:url('product/product_off')}" title="已下架的产品">已下架的产品</a></li>-->
                     <li id="product_recycle"><a href="{:url('product/product_recycle')}" title="回收站的产品">回收站</a></li>
                 </ul>
             </dd>
@@ -41,11 +40,23 @@
                     <li id="article_art">
                         <a href="{:url('wavlink/Article/index')}" title="文章管理">文章列表</a>
                     </li>
-                    <li id="article_rec"><a href="{:url('wavlink/Article/article_recycle')}" title="回收站内文章">回收列表</a></li>
+                    <li id="article_rec"><a href="{:url('wavlink/Article/article_recycle')}" title="回收站内文章">回收列表</a>
+                    </li>
                 </ul>
             </dd>
         </dl>
         {/if}
+        <dl id="menu-hr">
+            <dt><i class="Hui-iconfont">&#xe62b;</i> 招聘管理<i class="Hui-iconfont menu_dropdown-arrow">&#xe6d5;</i></dt>
+            <dd>
+                <ul>
+                    <li><a href="{:url('jobs_category')}">职位分类</a></li>
+                    <li><a href="#">社招职位</a></li>
+                    <li><a href="#">校招职位</a></li>
+                    <li><a href="#">简历</a></li>
+                </ul>
+            </dd>
+        </dl>
         {if condition="in_array('about/index',$access)"}
         <dl id="menu-about">
             <dt><i class="Hui-iconfont">&#xe627;</i>关于我们 <i class="Hui-iconfont menu_dropdown-arrow">&#xe6d5;</i>
@@ -71,4 +82,3 @@
 </aside>
 <div class="dislpayArrow hidden-xs"><a class="pngfix" href="javascript:void(0);" onClick="displaynavbar(this)"></a>
 </div>
-

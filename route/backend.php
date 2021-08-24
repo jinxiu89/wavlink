@@ -299,9 +299,10 @@ Route::group(Config::get('__BACKEND__'), function () {
     Route::get('/search/createIndex$', 'Search/createIndex');
     Route::get('/search/getProduct$', 'Search/searchProduct');
     ## 招聘管理
-    Route::get('/jobs/social/Category$', 'Jobs.Category/index')->name('jobs_category');
-    Route::get('/jobs/social/Category/add$', 'Jobs.Category/add')->name('add_jobs_category');
-    Route::post('/jobs/social/Category/add$', 'Jobs.Category/add')->name('add_jobs_category');
-    Route::rule('/jobs/social/Category/edit/:id$', 'Jobs.Category/edit')->name('edit_jobs_category');
+    Route::rule('/jobs/Category$', 'Jobs.Category/index')->name('jobs_category');
+    Route::rule('/jobs/Category/add$', 'Jobs.Category/add')->name('add_jobs_category');
+    Route::rule('/jobs/Category/edit/:id$', 'Jobs.Category/edit')->name('edit_jobs_category');
+    Route::rule('/jobs/social$', 'Jobs.Social/index')->name('jobs_social');
+    Route::rule('/jobs/social/add$', 'Jobs.Social/add')->name('add_social_job');
     Route::get('/$', 'Index/index');
 })->prefix('wavlink/');

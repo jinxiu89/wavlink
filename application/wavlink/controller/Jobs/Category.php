@@ -18,23 +18,49 @@ use app\wavlink\validate\jobs\Category as validate;
 use app\common\model\Jobs\Category as Model;
 use think\App;
 
+/**
+ * 社招职位分类控制器
+ *
+ * @Author: kevin qiu
+ * @DateTime: 2021-08-24
+ */
 class Category extends BaseAdmin
 {
     protected $validate;
     protected $model;
-
+    /**
+     * 构造函数，初始化模型
+     * 初始化验证
+     * @Author: kevin qiu
+     * @DateTime: 2021-08-24
+     * @param App $app
+     */
     public  function __construct(App $app = null)
     {
         parent::__construct($app);
         $this->validate = new validate();
         $this->model = new Model();
     }
+    /**
+     * route: Route::rule('/jobs/Category$', 'Jobs.Category/index')->name('jobs_category');
+     * route/backend.php
+     * @Author: kevin qiu
+     * @DateTime: 2021-08-24
+     * @return void
+     */
     public function index()
     {
         $data = $this->model->all()->toArray();
         $this->assign('data', $data);
         return $this->fetch();
     }
+    /**
+     * route:Route::rule('/jobs/Category/add$', 'Jobs.Category/add')->name('add_jobs_category');
+     * route/backend.php
+     * @Author: kevin qiu
+     * @DateTime: 2021-08-24
+     * @return void
+     */
     public function add()
     {
         if ($this->request->isGet()) {
@@ -58,7 +84,13 @@ class Category extends BaseAdmin
             return show(0, '', '', '', '', $this->validate->getError());
         }
     }
-
+    /**
+     * Route::rule('/jobs/Category/edit/:id$', 'Jobs.Category/edit')->name('edit_jobs_category');
+     * 
+     * @Author: kevin qiu
+     * @DateTime: 2021-08-24
+     * @return void
+     */
     public function edit()
     {
         $id = $this->request->param('id');

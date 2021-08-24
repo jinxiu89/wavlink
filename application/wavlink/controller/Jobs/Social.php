@@ -15,12 +15,25 @@ namespace app\wavlink\controller\Jobs;
 
 use app\wavlink\controller\BaseAdmin;
 
+/**
+ * s社招职位路由
+ * 
+ * @Author: kevin qiu
+ * @DateTime: 2021-08-24
+ */
 class Social extends BaseAdmin
 {
+    /**
+     * Route::rule('/jobs/social$', 'Jobs.Social/index')->name('jobs_social');
+     * 
+     *
+     * @Author: kevin qiu
+     * @DateTime: 2021-08-24
+     * @return void
+     */
     public function index()
     {
         return $this->fetch('');
-        print_r("社招首页");
     }
     public function list()
     {

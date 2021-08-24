@@ -1,0 +1,45 @@
+<!--包含头部文件-->
+{include file="public/headers" /}
+<div class="page-container">
+    <form class="form form-horizontal form-o2o-add" id="form-o2o-add" method="post" action="">
+        <div class="row cl">
+            <label class="form-label col-xs-2 col-sm-2"><span class="c-red">*</span>分类名称：</label>
+            <div class="formControls col-xs-6 col-sm-4">
+                <input type="text" class="input-text" value="" placeholder="" id="name" name="name">
+            </div>
+        </div>
+        <div class="row cl">
+            <label class="form-label col-xs-2 col-sm-2"><span class="c-red">*</span>Url title：</label>
+            <div class="formControls col-xs-6 col-sm-4">
+                <input type="text" class="input-text" value="" placeholder="" id="title" name="title">
+            </div>
+        </div>
+        <div class="rol col">
+            <br>
+            <br>
+        </div>
+        <div class="row cl">
+            <div class="col-xs-8 col-sm-9 col-xs-offset-4 col-sm-offset-2">
+                <button type="button" onclick="save('{:url(\'add_jobs_category\')}')" class="btn btn-primary radius"><i
+                        class="Hui-iconfont">&#xe632;</i> 保存</button>
+
+                <button onClick="layer_close();" class="btn btn-default radius"
+                    type="button">&nbsp;&nbsp;取消&nbsp;&nbsp;</button>
+            </div>
+        </div>
+    </form>
+</div>
+<!--包含头部文件-->
+{include file="public/footer" /}
+<script type="text/javascript">
+    $(function () {
+        $('.check-box input').iCheck({
+            checkboxClass: 'icheckbox-blue',
+            radioClass: 'iradio-blue',
+            increaseArea: '20%'
+        })
+    });
+</script>
+</body>
+
+</html>

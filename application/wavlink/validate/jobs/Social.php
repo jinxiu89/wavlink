@@ -15,24 +15,25 @@ namespace app\wavlink\validate\jobs;
 
 use app\wavlink\validate\BaseValidate;
 
-class Socal extends BaseValidate
+class Social extends BaseValidate
 {
     /**验证规则**/
     protected $rule = [
         'id' => 'number',
-        'name' => 'require|unique:about,name',
-        'title' => 'require',
+        'title' => 'require|unique:tb_social_jobs,title',
+        'keywords' => 'require',
+        'description' => 'require',
     ];
     protected $message = [
         'id' => 'ID不合法',
-        'name.require' => '标题名称不能为空',
-        'name.unique' => '标题名称不能重复',
-        'title.require' => 'title不能为空',
+        'title.require' => '标题名称不能为空',
+        'title.unique' => '标题名称不能重复',
+        'keywords.require' => '关键字不能为空',
+        'description.require' => '职位描述与要求不能为空',
     ];
     /**场景设置**/
     protected $scene = [
-        'add' => ['name', 'title'],
-        'edit' => ['name', 'title'],
+        'v' => ['title', 'keywords', 'description'],
         // 'changeStatus' => ['id', 'status'],
     ];
 }

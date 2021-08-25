@@ -14,6 +14,10 @@ declare(strict_types=1);
 namespace app\wavlink\controller\Jobs;
 
 use app\wavlink\controller\BaseAdmin;
+use think\App;
+use app\common\model\Jobs\Social as Model;
+use app\wavlink\validate\jobs\Social as validate;
+use app\common\model\Jobs\Category;
 
 /**
  * s社招职位路由
@@ -23,6 +27,22 @@ use app\wavlink\controller\BaseAdmin;
  */
 class Social extends BaseAdmin
 {
+
+    protected $validate;
+    protected $model;
+    /**
+     * 初始化函数
+     *
+     * @Author: kevin qiu
+     * @DateTime: 2021-08-25
+     * @param App $app
+     */
+    public function __construct(App $app = null)
+    {
+        parent::__construct($app);
+        $this->validate = new validate();
+        $this->model = new Model();
+    }
     /**
      * Route::rule('/jobs/social$', 'Jobs.Social/index')->name('jobs_social');
      * 
@@ -33,19 +53,60 @@ class Social extends BaseAdmin
      */
     public function index()
     {
-        return $this->fetch('');
+        if ($this->request->isGet()) {
+            $data = $this->model->all();
+            $this->assign('data', $data->toArray());
+            return $this->fetch('');
+        }
     }
     public function list()
     {
         return $this->fetch('');
     }
+    /**
+     * 职位添加路由
+     *
+     * @Author: kevin qiu
+     * @DateTime: 2021-08-25
+     * @return void
+     */
     public function add()
     {
-        return $this->fetch('');
+        if ($this->request->isGet()) {
+            $category = (new Category())->all();
+            $this->assign('category', $category);
+            return $this->fetch('');
+        }
+        if ($this->request->isPost()) {
+            $data = input('post.');
+            if ($this->validate->scene('v')->check($data)) {
+                try {
+                    $res = $this->model->save($data);
+                    if ($res) {
+                        return show(1, '', '', '', '', '添加成功');
+                    } else {
+                        return show(0, '', '', '', '', '添加失败');
+                    }
+                } catch (\Exception $exception) {
+                    return show(0, '', '', '', '', $exception->getMessage());
+                }
+            }
+            return show(0, '', '', '', '', $this->validate->getError());
+        }
     }
     public function edit()
     {
-        return $this->fetch('');
+        $id = $this->request->param('id');
+        if ($this->request->isGet()) {
+            $category = (new Category())->all();
+            $data = $this->model->get(['id' => $id])->toArray();
+            $this->assign('data', $data);
+            $this->assign('category', $category);
+            return $this->fetch('');
+        }
+        if ($this->request->isPost()) {
+            //todo:: 保存
+        }
     }
     public function stop()
     {

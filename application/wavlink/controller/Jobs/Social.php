@@ -105,7 +105,20 @@ class Social extends BaseAdmin
             return $this->fetch('');
         }
         if ($this->request->isPost()) {
-            //todo:: 保存
+            $data = input('post.');
+            if ($this->validate->scene('edit')->check($data)) {
+                try {
+                    $res = $this->model->save($data, ['id' => $id]);
+                    if ($res) {
+                        return show(1, '', '', '', '', '保存成功');
+                    } else {
+                        return show(0, '', '', '', '', '保存失败');
+                    }
+                } catch (\Exception $exception) {
+                    return show(0, '', '', '', '', $exception->getMessage());
+                }
+            }
+            return show(0, '', '', '', '', $this->validate->getError());
         }
     }
     public function stop()

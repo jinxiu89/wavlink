@@ -14,6 +14,7 @@ declare(strict_types=1);
 namespace app\common\model\Jobs;
 
 use app\common\model\BaseModel;
+use think\Db;
 
 /**
  * 社招职位 模型 class
@@ -24,4 +25,11 @@ use app\common\model\BaseModel;
 class Social extends BaseModel
 {
     protected $table = 'tb_social_jobs';
+    public function gedJobsByStatus(array $status)
+    {
+        return Db::table($this->table)
+            ->where('status', 'in', $status)
+            ->field('id,title,city,type,salary,seniority,education,status,numbers,update_time')
+            ->select();
+    }
 }

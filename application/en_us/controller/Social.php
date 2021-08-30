@@ -37,11 +37,10 @@ class Social extends Base
             $count = count($data);
             $pages = input('page', 1);
             $size = 12;
-            $page_options = ['var_page' => 'page', 'path' => $this->code . '/jobs/social/list']; //分页选项
+            $page_options = ['var_page' => 'page', 'path' => '/' . $this->code . '/jobs/social/list']; //分页选项
             $page = Bootstrap::make($data, $size, $pages, $count, true, $page_options);
             $this->assign('data', array_slice($data, ($pages - 1) * $size, $size));
             $this->assign('page', $page);
-            print_r($page);
             return $this->fetch($this->template . '/social/list.html');
         }
     }

@@ -30,7 +30,9 @@
         "phpoffice/phpexcel": "^1.8",
         "alibabacloud/sdk": "^1.8",
         "aliyuncs/oss-sdk-php": "^2.3",
-        "aws/aws-sdk-php": "^3.137"
+        "aws/aws-sdk-php": "^3.137",
+        "geoip2/geoip2": "~2.0",
+        "firebase/php-jwt": "^5.2"
     },
     "extra": {
         "think-path": "thinkphp"

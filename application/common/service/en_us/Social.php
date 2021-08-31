@@ -48,4 +48,20 @@ class Social extends BaseService
             return $exception->getMessage();
         }
     }
+    public function getDetails(string $url_title)
+    {
+        try {
+            if (false == $this->debug) {
+                $data = Cache::get(__FUNCTION__);
+                if ($data) return $data;
+                $obj = $this->model->getDetails((string)$url_title);
+                Cache::set(__FUNCTION__, $obj);
+                return $obj;
+            }
+            return $this->model->getDetails((string)$url_title);
+        } catch (Exception $exception) {
+            if ($this->debug == true) Log::error(__FUNCTION__ . ':' . $exception->getMessage());
+            return $exception->getMessage();
+        }
+    }
 }

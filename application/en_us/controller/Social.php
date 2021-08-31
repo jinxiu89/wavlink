@@ -20,37 +20,92 @@ use think\paginator\driver\Bootstrap;
 class Social extends Base
 {
     protected $service;
+    protected $data;
+    /**
+     * Undocumented function
+     *
+     * @Author: kevin qiu
+     * @DateTime: 2021-08-30
+     * @param [type] $app
+     */
     public function __construct(App $app = NULL)
     {
         parent::__construct($app);
         $this->service = new service();
+        $this->data = $this->service->gedJobsByStatus((array)$status = [0, 1]);
     }
     public function index()
     {
-        return $this->fetch($this->template . '/social/index.html');
+        if ($this->request->isGet()) {
+            if (!empty($this->data)) {
+                $hot = array_slice($this->data, 0, 12);
+                $this->assign('hot', $hot);
+            }
+            return $this->fetch($this->template . '/social/index.html');
+        }
     }
+    /**
+     * Undocumented function
+     *
+     * @Author: kevin qiu
+     * @DateTime: 2021-08-30
+     * @return void
+     */
     public function list()
     {
         # code...
         if ($this->request->isGet()) {
-            $data = $this->service->gedJobsByStatus((array)$status = [0, 1]);
+            $data = $this->data;
             $count = count($data);
             $pages = input('page', 1);
             $size = 12;
             $page_options = ['var_page' => 'page', 'path' => '/' . $this->code . '/jobs/social/list']; //分页选项
             $page = Bootstrap::make($data, $size, $pages, $count, true, $page_options);
+            if (!empty($data)) {
+                $hot = array_slice($data, 0, 5);
+                $this->assign('hot', $hot);
+            }
             $this->assign('data', array_slice($data, ($pages - 1) * $size, $size));
             $this->assign('page', $page);
             return $this->fetch($this->template . '/social/list.html');
         }
     }
+    /**
+     * Undocumented function
+     *
+     * @Author: kevin qiu
+     * @DateTime: 2021-08-30
+     * @return void
+     */
     function details()
     {
         # code...
-        return $this->fetch($this->template . '/social/details.html');
+        if ($this->request->isGet()) {
+            if (!empty($this->data)) {
+                $hot = array_slice($this->data, 0, 5);
+                $this->assign('hot', $hot);
+            }
+            $url_title = $this->request->param('url_title');
+            $data = $this->service->getDetails((string)$url_title);
+            $this->assign('data', $data);
+            return $this->fetch($this->template . '/social/details.html');
+        }
     }
+    /**
+     * Undocumented function
+     *
+     * @Author: kevin qiu
+     * @DateTime: 2021-08-30
+     * @return void
+     */
     function gain()
     {
-        return $this->fetch($this->template . '/social/gain.html');
+        if ($this->request->isGet()) {
+            // print_r("hello" . __FUNCTION__);
+            return $this->fetch($this->template . '/social/gain.html');
+        }
+        if ($this->request->isPost) {
+            //todo:: 申请步骤
+        }
     }
 }

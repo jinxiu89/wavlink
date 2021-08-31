@@ -25,11 +25,32 @@ use think\Db;
 class Social extends BaseModel
 {
     protected $table = 'tb_social_jobs';
+    /**
+     * 获取所有职位 状态位 急招货正常招聘的职位在查询之列
+     *
+     * @Author: kevin qiu
+     * @DateTime: 2021-08-30
+     * @param array $status
+     * @return void
+     */
     public function gedJobsByStatus(array $status)
     {
         return Db::table($this->table)
             ->where('status', 'in', $status)
-            ->field('id,title,city,type,salary,seniority,education,status,numbers,update_time')
-            ->select();
+            ->field('id,title,url_title,city,type,salary,seniority,education,status,numbers,update_time')
+            ->order('update_time desc')->select();
+    }
+    /**
+     * 获取职位详情
+     *
+     * @Author: kevin qiu
+     * @DateTime: 2021-08-30
+     * @param string|null $url_title
+     * @return void
+     */
+    public function getDetails(string $url_title = null)
+    {
+        # code...
+        return Db::table($this->table)->where(['url_title' => $url_title])->find();
     }
 }

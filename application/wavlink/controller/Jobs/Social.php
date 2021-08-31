@@ -80,6 +80,7 @@ class Social extends BaseAdmin
         if ($this->request->isPost()) {
             $data = input('post.');
             if ($this->validate->scene('v')->check($data)) {
+                $data['url_title'] = substr(md5(uniqid()), 3, 12);
                 try {
                     $res = $this->model->save($data);
                     if ($res) {

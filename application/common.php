@@ -169,6 +169,16 @@ function show($status, $message = '', $title = '', $btn = '', $url = '', $data =
     return exit(json_encode($res));
 }
 
+function jsonShow(int $status, string $message = 'error', array $data = [], int $httpStatus = 200)
+{
+    $result = [
+        'status' => $status,
+        'message' => $message,
+        'result' => $data
+    ];
+    return json($result);
+}
+
 /***
  * @param $arr
  * 生成json数组

@@ -106,6 +106,7 @@ class Social extends Base
         }
         if ($this->request->isPost) {
             //todo:: 申请步骤
+            $data = $this->request->param('post.');
         }
     }
 }

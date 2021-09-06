@@ -1,4 +1,5 @@
 <?php
+
 /**
  * Created by PhpStorm.
  * User: wavlink
@@ -41,8 +42,8 @@ class Drivers extends Base
     public function __construct(App $app = null)
     {
         parent::__construct($app);
-        $this->service = new DriverService();//驱动服务层
-        $data = (new driversCategory())->getCategoryByLanguage($status = 1,$this->language_id);
+        $this->service = new DriverService(); //驱动服务层
+        $data = (new driversCategory())->getCategoryByLanguage($status = 1, $this->language_id);
         $level = Category::toLayer($data->toArray(), 'child');
         $this->assign('cate', $level);
         unset($data);
@@ -77,8 +78,8 @@ class Drivers extends Base
     {
         $result = $this->service->getDataByCategory($this->language_id, $order, $category);
         return $this->fetch($this->template . '/drivers/category.html', [
-            'category_title' => $result[0]['url_title'], 'title'=>$result[0]['title'],'data' => $result]);
-        
+            'category_title' => $result[0]['url_title'], 'title' => $result[0]['title'], 'data' => $result
+        ]);
     }
 
     /**

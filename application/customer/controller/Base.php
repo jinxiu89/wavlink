@@ -9,7 +9,7 @@
 
 namespace app\customer\controller;
 
-header('X-Frame-Options: deny');
+header('X-Frame-Options: ALLOW-FROM www.wavlink/');
 
 use app\common\model\Content\About as AboutModel;
 use app\lib\utils\email;

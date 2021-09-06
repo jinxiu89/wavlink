@@ -2,7 +2,7 @@
 
 namespace app\en_us\controller;
 
-header('X-Frame-Options: deny');
+header('X-Frame-Options: ALLOW-FROM www.wavlink/');
 
 use \app\common\model\Content\About as AboutModel;
 use app\common\model\Content\Article as ArticleModel;

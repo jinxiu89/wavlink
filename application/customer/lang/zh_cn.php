@@ -52,6 +52,7 @@ return [
     'username'=>'用户名',
     'phone'=>'手机',
     'send'=>'发送',
+    'get'=>'获取',
     'Change Email address' => '修改邮箱',
     'login' => '登录',
     'Password' => '密码',

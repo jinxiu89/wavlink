@@ -1,0 +1,284 @@
+.g-nav #wavlink-back {
+  float: right;
+  margin: 13px 0;
+  background: #fff;
+  border-radius: 4px;
+}
+.g-nav #wavlink-back a {
+  height: 34px;
+  line-height: 34px;
+  color: #1D428A;
+}
+.page-com-foot {
+  padding: 40px 0 30px;
+  color: #fff;
+  font-size: 12px;
+  border-top: 1px solid #eaeaea;
+  background: #333;
+  text-align: center;
+}
+.page-com-foot .foot-nav li {
+  display: inline-block;
+}
+.page-com-foot .foot-nav li:nth-last-of-type(1) a:after {
+  display: none;
+}
+.page-com-foot .foot-nav li a {
+  position: relative;
+  padding: 0 8px;
+  color: #fff;
+}
+.page-com-foot .foot-nav li a:after {
+  content: '';
+  position: absolute;
+  top: 0;
+  right: 0;
+  display: block;
+  width: 1px;
+  height: 100%;
+  background: #fff;
+}
+.page-com-foot .copy-right {
+  padding: 5px 0 10px;
+}
+.page-jobList {
+  display: flex;
+  width: 70%;
+  margin: 30px auto 0;
+}
+.page-jobList .jobList-main {
+  flex: 1;
+  align-self: flex-start;
+  margin-bottom: 20px;
+}
+.page-jobList .jobList-recommend {
+  align-self: flex-start;
+  width: 300px;
+}
+.page-jobList .jobList-main .filter-box {
+  margin-bottom: 10px;
+  padding: 0 30px 28px;
+  background: #fff;
+}
+.page-jobList .jobList-main .filter-box .title {
+  height: 56px;
+  line-height: 56px;
+  font-size: 20px;
+}
+.page-jobList .jobList-main .filter-box .job-search {
+  text-align: center;
+}
+.page-jobList .jobList-main .filter-box .job-search form {
+  width: 100%;
+  display: flex;
+}
+.page-jobList .jobList-main .filter-box .job-search input {
+  height: 36px;
+}
+.page-jobList .jobList-main .filter-box .job-search input[type='text'] {
+  flex: 1;
+  padding: 0 15px;
+  color: #a2a4a8;
+  background: #fff;
+  border: 1px solid #eaeaea;
+  border-right: none;
+  border-radius: 2px 0 0 2px;
+  transition: border 0.3s;
+}
+.page-jobList .jobList-main .filter-box .job-search input[type='text']:focus {
+  border-color: #1D428A;
+}
+.page-jobList .jobList-main .filter-box .job-search input[type='submit'] {
+  flex-grow: 0;
+  flex-shrink: 0;
+  display: inline-block;
+  margin-right: 200px;
+  padding: 0 23px;
+  background: #1D428A;
+  color: #fff;
+  font-size: 14px;
+  border-radius: 0 2px 2px 0;
+}
+.page-jobList .jobList-main .filter-box .filter {
+  margin-top: 15px;
+}
+.page-jobList .jobList-main .filter-box .filter .select-box {
+  display: inline-block;
+  margin-right: 10px;
+}
+.page-jobList .jobList-main .filter-box .filter .select-box .select {
+  display: inline-block;
+  width: 200px;
+  height: 38px;
+  color: #a2a4a8;
+  border: 1px solid #eaeaea;
+  border-radius: 4px;
+  padding-left: 8px;
+  vertical-align: top;
+}
+.page-jobList .jobList-main .filter-box .filter .select-box .select option {
+  color: #333;
+}
+.page-jobList .jobList-main .job-list {
+  background: #fff;
+}
+.page-jobList .jobList-main .job-list .item {
+  padding: 0 30px;
+}
+.page-jobList .jobList-main .job-list .item:hover {
+  background: #f9f9fa;
+}
+.page-jobList .jobList-main .job-list .item:hover .job-msg-url .job-title h3 {
+  color: #1D428A;
+}
+.page-jobList .jobList-main .job-list .item:nth-last-of-type(1) .job-msg-url {
+  border-bottom: 1px solid transparent;
+}
+.page-jobList .jobList-main .job-list .item .job-msg-url {
+  display: block;
+  padding: 20px 0;
+  transition: all, 0.3s;
+  border-bottom: 1px solid #eaeaea;
+}
+.page-jobList .jobList-main .job-list .item .job-title {
+  display: flex;
+}
+.page-jobList .jobList-main .job-list .item .job-title .lab {
+  padding: 0 4px;
+  background: #ff6b6b;
+  font-size: 12px;
+  color: #fff;
+  line-height: 20px;
+  height: 20px;
+}
+.page-jobList .jobList-main .job-list .item .job-title h3 {
+  flex: 1;
+  margin: 0 4px;
+  font-size: 20px;
+  height: 56px;
+  color: #333;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  overflow: hidden;
+}
+.page-jobList .jobList-main .job-list .item .job-title h3 span:nth-of-type(2) {
+  margin-left: 4px;
+}
+.page-jobList .jobList-main .job-list .item .job-title p {
+  font-size: 20px;
+  color: #ff6b6b;
+}
+.page-jobList .jobList-main .job-list .item .job-des {
+  line-height: 17px;
+}
+.page-jobList .jobList-main .job-list .item .job-desbefore,
+.page-jobList .jobList-main .job-list .item .job-des:after {
+  content: " ";
+  display: table;
+  zoom: 1;
+}
+.page-jobList .jobList-main .job-list .item .job-des:after {
+  clear: both;
+}
+.page-jobList .jobList-main .job-list .item .job-des span {
+  color: #888;
+}
+.page-jobList .jobList-main .job-list .item .job-des span:nth-of-type(2) {
+  margin: 0 12px;
+  padding: 0 12px;
+  border-left: 1px solid #eaeaea;
+  border-right: 1px solid #eaeaea;
+}
+.page-jobList .jobList-main .job-list .item .job-des span:nth-last-of-type(1) {
+  float: right;
+}
+.page-jobList .jobList-main .job-pagination {
+  margin: 10px 0 0;
+  background: #fff;
+}
+.page-jobList .jobList-main .job-pagination .pager {
+  margin: 0;
+  padding: 15px 0;
+}
+.page-jobList .jobList-main .job-pagination .pagerbefore,
+.page-jobList .jobList-main .job-pagination .pager:after {
+  content: " ";
+  display: table;
+  zoom: 1;
+}
+.page-jobList .jobList-main .job-pagination .pager:after {
+  clear: both;
+}
+.page-jobList .jobList-main .job-pagination .pager li {
+  margin: 0 10%;
+}
+.page-jobList .jobList-main .job-pagination .pager li a {
+  color: #1D428A;
+  border-color: #1D428A;
+}
+.page-jobList .jobList-recommend {
+  margin-left: 10px;
+  background: #fff;
+}
+.page-jobList .jobList-recommend h2 {
+  padding: 0 20px;
+  font-size: 18px;
+  line-height: 60px;
+  color: #090a0b;
+  border: 1px dashed #eaeaea;
+}
+.page-jobList .jobList-recommend ul {
+  padding: 0 20px;
+}
+.page-jobList .jobList-recommend li {
+  padding: 16px 0;
+  border-bottom: 1px dashed #eaeaea;
+}
+.page-jobList .jobList-recommend li:nth-last-of-type(1) {
+  border-bottom: 1px dashed transparent;
+}
+.page-jobList .jobList-recommend li .job-msg-url:hover h3 {
+  color: #1D428A;
+}
+.page-jobList .jobList-recommend li .job-title {
+  display: flex;
+}
+.page-jobList .jobList-recommend li .job-title .lab {
+  padding: 0 4px;
+  background: #ff6b6b;
+  font-size: 12px;
+  color: #fff;
+  line-height: 20px;
+  height: 20px;
+}
+.page-jobList .jobList-recommend li .job-title h3 {
+  flex: 1;
+  margin: 0 4px;
+  font-size: 16px;
+  color: #333;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  overflow: hidden;
+}
+.page-jobList .jobList-recommend li .job-title h3 span:nth-of-type(2) {
+  margin-left: 4px;
+}
+@media screen and (min-width: 768px) and (max-width: 991px) {
+  .page-jobList {
+    width: 100%;
+  }
+  .jobList-recommend {
+    display: none;
+  }
+}
+@media screen and (min-width: 992px) and (max-width: 1199px) {
+  .page-jobList {
+    width: 100%;
+  }
+}
+@media screen and (min-width: 1200px) and (max-width: 1366px) {
+  .page-jobList {
+    width: 83.333%;
+  }
+}
+/*# sourceMappingURL=social-list.css.map */

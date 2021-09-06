@@ -1,0 +1,192 @@
+{block name="seo"}
+<meta name="description" content="{notempty name='parent'}{$parent.description}{/notempty}">
+<meta name="keywords" content="{notempty name='parent'}{$parent.keywords}{/notempty}">
+{/block}
+{block name="style"}
+<link rel="stylesheet" href="__LIB__/Bootstrap/bootstrap-3.3.7.min.css">
+<link rel="stylesheet" href="__LIB__/Swiper/swiper.min.css">
+<link rel="stylesheet" type="text/css" href="__LIB__/webuploader/0.1.5/webuploader.css">
+<link rel="stylesheet" href="__LIB__/iconfont/iconfont.css">
+<link rel="stylesheet" href="__DESKTOP__/css/public/components.css">
+<link rel="stylesheet" href="__DESKTOP__/css/page/social-gain.css">
+<script src="__LIB__/JQuery/JQuery-3.4.0.js"></script>
+<script type="text/javascript" src="__LIB__/webuploader/0.1.5/webuploader.js"></script>
+<script src="__DESKTOP__/js/public.js"></script>
+{/block}
+
+{block name="nav"}
+<header class="g-nav">
+    <div class="container">
+        <div class="row">
+            <div class="nav-container">
+                <h1 class="logo">
+                    <a href="/{$code}/index.html">
+                        <img src="//china.wavlink.com/images/LOGO/WAVLINK_logo.png" alt="">
+                    </a>
+                </h1>
+                <div class="menu-container">
+                    <div class="nav" id="nav">
+                        <div class="first-menu">
+                            <ul>
+                                <li class="first-item" id="home"><a href="/zh_cn/jobs/social">首页</a></li>
+                                <li class="first-item" id="wavlink-company"><a href="/zh_cn/jobs/social#company">公司介绍</a></li>
+                                <li class="first-item" id="wavlink-job"><a href="/zh_cn/jobs/social/list">招聘职位</a></li>
+                                <li class="first-item" id="wavlink-back"><a href="/{$code}/index.html">返回官网</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</header>
+{/block}
+
+{block name="body"}
+<section class="g-section">
+    <div class="page-jobDetails">
+        <div class="jobDetails-main">
+            <div class="job-title-box">
+                <p>发布时间：<span>2021-08-25</span></p>
+                <div class="job-title">
+                    <label class="lab">急</label>
+                    <h3>亚马逊运营</h3>
+                </div>
+                <div class="job-des">
+                    <span>深圳</span>
+                    <span>1年经验</span>
+                    <span>本科</span>
+                </div>
+            </div>
+            <div class="job-detail-box">
+                <div class="upload-info">
+                    <h3>上传资料</h3>
+                    <form action="">
+                        <div class="info-box uploader wu-example">
+                            <!--用来存放文件信息-->
+                            <label for="">上传简历 <span>*</span></label>
+                            <div class="thelist uploader-list"></div>
+                            <div class="btns">
+                                <div id="resume" class="picker">上传简历</div>
+                            </div>
+                            <p class="tips">支持pdf、doc、ppt、docx、pptx、wps、html、jpg、jpeg、png、rtf、txt等简历格式</p>
+                        </div>
+                        <div class="info-box uploader wu-example">
+                            <!--用来存放文件信息-->
+                            <label for="">上传附件</label>
+                            <div class="thelist uploader-list"></div>
+                            <div class="btns">
+                                <div id="appendix" class="picker">上传附件</div>
+                            </div>
+                            <p class="tips">支持文档、图片、压缩包、视频、音频、设计文件等格式文件，所有附件大小总和不超过50MB</p>
+                        </div>
+                    </form>
+                </div>
+                <div class="complete-info">
+                    <h3>个人信息</h3>
+                    <form action="" id="complete-info">
+                        <div class="info">
+                            <label for="username">姓名 <span>*</span></label>
+                            <input id="username" type="text" name="username" placeholder="姓名">
+                        </div>
+                        <div class="info">
+                            <label for="phone">手机号码 <span>*</span></label>
+                            <input id="phone" type="text" name="phone" placeholder="手机号码">
+                        </div>
+                        <div class="info">
+                            <label for="email">邮箱 <span>*</span></label>
+                            <input id="email" type="email" name="email" placeholder="邮箱">
+                        </div>
+                        <div class="submit-box">
+                            <input type="submit" value="提交简历">
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<div class="page-com-foot">
+    <div class="foot-nav container">
+        <ul>
+            <li><a href="#">睿因官网</a></li>
+            <li><a href="#">关于睿因</a></li>
+            <li><a href="#">联系睿因</a></li>
+            <li><a href="#">睿因产品</a></li>
+            <li><a href="#">睿因商城</a></li>
+        </ul>
+    </div>
+    <div class="copy-right">
+        <p>版权所有 © 睿因科技（深圳）有限公司</p>
+    </div>
+</div>
+{/block}
+{block name="javascript"}
+<!--私有JS-->
+<script type="text/javascript" src="__STATIC__/admin/lib/jquery.validation/1.14.0/jquery.validate.js"></script>
+<script type="text/javascript" src="__STATIC__/admin/lib/jquery.validation/1.14.0/validate-methods.js"></script>
+<script type="text/javascript" src="__STATIC__/admin/lib/layer/2.4/layer.js"></script>
+<script>
+    $('#resume').each(function (index, el) {
+        var uploader = WebUploader.create({
+            auto: true, // 选完文件，自动上传
+            swf: '__LIB__/webuploader/0.1.5/Uploader.swf', // swf文件路径
+            server: '{:url(\'uploader\')}', // 文件接收服务端。
+            pick: el, // 选择文件的按钮。可选。
+            resize: false // 不压缩image, 默认如果是jpeg，文件上传前会压缩一把再上传！
+        });
+        uploader.on( 'uploadSuccess', function( file ) {
+            console.log(el);
+            $(el).find('.webuploader-pick').text(file.name);
+            console.log("上传成功");
+        });
+        uploader.on( 'uploadError', function( file ) {
+            $(el).find('.webuploader-pick').text('上传出错');
+            console.log("上传失败");
+        });
+    })
+    $('#appendix').each(function (index, el) {
+        var uploader = WebUploader.create({
+            auto: true, // 选完文件，自动上传
+            swf: '__LIB__/webuploader/0.1.5/Uploader.swf', // swf文件路径
+            server: '{:url(\'uploader\')}', // 文件接收服务端。
+            pick: el, // 选择文件的按钮。可选。
+            resize: false // 不压缩image, 默认如果是jpeg，文件上传前会压缩一把再上传！
+        });
+        uploader.on( 'uploadSuccess', function( file ) {
+            console.log(el);
+            $(el).find('.webuploader-pick').text(file.name);
+            console.log("上传成功");
+        });
+        uploader.on( 'uploadError', function( file ) {
+            $(el).find('.webuploader-pick').text('上传出错');
+            console.log("上传失败");
+        });
+    })
+
+    // 表单验证规则
+    $().ready(function () {
+        $('#complete-info').validate({
+            errorClass: 'infoError',
+            errorElement: 'p',
+            rules: {
+                username: 'required',
+                email: {
+                    required: true,
+                    email: true
+                },
+                phone: {
+                    required: true,
+                }
+            },
+            messages: {
+                username: '请输入用户名',
+                email: '请输入正确的邮箱地址',
+                phone: '请输入手机号'
+            }
+        });
+    })
+</script>
+{/block}
+

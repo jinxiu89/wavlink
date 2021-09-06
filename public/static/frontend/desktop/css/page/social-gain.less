@@ -1,0 +1,208 @@
+// @name: driver.less
+// @description: 招聘首页样式
+// @author: Alan(alan_webdeveloper@163.com)
+// @update: 2021-13-50 13:50
+@import "../public/mixins";
+@import "../public/variables";
+
+// 招聘公共导航
+.g-nav {
+  #wavlink-back {
+    float: right;
+    margin: 13px 0;
+    background: #fff;
+    border-radius: 4px;
+    a {
+      height: 34px;
+      line-height: 34px;
+      color: @activeColor;
+    }
+  }
+}
+// 招聘公共页脚css
+.page-com-foot {
+  padding: 40px 0 30px;
+  color: #fff;
+  font-size: 12px;
+  border-top: 1px solid @borderColor;
+  background: @baseColor;
+  text-align: center;
+  .foot-nav {
+    li {
+      display: inline-block;
+      &:nth-last-of-type(1) a:after {
+        display: none;
+      }
+    }
+    li a {
+      position: relative;
+      padding: 0 8px;
+      color: #fff;
+      &:after {
+        content: '';
+        position: absolute;
+        top: 0;
+        right: 0;
+        display: block;
+        width: 1px;
+        height: 100%;
+        background: #fff;
+      }
+    }
+  }
+  .copy-right {
+    padding: 5px 0 10px;
+  }
+}
+
+// 职位详情页面css
+.page-jobDetails {
+  max-width: 900px;
+  margin: 30px auto 0;
+  .jobDetails-main {
+    margin-bottom: 20px;
+    background: #fff;
+  }
+  .job-title-box {
+    padding: 20px 36px;
+    border-bottom: 1px solid @borderColor;
+    .job-title {
+      display: flex;
+      margin-top: 6px;
+      line-height: 28px;
+    }
+    p {
+      font-size: 14px;
+      color: #89909e;
+    }
+    .lab {
+      margin: 0 4px 0 0;
+      padding: 0 4px;
+      background: #ff6b6b;
+      font-size: 12px;
+      color: #fff;
+      line-height: 20px;
+      height: 20px;
+    }
+    h3 {
+      font-size: 20px;
+      color: #333;
+      .text-overflow();
+      span:nth-of-type(2) {
+        margin-left: 4px;
+      }
+    }
+  }
+  .job-title-box .job-des {
+    margin-top: 15px;
+    line-height: 21px;
+    span {
+      color: #888;
+      &:nth-of-type(2) {
+        margin: 0 12px;
+        padding: 0 12px;
+        border-left: 1px solid @borderColor;
+        border-right: 1px solid @borderColor;
+      }
+    }
+  }
+  .job-detail-box {
+    padding: 16px 0 40px;
+    .upload-info {
+      padding: 20px 36px;
+    }
+    h3 {
+      font-size: 16px;
+      line-height: 25px;
+      font-weight: 700;
+      border-bottom: 1px solid @borderColor;
+    }
+    label {
+      font-weight: normal;
+      span {
+        color: #e93130;
+      }
+    }
+    input[type="submit"] {
+      display: block;
+      width: 280px;
+      height: 40px;
+      line-height: 40px;
+      background-color: #dddfe3;
+      color: #6e7686;
+      &:hover {
+        background: #89909e;
+        color: #fff;
+      }
+    }
+    .picker input {
+      width: 100%;
+      height: 100%;
+    }
+    .webuploader-pick {
+      .text-overflow();
+      display: block;
+      padding: 0;
+      width: 280px;
+      height: 40px;
+      line-height: 40px;
+      background-color: #dddfe3;
+      color: #6e7686;
+      &:hover {
+        background: #89909e;
+        color: #fff;
+      }
+    }
+    .tips {
+      font-size: 12px;
+      color: #89909e;
+    }
+    .info-box {
+      padding: 13px;
+    }
+    .complete-info {
+      max-width: 800px;
+      padding: 20px 36px;
+      form {
+        display: flex;
+        flex-wrap: wrap;
+      }
+      .info {
+        width: 50%;
+        padding: 13px;
+      }
+      input {
+        height: 40px;
+        line-height: 40px;
+        width: 100%;
+        padding-left: 8px;
+        font-size: 14px;
+        color: #292c32;
+        border: 1px solid @borderColor;
+        border-radius: 4px;
+      }
+      .submit-box {
+        display: flex;
+        justify-content: center;
+        width: 100%;
+        margin-top: 30px;
+        input {
+          padding: 0 16px;
+          width: auto;
+          height: 40px;
+          line-height: 40px;
+          background: @activeColor;
+          color: #fff;
+          border-radius: 2px;
+          &:hover {
+            background: @activeColor + 20;
+          }
+        }
+      }
+      .infoError {
+        font-size: 12px;
+        color: #89909e;
+      }
+    }
+  }
+}

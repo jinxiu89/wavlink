@@ -1,0 +1,150 @@
+{block name="seo"}
+<meta name="description" content="{notempty name='parent'}{$parent.description}{/notempty}">
+<meta name="keywords" content="{notempty name='parent'}{$parent.keywords}{/notempty}">
+{/block}
+{block name="style"}
+<link rel="stylesheet" href="__LIB__/Bootstrap/bootstrap-3.3.7.min.css">
+<link rel="stylesheet" href="__LIB__/Swiper/swiper.min.css">
+<link rel="stylesheet" href="__LIB__/iconfont/iconfont.css">
+<link rel="stylesheet" href="__DESKTOP__/css/public/components.css">
+<link rel="stylesheet" href="__DESKTOP__/css/page/social-detail.css">
+<script src="__LIB__/JQuery/JQuery-3.4.0.js"></script>
+<script src="__DESKTOP__/js/public.js"></script>
+{/block}
+
+{block name="nav"}
+<header class="g-nav">
+    <div class="container">
+        <div class="row">
+            <div class="nav-container">
+                <h1 class="logo">
+                    <a href="/{$code}/index.html">
+                        <img src="//china.wavlink.com/images/LOGO/WAVLINK_logo.png" alt="">
+                    </a>
+                </h1>
+                <div class="menu-container">
+                    <div class="nav" id="nav">
+                        <div class="first-menu">
+                            <ul>
+                                <li class="first-item" id="home"><a href="/zh_cn/jobs/social">首页</a></li>
+                                <li class="first-item" id="wavlink-company"><a href="/zh_cn/jobs/social#company">公司介绍</a></li>
+                                <li class="first-item" id="wavlink-job"><a href="/zh_cn/jobs/social/list">招聘职位</a></li>
+                                <li class="first-item" id="wavlink-back"><a href="/{$code}/index.html">返回官网</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</header>
+{/block}
+
+{block name="body"}
+<section class="g-section">
+    <div class="page-jobDetails">
+        <div class="jobDetails-main">
+            <div class="job-title-box">
+                <p>发布时间：<span>{$data.update_time|date="Y-m-d"}</span></p>
+                <div class="job-title">
+                    {if($data.status == 1)}
+                    <label class="lab">急</label>
+                    {/if}
+                    <h3><span>{$data.title}</span><span>{$data.numbers}</span></h3>
+                </div>
+                <div class="job-des">
+                    <span>{$data.city}</span>
+                    <span>{$data.seniority}</span>
+                    <span>{$data.education}</span>
+                    <span><a class="getJobBtn" href="{:url(\'gain_social_job\',[\'url_title\'=>$data.url_title])}">申请职位</a></span>
+                </div>
+            </div>
+            <div class="job-detail-box">
+                <div class="des-box">
+                    <div>
+                        <h3>工作职责</h3>
+                    </div>
+                    {$data.description|raw}
+                </div>
+                <div class="des-box">
+                    <div>
+                        <h3>任职要求</h3>
+                    </div>
+                    {$data.requirement|raw}
+                </div>
+                <div class="des-box">
+                    <div>
+                        <h3>福利待遇</h3>
+                    </div>
+                    {$data.welfare|raw}
+                </div>
+                <div class="des-box">
+                    <div>
+                        <h3>工作地址</h3>
+                    </div>
+                    <p>
+                        深圳市光明区凤凰街道华强创意产业园3C栋17-19楼
+                    </p>
+                    <div id="map"></div>
+                </div>
+                <div class="getJobBox">
+                    <a class="getJobBtn" href="{:url(\'gain_social_job\',[\'url_title\'=>$data.url_title])}">申请职位</a>
+                </div>
+            </div>
+        </div>
+        <div class="jobDetails-recommend">
+            <h2>最新职位</h2>
+            <ul>
+                {volist name="hot" id="vo"}
+                <li>
+                    <a class="job-msg-url" href="{:url(\'social_details\',[\'url_title\'=>$vo.url_title])}">
+                        <div class="job-title">
+                            {if($vo.status == 1)}
+                            <label class="lab">急</label>
+                            {/if}
+                            <h3>{$vo.title}</h3>
+                        </div>
+                    </a>
+                </li>
+                {/volist}
+            </ul>
+        </div>
+    </div>
+</section>
+
+<div class="page-com-foot">
+    <div class="foot-nav container">
+        <ul>
+            <li><a href="#">睿因官网</a></li>
+            <li><a href="#">关于睿因</a></li>
+            <li><a href="#">联系睿因</a></li>
+            <li><a href="#">睿因产品</a></li>
+            <li><a href="#">睿因商城</a></li>
+        </ul>
+    </div>
+    <div class="copy-right">
+        <p>版权所有 © 睿因科技（深圳）有限公司</p>
+    </div>
+</div>
+{/block}
+{block name="javascript"}
+<!--私有JS-->
+<script type="text/javascript" src="https://api.map.baidu.com/api?v=2.0&ak=nZP6LBAwkeiLhuMKEa4grjwdAZwgE3PA"></script>
+<script type="text/javascript">
+    //特别提醒：若网站域名改变，则需要到百度地图api官网设置api秘钥，添加Referer白名单
+    // 创建地图实例
+    var map = new BMap.Map("map");
+    // 创建点坐标
+    var point = new BMap.Point(114.005575,22.704207);
+    // 初始化地图，设置中心点坐标和地图级别
+    map.centerAndZoom(point, 15);
+    //添加地图缩放平移等控件
+    map.addControl(new BMap.NavigationControl());
+    map.addControl(new BMap.ScaleControl());
+    map.addControl(new BMap.OverviewMapControl());
+    map.addControl(new BMap.MapTypeControl());
+    var marker = new BMap.Marker(point);        // 创建标注
+    map.addOverlay(marker);                     // 将标注添加到地图中
+</script>
+{/block}
+

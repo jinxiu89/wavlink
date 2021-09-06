@@ -1,0 +1,128 @@
+{block name="seo"}
+<meta name="description" content="{notempty name='parent'}{$parent.description}{/notempty}">
+<meta name="keywords" content="{notempty name='parent'}{$parent.keywords}{/notempty}">
+{/block}
+{block name="style"}
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, minimum-scale=1, user-scalable=no">
+<script src="__LIB__/JQuery/JQuery-3.4.0.js"></script>
+<script src="__LIB__/Swiper/swiper.min.js"></script>
+<script src="__MOBILE__/js/public.js"></script>
+<link rel="stylesheet" href="__LIB__/Bootstrap/bootstrap-3.3.7.min.css">
+<link rel="stylesheet" href="__LIB__/iconfont/iconfont.css">
+<link rel="stylesheet" href="__LIB__/Swiper/swiper.min.css">
+<link rel="stylesheet" href="__MOBILE__/css/public/components.css">
+<link rel="stylesheet" href="__MOBILE__/css/page/social-list.css">
+{/block}
+
+{block name="nav"}
+<div class="g-nav">
+    <div class="logo">
+        <h1>
+            <a href="/{$code}/index.html">
+                <img src="//china.wavlink.com/images/LOGO/WAVLINK_logo.png" alt="www.wavlink.com">
+            </a>
+        </h1>
+    </div>
+    <div class="menu-bar" id="menu-bar">
+        <span></span>
+    </div>
+    <div class="nav-menu">
+        <ul>
+            <li id="home"><a href="/zh_cn/jobs/social">首页</a></li>
+            <li id="wavlink-company"><a href="/zh_cn/jobs/social#company">公司介绍</a></li>
+            <li id="wavlink-job"><a href="/zh_cn/jobs/social/list">招聘职位</a></li>
+            <li><a href="/{$code}/index.html">返回官网</a></li>
+        </ul>
+    </div>
+</div>
+{/block}
+
+{block name="body"}
+<section class="g-section">
+    <div class="page-jobList">
+        <div class="filter-box">
+            <div class="title">职位筛选</div>
+            <div class="job-search">
+                <form action="">
+                    <input type="text" placeholder="输入职位关键字">
+                    <input type="submit" value="搜索职位">
+                </form>
+            </div>
+            <div class="filter">
+                <div class="job-type select-box">
+                    <select class="select" name="category">
+                        <option value="all">职能类型</option>
+                        <option value="运营类">运营类</option>
+                        <option value="产品类">产品类</option>
+                        <option value="文员类">文员类</option>
+                        <option value="技术类">技术类</option>
+                        <option value="设计类">设计类</option>
+                        <option value="管理类">管理类</option>
+                        <option value="IT类">IT类</option>
+                    </select>
+                </div>
+                <div class="city select-box">
+                    <select class="select" name="category">
+                        <option value="all">工作地点</option>
+                        <option value="运营类">深圳</option>
+                        <option value="产品类">赣州</option>
+                        <option value="文员类">成都</option>
+                    </select>
+                </div>
+            </div>
+        </div>
+        <div class="job-list">
+            {volist name="data" id="vo"}
+            <div class="item">
+                <a class="job-msg-url" href="{:url(\'social_details\',[\'url_title\'=>$vo.url_title])}">
+                    <div class="job-title">
+                        {if($vo.status == 1)}
+                        <label class="lab">急</label>
+                        {/if}
+                        <h3><span>{$vo.title}</span><span>{$vo.numbers}</span></h3>
+                        <p>{$vo.salary}</p>
+                    </div>
+                    <div class="job-des">
+                        <span>{$vo.city}</span>
+                        <span>{$vo.seniority}</span>
+                        <span>{$vo.education}</span>
+                        <span>发布时间：<span>{$vo.update_time|date="Y-m-d"}</span></span>
+                    </div>
+                </a>
+            </div>
+            {/volist}
+        </div>
+        <div class="job-pagination">
+            <nav>
+                {$page|raw}
+            </nav>
+        </div>
+    </div>
+</section>
+<div class="page-com-foot">
+    <div class="foot-nav container">
+        <ul>
+            <li><a href="#">睿因官网</a></li>
+            <li><a href="#">关于睿因</a></li>
+            <li><a href="#">联系睿因</a></li>
+            <li><a href="#">睿因产品</a></li>
+            <li><a href="#">睿因商城</a></li>
+        </ul>
+    </div>
+    <div class="copy-right">
+        <p>版权所有 © 睿因科技（深圳）有限公司</p>
+    </div>
+</div>
+{/block}
+{block name="javascript"}
+<!--私有JS-->
+<script>
+    $(function () {
+        $("#menu-bar").click(function () {
+            $(this).siblings(".nav-menu").slideToggle(300)
+        })
+    })
+</script>
+{/block}
+

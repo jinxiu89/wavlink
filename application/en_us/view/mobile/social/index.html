@@ -1,0 +1,465 @@
+{block name="seo"}
+<meta name="description" content="{notempty name='parent'}{$parent.description}{/notempty}">
+<meta name="keywords" content="{notempty name='parent'}{$parent.keywords}{/notempty}">
+{/block}
+{block name="style"}
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, minimum-scale=1, user-scalable=no">
+<script src="__LIB__/JQuery/JQuery-3.4.0.js"></script>
+<script src="__LIB__/Swiper/swiper.min.js"></script>
+<script src="__MOBILE__/js/public.js"></script>
+<link rel="stylesheet" href="__LIB__/Bootstrap/bootstrap-3.3.7.min.css">
+<link rel="stylesheet" href="__LIB__/iconfont/iconfont.css">
+<link rel="stylesheet" href="__LIB__/Swiper/swiper.min.css">
+<link rel="stylesheet" href="__MOBILE__/css/public/components.css">
+<link rel="stylesheet" href="__MOBILE__/css/page/social.css">
+{/block}
+
+{block name="nav"}
+<div class="g-nav">
+    <div class="logo">
+        <h1>
+            <a href="/{$code}/index.html">
+                <img src="//china.wavlink.com/images/LOGO/WAVLINK_logo.png" alt="www.wavlink.com">
+            </a>
+        </h1>
+    </div>
+    <div class="menu-bar" id="menu-bar">
+        <span></span>
+    </div>
+    <div class="nav-menu">
+        <ul>
+            <li id="home"><a href="/zh_cn/jobs/social">首页</a></li>
+            <li id="wavlink-company"><a href="#company">公司介绍</a></li>
+            <li id="wavlink-job"><a href="/zh_cn/jobs/social/list">招聘职位</a></li>
+            <li><a href="/{$code}/index.html">返回官网</a></li>
+        </ul>
+    </div>
+</div>
+{/block}
+{block name="body"}
+<section class="g-section">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="banner swiper-container">
+                <div class=" swiper-wrapper">
+                    <div class="swiper-slide">
+                        <img src="//files2.wavlink.com/images/hr-job/2019tuanjian.jpg" alt="">
+                    </div>
+                    <div class="swiper-slide">
+                        <img src="//files2.wavlink.com/images/hr-job/2019tuanjian.jpg" alt="">
+                    </div>
+                    <div class="swiper-slide">
+                        <img src="//files2.wavlink.com/images/hr-job/2019tuanjian.jpg" alt="">
+                    </div>
+                </div>
+                <div class="swiper-pagination"></div><!--分页器-->
+                <div class="swiper-button-prev"><span></span></div><!--左箭头-->
+                <div class="swiper-button-next"><span></span></div><!--右箭头-->
+            </div>
+        </div>
+    </div>
+    <div class="container-fluid page-home-company" id="company">
+        <div class="row">
+            <div class="page-home-title-box">
+                <div class="title">
+                    <span>公司介绍</span>
+                    <div></div>
+                </div>
+            </div>
+            <p>
+                睿因科技（深圳）有限公司（以下简称睿因科技），是一家全球领先的全产业链网络通讯设备供应商。睿因科技总部座落于美丽的特区城市深圳，是一家具有多项自主知识产权的国家级高新技术企业。公司自2011年成立以来，始终秉承“产品为王、客户至上”的经营理念，紧跟国际科技形势，一直坚持走自主研发、自主制造、自主营销的道路。
+            </p>
+            <p>
+                睿因科技与INTEL、MTK、dispalylink等诸多业内领军企业保持着良好的技术合作。公司主要生产电脑外围设备、无线连接设备、智能家居三大系列产品。主要产品有智慧式分布路由系统、电力猫、WIFI中继器、多屏显示系统、多功能笔记本扩展坞、存储设备等。
+            </p>
+            <p>
+                睿因科技的注册品牌是“wavlink”（睿因）, “让科技融入生活”，“让科技引领生活”，是公司的一贯追求。砥砺奋进、一往无前，我们一直在追求卓越的路上勇敢前行。
+            </p>
+        </div>
+    </div>
+    <div class="container-fluid page-home-job-box">
+        <div class="row">
+            <div class="wavlink-job">
+                <div class="page-home-title-box">
+                    <div class="title">
+                        <span>招聘职位</span>
+                        <div></div>
+                    </div>
+                    <p>热门职位列表</p>
+                </div>
+                <div class="job-box">
+                    <div class="job-search">
+                        <form action="">
+                            <input type="text" placeholder="输入职位关键字">
+                            <input type="submit" value="搜索职位">
+                        </form>
+                    </div>
+                    <div class="job-list">
+                        {notempty name="hot"}
+                        {volist name="hot" id="vo"}
+                        <div class="card">
+                            <a class="job-msg-url" href="{:url(\'social_details\',[\'url_title\'=>$vo.url_title])}">
+                                <div class="job-title">
+                                    {if($vo.status == 1)}
+                                    <label class="lab">急</label>
+                                    {/if}
+                                    <h3><span>{$vo.title}</span><span>{$vo.numbers}</span></h3>
+                                    <p>{$vo.salary}</p>
+                                </div>
+                                <div class="job-des">
+                                    <span>{$vo.city}</span>
+                                    <span>{$vo.seniority}</span>
+                                    <span>{$vo.education}</span>
+                                </div>
+                            </a>
+                        </div>
+                        {/volist}
+                        {/notempty}
+                    </div>
+                    <div class="more-job">
+                        <a href="social/list.html">查看更多职位</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="container-fluid page-home-products">
+        <div class="row">
+            <div class="page-home-title-box">
+                <div class="title">
+                    <span>产品展示</span>
+                    <div></div>
+                </div>
+            </div>
+            <div class="product-list">
+                <div class="img-box">
+                    <img src="https://public-cdn.mokahr.com/40ab8226-f9c9-4166-ada4-ea89837c1664.jpg?x-oss-process=image/resize,m_fill,h_260,w_260"
+                         alt="">
+                </div>
+                <div class="img-box">
+                    <img src="https://public-cdn.mokahr.com/c6ca7e9a-3671-4c3a-b697-40812789bf5b.jpg?x-oss-process=image/resize,m_fill,h_260,w_260"
+                         alt="">
+                </div>
+                <div class="img-box">
+                    <img src="https://public-cdn.mokahr.com/6d708114-5c62-4dbd-95a2-429b8a66c6a0.jpg?x-oss-process=image/resize,m_fill,h_260,w_260"
+                         alt="">
+                </div>
+                <div class="img-box">
+                    <img src="https://public-cdn.mokahr.com/93759647-13a3-49ec-9705-f13eb6636d43.jpg?x-oss-process=image/resize,m_fill,h_260,w_260"
+                         alt="">
+                </div>
+                <div class="img-box">
+                    <img src="https://public-cdn.mokahr.com/557a83a2-f2ee-4252-8cb1-e8b91ee92aec.jpg?x-oss-process=image/resize,m_fill,h_260,w_260"
+                         alt="">
+                </div>
+                <div class="img-box">
+                    <img src="https://public-cdn.mokahr.com/70a0f5a3-bbce-46ae-9248-9d3b5ec72bb1.png?x-oss-process=image/resize,m_fill,h_260,w_260"
+                         alt="">
+                </div>
+                <div class="img-box">
+                    <img src="https://public-cdn.mokahr.com/f2fedb9a-2ef0-4a07-af0e-f07b0eca0291.png?x-oss-process=image/resize,m_fill,h_260,w_260"
+                         alt="">
+                </div>
+                <div class="img-box">
+                    <img src="https://public-cdn.mokahr.com/6c4ea5ab-2c19-4c03-9280-d209db1e456e.jpg?x-oss-process=image/resize,m_fill,h_260,w_260"
+                         alt="">
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="container-fluid page-home-milestone">
+        <div class="row">
+            <div class="page-home-title-box">
+                <div class="title">
+                    <span>发展历程</span>
+                    <div></div>
+                </div>
+            </div>
+            <div class="dev-list">
+                <ul>
+                    <li class="dev-item clear">
+                        <span>2019</span>
+                        <div>
+                            <p>
+                                The Thunderbolt™ 3 project was introduced. Up to now, eight products have passed the
+                                certification of Intel. Winstars becomes one of the few manufacturers that can supply
+                                Thunderbolt 3 products.
+                            </p>
+                        </div>
+                    </li>
+                    <li class="dev-item clear">
+                        <span>2016</span>
+                        <div>
+                            <p>
+                                Winstars became a national high-tech enterprise. After years of accumulation, Winstars
+                                prospered in its patent technology and applied for more than ten patents for inventions,
+                                utility models, and design.
+                            </p>
+                            <p>
+                                In the field of wireless products, Winstars undertook a national-level technical
+                                research project - "Super-Fast Exchangeable WiFi Network Technology", successfully
+                                passed the national inspection, and received special funds from the state.
+                            </p>
+                            <p>
+                                In the field of wired products, business has grown rapidly in Type-C docking stations
+                                that Winstars makes up one of the industry’s three pillars.
+                            </p>
+                        </div>
+                    </li>
+                    <li class="dev-item clear">
+                        <span>2014</span>
+                        <div>
+                            <p>
+                                Winstars started working on research of source codes and obtained substantial
+                                breakthroughs in the field of AV data transmission and the project of intelligent care
+                                robots. The intelligent care robots developed by the company were released at the CES
+                                exhibition in 2019 and received positive feedback from the market.
+                            </p>
+                        </div>
+                    </li>
+                    <li class="dev-item clear">
+                        <span>2012</span>
+                        <div>
+                            <p>
+                                Winstars entered a new stage of development, focusing on research of PC peripheral
+                                products, wireless network transmission, and wireless coverage solutions. After
+                                continuous trials, Winstars finally made major breakthroughs in hardware and software.
+                                In the same year, Winstars applied for more technical patents on more projects.
+                            </p>
+                        </div>
+                    </li>
+                    <li class="dev-item clear">
+                        <span>2010</span>
+                        <div>
+                            <p>
+                                Winstars focused on the professional AV application in the wireless field and developed
+                                the first generation of zero-latency products with the uncompressed transmission
+                                technology, which gained great popularity and made Winstars one of the best in the
+                                industry.
+                            </p>
+                        </div>
+                    </li>
+                    <li class="dev-item clear">
+                        <span>2009</span>
+                        <div>
+                            <p>
+                                The high-end hubs of the USB 3.0 series were introduced, and USB storage products such
+                                as HDD docking stations and TANK series products were launched.
+                            </p>
+                        </div>
+                    </li>
+                    <li class="dev-item clear">
+                        <span>2008</span>
+                        <div>
+                            <p>
+                                Winstars began to participate in the research and development of USB 2.0 hubs, docking
+                                stations, and various standards for digital television and broadcasting, such as ISDB-T,
+                                ATSC, and DVB-T.
+                            </p>
+                        </div>
+                    </li>
+                    <li class="dev-item clear">
+                        <span>2006</span>
+                        <div>
+                            <p>
+                                Winstars successfully applied for its first technical patent on the "USB Multi-Display
+                                Adapter" project.
+                            </p>
+                        </div>
+                    </li>
+                    <li class="dev-item clear">
+                        <span>2003</span>
+                        <div>
+                            <p>
+                                Winstars Technology Ltd. was founded, engaging in selling PC peripherals.
+                            </p>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+    <div class="container-fluid page-home-environment">
+        <div class="row">
+            <div class="page-home-title-box">
+                <div class="title">
+                    <span>工作环境</span>
+                    <div></div>
+                </div>
+            </div>
+            <div class="environment swiper-container">
+                <div class=" swiper-wrapper">
+                    <div class="swiper-slide">
+                        <img src="//files2.wavlink.com/images/hr-job/18楼会议室.jpg" alt="">
+                    </div>
+                    <div class="swiper-slide">
+                        <img src="//files2.wavlink.com/images/hr-job/18楼健身房.jpg" alt="">
+                    </div>
+                    <div class="swiper-slide">
+                        <img src="//files2.wavlink.com/images/hr-job/19楼休闲区.jpg" alt="">
+                    </div>
+                    <div class="swiper-slide">
+                        <img src="//files2.wavlink.com/images/hr-job/19楼天台1.jpg" alt="">
+                    </div>
+                    <div class="swiper-slide">
+                        <img src="//files2.wavlink.com/images/hr-job/20楼天台.jpg" alt="">
+                    </div>
+                </div>
+                <div class="swiper-pagination"></div><!--分页器-->
+                <div class="swiper-button-prev"><span></span></div><!--左箭头-->
+                <div class="swiper-button-next"><span></span></div><!--右箭头-->
+            </div>
+        </div>
+    </div>
+    <div class="container-fluid page-home-welfare">
+        <div class="row">
+            <div class="page-home-title-box">
+                <div class="title">
+                    <span>福利待遇</span>
+                    <div></div>
+                </div>
+            </div>
+            <div class="welfare-box">
+                <div class="item-box">
+                    <div class="item">
+                        <div class="box">
+                            <p>五险</p>
+                            <img src="http://www.o-netcom.com/jobpage/Images/Five_social_insurance_and_one_housing_fund.png"
+                                 alt="">
+                            <!--<div class="item-des">入职即购买养老、医疗、工伤、失业、生育保险</div>-->
+                        </div>
+                    </div>
+                    <div class="item">
+                        <div class="box">
+                            <p>假期规定</p>
+                            <img src="http://www.o-netcom.com/jobpage/Images/Holiday_rules.png" alt="">
+                            <!--<div class="item-des">大小周，享有带薪年假、法定节假日、婚假、病假、产假、哺乳假等</div>-->
+                        </div>
+                    </div>
+                    <div class="item">
+                        <div class="box">
+                            <p>员工住宿</p>
+                            <img src="http://www.o-netcom.com/jobpage/Images/Staff_accommodation.png" alt="">
+                            <!--<div class="item-des">提供员工宿舍，配备空调、洗衣机、热水器等</div>-->
+                        </div>
+                    </div>
+                    <div class="item">
+                        <div class="box">
+                            <p>免费班车</p>
+                            <img src="http://www.o-netcom.com/jobpage/Images/Free_shuttle_bus.png" alt="">
+                            <!--<div class="item-des">工作日提供免费班车上下班，班车线路覆盖深圳市多个区域</div>-->
+                        </div>
+                    </div>
+                    <div class="item">
+                        <div class="box">
+                            <p>文娱活动</p>
+                            <img src="http://www.o-netcom.com/jobpage/Images/Recreational_activities.png" alt="">
+                            <!--<div class="item-des">拥有足球、篮球、羽毛球、乒乓球、瑜伽等协会，不定期组织活动</div>-->
+                        </div>
+                    </div>
+                    <div class="item">
+                        <div class="box">
+                            <p>深户办理</p>
+                            <img src="http://www.o-netcom.com/jobpage/Images/Shenzhen_household_registration.png"
+                                 alt="">
+                            <!--<div class="item-des">可为员工解决落户和档案事宜</div>-->
+                        </div>
+                    </div>
+                    <div class="item">
+                        <div class="box">
+                            <p>活动经费</p>
+                            <img src="http://www.o-netcom.com/jobpage/Images/activities.png" alt="">
+                            <!--<div class="item-des">每年每人享有团队活动经费</div>-->
+                        </div>
+                    </div>
+                    <div class="item">
+                        <div class="box">
+                            <p>节日关怀</p>
+                            <img src="http://www.o-netcom.com/jobpage/Images/Day_care.png" alt="">
+                            <!--<div class="item-des">在妇女节、端午节、中秋节、圣诞节等节日开展文化活动，送上节日礼物</div>-->
+                        </div>
+                    </div>
+                    <div class="item">
+                        <div class="box">
+                            <p>生日关怀</p>
+                            <img src="http://www.o-netcom.com/jobpage/Images/Birthday_care.png" alt="">
+                            <!--<div class="item-des">为当月生日的员工送上生日礼物，举办公共生日会</div>-->
+                        </div>
+                    </div>
+                    <div class="item">
+                        <div class="box">
+                            <p>亲情关怀</p>
+                            <img src="http://www.o-netcom.com/jobpage/Images/family_care.png" alt="">
+                            <!--<div class="item-des">儿童节组织家庭日，寒暑假设立托儿班</div>-->
+                        </div>
+                    </div>
+                    <div class="item">
+                        <div class="box">
+                            <p>健康体验</p>
+                            <img src="http://www.o-netcom.com/jobpage/Images/Experience_of_health.png" alt="">
+                            <!--<div class="item-des">每年享有健康体检</div>-->
+                        </div>
+                    </div>
+                    <div class="item">
+                        <div class="box">
+                            <p>人才补贴</p>
+                            <img src="http://www.o-netcom.com/jobpage/Images/Talent_subsidies.png" alt="">
+                            <!--<div class="item-des">设有博士后科研工作站，按照政策规定享有人才补贴</div>-->
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<div class="page-com-foot">
+    <div class="foot-nav container">
+        <ul>
+            <li><a href="#">睿因官网</a></li>
+            <li><a href="#">关于睿因</a></li>
+            <li><a href="#">联系睿因</a></li>
+            <li><a href="#">睿因产品</a></li>
+            <li><a href="#">睿因商城</a></li>
+        </ul>
+    </div>
+    <div class="copy-right">
+        <p>版权所有 © 睿因科技（深圳）有限公司</p>
+    </div>
+</div>
+{/block}
+{block name="javascript"}
+<!--私有JS-->
+<script src="__LIB__/Swiper/swiper.min.js"></script>
+<script>
+    // 首页轮播js
+    var mySwiper = new Swiper('.swiper-container', {
+        loop: true,
+        autoplay: {    //可选选项，自动滑动
+            delay: 6000,   //自动滑动间隔
+            stopOnLastSlide: false,//如果设置为true，当切换到最后一个slide时停止自动切换。（loop模式下无效）。
+            disableOnInteraction: true//用户操作swiper之后，是否禁止autoplay。默认为true：停止。
+        },
+        speed: 1000,
+        pagination: {   //分页器
+            el: '.swiper-pagination',
+            type: 'bullets',
+            clickable: true,
+        },
+        navigation: {  //左右箭头
+            nextEl: '.swiper-button-next',
+            prevEl: '.swiper-button-prev',
+            hideOnClick: true,
+        },
+        grabCursor: true,//鼠标变手
+        parallax: true,//dl过度效果
+    });
+</script>
+<script>
+    $(function () {
+        $("#menu-bar").click(function () {
+            $(this).siblings(".nav-menu").slideToggle(300)
+        })
+    })
+</script>
+{/block}

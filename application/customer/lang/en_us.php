@@ -49,6 +49,7 @@ return [
     'username'=>'User Name',
     'phone'=>'Phone',
     'send'=>'Send',
+    'get'=>'Get',
     'login' => 'Login',
     'Password' => 'Password',
     'New password' => 'New password',

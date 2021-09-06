@@ -1,0 +1,198 @@
+.g-nav #wavlink-back {
+  float: right;
+  margin: 13px 0;
+  background: #fff;
+  border-radius: 4px;
+}
+.g-nav #wavlink-back a {
+  height: 34px;
+  line-height: 34px;
+  color: #1D428A;
+}
+.page-com-foot {
+  padding: 40px 0 30px;
+  color: #fff;
+  font-size: 12px;
+  border-top: 1px solid #eaeaea;
+  background: #333;
+  text-align: center;
+}
+.page-com-foot .foot-nav li {
+  display: inline-block;
+}
+.page-com-foot .foot-nav li:nth-last-of-type(1) a:after {
+  display: none;
+}
+.page-com-foot .foot-nav li a {
+  position: relative;
+  padding: 0 8px;
+  color: #fff;
+}
+.page-com-foot .foot-nav li a:after {
+  content: '';
+  position: absolute;
+  top: 0;
+  right: 0;
+  display: block;
+  width: 1px;
+  height: 100%;
+  background: #fff;
+}
+.page-com-foot .copy-right {
+  padding: 5px 0 10px;
+}
+.page-jobDetails {
+  max-width: 900px;
+  margin: 30px auto 0;
+}
+.page-jobDetails .jobDetails-main {
+  margin-bottom: 20px;
+  background: #fff;
+}
+.page-jobDetails .job-title-box {
+  padding: 20px 36px;
+  border-bottom: 1px solid #eaeaea;
+}
+.page-jobDetails .job-title-box .job-title {
+  display: flex;
+  margin-top: 6px;
+  line-height: 28px;
+}
+.page-jobDetails .job-title-box p {
+  font-size: 14px;
+  color: #89909e;
+}
+.page-jobDetails .job-title-box .lab {
+  margin: 0 4px 0 0;
+  padding: 0 4px;
+  background: #ff6b6b;
+  font-size: 12px;
+  color: #fff;
+  line-height: 20px;
+  height: 20px;
+}
+.page-jobDetails .job-title-box h3 {
+  font-size: 20px;
+  color: #333;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  overflow: hidden;
+}
+.page-jobDetails .job-title-box h3 span:nth-of-type(2) {
+  margin-left: 4px;
+}
+.page-jobDetails .job-title-box .job-des {
+  margin-top: 15px;
+  line-height: 21px;
+}
+.page-jobDetails .job-title-box .job-des span {
+  color: #888;
+}
+.page-jobDetails .job-title-box .job-des span:nth-of-type(2) {
+  margin: 0 12px;
+  padding: 0 12px;
+  border-left: 1px solid #eaeaea;
+  border-right: 1px solid #eaeaea;
+}
+.page-jobDetails .job-detail-box {
+  padding: 16px 0 40px;
+}
+.page-jobDetails .job-detail-box .upload-info {
+  padding: 20px 36px;
+}
+.page-jobDetails .job-detail-box h3 {
+  font-size: 16px;
+  line-height: 25px;
+  font-weight: 700;
+  border-bottom: 1px solid #eaeaea;
+}
+.page-jobDetails .job-detail-box label {
+  font-weight: normal;
+}
+.page-jobDetails .job-detail-box label span {
+  color: #e93130;
+}
+.page-jobDetails .job-detail-box input[type="submit"] {
+  display: block;
+  width: 280px;
+  height: 40px;
+  line-height: 40px;
+  background-color: #dddfe3;
+  color: #6e7686;
+}
+.page-jobDetails .job-detail-box input[type="submit"]:hover {
+  background: #89909e;
+  color: #fff;
+}
+.page-jobDetails .job-detail-box .picker input {
+  width: 100%;
+  height: 100%;
+}
+.page-jobDetails .job-detail-box .webuploader-pick {
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  overflow: hidden;
+  display: block;
+  padding: 0;
+  width: 280px;
+  height: 40px;
+  line-height: 40px;
+  background-color: #dddfe3;
+  color: #6e7686;
+}
+.page-jobDetails .job-detail-box .webuploader-pick:hover {
+  background: #89909e;
+  color: #fff;
+}
+.page-jobDetails .job-detail-box .tips {
+  font-size: 12px;
+  color: #89909e;
+}
+.page-jobDetails .job-detail-box .info-box {
+  padding: 13px;
+}
+.page-jobDetails .job-detail-box .complete-info {
+  max-width: 800px;
+  padding: 20px 36px;
+}
+.page-jobDetails .job-detail-box .complete-info form {
+  display: flex;
+  flex-wrap: wrap;
+}
+.page-jobDetails .job-detail-box .complete-info .info {
+  width: 50%;
+  padding: 13px;
+}
+.page-jobDetails .job-detail-box .complete-info input {
+  height: 40px;
+  line-height: 40px;
+  width: 100%;
+  padding-left: 8px;
+  font-size: 14px;
+  color: #292c32;
+  border: 1px solid #eaeaea;
+  border-radius: 4px;
+}
+.page-jobDetails .job-detail-box .complete-info .submit-box {
+  display: flex;
+  justify-content: center;
+  width: 100%;
+  margin-top: 30px;
+}
+.page-jobDetails .job-detail-box .complete-info .submit-box input {
+  padding: 0 16px;
+  width: auto;
+  height: 40px;
+  line-height: 40px;
+  background: #1D428A;
+  color: #fff;
+  border-radius: 2px;
+}
+.page-jobDetails .job-detail-box .complete-info .submit-box input:hover {
+  background: #31569e;
+}
+.page-jobDetails .job-detail-box .complete-info .infoError {
+  font-size: 12px;
+  color: #89909e;
+}
+/*# sourceMappingURL=social-gain.css.map */

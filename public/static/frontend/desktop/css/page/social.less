@@ -1,0 +1,508 @@
+// @name: driver.less
+// @description: 招聘首页样式
+// @author: Alan(alan_webdeveloper@163.com)
+// @update: 2021-13-50 13:50
+@import "../public/mixins";
+@import "../public/variables";
+
+// 招聘公共导航
+.g-nav {
+  #wavlink-back {
+    float: right;
+    margin: 13px 0;
+    background: #fff;
+    border-radius: 4px;
+    a {
+      height: 34px;
+      line-height: 34px;
+      color: @activeColor;
+    }
+  }
+}
+// 招聘公共页脚css
+.page-com-foot {
+  padding: 40px 0 30px;
+  color: #fff;
+  font-size: 12px;
+  border-top: 1px solid @borderColor;
+  background: @baseColor;
+  text-align: center;
+  .foot-nav {
+    li {
+      display: inline-block;
+      &:nth-last-of-type(1) a:after {
+        display: none;
+      }
+    }
+    li a {
+      position: relative;
+      padding: 0 8px;
+      color: #fff;
+      &:after {
+        content: '';
+        position: absolute;
+        top: 0;
+        right: 0;
+        display: block;
+        width: 1px;
+        height: 100%;
+        background: #fff;
+      }
+    }
+  }
+  .copy-right {
+    padding: 5px 0 10px;
+  }
+}
+
+// 招聘首页css
+.banner {
+  .swiper-wrapper {
+    height: auto;
+    .swiper-slide img {
+      width: 100%;
+      .img-responsive();
+      .center-block();
+    }
+  }
+  .swiper-pagination {
+    position: absolute;
+    bottom: 10px;
+  }
+}
+
+.page-home-title-box {
+  padding-bottom: 40px;
+  text-align: center;
+  .title {
+    position: relative;
+    margin-bottom: 40px;
+  }
+  .title span {
+    font-size: 32px;
+    line-height: 45px;
+  }
+  .title div {
+    position: absolute;
+    left: 50%;
+    bottom: -20px;
+    margin-left: -40px;
+    width: 80px;
+    height: 2px;
+    background-color: rgba(0,0,0,0.05)
+  }
+  p {
+    font-size: 14px;
+  }
+}
+
+.page-home-company {
+  padding: 60px 0 80px;
+  text-align: center;
+  background: #fff;
+  p {
+    max-width: 960px;
+    margin: 15px auto;
+    line-height: 24px;
+    color: #888;
+  }
+}
+
+.page-home-job-box {
+  background: #f2f2f2;
+  .wavlink-job {
+    margin: auto;
+    @media screen and (min-width: 1200px) {
+      width: 83.333%;
+      padding: 60px 0 80px;
+    }
+    @media screen and (max-width: 1199px) {
+      width: 100%;
+      padding: 60px 15px 80px;
+    }
+    // 职位搜索
+    .job-search {
+      width: 50%;
+      margin: 0 auto 36px;
+      text-align: center;
+      form {
+        width: 100%;
+        display: flex;
+      }
+      input {
+        height: 36px;
+      }
+      input[type='text'] {
+        flex: 1;
+        padding: 0 15px;
+        color: #a2a4a8;
+        background: #fff;
+        border: 1px solid @borderColor;
+        border-right: none;
+        border-radius: 2px 0 0 2px;
+        transition: border 0.3s;
+        &:focus {
+          border-color: @activeColor;
+        }
+      }
+      input[type='submit'] {
+        flex-grow: 0;
+        flex-shrink: 0;
+        display: inline-block;
+        padding: 0 23px;
+        background: @activeColor;
+        color: #fff;
+        font-size: 14px;
+        border-radius: 0 2px 2px 0;
+      }
+    }
+    // 职位列表
+    .job-list {
+      display: flex;
+      flex-wrap: wrap;
+      .card {
+        width: 33.333333%;
+        padding: 3px;
+        &:nth-child(3n) {
+          margin-right: 0;
+        }
+      }
+      .card .job-msg-url {
+        display: block;
+        padding: 28px 30px 24px;
+        background: #fff;
+        transition: all, .3s;
+        &:hover {
+          box-shadow: 5px 5px 20px rgba(0, 0, 0, .1);
+          .job-title h3 {
+            color: @activeColor;
+          }
+        }
+      }
+      .job-title {
+        display: flex;
+        .lab {
+          padding: 0 4px;
+          background: #ff6b6b;
+          font-size: 12px;
+          color: #fff;
+          line-height: 20px;
+          height: 20px;
+        }
+        h3 {
+          flex: 1;
+          margin: 0 4px;
+          font-size: 20px;
+          height: 56px;
+          color: #333;
+          .text-overflow();
+          span:nth-of-type(2) {
+            margin-left: 4px;
+          }
+        }
+        p {
+          font-size: 20px;
+          color: #ff6b6b;
+        }
+      }
+      .job-des {
+        span {
+          color: #888;
+          &:nth-of-type(2) {
+            margin: 0 12px;
+            padding: 0 12px;
+            border-left: 1px solid #dddfe3;
+            border-right: 1px solid #dddfe3;
+          }
+        }
+      }
+    }
+    .more-job {
+      text-align: center;
+      a {
+        display: inline-block;
+        margin-top: 23px;
+        padding: 12px 35px;
+        font-size: 14px;
+        line-height: 20px;
+        background: @activeColor;
+        color: #fff;
+      }
+    }
+  }
+}
+
+.page-home-products {
+  padding: 60px 0 80px;
+  background: #fff;
+  .product-list {
+    display: flex;
+    flex-wrap: wrap;
+    max-width: 1200px;
+    margin: auto;
+    .img-box {
+      width: 25%;
+      &:nth-of-type(1),
+      &:nth-of-type(2),
+      &:nth-of-type(3),
+      &:nth-of-type(4) {
+        margin-bottom: 56px;
+      }
+      img {
+        .img-responsive();
+        .center-block();
+      }
+    }
+  }
+}
+
+.page-home-milestone {
+  padding: 60px 0 80px;
+  background: #f2f2f2;
+  .dev-list { max-width: 1200px; margin: 0 auto 40px; padding: 0 20px 0 80px; border-left: 1px solid #ddd; }
+  .dev-list .dev-item { position: relative; padding: 20px 0; border-bottom: 1px solid #ddd; }
+  .dev-list .dev-item:nth-last-of-type(1) { padding: 20px 0 0; border-bottom: none; }
+  .dev-list .dev-item:nth-last-of-type(1) > span { height: 100% }
+  .dev-list .dev-item:nth-of-type(1) { padding: 0 0 20px; }
+  .dev-list .dev-item:nth-of-type(1) > span { top: 0; }
+  .dev-list .dev-item > span { position: absolute; top: 20px; left: -97px; z-index: 1; padding: 2px 0; background: #f2f2f2; font-size: 13px; }
+  .dev-list .dev-item > div > p { margin: 10px 0; line-height: 22px; }
+  .dev-list .dev-item > div > p:nth-of-type(1),
+  .dev-list .dev-item > div > p:nth-last-of-type(1) { margin: 0; }
+  @media screen and (min-width: 1366px) and (max-width: 1700px) {
+    .dev-list .dev-item > span { left: -97px; font-size: 13px; }
+    .dev-list .dev-item > div > p { font-size: 13px; }
+  }
+  @media screen and (min-width: 1200px) and (max-width: 1365px) {
+    .dev-list { padding: 0 20px 0 50px; }
+    .dev-list .dev-item > span { left: -67px; font-size: 13px; }
+    .dev-list .dev-item > div > p { font-size: 13px; }
+  }
+  @media screen and (min-width: 992px) and (max-width: 1199px) {
+    .dev-list { margin: 40px 0 0 40px; padding: 0 20px 0 50px; }
+    .dev-list .dev-item > span { left: -67px; font-size: 13px; }
+    .dev-list .dev-item > div > p { font-size: 13px; }
+  }
+  @media screen and (min-width: 768px) and (max-width: 991px) {
+    .dev-list { margin: 40px 0 0 40px; padding: 0 20px 0 50px; }
+    .dev-list .dev-item > span { left: -67px; font-size: 13px; }
+    .dev-list .dev-item > div > p { font-size: 13px; }
+  }
+  @media screen and (max-width: 767px) {
+    .dev-list { margin: 20px 0 0 30px; padding: 0 15px 0 40px; }
+    .dev-list .dev-item { padding: 15px 0; }
+    .dev-list .dev-item > span { left: -57px; font-size: 13px; }
+    .dev-list .dev-item > div > p { font-size: 13px; }
+  }
+}
+
+.page-home-environment {
+  padding: 60px 0 80px;
+  background: #fff;
+  .environment {
+    max-width: 1200px;
+    .swiper-wrapper {
+      height: auto;
+    }
+  }
+}
+
+.page-home-welfare {
+  padding: 60px 0 80px;
+  background: #f2f2f2;
+  .welfare {
+    max-width: 1200px;
+    .swiper-wrapper {
+      height: auto;
+    }
+  }
+  //方案二
+  .welfare-box {
+    max-width: 720px;
+    margin: auto;
+    background: #bee8ff;
+    .item-box {
+      display: flex;
+      flex-wrap: wrap;
+      padding: 20px;
+    }
+    .item {
+      width: 160px;
+      margin: 5px;
+      padding-bottom: 8px;
+      text-align: center;
+      background: #fff;
+      &:hover {
+        background: @activeColor;
+        p{
+          color: #fff;
+        }
+        img {
+          display: none;
+        }
+        .item-des {
+          display: block;
+          padding: 0 8px;
+          font-size: 12px;
+          line-height: 24px;
+          color: #fff;
+          text-align: left;
+        }
+      }
+      p {
+        line-height: 50px;
+      }
+      img {
+        .img-responsive();
+        .center-block();
+      }
+      .item-des {
+        display: none;
+      }
+    }
+  }
+}
+
+// 职位详情页面css
+.page-jobDetails {
+  display: flex;
+  width: 70%;
+  margin: 30px auto 0;
+  .jobDetails-main {
+    flex: 1;
+    align-self: flex-start;
+    margin-bottom: 20px;
+    background: #fff;
+  }
+  .jobDetails-main {
+    padding: 0 16px;
+    .job-title-box {
+      padding: 20px 20px 0;
+      .job-title {
+        display: flex;
+        margin-top: 6px;
+        line-height: 28px;
+      }
+      p {
+        font-size: 14px;
+        color: #89909e;
+      }
+      .lab {
+        margin: 0 4px 0 0;
+        padding: 0 4px;
+        background: #ff6b6b;
+        font-size: 12px;
+        color: #fff;
+        line-height: 20px;
+        height: 20px;
+      }
+      h3 {
+        font-size: 20px;
+        color: #333;
+        .text-overflow();
+        span:nth-of-type(2) {
+          margin-left: 4px;
+        }
+      }
+    }
+    .job-title-box .job-des {
+      position: relative;
+      margin-top: 15px;
+      line-height: 21px;
+      span {
+        color: #888;
+        &:nth-of-type(2) {
+          margin: 0 12px;
+          padding: 0 12px;
+          border-left: 1px solid @borderColor;
+          border-right: 1px solid @borderColor;
+        }
+        &:nth-last-of-type(1) {
+          position: absolute;
+          right: 0;
+          bottom: 0;
+        }
+      }
+    }
+    .job-detail-box {
+      margin-top: 16px;
+      padding: 16px 20px 20px;
+      .des-box {
+        margin-bottom: 20px;
+      }
+      .des-box h3 {
+        display: inline-block;
+        padding: 0 0 10px;
+        margin: 0 0 10px;
+        font-size: 16px;
+        font-weight: 700;
+        border-bottom: 1px solid @activeColor;
+      }
+      .des-box p {
+        font-size: 14px;
+        line-height: 36px;
+      }
+      .getJobBox {
+        text-align: center;
+      }
+    }
+    .getJobBtn {
+      display: inline-block;
+      padding: 0 23px;
+      font-size: 12px;
+      line-height: 33px;
+      border-radius: 2px;
+      color: #fff;
+      background: @activeColor;
+    }
+  }
+  .jobDetails-recommend {
+    align-self: flex-start;
+    width: 300px;
+  }
+  .jobDetails-recommend {
+    margin-left: 10px;
+    background: #fff;
+    h2 {
+      padding: 0 20px;
+      font-size: 18px;
+      line-height: 60px;
+      color: #090a0b;
+      border: 1px dashed @borderColor;
+    }
+    ul {
+      padding: 0 20px;
+    }
+    li {
+      padding: 16px 0;
+      border-bottom: 1px dashed @borderColor;
+      &:nth-last-of-type(1) {
+        border-bottom: 1px dashed transparent;
+      }
+    }
+    li .job-msg-url:hover h3 {
+      color: @activeColor;
+    }
+    li .job-title {
+      display: flex;
+      .lab {
+        padding: 0 4px;
+        background: #ff6b6b;
+        font-size: 12px;
+        color: #fff;
+        line-height: 20px;
+        height: 20px;
+      }
+      h3 {
+        flex: 1;
+        margin: 0 4px;
+        font-size: 16px;
+        color: #333;
+        .text-overflow();
+        span:nth-of-type(2) {
+          margin-left: 4px;
+        }
+      }
+    }
+  }
+}

@@ -36,7 +36,13 @@ class Social extends Base
     }
     public function index()
     {
-        return $this->fetch($this->template . '/social/index.html');
+        if ($this->request->isGet()) {
+            if (!empty($this->data)) {
+                $hot = array_slice($this->data, 0, 12);
+                $this->assign('hot', $hot);
+            }
+            return $this->fetch($this->template . '/social/index.html');
+        }
     }
     /**
      * Undocumented function
@@ -100,6 +106,7 @@ class Social extends Base
         }
         if ($this->request->isPost) {
             //todo:: 申请步骤
+            $data = $this->request->param('post.');
         }
     }
 }

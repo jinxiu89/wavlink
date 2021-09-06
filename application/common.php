@@ -40,6 +40,17 @@ function status($status)
     }
     return $str;
 }
+function jobStatus($status)
+{
+    if ($status == 1) {
+        $str = "<span class='label label-success radius'>急</span>";
+    } elseif ($status == 0) {
+        $str = "<span class='label label-error radius'>正常</span>";
+    } elseif ($status == -1) {
+        $str = "<span class='label label-danger radius'>停招</span>";
+    }
+    return $str;
+}
 
 //用户登录密码 key 校验
 /**
@@ -158,6 +169,16 @@ function show($status, $message = '', $title = '', $btn = '', $url = '', $data =
     return exit(json_encode($res));
 }
 
+function jsonShow(int $status, string $message = 'error', array $data = [], int $httpStatus = 200)
+{
+    $result = [
+        'status' => $status,
+        'message' => $message,
+        'result' => $data
+    ];
+    return json($result);
+}
+
 /***
  * @param $arr
  * 生成json数组
@@ -261,7 +282,7 @@ function numberStr($count)
 function isMobile()
 {
     // 如果有HTTP_X_WAP_PROFILE则一定是移动设备
-    if (isset ($_SERVER['HTTP_X_WAP_PROFILE'])) {
+    if (isset($_SERVER['HTTP_X_WAP_PROFILE'])) {
         return true;
     }
     if (strpos($_SERVER['HTTP_USER_AGENT'], 'iPad')) {
@@ -271,13 +292,13 @@ function isMobile()
         return false;
     }
     //如果via信息含有wap则一定是移动设备,部分服务商会屏蔽该信息
-    if (isset ($_SERVER['HTTP_VIA'])) {
+    if (isset($_SERVER['HTTP_VIA'])) {
         //找不到为flase,否则为true
         return stristr($_SERVER['HTTP_VIA'], "wap") ? true : false;
     }
 
     //判断手机发送的客户端标志,兼容性有待提高
-    if (isset ($_SERVER['HTTP_USER_AGENT'])) {
+    if (isset($_SERVER['HTTP_USER_AGENT'])) {
         $clientkeywords = array(
             'nokia',
             'sony',
@@ -318,7 +339,7 @@ function isMobile()
         }
     }
     //协议法，因为有可能不准确，放到最后判断
-    if (isset ($_SERVER['HTTP_ACCEPT'])) {
+    if (isset($_SERVER['HTTP_ACCEPT'])) {
         // 如果只支持wml并且不支持html那一定是移动设备
         // 如果支持wml和html但是wml在html之前则是移动设备
         if ((strpos($_SERVER['HTTP_ACCEPT'], 'vnd.wap.wml') !== false) && (strpos($_SERVER['HTTP_ACCEPT'], 'text/html') === false || (strpos($_SERVER['HTTP_ACCEPT'], 'vnd.wap.wml') < strpos($_SERVER['HTTP_ACCEPT'], 'text/html')))) {
@@ -377,7 +398,6 @@ function getCategoryLevel($id)
     }
     $data = \app\common\model\Service\ServiceCategory::get($id);
     return intval($data['level']) + 1;
-
 }
 
 /**
@@ -558,7 +578,7 @@ function get_lang($header)
     if (in_array($result, Config::get('language.allow_lang'))) {
         if (strpbrk($result, 'hans')) {
             return 'zh_cn';
-        }else{
+        } else {
             return $result;
         }
     }
@@ -642,7 +662,6 @@ function getCountry($id)
     } catch (Exception $exception) {
         return 'N/A';
     }
-
 }
 
 /**

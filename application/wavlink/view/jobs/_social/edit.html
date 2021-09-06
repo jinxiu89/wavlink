@@ -1,0 +1,163 @@
+<!--包含头部文件-->
+{include file="public/headers" /}
+<div class="page-container">
+    <form class="form form-horizontal form-o2o-add" id="form-o2o-add" method="post" action="">
+        <div class="row cl">
+            <label class="form-label col-xs-2 col-sm-2"><span class="c-red">*</span>职位类别：</label>
+            <div class="formControls col-xs-3 col-sm-2">
+                <span class="select-box">
+                    <select name="category_id" class="select categoryId">
+                        <option value="1">--请选择--</option>
+                        {notempty name="category"}
+                        {volist name="category" id="vo"}
+                        <option value="{$vo.id}" {if condition="$data.category_id eq $vo.id" } selected="selected"
+                            {/if}> {$vo.name}</option>
+                        {/volist}
+                        {/notempty}
+                    </select>
+                </span>
+            </div>
+        </div>
+        <div class="row cl">
+            <label class="form-label col-xs-2 col-sm-2"><span class="c-red">*</span>职位title：</label>
+            <div class="formControls col-xs-6 col-sm-5">
+                <input type="text" class="input-text" value="{$data.title}" placeholder="" id="title" name="title">
+            </div>
+        </div>
+        <div class="row cl">
+            <label class="form-label col-xs-2 col-sm-2"><span class="c-red">*</span>招聘人数：</label>
+            <div class="formControls col-xs-6 col-sm-4">
+                <input type="text" class="input-text" value="{$data.numbers}" placeholder="" id="numbers"
+                    name="numbers">
+            </div>
+        </div>
+        <div class="row cl">
+            <label class="form-label col-xs-2 col-sm-2"><span class="c-red">*</span>招聘状态：</label>
+            <div class="formControls col-xs-1 col-sm-2 check-box">
+                <div class="radio-box">
+                    <input type="radio" id="radio-1" value="1" name="status" checked>
+                    <label for="radio-1">急</label>
+                </div>
+                <div class="radio-box">
+                    <input type="radio" id="radio-2" name="status" value="0">
+                    <label for="radio-2">正常</label>
+                </div>
+                <div class="radio-box">
+                    <input type="radio" id="radio-2" name="status" value="-1">
+                    <label for="radio-2">停招</label>
+                </div>
+            </div>
+        </div>
+        <div class="row cl">
+            <label class="form-label col-xs-2 col-sm-2"><span class="c-red">*</span>工资待遇：</label>
+            <div class="formControls col-xs-1 col-sm-1">
+                <input type="text" class="input-text" value="{$data.salary}" placeholder="10K" id="salary"
+                    name="salary">
+            </div>
+        </div>
+        <div class="row cl">
+            <label class="form-label col-xs-2 col-sm-2"><span class="c-red">*</span>工作类型：</label>
+            <div class="formControls col-xs-1 col-sm-1">
+                <input type="text" class="input-text" value="{$data.type}" placeholder="全职/兼职" id="type" name="type">
+            </div>
+        </div>
+        <div class="row cl">
+            <label class="form-label col-xs-2 col-sm-2"><span class="c-red">*</span>工作地：</label>
+            <div class="formControls col-xs-6 col-sm-4">
+                <input type="text" class="input-text" value="{$data.city}" placeholder="" id="city" name="city">
+            </div>
+        </div>
+        <div class="row cl">
+            <label class="form-label col-xs-2 col-sm-2"><span class="c-red">*</span>工作经验：</label>
+            <div class="formControls col-xs-1 col-sm-1">
+                <input type="text" class="input-text" value="{$data.seniority}" placeholder="" id="seniority"
+                    name="seniority">
+            </div>
+        </div>
+        <div class="row cl">
+            <label class="form-label col-xs-2 col-sm-2"><span class="c-red">*</span>学历要求：</label>
+            <div class="formControls col-xs-6 col-sm-1">
+                <input type="text" class="input-text" value="{$data.education}" placeholder="" id="education"
+                    name="education">
+            </div>
+        </div>
+        <div class="row cl">
+            <label class="form-label col-xs-2 col-sm-2"><span class="c-red">*</span>关键字：</label>
+            <div class="formControls col-xs-6 col-sm-4">
+                <input type="text" class="input-text" value="{$data.keywords}" placeholder="" id="keywords"
+                    name="keywords">
+            </div>
+        </div>
+        <div class="row cl">
+            <label class="form-label col-xs-2 col-sm-2"><span class="c-red">*</span>职位描述：</label>
+            <div class="formControls col-xs-6 col-sm-6">
+                <textarea id="editor" type="text/plain" name="description"
+                    style="width:100%;height:400px;">{$data.description}</textarea>
+            </div>
+        </div>
+        <br>
+        <div class="row cl">
+            <label class="form-label col-xs-2 col-sm-2"><span class="c-red">*</span>职位要求：</label>
+            <div class="formControls col-xs-6 col-sm-6">
+                <textarea id="editor1" type="text/plain" name="requirement"
+                    style="width:100%;height:400px;">{$data.requirement}</textarea>
+            </div>
+        </div>
+        <br>
+        <div class="row cl">
+            <label class="form-label col-xs-2 col-sm-2"><span class="c-red">*</span>福利待遇：</label>
+            <div class="formControls col-xs-6 col-sm-6">
+                <textarea id="editor2" type="text/plain" name="welfare"
+                    style="width:100%;height:400px;">{$data.welfare}</textarea>
+            </div>
+        </div>
+        <br>
+        <div class="rol col">
+            <br>
+            <br>
+        </div>
+        <div class="row cl">
+            <div class="col-xs-8 col-sm-9 col-xs-offset-4 col-sm-offset-2">
+                <button type="button" onclick="save('{:url(\'edit_social_job\',[\'id\' => $data.id,])}')"
+                    class="btn btn-primary radius"><i class="Hui-iconfont">&#xe632;</i> 保存</button>
+
+                <button onClick="layer_close();" class="btn btn-default radius"
+                    type="button">&nbsp;&nbsp;取消&nbsp;&nbsp;</button>
+            </div>
+        </div>
+    </form>
+</div>
+<!--包含头部文件-->
+{include file="public/footer" /}
+<script type="text/javascript" src="__STATIC__/admin/lib/kindeditor/kindeditor-all-min.js"></script>
+<script type="text/javascript" src="__STATIC__/admin/lib/kindeditor/lang/zh_CN.js"></script>
+<script type="text/javascript">
+    $(function () {
+        $('.check-box input').iCheck({
+            checkboxClass: 'icheckbox-blue',
+            radioClass: 'iradio-blue',
+            increaseArea: '20%'
+        });
+        var editor;
+        KindEditor.ready(function (K) {
+            editor = K.create('#editor,#editor1,#editor2', {
+                items: ['insertorderedlist', 'insertunorderedlist'],
+                width: "100%",
+                height: "320px",
+                LangType: "zh-CN",
+                filterMode: false,
+                allowFileManager: true,
+                uploadJson: "{:url('api/image/editorUpload')}",
+                afterCreate: function () {
+                    this.sync();
+                },
+                afterBlur: function () {
+                    this.sync();
+                }
+            });
+        })
+    });
+</script>
+</body>
+
+</html>

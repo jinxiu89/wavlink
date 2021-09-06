@@ -1,4 +1,5 @@
 <?php
+
 /**
  * Created by PhpStorm.
  * User: guo
@@ -7,6 +8,8 @@
  */
 
 namespace app\customer\controller;
+
+header('X-Frame-Options: deny');
 
 use app\common\model\Content\About as AboutModel;
 use app\lib\utils\email;
@@ -21,6 +24,7 @@ use think\facade\Lang;
 use app\lib\utils\cloud\ali;
 use app\lib\utils\cloud\awsSes;
 use app\common\model\Customer\User;
+
 class Base extends Controller
 {
     protected $service;
@@ -139,7 +143,7 @@ class Base extends Controller
                     </div>";
             $subject = lang('verification your register');
             $result = email::sendMail($email, '', $subject, $content);
-            if ($result) {// 根据结果让按钮阶段性的失去点击能力
+            if ($result) { // 根据结果让按钮阶段性的失去点击能力
                 return show(1, lang('Send Mail is Success'), '', '', '', lang('Message Send Successfully!'));
             } else {
                 return show(0, lang('Send Error'), '', '', '', lang('Message Send Failed!'));
@@ -165,8 +169,8 @@ class Base extends Controller
     public function sendCode()
     {
         $data = input('post.');
-        $email=$data['email'];
-        if((new User())->CheckEmail($email)){//true 表示该邮箱存在时，无法进行下一步操作
+        $email = $data['email'];
+        if ((new User())->CheckEmail($email)) { //true 表示该邮箱存在时，无法进行下一步操作
             return show(0, lang('Send Error'), '', '', '', lang('Your Email address Already existed'));
         }
         $str = tools::GetIntStr(6);
@@ -176,7 +180,7 @@ class Base extends Controller
             if (empty($Cache)) {
                 Cache::store('redis')->set($data['email'], $str, 1800);
             }
-        } catch (Exception $exception) {//这里等一下改
+        } catch (Exception $exception) { //这里等一下改
             $default = Cache::store('default')->get($data['email']);
             if (empty($default)) Cache::store('default')->set($data['email'], $str, 1800);
         }
@@ -188,7 +192,8 @@ class Base extends Controller
                 $type = $data['type'],
                 $language,
                 $email = $data['email'],
-                $expired = "5");
+                $expired = "5"
+            );
         if (is_object($result)) {
             $arr = $result->toArray();
             if ($arr['@metadata']['statusCode'] == '200') {
@@ -201,10 +206,11 @@ class Base extends Controller
 
         //后期升级考虑手机短信发送
     }
-    public function sendCodeByUser(){
+    public function sendCodeByUser()
+    {
         $data = input('post.');
-        $email=$data['email'];
-        if(!(new User())->CheckEmail($email)){//false 表示不存在，无法进行下一步操作
+        $email = $data['email'];
+        if (!(new User())->CheckEmail($email)) { //false 表示不存在，无法进行下一步操作
             return show(0, lang('Send Error'), '', '', '', lang('This Email address is not registered'));
         }
         $str = tools::GetIntStr(6);
@@ -214,7 +220,7 @@ class Base extends Controller
             if (empty($Cache)) {
                 Cache::store('redis')->set($data['email'], $str, 600);
             }
-        } catch (Exception $exception) {//这里等一下改
+        } catch (Exception $exception) { //这里等一下改
             $default = Cache::store('default')->get($data['email']);
             if (empty($default)) Cache::store('default')->set($data['email'], $str, 300);
         }
@@ -226,7 +232,8 @@ class Base extends Controller
                 $type = $data['type'],
                 $language,
                 $email = $data['email'],
-                $expired = "5");
+                $expired = "5"
+            );
         if (is_object($result)) {
             $arr = $result->toArray();
             if ($arr['@metadata']['statusCode'] == '200') {

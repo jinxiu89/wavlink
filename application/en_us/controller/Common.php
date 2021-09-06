@@ -1,4 +1,5 @@
 <?php
+
 /**
  * @Create by PhpStorm
  * @author:jinxiu89@163.com
@@ -12,6 +13,7 @@
 namespace app\en_us\controller;
 
 use app\common\service\en_us\About as aboutService;
+use Exception;
 use think\App;
 use think\captcha\Captcha;
 use think\Controller;
@@ -101,6 +103,26 @@ class Common extends Controller
         if ($this->request->isGet()) {
             $this->assign('lang', $this->code);
             return $this->fetch();
+        }
+    }
+    /**
+     * 上传接口
+     *
+     * @Author: kevin qiu
+     * @DateTime: 2021-09-01
+     * @return void
+     */
+    public function uploader()
+    {
+        if ($this->request->isPost()) {
+            $file = $this->request->file('file');
+            try {
+                $info = $file->move(PUBLIC_PATH . '/hr');
+                if ($info) return jsonShow((int)200, (string)$message = "success", (array) $data = ['path' => $info->getSaveName()]);
+                return jsonShow((int) 500, (string)$message = "upload failed", (array) $data = []);
+            } catch (Exception $exception) {
+                return jsonShow((int) 500, (string)$message = $exception->getMessage(), (array) $data = []);
+            }
         }
     }
 }

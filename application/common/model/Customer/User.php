@@ -1,4 +1,5 @@
 <?php
+
 /**
  * Created by PhpStorm.
  * User: guo
@@ -17,7 +18,7 @@ use think\model\relation\HasOne;
  * Class Customer
  * @package app\common\model\customer
  */
-Class User extends BaseModel
+class User extends BaseModel
 {
     protected $autoWriteTimestamp = 'datetime';
     protected $table = 'tb_user';
@@ -26,18 +27,20 @@ Class User extends BaseModel
      * @return HasOne
      * 用户信息表关联模型
      */
-    public function info(){
+    public function info()
+    {
         return $this->hasOne(UserInfo::class)->bind('first_name,last_name,title,level');
     }
 
-    public function searchPhoneAttr($query,$value,$data){
-        $query->where('name',$value.'%');
+    public function searchPhoneAttr($query, $value, $data)
+    {
+        $query->where('name', $value . '%');
     }
 
     /**
      * @param $id
      */
-/*    public function getDataByIdWithInfo($id){
+    /*    public function getDataByIdWithInfo($id){
 
     }*/
 
@@ -51,11 +54,11 @@ Class User extends BaseModel
         $email = $this::get(['email' => $data['email']]);
         //验证邮箱
         if (!$email) {
-            return -1;//用户不存在
+            return -1; //用户不存在
         }
         //验证密码
         if ($email['password'] !== GetPassword($data['password'])) {
-            return -2;//密码不正确
+            return -2; //密码不正确
         }
         $customerUpdateData = [
             'last_login_time' => date("Y-m-d H:i:s", time()),
@@ -86,11 +89,12 @@ Class User extends BaseModel
      * @param $phone
      * @return bool
      */
-    public function CheckPhone($phone){
-        $result=$this::get(['phone'=>$phone]);
-        if(!$result){
+    public function CheckPhone($phone)
+    {
+        $result = $this::get(['phone' => $phone]);
+        if (!$result) {
             return false;
-        }else{
+        } else {
             return true;
         }
     }
@@ -99,24 +103,26 @@ Class User extends BaseModel
      * @param $email
      * @return mixed
      */
-    public function getUserByEmail($email){
-        return $this::get(['email'=>$email]);
-
+    public function getUserByEmail($email)
+    {
+        return $this::get(['email' => $email]);
     }
 
     /**
      * @param $phone
      * @return mixed
      */
-    public function getUserByPhone($phone){
-        return $this::get(['phone'=>$phone]);
+    public function getUserByPhone($phone)
+    {
+        return $this::get(['phone' => $phone]);
     }
 
-    public function CheckPassword($oldPassword,$id){
+    public function CheckPassword($oldPassword, $id)
+    {
         $result = $this::get($id);
-        if($result['password'] == GetPassword($oldPassword)){
+        if ($result['password'] == GetPassword($oldPassword)) {
             return true;
-        }else{
+        } else {
             return false;
         }
     }
@@ -160,11 +166,11 @@ Class User extends BaseModel
     public function getNameByEmail($email)
     {
         $result = $this::get(['email' => $email]);
-        if (!$result){
+        if (!$result) {
             return false;
-        }elseif ($result){
+        } elseif ($result) {
             return $result['id'];
-        }else{
+        } else {
             return false;
         }
     }

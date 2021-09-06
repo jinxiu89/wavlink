@@ -2,6 +2,8 @@
 
 namespace app\en_us\controller;
 
+header('X-Frame-Options: deny');
+
 use \app\common\model\Content\About as AboutModel;
 use app\common\model\Content\Article as ArticleModel;
 use app\common\model\Content\Category as CategoryModel;
@@ -50,7 +52,7 @@ class Base extends Controller
     protected $category; // 产品分类列表
     protected $imagesNew; // 最新产品
     protected $imageBest; //最热产品
-    protected $imagesRecommend;//推荐产品列表
+    protected $imagesRecommend; //推荐产品列表
     protected $seo; //网站信息SEO
     protected $about; // 关于我们
     protected $articleList; // 最新事件列表
@@ -74,7 +76,7 @@ class Base extends Controller
             Cookie::set('customer_lang', $path[0], ['expire' => 3600]); //lang_var是tp自带的变量 ，跨控制器之后就失效了， 所以这里加一个供会员系统的变量
         }
         //init 之前运行
-//        print_r("construct parent之前运行 1"."<br />");
+        //        print_r("construct parent之前运行 1"."<br />");
         parent::__construct($app);
         //init 之后运行
 
@@ -85,7 +87,7 @@ class Base extends Controller
         parent::initialize();
         //当前模块
         $this->code = Cookie::get('lang_var') ? Cookie::get('lang_var') : get_lang(Request::instance()->header());
-        $this->module = Request::module();//模块名
+        $this->module = Request::module(); //模块名
         $url = Request::controller();
         $this->assign('url', $url);
         $this->assign('code', $this->code);
@@ -115,7 +117,6 @@ class Base extends Controller
     {
         $documentList = (new DocumentModel())->getDocumentList($this->code, 5);
         $this->assign('documentList', $documentList);
-
     }
 
     /**
@@ -180,8 +181,8 @@ class Base extends Controller
             $this->template = Env::get('app_path') . Request::module() . '/view/desktop';
             $this->assign('terminal', '{extend name="desktop/common/base" /}');
         }
-
     }
+
 
     /***
      * 根据语言来获取分类
@@ -190,7 +191,7 @@ class Base extends Controller
      */
     public function getCategory()
     {
-        $category = (new CategoryModel())->getNormalCategory($this->code);//获取一级分类,parent_id = 0
+        $category = (new CategoryModel())->getNormalCategory($this->code); //获取一级分类,parent_id = 0
         $this->assign('category', $category);
     }
 
@@ -282,5 +283,4 @@ class Base extends Controller
         $data = (new BaseService())->popularProduct($this->language_id, $category_id);
         return json(['status' => 1, 'message' => 'ok', 'data' => $data]);
     }
-
 }

@@ -48,6 +48,14 @@ class Social extends BaseService
             return $exception->getMessage();
         }
     }
+    /**
+     * getDetails  获取简历详情
+     *
+     * @Author: kevin qiu
+     * @DateTime: 2021-09-07
+     * @param string $url_title
+     * @return void
+     */
     public function getDetails(string $url_title)
     {
         try {

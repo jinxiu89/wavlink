@@ -14,6 +14,8 @@ declare(strict_types=1);
 namespace app\en_us\controller;
 
 use app\common\service\en_us\Social as service;
+// use app\common\service\en_us\SocialResume;
+use app\common\model\Jobs\SocialResume;
 use think\App;
 use think\paginator\driver\Bootstrap;
 
@@ -104,9 +106,19 @@ class Social extends Base
             // print_r("hello" . __FUNCTION__);
             return $this->fetch($this->template . '/social/gain.html');
         }
-        if ($this->request->isPost) {
+        if ($this->request->isPost()) {
             //todo:: 申请步骤
-            $data = $this->request->param('post.');
+            $data = input('post.', 'htmlspecialchars');
+            try {
+                $result = (new SocialResume())->save($data);
+                if ($result) {
+                    return show(1, '', '', '', '', '申请成功');
+                } else {
+                    return show(0, '', '', '', '', '申请失败');
+                }
+            } catch (\Exception $exception) {
+                return show(0, '', '', '', '', $exception->getMessage());
+            }
         }
     }
 }

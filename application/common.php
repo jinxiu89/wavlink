@@ -166,9 +166,20 @@ function show($status, $message = '', $title = '', $btn = '', $url = '', $data =
         'title' => $title,
         'btn' => $btn
     ];
-    return exit(json_encode($res));
+    return json($res);
 }
 
+/**
+ * json
+ *
+ * @Author: kevin qiu
+ * @DateTime: 2021-09-07
+ * @param integer $status
+ * @param string $message
+ * @param array $data
+ * @param integer $httpStatus
+ * @return void
+ */
 function jsonShow(int $status, string $message = 'error', array $data = [], int $httpStatus = 200)
 {
     $result = [

@@ -110,6 +110,33 @@
 .page-com-foot .copy-right {
   padding: 5px 0 10px;
 }
+.appendix-progress {
+  max-width: 500px;
+}
+.appendix-progress .item {
+  margin: 14px 0;
+}
+.appendix-progress .info {
+  display: flex;
+  font-size: 14px;
+  color: #575d6a;
+}
+.appendix-progress .info p:nth-of-type(1) {
+  display: flex;
+  flex: 1;
+}
+.appendix-progress .info p:nth-of-type(1) span:nth-of-type(1) {
+  display: block;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  overflow: hidden;
+  max-width: 150px;
+  margin-right: 10px;
+}
+.appendix-progress .progress {
+  height: 10px;
+  margin-bottom: 0;
+}
 .page-jobDetails .jobDetails-main {
   margin-bottom: 20px;
   background: #fff;
@@ -249,5 +276,9 @@
 }
 .page-jobDetails .job-detail-box .submit-box .btn-submit:hover {
   background: #31569e;
+}
+.page-jobDetails .job-detail-box .infoError {
+  font-size: 12px;
+  color: #89909e;
 }
 /*# sourceMappingURL=social-gain.css.map */

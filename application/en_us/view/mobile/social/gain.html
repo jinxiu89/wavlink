@@ -76,29 +76,32 @@
                             <div class="btns">
                                 <div id="appendix" class="picker">上传附件</div>
                             </div>
+                            <div class="appendix-progress"></div>
                             <p class="tips">支持文档、图片、压缩包、视频、音频、设计文件等格式文件，所有附件大小总和不超过50MB</p>
                         </div>
                     </form>
                 </div>
                 <div class="complete-info">
                     <h3>个人信息</h3>
-                    <form action="">
-                        <div class="">
-                            <label for="">姓名 <span>*</span></label>
-                            <input type="text" placeholder="姓名">
+                    <form action="" id="complete-info">
+                        <div class="info">
+                            <label for="name">姓名 <span>*</span></label>
+                            <input id="name" type="text" name="name" placeholder="姓名">
                         </div>
-                        <div class="">
-                            <label for="">手机号码 <span>*</span></label>
-                            <input type="text" placeholder="手机号码">
+                        <div class="info">
+                            <label for="tel">手机号码 <span>*</span></label>
+                            <input id="tel" type="text" name="tel" placeholder="手机号码">
                         </div>
-                        <div class="">
-                            <label for="">邮箱 <span>*</span></label>
-                            <input type="email" placeholder="邮箱">
+                        <div class="info">
+                            <label for="email">邮箱 <span>*</span></label>
+                            <input id="email" type="email" name="email" placeholder="邮箱">
+                        </div>
+                        <input id="resumeInput" type="hidden" name="resume" value="">
+                        <input id="attachmentInput" type="hidden" name="attachment" value="">
+                        <div class="submit-box">
+                            <button class="btn btn-submit">提交简历</button>
                         </div>
                     </form>
-                </div>
-                <div class="submit-box">
-                    <button class="btn btn-submit">提交简历</button>
                 </div>
             </div>
         </div>
@@ -122,6 +125,9 @@
 {/block}
 {block name="javascript"}
 <!--私有JS-->
+<script type="text/javascript" src="__STATIC__/admin/lib/jquery.validation/1.14.0/jquery.validate.js"></script>
+<script type="text/javascript" src="__STATIC__/admin/lib/jquery.validation/1.14.0/validate-methods.js"></script>
+<script type="text/javascript" src="__STATIC__/admin/lib/layer/2.4/layer.js"></script>
 <script>
     $('#resume').each(function (index, el) {
         var uploader = WebUploader.create({
@@ -131,14 +137,12 @@
             pick: el, // 选择文件的按钮。可选。
             resize: false // 不压缩image, 默认如果是jpeg，文件上传前会压缩一把再上传！
         });
-        uploader.on( 'uploadSuccess', function( file ) {
-            console.log(el);
+        uploader.on('uploadSuccess', function (file, Object) {
             $(el).find('.webuploader-pick').text(file.name);
-            console.log("上传成功");
+            $('#resumeInput').val(Object.result.path)
         });
-        uploader.on( 'uploadError', function( file ) {
+        uploader.on('uploadError', function (file) {
             $(el).find('.webuploader-pick').text('上传出错');
-            console.log("上传失败");
         });
     })
     $('#appendix').each(function (index, el) {
@@ -149,16 +153,85 @@
             pick: el, // 选择文件的按钮。可选。
             resize: false // 不压缩image, 默认如果是jpeg，文件上传前会压缩一把再上传！
         });
-        uploader.on( 'uploadSuccess', function( file ) {
-            console.log(el);
-            $(el).find('.webuploader-pick').text(file.name);
-            console.log("上传成功");
+        uploader.on('uploadSuccess', function (file, Object) {
+            $(el).find('.webuploader-pick').text("继续上传");
+            $('#attachmentInput').val(Object.result.path)
         });
-        uploader.on( 'uploadError', function( file ) {
+        uploader.on('uploadError', function (file) {
             $(el).find('.webuploader-pick').text('上传出错');
-            console.log("上传失败");
+        });
+        uploader.on("fileQueued", function (file) {
+            $(".appendix-progress").append(
+                "<div id=\"" + file.id + "\" class=\"item\">" +
+                "<div class=\"info\">" +
+                "<p>" +
+                "<span>" + file.name + "</span>" +
+                "<span>" + (file.size / 1024 / 1024).toFixed(1) + 'M' + "</span>" +
+                "</p>" +
+                "<p class=\"state\">等待上传...</p> " +
+                "</div>" +
+                "</div>");
+        });
+        uploader.on('uploadProgress', function (file, percentage) {
+            var $li = $('#' + file.id),
+                $percent = $li.find('.progress .progress-bar');
+            // 避免重复创建
+            if (!$percent.length) {
+                $percent = $('<div class="progress progress-striped active">' +
+                    '<div class="progress-bar" role="progressbar" style="width: 0%">' +
+                    '</div>' +
+                    '</div>').appendTo($li).find('.progress-bar');
+            }
+            percentage === 1 ? $li.find('p.state').text('上传完成') : $li.find('p.state').text('上传中');
+            $percent.css('width', percentage * 100 + '%');
         });
     })
+
+    // 表单验证规则
+    $().ready(function () {
+        $('#complete-info').validate({
+            errorClass: 'infoError',
+            errorElement: 'p',
+            rules: {
+                name: 'required',
+                email: {
+                    required: true,
+                    email: true
+                },
+                tel: {
+                    required: true
+                }
+            },
+            messages: {
+                name: '请输入用户名',
+                email: '请输入正确的邮箱地址',
+                tel: '请输入手机号'
+            },
+            submitHandler: function (form) {
+                var val = $('#resumeInput').val();
+                if (val) {
+                    var url = "{:url(\'gain_social_job\',[\'url_title\'=>\'hello_world\'])}"
+                    InfoChange(url, form)
+                } else {
+                    layer.msg('请先上传简历', {icon: 5, time: 3000})
+                }
+            }
+        });
+    })
+
+    function InfoChange(url, form) {
+        $.ajax({
+            url: url, type: "post", dataType: "json", data: $(form).serialize(), success: function (result) {
+                if (result.status === 1) {
+                    layer.msg(result.data, {icon: 1, time: 3000}, function () {
+                        window.parent.location.href = result.jump_url
+                    })
+                } else {
+                    layer.msg(result.data, {icon: 5, time: 3000})
+                }
+            }
+        })
+    }
 </script>
 <script>
     $(function () {

@@ -41,6 +41,33 @@
 .page-com-foot .copy-right {
   padding: 5px 0 10px;
 }
+.appendix-progress {
+  max-width: 500px;
+}
+.appendix-progress .item {
+  margin: 14px 0;
+}
+.appendix-progress .info {
+  display: flex;
+  font-size: 14px;
+  color: #575d6a;
+}
+.appendix-progress .info p:nth-of-type(1) {
+  display: flex;
+  flex: 1;
+}
+.appendix-progress .info p:nth-of-type(1) span:nth-of-type(1) {
+  display: block;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  overflow: hidden;
+  max-width: 300px;
+  margin-right: 10px;
+}
+.appendix-progress .progress {
+  height: 14px;
+  margin-bottom: 0;
+}
 .page-jobDetails {
   max-width: 900px;
   margin: 30px auto 0;

@@ -7,6 +7,7 @@
         verbose="true"
         beStrictAboutChangesToGlobalState="true"
         beStrictAboutOutputDuringTests="true"
+        beStrictAboutTestsThatDoNotTestAnything="false"
 >
     <testsuites>
         <testsuite name="Unit tests">
@@ -17,8 +18,8 @@
     <groups>
         <exclude>
             <group>Integration</group>
-            <group>oss</group>
-            <group>xpack</group>
+            <group>free</group>
+            <group>platinum</group>
         </exclude>
     </groups>
     <filter>

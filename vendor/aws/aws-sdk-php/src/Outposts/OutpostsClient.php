@@ -5,6 +5,8 @@ use Aws\AwsClient;
 
 /**
  * This client is used to interact with the **AWS Outposts** service.
+ * @method \Aws\Result createOrder(array $args = [])
+ * @method \GuzzleHttp\Promise\Promise createOrderAsync(array $args = [])
  * @method \Aws\Result createOutpost(array $args = [])
  * @method \GuzzleHttp\Promise\Promise createOutpostAsync(array $args = [])
  * @method \Aws\Result deleteOutpost(array $args = [])
@@ -19,5 +21,11 @@ use Aws\AwsClient;
  * @method \GuzzleHttp\Promise\Promise listOutpostsAsync(array $args = [])
  * @method \Aws\Result listSites(array $args = [])
  * @method \GuzzleHttp\Promise\Promise listSitesAsync(array $args = [])
+ * @method \Aws\Result listTagsForResource(array $args = [])
+ * @method \GuzzleHttp\Promise\Promise listTagsForResourceAsync(array $args = [])
+ * @method \Aws\Result tagResource(array $args = [])
+ * @method \GuzzleHttp\Promise\Promise tagResourceAsync(array $args = [])
+ * @method \Aws\Result untagResource(array $args = [])
+ * @method \GuzzleHttp\Promise\Promise untagResourceAsync(array $args = [])
  */
 class OutpostsClient extends AwsClient {}

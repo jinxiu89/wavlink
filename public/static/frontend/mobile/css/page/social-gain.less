@@ -107,6 +107,33 @@
   }
 }
 
+// webuploader上传附件css样式
+.appendix-progress {
+  max-width: 500px;
+  .item {
+    margin: 14px 0;
+  }
+  .info {
+    display: flex;
+    font-size: 14px;
+    color: #575d6a;
+    p:nth-of-type(1) {
+      display: flex;
+      flex: 1;
+      span:nth-of-type(1) {
+        display: block;
+        .text-overflow();
+        max-width: 150px;
+        margin-right: 10px;
+      }
+    }
+  }
+  .progress {
+    height: 10px;
+    margin-bottom: 0;
+  }
+}
+
 // 职位详情页面css
 .page-jobDetails {
   .jobDetails-main {
@@ -243,6 +270,10 @@
           background: @activeColor + 20;
         }
       }
+    }
+    .infoError {
+      font-size: 12px;
+      color: #89909e;
     }
   }
 }

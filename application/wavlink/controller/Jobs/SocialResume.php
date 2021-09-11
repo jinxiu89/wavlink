@@ -48,7 +48,7 @@ class SocialResume extends BaseAdmin
     public function index()
     {
         if ($this->request->isGet()) {
-
+            $data = $this->service->getData();
             return $this->fetch();
         }
     }

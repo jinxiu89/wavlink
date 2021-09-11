@@ -28,4 +28,9 @@ class SocialResume extends Base
     {
         $this->model =  new model();
     }
+    public function getData()
+    {
+        # code...
+        $this->model->getData();
+    }
 }

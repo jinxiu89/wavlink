@@ -121,9 +121,15 @@
     position: absolute;
     bottom: 10px;
   }
+  .swiper-button-prev, .swiper-container-rtl .swiper-button-next {
+    background-image: url("//files2.wavlink.com/images/hr-job/Left_M.png");
+  }
+  .swiper-button-next, .swiper-container-rtl .swiper-button-prev {
+    background-image: url("//files2.wavlink.com/images/hr-job/Right_M.png");
+  }
 }
 
-.page-home-title-box {
+.home-title-box {
   padding-bottom: 20px;
   text-align: center;
   .title {
@@ -148,23 +154,24 @@
   }
 }
 
-.page-home-company {
+.home-company {
   padding: 60px 15px 80px;
   text-align: center;
-  background: #fff;
+  background: #f8f9fa;
   p {
     margin: 15px auto;
     padding: 0 15px;
     line-height: 24px;
     color: #888;
     text-align: left;
+    text-indent: 28px;
     &:nth-of-type(1) {
       margin-top: 0;
     }
   }
 }
 
-.page-home-job-box {
+.home-job-box {
   background: #f2f2f2;
   .wavlink-job {
     margin: auto;
@@ -268,30 +275,30 @@
   }
 }
 
-.page-home-products {
+.home-activity {
   padding: 60px 15px 80px;
-  background: #fff;
-  .product-list {
-    display: flex;
-    flex-wrap: wrap;
-    .img-box {
-      width: 50%;
-      padding: 2px;
-      &:nth-of-type(2n+1) {
-        padding: 1px 1px 1px 2px;
-      }
-      &:nth-of-type(2n+2) {
-        padding: 1px 2px 1px 1px;
-      }
-      img {
-        .img-responsive();
-        .center-block();
-      }
+  background: #f8f9fa;
+  .swiper-wrapper {
+    height: auto;
+    .swiper-slide img {
+      width: 100%;
+      .img-responsive();
+      .center-block();
     }
+  }
+  .swiper-pagination {
+    position: absolute;
+    bottom: 10px;
+  }
+  .swiper-button-prev, .swiper-container-rtl .swiper-button-next {
+    background-image: url("//files2.wavlink.com/images/hr-job/Left_M.png");
+  }
+  .swiper-button-next, .swiper-container-rtl .swiper-button-prev {
+    background-image: url("//files2.wavlink.com/images/hr-job/Right_M.png");
   }
 }
 
-.page-home-milestone {
+/*.page-home-milestone {
   padding: 60px 15px 80px;
   background: #f2f2f2;
   .dev-list { max-width: 1200px; margin: 0 auto 40px; padding: 0 20px 0 80px; border-left: 1px solid #ddd; }
@@ -329,24 +336,9 @@
     .dev-list .dev-item > span { left: -57px; font-size: 13px; }
     .dev-list .dev-item > div > p { font-size: 13px; }
   }
-}
+}*/
 
-.page-home-environment {
-  padding: 60px 0 0;
-  background: #fff;
-  .environment {
-    max-width: 1200px;
-    .swiper-wrapper {
-      height: auto;
-    }
-  }
-  img {
-    .img-responsive();
-    .center-block();
-  }
-}
-
-.page-home-welfare {
+/*.home-welfare {
   padding: 60px 15px 80px;
   background: #f2f2f2;
   .welfare-box {
@@ -377,148 +369,27 @@
       }
     }
   }
-}
+}*/
 
-// 职位详情页面css
-.page-jobDetails {
-  display: flex;
-  width: 70%;
-  margin: 30px auto 0;
-  .jobDetails-main {
-    flex: 1;
-    align-self: flex-start;
-    margin-bottom: 20px;
-    background: #fff;
+#go-top {
+  .top, .bottom {
+    padding: 5px;
   }
-  .jobDetails-main {
-    padding: 0 16px;
-    .job-title-box {
-      padding: 20px 20px 0;
-      .job-title {
-        display: flex;
-        margin-top: 6px;
-        line-height: 28px;
-      }
-      p {
-        font-size: 14px;
-        color: #89909e;
-      }
-      .lab {
-        margin: 0 4px 0 0;
-        padding: 0 4px;
-        background: #ff6b6b;
-        font-size: 12px;
-        color: #fff;
-        line-height: 20px;
-        height: 20px;
-      }
-      h3 {
-        font-size: 20px;
-        color: #333;
-        .text-overflow();
-        span:nth-of-type(2) {
-          margin-left: 4px;
-        }
-      }
-    }
-    .job-title-box .job-des {
-      position: relative;
-      margin-top: 15px;
-      line-height: 21px;
-      span {
-        color: #888;
-        &:nth-of-type(2) {
-          margin: 0 12px;
-          padding: 0 12px;
-          border-left: 1px solid @borderColor;
-          border-right: 1px solid @borderColor;
-        }
-        &:nth-last-of-type(1) {
-          position: absolute;
-          right: 0;
-          bottom: 0;
-        }
-      }
-    }
-    .job-detail-box {
-      margin-top: 16px;
-      padding: 16px 20px 20px;
-      .des-box {
-        margin-bottom: 20px;
-      }
-      .des-box h3 {
-        display: inline-block;
-        padding: 0 0 10px;
-        margin: 0 0 10px;
-        font-size: 16px;
-        font-weight: 700;
-        border-bottom: 1px solid @activeColor;
-      }
-      .des-box p {
-        font-size: 14px;
-        line-height: 36px;
-      }
-      .getJobBox {
-        text-align: center;
-      }
-    }
-    .getJobBtn {
-      display: inline-block;
-      padding: 0 23px;
-      font-size: 12px;
-      line-height: 33px;
-      border-radius: 2px;
-      color: #fff;
-      background: @activeColor;
-    }
+  .bottom {
+    transform: rotate(180deg);
+    -webkit-transform: rotate(180deg);
   }
-  .jobDetails-recommend {
-    align-self: flex-start;
-    width: 300px;
-  }
-  .jobDetails-recommend {
-    margin-left: 10px;
-    background: #fff;
-    h2 {
-      padding: 0 20px;
-      font-size: 18px;
-      line-height: 60px;
-      color: #090a0b;
-      border: 1px dashed @borderColor;
-    }
-    ul {
-      padding: 0 20px;
-    }
-    li {
-      padding: 16px 0;
-      border-bottom: 1px dashed @borderColor;
-      &:nth-last-of-type(1) {
-        border-bottom: 1px dashed transparent;
-      }
-    }
-    li .job-msg-url:hover h3 {
-      color: @activeColor;
-    }
-    li .job-title {
-      display: flex;
-      .lab {
-        padding: 0 4px;
-        background: #ff6b6b;
-        font-size: 12px;
-        color: #fff;
-        line-height: 20px;
-        height: 20px;
-      }
-      h3 {
-        flex: 1;
-        margin: 0 4px;
-        font-size: 16px;
-        color: #333;
-        .text-overflow();
-        span:nth-of-type(2) {
-          margin-left: 4px;
-        }
-      }
-    }
+  span {
+    display: block;
+    width: 50px;
+    height: 50px;
+    text-align: center;
+    line-height: 50px;
+    -webkit-border-radius: 50%;
+    -moz-border-radius: 50%;
+    border-radius: 50%;
+    font-size: 24px;
+    color: #fff;
+    background: rgba(61,101,163,.8);
   }
 }

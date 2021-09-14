@@ -30,7 +30,14 @@ class SocialResume extends Base
     }
     public function getData()
     {
-        # code...
-        $this->model->getData();
+        try {
+            $response = $this->model->order('id desc');
+            $result['count'] = $response->count();
+            $result['data'] = $response->paginate(25);
+            return $result;
+        } catch (\Exception $exception) {
+            //todo:日志 错误
+
+        }
     }
 }

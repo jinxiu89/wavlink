@@ -49,6 +49,12 @@ class SocialResume extends BaseAdmin
     {
         if ($this->request->isGet()) {
             $data = $this->service->getData();
+            if (!$data['data']->isEmpty()) {
+                $this->assign('page', $data['data']->render());
+                $this->assign('data', $data['data']);
+                $this->assign('count', $data['count']);
+            }
+            print_r($data['data']);
             return $this->fetch();
         }
     }

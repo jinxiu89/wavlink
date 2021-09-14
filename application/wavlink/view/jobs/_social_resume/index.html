@@ -25,10 +25,10 @@
                     </tr>
                     <tr class="text-c">
                         <th width="20" class="text-c">ID</th>
-                        <th width="150">职位title</th>
-                        <th>关键词</th>
-                        <th>学历</th>
-                        <th width="90">所属分类</th>
+                        <th width="150">姓名</th>
+                        <th width="150">投递职位</th>
+                        <!-- <th width="150">学历</th> -->
+                        <th width="90">简历</th>
                         <th width="40" class="text-c">状态</th>
                         <th width="200">操作</th>
                     </tr>
@@ -38,10 +38,10 @@
                     {volist name="data" id="vo"}
                     <tr class="text-l">
                         <td>{$vo.id}</td>
-                        <td>{$vo.title}</td>
-                        <td>{$vo.keywords}</td>
-                        <td>{$vo.education}</td>
-                        <td>{$vo.category_id}</td>
+                        <td>{$vo.name}</td>
+                        <td>{$vo.post}</td>
+                        <!-- <td>{$vo.education}</td> -->
+                        <td>阅读</td>
                         <td class="td-status text-c"><a href="javascript:;"
                                 onclick="start('{:url(\'changeCategoryStatus\',[\'id\'=>$vo.id,\'status\'=>$vo.status==1?-1:1])}')"
                                 title="点击修改状态">{$vo.status|jobStatus|raw}</a></td>
@@ -74,7 +74,7 @@
     $(document).ready(function () {
         $("#menu-hr dt").addClass("selected");
         $("#menu-hr dd").css("display", "block");
-        $("#social").addClass("current");
+        $("#social_resume_list").addClass("current");
         $("#content").addClass("current");
     });
 </script>

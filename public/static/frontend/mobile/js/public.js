@@ -44,7 +44,8 @@ function gSearch() {
 }
 
 function goTop() {
-    var go_top = $("#go-top"), go_topP = $("#go-top p");
+    var windowHeight = $(document).height()
+    var go_top = $("#go-top"), go_topP = $("#go-top .top"), go_bottomP = $("#go-top .bottom");
 
     function topBar() {
         var doc = $(document).scrollTop();
@@ -62,6 +63,9 @@ function goTop() {
     });
     go_topP.click(function () {
         $("html,body").animate({"scrollTop": 0}, 300)
+    });
+    go_bottomP.click(function() {
+        $("html,body").animate({"scrollTop": windowHeight}, 300)
     })
 }
 

@@ -5,6 +5,7 @@ use app\common\model\Language;
 use app\common\model\Service\Manual;
 use app\common\model\Content\Product;
 use app\common\model\Service\ServiceCategory;
+use app\common\model\Jobs\Social;
 use think\Collection;
 use think\db\exception\DataNotFoundException;
 use think\db\exception\ModelNotFoundException;
@@ -45,8 +46,9 @@ function getChild($id)
  * @param $id
  * @return mixed
  */
-function GetNameByParentId($id){
-    $data=\app\common\model\Content\Category::get($id);
+function GetNameByParentId($id)
+{
+    $data = \app\common\model\Content\Category::get($id);
     return $data->name;
 }
 
@@ -157,7 +159,7 @@ function limit($table, $map, $order, $limit, $field, $map2)
     if (!empty($listorder)) {
         return $listorder;
     } else {
-//        return show(0,'已经是置顶或者置底了，移动它的位置请上移或者下移，或者直接修改排序','');
+        //        return show(0,'已经是置顶或者置底了，移动它的位置请上移或者下移，或者直接修改排序','');
         return false;
     }
 }
@@ -269,21 +271,20 @@ function getUrlTitleByCategoryId($category_id)
  */
 function exportExcel($data = array(), $file_name = '', $sheet_name = 'sheet1')
 {
-
 }
 
 /**
  * @param $parent_id
  */
-function getDriverCate($parent_id){
-    if($parent_id == 0) return "根分类";
-    try{
-        $data=(new DriversCategory())->field('name')->get($parent_id);
+function getDriverCate($parent_id)
+{
+    if ($parent_id == 0) return "根分类";
+    try {
+        $data = (new DriversCategory())->field('name')->get($parent_id);
         return  $data->toArray()['name'];
-    }catch (Exception $exception){
+    } catch (Exception $exception) {
         return  "有错误";
     }
-
 }
 
 /**
@@ -292,12 +293,22 @@ function getDriverCate($parent_id){
  * 根据路径来重新组装分类层级
  * 使用功能有 各种分类的层级操作
  */
-function getPath($path){
-    $categorys=array_filter(explode('-',$path));
-    $str='';
-    foreach ($categorys as $v){
-       $str=$str.$v.'-';
+function getPath($path)
+{
+    $categorys = array_filter(explode('-', $path));
+    $str = '';
+    foreach ($categorys as $v) {
+        $str = $str . $v . '-';
     }
     return $str;
 }
 
+function getTitleByTitle($url_title)
+{
+    try {
+        $data = (new Social())->get(['url_title' => $url_title]);
+        return $data->title;
+    } catch (Exception $exception) {
+        return $exception->getMessage();
+    }
+}

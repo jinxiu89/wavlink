@@ -103,7 +103,8 @@ class Social extends Base
     function gain()
     {
         if ($this->request->isGet()) {
-            // print_r("hello" . __FUNCTION__);
+            $url_title = $this->request->param('url_title');
+            $this->assign('url_title', $url_title);
             return $this->fetch($this->template . '/social/gain.html');
         }
         if ($this->request->isPost()) {

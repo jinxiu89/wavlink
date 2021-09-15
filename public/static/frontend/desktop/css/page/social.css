@@ -290,59 +290,22 @@
     .dev-list .dev-item > div > p { font-size: 13px; }
   }
 }*/
-/*
 .home-welfare {
-  padding: 60px 15px 80px;
-  background: #f2f2f2;
-  .welfare {
-    max-width: 1200px;
-    .swiper-wrapper {
-      height: auto;
-    }
-  }
-  .welfare-box {
-    max-width: 720px;
-    margin: auto;
-    background: #bee8ff;
-    .item-box {
-      display: flex;
-      flex-wrap: wrap;
-      padding: 20px;
-    }
-    .item {
-      width: 160px;
-      margin: 5px;
-      padding-bottom: 8px;
-      text-align: center;
-      background: #fff;
-      &:hover {
-        background: @activeColor;
-        p{
-          color: #fff;
-        }
-        img {
-          display: none;
-        }
-        .item-des {
-          display: block;
-          padding: 0 8px;
-          font-size: 12px;
-          line-height: 24px;
-          color: #fff;
-          text-align: left;
-        }
-      }
-      p {
-        line-height: 50px;
-      }
-      img {
-        .img-responsive();
-        .center-block();
-      }
-      .item-des {
-        display: none;
-      }
-    }
-  }
-}*/
+  position: relative;
+  padding: 60px 15px 0;
+  background: #fff;
+}
+.home-welfare .home-title-box {
+  position: absolute;
+  top: 6%;
+  left: 50%;
+  margin-left: -64px;
+}
+.home-welfare img {
+  margin-left: auto;
+  margin-right: auto;
+  display: block;
+  max-width: 100%;
+  height: auto;
+}
 /*# sourceMappingURL=social.css.map */

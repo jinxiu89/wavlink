@@ -67,7 +67,7 @@
                             <div class="btns">
                                 <div id="resume" class="picker">上传简历</div>
                             </div>
-                            <p class="tips">支持pdf、doc、ppt、docx、pptx、wps、html、jpg、jpeg、png、rtf、txt等简历格式</p>
+                            <p class="tips">支持pdf、doc、docx等简历格式</p>
                         </div>
                         <div class="info-box uploader wu-example">
                             <!--用来存放文件信息-->
@@ -136,7 +136,13 @@
             swf: '__LIB__/webuploader/0.1.5/Uploader.swf', // swf文件路径
             server: '{:url(\'uploader\')}', // 文件接收服务端。
             pick: el, // 选择文件的按钮。可选。
-            resize: false // 不压缩image, 默认如果是jpeg，文件上传前会压缩一把再上传！
+            resize: false, // 不压缩image, 默认如果是jpeg，文件上传前会压缩一把再上传！
+            accept: {
+                title: 'Files',
+                extensions: 'pdf,doc,docx',
+                mimeType: 'application/msword,application/vnd.openxmlformats-officedocument.wordprocessingml.document'
+                    +',application/pdf'
+            }
         });
         uploader.on('uploadSuccess', function (file, Object) {
             $(el).find('.webuploader-pick').text(file.name);
@@ -144,6 +150,11 @@
         });
         uploader.on('uploadError', function (file) {
             $(el).find('.webuploader-pick').text('上传出错');
+        });
+        uploader.on('error', function( type ){
+            if (type=="Q_TYPE_DENIED"){
+                layer.msg('请上传pdf、doc、docx格式文件', {icon: 5, time: 3000})
+            }
         });
     })
     $('#appendix').each(function (index, el) {

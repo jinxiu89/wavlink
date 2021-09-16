@@ -121,8 +121,8 @@
   border-bottom: 1px solid #1D428A;
 }
 .page-jobDetails .jobDetails-main .job-detail-box .des-box p {
+  padding: 5px 0;
   font-size: 14px;
-  line-height: 36px;
 }
 .page-jobDetails .jobDetails-main .job-detail-box .getJobBox {
   text-align: center;

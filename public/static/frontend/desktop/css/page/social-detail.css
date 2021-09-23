@@ -187,4 +187,11 @@
 .page-jobDetails .jobDetails-recommend li .job-title h3 span:nth-of-type(2) {
   margin-left: 4px;
 }
+.page-jobDetails img {
+  display: block;
+  max-width: 100%;
+  height: auto;
+  margin-left: auto;
+  margin-right: auto;
+}
 /*# sourceMappingURL=social-detail.css.map */

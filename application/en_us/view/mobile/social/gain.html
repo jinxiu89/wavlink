@@ -134,7 +134,7 @@
         var uploader = WebUploader.create({
             auto: true, // 选完文件，自动上传
             swf: '__LIB__/webuploader/0.1.5/Uploader.swf', // swf文件路径
-            server: '{:url(\'uploader\')}', // 文件接收服务端。
+            server: '{:url(\'upload_resume\')}', // 文件接收服务端。
             pick: el, // 选择文件的按钮。可选。
             resize: false, // 不压缩image, 默认如果是jpeg，文件上传前会压缩一把再上传！
             accept: {

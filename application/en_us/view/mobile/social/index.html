@@ -224,9 +224,9 @@
         });
 
         var companyHeight = $('.company-details').height();
-        if(companyHeight >= 400) {
+        if(companyHeight >= 300) {
             $('.company-details').css({
-                'height': 400 + 'px',
+                'height': 300 + 'px',
                 'overflow': 'hidden',
                 'transition': 'height .2s'
             });
@@ -243,7 +243,7 @@
                 $('.company-more').removeClass('more-down').addClass('more-up').text('折起 ^')
             } else {
                 $('.company-details').css({
-                    'height': 400 + 'px',
+                    'height': 300 + 'px',
                 });
                 $('.company-more').removeClass('more-up').addClass('more-down').text('更多 >>')
             }

@@ -41,7 +41,7 @@
                         <td>{$vo.title}</td>
                         <td>{$vo.keywords}</td>
                         <td>{$vo.education}</td>
-                        <td>{$vo.category_id}</td>
+                        <td>{$vo.category_id|getCategoryNameByID}</td>
                         <td class="td-status text-c"><a href="javascript:;"
                                 onclick="start('{:url(\'changeCategoryStatus\',[\'id\'=>$vo.id,\'status\'=>$vo.status==1?-1:1])}')"
                                 title="点击修改状态">{$vo.status|jobStatus|raw}</a></td>

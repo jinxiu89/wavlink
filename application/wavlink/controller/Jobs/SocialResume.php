@@ -16,6 +16,10 @@ namespace app\wavlink\controller\Jobs;
 use app\wavlink\controller\BaseAdmin;
 use think\App;
 use app\wavlink\service\contents\SocialResume as service;
+use app\common\helper\World2Html;
+use PhpOffice\PhpWord\IOFactory;
+use PhpOffice\PhpWord\PhpWord;
+use think\facade\Env;
 
 /**
  * 后台简历操作窗口
@@ -54,8 +58,25 @@ class SocialResume extends BaseAdmin
                 $this->assign('data', $data['data']);
                 $this->assign('count', $data['count']);
             }
-            print_r($data['data']);
+            // print_r($data['data']);?
             return $this->fetch();
         }
+    }
+
+    public function views($url)
+    {
+        $path = PUBLIC_PATH . '/hr/' . $url;
+        print_r($path);
+        // $html = (new World2Html())->World2Html($path);
+        // $temp = $html->save($htmlFile);
+        // print_r($html);
+        // exit;https://cdn.bootcdn.net/ajax/libs/pdf.js/2.10.377/images/annotation-check.svg
+        // $html = IOFactory::load($path); /hr/20210915/7afa6141631cba79ef2ac87666e72e49.pdf
+
+        // 
+        // $html->save($htmlFile);
+        // $temp = file_get_contents($htmlFile);
+        // print_r($html);
+        // 85900db0485b21ae3ad0632a3349cf12.doc
     }
 }

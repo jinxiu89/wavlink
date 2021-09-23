@@ -14,8 +14,9 @@ declare(strict_types=1);
 namespace app\en_us\controller;
 
 use app\common\service\en_us\Social as service;
-// use app\common\service\en_us\SocialResume;
 use app\common\model\Jobs\SocialResume;
+use app\common\helper\World2Html;
+use Exception;
 use think\App;
 use think\paginator\driver\Bootstrap;
 
@@ -45,6 +46,47 @@ class Social extends Base
             }
             return $this->fetch($this->template . '/social/index.html');
         }
+    }
+
+    public function upload_resume()
+    {
+        if ($this->request->isPost()) {
+            $file = $this->request->file('file');
+            try {
+                $info = $file->validate(['ext' => 'pdf,doc,docx,zip,rar'])->rule('uniqid')->move(PUBLIC_PATH . '/hr');
+                if ($info) {
+                    if ($info->getInfo()['type'] === 'application/vnd.openxmlformats-officedocument.wordprocessingml.document' or $info->getInfo()['type'] === 'application/msword') {
+                        $result = (new World2Html())->Libreoffice(PUBLIC_PATH . '/hr/' . $info->getSaveName(), PUBLIC_PATH . '/hr/');
+                        if ($result) {
+                            $str = $info->getSaveName();
+                            $path = explode('.', $str, 0)[0] . '.pdf';
+                            if (unlink(PUBLIC_PATH . '/hr/' . $str)) return jsonShow((int)200, (string)$message = "success", (array) $data = ['path' => $path]);
+                            return jsonShow((int) 500, (string)$message = "upload failed", (array) $data = []);
+                        }
+                    }
+                    return jsonShow((int)200, (string)$message = "success", (array) $data = ['path' => $info->getSaveName()]);
+                } else {
+                    return jsonShow((int) 500, (string)$message = $file->getError(), (array) $data = []);
+                }
+                return jsonShow((int) 500, (string)$message = "upload failed", (array) $data = []);
+            } catch (Exception $exception) {
+                return jsonShow((int) 500, (string)$message = $exception->getMessage(), (array) $data = []);
+            }
+        }
+    }
+    /**
+     * hello  testify
+     *
+     * @Author: kevin qiu
+     * @DateTime: 2021-09-23
+     * @return void
+     */
+    public function testify()
+    {
+        if ($this->request->isGet()) {
+            return $this->fetch($this->template . '/social/testify.html');
+        }
+        return jsonShow(500, $message = '访问方法不合法', $data = []);
     }
     /**
      * Undocumented function

@@ -34,6 +34,8 @@ Route::group('zh_cn', function () {
     Route::get('/search', 'Search/results')->pattern(['key' => '[\w-]+', 'type' => '[\w-]+', 'page' => '[\d]+']);
     //招聘专项
     Route::get('/jobs/social$', 'Social/index');
+    Route::get('/jobs/testify$', 'Social/testify')->name('jobs_testify');
+    Route::rule('/jobs/upload_resume', 'Social/upload_resume')->name('upload_resume');
     Route::get('/jobs/social/list$', 'Social/list');
     Route::get('/jobs/social/details/:url_title$', 'Social/details')->name('social_details');
     Route::rule('/jobs/social/gain/:url_title$', 'Social/gain')->name('gain_social_job');

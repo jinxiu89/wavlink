@@ -306,5 +306,6 @@ Route::group(Config::get('__BACKEND__'), function () {
     Route::rule('/jobs/social/add$', 'Jobs.Social/add')->name('add_social_job');
     Route::rule('/jobs/social/edit/:id$', 'Jobs.Social/edit')->name('edit_social_job');
     Route::rule('/jobs/social/resume/list$', 'Jobs.SocialResume/index')->name('social_resume_list');
+    Route::rule('/jobs/social/resume/views/:url', 'Jobs.SocialResume/views')->pattern(['url' => '[\w-\/\.]+'])->name('view_social_resume');
     Route::get('/$', 'Index/index');
 })->prefix('wavlink/');

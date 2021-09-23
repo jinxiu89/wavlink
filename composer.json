@@ -21,18 +21,17 @@
         "topthink/think-image": "^1.0",
         "topthink/think-queue": "^1.1",
         "topthink/think-migration": "^1.1",
-        "topthink/think-testing": "^1.0",
         "topthink/think-mongo": "1.7",
       "ext-json": "*",
         "topthink/think-captcha": "2.0.*",
         "elasticsearch/elasticsearch": "^7.3",
         "phpmailer/phpmailer": "^6.1",
-        "phpoffice/phpexcel": "^1.8",
         "alibabacloud/sdk": "^1.8",
         "aliyuncs/oss-sdk-php": "^2.3",
         "aws/aws-sdk-php": "^3.137",
         "geoip2/geoip2": "~2.0",
-        "firebase/php-jwt": "^5.2"
+        "firebase/php-jwt": "^5.2",
+        "phpoffice/phpspreadsheet": "^1.18"
     },
     "extra": {
         "think-path": "thinkphp"

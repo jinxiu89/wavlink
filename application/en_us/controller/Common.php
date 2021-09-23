@@ -117,8 +117,12 @@ class Common extends Controller
         if ($this->request->isPost()) {
             $file = $this->request->file('file');
             try {
-                $info = $file->move(PUBLIC_PATH . '/hr');
-                if ($info) return jsonShow((int)200, (string)$message = "success", (array) $data = ['path' => $info->getSaveName()]);
+                $info = $file->validate(['ext' => 'pdf,doc,docx,zip,rar'])->move(PUBLIC_PATH . '/hr');
+                if ($info) {
+                    return jsonShow((int)200, (string)$message = "success", (array) $data = ['path' => $info->getSaveName()]);
+                } else {
+                    return jsonShow((int) 500, (string)$message = $file->getError(), (array) $data = []);
+                }
                 return jsonShow((int) 500, (string)$message = "upload failed", (array) $data = []);
             } catch (Exception $exception) {
                 return jsonShow((int) 500, (string)$message = $exception->getMessage(), (array) $data = []);

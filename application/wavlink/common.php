@@ -5,6 +5,7 @@ use app\common\model\Language;
 use app\common\model\Service\Manual;
 use app\common\model\Content\Product;
 use app\common\model\Service\ServiceCategory;
+use app\common\model\Jobs\Category as JobCategory;
 use app\common\model\Jobs\Social;
 use think\Collection;
 use think\db\exception\DataNotFoundException;
@@ -308,6 +309,16 @@ function getTitleByTitle($url_title)
     try {
         $data = (new Social())->get(['url_title' => $url_title]);
         return $data->title;
+    } catch (Exception $exception) {
+        return $exception->getMessage();
+    }
+}
+
+function getCategoryNameByID($category_id)
+{
+    try {
+        $data = (new JobCategory())->get(['id' => $category_id]);
+        return $data->name;
     } catch (Exception $exception) {
         return $exception->getMessage();
     }

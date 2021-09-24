@@ -18,6 +18,7 @@ use think\App;
 use app\common\model\Jobs\Social as Model;
 use app\wavlink\validate\jobs\Social as validate;
 use app\common\model\Jobs\Category;
+use Exception;
 
 /**
  * s社招职位路由
@@ -120,6 +121,30 @@ class Social extends BaseAdmin
                 }
             }
             return show(0, '', '', '', '', $this->validate->getError());
+        }
+    }
+    /**
+     * 后台排序算法
+     *
+     * @Author: kevin qiu
+     * @DateTime: 2021-09-24
+     * @return void
+     */
+    public function sort()
+    {
+        if ($this->request->isPost()) {
+            $id = $this->request->param('id');
+            if ($this->validate->scene('sort')->check(['id' => $id])) {
+                try {
+                    $sort = $this->model->max('sort');
+                    $sort = (int)$sort + 1;
+                    if ($this->model->sort((int)$id, (int)$sort)) {
+                        return show(1, '', '', '', '', '排序成功');
+                    }
+                } catch (Exception $exception) {
+                    return show(0, '', '', '', '', $exception->getMessage());
+                }
+            }
         }
     }
     public function stop()

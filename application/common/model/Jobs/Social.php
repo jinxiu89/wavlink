@@ -37,8 +37,8 @@ class Social extends BaseModel
     {
         return Db::table($this->table)
             ->where('status', 'in', $status)
-            ->field('id,title,url_title,city,type,salary,seniority,education,status,numbers,update_time')
-            ->order('update_time desc')->select();
+            ->field('id,title,url_title,city,type,salary,seniority,education,status,sort,numbers,update_time')
+            ->order(['sort' => 'desc', 'create_time' => 'desc'])->select();
     }
     /**
      * 获取职位详情
@@ -52,5 +52,10 @@ class Social extends BaseModel
     {
         # code...
         return Db::table($this->table)->where(['url_title' => $url_title])->find();
+    }
+
+    public function Sort(int $id, int $sort)
+    {
+        return Db::table($this->table)->update(['id' => $id, 'sort' => $sort]);
     }
 }

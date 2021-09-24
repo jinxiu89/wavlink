@@ -47,7 +47,13 @@ class Social extends Base
             return $this->fetch($this->template . '/social/index.html');
         }
     }
-
+    /**
+     * 简历上传接口，只要是WORD文档都转一遍
+     *
+     * @Author: kevin qiu
+     * @DateTime: 2021-09-23
+     * @return void
+     */
     public function upload_resume()
     {
         if ($this->request->isPost()) {

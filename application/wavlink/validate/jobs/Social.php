@@ -34,7 +34,8 @@ class Social extends BaseValidate
     /**场景设置**/
     protected $scene = [
         'v' => ['title', 'keywords', 'description'],
-        'edit' => ['description', 'keywords']
+        'edit' => ['description', 'keywords'],
         // 'changeStatus' => ['id', 'status'],
+        'sort' => ['id']
     ];
 }

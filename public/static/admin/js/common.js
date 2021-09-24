@@ -128,11 +128,11 @@ function save(url) {
             data: $("form").serialize(),//提交表单数据
             success: function (result) {
                 if (result.status === 1) {
-                    layer.msg(result.data, {icon: 1, time: 6000}, function () {
+                    layer.msg(result.data, { icon: 1, time: 6000 }, function () {
                         window.parent.location.reload();
                     });
                 } else {
-                    layer.msg(result.data, {icon: 5, time: 2000});
+                    layer.msg(result.data, { icon: 5, time: 2000 });
                 }
             }
         })
@@ -152,11 +152,11 @@ function recycle(url) {
             dataType: "json",
             success: function (result) {
                 if (result.status === 1) {
-                    layer.msg(result.data, {icon: 1, time: 1000}, function () {
+                    layer.msg(result.data, { icon: 1, time: 1000 }, function () {
                         location.href = ''
                     });
                 } else {
-                    layer.msg(result.data, {icon: 5, time: 1000}, function () {
+                    layer.msg(result.data, { icon: 5, time: 1000 }, function () {
                         location.href = ''
                     });
                 }
@@ -187,11 +187,11 @@ function allRecycle(url) {
             data: postData,
             success: function (result) {
                 if (result.status === 1) {
-                    layer.msg(result.data, {icon: 1, time: 1000}, function () {
+                    layer.msg(result.data, { icon: 1, time: 1000 }, function () {
                         location.href = ''
                     });
                 } else {
-                    layer.msg(result.data, {icon: 5, time: 2000});
+                    layer.msg(result.data, { icon: 5, time: 2000 });
                 }
             }
         })
@@ -210,11 +210,11 @@ function start(url) {
         dataType: "json",
         success: function (result) {
             if (result.status === 1) {
-                layer.msg(result.data, {icon: 1, time: 1000}, function () {
+                layer.msg(result.data, { icon: 1, time: 1000 }, function () {
                     location.href = ''
                 });
             } else {
-                layer.msg(result.data, {icon: 5, time: 1000}, function () {
+                layer.msg(result.data, { icon: 5, time: 8000 }, function () {
                     location.href = ''
                 });
             }
@@ -235,11 +235,11 @@ function stop(url) {
             dataType: "json",
             success: function (result) {
                 if (result.status === 1) {
-                    layer.msg(result.data, {icon: 1, time: 1500}, function () {
+                    layer.msg(result.data, { icon: 1, time: 1500 }, function () {
                         location.href = ''
                     });
                 } else {
-                    layer.msg(result.data, {icon: 5, time: 1500})
+                    layer.msg(result.data, { icon: 5, time: 1500 })
                 }
             }
         });
@@ -258,11 +258,11 @@ function del(url) {
             dataType: "json",
             success: function (result) {
                 if (result.status === true) {
-                    layer.msg(result.data, {icon: 1, time: 2000},function () {
+                    layer.msg(result.data, { icon: 1, time: 2000 }, function () {
                         location.replace(location.href)
                     });
                 } else {
-                    layer.msg(result.data, {icon: 5, time: 2000});
+                    layer.msg(result.data, { icon: 5, time: 2000 });
                 }
             }
         })
@@ -290,10 +290,10 @@ function delall(url) {
             data: postData,
             success: function (result) {
                 if (result.status === 1) {
-                    layer.msg(result.data, {icon: 1, time: 2000});
+                    layer.msg(result.data, { icon: 1, time: 2000 });
                     setTimeout("location.href=''", 2000)
                 } else {
-                    layer.msg(result.data, {icon: 5, time: 2000});
+                    layer.msg(result.data, { icon: 5, time: 2000 });
                 }
             }
         })
@@ -310,7 +310,7 @@ function build_html(url) {
         dataType: "json",
         success: function (result) {
             if (result.status === 1) {
-                layer.msg(result.data, {icon: 1, time: 2000});
+                layer.msg(result.data, { icon: 1, time: 2000 });
             }
         }
     })

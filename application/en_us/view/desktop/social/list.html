@@ -1,44 +1,11 @@
+{extend name="desktop/social/common/base" /}
 {block name="seo"}
-<meta name="description" content="{notempty name='parent'}{$parent.description}{/notempty}">
-<meta name="keywords" content="{notempty name='parent'}{$parent.keywords}{/notempty}">
+<meta name="description" content="职位列表">
+<meta name="keywords" content="职位列表">
+
 {/block}
 {block name="style"}
-<link rel="stylesheet" href="__LIB__/Bootstrap/bootstrap-3.3.7.min.css">
-<link rel="stylesheet" href="__LIB__/Swiper/swiper.min.css">
-<link rel="stylesheet" href="__LIB__/iconfont/iconfont.css">
-<link rel="stylesheet" href="__DESKTOP__/css/public/components.css">
 <link rel="stylesheet" href="__DESKTOP__/css/page/social-list.css">
-<script src="__LIB__/JQuery/JQuery-3.4.0.js"></script>
-<script src="__DESKTOP__/js/public.js"></script>
-
-{/block}
-
-{block name="nav"}
-<header class="g-nav">
-    <div class="container">
-        <div class="row">
-            <div class="nav-container">
-                <h1 class="logo">
-                    <a href="/{$code}/index.html">
-                        <img src="//china.wavlink.com/images/LOGO/WAVLINK_logo.png" alt="">
-                    </a>
-                </h1>
-                <div class="menu-container">
-                    <div class="nav" id="nav">
-                        <div class="first-menu">
-                            <ul>
-                                <li class="first-item" id="home"><a href="/zh_cn/jobs/social">首页</a></li>
-                                <li class="first-item" id="wavlink-company"><a href="/zh_cn/jobs/social#company">公司介绍</a></li>
-                                <li class="first-item" id="wavlink-job"><a href="/zh_cn/jobs/social/list">招聘职位</a></li>
-                                <li class="first-item" id="wavlink-back"><a href="/{$code}/index.html">返回官网</a></li>
-                            </ul>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-</header>
 {/block}
 
 {block name="body"}
@@ -55,23 +22,19 @@
                 </div>-->
                 <div class="filter">
                     <div class="job-type select-box">
-                        <select class="select" name="category">
+                        <select class="select filter_by" name="category">
                             <option value="all">职能类型</option>
-                            <option value="运营类">运营类</option>
-                            <option value="产品类">产品类</option>
-                            <option value="文员类">文员类</option>
-                            <option value="技术类">技术类</option>
-                            <option value="设计类">设计类</option>
-                            <option value="管理类">管理类</option>
-                            <option value="IT类">IT类</option>
+                            {volist name="jobCategory" id="vo"}
+                            <option value="{$vo.name}">{$vo.name}</option>
+                            {/volist}
                         </select>
                     </div>
                     <div class="city select-box">
-                        <select class="select" name="category">
+                        <select class="select order_by" name="category">
                             <option value="all">工作地点</option>
-                            <option value="运营类">深圳</option>
-                            <option value="产品类">赣州</option>
-                            <option value="文员类">成都</option>
+                            {volist name="city" id="vo"}
+                            <option value="{$vo}">{$vo}</option>
+                            {/volist}
                         </select>
                     </div>
                 </div>
@@ -122,23 +85,23 @@
         </div>
     </div>
 </section>
-
-<div class="page-com-foot">
-    <div class="foot-nav container">
-        <ul>
-            <li><a href="/">睿因官网</a></li>
-            <li><a href="/zh_cn/about/about_us">关于睿因</a></li>
-            <li><a href="/zh_cn/about/contact_us">联系睿因</a></li>
-            <li><a href="/zh_cn/category/wireless.html">睿因产品</a></li>
-            <li><a href="https://wavlink.tmall.com">睿因商城</a></li>
-        </ul>
-    </div>
-    <div class="copy-right">
-        <p>版权所有 © 睿因科技（深圳）有限公司</p>
-    </div>
-</div>
 {/block}
 {block name="javascript"}
 <!--私有JS-->
+<script>
+    $(function () {
+        // 筛选变化时 过滤
+        $('.filter_by').change(function () {
+            var filter_by = $(this).children('option:selected').val();
+            var order_by = $('.order_by').children('option:selected').val();
+            window.location.href = '/{$code}/faq/' + filter_by + '.html?order=' + order_by
+        });
+        $('.order_by').change(function () {
+            var filter_by = $('.filter_by').children('option:selected').val();
+            var order_by = $(this).children('option:selected').val();
+            window.location.href = '/{$code}/faq/' + filter_by + '.html?order=' + order_by
+        });
+    });
+</script>
 {/block}
 

@@ -1,0 +1,27 @@
+<div class="g-nav">
+    <div class="logo">
+        <h1>
+            <a href="/{$code}/index.html">
+                <img src="//china.wavlink.com/images/LOGO/WAVLINK_logo.png" alt="www.wavlink.com">
+            </a>
+        </h1>
+    </div>
+    <div class="menu-bar" id="menu-bar">
+        <span></span>
+    </div>
+    <div class="nav-menu">
+        <ul>
+            <li id="home"><a href="/zh_cn/jobs/social">首页</a></li>
+            <li id="wavlink-company"><a href="/zh_cn/jobs/social#company">公司介绍</a></li>
+            <li id="wavlink-job"><a href="/zh_cn/jobs/social/list">招聘职位</a></li>
+            <li><a href="/{$code}/index.html">返回官网</a></li>
+        </ul>
+    </div>
+</div>
+<script>
+    $(function () {
+        $("#menu-bar").click(function () {
+            $(this).siblings(".nav-menu").slideToggle(300)
+        })
+    })
+</script>

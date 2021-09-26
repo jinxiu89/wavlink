@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, minimum-scale=1, user-scalable=no">
+    <title>{block name="title"}{/block}</title>
+    {block name="seo"}
+    <!--私有页面SEO-->
+    {/block}
+    <script src="__LIB__/JQuery/JQuery-3.4.0.js"></script>
+    <script src="__MOBILE__/js/public.js"></script>
+    <link rel="stylesheet" href="__LIB__/Bootstrap/bootstrap-3.3.7.min.css">
+    <link rel="stylesheet" href="__LIB__/iconfont/iconfont.css">
+    <link rel="stylesheet" href="__MOBILE__/css/public/components.css">
+    {block name="style"}
+    <!--私有样式文件-->
+    {/block}
+    <script>
+        var _hmt = _hmt || [];
+        (function() {
+            var hm = document.createElement("script");
+            hm.src = "https://hm.baidu.com/hm.js?57cba9536cad14d6acc15a56370ceb76";
+            var s = document.getElementsByTagName("script")[0];
+            s.parentNode.insertBefore(hm, s);
+        })();
+    </script>
+</head>
+<body>
+{block name="nav"}
+{include file="mobile/social/common/nav" /}
+{/block}
+
+{block name="body"}
+<!--主体内容-->
+{/block}
+
+{block name="foot"}
+{include file="mobile/social/common/foot" /}
+{/block}
+
+{block name="javascript"}
+<!--私有JS-->
+{/block}
+</body>
+</html>

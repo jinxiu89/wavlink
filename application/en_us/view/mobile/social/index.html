@@ -1,42 +1,14 @@
+{extend name="mobile/social/common/base" /}
 {block name="seo"}
-<meta name="description" content="{notempty name='parent'}{$parent.description}{/notempty}">
-<meta name="keywords" content="{notempty name='parent'}{$parent.keywords}{/notempty}">
+<meta name="description" content="wavlink人才招聘">
+<meta name="keywords" content="wavlink人才招聘">
 {/block}
 {block name="style"}
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, minimum-scale=1, user-scalable=no">
-<script src="__LIB__/JQuery/JQuery-3.4.0.js"></script>
 <script src="__LIB__/Swiper/swiper.min.js"></script>
-<script src="__MOBILE__/js/public.js"></script>
-<link rel="stylesheet" href="__LIB__/Bootstrap/bootstrap-3.3.7.min.css">
-<link rel="stylesheet" href="__LIB__/iconfont/iconfont.css">
 <link rel="stylesheet" href="__LIB__/Swiper/swiper.min.css">
-<link rel="stylesheet" href="__MOBILE__/css/public/components.css">
 <link rel="stylesheet" href="__MOBILE__/css/page/social.css">
 {/block}
 
-{block name="nav"}
-<div class="g-nav">
-    <div class="logo">
-        <h1>
-            <a href="/{$code}/index.html">
-                <img src="//china.wavlink.com/images/LOGO/WAVLINK_logo.png" alt="www.wavlink.com">
-            </a>
-        </h1>
-    </div>
-    <div class="menu-bar" id="menu-bar">
-        <span></span>
-    </div>
-    <div class="nav-menu">
-        <ul>
-            <li id="home"><a href="/zh_cn/jobs/social">首页</a></li>
-            <li id="wavlink-company"><a href="#company">公司介绍</a></li>
-            <li id="wavlink-job"><a href="/zh_cn/jobs/social/list">招聘职位</a></li>
-            <li><a href="/{$code}/index.html">返回官网</a></li>
-        </ul>
-    </div>
-</div>
-{/block}
 {block name="body"}
 <section class="g-section">
     <div class="container-fluid">
@@ -87,7 +59,7 @@
             </div>
             <div class="company-details">
                 <p>
-                    深圳市欣博跃电子有限公司（以下简称欣博跃）是睿因科技（深圳）有限公司旗下的一家全资子公司。欣博跃是集软件开发、外观设计、模具制造、产品解决方案提供、产品制造、终端销售、售后服务为一体的国家级（专精特新小巨人）高新技术企业。
+                    深圳市欣博跃电子有限公司(以下简称欣博跃)是睿因科技(深圳)有限公司旗下的一家全资子公司。欣博跃是集软件开发、外观设计、模具制造、产品解决方案提供、产品制造、终端销售、售后服务为一体的国家级(专精特新小巨人)高新技术企业。
                 </p>
                 <p>
                     欣博跃总部于2021年正式搬迁至粤“港澳大湾区的科技高地”——深圳市光明区的自有写字楼。目前拥有两家全资工厂，即占地面积1万㎡的深圳龙华生产基地与占地面积2万㎡江西省赣州市生产基地。生产基地拥有国内外领先的研发设备实验室，可满足包括单板检测、软件调试、安规检测、EMC检测在内的各项检测工作。生产线配备了全自动高速SMT生产线、全自动锡纸印刷机、自动回流焊机、全自动AI插件线、PCBA自动检测线、WIFI校准测试仪、双区波峰焊机、硅胶自动点胶机、电源自动老化测试系统、倍数链自动组装流水线、MES生产管理系统、智能仓库管理系统等生产、辅助生产设备。可实现年产50万套无线路由器、100万套无线中继器、15万套无线图传、50万套多屏及多功能扩展设备、10万套智能家居产品的生产能力。
@@ -114,7 +86,7 @@
                         <div></div>
                     </div>
                     <p>热门职位列表</p>
-                    <p style="margin-top: 5px"><a href="//files2.wavlink.com/images/hr-job/details/path.jpg">点击查看</a>人才推荐奖励计划</p>
+                    <p style="margin-top: 5px"><a href="//files2.wavlink.com/images/hr-job/recommend.png">点击查看</a>人才推荐奖励计划</p>
                 </div>
                 <div class="job-box">
                     <!--<div class="job-search">
@@ -166,20 +138,6 @@
         </div>
     </div>
 </section>
-<div class="page-com-foot">
-    <div class="foot-nav container">
-        <ul>
-            <li><a href="https://www.wavlink.com">睿因官网</a></li>
-            <li><a href="https://www.wavlink.com/zh_cn/about/about_us.html">关于睿因</a></li>
-            <li><a href="https://www.wavlink.com/zh_cn/about/contact_us.html">联系睿因</a></li>
-            <li><a href="https://www.wavlink.com/zh_cn/category/wireless.html">睿因产品</a></li>
-            <li><a href="https://wavlink.tmall.com/shop/view_shop.htm">睿因商城</a></li>
-        </ul>
-    </div>
-    <div class="copy-right">
-        <p>版权所有 © 睿因科技（深圳）有限公司</p>
-    </div>
-</div>
 
 <div id="go-top">
     <div class="top">
@@ -219,10 +177,6 @@
 </script>
 <script>
     $(function () {
-        $("#menu-bar").click(function () {
-            $(this).siblings(".nav-menu").slideToggle(300)
-        });
-
         var companyHeight = $('.company-details').height();
         if(companyHeight >= 300) {
             $('.company-details').css({

@@ -1,43 +1,10 @@
+{extend name="desktop/social/common/base" /}
 {block name="seo"}
-<meta name="description" content="{notempty name='parent'}{$parent.description}{/notempty}">
-<meta name="keywords" content="{notempty name='parent'}{$parent.keywords}{/notempty}">
+<meta name="description" content="职位详情">
+<meta name="keywords" content="职位详情">
 {/block}
 {block name="style"}
-<link rel="stylesheet" href="__LIB__/Bootstrap/bootstrap-3.3.7.min.css">
-<link rel="stylesheet" href="__LIB__/Swiper/swiper.min.css">
-<link rel="stylesheet" href="__LIB__/iconfont/iconfont.css">
-<link rel="stylesheet" href="__DESKTOP__/css/public/components.css">
 <link rel="stylesheet" href="__DESKTOP__/css/page/social-detail.css">
-<script src="__LIB__/JQuery/JQuery-3.4.0.js"></script>
-<script src="__DESKTOP__/js/public.js"></script>
-{/block}
-
-{block name="nav"}
-<header class="g-nav">
-    <div class="container">
-        <div class="row">
-            <div class="nav-container">
-                <h1 class="logo">
-                    <a href="/{$code}/index.html">
-                        <img src="//china.wavlink.com/images/LOGO/WAVLINK_logo.png" alt="">
-                    </a>
-                </h1>
-                <div class="menu-container">
-                    <div class="nav" id="nav">
-                        <div class="first-menu">
-                            <ul>
-                                <li class="first-item" id="home"><a href="/zh_cn/jobs/social">首页</a></li>
-                                <li class="first-item" id="wavlink-company"><a href="/zh_cn/jobs/social#company">公司介绍</a></li>
-                                <li class="first-item" id="wavlink-job"><a href="/zh_cn/jobs/social/list">招聘职位</a></li>
-                                <li class="first-item" id="wavlink-back"><a href="/{$code}/index.html">返回官网</a></li>
-                            </ul>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-</header>
 {/block}
 
 {block name="body"}
@@ -127,21 +94,6 @@
         </div>
     </div>
 </section>
-
-<div class="page-com-foot">
-    <div class="foot-nav container">
-        <ul>
-            <li><a href="https://www.wavlink.com">睿因官网</a></li>
-            <li><a href="https://www.wavlink.com/zh_cn/about/about_us.html">关于睿因</a></li>
-            <li><a href="https://www.wavlink.com/zh_cn/about/contact_us.html">联系睿因</a></li>
-            <li><a href="https://www.wavlink.com/zh_cn/category/wireless.html">睿因产品</a></li>
-            <li><a href="https://wavlink.tmall.com/">睿因商城</a></li>
-        </ul>
-    </div>
-    <div class="copy-right">
-        <p>版权所有 © 睿因科技（深圳）有限公司</p>
-    </div>
-</div>
 {/block}
 {block name="javascript"}
 <!--私有JS-->

@@ -38,7 +38,13 @@ class Social extends BaseModel
         return Db::table($this->table)
             ->where('status', 'in', $status)
             ->field('id,title,url_title,city,type,salary,seniority,education,status,sort,numbers,update_time')
-            ->order(['sort' => 'desc', 'create_time' => 'desc'])->select();
+            ->order(['sort' => 'desc', 'create_time' => 'desc', 'id' => 'asc'])->select();
+    }
+    public function getDataByWhere(array $where, array $status)
+    {
+        return Db::table($this->table)->whereIn('status', $status)
+            ->where($where)->field('id,title,url_title,city,type,salary,seniority,education,status,sort,numbers,update_time')
+            ->order(['sort' => 'desc', 'create_time' => 'desc', 'id' => 'asc'])->select();
     }
     /**
      * 获取职位详情
@@ -57,5 +63,10 @@ class Social extends BaseModel
     public function Sort(int $id, int $sort)
     {
         return Db::table($this->table)->update(['id' => $id, 'sort' => $sort]);
+    }
+
+    public function getCity()
+    {
+        return Db::table($this->table)->column('city');
     }
 }

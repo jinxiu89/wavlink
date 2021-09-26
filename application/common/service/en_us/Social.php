@@ -15,6 +15,7 @@ namespace app\common\service\en_us;
 
 use app\common\service\en_us\BaseService;
 use app\common\model\Jobs\Social as model;
+use app\common\model\Jobs\Category;
 use think\facade\Cache;
 use think\Exception;
 use think\Log;
@@ -27,10 +28,12 @@ use think\Log;
  */
 class Social extends BaseService
 {
+    protected $category_model;
     public function __construct()
     {
         parent::__construct();
         $this->model = new model();
+        $this->category_model = new Category();
     }
     public function gedJobsByStatus(array $status)
     {
@@ -46,6 +49,35 @@ class Social extends BaseService
         } catch (Exception $exception) {
             if ($this->debug == true) Log::error(__FUNCTION__ . ':' . $exception->getMessage());
             return $exception->getMessage();
+        }
+    }
+
+    public function getCategory()
+    {
+        try {
+            return $this->category_model->getCategory();
+        } catch (Exception $exception) {
+            return ['err' => $exception->getMessage()];
+        }
+    }
+    public function getCity()
+    {
+        try {
+            return array_unique($this->model->getCity());
+        } catch (Exception $exception) {
+            return [$exception->getMessage()];
+        }
+    }
+
+    public function getDataByWhere(array $where = [])
+    {
+        if (empty($where)) {
+            return $this->gedJobsByStatus((array)$status = [0, 1]);
+        }
+        try {
+            return $this->model->getDataByWhere((array)$where, (array)$status = [0, 1]);
+        } catch (Exception $exception) {
+            return [];
         }
     }
     /**

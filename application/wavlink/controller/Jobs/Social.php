@@ -31,6 +31,7 @@ class Social extends BaseAdmin
 
     protected $validate;
     protected $model;
+    protected $category;
     /**
      * 初始化函数
      *
@@ -43,6 +44,7 @@ class Social extends BaseAdmin
         parent::__construct($app);
         $this->validate = new validate();
         $this->model = new Model();
+        $this->category = new Category;
     }
     /**
      * Route::rule('/jobs/social$', 'Jobs.Social/index')->name('jobs_social');
@@ -55,7 +57,7 @@ class Social extends BaseAdmin
     public function index()
     {
         if ($this->request->isGet()) {
-            $data = $this->model->all();
+            $data = $this->model->order(['sort' => 'desc', 'create_time' => 'desc', 'id' => 'asc'])->all();
             $this->assign('data', $data->toArray());
             return $this->fetch('');
         }

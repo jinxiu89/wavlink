@@ -14,6 +14,7 @@ declare(strict_types=1);
 namespace app\common\model\Jobs;
 
 use app\common\model\BaseModel;
+use think\Db;
 
 /**
  * 招聘管理系统的职位分类表
@@ -24,4 +25,9 @@ use app\common\model\BaseModel;
 class Category extends BaseModel
 {
     protected $table = 'tb_jobs_category';
+
+    public function getCategory()
+    {
+        return Db::table($this->table)->field('id,name,title')->all();
+    }
 }

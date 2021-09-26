@@ -24,6 +24,8 @@ class Social extends Base
 {
     protected $service;
     protected $data;
+    protected $category;
+    protected $city;
     /**
      * Undocumented function
      *
@@ -36,7 +38,18 @@ class Social extends Base
         parent::__construct($app);
         $this->service = new service();
         $this->data = $this->service->gedJobsByStatus((array)$status = [0, 1]);
+        $this->category = $this->service->getCategory();
+        $this->city = $this->service->getCity();
+        $this->assign('jobCategory', $this->category);
+        $this->assign('city', $this->city);
     }
+    /**
+     * 职位首页列表
+     *
+     * @Author: kevin qiu
+     * @DateTime: 2021-09-24
+     * @return void
+     */
     public function index()
     {
         if ($this->request->isGet()) {
@@ -47,6 +60,7 @@ class Social extends Base
             return $this->fetch($this->template . '/social/index.html');
         }
     }
+
     /**
      * 简历上传接口，只要是WORD文档都转一遍
      *
@@ -105,7 +119,17 @@ class Social extends Base
     {
         # code...
         if ($this->request->isGet()) {
-            $data = $this->data;
+            $where = [];
+            $category_id = $this->request->param('category_id');
+            $city = $this->request->param('city');
+            print_r($category_id);
+            if (!empty($category_id)) $where['category_id'] = $category_id;
+            if (!empty($city)) $where['city'] = $city;
+            if (!empty($where) || !is_array($where)) {
+                $data = $this->service->getDataByWhere((array)$where);
+            } else {
+                $data = $this->data;
+            }
             $count = count($data);
             $pages = input('page', 1);
             $size = 12;
@@ -118,6 +142,13 @@ class Social extends Base
             $this->assign('data', array_slice($data, ($pages - 1) * $size, $size));
             $this->assign('page', $page);
             return $this->fetch($this->template . '/social/list.html');
+        }
+    }
+    public function list_filter()
+    {
+        if ($this->request->isGet()) {
+            if ($this->request->param('category_id')) $category_id = $this->request->param('category_id');
+            if ($this->request->param(('city'))) $city = $this->request->param(('city'));
         }
     }
     /**

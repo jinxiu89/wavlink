@@ -30,7 +30,7 @@ class World2Html
     {
         try {
             $retval = 1;
-            $cmd = 'export HOME=/tmp/ && /usr/bin/soffice --headless --convert-to pdf ' . $source . ' --outdir ' . $outdir;
+            $cmd = '/usr/bin/soffice --headless --convert-to pdf ' . $source . ' --outdir ' . $outdir;
             if (function_exists('exec')) {
                 @exec($cmd, $output, $retval);
             }

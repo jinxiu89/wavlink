@@ -117,7 +117,7 @@ class Common extends Controller
         if ($this->request->isPost()) {
             $file = $this->request->file('file');
             try {
-                $info = $file->validate(['ext' => 'pdf,doc,docx,zip,rar'])->move(PUBLIC_PATH . '/hr');
+                $info = $file->validate(['ext' => 'pdf,doc,docx,zip,rar,psd'])->rule('uniqid')->move(PUBLIC_PATH . '/hr');
                 if ($info) {
                     return jsonShow((int)200, (string)$message = "success", (array) $data = ['path' => $info->getSaveName()]);
                 } else {

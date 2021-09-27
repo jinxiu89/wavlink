@@ -47,7 +47,7 @@ class Social extends BaseService
             }
             return $this->model->gedJobsByStatus((array)$status);
         } catch (Exception $exception) {
-            if ($this->debug == true) Log::error(__FUNCTION__ . ':' . $exception->getMessage());
+            // if ($this->debug == true) Log::error(__FUNCTION__ . ':' . $exception->getMessage());
             return $exception->getMessage();
         }
     }

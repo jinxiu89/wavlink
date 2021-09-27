@@ -76,13 +76,14 @@ class Social extends Base
                 $info = $file->validate(['ext' => 'pdf,doc,docx,zip,rar'])->rule('uniqid')->move(PUBLIC_PATH . '/hr');
                 if ($info) {
                     if ($info->getInfo()['type'] === 'application/vnd.openxmlformats-officedocument.wordprocessingml.document' or $info->getInfo()['type'] === 'application/msword') {
-                        $result = (new World2Html())->Libreoffice(PUBLIC_PATH . '/hr/' . $info->getSaveName(), PUBLIC_PATH . '/hr/');
-                        if ($result) {
-                            $str = $info->getSaveName();
-                            $path = explode('.', $str, 0)[0] . '.pdf';
-                            if (unlink(PUBLIC_PATH . '/hr/' . $str)) return jsonShow((int)200, (string)$message = "success", (array) $data = ['path' => $path]);
-                            return jsonShow((int) 500, (string)$message = "upload failed", (array) $data = []);
-                        }
+                        $str = $info->getSaveName();
+                        $path = explode('.', $str)[0] . '.pdf';
+                        $input = PUBLIC_PATH . '/hr/' . $info->getSaveName();
+                        $output = PUBLIC_PATH . '/hr/' . $path;
+                        $result = (new World2Html())->doc2pdf((string) $input, (string) $output);
+                        if ($result['status'] == 0) return jsonShow((int) 500, (string)$result['message'], (array)$data = []);
+                        if (unlink(PUBLIC_PATH . '/hr/' . $str)) return jsonShow((int)200, (string)$message = "success", (array) $data = ['path' => $path]);
+                        return jsonShow((int) 500, (string)$message = "upload failed", (array) $data = []);
                     }
                     return jsonShow((int)200, (string)$message = "success", (array) $data = ['path' => $info->getSaveName()]);
                 } else {

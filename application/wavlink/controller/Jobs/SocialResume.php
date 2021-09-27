@@ -65,8 +65,11 @@ class SocialResume extends BaseAdmin
 
     public function views($url)
     {
-        $path = PUBLIC_PATH . '/hr/' . $url;
-        print_r($path);
+        if ($this->request->isGet()) {
+            $path = PUBLIC_PATH . '/hr/' . $url;
+            print_r($path);
+            return $this->fetch();
+        }
         // $html = (new World2Html())->World2Html($path);
         // $temp = $html->save($htmlFile);
         // print_r($html);

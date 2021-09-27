@@ -14,30 +14,28 @@ declare(strict_types=1);
 namespace app\common\helper;
 
 use Exception;
+use Unoconv\Unoconv;
 
 class World2Html
 {
     /**
-     * 利用 libreoffice 转PDF
+     * unconv 转还pdf
      *
      * @Author: kevin qiu
-     * @DateTime: 2021-09-23
-     * @param [type] $source
-     * @param [type] $outdir
+     * @DateTime: 2021-09-27
+     * @param string $input
+     * @param string $output
      * @return void
      */
-    public function Libreoffice($source, $outdir)
+    public function doc2pdf(string $input, string $output)
     {
         try {
-            $retval = 1;
-            $cmd = '/usr/bin/soffice --headless --convert-to pdf ' . $source . ' --outdir ' . $outdir;
-            if (function_exists('exec')) {
-                @exec($cmd, $output, $retval);
-            }
-            if ($retval > 0) {
-                return ['status' => 0, 'message' => '程序运行失败'];
-            }
-            return ['status' => 1, 'message' => '转换成功'];
+            $unoconv = Unoconv::create([
+                'timeout' => 42,
+                'unoconv.binaries' => PUBLIC_PATH . '/../unoconv',
+            ]);
+            // return $unoconv->transcode($input, 'pdf', $output); //成功是返回的一个对象体
+            if ($unoconv->transcode($input, 'pdf', $output)) return ['status' => 1, 'message' => '转换成功'];
         } catch (Exception $exception) {
             return ['status' => 0, 'message' => $exception->getMessage()];
         }

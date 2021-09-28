@@ -58,7 +58,6 @@ class SocialResume extends BaseAdmin
                 $this->assign('data', $data['data']);
                 $this->assign('count', $data['count']);
             }
-            // print_r($data['data']);?
             return $this->fetch();
         }
     }

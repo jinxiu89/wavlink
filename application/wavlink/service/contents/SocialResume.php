@@ -37,7 +37,7 @@ class SocialResume extends Base
             return $result;
         } catch (\Exception $exception) {
             //todo:日志 错误
-
+            return [$exception->getMessage()];
         }
     }
 }

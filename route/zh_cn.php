@@ -36,7 +36,7 @@ Route::group('zh_cn', function () {
     Route::get('/jobs/social$', 'Social/index');
     Route::get('/jobs/testify$', 'Social/testify')->name('jobs_testify');
     Route::rule('/jobs/upload_resume', 'Social/upload_resume')->name('upload_resume');
-    Route::get('/jobs/social/list$', 'Social/list');
+    Route::get('/jobs/social/list$', 'Social/list')->name('jobs_social_list');
     Route::get('/jobs/social/details/:url_title$', 'Social/details')->name('social_details');
     Route::rule('/jobs/social/gain/:url_title$', 'Social/gain')->name('gain_social_job');
     //包装印刷指定的url地址 model=>'该产品的标准型号'

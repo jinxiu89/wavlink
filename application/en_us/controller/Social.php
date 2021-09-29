@@ -123,9 +123,14 @@ class Social extends Base
             $where = [];
             $category_id = $this->request->param('category_id');
             $city = $this->request->param('city');
-            print_r($category_id);
-            if (!empty($category_id)) $where['category_id'] = $category_id;
-            if (!empty($city)) $where['city'] = $city;
+            if (!empty($category_id)) {
+                $where['category_id'] = $category_id;
+                $this->assign('category_id', $category_id);
+            }
+            if (!empty($city)) {
+                $where['city'] = $city;
+                $this->assign('ci', $city);
+            }
             if (!empty($where) || !is_array($where)) {
                 $data = $this->service->getDataByWhere((array)$where);
             } else {
@@ -136,8 +141,8 @@ class Social extends Base
             $size = 12;
             $page_options = ['var_page' => 'page', 'path' => '/' . $this->code . '/jobs/social/list']; //分页选项
             $page = Bootstrap::make($data, $size, $pages, $count, true, $page_options);
-            if (!empty($data)) {
-                $hot = array_slice($data, 0, 5);
+            if (!empty($this->data)) {
+                $hot = array_slice($this->data, 0, 5);
                 $this->assign('hot', $hot);
             }
             $this->assign('data', array_slice($data, ($pages - 1) * $size, $size));
@@ -148,8 +153,11 @@ class Social extends Base
     public function list_filter()
     {
         if ($this->request->isGet()) {
-            if ($this->request->param('category_id')) $category_id = $this->request->param('category_id');
-            if ($this->request->param(('city'))) $city = $this->request->param(('city'));
+            $category_id = $this->request->param('category_id') ? $this->request->param('category_id') : '';
+            $city = ($this->request->param(('city'))) ? $city = $this->request->param(('city')) : '';
+            $where = [];
+            if (!empty($category_id)) $where['category_id'] = $category_id;
+            if (!empty($city)) $where['city'] = $city;
         }
     }
     /**

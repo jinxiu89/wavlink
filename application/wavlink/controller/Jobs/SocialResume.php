@@ -62,23 +62,10 @@ class SocialResume extends BaseAdmin
         }
     }
 
-    public function views($url)
+    public function views()
     {
         if ($this->request->isGet()) {
-            $path = PUBLIC_PATH . '/hr/' . $url;
-            print_r($path);
             return $this->fetch();
         }
-        // $html = (new World2Html())->World2Html($path);
-        // $temp = $html->save($htmlFile);
-        // print_r($html);
-        // exit;https://cdn.bootcdn.net/ajax/libs/pdf.js/2.10.377/images/annotation-check.svg
-        // $html = IOFactory::load($path); /hr/20210915/7afa6141631cba79ef2ac87666e72e49.pdf
-
-        // 
-        // $html->save($htmlFile);
-        // $temp = file_get_contents($htmlFile);
-        // print_r($html);
-        // 85900db0485b21ae3ad0632a3349cf12.doc
     }
 }

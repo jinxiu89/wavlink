@@ -1,4 +1,5 @@
 <?php
+
 /**
  * Created by PhpStorm.
  * User: jinxiu89@163.com
@@ -32,7 +33,7 @@ class Manual extends Base
     {
         parent::__construct($app);
         try {
-            $cate = ServiceCategory::getTree($this->code,'Manual');
+            $cate = ServiceCategory::getTree($this->code, 'Manual');
             $this->assign('manuals', $cate);
         } catch (DataNotFoundException $e) {
         } catch (ModelNotFoundException $e) {
@@ -89,12 +90,12 @@ class Manual extends Base
     public function category($category = "", $order = "desc")
     {
         if (empty($category) || !isset($category)) {
-            abort(404);//直接报404 不存在的意思
+            abort(404); //直接报404 不存在的意思
         }
-        if($category == 'all'){
-            return redirect(url('/'.$this->code.'/manuals/index',['order'=>$order]),[],200);
+        if ($category == 'all') {
+            return redirect(url('/' . $this->code . '/manuals/index', ['order' => $order]), [], 200);
         }
-        $parent = ServiceCategory::getCategoryIdByName($this->code, $category);//Wirless这个分类的数据 array('id'=>52,'name'=>'wirless'
+        $parent = ServiceCategory::getCategoryIdByName($this->code, $category); //Wirless这个分类的数据 array('id'=>52,'name'=>'wirless'
         $nav = ServiceCategory::getNavByCategoryId($this->code, $category);
         $this->assign('path', $nav);
         $this->assign('parent', $parent);
@@ -105,11 +106,12 @@ class Manual extends Base
         } else {
             /***
              *1 如果查出来的parent 的level 小于2 那么 他一定还有下一级
+             
              * //pc 这个分类 的level肯定小于等于2
              * //返回他所有的子分类
              * //返回的是这个分类及他以下的所有的说明书数据
              */
-            $child = ServiceCategory::getChild($parent['id']);//他没有下一级的情况，下去怎么查？
+            $child = ServiceCategory::getChild($parent['id']); //他没有下一级的情况，下去怎么查？
             $categoryIDS[] = $parent['id'];
             foreach ($child as $item) {
                 $categoryIDS[] = $item['id'];

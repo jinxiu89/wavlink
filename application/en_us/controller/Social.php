@@ -198,6 +198,7 @@ class Social extends Base
         if ($this->request->isPost()) {
             //todo:: 申请步骤
             $data = input('post.', 'htmlspecialchars');
+            $data['status'] = 0;
             try {
                 $result = (new SocialResume())->save($data);
                 if ($result) {

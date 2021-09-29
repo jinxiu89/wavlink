@@ -323,3 +323,20 @@ function getCategoryNameByID($category_id)
         return $exception->getMessage();
     }
 }
+
+/**
+ * 筛选状态 1、选中 0、等待 -1、不合适 2 、已发邮件邀约	
+ *
+ * @Author: kevin qiu
+ * @DateTime: 2021-09-29
+ * @param [type] $status
+ * @return void
+ */
+function resumeStatus($status)
+{
+    if ($status == 1) $str = '<span class="label btn-secondary radius">选中</span>';
+    if ($status == 0) $str = '<span class="label btn-default radius">等待</span>';
+    if ($status == -1) $str = '<span class="label label-danger radius">不合适</span>';
+    if ($status == 2) $str = '<span class="label label-success radius">已发邀约</span>';
+    return $str;
+}

@@ -20,18 +20,26 @@
             </div>-->
             <div class="filter">
                 <div class="job-type select-box">
-                    <select class="select" name="category">
+                    <select class="select filter_by" name="category">
                         <option value="all">职能类型</option>
                         {volist name="jobCategory" id="vo"}
-                        <option value="{$vo.name}">{$vo.name}</option>
+                        {notempty name="category_id"}
+                        <option value="{$vo.id}" {if condition="$category_id eq $vo.id"}selected{/if}>{$vo.name}</option>
+                        {else /}
+                        <option value="{$vo.id}">{$vo.name}</option>
+                        {/notempty}
                         {/volist}
                     </select>
                 </div>
                 <div class="city select-box">
-                    <select class="select" name="category">
+                    <select class="select order_by" name="category">
                         <option value="all">工作地点</option>
                         {volist name="city" id="vo"}
-                        <option value="">{$vo}</option>
+                        {notempty name="$ci"}
+                        <option value="{$vo}" {if condition="$ci == $vo"}selected{/if}>{$vo}</option>
+                        {else /}
+                        <option value="{$vo}">{$vo}</option>
+                        {/notempty}
                         {/volist}
                     </select>
                 </div>

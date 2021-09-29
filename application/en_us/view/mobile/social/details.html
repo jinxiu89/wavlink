@@ -49,26 +49,13 @@
                     <div>
                         <h3>工作地址</h3>
                     </div>
-                    <p>
-                        深圳市光明区观光路与二十三号路交汇处华强创意产业园3C栋17-20楼
-                    </p>
-                    <p>
-                        <strong style="font-weight: bold">联系方式</strong>：075588823721（hr李小姐直线座机），或0755-33985226-839或834，或0755-88823721转800
-                    </p>
-                    <p>
-                        <strong style="font-weight: bold">联系人</strong>：张小姐<br>
-                    </p>
-                    <p>
-                        <strong style="font-weight: bold">联系邮箱</strong>：hr05@win-star.com
-                    </p>
+                    {$data.work_address|raw}
                 </div>
                 <div class="des-box">
                     <div>
                         <h3>交通线路</h3>
                     </div>
-                    <div>
-                        <img src="//files2.wavlink.com/images/hr-job/details/path.jpg" alt="address">
-                    </div>
+                    {$data.map|raw}
                 </div>
                 <div class="getJobBox">
                     <a class="getJobBtn" href="{:url(\'gain_social_job\',[\'url_title\'=>$data.url_title])}">申请职位</a>

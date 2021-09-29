@@ -46,7 +46,7 @@
                                 <div id="appendix" class="picker">上传附件</div>
                             </div>
                             <div class="appendix-progress"></div>
-                            <p class="tips">支持文档、图片、压缩包、视频、音频、设计文件等格式文件，所有附件大小总和不超过50MB</p>
+                            <p class="tips">支持pdf、doc、docx、zip、rar、jpg、png等格式文件；最多只能上传三个文件，建议将所有文件打包后再上传</p>
                         </div>
                     </form>
                 </div>
@@ -117,7 +117,14 @@
             swf: '__LIB__/webuploader/0.1.5/Uploader.swf', // swf文件路径
             server: '{:url(\'uploader\')}', // 文件接收服务端。
             pick: el, // 选择文件的按钮。可选。
-            resize: false // 不压缩image, 默认如果是jpeg，文件上传前会压缩一把再上传！
+            resize: false, // 不压缩image, 默认如果是jpeg，文件上传前会压缩一把再上传！
+            fileNumLimit: 3,
+            accept: {
+                title: 'Files',
+                extensions: 'pdf,doc,docx,zip,rar,jpg,png',
+                mimeType: 'application/pdf,application/msword,application/vnd.openxmlformats-officedocument.wordprocessingml.document'
+                    +',application/x-zip-compressed,application/octet-stream,image/jpeg,image/png'
+            }
         });
         uploader.on('uploadSuccess', function (file, Object) {
             $(el).find('.webuploader-pick').text("继续上传");
@@ -126,6 +133,18 @@
         uploader.on('uploadError', function (file) {
             $(el).find('.webuploader-pick').text('上传出错');
         });
+        uploader.on('error', function( type ){
+            if (type=="Q_TYPE_DENIED"){
+                layer.msg('请上传pdf、doc、docx、zip、rar、jpg、png等格式文件', {icon: 5, time: 3000})
+            }
+        });
+        var fileNum = []
+        uploader.on("beforeFileQueued", function (file) {
+            fileNum.push(file)
+            if (fileNum.length > 3) {
+                layer.msg('最多只允许同时上传三个文件，如有多个文件请打包后再上传', {icon: 5, time: 3000})
+            }
+        })
         uploader.on("fileQueued", function (file) {
             $(".appendix-progress").append(
                 "<div id=\"" + file.id + "\" class=\"item\">" +

@@ -68,4 +68,23 @@ class SocialResume extends BaseAdmin
             return $this->fetch();
         }
     }
+    /**
+     * 状态值定义
+     * 0、未读
+     * 1、已读
+     * -99、删除
+     *
+     * @Author: kevin qiu
+     * @DateTime: 2021-09-30
+     * @return void
+     */
+    public function readed()
+    {
+        if ($this->request->isGet()) {
+            $id = $this->request->param('id');
+            $res = $this->service->readed((int)$id, (int)1);
+            print_r($res);
+            exit;
+        }
+    }
 }

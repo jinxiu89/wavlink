@@ -15,6 +15,8 @@ namespace app\wavlink\service\contents;
 
 use app\wavlink\service\Base;
 use app\common\model\Jobs\SocialResume as model;
+use Exception;
+use think\facade\Env;
 
 class SocialResume extends Base
 {
@@ -38,6 +40,15 @@ class SocialResume extends Base
         } catch (\Exception $exception) {
             //todo:日志 错误
             return [$exception->getMessage()];
+        }
+    }
+    public function readed(int $id, int $status)
+    {
+        //todo::
+        try {
+            $this->model->save(['status' => $status], ['id' => $id]);
+        } catch (Exception $exception) {
+            return $exception->getMessage();
         }
     }
 }

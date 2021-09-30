@@ -23,10 +23,14 @@ function index_add(title, url) {
     var index = layer.open({
         type: 2,
         title: title,
-        content: url
+        content: url,
+        cancel: function () {
+            window.parent.location.reload();
+        }
     });
     layer.full(index);
 }
+
 
 function index_edit(title, url) {
     var index = layer.open({

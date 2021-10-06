@@ -75,6 +75,21 @@
 </section>
 {/block}
 {block name="javascript"}
+<script>
+    $(function () {
+        // 筛选变化时 过滤
+        $('.filter_by').change(function () {
+            var filter_by = $(this).children('option:selected').val();
+            var order_by = $('.order_by').children('option:selected').val();
+            window.location.href = 'list?category_id=' + filter_by
+        });
+        $('.order_by').change(function () {
+            var filter_by = $('.filter_by').children('option:selected').val();
+            var order_by = $(this).children('option:selected').val();
+            window.location.href = 'list?category_id=' + filter_by + '&city=' + order_by
+        });
+    });
+</script>
 <!--私有JS-->
 {/block}
 

@@ -13,8 +13,9 @@
                 <div class="uploader-thum-container">
                     <div id="fileList" class="uploader-list"></div>
                     <div id="filePicker" style="display: inline-block">选择文件</div>
-                    <button id="btn-star" type="button" class="btn btn-default  btn-uploadstar radius ml-10">开始上传</button>
-                    <button  type="button" class="btn btn-default  btn-uploadstar radius ml-10">结束上传</button>
+                    <button id="btn-star" type="button"
+                        class="btn btn-default  btn-uploadstar radius ml-10">开始上传</button>
+                    <button type="button" class="btn btn-default  btn-uploadstar radius ml-10">结束上传</button>
                 </div>
                 <div id="imageInput">
                 </div>
@@ -61,7 +62,7 @@
                 '<div class="info" style="width: 120px; text-overflow: ellipsis; white-space: nowrap; overflow: hidden" title="' + file.name + '">' + file.name + '</div>' +
                 '<p class="state">等待上传...</p>' +
                 '</div>'
-                ),
+            ),
                 $img = $li.find('img');
             $list.append($li);
             // 创建缩略图
@@ -90,8 +91,7 @@
         // 文件上传成功，给item添加成功class, 用样式标记上传成功。
         uploader.on('uploadSuccess', function (file, result) {
             $('#' + file.id).addClass('upload-state-success').find(".state").text("已上传");
-            /*var $input = $('<input type="hidden" name="key" value="' + result.key + '">');
-            $imageInput.append($input);*/
+
         });
 
         // 文件上传失败，显示上传出错。
@@ -126,28 +126,7 @@
             }
         });
     });
-    $(".add").click(function () {
-        var postData = {};
-        var data = $("form").serializeArray();
-        $.each(data, function () {
-            postData[this.value] = this.name
-        });
-        $.ajax({
-            url: "/wavlink/static/images/upload.html",
-            type: "post",
-            data: postData,
-            "success": function (result) {
-                var msgData = JSON.parse(result);
-                if (msgData.status === true) {
-                    layer.msg(msgData.message, {icon: 1, time: 1000}, function () {
-                        window.parent.location.href = msgData.url
-                    })
-                } else {
-                    layer.msg(msgData.message, {icon: 5, time: 2000})
-                }
-            }
-        }, JSON);
-    });
 </script>
 </body>
+
 </html>

@@ -16,9 +16,11 @@ namespace app\wavlink\controller\Jobs;
 use app\wavlink\controller\BaseAdmin;
 use think\App;
 use app\wavlink\service\contents\SocialResume as service;
+use app\common\model\Jobs\Tags;
 use app\common\helper\World2Html;
 use PhpOffice\PhpWord\IOFactory;
 use PhpOffice\PhpWord\PhpWord;
+use think\Db;
 use think\facade\Env;
 
 /**
@@ -53,9 +55,11 @@ class SocialResume extends BaseAdmin
     {
         if ($this->request->isGet()) {
             $data = $this->service->getData();
+            $tags = Db::table('tb_resume_tags')->field('id,tags')->select();
             if (!$data['data']->isEmpty()) {
                 $this->assign('page', $data['data']->render());
                 $this->assign('data', $data['data']);
+                $this->assign('tags', $tags);
                 $this->assign('count', $data['count']);
             }
             return $this->fetch();
@@ -85,6 +89,22 @@ class SocialResume extends BaseAdmin
             $res = $this->service->readed((int)$id, (int)1);
             print_r($res);
             exit;
+        }
+    }
+    public function add_tag()
+    {
+        if ($this->request->isPost()) {
+            $data = $this->request->param();
+            try {
+                $res = $this->service->add_tag((array)$data);
+                if ($res) {
+                    return show(1, '添加标签成功', '', '', '', '添加标签成功');
+                } else {
+                    return show(0, '添加标签失败', '', '', '', '添加标签失败');
+                }
+            } catch (\Exception $exception) {
+                return show(0, $exception->getMessage(), '', '', '', $exception->getMessage());
+            }
         }
     }
 }

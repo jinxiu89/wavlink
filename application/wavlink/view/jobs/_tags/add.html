@@ -1,0 +1,65 @@
+<!--包含头部文件-->
+{include file="public/headers" /}
+<div class="page-container">
+    <form class="form form-horizontal form-o2o-add" id="form-o2o-add" method="post" action="">
+        <div class="row cl">
+            <label class="form-label col-xs-2 col-sm-2"><span class="c-red">*</span>标签：</label>
+            <div class="formControls col-xs-6 col-sm-4">
+                <input type="text" class="input-text" value="" placeholder="" id="tags" name="tags">
+                <input type="hidden" class="resume" name="id" value="">
+            </div>
+        </div>
+        <div class="rol col">
+            <br>
+            <br>
+        </div>
+        <div class="row cl">
+            <div class="col-xs-8 col-sm-9 col-xs-offset-4 col-sm-offset-2">
+                <button type="button" onclick="save_tag('{:url(\'add_jobs_tags\')}')" class="btn btn-primary radius"><i
+                        class="Hui-iconfont">&#xe632;</i> 保存</button>
+                <button onClick="layer_close();" class="btn btn-default radius"
+                    type="button">&nbsp;&nbsp;取消&nbsp;&nbsp;</button>
+            </div>
+        </div>
+    </form>
+</div>
+<!--包含头部文件-->
+{include file="public/footer" /}
+<script type="text/javascript">
+    function save_tag(url) {
+        $.ajax({
+            async: false,
+            url: url,
+            type: "post",
+            dataType: "json",
+            data: $("form").serialize(),//提交表单数据
+            success: function (result) {
+                if (result.status === 1) {
+                    var tagData = {};
+                    tagData['tags_id'] = result.data;
+                    tagData['id'] = $('.resume').val();
+                    console.log(tagData);
+                    $.ajax({
+                        async: false,
+                        url: '{:url(\'add_resume_tag\')}',
+                        type: "post",
+                        dataType: "json",
+                        data: tagData,//提交表单数据
+                        success: function (res) {
+                            if (res.status === 1) {
+                                window.parent.location.reload();
+                            } else {
+                                layer.msg(res.message, { icon: 5, time: 2000 });
+                            }
+                        }
+                    }, 'JSON')
+                } else {
+                    layer.msg(result.message, { icon: 5, time: 2000 });
+                }
+            }
+        })
+    }
+</script>
+</body>
+
+</html>

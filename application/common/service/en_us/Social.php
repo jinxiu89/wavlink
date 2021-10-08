@@ -86,16 +86,17 @@ class Social extends BaseService
      * @Author: kevin qiu
      * @DateTime: 2021-09-07
      * @param string $url_title
+     * 
      * @return void
      */
     public function getDetails(string $url_title)
     {
         try {
             if (false == $this->debug) {
-                $data = Cache::get(__FUNCTION__);
+                $data = Cache::get(__FUNCTION__ . $url_title);
                 if ($data) return $data;
                 $obj = $this->model->getDetails((string)$url_title);
-                Cache::set(__FUNCTION__, $obj);
+                Cache::set(__FUNCTION__ . $url_title, $obj);
                 return $obj;
             }
             return $this->model->getDetails((string)$url_title);

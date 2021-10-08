@@ -13,6 +13,8 @@ use think\db\exception\ModelNotFoundException;
 use think\exception\DbException;
 use think\Model;
 use app\common\model\Service\DriversCategory;
+use app\common\model\Jobs\Tags;
+use think\Db;
 
 //分类所属分类
 function getCategory($id)
@@ -334,9 +336,16 @@ function getCategoryNameByID($category_id)
  */
 function resumeStatus($status)
 {
-    if ($status == 1) $str = '<span class="label btn-secondary radius">选中</span>';
-    if ($status == 0) $str = '<span class="label btn-default radius">等待</span>';
+    if ($status == 1) $str = '<span class="label btn-success radius">已读</span>';
+    if ($status == 0) $str = '<span class="label btn-default radius">未读</span>';
     if ($status == -1) $str = '<span class="label label-danger radius">不合适</span>';
     if ($status == 2) $str = '<span class="label label-success radius">已发邀约</span>';
     return $str;
+}
+
+function getTag($tag_id)
+{
+
+    $tag = Db::table('tb_resume_tags')->where(['id' => $tag_id])->field('tags')->find();
+    return $tag['tags'];
 }

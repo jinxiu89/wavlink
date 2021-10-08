@@ -51,4 +51,12 @@ class SocialResume extends Base
             return $exception->getMessage();
         }
     }
+    public function add_tag(array $data)
+    {
+        try {
+            return $this->model->save(['tags_id' => $data['tags_id']], ['id' => $data['id']]);
+        } catch (Exception $exception) {
+            return $exception->getMessage();
+        }
+    }
 }

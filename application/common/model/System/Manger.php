@@ -1,4 +1,5 @@
 <?php
+
 /**
  * Created by PhpStorm.
  * User: guo
@@ -23,14 +24,14 @@ use think\model\relation\BelongsToMany;
  */
 class Manger extends BaseModel
 {
-    protected $table = 'manger';//使用user表
+    protected $table = 'manger'; //使用user表
 
     /**
      * @return BelongsToMany
      */
     public function AuthGroup()
     {
-        return $this->belongsToMany('AuthGroup', '\app\common\model\AuthGroupAccess', 'group_id', 'uid');
+        return $this->belongsToMany('AuthGroup', '\app\common\model\System\AuthGroupAccess', 'group_id', 'uid');
     }
 
     /**
@@ -141,6 +142,4 @@ class Manger extends BaseModel
             return false;
         }
     }
-
-
 }

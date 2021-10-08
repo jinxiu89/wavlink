@@ -30,6 +30,13 @@ class SocialResume extends Base
     {
         $this->model =  new model();
     }
+    /**
+     * 获取列表数据，分页，并按id 倒叙排列
+     *
+     * @Author: kevin qiu
+     * @DateTime: 2021-10-08
+     * @return void
+     */
     public function getData()
     {
         try {
@@ -42,6 +49,15 @@ class SocialResume extends Base
             return [$exception->getMessage()];
         }
     }
+    /**
+     * 预览简历后更新状态为已读抓昂天
+     *
+     * @Author: kevin qiu
+     * @DateTime: 2021-10-08
+     * @param integer $id
+     * @param integer $status
+     * @return void
+     */
     public function readed(int $id, int $status)
     {
         //todo::
@@ -51,6 +67,14 @@ class SocialResume extends Base
             return $exception->getMessage();
         }
     }
+    /**
+     * Undocumented function
+     *
+     * @Author: kevin qiu
+     * @DateTime: 2021-10-08
+     * @param array $data
+     * @return void
+     */
     public function add_tag(array $data)
     {
         try {

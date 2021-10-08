@@ -98,6 +98,13 @@ class Social extends BaseAdmin
             return show(0, '', '', '', '', $this->validate->getError());
         }
     }
+    /**
+     * 编辑社招列表
+     *
+     * @Author: kevin qiu
+     * @DateTime: 2021-10-08
+     * @return void
+     */
     public function edit()
     {
         $id = $this->request->param('id');
@@ -148,11 +155,5 @@ class Social extends BaseAdmin
                 }
             }
         }
-    }
-    public function stop()
-    {
-    }
-    public function delete()
-    {
     }
 }

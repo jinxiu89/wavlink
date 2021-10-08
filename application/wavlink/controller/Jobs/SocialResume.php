@@ -65,7 +65,13 @@ class SocialResume extends BaseAdmin
             return $this->fetch();
         }
     }
-
+    /**
+     * 预览简历
+     *
+     * @Author: kevin qiu
+     * @DateTime: 2021-10-08
+     * @return void
+     */
     public function views()
     {
         if ($this->request->isGet()) {
@@ -91,6 +97,13 @@ class SocialResume extends BaseAdmin
             exit;
         }
     }
+    /**
+     * 给简历加标签
+     *
+     * @Author: kevin qiu
+     * @DateTime: 2021-10-08
+     * @return void
+     */
     public function add_tag()
     {
         if ($this->request->isPost()) {

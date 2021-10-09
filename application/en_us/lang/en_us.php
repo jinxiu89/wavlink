@@ -135,4 +135,5 @@ return [
     'You might try' => 'You might try: ',
     'Back to the Homepage' => 'Back to the Homepage',
     'Back to Previous Page' => 'Back to Previous Page',
+    'hr'=>'Jobs',
 ];

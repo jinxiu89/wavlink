@@ -133,4 +133,5 @@ return [
     'You might try' => '您可以试试: ',
     'Back to the Homepage' => '返回首页',
     'Back to Previous Page' => '返回上一页',
+    'hr'=>'工作机会',
 ];

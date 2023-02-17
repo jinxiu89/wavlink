@@ -30,7 +30,7 @@
         "aliyuncs/oss-sdk-php": "^2.3",
         "aws/aws-sdk-php": "^3.137",
         "geoip2/geoip2": "~2.0",
-        "firebase/php-jwt": "^5.2",
+        "firebase/php-jwt": "^6.0",
         "phpoffice/phpspreadsheet": "^1.18"
     },
     "extra": {
